@@ -1,2 +1,2 @@
 # MLAI-community-labs
-Here are storing code that we can use to learn ML/AI concepts with code.
+Labs that explain complex ML/AI ideas simply with code.
