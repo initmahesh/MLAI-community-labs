@@ -11,21 +11,6 @@ from azure.cognitiveservices.vision.customvision.training.models import CustomVi
 from msrest.authentication import ApiKeyCredentials
 from twilio.rest import Client
 
-ENDPOINT = "https://southcentralus.api.cognitive.microsoft.com"
-prediction_key = "26a33723860043d2be8d686388177f57"
-training_key = "26a33723860043d2be8d686388177f57"
-
-
-prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
-predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
-
-
-training_credentials = ApiKeyCredentials(in_headers={"Training-key": training_key})
-trainer = CustomVisionTrainingClient(ENDPOINT, training_credentials)
-
-
-project_id = "20253808-76da-4fa7-9646-5e3c59fd4e2f"
-
 class VideoCaptureToBlob:
     def __init__(self, connection_string, source, time_delay, manual_mode):
         self.connection_string = connection_string
@@ -161,7 +146,7 @@ class VideoCaptureToBlob:
     def inference (self, frame):
        # Get the project by project_id
        try:
-           iterations = trainer.get_iterations(project_id)
+           iterations = trainer.get_iterations(PROJECT_ID)
            published_iteration = next(iteration for iteration in iterations if iteration.publish_name)
            publish_iteration_name = published_iteration.publish_name
        except StopIteration:
@@ -175,7 +160,7 @@ class VideoCaptureToBlob:
        #file_name='image'  +'.jpg'
        # Open the sample image and get back the prediction results.
        #with open(os.path.join(base_image_location, "image_2.jpg"), mode="rb") as test_data:
-       results = predictor.detect_image(project_id, publish_iteration_name, image_jpg)
+       results = predictor.detect_image(PROJECT_ID, publish_iteration_name, image_jpg)
        return results
 
 if __name__ == "__main__":
@@ -187,6 +172,17 @@ if __name__ == "__main__":
     ACCOUNT_SID = os.environ['TWILIO_ACCOUNT_SID']
     AUTH_TOKEN = os.environ['TWILIO_AUTH_TOKEN']
     PHONE_NUMBER = os.environ['TWILIO_PHONE_NUMBER']
+    PREDICTION_KEY = os.environ['PREDICTION_KEY']
+    TRAINING_KEY = os.environ['TRAINING_KEY']
+    PROJECT_ID = os.environ['PROJECT_ID']
+    ENDPOINT = "https://southcentralus.api.cognitive.microsoft.com"
+
+    prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": PREDICTION_KEY})
+    predictor = CustomVisionPredictionClient(ENDPOINT, prediction_credentials)
+
+
+    training_credentials = ApiKeyCredentials(in_headers={"Training-key": TRAINING_KEY})
+    trainer = CustomVisionTrainingClient(ENDPOINT, training_credentials)
 
     client = Client(ACCOUNT_SID, AUTH_TOKEN)
     video_capture = VideoCaptureToBlob(CONNECTION_STRING, SOURCE, TIME_DELAY, MANUAL_MODE)
