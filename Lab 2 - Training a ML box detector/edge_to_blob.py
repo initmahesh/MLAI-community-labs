@@ -83,16 +83,18 @@ class VideoCaptureToBlob:
                # To get the actual pixel coordinates, you can multiply these values by the width and height of the image, respectively.
                for prediction in results.predictions:
                    if prediction.probability >= probability_threshold:
-                       url = f'https://mlcohort.blob.core.windows.net/{self.container_name}/image1.jpg'
+                       url = f'https://mlcohort.blob.core.windows.net/{self.container_name}/image{i}.jpg'
 
-                       #Adds box to the frame
+                       #Storing bounding_box coordinates as x an y axis
                        x = int(prediction.bounding_box.left * frame.shape[0])
                        y = int(prediction.bounding_box.top * frame.shape[1])
 
                        width = x + int(prediction.bounding_box.width * frame.shape[0])
                        height = y + int(prediction.bounding_box.height * frame.shape[1])
 
+                       #Adding bounding_box to the frame
                        frame = cv2.rectangle(frame, (x, y), (width, height), (0, 0, 255), 2)
+                       #Adding tag_name that we got from pridiction in the bounding_box
                        frame = cv2.putText(frame, prediction.tag_name, (x + 5, y + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 1, cv2.LINE_AA, False)
                        
                        #TODO
@@ -100,7 +102,6 @@ class VideoCaptureToBlob:
                         #check for pridiction tag_name
                         #fix bounding box alignment
                         #upload both bounding-box image and plane image
-                        #
                        
                        print("\t" + prediction.tag_name + ": {0:.2f}% bbox.left = {1:.2f}, bbox.top = {2:.2f}, bbox.width = {3:.2f}, bbox.height = {4:.2f}".format(prediction.probability * 100, prediction.bounding_box.left, prediction.bounding_box.top, prediction.bounding_box.width, prediction.bounding_box.height))
                        self.upload_frame(frame, i)
@@ -118,10 +119,10 @@ class VideoCaptureToBlob:
 
 
     def send_sms(self, url):
-        print(url)
         message = client.messages.create(
                               body=f'A Box is detected at you door! In case you are out you can view the image here: {url}',
                               from_= PHONE_NUMBER,
+                              #Recipient's phone number
                               to='+917303879964'
                           )
         print(message)
@@ -187,5 +188,4 @@ if __name__ == "__main__":
     client = Client(ACCOUNT_SID, AUTH_TOKEN)
     video_capture = VideoCaptureToBlob(CONNECTION_STRING, SOURCE, TIME_DELAY, MANUAL_MODE)
     video_capture.create_storage()
-    #video_capture.capture_and_upload()
     video_capture.capture_and_inference()
