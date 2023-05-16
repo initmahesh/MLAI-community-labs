@@ -34,6 +34,5 @@ TWILIO_PHONE_NUMBER = Twilio phone number
 - Finally, `py edge_to_blob.py`
 
 # Quick tutorial
-
-https://github.com/initmahesh/MLAI-community-labs/assets/62789637/f24d80e0-102a-4b04-a4a6-b35c37ac4ac6
+https://github.com/initmahesh/MLAI-community-labs/assets/62789637/8a5d3306-94c5-42d9-9b7e-40c9eea407c6
 
