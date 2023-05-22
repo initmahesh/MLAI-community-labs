@@ -12,6 +12,7 @@ notify the user along with an image showing where the box is.
 - [Msrest](https://github.com/Azure/msrest-for-python)
 - [OpenCV](https://github.com/opencv/opencv-python)
 - [Twilio](https://github.com/twilio/twilio-python/)
+- [Selenium](https://pypi.org/project/selenium/)
 
 # In a Nutshell
 - Install all the required modules from requirements.txt `pip install -r requirements.txt`
