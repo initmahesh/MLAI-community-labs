@@ -36,6 +36,16 @@ BLOB_ACCOUNT_KEY = Storage account key
 - You can choose from two modes, manual(1) or auto(0).
 - Finally, `py edge_to_blob.py`
 
+# Using the scraper
+Using `get_images_from_web.py` you can download images from any url to train the model for some other objects.
+
+## Setup the scraper
+- Download the version of Chrome web driver that matches installed Google Chrome version. `https://chromedriver.chromium.org/downloads`
+- Add the path where the chrome driver exists to 'driver'.
+- eg. (driver = webdriver.Chrome(executable_path=r"C:\path\to\chromedriver.exe"))
+- Search the object on Google images, copy the google image search `url` and add it to the code.
+
+
 # Quick tutorial
 https://github.com/initmahesh/MLAI-community-labs/assets/62789637/8a5d3306-94c5-42d9-9b7e-40c9eea407c6
 
