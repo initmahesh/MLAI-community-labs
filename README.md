@@ -18,7 +18,7 @@ notify the user along with an image showing where the box is.
 - Install all the required modules from requirements.txt `pip install -r requirements.txt`
 - Add all the following required variables in a .env file
 ```env
-CONNECTION_STRING = Storage connection string
+CONNECTION_STRING = Storage connection string from Azure storage
 SOURCE = 'usb' or path to any .mp4 file
 TIME_DELAY = Specifies frame capture interval in seconds
 MANUAL_MODE = Set 0 for auto and 1 for manual mode
@@ -36,15 +36,8 @@ BLOB_ACCOUNT_KEY = Storage account key
 - You can choose from two modes, manual(1) or auto(0).
 - Finally, `py edge_to_blob.py`
 
-# Using the scraper
-Using `get_images_from_web.py` you can download images from any url to train the model for some other objects.
-
-## Setup the scraper
-- Download the version of Chrome web driver that matches installed Google Chrome version. `https://chromedriver.chromium.org/downloads`
-- Add the path where the chrome driver exists to 'driver'.
-- eg. (driver = webdriver.Chrome(executable_path=r"C:\path\to\chromedriver.exe"))
-- Search the object on Google images, copy the google image search `url` and add it to the code.
-
+# Using the scraper 
+If you wish to train the model with your own data you can use the provided scraper which uses silenium to scrape images from the internet. Refer this readme to know how to set up and run the provided scraper. `silenium readme link here`
 
 # Quick tutorial
 https://github.com/initmahesh/MLAI-community-labs/assets/62789637/8a5d3306-94c5-42d9-9b7e-40c9eea407c6
