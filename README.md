@@ -39,6 +39,11 @@ BLOB_ACCOUNT_KEY = Storage account key
 # Using the scraper 
 If you wish to train the model with your own data you can use the provided scraper which uses silenium to scrape images from the internet. Refer this readme to know how to set up and run the provided scraper. `silenium readme link here`
 
+# Training your own ML model
+You can also train the Model using Azure custom vision and cognitive service. Follow these steps to train the ML model.
+
+Follow this how to guide here: 
+
 # Quick tutorial
 https://github.com/initmahesh/MLAI-community-labs/assets/62789637/8a5d3306-94c5-42d9-9b7e-40c9eea407c6
 
