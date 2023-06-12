@@ -37,7 +37,7 @@ BLOB_ACCOUNT_KEY = Storage account key
 - Finally, `py edge_to_blob.py`
 
 # Using the scraper 
-If you wish to train the model with your own data you can use the provided scraper which uses silenium to scrape images from the internet. Refer this readme to know how to set up and run the provided scraper. `silenium readme link here`
+If you wish to train the model with your own data you can use the provided scraper which uses a third party service `Serpapi` to download HD images from the inrernet. Refer this readme to know how to set up and run the provided scraper. `serpapi readme link here`
 
 # Training your own ML model
 You can also train the Model using Azure custom vision and cognitive service. Follow these steps to train the ML model.
