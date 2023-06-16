@@ -8,11 +8,11 @@ notify the user along with an image showing where the box is.
 # Requirements
 - [Azure computer vision](https://github.com/Azure/azure-sdk-for-python)
 - [Azure custom vision](https://github.com/Azure/azure-sdk-for-python)
-- [Azure storage](https://github.com/Azure/azure-sdk-for-python)
+- [Azure blob storage](https://pypi.org/project/azure-storage-blob/)
+- [Azure storage queue](https://pypi.org/project/azure-storage-queue/)
 - [Msrest](https://github.com/Azure/msrest-for-python)
 - [OpenCV](https://github.com/opencv/opencv-python)
 - [Twilio](https://github.com/twilio/twilio-python/)
-- [Selenium](https://pypi.org/project/selenium/)
 
 # In a Nutshell
 - Install all the required modules from requirements.txt `pip install -r requirements.txt`
@@ -32,18 +32,15 @@ BLOB_ACCOUNT_KEY = Storage account key
 ENDPOINT_CUSTOM_VISION = Azure custom vision endpoint
 SERPAPI_API_KEY = Serpapi API key for scraping tool.
 ```
-- The source can be direct video stream from a camera(USB), or from a .mp4 file or RTSP stream .
-- Time delay sets the time threshold to capture frames from the video.
-- You can choose from two modes, manual(1) or auto(0).
+- `SOURCE` can be direct video stream from as a RTSP stream, or from a .mp4 video file.
+- `TIME_DELAY` sets the time threshold to capture frames from the video.
+- `MANUAL_MODE` You can choose from two modes, manual(1) or auto(0).
 - Finally, `py edge_to_blob.py`
 
-# Using the scraper 
-If you wish to train the model with your own data you can use the provided scraper which uses silenium to scrape images from the internet. Refer this readme to know how to set up and run the provided scraper. `silenium readme link here`
+# Using Twilio API for using the SMS function
+You can integrate your own twilio SMS service inside the code by signing up on the platform and generating your own Twilio SMS API key. You can take a read at this tutorial about generating your own Twilio API key: https://www.twilio.com/docs/glossary/what-is-an-api-key.
 
-# Training your own ML model
-You can also train the Model using Azure custom vision and cognitive service. Follow these steps to train the ML model.
-
-Follow this how to guide here: 
+In the code we are using this service to send the user a notification about a box is detected at their doorstep, you can refer to this code sample to see how you can implement your custom SMS service using Twilio API. (https://www.twilio.com/docs/sms/quickstart/python).
 
 # Quick tutorial
 https://github.com/initmahesh/MLAI-community-labs/assets/62789637/8a5d3306-94c5-42d9-9b7e-40c9eea407c6
