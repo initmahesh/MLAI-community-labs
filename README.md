@@ -23,7 +23,6 @@ SOURCE = 'usb' or path to any .mp4 file
 TIME_DELAY = Specifies frame capture interval in seconds
 MANUAL_MODE = Set 0 for auto and 1 for manual mode
 PREDICTION_KEY = Azure cognitive service key
-TRAINING_KEY = Azure cognitive service key here as well
 PROJECT_ID = Custom vision project id
 TWILIO_ACCOUNT_SID = Account SID from twilio
 TWILIO_AUTH_TOKEN = Auth Toekn from twilio
