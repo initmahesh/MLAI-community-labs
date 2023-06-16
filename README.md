@@ -30,6 +30,8 @@ TWILIO_AUTH_TOKEN = Auth Toekn from twilio
 TWILIO_PHONE_NUMBER = Twilio phone number
 ACCOUNT_NAME = Azure account name
 BLOB_ACCOUNT_KEY = Storage account key
+ENDPOINT_CUSTOM_VISION = Azure custom vision endpoint
+SERPAPI_API_KEY = Serpapi API key for scraping tool.
 ```
 - The source can be direct video stream from a camera(USB), or from a .mp4 file.
 - Time delay sets the time threshold to capture frames from the video.
