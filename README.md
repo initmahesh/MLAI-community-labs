@@ -32,7 +32,7 @@ BLOB_ACCOUNT_KEY = Storage account key
 ENDPOINT_CUSTOM_VISION = Azure custom vision endpoint
 SERPAPI_API_KEY = Serpapi API key for scraping tool.
 ```
-- The source can be direct video stream from a camera(USB), or from a .mp4 file.
+- The source can be direct video stream from a camera(USB), or from a .mp4 file or RTSP stream .
 - Time delay sets the time threshold to capture frames from the video.
 - You can choose from two modes, manual(1) or auto(0).
 - Finally, `py edge_to_blob.py`
