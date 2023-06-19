@@ -37,8 +37,6 @@ SERPAPI_API_KEY = Serpapi API key for scraping tool.
 - `MANUAL_MODE` You can choose from two modes, manual(1) or auto(0).
 - Finally, `py edge_to_blob.py`
 
-# Using Twilio API for using the SMS function
-You can integrate your own twilio SMS service inside the code by signing up on the platform and generating your own Twilio SMS API key. You can take a read at this tutorial about generating your own Twilio API key: https://www.twilio.com/docs/glossary/what-is-an-api-key.
 
 In the code we are using this service to send the user a notification about a box is detected at their doorstep, you can refer to this code sample to see how you can implement your custom SMS service using Twilio API. (https://www.twilio.com/docs/sms/quickstart/python).
 
