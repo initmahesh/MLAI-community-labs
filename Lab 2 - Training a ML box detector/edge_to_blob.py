@@ -90,11 +90,12 @@ class VideoCaptureToBlob:
                        self.upload_frame(frame, i, '_without_overlay')
 
                        #Storing bounding_box coordinates as x an y axis
-                       x = int(prediction.bounding_box.left * frame.shape[0])
-                       y = int(prediction.bounding_box.top * frame.shape[1])
+                       h,w,_ = frame.shape
+                       x = int(prediction.bounding_box.left * w)
+                       y = int(prediction.bounding_box.top * h)
 
-                       width = x + int(prediction.bounding_box.width * frame.shape[0])
-                       height = y + int(prediction.bounding_box.height * frame.shape[1])
+                       width = x + int(prediction.bounding_box.width * w)
+                       height = y + int(prediction.bounding_box.height * h)
 
                        #Adding bounding_box to the frame
                        frame = cv2.rectangle(frame, (x, y), (width, height), (0, 0, 255), 2)
