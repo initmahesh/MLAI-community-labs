@@ -158,6 +158,8 @@ class VideoCaptureToBlob:
         #Stores frame as jpg locally
         current_time = time.strftime("%Y-%m-%d %H-%M-%S")
         local_image_location = os.path.join(os.path.join(os.path.dirname(__file__), "test/"))
+        if not os.path.exists(local_image_location):
+            os.makedirs(local_image_location)
         cv2.imwrite(f"{local_image_location}/{current_time}.jpg", frame)
 
 
