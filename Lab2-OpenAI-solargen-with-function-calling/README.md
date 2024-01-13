@@ -288,38 +288,19 @@ Then we create a class called AssistantManager containing all the functions rela
 This function creates the assistant in the OpenAI Assistants(This will also return the assistant id which will be used later for running the thread)
 ```python
 def create_assistant(self,name, instructions, tools):
-    assistant_file_path = 'assistant.json'
-    if os.path.exists(assistant_file_path):
-      with open(assistant_file_path, 'r') as file:
-        assistant_data = json.load(file)
-        assistant_id = assistant_data['assistant_id']
-      self.assistant = self.client.beta.assistants.retrieve(assistant_id)
-    else:
         self.assistant = self.client.beta.assistants.create(
             name = name,
             instructions = instructions,
             tools = tools,
             model = self.model
         )
-        with open(assistant_file_path, 'w') as file:
-          json.dump({'assistant_id': self.assistant.id}, file)
-          print("Created a new assistant and saved the ID.")
 ```
 
 The following 2 functions creates thread and adds message to the thread for generating the response
 ```python
   def create_thread(self):
-    thread_file_path = 'assistant_thread.json'
-    if os.path.exists(thread_file_path):
-      with open(thread_file_path, 'r') as file:
-        thread_data = json.load(file)
-        thread_id = thread_data['thread_id']
-      self.thread = self.client.beta.threads.retrieve(thread_id = thread_id)
-    else:
       self.thread = self.client.beta.threads.create()
-      with open(thread_file_path, 'w') as file:
-            json.dump({'thread_id': self.thread.id}, file)
-            print("Created a new thread and saved the ID.")
+
   def add_message_to_thread(self,role,content):
     self.client.beta.threads.messages.create(
       thread_id = self.thread.id,
