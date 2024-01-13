@@ -404,6 +404,97 @@ Message
 
 If you would like more details or assistance with solar panel installation, feel free to reach out!
 ```
+
+## Here we will explain how to deploy the frontend and backend for Solar Gen Website.
+
+### For deploying the backend, follow the steps below.
+
+1. Visit https://render.com/ and create an account on it using your Github account. The github account should have the repository containing the backend code.
+2. Click on New and select web services.
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/730080bb-a0f1-49ed-9b0f-916562f34468)
+3. Select Build and deploy from github repository.
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/ba30b575-0bdf-417d-83d4-45370bf28b6b)
+4. Your repository should show up here
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/071abf21-7917-4419-815c-204b9897dd80)
+5. Click on Connect on the repository which stores the code for backend.
+6. Give the name of the web service.
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/609c46b8-3f0d-4e9b-92b7-3c9ceba47927)
+7. Select the branch that stores the backend code.
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/fb8f925e-1649-4409-90ab-5772993b9ffb)
+8. Select the runtime as python 3
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/2ea736a7-f7f6-424d-b484-e13dd0041b58)
+9. Select create web service.
+10. Go Dashboard->Your deployment->settings, scroll down to Start Command.
+    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/1756b599-9821-4dc1-9368-70d9db31caf8)
+
+
+    and set it as ```python manage.py runserver 0.0.0.0:8000```
+11. Now you are all set up. Everytime there is commit on the branch that you selected, the deployment will detect it and update the deployment.
+    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/55380a0d-aaea-446d-9615-a3f4dc03c07c)
+
+    The deployment should look like this and the status should show ```Deployed```. You should find you endpoint here
+
+    
+    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/8845c213-0296-4340-89f3-6ce0696c6421)
+
+
+## Now that the backend has been deployed, let's turn to frontend deployment on render.
+
+1. Visit https://vercel.com/, and create an account on it using your email (you can use your Github account too).
+2. Navigate to './research/experiments/OpenAI_function_Call/frontend/'.
+
+
+   Go to App.js in './research/experiments/OpenAI_function_Call/frontend/src' and replace this line with your backend endpoint
+
+   
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/77e56ad4-4866-455b-9822-b2ae9e4f5d29)  
+
+5. Use a code editor such as VS code, open up a new terminal and run ```npm i``` or ```npm install```, this will download all the required node dependencies.
+
+6. Now we need to install vercel globally ```npm i -g vercel```, this will install vercel.
+7. Now use the command ```vercel``` in the same terminal. This will load up the CLI for vercel. Type 'y' for set up and deploy (Make sure that the directory is correct and contains the frontend files)
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/f4ba964f-bb16-44d7-83ac-e37ba9821cae)
+8. Select the project that you want to deploy the frontend is.
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/31eb4350-3afa-4404-8e86-0ca8af509aac)
+
+   
+   Say 'n' for linking to an existing project
+
+   
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/d5ff8f89-9bed-48e4-92c4-207e640941d4)
+
+   
+   If you want to change the name of the project specify it or it will take the directory name as the default project name.
+
+   
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/f200243d-3f6b-4e53-8601-8b11a9bb93bb)
+
+
+   Select the directory in which the code is located
+
+
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/291f572b-6d49-48aa-a541-b17c91915f6a)
+
+
+   Vercel CLI with auto detect the project setting and you can give 'n' to this
+
+
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/8ba7f784-ebeb-4ce2-a822-adfd69151dab)
+
+   
+   The frontend has now been deployed and you can click on the production link to visit the website.
+   
+   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/72266e34-2970-4dd4-947e-859673f04267)
+
+
+#### One last thing:
+
+Add your frontend endpoint and backend endpoint in the settings.py file of backend and push to the repository.
+
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d70c5868-2cbf-410f-8c5c-3f58fdb0d376)
+
+
 ## Demo of the Solar Gen Website built on top of this code.
 
 [Click this link](https://drive.google.com/file/d/1sVDskJuevpzen0BiUXLkbsEDZ1Iad9wY/view?usp=drive_link)
