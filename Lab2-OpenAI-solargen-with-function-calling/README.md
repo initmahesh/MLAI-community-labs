@@ -320,6 +320,12 @@ The following 2 functions creates thread and adds message to the thread for gene
       with open(thread_file_path, 'w') as file:
             json.dump({'thread_id': self.thread.id}, file)
             print("Created a new thread and saved the ID.")
+  def add_message_to_thread(self,role,content):
+    self.client.beta.threads.messages.create(
+      thread_id = self.thread.id,
+      role = role,
+      content = content
+    )
 ```
 
 The run_assistant function is used for running the assistant with some extra instructions passed to it.
@@ -417,3 +423,6 @@ Message
 
 If you would like more details or assistance with solar panel installation, feel free to reach out!
 ```
+## Demo of the Solar Gen Website built on top of this code.
+
+[Click this link](https://drive.google.com/file/d/1sVDskJuevpzen0BiUXLkbsEDZ1Iad9wY/view?usp=drive_link)
