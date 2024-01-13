@@ -25,6 +25,9 @@ Assistants are useful in ```code interpretation```,```retrieval``` and ```functi
 4. Code Interpreter(for example: Vscode) (https://code.visualstudio.com/download)
 5. Github account (https://github.com/)
 
+### Refer to this readme, for creating OpenAI Key
+
+
 ### Refer to this readme, for creating the Google API.
 [README](googleapi.md)
 
@@ -34,6 +37,9 @@ Now that google API is set and ready to use. Finally we will setup the Airtable 
 
 [README](airtableapi.md)
 
+### Refer to this documentation for Open AI function calling
+
+https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models
 
 ## Once we are done with getting all the necessary keys lets get into the code.
 Firstly we define the functions create_lead() and solar_potential_calculations()
