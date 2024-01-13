@@ -1,0 +1,12 @@
+# Google APIs
+
+GOOGLE_API = sdgsdf
+
+#Airtable APIs
+
+AIRTABLE_API = 
+AIRTABLE_URL = 
+
+# Temp Keys
+
+Open_AI_key = 
