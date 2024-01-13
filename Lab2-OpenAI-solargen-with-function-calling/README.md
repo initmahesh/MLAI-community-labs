@@ -320,6 +320,12 @@ The following 2 functions creates thread and adds message to the thread for gene
       with open(thread_file_path, 'w') as file:
             json.dump({'thread_id': self.thread.id}, file)
             print("Created a new thread and saved the ID.")
+  def add_message_to_thread(self,role,content):
+    self.client.beta.threads.messages.create(
+      thread_id = self.thread.id,
+      role = role,
+      content = content
+    )
 ```
 
 The run_assistant function is used for running the assistant with some extra instructions passed to it.
