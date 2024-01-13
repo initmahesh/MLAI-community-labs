@@ -12,13 +12,13 @@ Assistants are useful in ```code interpretation```,```retrieval``` and ```functi
 4. Github account (https://github.com/)
 
 ### Refer to this readme, for creating the Google API.
-https://github.com/initmahesh/MLAI-community-labs/blob/rishav/experiments/Lab%202%20-%20OpenAI%20solar%20gen%20with%20function%20calling/googleapi.md
+[README](Lab2-OpenAIsolargenwithfunctioncalling/googleapi.md)
 
 Now that google API is set and ready to use. Finally we will setup the Airtable for CRM. Let's set it up.
 
 ### Refer to this readme, for creating the Airtable API
 
-https://github.com/initmahesh/MLAI-community-labs/blob/rishav/experiments/Lab2-OpenAIsolargenwithfunctioncalling/airtableapi.md
+[README](Lab2-OpenAIsolargenwithfunctioncalling/airtableapi.md)
 
 # If you want to understand the code refer to the section as 'Now lets get into the code'
 ## Here we will explain how to run the frontend and backend locally as well as deploying them.
