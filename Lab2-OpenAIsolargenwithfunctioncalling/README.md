@@ -25,6 +25,9 @@ Assistants are useful in ```code interpretation```,```retrieval``` and ```functi
 4. Code Interpreter(for example: Vscode) (https://code.visualstudio.com/download)
 5. Github account (https://github.com/)
 
+### Creating your own .env file
+
+
 ### Refer to this readme, for creating OpenAI Key
 [README](openaiAPI.md)
 
