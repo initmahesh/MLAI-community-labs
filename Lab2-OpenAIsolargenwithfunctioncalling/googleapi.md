@@ -17,6 +17,8 @@
    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/fe0286e6-2132-4ec9-a50f-9b5e0bf4d72f)
    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/416eee6e-0660-4b69-bdec-a0c789399036)
    Click on show key.
-6. Copy the key and keep it in your .env and access them like this
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/85efc460-d6e5-4608-9ee9-172a2eea206e)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/25308a83-6230-4fee-9b98-346f6d350cf1)
+6. Copy the key and keep it in your .env
+
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/095658b2-e772-4172-bcc1-241591bca036)
+
