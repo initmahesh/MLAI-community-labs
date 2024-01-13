@@ -26,7 +26,7 @@ Assistants are useful in ```code interpretation```,```retrieval``` and ```functi
 5. Github account (https://github.com/)
 
 ### Refer to this readme, for creating OpenAI Key
-
+[README](openaiAPI.md)
 
 ### Refer to this readme, for creating the Google API.
 [README](googleapi.md)
