@@ -26,7 +26,7 @@ Assistants are useful in ```code interpretation```,```retrieval``` and ```functi
 5. Github account (https://github.com/)
 
 ### Creating your own .env file
-
+[README](creatingEnv.md)
 
 ### Refer to this readme, for creating OpenAI Key
 [README](openaiAPI.md)
