@@ -1,0 +1,197 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align items to the right */
+  margin: 20px;
+}
+
+.chat-container {
+  position: relative; /* Add relative positioning to contain absolute elements */
+  width: 350px; /* Set the desired width of the chat container */
+  height:75vh; /* Set the desired height of the chat container */
+  border: 1px solid #ccc;
+  overflow-y: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Set the desired background color */
+  right: 7vw;
+  bottom: 25vh;
+}
+
+.sun-logo{
+  width: 3vh;
+}
+
+.chat-header{
+  text-align: center;
+  padding: 10px 20px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,9,121,1) 39%, rgba(0,212,255,1) 100%); /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+}
+
+.chat-bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 13vw;
+}
+
+.chatlogo{
+  width:7vh;
+}
+
+.message-icon:hover{
+  cursor:pointer;
+}
+
+.message-icon{
+  position: relative;
+  top: 50vh;
+  right: 3vw;
+}
+
+.message-list {
+  padding-top: 10%;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+  position:relative;
+  height: 45vh;
+  padding-bottom: 20%;
+}
+
+.input-group {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; 
+  display: flex; /* Set display to flex */
+  align-items: center; /* Center items vertically */
+  padding: 10px; /* Add padding for better appearance */
+  background-color: #eee; /* Set the desired background color for the input group */
+  border-top: 1px solid #ccc; /* Add border for separation */
+}
+
+.input-group .form-control {
+  word-wrap: break-word;
+}
+
+/* Style for the input field */
+.input-group input {
+  flex: 1; /* Use remaining space */
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Style for the send button */
+.input-group button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3498db; /* Set the desired background color for the button */
+  color: #fff; /* Set the desired text color for the button */
+  cursor: pointer;
+  outline: none;
+}
+
+
+.message-list::-webkit-scrollbar{
+  display: none;
+}
+
+.message-item {
+  /* padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  width: 50% */
+  display: flex;
+   /* Align user messages to the right */
+  margin-bottom: 10px;
+  width: 100%;
+  align-items: center;
+  position:static;
+}
+.message-item.user-item{
+
+
+  justify-content: flex-end;
+}
+.user {
+  /* background-color: #3498db;
+  color: #fff; */
+  background-color: #127915; /* Green background for user messages */
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  /* top: 0; */
+  width: fit-content;
+  max-width: 70%;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.bot {
+  /* background-color: #2ecc71;
+  color: #fff; */
+  background-color: #f0f0f0; /* Light gray background for bot messages */
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px; 
+  max-width: 70%;
+}
+
+.mt-3 {
+  margin-top: 15px;
+}

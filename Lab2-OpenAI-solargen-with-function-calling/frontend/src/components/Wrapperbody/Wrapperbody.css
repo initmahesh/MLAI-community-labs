@@ -1,0 +1,32 @@
+.body-wrapper{
+    position: relative;
+    right: 55%;
+    top: 20vh;
+}
+
+.body-container{
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+    word-spacing: -1.8px;
+    color: #000000;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+
+.body-header{
+    font-size: 20px;
+}
+
+.body-desc{
+    font-size: 15px;
+}
+
+.bulletted-content{
+    font-style: italic;
+    font-size: 19px;
+}
