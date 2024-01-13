@@ -1,3 +1,5 @@
+# MLAI-community-labs
+
 ## Lab 1 - Training a ML box detector
 
 [README](Lab-1-Training-a-ML-box-detector/README.md)
