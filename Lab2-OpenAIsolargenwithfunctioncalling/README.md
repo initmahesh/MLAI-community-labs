@@ -408,7 +408,7 @@ Message
 
 If you would like more details or assistance with solar panel installation, feel free to reach out!
 ```
-# If you want to understand the code refer to the section as 'Now lets get into the code'
+
 ## Here we will explain how to run the frontend and backend locally as well as deploying them.
 
 ### For frontend and backend on the local server:
