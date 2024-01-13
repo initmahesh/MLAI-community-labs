@@ -417,3 +417,6 @@ Message
 
 If you would like more details or assistance with solar panel installation, feel free to reach out!
 ```
+## Demo of the Solar Gen Website built on top of this code.
+
+[Click this link](https://drive.google.com/file/d/1sVDskJuevpzen0BiUXLkbsEDZ1Iad9wY/view?usp=drive_link)
