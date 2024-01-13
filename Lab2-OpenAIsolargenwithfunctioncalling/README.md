@@ -6,69 +6,19 @@ Assistants are useful in ```code interpretation```,```retrieval``` and ```functi
 
 ### Resources you need to reproduce the results:
 
-1. Python runtime
-2. Git
-3. Code Interpreter(for example: Vscode)
-4. Github account
+1. Python runtime (https://www.python.org/downloads/)
+2. Git (https://www.git-scm.com/downloads)
+3. Code Interpreter(for example: Vscode) (https://code.visualstudio.com/download)
+4. Github account (https://github.com/)
 
-###  we generate the Google APIs.
-
-1. Visit the google cloud console
-   https://console.cloud.google.com/welcome/
-2. Go to APIs and services
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/48db1bb6-0178-4955-99ca-df00f0c43acf)
-   Click on Enable APIS and Services
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/934500c8-2c1c-4ba5-98cc-7cbf337de43b)
-3. Search for Geocoding API
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/49ddce46-1c10-49b2-9eea-5ece3e034f70)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/c1413fc2-5e79-462a-be93-39818c848b2c)
-   Select the API and Enable it.
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/aab3bb9a-ffc2-4887-b780-f205e1cca3dd)
-4. Similarly search for Solar API and enable it.
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/ab431aea-4df4-4632-aa44-d92ee6d34d2c)
-5. You will find your API key here
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/fe0286e6-2132-4ec9-a50f-9b5e0bf4d72f)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/416eee6e-0660-4b69-bdec-a0c789399036)
-   Click on show key.
-6. Copy the key and keep it in your .env and access them like this
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/85efc460-d6e5-4608-9ee9-172a2eea206e)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/25308a83-6230-4fee-9b98-346f6d350cf1)
+### Refer to this readme, for creating the Google API.
+https://github.com/initmahesh/MLAI-community-labs/blob/rishav/experiments/Lab%202%20-%20OpenAI%20solar%20gen%20with%20function%20calling/googleapi.md
 
 Now that google API is set and ready to use. Finally we will setup the Airtable for CRM. Let's set it up.
 
-1. Visit Airtable(Create an account if you do not have one)
-   https://airtable.com/
-2. Click on start from scratch
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/54f4a448-a8d7-446c-bb34-5182d97d53ae)
-3. Change/Add the column names. (Column names are case-sensitive)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/5623e480-30ce-495c-96e6-4af667bde130)
-4. Once done, go to your account and click on Go to Developer Hub
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/169b5145-fd6c-481d-bc87-220a88eae507)
-   Click on create token
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/40c61913-2e33-4fd8-affc-3925acabd8f5)
-   Click on create new token
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/286cfcd4-b9f9-4825-8693-ef01b17cc195)
-   Specify the token name, add the base you just created, add scopes as data:records:read, data:record:write and click create token
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/61168198-12e1-461d-9a82-f069b177d5f3)
-   You have successfully generated a token and you can see it in the personal token list
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/5a048ad4-f173-4f71-a894-d9a21d1ba09b)
-   Go through the web API documentations
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/c65e3a11-4174-4a08-996b-c4912fe6da40)
+### Refer to this readme, for creating the Airtable API
 
-   Click on My first workspace
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/32e91a9b-ee1c-4b23-b800-4de3359925f1)
-   Get the URL from the Authentication content
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/7f8cea08-72b3-4306-9f84-1044ee6ac460)
-6. Now go to the lambda function and replace the URL with the URL copied earlier.
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/222a0ec3-ada1-413e-8551-c74b008f1750)
-
-   Keep the Airtable token/API in your .env, write the API as "Authorization":"Bearer p4323adfgAirtableAPI"(example).
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/6001bc8c-6754-41b7-9f15-b37a6ca24b43)
-
-   Access the Airtable Token as such:
-
-   
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/39b412b8-2c66-4eff-9c39-5bb38dba5393)
+https://github.com/initmahesh/MLAI-community-labs/blob/rishav/experiments/Lab2-OpenAIsolargenwithfunctioncalling/airtableapi.md
 
 # If you want to understand the code refer to the section as 'Now lets get into the code'
 ## Here we will explain how to run the frontend and backend locally as well as deploying them.
