@@ -1,0 +1,11 @@
+{
+  "appService.showBuildDuringDeployPrompt": false,
+  "appService.defaultWebAppToDeploy": "None",
+  "editor.acceptSuggestionOnEnter": "on",
+  "git.ignoreLimitWarning": true,
+  "cSpell.words": [
+    "dotenv",
+    "openai",
+    "urlresponse"
+  ]
+}
