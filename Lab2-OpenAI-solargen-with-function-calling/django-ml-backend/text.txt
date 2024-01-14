@@ -1,0 +1,38 @@
+Interest Rate: shall mean, for any Interest Period, (x) the Spread plus the
+Benchmark for such Interest Period or (y) when applicable pursuant to this Agreement or any other
+Loan Document, the Default Rate. 
+Spread: shall mean 4.75%. 
+Benchmark: shall mean, initially, the London interbank offered rate for U.S. dollars
+with a 1-month tenor; provided that if a Benchmark Transition Event or an Early Opt-in Election,
+as applicable, and its related Benchmark Replacement Date have occurred with respect to the thencurrent Benchmark, then “Benchmark” means the applicable Benchmark Replacement to the
+extent that such Benchmark Replacement has replaced such prior benchmark rate pursuant to
+Section 2.10 hereof. Lender shall determine the Benchmark (and the applicable Reference Time)
+as in effect from time to time, and each such determination by Lender shall be conclusive and
+binding absent manifest error. While the Benchmark remains the London interbank offered rate
+for U.S. dollars with a 1-month tenor, Lender shall determine the same in accordance with the
+defined term “LIBOR.” 
+LIBOR: shall mean, with respect to any Interest Period, a rate per annum (expressed
+as a percentage per annum rounded upwards, if necessary, to the nearest one hundredth (1/100th)
+of one percent (1%)) for deposits in U.S. Dollars for a one (1) month period that appears on Reuters
+Screen LIBOR01 Page as of 11:00 a.m., London time, on the date that is two (2) Business Days
+prior to the first day of such Interest Period. If such rate does not appear on Reuters Screen
+LIBOR01 Page as of 11:00 a.m., London time, on the date that is two (2) Business Days prior to
+the first day of such Interest Period, Lender shall request the principal London office of any four
+(4) prime banks in the London interbank market selected by Lender to provide such banks’
+quotations of the rates at which deposits in U.S. Dollars are offered by such banks at approximately
+11:00 a.m., London time, to prime banks in the London interbank market for a one (1) month
+period commencing on the date that is two (2) Business Days prior to the first day of such Interest
+Period and in a principal amount that is representative for a single transaction in the relevant market
+at the relevant time. If at least two (2) such offered quotations are so provided, LIBOR will be the
+arithmetic mean of such quotations (expressed as a percentage and rounded upwards, if necessary,
+to the nearest one hundredth (1/100th) of one percent (1%)). If fewer than two (2) such quotations
+are so provided, Lender will request major banks in New York City selected by Lender to quote
+such banks’ rates for loans in U.S. Dollars to leading European banks as of approximately 11:00
+a.m., New York City time, on the date that is two (2) Business Days prior to the first day of such
+Interest Period. If at least two (2) such rates are so provided, LIBOR will be the arithmetic mean
+of such rates (expressed as a percentage and rounded upwards, if necessary, to the nearest one
+hundredth (1/100th) of one percent (1%)). If fewer than two (2) rates are so provided, then LIBOR
+will be LIBOR used to determine the LIBOR during the immediately preceding Interest Period.
+LIBOR shall be determined conclusively by Lender absent manifest error. Notwithstanding the
+foregoing, in no event shall LIBOR be an amount less than the Index Floor. 
+Index Floor: shall mean one-quarter of one percent (0.25%) per annum. 

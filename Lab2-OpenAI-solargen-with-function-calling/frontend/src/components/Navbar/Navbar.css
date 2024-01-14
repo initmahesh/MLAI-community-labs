@@ -1,0 +1,49 @@
+/* src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(61,9,121,1) 39%, rgba(0,212,255,1) 100%);
+  color: #fff; /* Set your desired text color */
+}
+
+.email{
+  width:3vh;
+}
+
+.logo {
+  width: 50px; /* Set the width of your logo */
+  height: auto;
+}
+
+.company-name{
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+  word-spacing: 1.4px;
+  color: #fff9f9;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+.left-section,.right-section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-section{
+  text-align: right;
+  width:15vw;
+}
+
+.right-section {
+  text-align: right;
+  width:15vw;
+}
