@@ -25,7 +25,7 @@ const App = () => {
 
     // Send user message to the backend for processing
     try {
-      const response = await axios.post('https://solar-gen.onrender.com/api/experiments-openai', {
+      const response = await axios.post('http://127.0.0.1:8000/api/experiments-openai', {
         "message": inputText,
       });
       console.log(response)
