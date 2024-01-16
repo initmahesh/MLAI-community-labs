@@ -9,12 +9,9 @@ load_dotenv()
 
 @api_view(['GET','POST'])
 def functioncall(request):
-    query = "Create a lead for Mahesh Yadav, California, 33452213998"
     query = request.data["message"]
     result = gen_answer(query)
     return Response({"response":result})
-    # return Response({"response":'result'})
-
 
 
 
