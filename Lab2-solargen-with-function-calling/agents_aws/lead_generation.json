@@ -1,0 +1,118 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title":"Solar Panel lead generation and solar potential calculations",
+        "version":"1.0.0",
+        "description":"APIs for getting solar data, getting and extracting financial data, generating lead, getting solar data, extract financial analysis, finding closest financial analysis, simplifying financial data, solar panel calculations."
+    },
+    "paths":{
+        "/createLead/{name}/{phoneNumber}/{address}":{
+            "get":{
+                "summary":"Gets the list of records for lead",
+                "description":"Gets the list of all records for leads. Returns list containing  name, phone, address of leads.",
+                "operationId":"getCreateLeads",
+                "parameters":[{
+                    "name":"name",
+                    "in":"path",
+                    "description":"Name of the lead",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    }
+                },
+                {
+                    "name":"phoneNumber",
+                    "in":"path",
+                    "description":"Phone number of the lead",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    }
+                },
+                {
+                    "name":"address",
+                    "in":"path",
+                    "description":"Address of the lead",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    }
+                }],
+                "responses":{
+                    "200":{
+                        "description":"Gets the list of records for leads",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"array",
+                                    "properties":{
+                                        "name":{
+                                            "type":"string",
+                                            "description":"Name of the lead."
+                                        },
+                                        "phone":{
+                                            "type":"string",
+                                            "description":"Phone number of the lead."
+                                        },
+                                        "address":{
+                                            "type":"string",
+                                            "description":"Address of the lead."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/solarPanelCalculations/{address}/{monthlyBills}":{
+            "get":{
+                "summary":"Calculate solar potential based on a given address and monthly electricity bill in USD.",
+                "description":"Calculate solar potential based on a given address and monthly electricity bill in USD. Returns financial analysis.",
+                "operationId":"getsolarPanelCalculations",
+                "parameters":[{
+                    "name":"address",
+                    "in":"path",
+                    "description":"Address for calculating solar potential",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    }
+                },
+                {
+                    "name":"monthlyBills",
+                    "in":"path",
+                    "description":"Monthly Bills to be generated",
+                    "required":true,
+                    "schema":{
+                        "type":"string"
+                    }
+                }],
+                "responses":{
+                    "200":{
+                        "description":"Calculate solar potential based on a given address and monthly electricity bill in USD.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "address":{
+                                            "type":"string",
+                                            "description":"Address for calculating solar potential."
+                                        },
+                                        "monthly_bill": {
+                                            "type":"integer",
+                                            "description":"Monthly electricity bill in USD for savings estimation."
+                                        }
+                                    },
+                                    "required": ["address","monthly_bill"]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
