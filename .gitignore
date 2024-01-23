@@ -1,1 +1,5 @@
-Lab2-solargen-with-function-calling/.env
+/Lab2-solargen-with-function-calling/.env
+/Lab2-solargen-with-function-calling/openai/__pycache__
+# /Lab2-solargen-with-function-calling/__pycache__
+# Lab2-solargen-with-function-calling/django-ml-backend/ml_backend/__pycache__
+# Lab2-solargen-with-function-calling/django-ml-backend/regService/__pycache__
