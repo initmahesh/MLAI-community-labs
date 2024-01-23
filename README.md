@@ -6,4 +6,4 @@
 
 ## Lab 2 - Solar gen with function calling
 
-[README](Lab2-OpenAI-solargen-with-function-calling/README.md)
+[README](Lab2-solargen-with-function-calling/README.md)
