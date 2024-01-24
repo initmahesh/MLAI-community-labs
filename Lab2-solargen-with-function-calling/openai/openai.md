@@ -1,3 +1,5 @@
+# Function calling with OpenAI
+
 Assistants are useful in ```code interpretation```,```retrieval``` and ```function calling```. In this readme, there is a description for the notebook which shows the creation of assistants and calling them for function calling.
 
 
