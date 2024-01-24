@@ -1,6 +1,3 @@
-# Function calling with OpenAI
-
-Assistants are useful in ```code interpretation```,```retrieval``` and ```function calling```. In this readme, there is a description for the notebook which shows the creation of assistants and calling them for function calling.
 
 ## Prerequisites
 
@@ -39,6 +36,15 @@ Now that google API is set and ready to use. Finally we will setup the Airtable 
 ### Refer to this readme, for creating the Airtable API
 
 [README](airtableapi.md)
+
+# Function calling with Agents in AWS
+
+Click on this link [README](agents_aws/AWS_agents.md)
+
+# Function calling with OpenAI
+
+Assistants are useful in ```code interpretation```,```retrieval``` and ```function calling```. In this readme, there is a description for the notebook which shows the creation of assistants and calling them for function calling.
+
 
 ### Refer to this documentation for Open AI function calling
 
