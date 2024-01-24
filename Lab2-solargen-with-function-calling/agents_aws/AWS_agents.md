@@ -2,7 +2,9 @@
 
 ## Prerequisites
 
-For generating AWS Access keys follow this->https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
+1. For generating AWS Access keys follow this->https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
+2. For generating Google API keys follow this->[README](../googleapi.md)
+3. For generating Airtable API keys follow this->[README](../airtableapi.md)
 
 ### First we create the Lambda Function in AWS
 
@@ -35,74 +37,9 @@ For generating AWS Access keys follow this->https://docs.aws.amazon.com/IAM/late
     
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/6e1ebe2d-bb9d-4597-b1e0-ee87900dc5d4)
 
-    Click on Edit to add environment variables. Here you can store your API keys for the lambda function to access.
+    Click on Edit to add environment variables. Here you can store your API keys that you generated for Airtable and Google, for the lambda function to access.
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/c44bc41d-c20e-4e65-a3e3-9ce35bb152ad)
 6. Click on Deploy.
-
-###  we generate the Google APIs.
-
-1. Visit the google cloud console
-   https://console.cloud.google.com/welcome/
-2. Go to APIs and services
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/48db1bb6-0178-4955-99ca-df00f0c43acf)
-   Click on Enable APIS and Services
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/934500c8-2c1c-4ba5-98cc-7cbf337de43b)
-3. Search for Geocoding API
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/49ddce46-1c10-49b2-9eea-5ece3e034f70)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/c1413fc2-5e79-462a-be93-39818c848b2c)
-   Select the API and Enable it.
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/aab3bb9a-ffc2-4887-b780-f205e1cca3dd)
-4. Similarly search for Solar API and enable it.
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/ab431aea-4df4-4632-aa44-d92ee6d34d2c)
-5. You will find your API key here
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/fe0286e6-2132-4ec9-a50f-9b5e0bf4d72f)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/416eee6e-0660-4b69-bdec-a0c789399036)
-   Click on show key.
-6. Copy the key and keep it in the environment variable as shown while the creation of lambda function.
-   and access them like this
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/85efc460-d6e5-4608-9ee9-172a2eea206e)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/25308a83-6230-4fee-9b98-346f6d350cf1)
-
-
-   After that click on Deploy.
-
-Now that google API is set and ready to use. Finally we will setup the Airtable for CRM. Let's set it up.
-
-1. Visit Airtable(Create an account if you do not have one)
-   https://airtable.com/
-2. Click on start from scratch
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/54f4a448-a8d7-446c-bb34-5182d97d53ae)
-3. Change/Add the column names. (Column names are case-sensitive)
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/5623e480-30ce-495c-96e6-4af667bde130)
-4. Once done, go to your account and click on Go to Developer Hub
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/169b5145-fd6c-481d-bc87-220a88eae507)
-   Click on create token
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/40c61913-2e33-4fd8-affc-3925acabd8f5)
-   Click on create new token
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/286cfcd4-b9f9-4825-8693-ef01b17cc195)
-   Specify the token name, add the base you just created, add scopes as data:records:read, data:record:write and click create token
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/61168198-12e1-461d-9a82-f069b177d5f3)
-   You have successfully generated a token and you can see it in the personal token list
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/5a048ad4-f173-4f71-a894-d9a21d1ba09b)
-   Go through the web API documentations
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/c65e3a11-4174-4a08-996b-c4912fe6da40)
-
-   Click on My first workspace
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/32e91a9b-ee1c-4b23-b800-4de3359925f1)
-   Get the URL from the Authentication content
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/7f8cea08-72b3-4306-9f84-1044ee6ac460)
-6. Now go to the lambda function and replace the URL with the URL copied earlier.
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/222a0ec3-ada1-413e-8551-c74b008f1750)
-
-   Create the environment variable for the Airtable token/API in the Lambda function. Write the API as "Authorization":"Bearer p4323adfgAirtableAPI"(example).
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/6001bc8c-6754-41b7-9f15-b37a6ca24b43)
-
-   Access the Airtable Token as such:
-   ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/39b412b8-2c66-4eff-9c39-5bb38dba5393)
-
-
-
-Now the Airtable is set up.
 
 ## Creating an Agent
 
@@ -161,10 +98,21 @@ Now we can invoke this agent as such:
 ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/3e724925-4e1c-4a2a-b2ed-c5d821a1db06) ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/a6230482-06d2-4ad3-a5c2-f01c3129f82b)
 
 The response contains completion message as event byte chunks. (This is the message from the agents)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/664c6908-6b82-4154-824f-486c14639471)
+
 
 ## Creating agents and Invoking them
 
-Now, creating a new agent using python.
+Now, creating a new agent using python. You must retrieve the ```agentResourceRoleArn``` from the AWS platform:
+1. Go to AWS console and search for 'IAM'-> Go to roles in the Side panel
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e141e9b3-86b3-496b-8d92-ade3d3394477)
+
+3. Your IAM role will be present here, with a prefix 'AmazonBedrockExecutionRoleForAgents_', Click on the role and copy its ARN.
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ef868b6c-8c2c-48db-a5b7-43e5edf6b877)
+
+
+Now paste the ARN in the code while creating an agent.
+
 
 ```python
 aws_agent = bedrock_agent.create_agent(
