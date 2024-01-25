@@ -8,13 +8,13 @@
 
 ### First we create the Lambda Function in AWS
 
-1. Login to AWS platform
+1. Login to AWS platform(https://aws.amazon.com/console/)
 2. Firstly we will created a Lambda function that our agent will use to generate the output.
    Search Lambda in the AWS search bar.
    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/f38b9426-844b-4183-bee3-8e2871153352)
    Click on the create function
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/57579212-8457-4c9b-b732-c79723fedb46)
-3. Create the name of the lambda function, then select Python 3.10 as the runtime. Click on create function
+3. Create the name of the lambda function, then select Python 3.11 as the runtime. Click on create function
 4. Copy the code from the lambda_function.py here:
    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/5b3c8a5f-7a26-45ae-899b-58fafe87eff8)
 15. Next step
@@ -30,14 +30,18 @@
 
     Go to Configuration->General Configuration. Click on Edit.
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/6045a8b3-4c1e-4337-93c8-839d86479703)
-    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/6f2cc632-690d-4c1a-9aa7-d102ab54fc49)
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2cf528a7-e383-4c57-b867-8add0ae15fde)
 
-    Change the Timeout value to 20 sec and hit save.
+
+    Change the Timeout value to 1 min and hit save.
 16. Go to Configurations->Environment Variables
     
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/6e1ebe2d-bb9d-4597-b1e0-ee87900dc5d4)
 
     Click on Edit to add environment variables. Here you can store your API keys that you generated for Airtable and Google, for the lambda function to access.
+
+
+    Save the Airtable API as ```AIRTABLE_API_KEY``` AND Google API key as ```GOOGLE_API```     
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/c44bc41d-c20e-4e65-a3e3-9ce35bb152ad)
 6. Click on Deploy.
 
@@ -63,10 +67,16 @@
    Specify the Agent name and the description (Note: you can find the descriptions in the agents_description.txt file in this directory.)
    You can create the IAM permission automatically for new user, or use an existing IAM permission if available.
    Click Next.
-11. Select model from the drop down and give the descriptions(agents_description.txt).We have selected Claude v2 since Claude v2.1 is still not available. Click Next
-    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/a1b08666-2d81-46fb-8bdf-dec85743893a)
+11. Select model from the drop down and give the descriptions
+    Description for claude:
+    ```You are a solar panel financial advisor, your job is to extract address and monthly bills for calling functions to calculate solar potential. You also are a solar panel lead generation employee, your job is to extract personal details like name, phone number and address for returning as response for calling functions to generate leads. Strictly respond to the question for calling the function that is required to answer```
 
-12. Create an action group.
+
+    We have selected Claude v2:1. Click Next
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/72fbc48e-da60-4c36-aad7-08c5f9a41434)
+
+
+14. Create an action group.
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/a41e28e5-a043-4032-8f29-6c8ddfc541f0)
     Give the action group name.
     Select the lambda function created earlier from the drop down menu.
@@ -75,8 +85,8 @@
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/d7fdc6d0-8453-49bd-93f3-e46868d22b3d)
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/921d1a7f-b21d-4582-a39b-5c9b371d5b1c)
     Click on Choose then click on next.
-13. Knowledge base is optional, it uses Open Search service of AWS and might charge for the uses, or you can just skip it.
-14. Create Agent.
+15. Knowledge base is optional, it uses Open Search service of AWS and might charge for the uses, or you can just skip it.
+16. Create Agent.
     ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/f62a5a55-2d6e-4c9e-8ccc-5750c8128a25)
 
 
