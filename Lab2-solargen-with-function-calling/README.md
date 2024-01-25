@@ -45,6 +45,6 @@ Click on this link [README](agents_aws/AWS_agents.md)
 
 Click on this link [README](openai/openai.md)
 
-# Code Interpreter and Retrieval with OpeaAI assistants
+# Code Interpreter and Retrieval with OpenAI assistants
 
 Click on this link [README](openai/CodeInterpreterAndRetriever.md)
