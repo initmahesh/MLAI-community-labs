@@ -179,6 +179,9 @@ def solar_panel_calculations(address, monthly_bill):
   if "error" in financial_analyses:
     print(financial_analyses["error"])
     return financial_analyses
+  monthly_bill = [i for i in str(monthly_bill) if i.isdigit() or i == '.']
+
+  monthly_bill = float(''.join(monthly_bill))
   closest_financial_analysis = find_closest_financial_analysis(
       int(monthly_bill), financial_analyses)
   if closest_financial_analysis:

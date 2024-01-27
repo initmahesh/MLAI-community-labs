@@ -86,7 +86,7 @@
                     "description":"Monthly Bills to be generated",
                     "required":true,
                     "schema":{
-                        "type":"string"
+                        "type":"integer"
                     }
                 }],
                 "responses":{

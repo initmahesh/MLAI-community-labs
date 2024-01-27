@@ -224,6 +224,9 @@ def lambda_handler(event, context):
               address = item['value']
           elif item['name'] == 'monthlyBills':
               monthly_bill = item['value']
+              monthly_bill = [i for i in item['value'] if i.isdigit() or i == '.']
+
+              monthly_bill = float(''.join(monthly_bill))
       
         response = solar_panel_calculations(address, monthly_bill)
     
