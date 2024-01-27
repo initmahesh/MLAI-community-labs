@@ -44,3 +44,7 @@ Click on this link [README](agents_aws/AWS_agents.md)
 # Function calling with OpenAI
 
 Click on this link [README](openai/openai.md)
+
+# Code Interpreter and Retrieval with OpenAI assistants
+
+Click on this link [README](openai/CodeInterpreterAndRetriever.md)
