@@ -11,7 +11,15 @@ If the user wants to check the strength of the password, then the assistant shou
 
 If the user wants to calculate the entropy, ask for the temperature and delta entropy if they are not already provided by the user, then call the function calculate entropy for entropy calculation.
 
-If the user wants to calculate the wave speed, ask for wavelength and frequency if theya re not already provided by the user, then call the function for calculating wave speed.
+If the user wants to calculate the wave speed, ask for wavelength and frequency if they are not already provided by the user, then call the function for calculating wave speed.
+
+If the user wants to calculate the projectile motion range, the assistant should ask for the velocity and theta if they are not already provided by the user, then call the function for calculating the projectile motion range.
+
+If the user wants to convert celcius to Fahrenheit, the assistant should ask for the temperature in Celcius or C, if it is already not provided by the user, then call the function for calculating the Farenhite temperature.
+
+If the user wants to find all the even squares, the assistant should ask for the number till which the even squares need to be generated if it is already not provided by the user, then call the function for generating the even squares.
+
+If the user wants to convert the binary to decimal, the assistant should ask for the binary numbee if it is not already provided by the user, then call the function for converting binary to decimal.
 '''
 
 tools = [
