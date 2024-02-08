@@ -2,18 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button, FormControl, InputGroup, ListGroup } from 'react-bootstrap';
 import axios from 'axios';
 import './App.css'; // Import the CSS file
+import { Helmet } from 'react-helmet';
 
 import Navbar from './components/Navbar/Navbar';
 import backgroundImage from './Assets/body.jpg';
 import sun from './Assets/contrast.png';
 import chatlogo from './Assets/chat.png';
 import Wrapperbody from './components/Wrapperbody/Wrapperbody';
+import TextWithLineBreaks from './components/textlinebreak';
 
+// Generate a random integer between min (inclusive) and max (exclusive)
+const randomInteger = Math.floor(Math.random() * (10000000 - 1) + 1);
+console.log(randomInteger)
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showChat, setShowChat] = useState(false);
+  const [showChat, setShowChat] = useState(true);
 
   const sendMessage = async () => {
     if (inputText.trim() === '') return;
@@ -24,9 +29,11 @@ const App = () => {
     setLoading(true);
 
     // Send user message to the backend for processing
+    // https://solar-gen.onrender.com/api/experiments-openai
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/experiments-openai', {
+      const response = await axios.post('https://solar-gen.onrender.com/api/experiments-openai', {
         "message": inputText,
+        "Identifier":randomInteger
       });
       console.log(response)
       const botMessage = response.data["response"];
@@ -69,6 +76,10 @@ const App = () => {
   };
 
   return (
+    <div>
+    <Helmet>
+          <title>Solar Gen</title>
+    </Helmet>
     <div style={backgroundStyle}>
       <Navbar />
       <div className="chat-wrapper">
@@ -94,8 +105,8 @@ const App = () => {
                   key={index}
                   className={`message-item ${message.sender === 'user' ? 'user-item' : 'bot-item'}`}
                 >
-                  <div className={`${message.sender === 'user' ? 'user' : 'bot'}`}>
-                    {message.text}</div>
+                  <div className={`${message.sender === 'user' ? 'user' : 'bot'}`} >
+                    <TextWithLineBreaks text = {message.text} /></div>
                 </ListGroup.Item>
               ))}
               {loading && <div className={`message-item `}><div className='bot'>Loading...</div></div>}
@@ -119,6 +130,7 @@ const App = () => {
           </div>
         </div>)}
       </div>
+    </div>
     </div>
   );
 };
