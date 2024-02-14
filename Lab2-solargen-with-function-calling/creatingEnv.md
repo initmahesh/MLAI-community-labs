@@ -1,6 +1,6 @@
 ### Creating a .env file is very easy
 
-First create a file with the name `.env` in `./Lab2-OpenAIsolargenwithfunctioncalling` folder
+First create a file with the name `.env` in `./Lab2-solargen-with-function-calling` folder
 
 Then fill the following variables in the file.
 
