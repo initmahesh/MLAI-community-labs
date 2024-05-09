@@ -7,3 +7,6 @@
 ## Lab 2 - Solar gen with function calling
 
 [README](Lab2-solargen-with-function-calling/README.md)
+
+## Lab 3
+[RAG](/Lab3/rag_readme.md), [Fine Tuning](/Lab3/fineTune_readme.md)
