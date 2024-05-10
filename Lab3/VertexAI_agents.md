@@ -1,4 +1,4 @@
-# Vetex AI Agents
+# Vertex AI Agents
 
 In this readme we will show you how you can build you own agent and use it for generating answers regarding your queries, while customizing it to answer questions only related to particular questions. Integrating external knowledge sources, writing OpenAPI spec for these sources.
 
@@ -50,3 +50,22 @@ Now we have created our App and we will move on to customizing it.
 
 ## Configuration of the Agent
 
+1. First we will set the Goal of the Agent
+
+   In our case we are building a car repair agent who is helpful in answering questions related to the car problems. So we set the Goal as per the requirement as such.
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/87c68c43-a5a9-434c-9f54-354171c40753)
+
+   Click the save button.
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b62cac3a-bfcf-4180-9ba6-c16f8fa062fe)
+
+2. Next step we will create a Tool for the agent to use.
+
+   Head over to the Tools section and click on it
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c0f1d2c1-6d20-4db4-a940-6d60b9ff8fca)
+
+   Click on the create button. This is what you will be shown
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/05c4c377-f7a8-407d-84a1-b22bdde4052f)
+   * Select the type of the tool as OpenAPI
+   * Also set the description of the Tools. As we are integrating the Places API from Google
