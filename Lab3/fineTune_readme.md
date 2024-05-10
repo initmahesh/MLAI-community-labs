@@ -14,3 +14,19 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 Running the Notebook [FineTuning_models_custom.ipynb](FineTuning_models_custom.ipynb)
 
 ### Prerequisites
+
+* Connect to a T4 runtime in Google Colab, you while have a GPU runtime of 3 hours 20 mins.
+
+* 1. Click on the drop down arrow beside the connect button.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0b897c5e-fd81-41cd-8fc4-879a1f2640ea)
+
+* 2. Click on change runtime type
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/433e2115-443c-4716-b605-5cffd419c2f9)
+
+* 3. Select T4 GPU and hit save.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/429f86b4-69e5-437e-85d4-9baf3fd9054c)
+
+* Training and testing datasets by the name of "formatted_test_set.jsonl","formatted_train_set.jsonl","validation_set.jsonl"
