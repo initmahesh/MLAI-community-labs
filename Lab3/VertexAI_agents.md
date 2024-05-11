@@ -238,5 +238,20 @@ components:
 
   Specify the name as the one required by the API. In our case the name is simply "key". Also enter the API key secret in the field.
 
+## Continuing on our Agents creation.
+* Select the tool that you just created in the available tools
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d3ef8ad9-2abe-4f3f-84e1-c7b5010d578b)
 
+* The last step is to create the Instructions.
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d24b4e1a-52f1-4b5e-9ee6-74e9e1de8a33)
+
+  In the Instructions set, you will need to mention the tool that you created along with the situation when the agent needs to call the tool.
+  ```
+  ${TOOL: tool name}
+  ```
+## Output
+You can test out your agent by talkin to it in the Preview agent tab.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/de7d7d61-b045-4618-9092-1cc95a9c55cb)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f772e4ac-523f-42a4-b850-5d55b8509aaa)
 
