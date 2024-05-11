@@ -68,4 +68,175 @@ Now we have created our App and we will move on to customizing it.
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/05c4c377-f7a8-407d-84a1-b22bdde4052f)
    * Select the type of the tool as OpenAPI
-   * Also set the description of the Tools. As we are integrating the Places API from Google
+
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/670010a6-13a1-4ff1-91e5-26a2074f2f62)
+
+   * Also set the description of the Tools. As we are integrating the Places API from Google we will set the description as that.
+
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/af74736d-1cec-43d7-9037-b42657dac564)
+
+   * Now we will create an OpenAPI schema that we need to provide the tool for making API calls and getting the request. This will help the agent to know when it needs to call the API on its own, without having to explicitly mention it.
+  
+     **Open API schema**
+
+     In our case we write the Open API schema in YAML format, but if you are already well versed in writing schema you can choose JSONL format too and try to create you own, else feel free to follow along.
+
+   * *   ```YAML
+          openapi: 3.0.1
+          info:
+            title: Google Places Text Search API
+            description: Search for places by text query.
+            version: "1.0.0"
+         ```
+         In this sction we are mentioning the version of Open API schema that we will be using. We are going with the latest version currently.
+
+         The **info** section mentions the title of the OpenAPI schema, the description of what this schema does and version of our schema.
+
+    * * ```YAML
+        servers:
+            - url: https://places.googleapis.com/v1  # Base URL for the API
+        ```
+        Here, we are setting the base URL of the API, that the Agent is supposed to call.
+    * * ```YAML
+        paths:
+          /places:searchText?fields=places.displayName,places.formatted_address,places.price_level:
+            post:
+        ```
+        Here we are mentioning the path on which a Post request will be sent.
+
+        (Notice how we have specified a query parameter in the path itself as (fields=places.displayName,places.formatted_address,places.price_level)? This is done because the Tools in Agent builder does not provide more than one field for mentioning the query parameter which is already taken up by the API key. Same goes for Request Headers.)
+    * * ```YAML
+        summary: Search for places by text query.
+        operationId: searchPlaces
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  textQuery:
+                    type: string
+                    description: Text query to search for places.
+        ```
+        The POST request sent should have a request body. So, here we are describing the requestBody and the contents of the requestBody. Also, the summary describes the POST request.
+
+        The content section describes the type of the payload, and the properties describes the variables and they type with descriptions.
+    * * ```YAML
+        responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/placeResponse"
+        ```
+
+        This section mentions the responses, and their description and the content should be taken from the Path "#/components/schemas/placeResponse" which will be mentioned below.
+    * * ```YAML
+        components:
+          schemas:
+            placesNames:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the place.
+                formattedAddress:
+                  type: string
+                  description: Formatted address of the place.
+                priceLevel:
+                  type: string
+                  description: Price level of the place (e.g., PRICE_LEVEL_EXPENSIVE).
+            placeResponse:
+              type: object
+              properties:
+                places:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/placesNames"
+        ```
+        This section mentions the components that we are referencing in the point above as "#/components/schemas/placeResponse". So, lets understand the flow:
+
+        Path: "#/components/schemas/placeResponse"
+
+        References the PlaceResponse schema from the components section which in turn references "#/components/schemas/placesNames", this will call the placesNames schema that in turn mentions the contents and the description of each property.
+        Properties:
+        * * * name: The name of the place and type as string
+            * formattedAddress: The formatted address of the place.
+            * priceLevel: The pricing level of the place from high to low.
+## The Full Open AI Schema
+```YAML
+openapi: 3.0.1
+info:
+  title: Google Places Text Search API
+  description: Search for places by text query.
+  version: "1.0.0"
+
+servers:
+  - url: https://places.googleapis.com/v1  # Base URL for the API
+
+# Paths for the API endpoints
+paths:
+  /places:searchText?fields=places.displayName,places.formatted_address,places.price_level:
+    post:
+    #   parameters:
+    #       - in: query
+    #         name: fields
+    #         schema:
+    #           type: string
+    #           default: "places.name,places.formatted_address,places.price_level"
+      summary: Search for places by text query.
+      operationId: searchPlaces
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                textQuery:
+                  type: string
+                  description: Text query to search for places.
+                    
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/placeResponse"
+                
+components:
+  schemas:
+    placesNames:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the place.
+        formattedAddress:
+          type: string
+          description: Formatted address of the place.
+        priceLevel:
+          type: string
+          description: Price level of the place (e.g., PRICE_LEVEL_EXPENSIVE).
+    placeResponse:
+      type: object
+      properties:
+        places:
+          type: array
+          items:
+            $ref: "#/components/schemas/placesNames"
+```
+
+## Set the Authentication
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/030414af-cbac-493a-8cf4-aca59d33ed31)
+
+* Select the Authentication type as API key
+* Set the API key location as Query string parameter
+
+  Specify the name as the one required by the API. In our case the name is simply "key". Also enter the API key secret in the field.
+
+
+
