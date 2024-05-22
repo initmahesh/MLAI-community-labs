@@ -28,7 +28,10 @@ Click here to find the OpenAPI schema that we are using: [Schema](Airtable_OpenA
 
    2. Paths- This is how the path of the table looks like ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/11c83431-8b26-42e1-a283-fc4efd86defa)
 
-  Replace the servers URL and the paths in the OpenAPI schema.
+  Replace the servers URL and the paths in the OpenAPI schema like shown below.
+
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/6d943202-3299-496d-a90c-ab0dc13eb889)
+
 
 2. Now as we are trying to save the data in the CRM, we will be using POST method. This POST method has the request body that will be sent with the request.
 
