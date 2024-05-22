@@ -9,4 +9,4 @@
 [README](Lab2-solargen-with-function-calling/README.md)
 
 ## Lab 3
-[RAG](/Lab3/rag_readme.md), [Fine Tuning](/Lab3/fineTune_readme.md), [Vertex AI Agents](/Lab3/VertexAI_agents.md)
+[ChatGPT Agents](/Lab3/ChatGPT_Agents.md), [RAG](/Lab3/rag_readme.md), [Fine Tuning](/Lab3/fineTune_readme.md), [Vertex AI Agents](/Lab3/VertexAI_agents.md)
