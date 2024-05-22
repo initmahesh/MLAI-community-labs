@@ -142,9 +142,10 @@ This is what the initial setup looks like:
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2c1504be-7975-4599-8115-4319cff05ccf)
 
     In the API Key input field insert the Airtable API key you had saved earlier.
+    
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0360c5e8-9f32-4fce-bc35-13369afc3d47)
 
-12. Insert the OpenAPI schema you had created earlier in the Schema field. This is what it should look like.
+13. Insert the OpenAPI schema you had created earlier in the Schema field. This is what it should look like.
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/516759a8-3788-4dc7-96bf-fc27cfe000a2)
 
     Down below you will find the `Test` button. You can use this button to see if the agent is able to use the OpenAPI schema to call the API successfully or not.
@@ -155,7 +156,7 @@ This is what the initial setup looks like:
     While testing you might be prompted with this `Confirm` button. Click on it. If your Request was successfull you will be shown this.
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0bebf92c-2056-41e2-b1b0-49ee81f79522)
 
-13. Now, go back to the Configuration page. As all the set up is now complete, we will test our agent.
+14. Now, go back to the Configuration page. As all the set up is now complete, we will test our agent.
 
 ## Testing/Output
 1. First we will upload a contract that we want to analyse. Click on the button circled in red.
