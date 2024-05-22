@@ -158,4 +158,28 @@ This is what the initial setup looks like:
 13. Now, go back to the Configuration page. As all the set up is now complete, we will test our agent.
 
 ## Testing/Output
-    
+1. First we will upload a contract that we want to analyse. Click on the button circled in red.
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/29388ac5-e8f0-4b77-87d7-d1ccc47ceecf)
+
+2. We have uploaded a Master Service Agreement and given it a simple instruction on what to do.
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4690259d-fdce-4cc8-9c68-3d393e9a5f3b)
+
+   Hit Enter
+
+   The Contract will be analysed and the answer to the key terms will be generated in a tabular format as we have explicitly mentioned it in the instruction while configuring the agent.
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2f1b5f03-9ee0-4cbe-bbb4-7b634435f749)
+After this the Agent will try to store it in the Airtable CRM. Just like we did it previously, click on Confirm.
+
+If everything goes smoothly, this is what you will be shown.
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7010f1c3-0bcf-46fb-9480-6320924877ea)
+
+3. Check the Airtable CRM now.
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/06a8bfc6-921c-4726-b30a-225cd309bd9b)
+
+As you can see the Record has been stored in the CRM. And that's it. You have successfully built your Agent.
+
+## Final Note
+
+You will not be able to Update it but you configurations will be saved. As we mention earlier the API we are using of Airtable is a private URL and cannot be exposed to the Public. Due to this reason the Model you created cannot be published in the GPT store.
+
+Any API that you use that provide free access will allow you to publish the model in the GPT store.
