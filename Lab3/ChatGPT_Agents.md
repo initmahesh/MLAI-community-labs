@@ -10,9 +10,9 @@ In this tutorial we will learn how to create a ChatGPT agent that can extract ke
 
 Any Airtable related query please refer to the instructions provide in the following file:
 
-[Click here](../Lab2-solargen-with-function-calling/airtableapi.md)
+**** Insert you key term names in the column instead of the ones given in the instruction below ****
 
-**** Insert you key term names in the column instead of the ones given in the instruction above,****
+[Click here](../Lab2-solargen-with-function-calling/airtableapi.md)
 
 
 After creating an airtable account and setting up the API key, and adding key terms you should see something like this:
