@@ -8,7 +8,7 @@ In this tutorial we will learn how to create a ChatGPT agent that can extract ke
 3. ChatGPT subscription
 4. OpenAPI schema for Airtable API
 
-Any Airtable related query please refer to the instructions provide in the following file:
+### Any Airtable related query please refer to the instructions provide in the following file:
 
 **** Insert you key term names in the column instead of the ones given in the instruction below ****
 
@@ -18,7 +18,7 @@ Any Airtable related query please refer to the instructions provide in the follo
 After creating an airtable account and setting up the API key, and adding key terms you should see something like this:
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/85980200-3045-4c52-901f-6c03fcc05785)
 
-
+### OpenAPI Schema
 Now we will create the OpenAPI schema for the Agent to call in order to save the data generated
 
 Click here to find the OpenAPI schema that we are using: [Schema](Airtable_OpenAPI.yaml)
@@ -142,9 +142,12 @@ This is what the initial setup looks like:
 10. On the following page you will see some thing as such.
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/1d6d810e-9573-45e6-9acf-f5aeab4db56f)
 11. Click on Authentication and select the following option.
-    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2c1504be-7975-4599-8115-4319cff05ccf)
+    * Select Authentication type as `API_KEY`
+    * Select Auth type as `Bearer`
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9021d378-a57a-4c91-8310-d24fdd4bcfc4)
 
-    In the API Key input field insert the Airtable API key you had saved earlier.
+
+    * In the API Key input field insert the Airtable API key you had saved earlier.
     
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0360c5e8-9f32-4fce-bc35-13369afc3d47)
 
