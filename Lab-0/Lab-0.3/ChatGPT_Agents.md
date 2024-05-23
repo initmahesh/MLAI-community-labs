@@ -91,38 +91,7 @@ Also remember that the Contract Name is the file name itself.
 Service Provider Name
 Customer Name
 Contract start date
-Contract end date
-Term Period In Months
-Deal Value
-Governing Law
-Auto Renewal
-Termination Notice In Days
-Data Breach Notice In Hours
-Billing frequency (monthly, quarterly, annually, other)
-Renewal Period (Months)
-Notice of termination for convenience
-Net payment terms (Net 30, 45, 60, 75, 90, other) 
-Termination for Breach (Yes, No, N/A)
-Termination for cause (Yes, No, N/A)
-Termination without cause (Yes, No, N/A)
-Termination for convenience (Yes, No, N/A)
-Late Payment Charges (Yes, No, N/A)
-Late Payment Penalty
-Limitations of liability (Amount)
-Assignment (consent, No consent, N/A)
-Name and logo use (Yes, No, N/A)
-Deletion of Data (Yes, No, N/A)
-Customer Indemnity
-Service Provider indemnity
-Customer notice for indemnity claim
-Indemnify Attorney fees (Yes, No, N/A)
-Price increase (Yes, No, N/A)
-Notice for price increase (days)
-Insurance Clause
-Maintenance of Insurance
-Provide notice for insurance (Days)
-Service Provider Intellectual Property Rights
-Customer Intellectual property rights]
+Contract end date]
 
 After getting the results for these key terms, display them in a tabular format with column names as key terms and the rows containing the value for each of these key terms.
  Once the table is generated, call the appropriate action created to save these results to a CRM.
