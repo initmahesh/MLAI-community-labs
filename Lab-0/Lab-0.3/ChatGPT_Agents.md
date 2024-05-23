@@ -12,7 +12,7 @@ In this tutorial we will learn how to create a ChatGPT agent that can extract ke
 
 **** Insert you key term names in the column instead of the ones given in the instruction below ****
 
-[Click here](../Lab2-solargen-with-function-calling/airtableapi.md)
+[Click here](../../Lab2-solargen-with-function-calling/airtableapi.md)
 
 
 After creating an airtable account and setting up the API key, and adding key terms you should see something like this:
