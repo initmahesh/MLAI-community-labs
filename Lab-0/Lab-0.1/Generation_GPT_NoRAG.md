@@ -19,3 +19,16 @@
 Click on this link to go to the Jupyter Notebook: [Notebook](Without_RAG_Generation.ipynb)
 
 If you are using GPT from OpenAI:
+1. Comment out these Lines:
+   * Code Cell 2:
+     
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8fbaf5e3-4a60-4a2e-84da-d6ed249d1929)
+2. Uncomment out these Lines:
+   * Code Cell 2:
+     
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/01b9a8e0-9808-4903-8890-35d59d3d898b)
+
+   * Place the OpenAI key as ```os.environ["OPENAI_API_KEY"] = <Key>```
+     
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
+
