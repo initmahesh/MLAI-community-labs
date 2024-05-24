@@ -138,6 +138,7 @@ This is what the initial setup looks like:
 16. Now, go back to the Configuration page. As all the set up is now complete, we will test our agent.
 
 ## Testing/Output
+### You can try our document to test your Agent: [Click here](https://drive.google.com/file/d/112lxc2jOhz4PMdkk0AoLRuS5ek3FAzHh/view?usp=sharing) to get the document
 1. First we will upload a contract that we want to analyse. Click on the button circled in red.
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/29388ac5-e8f0-4b77-87d7-d1ccc47ceecf)
 
