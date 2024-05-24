@@ -14,11 +14,19 @@
 
 ### *** You can either use GPT-3.5 key from OpenAI, or deploy an instance in Azure like us and use it endpoints. ***
 
+You can use this video as reference for setting up Azure OpenAI: 
+
+**OR**
+
+You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
+
 ### Set up
 
 Click on this link to go to the Jupyter Notebook: [Notebook](Without_RAG_Generation.ipynb)
 
-If you are using GPT from OpenAI:
+#### If you are using GPT from OpenAI:
+
+You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 1. Comment out these Lines:
    * Code Cell 2:
      
