@@ -9,10 +9,26 @@
    * If you are here from `Lab 0` then Add the key terms that you are planning to generate from ChatGPT Agents
       * Click on the `+` symbol
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/09bb6efb-5a85-4b9c-9352-c7d03ecc9f65)
-      * Write you key term name and Hit Enter
-        ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/97d5a4e9-55b9-4064-8338-d6add9af16af)
+      * Write your key term name and Hit Enter (**** Names should not have spave between them and should be same like the one's mentioned in the OpenAPI schema payload ****)
+    
+        **OR**
+    
+        Just insert these names in the column
+        ```
+        [
+         ContractName
+         ServiceProviderName
+         CustomerName
+         Contractstartdate
+         Contractenddate
+        ]
+        ```
+
+        ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/121d07f0-c3d2-45d5-ae76-9d35d5b0c720)
+
       * You can see the column has been created
-        ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/748368b4-ebf2-4a1e-9028-205ac553a255)
+        ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4a529e41-6d31-4f0a-81f5-0c17d0008366)
+
 
       #### Similarly create all the Key term column names. 
 
