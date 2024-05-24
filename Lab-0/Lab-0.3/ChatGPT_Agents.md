@@ -146,6 +146,15 @@ This is what the initial setup looks like:
 
 
 2. We have uploaded a Master Service Agreement and given it a simple instruction on what to do.
+   #### Input Prompt that we will provide
+   ```
+   Analyse the document and find the
+   Contract Name,
+   Service Provider Name,
+   Customer Name,
+   Contract start date,
+   Contract end date
+   ```
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c6405e7e-1017-4f0d-9c6c-26bd7b959cba)
 
    Hit Enter
