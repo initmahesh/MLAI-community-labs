@@ -134,4 +134,53 @@ Copy your path to the document and paste it here
 
 Step 8:
 
+Run cell 6, this will initialize the question and convert the question along with the PDF document content with proper tags.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f034b7d5-f43f-4be7-8c11-409bd85e53d9)
+
+If you want to change the question, write it here that is marked with red line
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b2f396ae-01ab-48c6-9888-815a13532f7b)
+
+Step 9:
+
+Run cell 7, to call the OpenAI function, where we are giving it the prompt and the system message.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7f9968d6-96a4-4f0c-87c0-1843d4281225)
+
+Step 10:
+
+Run cell 8, to print the message from the GPT.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fa83983d-be7a-44d0-a731-f9c05ab63304)
+
+Step 11:
+
+Run cell 9, to load a longer document, and extract its entire content.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2bb94a5c-166f-4f6b-9395-faab36ad3d39)
+
+Change the path here
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/50c6ce20-cf2c-4cb8-9a55-5d843a09c923)
+
+As you can see that the Document content is 163227, and the limit of GPT-3.5 is 16k.
+
+Step 12:
+
+Run cell 10, to change the question like you did before.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9dcaacf0-638e-4c4d-a7ac-1609abd1db60)
+
+Step 13:
+
+Run cell 11, to generate the response from the model. But this time it will throw an error saying, the model maximum context length is 16000 tokens.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5da6754c-8857-46a1-9f60-a121119f7ea7)
+
+## So here we face the famous Context length problem that every LLM faces at some point. In Lab 0.2 we will solve this problem with an intuitive approach called Retrieval Augmented Generation (**RAG**)
+
+
+
+
 
