@@ -1,4 +1,4 @@
-# Welcome to Lab 0.2
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f1431206-b5aa-4121-9ad9-9a754dc9c40a)# Welcome to Lab 0.2
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 0.1.
 
 ## What is Retrieval Augmented Generation or RAG?
@@ -77,5 +77,55 @@ Run cell 5 to load `answer_question()` function that takes the question from the
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b079085c-6f2e-4238-8e89-e7cb47957105)
 
-Step 5:
+Step 6:
 
+Run cell 6, to load `create_document_embedding()` function that generated chunks of the entire document and uses them to call the `create_embedding_index()` function that creates a faiss index and returns this embed index.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/acc7ff45-46e2-4c88-98de-03325aa67df4)
+
+Step 7:
+
+Run cell 7 to load `return_RAG_passage()` function that is used for  getting the most relevant chunks and converting them to proper formatted prompt following this pattern:
+```
+<Context1>
+Chunk 1
+</Context1>
+<Context2>
+Chunk 2
+</Context2>
+<Context3>
+Chunk 3
+</Context3>
+.
+.
+.
+<ContextN>
+Chunk N
+</ContextN>
+<Question>The question that is being asked about the document</Question>
+```
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fbb87e3c-3194-41dc-b45c-7c863ec03f6a)
+
+Step 8:
+
+Running cell 8 will initialize the `CallOpenAI()` function for further usage/calling.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5c7b5a59-b732-42da-a6c9-b71c16050fa7)
+
+Step 9:
+
+Run cell 9 to create embedding index of the document. Change the document path 
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/24738cf4-1a82-495d-8cea-e9438c46d10d)
+
+Step 10:
+
+Run cell 10 to call the `return_RAG_passage()` which returns the chunks that is relevant to the question in a proper format. You can also change the question if you want to try any other question.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5f6d070a-90c8-497b-b10d-b32e91cb84d1)
+
+Step 11:
+
+Run cell 11 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fcda4748-3207-4ca2-8e44-03bb775f57f4)
