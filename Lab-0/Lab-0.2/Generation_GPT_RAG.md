@@ -18,7 +18,7 @@ In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have cur
 5. OPENAI_API_TYPE
 6. Python version 3.9+ (https://www.python.org/downloads/)
 7. VS code(Optional if you are using Google Colab) (https://code.visualstudio.com/download)
-8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
+8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.2/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
 
 ### *** You can either use GPT-3.5 key from OpenAI, or deploy an instance in Azure like us and use it endpoints. ***
 
