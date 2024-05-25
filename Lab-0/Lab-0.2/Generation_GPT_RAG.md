@@ -129,3 +129,48 @@ Step 11:
 Run cell 11 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fcda4748-3207-4ca2-8e44-03bb775f57f4)
+
+Step 12:
+
+Run cell 12 to call the `CallOpenAI()` function to get the response from GPT.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ca17a6da-3e24-420f-b333-01af875ac514)
+
+Step 13:
+
+Run cell 13 to print the response from the GPT.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/dbe126f9-018e-41c4-91f5-9592947f3583)
+
+Step 14:
+
+Now we will try to do the same thing with a larger document, preferably the one that we faced problems with in Lab 0.1 due to context length.
+
+Run cell 14 to create the embeddings of the document. Change the document path here.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/34de34a3-4237-4bc3-8cab-f44eca0b9403)
+
+Step 15:
+
+Run cell 15 to call the `return_RAG_passage()` which returns the chunks that is relevant to the question in a proper format. You can also change the question if you want to try any other question.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ce08f5aa-d8b9-46f9-a322-daa563635911)
+
+Step 16:
+
+Run cell 16 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt. As you can see the token count has come down to a staggering 8347 which was 163227 before.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/daa72ef3-47f2-4d7c-b453-80b67915d7f2)
+
+Step 17:
+
+Run cell 17 to call the `CallOpenAI()` function to get the response from GPT.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f77a60ea-cf60-44c0-8758-53301aee50e6)
+
+Step 18:
+
+Run cell 18 to print the response.
+
+
+## So here we see that using RAG we were even able to process very large document and get the accurate answer without facing the problem of context length.
