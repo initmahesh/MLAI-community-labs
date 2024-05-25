@@ -1,6 +1,6 @@
 # Welcome to Lab 0.1
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
-### We will also stumble across an error which might seem like the end of the world but we will fix it using a, awesome technique called RAG, so hang tight.
+### We will also stumble across an error which might seem like the end of the world but we will fix it using an awesome technique called RAG, so hang tight.
 
 ### Pre-requisites
 
@@ -14,13 +14,40 @@
 
 ### *** You can either use GPT-3.5 key from OpenAI, or deploy an instance in Azure like us and use it endpoints. ***
 
-You can use this video as reference for setting up Azure OpenAI: 
+You can use this video as reference for setting up Azure OpenAI: [Click Here](https://youtu.be/XqoqgIZS2rc?t=245)
 
 **OR**
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
-### Set up
+## First Let Us learn the basics of Prompt Engineering (Essential for using GPT)
+
+You can say that Prompts are the languages of LLM models, the better you speak it the more the LLM understands and replies. Prompt engineering consists of templates and much more to explain the question better to the LLM models. Below you can see an example of how the LLM model expects its prompts to be configured.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/617ec5c3-731d-47cd-8131-15e7a7d68f18)
+
+This just show the high level view of how prompts look like.
+
+The template of prompts consists of lots of tags and line break, also adding more instructions after every iteration/test of get the desired results. if we were to convert the above prompt in a format that we would, provide it while programming, then it would look somewhat like this.
+```
+system:You are a  brilliant professor of commerce and you are can answer questions true to your Knowledge. Explain it in detailed format. If you do not know the answer just say "I do not know" rather than making something up.
+User:
+<Context>
+Those assets that a company can quickly convert into cash within a short timeframe are called liquid assets. These can be commodities for sale or inventory, money in the bank, accounts receivable and other items that you may exchange for cash within a year. Liquid assets are also referred to as current assets on the balance sheets. It is important for a company to have a certain amount of liquid assets as it helps with day-to-day operating costs.
+</Context>
+<Question>What are liqued assets?</Question>
+<Answer>Put your answer here</Answer>
+```
+As you can see how different this became than earlier in the picture. This is because we tried to state the entire content in a crystal clear format.
+
+Also you may have noticed how we have used tags in our prompts. Tags are an essential part of Prompting, that helps the LLM model understand the different parts of the problem.
+* <Context> tag tells the model where the context starts and ends
+* <Question> tag tells the model which is the question.
+* <Answer> tag tells the model where to insert the answer.
+
+Tags help in avoiding confusion for the LLM model.
+
+## Set up
 
 Click on this link to go to the Jupyter Notebook: [Notebook](Without_RAG_Generation.ipynb)
 
@@ -39,4 +66,72 @@ You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solar
    * Place the OpenAI key as ```os.environ["OPENAI_API_KEY"] = <Key>```
      
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
+
+## Moving on to the coding bit.
+
+In this notebook we have tried to upload the entire document content along with the question, so the prompt created is in this format
+
+```
+<Context>
+The entire document content
+</Context>
+
+<Question>The question that is being asked about the document</Question>
+```
+Step 1: Uncomment and Copy paste the OpenAI keys and model name in the code itself as shown here in cell 2.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/be674277-ecd9-4741-9a08-af19fd90ecf6)
+
+Step 2: Comment out these line in cell 2.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ef34f61-4ae9-4f36-973e-3a1cfd3fdeb0)
+
+**OR**
+
+Step 1: Create a .env file if you are using Azure OpenAI or you can use the .envTemplate file and rename it to .env and use it.
+
+Step 2: Fill the key and all the required parameters in the env file.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/cb370b71-f8d8-4027-ba36-9cd3c79ed0ec)
+
+
+#### Step 3: 
+Run cell 1, as this will install all the packages required for running the notebook. Each package has been described in the notebook itself. Please go through it to understand what each of them does.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0047d8ad-0b4b-4b30-903c-7291865fc996)
+
+Step 4:
+
+Running Cell 2, will import the required modules from the installed packages. Also it will set all the keys in the environment for easy access and making connection to OpenAI.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f3fa1a08-d395-4df7-b3ce-ae268e0f2d38)
+
+One thing you will notice is that we have used tiktoken for counting the number of tokens while we send a prompt to OpenAI.
+
+Step 5:
+
+Running cell 3 will initialize the `CallOpenAI()` function for further usage/calling.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a42b7c34-e04f-46dc-8230-c31fa5623114)
+
+Step 6:
+
+Run cell 4 to initialize the `extract_text()` function for further usage.
+
+This function extract the content from PDF and returns the entire content. The package used to do this is PyMUPDF. This will also print the tokens of the content.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ca7c8aed-1581-4100-b91e-56cf4b00ccd5)
+
+Step 7:
+
+Run cell 5 to call the `extract_text()` function that we initialized in Step 6, also you need to change the path of the document you want to analyse.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c7b4ec3d-d9c2-4397-91b7-a7df9f02695e)
+
+Copy your path to the document and paste it here
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4363429a-95b2-4f2f-bb43-15a8fddc3fe1)
+
+Step 8:
+
 
