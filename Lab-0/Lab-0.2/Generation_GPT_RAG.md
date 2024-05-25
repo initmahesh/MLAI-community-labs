@@ -172,5 +172,6 @@ Step 18:
 
 Run cell 18 to print the response.
 
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ad67c57c-7747-41d3-bad7-8ab67784982a)
 
 ## So here we see that using RAG we were even able to process very large document and get the accurate answer without facing the problem of context length.
