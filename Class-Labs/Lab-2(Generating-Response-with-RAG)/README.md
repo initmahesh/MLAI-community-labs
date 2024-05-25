@@ -1,4 +1,4 @@
-# Welcome to Lab 0.2
+# Welcome to Lab 2
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 0.1.
 
 ## What is Retrieval Augmented Generation or RAG?
