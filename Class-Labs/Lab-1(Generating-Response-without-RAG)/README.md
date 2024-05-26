@@ -1,3 +1,4 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing)
 # Welcome to Lab 1
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
 ### We will also stumble across an error which might seem like the end of the world but we will fix it using an awesome technique called RAG, so hang tight.
@@ -50,7 +51,7 @@ Tags help in avoiding confusion for the LLM model.
 
 ## Set up
 
-Click on this link to go to the Jupyter Notebook: [Notebook](Without_RAG_Generation.ipynb)
+Click on this link to go to the Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing)
 
 #### If you are using GPT from OpenAI:
 
