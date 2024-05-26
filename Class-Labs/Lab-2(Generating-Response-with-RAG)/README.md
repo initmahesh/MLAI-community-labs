@@ -1,3 +1,4 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing)
 # Welcome to Lab 2
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 0.1.
 
@@ -30,7 +31,7 @@ You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solar
 
 ## Set up
 
-Click on this link to go to the Jupyter Notebook: [Notebook](Without_RAG_Generation.ipynb)
+Click on this link to go to the Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing)
 
 #### If you are using GPT from OpenAI:
 
