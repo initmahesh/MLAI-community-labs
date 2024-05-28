@@ -12,20 +12,12 @@ In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have cur
 
 ### Pre-requisites
 
-1. AZURE_OPENAI_ENDPOINT
-2. AZURE_OPENAI_API_KEY
-3. AZURE_OPENAI_ENDPOINT
-4. AZURE_OPEN_AI_MODEL
-5. OPENAI_API_TYPE
-6. Python version 3.9+ (https://www.python.org/downloads/)
-7. VS code(Optional if you are using Google Colab) (https://code.visualstudio.com/download)
+1. OPENAI_API_KEY
+6. Python version 3.9+ (https://www.python.org/downloads/)(Note required if you are using Google Colab)
+7. VS code(Note required if you are using Google Colab) (https://code.visualstudio.com/download)
 8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.2/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
 
-### *** You can either use GPT-3.5 key from OpenAI, or deploy an instance in Azure like us and use it endpoints. ***
-
-You can use this video as reference for setting up Azure OpenAI: [Click Here](https://youtu.be/XqoqgIZS2rc?t=245)
-
-**OR**
+### *** You can either use GPT-3.5 key from OpenAI ***
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
@@ -33,21 +25,9 @@ You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solar
 
 Click on this link to go to the Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing)
 
-#### If you are using GPT from OpenAI:
-
-You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
-1. Comment out these Lines:
-   * Code Cell 2:
+Paste the OpenAI key here in Cell 2
      
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8fbaf5e3-4a60-4a2e-84da-d6ed249d1929)
-2. Uncomment out these Lines:
-   * Code Cell 2:
-     
-     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/01b9a8e0-9808-4903-8890-35d59d3d898b)
-
-   * Place the OpenAI key as ```os.environ["OPENAI_API_KEY"] = <Key>```
-     
-     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
 
 ## Moving on to the coding bit.
 
@@ -61,7 +41,7 @@ Step 2:
 
 Run cell 2 to import all the required modules from the packages to be used in the notebook also this will load the keys and credentials in the environment.
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7a21a4d6-9382-47e5-87f3-71abe6822a96)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/716b14d1-a4f1-449a-992c-2aa4258947ca)
 
 Step 3:
 
@@ -71,23 +51,32 @@ Run cell 3 to load the sentence transformer model, read the description in the n
 
 Step 4:
 
-Run cell 4 to load `create_embedding_index()` function that takes the chunks generated using the Recursive Character Splitter and converts them to Faiss index.
+Run cell 4 to load the PDF, paste the path to the PDF here.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7d173daa-af49-4330-a349-083296bcf168)
+
 
 Step 5:
 
-Run cell 5 to load `answer_question()` function that takes the question from the user and returns the 10 most relevant chunks from the document.
+Run cell 5 to create chunks of the document and store them is a Knowledge base
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b079085c-6f2e-4238-8e89-e7cb47957105)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/16958980-8744-45e4-a72a-4177386ae63b)
 
 Step 6:
 
-Run cell 6, to load `create_document_embedding()` function that generated chunks of the entire document and uses them to call the `create_embedding_index()` function that creates a faiss index and returns this embed index.
+Run cell 6, to use the knowledge_base to create the vector index
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/acc7ff45-46e2-4c88-98de-03325aa67df4)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/672d6f8f-1bca-4deb-a87c-c0cb969ef459)
 
 Step 7:
 
-Run cell 7 to load `return_RAG_passage()` function that is used for  getting the most relevant chunks and converting them to proper formatted prompt following this pattern:
+Run cell 8 to load the `answer_question()` function in the memory, this function when called will retrieve relevant chunks on the basis of the question from the knowledge base.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f98fc8b5-e5bb-461e-b6c2-b800b251a278)
+
+Step 8:
+
+Run cell 9 to load `return_RAG_passage()` function that is used for  getting the most relevant chunks and converting them to proper formatted prompt following this pattern:
 ```
 <Context1>
 Chunk 1
@@ -108,39 +97,33 @@ Chunk N
 ```
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fbb87e3c-3194-41dc-b45c-7c863ec03f6a)
 
-Step 8:
+Step 9:
 
-Running cell 8 will initialize the `CallOpenAI()` function for further usage/calling.
+Running cell 10 will initialize the `CallOpenAI()` function for further usage/calling.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5c7b5a59-b732-42da-a6c9-b71c16050fa7)
 
-Step 9:
-
-Run cell 9 to create embedding index of the document. Change the document path 
-
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/24738cf4-1a82-495d-8cea-e9438c46d10d)
-
 Step 10:
 
-Run cell 10 to call the `return_RAG_passage()` which returns the chunks that is relevant to the question in a proper format. You can also change the question if you want to try any other question.
+Running cell 11 will initialize the quesiton and call the `return_RAG_passage()` function and the relevant chunks are returned.
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5f6d070a-90c8-497b-b10d-b32e91cb84d1)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/84c796e3-0e24-46e1-ab17-7daaf644c13f)
 
 Step 11:
 
-Run cell 11 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt.
+Run cell 12 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fcda4748-3207-4ca2-8e44-03bb775f57f4)
 
 Step 12:
 
-Run cell 12 to call the `CallOpenAI()` function to get the response from GPT.
+Run cell 13 to call the `CallOpenAI()` function to get the response from GPT.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ca17a6da-3e24-420f-b333-01af875ac514)
 
 Step 13:
 
-Run cell 13 to print the response from the GPT.
+Run cell 14 to print the response from the GPT.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/dbe126f9-018e-41c4-91f5-9592947f3583)
 
@@ -148,25 +131,37 @@ Step 14:
 
 Now we will try to do the same thing with a larger document, preferably the one that we faced problems with in Lab 0.1 due to context length.
 
-Run cell 14 to create the embeddings of the document. Change the document path here.
+Run cell 15 to load the larger document, paste the path to your PDF here.
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/34de34a3-4237-4bc3-8cab-f44eca0b9403)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ec7d05d5-71b3-498f-9614-d68392639f8b)
 
 Step 15:
 
-Run cell 15 to call the `return_RAG_passage()` which returns the chunks that is relevant to the question in a proper format. You can also change the question if you want to try any other question.
+Run cell 16 to create chunks of the document and store them is a Knowledge base
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ce08f5aa-d8b9-46f9-a322-daa563635911)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/16958980-8744-45e4-a72a-4177386ae63b)
 
 Step 16:
 
-Run cell 16 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt. As you can see the token count has come down to a staggering 8347 which was 163227 before.
+Run cell 17 to use the knowledge_base to create the vector index
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/daa72ef3-47f2-4d7c-b453-80b67915d7f2)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/672d6f8f-1bca-4deb-a87c-c0cb969ef459)
 
 Step 17:
 
-Run cell 17 to call the `CallOpenAI()` function to get the response from GPT.
+Running cell 19 will initialize the quesiton and call the `return_RAG_passage()` function and the relevant chunks are returned.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a35eead8-ebb0-48b7-af7d-4c9b9d2e7c24)
+
+Step 18:
+
+Run cell 20 to combine the question with the RAG chunks that were created and will print the token count of the entire prompt.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b48e1cc7-9a18-41e9-a2b1-7faeac710e21)
+
+Step 19:
+
+Run cell 21 to call the `CallOpenAI()` function to get the response from GPT.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f77a60ea-cf60-44c0-8758-53301aee50e6)
 
