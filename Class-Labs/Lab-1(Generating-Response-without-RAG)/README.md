@@ -5,20 +5,12 @@
 
 ### Pre-requisites
 
-1. AZURE_OPENAI_ENDPOINT
-2. AZURE_OPENAI_API_KEY
-3. AZURE_OPENAI_ENDPOINT
-4. AZURE_OPEN_AI_MODEL
-5. OPENAI_API_TYPE
-6. Python version 3.9+ (https://www.python.org/downloads/)
-7. VS code(Optional if you are using Google Colab) (https://code.visualstudio.com/download)
+1. OPEN_API_KEY
+6. Python version 3.9+ (https://www.python.org/downloads/)(Note required if you are using Google Colab) 
+7. VS code(Note required if you are using Google Colab) (https://code.visualstudio.com/download)
 8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
 
-### *** You can either use GPT-3.5 key from OpenAI, or deploy an instance in Azure like us and use it endpoints. ***
-
-You can use this video as reference for setting up Azure OpenAI: [Click Here](https://youtu.be/XqoqgIZS2rc?t=245)
-
-**OR**
+### *** You can use GPT-3.5 key from OpenAI. ***
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
@@ -53,21 +45,9 @@ Tags help in avoiding confusion for the LLM model.
 
 Click on this link to go to the Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing)
 
-#### If you are using GPT from OpenAI:
-
-You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
-1. Comment out these Lines:
-   * Code Cell 2:
+In cell 2 Paste the OpenAI key as ```os.environ["OPENAI_API_KEY"] = <Key>```
      
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8fbaf5e3-4a60-4a2e-84da-d6ed249d1929)
-2. Uncomment out these Lines:
-   * Code Cell 2:
-     
-     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/01b9a8e0-9808-4903-8890-35d59d3d898b)
-
-   * Place the OpenAI key as ```os.environ["OPENAI_API_KEY"] = <Key>```
-     
-     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
 
 ## Moving on to the coding bit.
 
@@ -80,29 +60,13 @@ The entire document content
 
 <Question>The question that is being asked about the document</Question>
 ```
-Step 1: Uncomment and Copy paste the OpenAI keys and model name in the code itself as shown here in cell 2.
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/be674277-ecd9-4741-9a08-af19fd90ecf6)
-
-Step 2: Comment out these line in cell 2.
-
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ef34f61-4ae9-4f36-973e-3a1cfd3fdeb0)
-
-**OR**
-
-Step 1: Create a .env file if you are using Azure OpenAI or you can use the .envTemplate file and rename it to .env and use it.
-
-Step 2: Fill the key and all the required parameters in the env file.
-
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/cb370b71-f8d8-4027-ba36-9cd3c79ed0ec)
-
-
-#### Step 3: 
+#### Step 1: 
 Run cell 1, as this will install all the packages required for running the notebook. Each package has been described in the notebook itself. Please go through it to understand what each of them does.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0047d8ad-0b4b-4b30-903c-7291865fc996)
 
-Step 4:
+Step 2:
 
 Running Cell 2, will import the required modules from the installed packages. Also it will set all the keys in the environment for easy access and making connection to OpenAI.
 
@@ -110,13 +74,13 @@ Running Cell 2, will import the required modules from the installed packages. Al
 
 One thing you will notice is that we have used tiktoken for counting the number of tokens while we send a prompt to OpenAI.
 
-Step 5:
+Step 3:
 
 Running cell 3 will initialize the `CallOpenAI()` function for further usage/calling.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a42b7c34-e04f-46dc-8230-c31fa5623114)
 
-Step 6:
+Step 4:
 
 Run cell 4 to initialize the `extract_text()` function for further usage.
 
@@ -124,7 +88,7 @@ This function extract the content from PDF and returns the entire content. The p
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ca7c8aed-1581-4100-b91e-56cf4b00ccd5)
 
-Step 7:
+Step 5:
 
 Run cell 5 to call the `extract_text()` function that we initialized in Step 6, also you need to change the path of the document you want to analyse.
 
@@ -134,7 +98,7 @@ Copy your path to the document and paste it here
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4363429a-95b2-4f2f-bb43-15a8fddc3fe1)
 
-Step 8:
+Step 6:
 
 Run cell 6, this will initialize the question and convert the question along with the PDF document content with proper tags.
 
@@ -144,19 +108,19 @@ If you want to change the question, write it here that is marked with red line
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b2f396ae-01ab-48c6-9888-815a13532f7b)
 
-Step 9:
+Step 7:
 
 Run cell 7, to call the OpenAI function, where we are giving it the prompt and the system message.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7f9968d6-96a4-4f0c-87c0-1843d4281225)
 
-Step 10:
+Step 8:
 
 Run cell 8, to print the message from the GPT.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fa83983d-be7a-44d0-a731-f9c05ab63304)
 
-Step 11:
+Step 9:
 
 Run cell 9, to load a longer document, and extract its entire content.
 
@@ -168,13 +132,13 @@ Change the path here
 
 As you can see that the Document content is 163227, and the limit of GPT-3.5 is 16k.
 
-Step 12:
+Step 10:
 
 Run cell 10, to change the question like you did before.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9dcaacf0-638e-4c4d-a7ac-1609abd1db60)
 
-Step 13:
+Step 11:
 
 Run cell 11, to generate the response from the model. But this time it will throw an error saying, the model maximum context length is 16000 tokens.
 
