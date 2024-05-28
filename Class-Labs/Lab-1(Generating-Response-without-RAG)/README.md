@@ -70,7 +70,7 @@ Step 2:
 
 Running Cell 2, will import the required modules from the installed packages. Also it will set all the keys in the environment for easy access and making connection to OpenAI.
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f3fa1a08-d395-4df7-b3ce-ae268e0f2d38)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/da10109f-b689-4d3d-a0d3-c9688f183980)
 
 One thing you will notice is that we have used tiktoken for counting the number of tokens while we send a prompt to OpenAI.
 
