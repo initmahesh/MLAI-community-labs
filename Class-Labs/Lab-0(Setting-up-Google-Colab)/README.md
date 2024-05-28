@@ -32,7 +32,7 @@
 1. Once the runtime is connected, click on this button.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9ab7108b-9f48-4b37-b27b-fb6b13e4570a)
-3. Click here to upload the file.
+3. Click here to upload the file. (If you are doing Lab 1 or Lab 2 upload these contract: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf))
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/343950c4-1f22-44b2-a746-5cedb2968f4e)
 5. Once uploaded you can see you files here.
