@@ -16,7 +16,7 @@ In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have cur
 2. Google colab setup. Follow the Instructions here to set them up: [Click Here](../Lab-0(Setting-up-Google-Colab)/README.md)
 8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
 
-### *** You can either use GPT-3.5 key from OpenAI ***
+### *** You can use GPT-3.5 key from OpenAI ***
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
