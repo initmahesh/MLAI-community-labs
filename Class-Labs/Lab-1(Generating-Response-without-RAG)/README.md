@@ -65,6 +65,11 @@ Run cell 1, as this will install all the packages required for running the noteb
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0047d8ad-0b4b-4b30-903c-7291865fc996)
 
+If you get this prompt, you can click on `Run Anyway`.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/25182fbf-8e5a-40b6-9c04-0c0261d6aa2c)
+
+
 Step 2:
 
 Running Cell 2, will import the required modules from the installed packages. Also it will set all the keys in the environment for easy access and making connection to OpenAI.
