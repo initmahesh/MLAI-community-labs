@@ -36,6 +36,10 @@ Run cell 1 to install all the required packages to run the notebook.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4cb32efd-603f-4d23-b2dc-79b64f0d86e5)
 
+If you get this prompt, you can click on `Run Anyway`.
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/25182fbf-8e5a-40b6-9c04-0c0261d6aa2c)
+
 Step 2:
 
 Run cell 2 to import all the required modules from the packages to be used in the notebook also this will load the keys and credentials in the environment.
