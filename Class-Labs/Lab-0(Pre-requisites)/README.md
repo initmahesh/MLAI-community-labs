@@ -5,8 +5,34 @@
 ### Pre-requisites
 * Google account
 
+## Creating OpenAI key
+
+### Firstly visit the OpenAI playground
+
+https://platform.openai.com/playground
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/021fdbac-db77-48f3-9f15-2a445d77614e)
+
+### Sign up with you email address and set a password, then verify you account by clicking on the link sent in the email.
+
+1. Fill all the required details
+
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/43ac5a03-a8d2-4fca-b006-8d3e5bbc1d04)
+
+2. Go to the API Keys section and verify your phone number
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e9c15dfe-68f9-4b78-addc-536da4ab2a29)
+
+
+3. Click on the 'Create new Secret Key'
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ae0decbf-c3f3-4818-8a71-f10db37420f0)
+
+Fill in the details again copy the key somewhere safe, it is only shown once to the user.
+
+
 ### Creating a Runtime
-1. After Creating/uploading your notebook, you can select which runtime you want to connect to.
+1. When you load you notebook, you can select which runtime you want to connect to. (Lab-1: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing) , Lab-2: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing))
 2. Click on this button to connect to a default RAM and CPU runtime.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f712c1e6-0507-4dd5-8475-b97ee7840471)
@@ -50,28 +76,3 @@
 4. After you have created you notebook, you will be shown your notebooks in the same window next time you visit Google Colab
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/af748f7d-a297-4543-b242-ce2376c97c24)
-
-## Creating OpenAI key
-
-### Firstly visit the OpenAI playground
-
-https://platform.openai.com/playground
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/021fdbac-db77-48f3-9f15-2a445d77614e)
-
-### Sign up with you email address and set a password, then verify you account by clicking on the link sent in the email.
-
-1. Fill all the required details
-
-
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/43ac5a03-a8d2-4fca-b006-8d3e5bbc1d04)
-
-2. Go to the API Keys section and verify your phone number
-
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e9c15dfe-68f9-4b78-addc-536da4ab2a29)
-
-
-3. Click on the 'Create new Secret Key'
-
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ae0decbf-c3f3-4818-8a71-f10db37420f0)
-
-Fill in the details again copy the key somewhere safe, it is only shown once to the user.
