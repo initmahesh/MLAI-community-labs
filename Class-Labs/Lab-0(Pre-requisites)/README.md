@@ -36,19 +36,19 @@ Fill in the details again copy the key somewhere safe, it is only shown once to 
 2. Click on this button to connect to a default RAM and CPU runtime.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f712c1e6-0507-4dd5-8475-b97ee7840471)
-4. If you want to connect to a different runtime using GPU instances. Click on the drop down button here.
+4. (Optional) If you want to connect to a different runtime using GPU instances. Click on the drop down button here.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8da9ed33-8cc5-41f9-a8d4-50f5217a2b62)
-6. Select the change runtime type option.
+6. (Optional) Select the change runtime type option.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/631594cd-ac0c-4c57-ad06-fdeaa7d40e71)
-8. You will be displayed this screen.
+8. (Optional) You will be displayed this screen.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/64ce1fdf-088b-4c42-8d13-55d56746cea3)
-10. You can select the GPU instance and hit save.
+10. (Optional) You can select the GPU instance and hit save.
     
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8941d745-8c4a-4861-a564-5916b29260ff)
-12. Click on connect.
+12. (Optional) Click on connect.
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/612406ce-5175-44a0-b43d-2ef0a8620faa)
 
