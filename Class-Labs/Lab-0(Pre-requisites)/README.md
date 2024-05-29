@@ -5,15 +5,6 @@
 ### Pre-requisites
 * Google account
 
-### Creating a notebook
-1. Go to https://colab.research.google.com/
-2. You will see a screen where you will be able to create a notebook or upload a notebook
-   
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/58ad8f68-9bb1-4c86-9703-a87b0a5364b1)
-4. After you have created you notebook, you will be shown your notebooks in the same window next time you visit Google Colab
-   
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/af748f7d-a297-4543-b242-ce2376c97c24)
-
 ### Creating a Runtime
 1. After Creating you notebook, you can select which runtime you want to connect to.
 2. Click on this button to connect to a default RAM and CPU runtime.
@@ -41,7 +32,7 @@
 1. Once the runtime is connected, click on this button.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9ab7108b-9f48-4b37-b27b-fb6b13e4570a)
-3. Click here to upload the file.
+3. Click here to upload the file. (If you are doing Lab 1 or Lab 2 upload these contract: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf))
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/343950c4-1f22-44b2-a746-5cedb2968f4e)
 5. Once uploaded you can see you files here.
@@ -51,3 +42,11 @@
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e5cc3e6f-cd7a-4f5e-8905-9ec1555b7970)
 
+### Creating a notebook (Optional if you want to create a new Notebook)
+1. Go to https://colab.research.google.com/
+2. You will see a screen where you will be able to create a notebook or upload a notebook
+   
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/58ad8f68-9bb1-4c86-9703-a87b0a5364b1)
+4. After you have created you notebook, you will be shown your notebooks in the same window next time you visit Google Colab
+   
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/af748f7d-a297-4543-b242-ce2376c97c24)

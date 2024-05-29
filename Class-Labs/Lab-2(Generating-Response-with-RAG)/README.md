@@ -12,12 +12,11 @@ In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have cur
 
 ### Pre-requisites
 
-1. OPENAI_API_KEY
-6. Python version 3.9+ (https://www.python.org/downloads/)(Note required if you are using Google Colab)
-7. VS code(Note required if you are using Google Colab) (https://code.visualstudio.com/download)
-8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.2/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
+1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md))
+2. Google colab setup. Follow the Instructions here to set them up: [Click Here](../Lab-0(Setting-up-Google-Colab)/README.md)
+8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
 
-### *** You can either use GPT-3.5 key from OpenAI ***
+### *** You can use GPT-3.5 key from OpenAI ***
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
