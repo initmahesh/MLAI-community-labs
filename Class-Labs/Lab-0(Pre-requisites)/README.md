@@ -32,7 +32,7 @@ Fill in the details again copy the key somewhere safe, it is only shown once to 
 
 
 ### Creating a Runtime
-1. When you load you notebook, you can select which runtime you want to connect to. (Lab-1: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing) , Lab-2: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing))
+1. When you load your notebook, you can select which runtime you want to connect to. (Lab-1: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing) , Lab-2: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing))
 2. Click on this button to connect to a default RAM and CPU runtime.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f712c1e6-0507-4dd5-8475-b97ee7840471)
