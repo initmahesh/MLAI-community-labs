@@ -10,7 +10,7 @@ It is needed for mapping the best embeddings there are in a knowledge base index
 
 In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have curated the easiest implementation of RAG, using newer technologies like creating embeddings and using **faiss** for creating index of embeddings. Also we have implemented **sentence transformers** all of which you can see in action upon running the notebook.
 
-### Pre-requisites
+### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
 1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md))
 2. Google colab setup. Follow the Instructions here to set them up: [Click Here](../Lab-0(Setting-up-Google-Colab)/README.md)
