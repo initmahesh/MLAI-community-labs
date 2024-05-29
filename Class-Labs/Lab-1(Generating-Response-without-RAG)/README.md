@@ -3,7 +3,7 @@
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
 ### We will also stumble across an error which might seem like the end of the world but we will fix it using an awesome technique called RAG, so hang tight.
 
-### Pre-requisites
+### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
 1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md))
 2. Google colab setup. Follow the Instructions here to set them up: [Click Here](../Lab-0(Setting-up-Google-Colab)/README.md)
