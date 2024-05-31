@@ -1,28 +1,54 @@
-# Welcome to Lab-0
+# Welcome to Lab-0 (Doing the Pre-requisites)
 
-## Here we will learn how to set up google colab. This will be a normal walk-through where we show you how to create a runtime, run code, upload files.
+## Here we will learn how to set up google colab and also how to get you OpenAI key. This will be a normal walk-through where we show you how to create a runtime, run code, upload files in colab and also get the key for OpenAI.
 
 ### Pre-requisites
 * Google account
 
+## Creating OpenAI key
+
+### Firstly visit the OpenAI playground
+
+https://platform.openai.com/playground
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/021fdbac-db77-48f3-9f15-2a445d77614e)
+
+### Sign up with you email address and set a password, then verify you account by clicking on the link sent in the email.
+
+1. Fill all the required details
+
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/43ac5a03-a8d2-4fca-b006-8d3e5bbc1d04)
+
+2. Go to the API Keys section and verify your phone number
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e9c15dfe-68f9-4b78-addc-536da4ab2a29)
+
+
+3. Click on the 'Create new Secret Key'
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ae0decbf-c3f3-4818-8a71-f10db37420f0)
+
+Fill in the details again copy the key somewhere safe, it is only shown once to the user.
+
+
 ### Creating a Runtime
-1. After Creating you notebook, you can select which runtime you want to connect to.
+1. When you load your notebook, you can select which runtime you want to connect to. (Lab-1: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing) , Lab-2: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing))
 2. Click on this button to connect to a default RAM and CPU runtime.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f712c1e6-0507-4dd5-8475-b97ee7840471)
-4. If you want to connect to a different runtime using GPU instances. Click on the drop down button here.
+4. (Optional) If you want to connect to a different runtime using GPU instances. Click on the drop down button here.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8da9ed33-8cc5-41f9-a8d4-50f5217a2b62)
-6. Select the change runtime type option.
+6. (Optional) Select the change runtime type option.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/631594cd-ac0c-4c57-ad06-fdeaa7d40e71)
-8. You will be displayed this screen.
+8. (Optional) You will be displayed this screen.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/64ce1fdf-088b-4c42-8d13-55d56746cea3)
-10. You can select the GPU instance and hit save.
+10. (Optional) You can select the GPU instance and hit save.
     
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8941d745-8c4a-4861-a564-5916b29260ff)
-12. Click on connect.
+12. (Optional) Click on connect.
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/612406ce-5175-44a0-b43d-2ef0a8620faa)
 
