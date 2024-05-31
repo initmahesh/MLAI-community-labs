@@ -15,7 +15,7 @@ Running the Notebook [FineTuning_models_custom.ipynb](FineTuning_models_custom.i
 
 ### Prerequisites
 
-* Connect to a T4 runtime in Google Colab, you while have a GPU runtime of 3 hours 20 mins.
+* Connect to a T4 runtime in Google Colab, you will have a GPU runtime of 3 hours 20 mins.
 
 * 1. Click on the drop down arrow beside the connect button.
 
