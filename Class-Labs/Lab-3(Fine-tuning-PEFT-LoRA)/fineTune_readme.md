@@ -41,7 +41,7 @@ Running the Notebook: [![Open In Colab](https://colab.research.google.com/assets
   {"role":"assistant","content":"................The answer................"}
   ```
   The training and testing files should have a 70-30 split, meaning if the training file has 7 question and answers, the testing file should have 3 question and answers.
-* Click on this button and upload these files here. Follow the naming convention as given above:
+* Click on this button and upload these files here: [Train Set](formatted_train_set.jsonl), [Test Set](formatted_test_set.jsonl)
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d8920030-b617-41c9-b638-e18c10da977d)
 
