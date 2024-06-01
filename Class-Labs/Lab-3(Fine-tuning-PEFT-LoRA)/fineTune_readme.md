@@ -1,3 +1,4 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1wXuOEfjShamnFHNIgnor3IL_DNsy-QxN?usp=sharing)
 # Fine tuning models using PEFT for generating adapters.
 
 Open source models are a great bargain if you have a GPU strong enough to run them, as you have better control over them. The second plus point being the ability to train their parameters(weights). But training all the weights
@@ -11,11 +12,11 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 * QLoRA = This technique is the same as LoRA, but here we used Quantized versions of the model.
 * * nf4 being a 4 bit quantization technique, where the weights of the models are converted to 4 bits. This is an extensize process, you can read about it [here](https://www.kaggle.com/code/lorentzyeung/what-s-4-bit-quantization-how-does-it-help-llama2)
  
-Running the Notebook [FineTuning_models_custom.ipynb](FineTuning_models_custom.ipynb)
+Running the Notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1wXuOEfjShamnFHNIgnor3IL_DNsy-QxN?usp=sharing)
 
 ### Prerequisites
 
-* Connect to a T4 runtime in Google Colab, you while have a GPU runtime of 3 hours 20 mins.
+* Connect to a T4 runtime in Google Colab, you will have a GPU runtime of 3 hours 20 mins.
 
 * 1. Click on the drop down arrow beside the connect button.
 
@@ -40,7 +41,7 @@ Running the Notebook [FineTuning_models_custom.ipynb](FineTuning_models_custom.i
   {"role":"assistant","content":"................The answer................"}
   ```
   The training and testing files should have a 70-30 split, meaning if the training file has 7 question and answers, the testing file should have 3 question and answers.
-* Click on this button and upload these files here. Follow the naming convention as given above:
+* Click on this button and upload these files here: [Train Set](formatted_train_set.jsonl), [Test Set](formatted_test_set.jsonl)
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d8920030-b617-41c9-b638-e18c10da977d)
 
