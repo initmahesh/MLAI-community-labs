@@ -113,7 +113,9 @@ This is what the initial setup looks like:
 11. Click on Authentication and select the following option.
     * Select Authentication type as `API_KEY`
     * Select Auth type as `Bearer`
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9021d378-a57a-4c91-8310-d24fdd4bcfc4)
+      
+      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/179aa57a-2143-425f-933f-13805030e522)
+
 
 
     * In the API Key input field insert the Airtable API key you had saved earlier.
