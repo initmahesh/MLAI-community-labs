@@ -24,6 +24,56 @@ Agents are like your customized personal assistants.
   
   For example: Here we are using Google Places API for finding different places and their information.
 
+  To get your own Google Places API follow the instruction given below:
+
+  1. Go to Google Console platform.
+     
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4c97b699-aa5d-4e94-8af4-27a300e5d796)
+  2. Click on the button shown below in the image.
+ 
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ed8ffc44-6b32-4d8d-9b97-5bca9a92eb71)
+     
+  3.  Click on the API & Services show below.
+ 
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/307b0430-cfd0-487d-a16d-cf3af2f6e566)
+
+  4. Click on the Enable APIS and Services
+     
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/6e98b9af-a227-4fd0-a208-1681de0f4031)
+
+  5. Search for the Places API
+     
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c5b82ffc-8554-4495-830d-09fed32883c5)
+     
+  6. You need to enable both of these APIs.
+
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/afff0b09-dba3-44c0-bead-d1ffb401e3e6)
+     
+  7. Click on API and enable it and you will see something like this. CLick on the manage button
+ 
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a5008144-b462-470b-a54b-ba88cf01a849)
+     
+  8. You will land on this page.
+     
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ac3b2288-509c-4787-9f77-e181cec78444)
+
+     Click on the Keys & Credentials
+
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8c139e9f-1c27-445f-a1df-c31377917b3e)
+  9. You will be landed on this page.
+ 
+      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5ca369e9-ff89-487a-a876-27b19266b3a9)
+
+     Click on the show key button
+
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/1668feac-1494-42e8-a0a4-20eb7e4a39a9)
+
+  10. Copy the key somewhere safe for using it later.
+
+      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4ba5f2ff-b33f-4cc5-a250-12b4a1529bd7)
+
+
+
 ## Starting the creation of the Agent
 1. Go to Google console platform and search for **Agents Builder** in the search tab.
    [Google Console Platform](https://console.cloud.google.com/)
@@ -236,7 +286,7 @@ components:
 * Select the Authentication type as API key
 * Set the API key location as Query string parameter
 
-  Specify the name as the one required by the API. In our case the name is simply "key". Also enter the API key secret in the field.
+  Specify the name as the one required by the API. In our case the name is simply "key". Also enter the API key secret in the field the one which you got by enabling the Places API in google console while doing the pre-requisite section.
 
 ## Continuing on our Agents creation.
 * Select the tool that you just created in the available tools
