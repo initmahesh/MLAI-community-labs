@@ -460,17 +460,16 @@ components:
   Full Instructions-
 
   ```
-   - Greet the users.
+  - Greet the users.
   - Answer car related questions and car repair questions to the best of your ability.Any question or sentences not related to cars or car repair should not be answered and is out of your knowledge.
   - You can also use ${TOOL:Places} to help you answer questions.
       - Display the listing in a bullet proof, markdown format. You should not show more than 5 results.
           - After displaying the results using the tool, Always ask the user "Do you want to us connect you to them?"
-              - If they say "yes", ask for their Name, Phone Number, Current address. *This is important*
-                  - If they provide their Name, Phone Number and Current address, route them to ${AGENT:CRM Agent}
-              - After storing the data successfully say "Someone from the Company will get back to you."
+              - If they say "yes", route to ${AGENT:CRM Agent}  and ask for their Name, Phone Number, Current address.
+              - After storing the data successfully say "Someone from the Company will get back to you.
   ```
 
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2134447e-36c9-4d94-b144-adfce93643ea)
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/729c445d-5b64-4315-9e22-8e4352dad9a0)
 
 ## Last one Thing before testing the Agent we need to increase the context length of Gemini:
 
