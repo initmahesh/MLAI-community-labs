@@ -98,9 +98,161 @@ Agents are like your customized personal assistants.
 
 Now we have created our App and we will move on to customizing it.
 
-## Configuration of the Agent
+## Configuration of the First Agent
 
-1. First we will set the Goal of the Agent
+1. First set the Name of the Agent, here this Agent will be responsible for Inserting data to Airtable CRM, so we name the agent as `CRM Agent`
+   
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5557733b-c688-4853-b8d4-225b6cfcf9ac)
+
+2. Then we set the description of the Agent as
+   
+   `You are a database engineer and you need to make entries to a CRM table.`
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/42f138fc-bb4e-49b2-a5dc-7d032573b8dd)
+
+3. Then click on the `+ Data Store` option to add the Airtable tool for the Agent to use.
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ca92ad23-0639-4832-83be-9df1990bc351)
+
+4. You will be landed on this page, where we will Configure out tool.
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/92db4794-2651-43e3-a121-a74b4d06aa1c)
+
+5. Set the Name of the tool as `Airtable CRM`
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c862c6a3-c739-4904-8e45-a00389175a78)
+
+6. Select `Open API` from the dropdown menu in the `Type` field
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/6f13e7fc-8eb8-45ff-a23e-08922922a85f)
+
+7. Set the description of the tool as
+
+   `This tool is used to call the Airtable CRM to save the information.`
+   
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2d5cb5fd-a1fd-4c94-9adf-df19ddefa994)
+
+8. Then we will setup the `Schema`, Select `YAML` as the type
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/be87aeef-334a-4bf3-b56e-15ccb2ba4a10)
+
+9. Copy paste the schema given below and replace the path of the Airtable with you own.
+
+   ```yaml
+    openapi: 3.0.1
+    info:
+      title: Airtable CRM insert data API
+      description: Inserts the customer information in the Airtable CRM using the API
+      version: "1.0.0"
+    
+    servers:
+      - url: https://api.airtable.com/v0 # Base URL for the API
+    
+    # Paths for the API endpoints
+    paths:
+      /appdp97LZaCHF7uuy/Table%201:
+        post:
+        #   parameters:
+        #       - in: query
+        #         name: fields
+        #         schema:
+        #           type: string
+        #           default: "places.name,places.formatted_address,places.price_level"
+          summary: Insert customer information in the table
+          operationId: customerInformation
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    records:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          fields:
+                            type: object
+                            properties:
+                            # type: object
+                            # properties:
+                              Name:
+                                type: string
+                                description: Name of the customer.
+                              PhoneNumber:
+                                type: number
+                                description: Phone Number of the customer.
+                              CurrentAddress:
+                                type: string
+                                description: Current address of the customer.
+                              
+                        
+          responses:
+            '200':
+              description: Successful response
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                        result:
+                          type: string
+                          description: The response from the API after sending POST request.
+                    
+                    # $ref: "#/components/schemas/placeResponse"
+                
+   ```
+    
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/11aa0ea6-dd56-43e5-bfb6-071bc8de68b4)
+
+10. Select the `Bearer Token` option in the `Authentication type` and paste your Airtable Token in the field like shown below.
+
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/6dc34935-2fca-465a-8583-9f8ea33a7b74)
+    
+11. Now Click on `Save`
+
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/409589b5-4a57-4c13-82f8-2d897de99d61)
+    
+13. Now we need to go back to the CRM Agent again, so click on the Agents option in the side bar.
+    
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ba5ebe0-70f3-4566-a7d7-32bebf72f675)
+
+14. Click on the `CRM Agent`.
+
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a2947fed-b032-4461-a10b-0f0fd6b6b1ba)
+    
+16. This Agent will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
+
+   `- Take the Name, Phone Number and Current Address use ${TOOL:Airtable CRM} and save them in the CRM.`
+
+17. In the Available tools section you will see the tool that you just created for Airtable. Click on it.
+
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7db6d767-0531-4dd9-a68e-61e7b91565d2)
+
+18. Click on `Save`
+
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9df2021e-a3c2-4029-9dbe-31bee2bc6623)
+
+
+Now, your first agent is ready. Lets Configure our second agent.
+   
+
+## Configuration of the Second Agent
+
+1. Click on the back button shown below
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fe67b72c-530f-42df-a944-6acbfbcde004)
+
+2. Click on `Create` button
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2188df35-94e3-4d28-af08-f1134b26aace)
+
+3. Set the name of the Agent as `Car Repair Agent`
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a93c8fe9-6975-4c1e-8f4f-18506191274b)
+
+1. Then we will set the Goal of the Agent
 
    In our case we are building a car repair agent who is helpful in answering questions related to the car problems. So we set the Goal as per the requirement as such.
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/87c68c43-a5a9-434c-9f54-354171c40753)
@@ -293,12 +445,27 @@ components:
   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d3ef8ad9-2abe-4f3f-84e1-c7b5010d578b)
 
 * The last step is to create the Instructions.
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d24b4e1a-52f1-4b5e-9ee6-74e9e1de8a33)
+  
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a1aef287-51de-47b6-98e4-37a0f58740eb)
 
-  In the Instructions set, you will need to mention the tool that you created along with the situation when the agent needs to call the tool.
+  In the Instructions set, you will need to mention the tool that you created along with the situation when the agent needs to call the tool and also the Agent name.
   ```
   ${TOOL: tool name}
+  &{AGENT: Agent name}
   ```
+  Full Instructions-
+
+  ```
+    - Greet the users.
+    - Answer car related questions and car repair questions to the best of your ability.Any question or sentences not related to cars or car repair should not be answered and is out of your knowledge.
+    - You can also use ${TOOL:Places} to help you answer questions.
+    - Display the listing in a bullet proof, markdown format. You should not show more than 5 places.
+    - After displaying the results using the tool, ask the user "Do you want to compare the results and get the best deal?", if they say "yes", ask for their Name, Phone Number, Current address.
+    - If they provide their Name, Phone Number and Current address, send them to ${AGENT:CRM Agent} for storing them in the Company CRM.
+    - If the CRM agent successfully stores the result, then say "Stored you information successfully, Somebody from the company will get back to you."
+    - else if the CRM agent was unsuccessful to store the result, then say "Could not store the information, please try again later."
+  ```
+  
 ## Output
 You can test out your agent by talkin to it in the Preview agent tab.
 
