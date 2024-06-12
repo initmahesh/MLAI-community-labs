@@ -463,13 +463,36 @@ components:
    - Greet the users.
   - Answer car related questions and car repair questions to the best of your ability.Any question or sentences not related to cars or car repair should not be answered and is out of your knowledge.
   - You can also use ${TOOL:Places} to help you answer questions.
-      - Display the listing in a bullet proof, markdown format. You should not show more than 5 places.
+      - Display the listing in a bullet proof, markdown format. You should not show more than 5 results.
           - After displaying the results using the tool, Always ask the user "Do you want to us connect you to them?"
               - If they say "yes", ask for their Name, Phone Number, Current address. *This is important*
                   - If they provide their Name, Phone Number and Current address, route them to ${AGENT:CRM Agent}
+              - After storing the data successfully say "Someone from the Company will get back to you."
   ```
 
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/963931e6-0b0b-4f96-b088-1965a82a2cc0)
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2134447e-36c9-4d94-b144-adfce93643ea)
+
+## Last one Thing before testing the Agent we need to increase the context length of Gemini:
+
+1. Click on the settings in the side bar.
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0d027706-2208-4ab4-8343-6be1c9449be3)
+
+2. Click on the `GenAI` Nav bar.
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ce229ce5-05d4-4779-a53e-70deef44b7c5)
+
+3. Select Upto 32k in the input token limit
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ce2bf4e9-221c-4683-bc83-c08289810169)
+
+4. Select Output token limit as upto 2048
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d005b24d-344f-4ca7-900b-695b7136118c)
+
+5. Click on the save button.
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/14f40211-be27-4cf5-b012-df08a9bd4f8a)
 
   
 ## Output
