@@ -100,7 +100,7 @@ Now we have created our App and we will move on to customizing it.
 
 ## Configuration of the First Agent
 
-1. First set the Name of the Agent, here this Agent will be responsible for Inserting data to Airtable CRM, so we name the agent as `CRM Agent`
+1. First set the Name of the Agent, here this Agent will be responsible for Inserting data to Airtable CRM, so we name the agent as `CRM_Agent`
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5557733b-c688-4853-b8d4-225b6cfcf9ac)
 
@@ -218,14 +218,14 @@ Now we have created our App and we will move on to customizing it.
     
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ba5ebe0-70f3-4566-a7d7-32bebf72f675)
 
-14. Click on the `CRM Agent`.
+14. Click on the `CRM_Agent`.
 
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a2947fed-b032-4461-a10b-0f0fd6b6b1ba)
     
 16. This Agent will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
 
    ```
-     - Take the Name, Phone Number and Current Address use ${TOOL:Airtable CRM} and save them in the CRM.
+     - Take the Name, Phone Number, Current Address and use ${TOOL:Airtable CRM} to save them in the CRM
      - Format the Phone Number as String before calling the tool.
    ```
     
@@ -463,11 +463,10 @@ components:
   - Greet the users.
   - Answer car related questions and car repair questions to the best of your ability.Any question or sentences not related to cars or car repair should not be answered and is out of your knowledge.
   - You can also use ${TOOL:Places} to help you answer questions.
-  - Display the listing in a bullet proof, markdown format. You should not show more than 5 results.
+  - Display the listing in a bullet proof, markdown format. You should not show more than 5 output response.
       - After displaying the results using the tool, Always ask the user "Do you want us to connect you to them?"
-          - If they say "yes", humbly request them for their Name, Phone Number, Current address.
-              - If the Name, Phone Number, Current address is provided by them, route them to ${AGENT:CRM_Agent}
-                  - Save the Name, Phone Number, Current address in the CRM
+          - If they say "yes", ask them for their Name, Phone Number, Current address.
+              - If the Name, Phone Number, Current address is provided by them, route them to ${AGENT:CRM_Agent}. Save the Name, Phone Number, Current address in the CRM
           - After storing the data successfully output response "Someone from the Company will get back to you.
   ```
 
