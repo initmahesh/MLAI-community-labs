@@ -238,7 +238,7 @@ Now we have created our App and we will move on to customizing it.
 
 18. Click on `Save`
 
-    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9df2021e-a3c2-4029-9dbe-31bee2bc6623)
+    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/47a0795d-4902-4e7b-9da7-f8629deef34f)
 
 
 Now, your first agent is ready. Lets Configure our second agent.
@@ -451,8 +451,6 @@ components:
   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d3ef8ad9-2abe-4f3f-84e1-c7b5010d578b)
 
 * The last step is to create the Instructions.
-  
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a1aef287-51de-47b6-98e4-37a0f58740eb)
 
   In the Instructions set, you will need to mention the tool that you created along with the situation when the agent needs to call the tool and also the Agent name.
   ```
@@ -466,15 +464,26 @@ components:
     - Answer car related questions and car repair questions to the best of your ability.Any question or sentences not related to cars or car repair should not be answered and is out of your knowledge.
     - You can also use ${TOOL:Places} to help you answer questions.
     - Display the listing in a bullet proof, markdown format. You should not show more than 5 places.
-    - After displaying the results using the tool, ask the user "Do you want to compare the results and get the best deal?", if they say "yes", ask for their Name, Phone Number, Current address.
+    - After displaying the results using the tool, Always ask the user "Do you want to us connect you to them?", if they say "yes", ask for their Name, Phone Number, Current address. *This is important*
     - If they provide their Name, Phone Number and Current address, send them to ${AGENT:CRM Agent} for storing them in the Company CRM.
     - If the CRM agent successfully stores the result, then say "Stored you information successfully, Somebody from the company will get back to you."
     - else if the CRM agent was unsuccessful to store the result, then say "Could not store the information, please try again later."
   ```
+
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5762c8e5-8f99-49cc-928e-3f6d962f8fdc)
+
   
 ## Output
 You can test out your agent by talkin to it in the Preview agent tab.
 
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/de7d7d61-b045-4618-9092-1cc95a9c55cb)
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f772e4ac-523f-42a4-b850-5d55b8509aaa)
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ae83ffc0-e8af-4acf-aa13-b0b628ed8955)
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e65f11fe-2147-4641-8941-9d59bdb4ff4f)
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fd04b17e-0f0d-4a5a-a25d-9a9670a42891)
+
+Also we can see the data has been stored in the Airtable CRM:
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2ed7c136-7c9a-4318-94ae-bd8cb9fdc7b4)
+
 
