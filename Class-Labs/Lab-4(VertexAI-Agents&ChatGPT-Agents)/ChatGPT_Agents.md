@@ -118,7 +118,7 @@ This is what the initial setup looks like:
 
 
 
-    * In the API Key input field insert the Airtable API key you had saved earlier.
+    * In the API Key input field insert the Airtable API key/Token you had generated and saved earlier.
     
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0360c5e8-9f32-4fce-bc35-13369afc3d47)
 
