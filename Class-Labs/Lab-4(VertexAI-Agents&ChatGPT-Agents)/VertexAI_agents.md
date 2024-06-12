@@ -13,6 +13,13 @@ Agents are like your customized personal assistants.
 * They can answer questions in a proper format that you provide.
 * Integrate them to your existing system and use it for generating responses.
 
+Also Here we will be using Multi Agent Configuration:
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e4c870de-922d-4b11-b7ee-af371310388c)
+
+Here One Main Agent `Car Repair Agent` will call `CRM Agent` that will use the Airtable tool to save data in the table. Also the Car Repair Agent will be interactive Car mechanic that can use the Places API to get nearest Garage information.
+
+
 ## Prerequisites
 
 * Create a service accout and project in google cloud console.
