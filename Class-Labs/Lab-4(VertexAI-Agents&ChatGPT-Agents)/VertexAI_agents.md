@@ -486,6 +486,10 @@ components:
 
   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f0612f38-1e56-4b86-8dc2-fea87b4f1c25)
 
+### Quick Note:
+
+We mention the Agent to `use` a Tool whereas we mention it to `route to` another Agent while setting the instructions, else the Agent will hallucinate and not give proper results.
+
 ## Last one Thing before testing the Agent we need to increase the context length of Gemini:
 
 1. Click on the settings in the side bar.
