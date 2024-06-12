@@ -224,7 +224,13 @@ Now we have created our App and we will move on to customizing it.
     
 16. This Agent will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
 
-   `- Take the Name, Phone Number and Current Address use ${TOOL:Airtable CRM} and save them in the CRM.`
+   ```
+     - Take the Name, Phone Number and Current Address use ${TOOL:Airtable CRM} and save them in the CRM.
+     - Format the Phone Number as String before calling the tool.
+   ```
+    
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/74aea9bc-0e0c-4ed5-954c-cef1d1b0ea2a)
+
 
 17. In the Available tools section you will see the tool that you just created for Airtable. Click on it.
 
