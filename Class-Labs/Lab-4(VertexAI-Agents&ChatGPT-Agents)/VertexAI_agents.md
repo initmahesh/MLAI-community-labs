@@ -465,11 +465,13 @@ components:
   - You can also use ${TOOL:Places} to help you answer questions.
       - Display the listing in a bullet proof, markdown format. You should not show more than 5 results.
           - After displaying the results using the tool, Always ask the user "Do you want to us connect you to them?"
-              - If they say "yes", route to ${AGENT:CRM Agent}  and ask for their Name, Phone Number, Current address.
-              - After storing the data successfully say "Someone from the Company will get back to you.
+              - If they say "yes", ask for their Name, Phone Number, Current address.
+                  - If the Name, Phone Number, Current address is provided, route them to ${AGENT:CRM Agent}
+                      - Save the Name, Phone Number, Current address in the CRM
+              - After storing the data successfully output response "Someone from the Company will get back to you.
   ```
 
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/729c445d-5b64-4315-9e22-8e4352dad9a0)
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f0612f38-1e56-4b86-8dc2-fea87b4f1c25)
 
 ## Last one Thing before testing the Agent we need to increase the context length of Gemini:
 
