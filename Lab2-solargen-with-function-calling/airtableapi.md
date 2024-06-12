@@ -6,7 +6,16 @@
    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/54f4a448-a8d7-446c-bb34-5182d97d53ae)
 
 3. Add the column names to the table:
-   * If you are here from `Lab 0` then Add the key terms that you are planning to generate from ChatGPT Agents
+   * If you are here from `Lab 4` then use the following column names.
+      * ```
+        [
+           Name,
+           PhoneNumber,
+           CurrentAddress
+        ]
+        ```
+      * Also set the type for each column as Single Line Text.
+   * Else If you are here from `Lab 0` then Add the key terms that you are planning to generate from ChatGPT Agents
       * Click on the `+` symbol
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/09bb6efb-5a85-4b9c-9352-c7d03ecc9f65)
       * Write your key term name and Hit Enter (**** Names should not have spave between them and should be same like the one's mentioned in the OpenAPI schema payload ****)
@@ -32,10 +41,10 @@
 
       #### Similarly create all the Key term column names. 
 
-   * Else if you are not from Lab 0 follow the step below:
+   * Else if you are not from `Lab 0` or `Lab 4` follow the step below:
    Change/Add the column names. (Column names are case-sensitive)
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e4c09999-3851-4d6f-825a-b77100bc3afe)
-4. There are two ways you can set the Column Type in Airtable
+5. There are two ways you can set the Column Type in Airtable
    * Set the column type while adding the column name
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/773659eb-6275-4a7f-80cf-518a88f6a124)
      * After inserting the column name in the input text field, select the Field Types as Single Line Text
