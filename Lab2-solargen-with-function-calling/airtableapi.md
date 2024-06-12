@@ -6,7 +6,7 @@
    ![image](https://github.com/chatcontract/django-ml-backend/assets/72710483/54f4a448-a8d7-446c-bb34-5182d97d53ae)
 
 3. Add the column names to the table:
-   * If you are here from `Lab 4` then use the following column names.
+   * If you are here from `Lab 4 Vertex AI Agents` then use the following column names.
       * ```
         [
            Name,
@@ -15,7 +15,7 @@
         ]
         ```
       * Also set the type for each column as Single Line Text.
-   * Else If you are here from `Lab 0` then Add the key terms that you are planning to generate from ChatGPT Agents
+   * Else If you are here from `Lab 4 ChatGPT Agents` then Add the key terms that you are planning to generate from ChatGPT Agents
       * Click on the `+` symbol
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/09bb6efb-5a85-4b9c-9352-c7d03ecc9f65)
       * Write your key term name and Hit Enter (**** Names should not have spave between them and should be same like the one's mentioned in the OpenAPI schema payload ****)
@@ -41,7 +41,7 @@
 
       #### Similarly create all the Key term column names. 
 
-   * Else if you are not from `Lab 0` or `Lab 4` follow the step below:
+   * Else if you are not from `Lab 4` follow the step below:
    Change/Add the column names. (Column names are case-sensitive)
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/e4c09999-3851-4d6f-825a-b77100bc3afe)
 5. There are two ways you can set the Column Type in Airtable
@@ -114,7 +114,7 @@
 17. Here you will find the URL, copy it and save it some where safe.
 
 
-**** If you are here from `Lab 0` or `Lab 4`, then you need to break this URL into two parts for creating the OpenAPI schema.(ignore this if you are here from any other Lab) ****
+**** If you are here from `Lab 4`, then you need to break this URL into two parts for creating the OpenAPI schema.(ignore this if you are here from any other Lab) ****
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/66d6a5d7-90f4-4305-9c85-920817fb4351)
 
@@ -123,7 +123,7 @@
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/170d8343-d85c-42ac-a289-d6661bd4c5eb)
 
 
-18. (Ignore this if you are from `Lab-0`) Now save the key and the URL in the .env file
+18. (Ignore this if you are from `Lab-4`) Now save the key and the URL in the .env file
 
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5abb8d64-af27-486c-8a75-03ade49489f8)
