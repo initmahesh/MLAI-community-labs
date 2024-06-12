@@ -114,7 +114,7 @@
 17. Here you will find the URL, copy it and save it some where safe.
 
 
-**** If you are here from `Lab 0`, then you need to break this URL into two parts for creating the OpenAPI schema.(ignore this if you are here from any other Lab) ****
+**** If you are here from `Lab 0` or `Lab 4`, then you need to break this URL into two parts for creating the OpenAPI schema.(ignore this if you are here from any other Lab) ****
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/66d6a5d7-90f4-4305-9c85-920817fb4351)
 
