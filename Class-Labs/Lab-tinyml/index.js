@@ -20,7 +20,7 @@ const input = document.getElementById('input');
 const output = document.getElementById('output');
 const submit = document.getElementById('submit');
 
-const modelFileName =  './content/converted_models/gemma_gpu.bin'  /* Update the file name */
+const modelFileName =  './gemma_gpu.bin'  /* Update the file name */
 
 /**
  * Display newly generated partial results to the output text box.
