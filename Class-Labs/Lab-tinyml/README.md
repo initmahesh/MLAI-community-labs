@@ -1,5 +1,7 @@
 ## This project demonstrates how to use Mediapipe to compress a Gemma model into a TensorFlow Lite model.
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1xMaFnhgg5cNwMO9dAQfhEaMD2UCus8sW?usp=sharing)
+
 ## Requirements
 
 - Jupyter Notebook
