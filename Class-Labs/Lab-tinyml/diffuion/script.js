@@ -5,7 +5,7 @@ const submit = document.getElementById('submit');
 const promptInput = document.getElementById('promptInput');
 
 // Configuration
-const STABILITY_API_KEY = 'sk-jGokpvKlZIX4PDDMFJXneXaJDzk3trIVQqxu38IMYNEeQomd'; // Replace with your actual API key
+const STABILITY_API_KEY = ''; // Replace with your actual API key
 const API_URL = 'https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/image-to-image';
 
 // Helper function to log response details
