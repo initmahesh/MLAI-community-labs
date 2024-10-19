@@ -8,4 +8,4 @@ In this lab you will learn about using Agents from Vertex AI and ChatGPT
 
 ## Vertex AI Agents Tutorial:
 
-[Vertex AI Agents](VertexAI_agents.md)
+[Multi Agents with Vertex AI Agents](VertexAI_agents.md)
