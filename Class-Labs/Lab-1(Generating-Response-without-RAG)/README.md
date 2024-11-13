@@ -1,16 +1,23 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing)
+# Open the Jupyter Notebook in Google Colab
+
+You can open this Jupyter notebook directly in Google Colab by clicking the link below:
+
+[Open in Google Colab](<https://github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-1(Generating-Response-without-RAG)/Without_RAG_Generation.ipynb>)
+
 # Welcome to Lab 1
+
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
+
 ### We will also stumble across an error which might seem like the end of the world but we will fix it using an awesome technique called RAG, so hang tight.
 
 ### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
 1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md))
-2. Google colab setup. Follow the Instructions here to set them up: [Click Here](../Lab-0(Setting-up-Google-Colab)/README.md)
-8. You can find some contracts here: [Small Doc](AWS1.pdf), 
-[Large Doc](credit_agreement.pdf)
+2. Google colab setup. Follow the Instructions here to set them up: [Click Here](<../Lab-0(Setting-up-Google-Colab)/README.md>)
+3. You can find some contracts here: [Small Doc](AWS1.pdf),
+   [Large Doc](credit_agreement.pdf)
 
-### *** You can use GPT-3.5 key from OpenAI. ***
+### **_ You can use GPT-3.5 key from OpenAI. _**
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
@@ -23,6 +30,7 @@ You can say that Prompts are the languages of LLM models, the better you speak i
 This just show the high level view of how prompts look like.
 
 The template of prompts consists of lots of tags and line break, also adding more instructions after every iteration/test of get the desired results. if we were to convert the above prompt in a format that we would, provide it while programming, then it would look somewhat like this.
+
 ```
 system:You are a  brilliant professor of commerce and you are can answer questions true to your Knowledge. Explain it in detailed format. If you do not know the answer just say "I do not know" rather than making something up.
 User:
@@ -32,12 +40,14 @@ Those assets that a company can quickly convert into cash within a short timefra
 <Question>What are liqued assets?</Question>
 <Answer>Put your answer here</Answer>
 ```
+
 As you can see how different this became than earlier in the picture. This is because we tried to state the entire content in a crystal clear format.
 
 Also you may have noticed how we have used tags in our prompts. Tags are an essential part of Prompting, that helps the LLM model understand the different parts of the problem.
-* <Context> tag tells the model where the context starts and ends
-* <Question> tag tells the model which is the question.
-* <Answer> tag tells the model where to insert the answer.
+
+- <Context> tag tells the model where the context starts and ends
+- <Question> tag tells the model which is the question.
+- <Answer> tag tells the model where to insert the answer.
 
 Tags help in avoiding confusion for the LLM model.
 
@@ -45,8 +55,8 @@ Tags help in avoiding confusion for the LLM model.
 
 Click on this link to go to the Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Ttn-dVX88D-NjqoHNTpKJmhWZSQljYnk?usp=sharing)
 
-In cell 2 Paste the OpenAI key as ```os.environ["OPENAI_API_KEY"] = <Key>```
-     
+In cell 2 Paste the OpenAI key as `os.environ["OPENAI_API_KEY"] = <Key>`
+
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
 
 ## Moving on to the coding bit.
@@ -61,7 +71,8 @@ The entire document content
 <Question>The question that is being asked about the document</Question>
 ```
 
-#### Step 1: 
+#### Step 1:
+
 Run cell 1, as this will install all the packages required for running the notebook. Each package has been described in the notebook itself. Please go through it to understand what each of them does.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/0047d8ad-0b4b-4b30-903c-7291865fc996)
@@ -69,7 +80,6 @@ Run cell 1, as this will install all the packages required for running the noteb
 If you get this prompt, you can click on `Run Anyway`.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/25182fbf-8e5a-40b6-9c04-0c0261d6aa2c)
-
 
 Step 2:
 
@@ -150,8 +160,3 @@ Run cell 11, to generate the response from the model. But this time it will thro
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5da6754c-8857-46a1-9f60-a121119f7ea7)
 
 ## So here we face the famous Context length problem that every LLM faces at some point. In Lab 0.2 we will solve this problem with an intuitive approach called Retrieval Augmented Generation (**RAG**)
-
-
-
-
-
