@@ -1,5 +1,11 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing)
+# Open the Jupyter Notebook in Google Colab
+
+You can open this Jupyter notebook directly in Google Colab by clicking the link below:
+
+[Open in Google Colab](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2(Generating-Response-with-RAG)/RAG_GRADIO.ipynb>)
+
 # Welcome to Lab 2
+
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 0.1.
 
 ## What is Retrieval Augmented Generation or RAG?
@@ -13,10 +19,10 @@ In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have cur
 ### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
 1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md))
-2. Google colab setup. Follow the Instructions here to set them up: [Click Here](../Lab-0(Setting-up-Google-Colab)/README.md)
-8. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
+2. Google colab setup. Follow the Instructions here to set them up: [Click Here](<../Lab-0(Setting-up-Google-Colab)/README.md>)
+3. You can find some contracts here: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf)
 
-### *** You can use GPT-3.5 key from OpenAI ***
+### **_ You can use GPT-3.5 key from OpenAI _**
 
 You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
 
@@ -25,7 +31,7 @@ You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solar
 Click on this link to go to the Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15JwxQqnyIhgx1Upmgm_dwH759jxFEeXW?usp=sharing)
 
 Paste the OpenAI key here in Cell 2
-     
+
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5eda36e8-3a8c-48ae-ad11-adfc592c94d9)
 
 ## Moving on to the coding bit.
@@ -58,7 +64,6 @@ Run cell 4 to load the PDF, paste the path to the PDF here.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/7d173daa-af49-4330-a349-083296bcf168)
 
-
 Step 5:
 
 Run cell 5 to create chunks of the document and store them is a Knowledge base
@@ -79,7 +84,8 @@ Run cell 8 to load the `answer_question()` function in the memory, this function
 
 Step 8:
 
-Run cell 9 to load `return_RAG_passage()` function that is used for  getting the most relevant chunks and converting them to proper formatted prompt following this pattern:
+Run cell 9 to load `return_RAG_passage()` function that is used for getting the most relevant chunks and converting them to proper formatted prompt following this pattern:
+
 ```
 <Context1>
 Chunk 1
@@ -98,6 +104,7 @@ Chunk N
 </ContextN>
 <Question>The question that is being asked about the document</Question>
 ```
+
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fbb87e3c-3194-41dc-b45c-7c863ec03f6a)
 
 Step 9:
