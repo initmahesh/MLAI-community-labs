@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1wXuOEfjShamnFHNIgnor3IL_DNsy-QxN?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EO2glonMveeyUswUHNlzTdqopVYXiCuW)
 # Fine tuning models using PEFT for generating adapters.
 
 Open source models are a great bargain if you have a GPU strong enough to run them, as you have better control over them. The second plus point being the ability to train their parameters(weights). But training all the weights
