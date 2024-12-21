@@ -11,6 +11,19 @@
 8. Error Handling
 9. Integration Points
 
+## How to Run The Project
+![Notebook](Images/console.png)
+1. Click on Run all button wait for installing all the dependecies
+2. Go the Gradio UR
+3. Enter the API key
+4. Upload the sample.pdf file already present in the folder structure
+5. Click on Anaylise button 
+6. If you want to chat with your final document go to chat with document tab
+7. Enter the Query and wait for the result
+
+## Output
+![output](Images/output.png)
+
 ## 1. System Overview
 
 The Advanced Document Analysis System is a comprehensive document processing application that combines PDF text extraction, AI-powered analysis, and interactive chat capabilities. The system uses CrewAI agents for intelligent document processing and maintains a persistent memory of interactions.
