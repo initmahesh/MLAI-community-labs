@@ -1,0 +1,39 @@
+2024-12-21 17:02:38,998 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=cf026f8d-e962-4cbe-bd8e-d644ae9fa8d9
+2024-12-21 17:02:39,801 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=0d6f08f4-c21b-4c75-b8ee-c35be401b539
+2024-12-21 17:02:40,134 - WARNING - DEPRECATION WARNING: record_function has been replaced with record_action and will be removed in the next minor version. Also see: record_tool
+2024-12-21 17:02:40,135 - WARNING - DEPRECATION WARNING: record_function has been replaced with record_action and will be removed in the next minor version. Also see: record_tool
+2024-12-21 17:02:40,138 - WARNING - DEPRECATION WARNING: record_function has been replaced with record_action and will be removed in the next minor version. Also see: record_tool
+2024-12-21 17:02:41,838 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:02:41,906 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:02:41,965 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:04:18,060 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:04:36,981 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:04:37,746 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=a0656a14-bc44-4509-950d-7582ccfb506e
+2024-12-21 17:06:10,449 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:06:11,336 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=e08c294a-7dfb-463a-92be-f8f57916d1ab
+2024-12-21 17:06:11,667 - WARNING - DEPRECATION WARNING: record_function has been replaced with record_action and will be removed in the next minor version. Also see: record_tool
+2024-12-21 17:06:11,673 - WARNING - DEPRECATION WARNING: record_function has been replaced with record_action and will be removed in the next minor version. Also see: record_tool
+2024-12-21 17:06:11,676 - WARNING - DEPRECATION WARNING: record_function has been replaced with record_action and will be removed in the next minor version. Also see: record_tool
+2024-12-21 17:06:11,749 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:06:11,796 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:06:11,835 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:10:58,737 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:10:59,493 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=e329cc2b-132d-499e-a632-88bb2fd9b501
+2024-12-21 17:11:13,445 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:11:14,012 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=980230b6-ad59-47ef-80f4-ac5ac416667a
+2024-12-21 17:11:17,260 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:11:17,837 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=4beb5400-5c81-4146-b4ab-f7a292424ea2
+2024-12-21 17:12:27,428 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:12:28,181 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=39a4b59d-7877-4ced-8e1e-f6232cec4708
+2024-12-21 17:13:30,156 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:13:30,896 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=419726b4-9de2-4311-bfab-6544bafb1f77
+2024-12-21 17:13:31,033 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:13:31,087 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:13:31,136 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:16:07,557 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:16:08,327 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=aa2b7ac8-9c32-42bc-8a3c-1f663f055605
+2024-12-21 17:16:49,081 - WARNING - AgentOps has already been initialized. If you are trying to start a session, call agentops.start_session() instead.
+2024-12-21 17:16:49,830 - INFO - Session Replay: https://app.agentops.ai/drilldown?session_id=9a7e8c82-fc02-45ee-9968-432b1f437883
+2024-12-21 17:16:49,939 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:16:49,982 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
+2024-12-21 17:16:50,022 - WARNING - Multiple sessions detected. You must use session.create_agent(). More info: https://docs.agentops.ai/v1/concepts/core-concepts#session-management
