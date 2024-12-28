@@ -2,13 +2,17 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[Open in Google Colab](<https://colab.research.google.com/drive/1AGFQpjkc2dm-x4x5ESF73ubsxDmCnYKc?usp=sharing>)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/drive/1AGFQpjkc2dm-x4x5ESF73ubsxDmCnYKc?usp=sharing>)
 
 # Contract Analysis Using CrewAI Agents
 
 ## Overview
 
 ### In this lab, we will demonstrate how to analyze contracts using **CrewAI agents**. The goal is to extract critical terms from contract documents, compare them with predefined reference data, and generate a detailed report highlighting any mismatches. This framework uses a modular approach, with specialized agents handling different aspects of the task.
+
+#### Overview of the Model Structure:
+ -[![Click Here]](https://drive.google.com/file/d/1JHwZSvCJ6DwIW7yWb8H74osdPhbqqnOn/view)
+
 
 By the end of this lab, you will:
 - Understand how to initialize and use CrewAI agents.
