@@ -54,36 +54,37 @@ Start by installing the necessary dependencies. Run the following command:
 
 ### Step 3: How to Generate OPEN_API_KEY:
 1. Go this URL [Click Here](https://openai.com/index/openai-api/)
-    ![OPEN AI](./images/open-1.png)
 2. Click on SignUp and Create an Account
-    ![OPEN AI](./images/open-2.png)
+    ![OPEN AI](./images/open-1.png)
 3. Click on Start Building
-    ![OPEN AI](./images/open-3.png)
+    ![OPEN AI](./images/open-2.png)
 4. Add Organisation Name and click on Save Organisation
-    ![OPEN AI](./images/open-4.png)
+    ![OPEN AI](./images/open-3.png)
 5. Add team email address and click on continue
+    ![OPEN AI](./images/open-4.png)
     ![OPEN AI](./images/open-5.png)
 6. Give the API key name and Project name you can skip and click on Generate API key
-    ![OPEN AI](./images/open-6.png)
+    ![OPEN AI](./images/open-5.png)
 7. Copy the API key and add in you enviroment configuration.
+    ![OPEN AI](./images/open-6.png)
 
 
 ### Step 4: How to Generate Agentops.ai:
-    - Go to this URL [Click Here](https://app.agentops.ai/signin)
-    - Create Account
-    ![Agentop.Ai](./images/Agent-1.png)
-    - Fill all the details select all the libraries and frameworks and click on next button
-    ![Agentop.Ai](./images/Agent-2.png)
-    - Select all the field and click on next.
-    ![Agentop.Ai](./images/Agent-3.png)
-    - Click on Submit 
-    ![Agentop.Ai](./images/Agent-4.png)
-    - A default project will be created.
-    ![Agentop.Ai](./images/Agent-5.png)
-    - Click on three dots and click on the view API key.
-    ![Agentop.Ai](./images/Agent-6.png)
-    - Copy the API key and paste it in the .env configuration file.
-    ![Agentop.Ai](./images/Agent-8.png)
+1. Go to this URL [Click Here](https://app.agentops.ai/signin)
+2. Create Account
+    ![Agentop.Ai] (./images/Agent-1.png)
+3. Fill all the details select all the libraries and frameworks and click on next button
+    ![Agentop.Ai] (./images/Agent-2.png)
+4. Select all the field and click on next.
+    ![Agentop.Ai] (./images/Agent-3.png)
+5. Click on Submit 
+    ![Agentop.Ai] (./images/Agent-4.png)
+6. A default project will be created.
+    ![Agentop.Ai] (./images/Agent-5.png)
+7. Click on three dots and click on the view API key.
+    ![Agentop.Ai] (./images/Agent-6.png)
+8. Copy the API key and paste it in the .env configuration file.
+    ![Agentop.Ai] (./images/Agent-8.png)
 
 ## Task Creation for Contract Analysis Workflow
 
