@@ -53,19 +53,19 @@ Start by installing the necessary dependencies. Run the following command:
 ### Step 2: Add the OPEN_API_KEY & AgentOP API Key
 
 ### Step 3: How to Generate OPEN_API_KEY:
-    - Go this URL [Click Here](https://openai.com/index/openai-api/)
+1. Go this URL [Click Here](https://openai.com/index/openai-api/)
     (./images/open-1.png)
-    - Click on SignUp and Create an Account
+2. Click on SignUp and Create an Account
     (./images/open-2.png)
-    - Click on Start Building
+3. Click on Start Building
     (./images/open-3.png)
-    - Add Organisation Name and click on Save Organisation
+4. Add Organisation Name and click on Save Organisation
     (./images/open-4.png)
-    - Add team email address and click on continue
+5. Add team email address and click on continue
     (./images/open-5.png)
-    - Give the API key name and Project name you can skip and click on Generate API key
+6. Give the API key name and Project name you can skip and click on Generate API key
     (./images/open-6.png)
-    - Copy the API key and add in you enviroment configuration.
+7. Copy the API key and add in you enviroment configuration.
 
 
 ### Step 4: How to Generate Agentops.ai:
