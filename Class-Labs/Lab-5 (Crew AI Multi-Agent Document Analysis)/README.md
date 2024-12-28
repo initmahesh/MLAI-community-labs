@@ -2,7 +2,7 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/drive/1AGFQpjkc2dm-x4x5ESF73ubsxDmCnYKc?usp=sharing>)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/sachin0034/MLAI-community-labs/blob/sachin-001/notebook.ipynb>)
 
 # Contract Analysis Using CrewAI Agents
 
