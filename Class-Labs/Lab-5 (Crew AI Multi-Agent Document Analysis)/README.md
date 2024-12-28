@@ -77,14 +77,15 @@ Start by installing the necessary dependencies. Run the following command:
     ![AgentOp](./images/Agent-2.png)
 4. Select all the field and click on next.
     ![AgentOp](./images/Agent-3.png)
-5. Click on Submit 
     ![AgentOp](./images/Agent-4.png)
-6. A default project will be created.
+5. Click on Submit 
     ![AgentOp](./images/Agent-5.png)
+6. A default project will be created.
+    ![AgentOp](./images/Agent-6.png)
 7. Click on three dots and click on the view API key.
-   ![AgentOp](./images/Agent-6.png)
+   ![AgentOp](./images/Agent-7.png)
 8. Copy the API key and paste it in the .env configuration file.
-    ![AgentOp](./images/Agent-7.png)
+    ![AgentOp](./images/Agent-8.png)
 
 ## Task Creation for Contract Analysis Workflow
 
