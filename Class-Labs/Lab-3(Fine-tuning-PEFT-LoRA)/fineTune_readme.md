@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1EO2glonMveeyUswUHNlzTdqopVYXiCuW)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QB8lT7E5Stn8tuZsYjD7u073QSqmeOqS?authuser=1#scrollTo=Oz3lWGvi-3wO)
 # Fine tuning models using PEFT for generating adapters.
 
 Open source models are a great bargain if you have a GPU strong enough to run them, as you have better control over them. The second plus point being the ability to train their parameters(weights). But training all the weights
@@ -237,5 +237,5 @@ The model will return and output and the answer will be displayed.
 So we asked about the Customer name for a contract, that we provided the chunks for in the content
 ### Answer
 This is the answer we got and it was correct
-![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/37a006e1-6b51-4d29-9c04-4f6bd499e489)
+![image](assets/finetuneresult.png)
 
