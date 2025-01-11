@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QB8lT7E5Stn8tuZsYjD7u073QSqmeOqS?authuser=1#scrollTo=Oz3lWGvi-3wO)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
 # Fine tuning models using PEFT for generating adapters.
 
 Open source models are a great bargain if you have a GPU strong enough to run them, as you have better control over them. The second plus point being the ability to train their parameters(weights). But training all the weights
@@ -12,7 +12,7 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 * QLoRA = This technique is the same as LoRA, but here we used Quantized versions of the model.
 * * nf4 being a 4 bit quantization technique, where the weights of the models are converted to 4 bits. This is an extensize process, you can read about it [here](https://www.kaggle.com/code/lorentzyeung/what-s-4-bit-quantization-how-does-it-help-llama2)
  
-Running the Notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
 
 ### Prerequisites
 
