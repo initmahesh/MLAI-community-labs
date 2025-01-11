@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
+[Open in Google Colab](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
 
 # Fine tuning models using PEFT for generating adapters.
 
