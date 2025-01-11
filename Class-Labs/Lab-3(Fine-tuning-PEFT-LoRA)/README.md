@@ -1,5 +1,5 @@
 
-[Open in Google Colab](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
+[Open in Google Colab](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine-Tuning-Lora-Lab.ipynb>)
 
 # Fine tuning models using PEFT for generating adapters.
 
@@ -14,7 +14,7 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 * QLoRA = This technique is the same as LoRA, but here we used Quantized versions of the model.
 * * nf4 being a 4 bit quantization technique, where the weights of the models are converted to 4 bits. This is an extensize process, you can read about it [here](https://www.kaggle.com/code/lorentzyeung/what-s-4-bit-quantization-how-does-it-help-llama2)
  
-[Open in Google Colab](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
+[Open in Google Colab](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine-Tuning-Lora-Lab.ipynb>)
 
 ### Prerequisites
 
