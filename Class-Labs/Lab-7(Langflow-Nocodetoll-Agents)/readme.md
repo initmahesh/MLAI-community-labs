@@ -1,4 +1,4 @@
-In this lab, we will create an agent that writes blogs for you based on prompts you provide. You just need to provide any URL where you want the agent to gather content and write blogs for you. To build this, we are using Langflow, a Node.js-based tool platform.
+### In this lab, we will create an agent that writes blogs for you based on prompts you provide. You just need to provide any URL where you want the agent to gather content and write blogs for you. To build this, we are using Langflow, a Node.js-based tool platform.
 
 Let’s get started!
 
@@ -18,17 +18,15 @@ LangFlow is a cutting-edge no-code AI ecosystem that enables developers, entrepr
 
 Langflow simplifies the process of integrating and orchestrating LLMs by offering:
 
-- Graphical Interface: Users can design AI pipelines visually, making it easier to experiment with different model configurations.
+- **Graphical Interface:** Users can design AI pipelines visually, making it easier to experiment with different model configurations.
 
-- Modular Components: Pre-built components allow seamless integration of APIs, data sources, and AI functionalities.
+- **Modular Components:** Pre-built components allow seamless integration of APIs, data sources, and AI functionalities.
 
-- Customizable Workflows: Users can define unique workflows tailored to specific use cases, from chatbots to automated content generation.
+- **Customizable Workflows:** Users can define unique workflows tailored to specific use cases, from chatbots to automated content generation.
 
-- Support for Multiple LLMs: Langflow supports various models, including OpenAI's GPT, Hugging Face models, and others.
+- **Support for Multiple LLMs:** Langflow supports various models, including OpenAI's GPT, Hugging Face models, and others.
 
-- Deployment Flexibility: Workflows can be exported and deployed as APIs, making it easy to integrate with existing applications.
-
-- Langflow is particularly useful for developers and researchers who need an intuitive yet powerful tool to harness the capabilities of LLMs without diving deep into code-based implementation.
+- **Deployment Flexibility:** Workflows can be exported and deployed as APIs, making it easy to integrate with existing applications.
 
 ## Use Cases of LangFlow
 - LangFlow’s versatility is showcased through its wide range of use cases. One of the most exciting applications is the ability to build local RAG (Retrieval Augmented Generation) chatbots by integrating with embedding models like Ollama. This feature enables the creation of highly personalized and context-aware conversational agents that can engage with users in a natural and intelligent manner.
@@ -40,45 +38,59 @@ Langflow simplifies the process of integrating and orchestrating LLMs by offerin
 ## Setup the Project
 
 - Go to the **Langflow** page and click on **"Get Started for Free"**, as shown in the image below.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1515).png)
 
 - Create your account on the **langflow**.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1516).png)
 
 - After Creating Your Account Click on the **"New Flow"**.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1517).png)
 
 - Now CLick on **Blank Flow** as we are building it from scratch.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1518).png)
 
 - Now, click on the above untitled document, and in the dropdown, click on the **Import Option** to import the JSON file that has been provided to you.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1520).png)
 
 - Now, you will see that your project has been successfully imported, and you can view all the agents.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1521).png)
 
 - In the first component, provide the link to the document where you will be writing the blogs.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1522).png)
 
 - In the **Prompt Section Component**, click on the **template**, and you can define the styling of your blog, such as the tone, the heading, etc.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1523).png)
 
 - Now, from here, you can edit your prompt and click on Check and then Save.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1524).png)
 
 - Now, in the **OPEN API COMPONENT**, you need to provide your Open API key.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1525).png)
 
 - Now, click on the **Playground Section**.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1526).png)
 
 - Click on the **Run Flow**.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1527).png)
 
 - You will see a green tick when all components have successfully run without any errors.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1528).png)
 
 - Again, go to the Playground Section, and you will see that your blog has been generated successfully.
+
 ![Langflow Screenshot](./Images/Screenshot%20(1529).png)
 
 
