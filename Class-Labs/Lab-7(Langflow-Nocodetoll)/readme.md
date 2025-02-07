@@ -1,5 +1,8 @@
-In this lab, we will create an agent that writes blogs for you based on prompts you provide. You just need to provide any URL where you want the agent to gather content and write blogs for you. To build this, we are using LangFlow, a Node.js-based tool platform.
-Let’s get started!
+**"In this lab, we will create an agent that writes blogs for you based on prompts you provide. First, we use the Composio component, which automatically reads the email of the person you enter in the chatbot. If a URL is found in the email body, the agent will extract content from that URL and generate a blog based on the prompt you define.
+
+To build this, we are using LangFlow, a Node.js-based tool platform.
+
+Let’s get started!"**
 
 In the rapidly evolving world of artificial intelligence, the rise of no-code platforms has revolutionized the way we approach AI development. LangFlow, a powerful and innovative tool, has emerged as a game-changer in this space, offering a user-friendly and accessible way to create AI applications without the need for extensive coding knowledge.
 
@@ -58,39 +61,62 @@ LangFlow simplifies the process of integrating and orchestrating LLMs by offerin
 
 - Now, you will see that your project has been successfully imported, and you can view all the agents.
 
-![Langflow Screenshot](./Images/Screenshot%20(1521).png)
+![Langflow Screenshot](./Images/img1.png)
 
-- In the first component, provide the link to the document where you will be writing the blogs.
+- To use the first component, you'll need an API key from composio. You can obtain a free API key with some initial credits by visiting the following URL: [https://app.composio.dev/developers]. Once you have your key, you can proceed with the integration.
 
-![Langflow Screenshot](./Images/Screenshot%20(1522).png)
+![Langflow Screenshot](./Images/Screenshot%20(1549).png)
 
-- In the Prompt Section Component, click on the template, and you can define the styling of your blog, such as the tone, the heading, etc.
+- Once you have the key, enter it in the designated field and click 'Refresh.' Next, select 'GMAIL' as the app name and choose 'GMAIL_FETCH_EMAIL' as the action to use.
+  🔹 Note: You will see that my auth status is green. However, when you run it for the first time, you will need to authenticate it. An authentication option will appear, and you must complete the authentication process before proceeding."**
 
-![Langflow Screenshot](./Images/Screenshot%20(1523).png)
+![Langflow Screenshot](./Images/Refresh%20Button.png)
+
+![Langflow Screenshot](./Images/Screenshot%20(1551).png)
+
+- Provide the Open API Key to the agent and the Open API Key component to enable authentication and access. Ensure that the API key is securely stored and used only for authorized requests.
+
+![Langflow Screenshot](./Images/Screenshot%20(1552).png)
+
+- In the Text Section Component, click on the text, and you can define the styling of your blog, such as the tone, the heading, etc.
+
+![Langflow Screenshot](./Images/Screenshot%20(1555).png)
 
 - Now, from here, you can edit your prompt and click on Check, then Save.
 
-![Langflow Screenshot](./Images/Screenshot%20(1524).png)
-
-- Now, in the OPEN API COMPONENT, you need to provide your Open API key.
-
-![Langflow Screenshot](./Images/Screenshot%20(1525).png)
+![Langflow Screenshot](./Images/Screenshot%20(1554).png)
 
 - Now, click on the Playground Section.
 
-![Langflow Screenshot](./Images/Screenshot%20(1526).png)
+![Langflow Screenshot](./Images/Screenshot%20(1553).png)
 
-- Click on the Run Flow.
+- In the Playground section, enter a query such as: 'Please provide me the latest email from this particular user.' The system will then fetch and display the email body of the specified email.
+  Example:
+  Input: "Give me the recent email from abcd@gmail.com"
 
-![Langflow Screenshot](./Images/Screenshot%20(1527).png)
+![Langflow Screenshot](./Images/Screenshot%20(1556).png)
 
-- You will see a green tick when all components have successfully run without any errors.
+- In the Playground section, enter a query such as: 'Please provide me the latest email from this particular user.' The system will fetch and display the email body of the specified email.
 
-![Langflow Screenshot](./Images/Screenshot%20(1528).png)
+  Additionally, it will automatically generate a blog by extracting the URL from the email and using its content as a reference.
 
-- Again, go to the Playground Section, and you will see that your blog has been generated successfully.
+  Example:
 
-![Langflow Screenshot](./Images/Screenshot%20(1529).png)
+  Input: "Give me the recent email from abcd@gmail.com"
+  Output:
+  Fetched Email Body: [Email content]
+  Generated Blog: [Auto-written blog based on the extracted URL]"
+
+![Langflow Screenshot](./Images/Screenshot%20(1556).png)
+
+- ⚠️ Note: If no URL is found in the email body, the URL component will fail, and the blog generation will not proceed.
+
+![Langflow Screenshot](./Images/Screenshot%20(1557).png)
+
+- The Blog Output .
+
+![Langflow Screenshot](./Images/Screenshot%20(1558).png)
+
 
 
 ## Conclusion
