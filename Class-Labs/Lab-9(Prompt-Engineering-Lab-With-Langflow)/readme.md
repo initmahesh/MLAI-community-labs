@@ -52,17 +52,9 @@ LangFlow simplifies prompt engineering by:
 
 - Provide the Open API Key to the agent and the Open API Key component to enable authentication and access. Ensure that the API key is securely stored and used only for authorized requests.
 
-- In the Text Section Component, click on the text, and you can define the styling of your blog, such as the tone, the heading, etc.
-
-![Langflow Screenshot](./Images/Screenshot%20(1555).png)
-
-- Now, from here, you can edit your prompt and click on Check, then Save.
-
-![Langflow Screenshot](./Images/Screenshot%20(1554).png)
-
 - Now, click on the Playground Section.
 
-![Langflow Screenshot](./Images/Screenshot%20(1553).png)
+![Langflow Screenshot](./Images/Screenshot%20(1556).png)
 
 - In the Playground section, enter a query such as: 'Please provide the input particular user.' The system will fetch and display the output based on the document that you have uploaded.
 
