@@ -66,7 +66,7 @@ LangFlow simplifies prompt engineering by:
   
 ![Langflow Screenshot](./Images/Screenshot%20(1573).png)
 
-- ⚠️ Note: If no document is found in the upload document, the URL component will fail, and the output generation will not proceed.
+- ⚠️ Note: If no document is found in the upload document, the file uploader component will fail, and the output generation will not proceed.
 
 # **Deep Dive : Prompt Engineering and Best Practices**
 
