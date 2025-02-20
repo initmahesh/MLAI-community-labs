@@ -1,6 +1,6 @@
 ## Objective
 
-By the end of this lesson, students will:
+By the end of this lesson, you will:
 
 - Understand the fundamentals of prompt engineering.
 - Learn how to design effective prompts to get accurate and relevant responses from AI models.
