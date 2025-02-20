@@ -1,72 +1,37 @@
-## Introduction
-As you get started in GenAI, prompting is something you will do a lot. In this deep dive we will understand prompt and best practices within live and interactive video lessons. 
+## Objective
 
-## Understanding Prompt Engineering
-Prompt engineering is a key concept in AI development, especially when working with Large Language Models (LLMs). It involves crafting precise and effective prompts to guide the AI in generating relevant and high-quality responses.
+By the end of this lesson, students will:
 
-### What is LangFlow?
-LangFlow is a cutting-edge no-code AI ecosystem that enables developers, entrepreneurs, and even non-technical individuals to build AI applications with ease. It provides a visually appealing and intuitive drag-and-drop interface, allowing users to create AI workflows by connecting reusable components. This modular and interactive design fosters rapid experimentation and prototyping, making it an ideal tool for both beginners and experienced AI enthusiasts.
+- Understand the fundamentals of prompt engineering.
+- Learn how to design effective prompts to get accurate and relevant responses from AI models.
+- Develop practical skills in structuring prompts for different use cases.
+- Experiment with different types of prompts and analyze their outcomes.
+- Apply prompt engineering techniques to optimize AI-generated outputs.
 
-### Key Features of LangFlow
-- **Dynamic Input Customization:** Allows users to tailor AI applications using curly brackets `{}` for flexible data input.
-- **Fine-Tuning Capabilities:** Enables users to train LLMs with custom datasets (CSV, JSON) for domain-specific AI applications.
-- **Python-Native Architecture:** Supports seamless integration with powerful ML and data manipulation libraries.
+---
 
-### How Prompt Engineering Works in LangFlow
-LangFlow simplifies prompt engineering by:
-- Providing a **graphical interface** for designing AI pipelines visually.
-- Offering **modular components** to integrate APIs, data sources, and AI functionalities.
-- Supporting **customizable workflows** to fit specific use cases.
-- Enabling **multi-LLM support** for different AI models like OpenAI's GPT and Hugging Face models.
+## What is Prompt Engineering?
 
-### Use Cases of LangFlow for Prompt Engineering
-- **Building Local RAG Chatbots:** By integrating embedding models like Ollama, LangFlow enables personalized AI responses.
-- **Document Interaction:** Users can chat with PDFs, DOCX, TXT, and websites to extract meaningful insights.
-- **Workflow Automation:** Integration with Zapier allows seamless automation of various tasks.
+Prompt engineering is the practice of designing and refining inputs (prompts) to effectively interact with AI models. The goal is to craft clear, structured, and precise prompts that guide the AI in generating relevant, accurate, and useful responses.
 
-## Setup the Project
+AI models, such as ChatGPT, Gemini etc process natural language inputs and generate text-based outputs based on their training data. The way a prompt is phrased significantly impacts the quality of the response.
 
-- Go to the LangFlow page and click on "Get Started for Free", as shown in the image below.
+---
 
-![Langflow Screenshot](./Images/Screenshot%20(1515).png)
+## Experience with Langflow
 
-- Create your account on LangFlow.
+To better understand **Prompt Engineering**, we will be using **Langflow**, a no-code tool that allows us to design and experiment with AI prompts interactively.
 
-![Langflow Screenshot](./Images/Screenshot%20(1516).png)
+### **Why Langflow?**
+- Provides a **visual interface** to create and test AI prompts.  
+- Helps in **understanding how different prompts impact AI responses**.  
+- Allows us to **iterate and refine prompts** for better accuracy.  
+- Enables **rapid prototyping** of AI-driven applications without coding.  
 
-- After creating your account, click on "New Flow".
+By using Langflow, you will gain **practical experience** in crafting, testing, and optimizing prompts, reinforcing key concepts in prompt engineering.
 
-![Langflow Screenshot](./Images/Screenshot%20(1517).png)
-
-- Now click on Blank Flow, as we are building it from scratch.
-
-![Langflow Screenshot](./Images/Screenshot%20(1518).png)
-
-- Now, click on the untitled document above, and in the dropdown, click on the Import Option to import the JSON file that has been provided to you.
-
-![Langflow Screenshot](./Images/Screenshot%20(1520).png)
-
-- Now, you will see that your project has been successfully imported, and you can view all the agents.
-
-![Langflow Screenshot](./Images/Screenshot%20(1571).png)
-
-- Provide the Open API Key to the agent and the Open API Key component to enable authentication and access. Ensure that the API key is securely stored and used only for authorized requests.
-
-- Now, click on the Playground Section.
-
-![Langflow Screenshot](./Images/Screenshot%20(1556).png)
-
-- In the Playground section, enter a query such as: 'Please provide the input particular user.' The system will fetch and display the output based on the document that you have uploaded.
-
-  Example:
-
-  Input: "Create a table with the following columns: Key Term, Description, and Location in Contract. Populate it with the extracted details of the service provider name, customer name, and termination clauses."
-  Output:
-  Fetched the answer from the document uploaded by you.
-  
-![Langflow Screenshot](./Images/Screenshot%20(1573).png)
-
-- ⚠️ Note: If no document is found in the upload document, the file uploader component will fail, and the output generation will not proceed.
+#### ***🔗 Want to learn more about Langflow? [Click Here](https://docs.langflow.org)***
+---
 
 # **Deep Dive : Prompt Engineering and Best Practices**
 
@@ -150,6 +115,220 @@ We have seen how we can use the above blocks, tune our model response, or get di
 
 ---
 
+# **How AI Models Process Prompts**  
+
+AI models like GPT work by predicting the most likely next word based on the input prompt. The way you structure the prompt **directly influences** the response quality.
+
+- **A vague prompt** results in **ambiguous** or **generic** responses.  
+- **A detailed, structured prompt** provides **precise, high-quality** responses.  
+
+---
+
+## **Poor vs  Good Prompting**  
+
+### **🔴 Poor Prompt:**  
+```text
+Input 
+Extract these Information from the document: Key Term, Description, and Location in Contract. 
+```
+![Langflow Screenshot](./Images/Screenshot%20(1589).png)
+
+```text
+Output
+Here are some key terms extracted from the document along with their descriptions and locations in the contract:
+
+1. **Key Term:** Kaseya Master Agreement  
+   **Description:** A binding legal contract between Kaseya and the entity making purchases under this Agreement.  
+   **Location in Contract:** Introduction (Effective as of April 1, 2024)
+
+2. **Key Term:** Scope  
+   **Description:** Governs the interactions between the customer and Kaseya, including access to Kaseya portals and platforms, and the right to purchase Kaseya Products.  
+   **Location in Contract:** Section 1(a)
+
+3. **Key Term:** Product Terms of Use  
+   **Description:** Terms applicable to the use, marketing, resale, and distribution of Kaseya Products.  
+   **Location in Contract:** Section 1(a)
+
+4. **Key Term:** License  
+   **Description:** The right to use a Product pursuant to the terms of the Agreement and as defined in the applicable Documentation.  
+   **Location in Contract:** Section 2(c)
+
+5. **Key Term:** End User  
+   **Description:** The person or entity that purchases a Product for its own use and owns, licenses, or uses Content.  
+   **Location in Contract:** Section 16
+
+6. **Key Term:** Confidential Information  
+   **Description:** Any business, operational, and/or technical information that is designated as confidential or that a reasonable person would believe to be confidential.  
+   **Location in Contract:** Section 7(a)
+
+7. **Key Term:** Termination for Convenience  
+   **Description:** Either party may terminate the Agreement at any time without cause upon 30 calendar days written notice.  
+   **Location in Contract:** Section 9(b)
+
+8. **Key Term:** Indemnification  
+   **Description:** Obligations of Kaseya and the customer to defend and hold harmless against certain claims.  
+   **Location in Contract:** Section 11
+
+9. **Key Term:** Governing Law  
+   **Description:** The laws of the State of Delaware, USA, govern all disputes arising out of the Agreement.  
+   **Location in Contract:** Section 14(a)
+
+10. **Key Term:** Fair Use  
+    **Description:** Policies that prohibit excessive use of Products that harms Kaseya's resources or circumvents the intended use of the Product.  
+    **Location in Contract:** Section 2(f)
+
+These terms provide a foundational understanding of the Kaseya Master Agreement and its key components.
+```
+
+**⚠️ Issue With This Prompt**
+Lack of Output Format Specification.The prompt does not specify how the extracted information should be formatted (e.g., table, JSON, bullet points).This can lead to inconsistent or unstructured responses.
+
+---
+
+### **🟢 Improved Prompt:**
+```text
+Input
+ Create a table with the following columns: Key Term, Description, and Location in Contract. Populate it with the extracted details of the service provider name, customer name, and termination clauses.
+```
+![Langflow Screenshot](./Images/Screenshot%20(1590).png)
+
+```text
+Output
+Here's a table with the requested details extracted from the Kaseya Master Agreement:
+
+| Key Term                     | Description                                                                                     | Location in Contract                       |
+|------------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------|
+| Service Provider Name         | Kaseya US, LLC (for customers in the United States)                                           | Exhibit A                                 |
+| Customer Name                 | The entity making purchases under this Agreement (referred to as "you")                       | Introduction (first paragraph)            |
+| Termination for Convenience    | Either party may terminate the Agreement at any time, without cause, upon 30 days written notice. | Section 9(b)                             |
+| Termination for Material Breach | Each party may terminate the Agreement upon notice if the other party materially breaches and fails to cure within 30 days. | Section 9(c)                             |
+| Effect of Termination         | Upon termination, the customer may not order or sell additional Products without consent, and all rights and licenses will terminate. | Section 9(d)                             |
+
+This table summarizes the key terms related to the service provider name, customer name, and termination clauses as specified in the Kaseya Master Agreement.
+```
+
+✅ Why This Works:
+- The response is in a table format, which enhances readability and organization.
+- Each key term is properly categorized under three columns:
+   - Key Term (What is being defined)
+   - Description (Brief explanation)
+   - Location in Contract (Where it is found in the document)
+
+---
+
+# **Let's Start Learning Prompt Engineering with Hands-On Experience!**  
+
+The best way to learn **Prompt Engineering** is by practicing it in real-time.
+🚀 **Let's dive in and start experimenting with prompts!**  
+
+
+## Setup the Project
+
+- Go to the [LangFlow page](https://www.langflow.org) and click on **"Get Started for Free"**, as shown in the image below.
+
+![Langflow Screenshot](./Images/Screenshot%20(1515).png)
+
+- Create your account on LangFlow.
+
+![Langflow Screenshot](./Images/Screenshot%20(1516).png)
+
+- After creating your account, click on **"New Flow"**.
+
+![Langflow Screenshot](./Images/Screenshot%20(1517).png)
+
+- Now click on **Blank Flow**, as we are building it from scratch.
+
+![Langflow Screenshot](./Images/Screenshot%20(1518).png)
+
+- Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the JSON file that has been provided to you.
+
+![Langflow Screenshot](./Images/Screenshot%20(1520).png)
+
+- Now, you will see that your project has been successfully imported, and you can view all the componets.
+
+#### **LangFlow Components and Inputs**
+   - **Chat Input (`ChatInput`)**
+**Role:** Captures user input for processing.  
+**Inputs:**
+      - `input_value` – User's text message.
+      - `session_id` – Tracks chat sessions.
+      - `should_store_message` – Saves conversation history.
+
+---
+- **OpenAI Model (`OpenAIModel`)**
+**Role:** Processes input using an OpenAI language model.  
+**Inputs:**
+   - `model_name` – Defines the AI model (e.g., GPT-4).
+   - `max_tokens` – Sets the word limit.
+   - `temperature` – Controls randomness.
+   - `api_key` – OpenAI authentication.
+
+---
+
+- **Prompt (`PromptComponent`)**
+**Role:** Structures user input into a formatted query.  
+**Inputs:**
+   - `template` – Defines how the prompt is structured.
+   - `tool_placeholder` – Placeholder for tool-specific input.
+
+---
+
+- **Parse Data (`ParseData`)**
+**Role:** Converts structured data into plain text.  
+**Inputs:**
+   - `data` – Raw data input.
+   - `template` – Defines text formatting.
+   - `sep` – Sets text separators.
+
+---
+
+- **Chat Output (`ChatOutput`)**
+**Role:** Displays AI-generated responses to the user.  
+**Inputs:**
+   - `input_value` – AI response message.
+   - `sender` – Identifies if the response is from "AI" or "User".
+   - `sender_name` – Name of the sender.
+   - `session_id` – Maintains conversation context.
+   - `should_store_message` – Saves response history.
+
+
+![Langflow Screenshot](./Images/Screenshot%20(1571).png)
+
+⚠️ **Important Note**  
+- Provide your **OpenAI API Key** to the agent and the **OpenAI Model** component to enable authentication and access.  
+- Ensure that the **API key is securely stored** and used **only for authorized requests** to prevent misuse.  
+
+---
+- To tweak parameters in Langflow, go to your **OpenAI Component**, click on **Controls**, and adjust the parameters as needed to refine the AI's response. This allows for better customization and optimization of the model's behavior.
+
+![Langflow Screenshot](./Images/Screenshot%20(1593).png)
+
+---
+
+- Now, click on the **Playground Section**.
+
+![Langflow Screenshot](./Images/Screenshot%20(1588).png)
+
+---
+- In the **Playground section**, enter a query such as: 'Please provide the input particular user.' The system will fetch and display the output based on the document that you have uploaded.
+
+![Langflow Screenshot](./Images/Screenshot%20(1556).png)
+
+  **Example:**
+   ```text
+  Input: "Create a table with the following columns: Key Term, Description, and Location in Contract. Populate it with the extracted details of the service provider name, customer name, and termination clauses."
+  ```
+  ```text 
+  Output:
+  Fetched the answer from the document uploaded by you.
+  ```
+  
+![Langflow Screenshot](./Images/Screenshot%20(1573).png)
+
+- **⚠️ Note: If no document is found in the upload document, the file uploader component will fail, and the output generation will not proceed**.
+
+
+
 ## **Top 10 Best Practices Walkthrough**  
 Using our *Contract Summarization App*, we will apply ten best practices for prompt engineering:
 
@@ -185,7 +364,7 @@ Using our *Contract Summarization App*, we will apply ten best practices for pro
 
 ---
 
-## **Example Final Prompt for Contract GPT**  
+## **Example Prompt for Contract GPT**  
 
 ```xml
 <Role>
@@ -215,8 +394,11 @@ Use your legal expertise to review the provided contract document. Your primary 
 
 ---
 
+## **Conclusion**
+Prompt engineering is a crucial skill in working with AI models effectively. By understanding the different prompt structures, applying best practices, and fine-tuning parameters, users can achieve highly specific and accurate responses. As AI continues to evolve, mastering these techniques will be essential for optimizing AI interactions and improving task outcomes.
+
+---
+
 © **All rights reserved Mahesh Yadav Institute**. No part of this course can be reproduced, distributed, or transmitted in any form without permission.
 
 
-## **Conclusion**
-Prompt engineering is a crucial skill in working with AI models effectively. By understanding the different prompt structures, applying best practices, and fine-tuning parameters, users can achieve highly specific and accurate responses. As AI continues to evolve, mastering these techniques will be essential for optimizing AI interactions and improving task outcomes.
