@@ -8,6 +8,9 @@ By the end of this lesson, you will:
 - Experiment with different types of prompts and analyze their outcomes.
 - Apply prompt engineering techniques to optimize AI-generated outputs.
 
+🔗 **[Click here](https://app.eraser.io/workspace/PM7tvkjIPm8WEhp1kn6I?origin=share) to view the flow diagram** and see how the lab is working. 🛠️
+
+
 ---
 
 ## What is Prompt Engineering?
@@ -181,7 +184,9 @@ These terms provide a foundational understanding of the Kaseya Master Agreement 
 ```
 
 **⚠️ Issue With This Prompt**
-Lack of Output Format Specification.The prompt does not specify how the extracted information should be formatted (e.g., table, JSON, bullet points).This can lead to inconsistent or unstructured responses.
+When you give an AI an prompt like:
+- You might get a response, but it might not be structured the way you expected. The reason? You didn’t specify how you want the output to be formatted.
+- Imagine you're asking a friend to summarize a book. If you don’t tell them whether you want bullet points, a table, or a short paragraph, they might just ramble on in their own way.
 
 ---
 
@@ -208,11 +213,13 @@ This table summarizes the key terms related to the service provider name, custom
 ```
 
 ✅ Why This Works:
-- The response is in a table format, which enhances readability and organization.
-- Each key term is properly categorized under three columns:
-   - Key Term (What is being defined)
-   - Description (Brief explanation)
-   - Location in Contract (Where it is found in the document)
+You see, when we clearly define the format of the output, the AI follows our instructions and provides the response in the exact structure we need. Instead of a random or unstructured reply, we now get information that is neatly organized.
+- Example, in this case, we used a table format, which ensures that the AI categorizes key terms properly. Each term is placed under three distinct columns:
+   - **Key Term** – What is being defined.
+   - **Description** – A brief explanation.
+   - **Location in Contract** – Where it is found in the document.
+
+By setting this structure in the prompt, we eliminate ambiguity, making the AI’s response clear, concise, and easy to navigate. This approach enhances readability and ensures that we receive the information in a way that is practical and useful.
 
 ---
 
@@ -296,6 +303,7 @@ The best way to learn **Prompt Engineering** is by practicing it in real-time.
 
 ⚠️ **Important Note**  
 - Provide your **OpenAI API Key** to the agent and the **OpenAI Model** component to enable authentication and access.  
+- **[Follow this article](https://www.splendidfinancing.com/blog/how-to-get-an-openai-api-key-for-chatgpt)** to generate an OpenAI API key. 🔑  
 - Ensure that the **API key is securely stored** and used **only for authorized requests** to prevent misuse.  
 
 ---
@@ -394,8 +402,20 @@ Use your legal expertise to review the provided contract document. Your primary 
 
 ---
 
-## **Conclusion**
-Prompt engineering is a crucial skill in working with AI models effectively. By understanding the different prompt structures, applying best practices, and fine-tuning parameters, users can achieve highly specific and accurate responses. As AI continues to evolve, mastering these techniques will be essential for optimizing AI interactions and improving task outcomes.
+### 📌 Conclusion  
+
+In this session, we explored the fundamentals of **prompt engineering** and its importance in working effectively with AI models. We learned about different **prompt structures**, best practices, and fine-tuning techniques to achieve **highly specific and accurate responses**. As AI continues to evolve, mastering these skills will be essential for optimizing interactions and improving task outcomes.  
+
+💡 **Note:** In the upcoming weeks, we will dive into **advanced prompt engineering techniques**, including **reasoning models** and their real-world applications. Stay tuned! 🚀  
+
+## 📚 Resources  
+
+We have provided you with the **documentation** and the **JSON file** used in this lab, available in the same repository. You can use them to **explore, experiment, and practice** on your own. 🚀  
+
+🔗 Feel free to **modify and play around** with these resources to deepen your understanding! 🎯  
+
+
+
 
 ---
 
