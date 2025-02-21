@@ -410,7 +410,7 @@ In this session, we explored the fundamentals of **prompt engineering** and its 
 
 ## 📚 Resources  
 
-We have provided you with the **documentation** and the **JSON file** used in this lab, available in the same repository. You can use them to **explore, experiment, and practice** on your own. 🚀  
+We have provided you with the **document** and the **JSON file** used in this lab, available in the same repository. You can use them to **explore, experiment, and practice** on your own. 🚀  
 
 🔗 Feel free to **modify and play around** with these resources to deepen your understanding! 🎯  
 
