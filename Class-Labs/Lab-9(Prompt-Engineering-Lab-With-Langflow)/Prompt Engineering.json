@@ -1509,6 +1509,163 @@
         },
         "selected": false,
         "type": "genericNode"
+      },
+      {
+        "id": "note-5YrKL",
+        "type": "noteNode",
+        "position": {
+          "x": 852.0893404840604,
+          "y": 448.33511916453494
+        },
+        "data": {
+          "node": {
+            "description": "   - **Chat Input (`ChatInput`)**\n**Role:** Captures user input for processing.  \n**Inputs:**\n      - `input_value` – User's text message.\n      - `session_id` – Tracks chat sessions.\n      - `should_store_message` – Saves conversation history.",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-5YrKL"
+        },
+        "measured": {
+          "width": 324,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-1mZy8",
+        "type": "noteNode",
+        "position": {
+          "x": 402.51643461098536,
+          "y": -558.8566413059747
+        },
+        "data": {
+          "node": {
+            "description": "- **Parse Data (`ParseData`)**\n**Role:** Converts structured data into plain text.  \n**Inputs:**\n   - `data` – Raw data input.\n   - `template` – Defines text formatting.\n   - `sep` – Sets text separators.",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-1mZy8"
+        },
+        "measured": {
+          "width": 324,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-V9fpM",
+        "type": "noteNode",
+        "position": {
+          "x": 825,
+          "y": -643.9891003141727
+        },
+        "data": {
+          "node": {
+            "description": "- **Prompt (`PromptComponent`)**\n**Role:** Structures user input into a formatted query.  \n**Inputs:**\n   - `template` – Defines how the prompt is structured.\n   - `tool_placeholder` – Placeholder for tool-specific input.\n\n\n\n**You Don't Want To Make Any Changes Here—Just Provide Your Prompt in the Playground Section.**  \n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-V9fpM"
+        },
+        "measured": {
+          "width": 324,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-D3hUw",
+        "type": "noteNode",
+        "position": {
+          "x": 1324.5847404398419,
+          "y": -649.8196194344891
+        },
+        "data": {
+          "node": {
+            "description": "- **OpenAI Model (`OpenAIModel`)**\n**Role:** Processes input using an OpenAI language model.  \n**Inputs:**\n   - `model_name` – Defines the AI model (e.g., GPT-4).\n   - `max_tokens` – Sets the word limit.\n   - `temperature` – Controls randomness.\n   - `api_key` – OpenAI authentication.\n\n**To tweak parameters in Langflow, go to your **OpenAI Component**, click on **Controls**, and adjust the parameters as needed to refine the AI's response. This allows for better customization and optimization of the model's behavior.**\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-D3hUw"
+        },
+        "measured": {
+          "width": 324,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-exJrE",
+        "type": "noteNode",
+        "position": {
+          "x": 1737.0118510626353,
+          "y": -661.923301687196
+        },
+        "data": {
+          "node": {
+            "description": "- **Chat Output (`ChatOutput`)**\n**Role:** Displays AI-generated responses to the user.  \n**Inputs:**\n   - `input_value` – AI response message.\n   - `sender` – Identifies if the response is from \"AI\" or \"User\".\n   - `sender_name` – Name of the sender.\n   - `session_id` – Maintains conversation context.\n   - `should_store_message` – Saves response history.",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-exJrE"
+        },
+        "selected": false,
+        "measured": {
+          "width": 324,
+          "height": 324
+        },
+        "dragging": false
+      },
+      {
+        "id": "note-A14jJ",
+        "type": "noteNode",
+        "position": {
+          "x": -58.94483442536655,
+          "y": -378.3337004826935
+        },
+        "data": {
+          "node": {
+            "description": "**You Have to Upload Your Contract Document**  \nTo proceed, make sure to upload your contract document for further processing and analysis.  \n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-A14jJ"
+        },
+        "selected": false,
+        "measured": {
+          "width": 324,
+          "height": 324
+        },
+        "dragging": false,
+        "resizing": false
       }
     ],
     "edges": [
@@ -1655,9 +1812,9 @@
       }
     ],
     "viewport": {
-      "x": 94.93341952821095,
-      "y": 195.87529189930888,
-      "zoom": 0.3192164568051046
+      "x": 15.845290434092306,
+      "y": 289.0139053033955,
+      "zoom": 0.5001809577148748
     }
   },
   "description": "Integrates PDF reading with a language model to answer document-specific questions. Ideal for small-scale texts, it facilitates direct queries with immediate insights.",
