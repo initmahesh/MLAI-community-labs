@@ -151,7 +151,7 @@ The best way to learn **Prompt Engineering** is by practicing it in real-time.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1518).png)
 
-- Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the [JSON File](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/ETVR9HWx1vJNgvEyUnC1k64BHv1pY-FQTQ1_-TYVlmf7BQ?e=bTb16Z) to view the flow diagram that has been provided to you.
+- Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the [JSON File](https://drive.google.com/file/d/1e-WctnpHV1b7rwIgtM9wGjL4FJ-jL571/view?usp=drive_link) to view the flow diagram that has been provided to you.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1520).png)
 
