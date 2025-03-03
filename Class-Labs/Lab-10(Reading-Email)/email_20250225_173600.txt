@@ -1,0 +1,30 @@
+From: Sachin Parmar <sachinparmar98134@gmail.com>
+Subject: Important Notification
+Date: Tue, 25 Feb 2025 17:35:33 +0530
+
+Body:
+Hello Mahesh,
+
+This is a notification regarding order #12345 that requires immediate
+attention.
+
+Customer Details:
+- Name: Jane Smith
+- Account ID: ACCT-7890
+- Purchase Date: February 24, 2025
+
+The customer has requested expedited processing for their recent order.
+Please prioritize this request and update the order status in our system.
+
+For any questions, please contact the customer support team.
+
+Thank you,
+System Notifications
+
+---
+
+You can copy and paste this email text into your regular email client and
+send it to the email address that your monitoring application is checking.
+Make sure to use the exact subject line "Important Notification" (or
+whatever subject your application is configured to monitor for) so that it
+triggers your email monitoring system.
