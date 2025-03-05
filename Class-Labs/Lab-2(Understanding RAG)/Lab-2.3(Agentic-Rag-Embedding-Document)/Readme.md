@@ -1,4 +1,4 @@
-# 📌 **Document QA System using LangChain & ChromaDB**
+# 📌 **Understand how Agentic RAG improves RAG using ChromeDB(VectorDB) and Langchain(Framework to ease RAG learnings)**
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
