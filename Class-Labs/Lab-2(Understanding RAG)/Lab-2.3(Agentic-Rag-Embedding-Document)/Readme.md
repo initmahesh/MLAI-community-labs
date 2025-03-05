@@ -1,5 +1,9 @@
 # 📌 **Document QA System using LangChain & ChromaDB**
 
+You can open this Jupyter notebook directly in Google Colab by clicking the link below:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/initmahesh/>)
+
 ## 📌 Objective
 Create a simple system that can:
 1. Accept PDF documents from users
