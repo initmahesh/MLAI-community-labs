@@ -172,6 +172,25 @@ def transform_query(original_query, original_chunks):
 - Uses AI to **rewrite the query** for improved results.
 
 ---
+# 📌 Step 5.5: Add Knowledge Graph Component
+
+## 🧠 What is the Knowledge Graph Component?
+The **Knowledge Graph Component** enhances user queries by mapping common terms to predefined business relationships. This ensures queries align with standardized business terminology, improving response accuracy.
+
+## ⚙️ How It Works:
+1. **Predefined Mappings:**  
+   The system maintains a dictionary of business term relationships:
+   ```python
+   kg_mappings = {
+       "customer": "customer referenced in the Master Agreement and Service Order",
+       "Master Agreement": "Contract",
+       "Service Order": "Service Agreement",
+       "client": "Organization",
+       "product": "Solution"
+   }
+   ```
+
+---
 
 ### 📌 **Step 6: Query Interface**
 ```python
@@ -199,5 +218,8 @@ def handle_query(b):
 - Displays the **difference in responses**.
 
 --- 
+
+## Output
+![Output](Output.png)
 
 © **All rights reserved Mahesh Yadav Institute**. No part of this course can be reproduced, distributed, or transmitted in any form without permission.
