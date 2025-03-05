@@ -2,7 +2,8 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<>)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2(Understanding%20RAG)/Lab-2.1(Generating-Response-without-RAG)/Without_RAG_Generation.ipynb>)
+
 
 # Welcome to Lab 1
 
