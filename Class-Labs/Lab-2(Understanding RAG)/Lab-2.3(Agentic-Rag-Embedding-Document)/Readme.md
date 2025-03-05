@@ -2,7 +2,7 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/initmahesh/>)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2%28Understanding%20RAG%29/Lab-2.3%28Agentic-Rag-Embedding-Document%29/Agentic_RAG.ipynb>)
 
 ## 📌 Objective
 Create a simple system that can:
@@ -163,36 +163,22 @@ def generate_answer(query, chunks):
 ```
 - Uses OpenAI’s language model to generate an answer based on **retrieved chunks**.
 
-#### **Optimize Query for Better Results**
-```python
-def transform_query(original_query, original_chunks):
-    context = "\n".join(original_chunks[:2])
-    template = """Optimize this query for better results. Consider context:
-    Context: {context}
-    Original Query: {query}
-    Optimized Query:"""
-    return llm(template.format(context=context, query=original_query))
-```
+
 - Uses AI to **rewrite the query** for improved results.
 
 ---
 # 📌 Step 5.5: Add Knowledge Graph Component
 
-## 🧠 What is the Knowledge Graph Component?
-The **Knowledge Graph Component** enhances user queries by mapping common terms to predefined business relationships. This ensures queries align with standardized business terminology, improving response accuracy.
+## 🧠 Purpose:
+The **Knowledge Graph Component** helps refine queries by mapping key terms to structured business relationships. This ensures that queries align with domain-specific terminology for more accurate responses.
 
-## ⚙️ How It Works:
-1. **Predefined Mappings:**  
-   The system maintains a dictionary of business term relationships:
-   ```python
-   kg_mappings = {
-       "customer": "customer referenced in the Master Agreement and Service Order",
-       "Master Agreement": "Contract",
-       "Service Order": "Service Agreement",
-       "client": "Organization",
-       "product": "Solution"
-   }
-   ```
+## 🛠️ Implementation:
+The function below returns a predefined question related to extracting company information from an agreement.
+
+```python
+def knowledge_graph():
+    return "What is the name of the Company in the Agreement?"
+```
 
 ---
 
@@ -205,19 +191,7 @@ query_output = widgets.Output()
 - Creates a simple **text input** for user queries.
 - Displays responses interactively.
 
-```python
-def handle_query(b):
-    with query_output:
-        clear_output()
-        query = query_input.value
-        original_chunks = retrieve_chunks(query)
-        original_answer = generate_answer(query, original_chunks)
-        new_query = transform_query(query, original_chunks)
-        new_chunks = retrieve_chunks(new_query)
-        new_answer = generate_answer(new_query, new_chunks)
-        print(boxen(f"QUERY: {query}\nANSWER: {original_answer}", title="Original Response", color="blue"))
-        print(boxen(f"OPTIMIZED QUERY: {new_query}\nNEW ANSWER: {new_answer}", title="Optimized Response", color="yellow"))
-```
+
 - Retrieves an answer **before and after query optimization**.
 - Displays the **difference in responses**.
 
