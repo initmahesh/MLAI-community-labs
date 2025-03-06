@@ -285,31 +285,6 @@ This step allows users to upload a PDF file, extract its text, split it into sma
      ```  
    - This means your file was successfully processed and stored. 
 
-# 📌 Step 4: Upload & Process a PDF Document  
-
-This step allows users to upload a PDF file, extract its text, split it into smaller chunks, and store it in a vector database for AI processing.  
-
-## 🔹 How It Works  
-1. **File Upload Widget**  
-   - A button appears that lets you upload a **PDF file**.  
-   - The system only accepts **one file at a time**.  
-
-2. **Processing the File**  
-   - When you click the **"Process File"** button:  
-     - The system checks if a file is uploaded.  
-     - If no file is found, it shows a message: **"No file uploaded!"**  
-     - If a file is uploaded, the system reads the PDF and extracts its text.  
-     - The text is split into smaller **chunks** (for efficient processing).  
-     - Each chunk is assigned a **random confidence score**.  
-     - The data is stored in **ChromaDB**, a special AI-ready database.  
-
-3. **Success Message**  
-   - If everything works, you’ll see a **green notification box**:  
-     ```
-     File processed with confidence scores!
-     ```  
-   - This means your file was successfully processed and stored. 
-
 ```python
 # Step 4: File upload widget with value storage
 import random
