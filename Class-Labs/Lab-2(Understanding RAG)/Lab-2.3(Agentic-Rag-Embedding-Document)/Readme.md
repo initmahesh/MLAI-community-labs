@@ -1,5 +1,4 @@
 # **Understanding Agentic RAG: Building Intelligent Document Assistants with ChromaDB(Vectore DB) & LangChain(Framework)** 
-# **Understanding Agentic RAG: Building Intelligent Document Assistants with ChromaDB(Vectore DB) & LangChain(Framework)** 
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
