@@ -511,7 +511,7 @@ submit_btn.on_click(handle_query)
 1️⃣ Enter your question in the input box.
 
 ```text
-What is the name of the Customer ?
+what is the name of the customer ?
 ```
 
 2️⃣ Click "Submit" to process the query.
@@ -522,7 +522,7 @@ What is the name of the Customer ?
 
 5️⃣ The final answer is displayed, either as a Direct Answer or an Optimized Answer.
 ## Output
-![Output](op1.png)
 ![Output](op2.png)
+![Output](op1.png)
 
 © **All rights reserved Mahesh Yadav Institute**. No part of this course can be reproduced, distributed, or transmitted in any form without permission.
