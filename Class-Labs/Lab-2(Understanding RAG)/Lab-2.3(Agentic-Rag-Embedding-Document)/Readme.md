@@ -7,7 +7,7 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 ### **What You'll Achieve** 🎯
 
-By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retrieval-Augmented Generation)** and how it revolutionizes the way we interact with documents. Here's what you'll learn:
+By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retrieval-Augmented Generation)** and how to we solve the problem of relying on external knowledge base in scenarios where a simple RAG pipeline fails.
 
 ---
 
