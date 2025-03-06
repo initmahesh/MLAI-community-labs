@@ -58,7 +58,7 @@ Fill in the details again copy the key somewhere safe, it is only shown once to 
 1. Once the runtime is connected, click on this button.
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9ab7108b-9f48-4b37-b27b-fb6b13e4570a)
-3. Click here to upload the file. (If you are doing Lab 1 or Lab 2 upload these contract: [Small Doc](AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab-0/Lab-0.1/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf))
+3. Click here to upload the file. (If you are doing Lab 1 or Lab 2 upload these contract: [Small Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2(Understanding%20RAG)/Lab-2.2(Generating-Response-with-RAG)/AWS1.pdf), [Large Doc](https://github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2(Understanding%20RAG)/Lab-2.2(Generating-Response-with-RAG)/PROFRAC%20HOLDINGS%2C%20LLC%20credit%20agreement.pdf))
    
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/343950c4-1f22-44b2-a746-5cedb2968f4e)
 5. Once uploaded you can see you files here.
