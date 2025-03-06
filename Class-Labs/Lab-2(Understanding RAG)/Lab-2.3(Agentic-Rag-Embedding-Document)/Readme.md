@@ -105,9 +105,7 @@ If you ask "customer name?", the system might change it to "company name?" for b
 
 ### 📌 **Step 1: Installing Required Libraries**
 ```python
-# Step 1: Install required libraries 
-! pip install chromadb langchain pypdf2 sentence-transformers pyboxen
-! pip install -U langchain-community
+
 # Step 1: Install required libraries 
 ! pip install chromadb langchain pypdf2 sentence-transformers pyboxen
 ! pip install -U langchain-community
@@ -116,7 +114,9 @@ Before we start, we install the necessary Python libraries:
 
 ---
 
-# Step 3: Setting Up the Lab 🧪
+
+
+# **Step 2: Setting Up the Lab 🧪**
 
 ---
 ## Import necessary modules
@@ -158,91 +158,6 @@ Before we start, we need to install the necessary tools. These packages are like
 - **`pydantic.BaseModel, Field`** → Ensures structured and validated data inputs.  
 
 
----
-
-# Step 3: Setting Up the Lab 🧪
-
----
-## Import necessary modules
-Before we start, we need to install the necessary tools. These packages are like the ingredients for our recipe – without them, the lab won't work!
-
-# 📌 Explanation of Imported Modules  
-
-## 🔹 UI Components  
-- **`ipywidgets`** → Provides interactive widgets like buttons, text boxes, and dropdowns.  
-- **`IPython.display`** → Used to display widgets, clear output, and update UI dynamically.  
-
-## 🔹 Data Processing & Utility  
-- **`random`** → Generates random numbers, useful for testing and sampling.  
-- **`typing (List, Dict)`** → Provides type hints for better code readability and debugging.  
-- **`io.BytesIO`** → Handles in-memory file operations without saving to disk.  
-- **`os`** → Interacts with the operating system (e.g., file paths, environment variables).  
-
-## 🔹 LangChain Components  
-- **`langchain.vectorstores.Chroma`** → Stores and retrieves document embeddings efficiently.  
-- **`langchain.embeddings.HuggingFaceEmbeddings`** → Uses Hugging Face models for text embeddings.  
-- **`langchain.text_splitter.RecursiveCharacterTextSplitter`** → Splits text into manageable chunks for processing.  
-- **`langchain.llms.OpenAI`** → Connects to OpenAI’s LLM for generating responses.  
-- **`langchain.agents.initialize_agent`** → Creates an AI agent with tools for querying documents.  
-- **`langchain.tools.Tool`** → Defines custom tools for AI agents.  
-- **`langchain.tools.StructuredTool`** → Provides structured tools for better AI responses.  
-- **`langchain.prompts.ChatPromptTemplate`** → Creates structured prompts for AI interactions.  
-- **`langchain.schema.runnable.RunnablePassthrough`** → Allows passing data through AI models without modification.  
-
-## 🔹 PDF Handling  
-- **`PyPDF2.PdfReader`** → Reads and extracts text from PDF documents.  
-
-## 🔹 Database & Storage  
-- **`chromadb`** → A fast and scalable vector database for storing and retrieving embeddings.  
-
-## 🔹 UI Styling  
-- **`pyboxen.boxen`** → Formats text in visually appealing boxed outputs.  
-
-## 🔹 Data Validation  
-- **`pydantic.BaseModel, Field`** → Ensures structured and validated data inputs.  
-
-```python
-# Step 2: Import necessary modules
-import ipywidgets as widgets
-from IPython.display import display, clear_output
-import random
-from typing import List, Dict
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import OpenAI
-from langchain.agents import initialize_agent, Tool
-from langchain.tools import StructuredTool
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema.runnable import RunnablePassthrough
-from pydantic import BaseModel, Field
-from PyPDF2 import PdfReader
-import chromadb
-from pyboxen import boxen
-import os
-from io import BytesIO
-```
-# Step 2: Import necessary modules
-import ipywidgets as widgets
-from IPython.display import display, clear_output
-import random
-from typing import List, Dict
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.llms import OpenAI
-from langchain.agents import initialize_agent, Tool
-from langchain.tools import StructuredTool
-from langchain.prompts import ChatPromptTemplate
-from langchain.schema.runnable import RunnablePassthrough
-from pydantic import BaseModel, Field
-from PyPDF2 import PdfReader
-import chromadb
-from pyboxen import boxen
-import os
-from io import BytesIO
-```
----
 
 ### 📌 **Step 3: Initializing Components**
 ```python
@@ -260,32 +175,7 @@ llm = OpenAI(temperature=0)
 
 ---
 
-# 📌 Step 4: Upload & Process a PDF Document  
-
-This step allows users to upload a PDF file, extract its text, split it into smaller chunks, and store it in a vector database for AI processing.  
-
-## 🔹 How It Works  
-1. **File Upload Widget**  
-   - A button appears that lets you upload a **PDF file**.  
-   - The system only accepts **one file at a time**.  
-
-2. **Processing the File**  
-   - When you click the **"Process File"** button:  
-     - The system checks if a file is uploaded.  
-     - If no file is found, it shows a message: **"No file uploaded!"**  
-     - If a file is uploaded, the system reads the PDF and extracts its text.  
-     - The text is split into smaller **chunks** (for efficient processing).  
-     - Each chunk is assigned a **random confidence score**.  
-     - The data is stored in **ChromaDB**, a special AI-ready database.  
-
-3. **Success Message**  
-   - If everything works, you’ll see a **green notification box**:  
-     ```
-     File processed with confidence scores!
-     ```  
-   - This means your file was successfully processed and stored. 
-
-# 📌 Step 4: Upload & Process a PDF Document  
+# 📌 **Step 4: Upload & Process a PDF Document**  
 
 This step allows users to upload a PDF file, extract its text, split it into smaller chunks, and store it in a vector database for AI processing.  
 
@@ -368,54 +258,7 @@ process_btn.on_click(process_file)
 **✅ NOTE** : [📄Reference Document You Can Download From CLick Me](https://drive.google.com/file/d/1WWa_TgI49HIAGFuXTNvMLtkFBU6ZduHq/view?usp=sharing)
 
 This setup makes it easy to upload and process PDFs with AI-powered storage. 🚀  
-
----
-# 📝 Step 5: Enhanced Query Processing with an Agent  
-
-This step enhances **query processing** by implementing an **AI agent** that decides how to answer user queries based on **confidence scores**. It retrieves relevant document chunks and determines whether the response should be **directly generated** or **refined using a knowledge graph** for better accuracy.  
-
----
-## 🔹 Overview of the Query Processing Flow  
-
-### 1️⃣ **User Query Retrieval**  
-- The user submits a **query**.
-- The system **retrieves relevant document chunks** using ChromaDB.
-- Each retrieved chunk has an **associated confidence score**.
-
-### 2️⃣ **Confidence Score Evaluation**  
-- If the confidence score is **high (≥ 0.5)** → Use a **direct answer** approach.
-- If the confidence score is **low (< 0.3)** → Use a **knowledge-enhanced answer**.
-
-### 3️⃣ **Knowledge Graph Enhancement** (for low-confidence cases)  
-- Some terms in the query are mapped to **more meaningful alternatives** using a **knowledge graph**.
-- The query is **rewritten** with these enhancements.
-- A new document search is performed using the improved query.
-
-### 4️⃣ **Generating the Final Answer**  
-- The system **chooses the best response strategy** using an autonomous agent.
-- The **final answer is generated** based on the refined context and confidence evaluation.
-        metadatas = [{"value": random.uniform(0, 1)} for _ in chunks]
-
-        Chroma.from_texts(
-            chunks, embeddings,
-            client=chroma_client,
-            collection_name="doc_collection",
-            metadatas=metadatas
-        )
-        print(boxen("File processed with confidence scores!", title="Success", color="green"))
-
-display(uploader, process_btn, process_output)
-process_btn.on_click(process_file)
-``` 
-
-## 🔹 Steps to Use  
-✅ **Step 1** → Click on **"Upload Document"** and select a PDF file.  
-✅ **Step 2** → Click **"Process File"** to analyze and store it.  
-✅ **Step 3** → Wait for the **success message** confirming the file is processed.  
-
-**✅ NOTE** : [📄Reference Document You Can Download From CLick Me](https://drive.google.com/file/d/1WWa_TgI49HIAGFuXTNvMLtkFBU6ZduHq/view?usp=sharing)
-
-This setup makes it easy to upload and process PDFs with AI-powered storage. 🚀  
+  
 
 ---
 # 📝 Step 5: Enhanced Query Processing with an Agent  
@@ -470,31 +313,6 @@ The **AI Agent** acts as a **decision-maker** that chooses the **best answering 
    - 🔄 **Enhanced Answer** → If confidence is **low (< 0.3)**, it **rewrites the query** and **retrieves better chunks**.
 5. The chosen **answering tool is executed**, and the **final response** is provided.  
 
----
-## 🔍 **Understanding Confidence Scores**  
-
-A **confidence score** is a measure of **how relevant** a retrieved document chunk is to the user's query.  
-- **Higher confidence (≥ 0.5)** → The retrieved text is **relevant and reliable**.  
-- **Lower confidence (< 0.3)** → The retrieved text **may not be relevant or sufficient**.  
-
-### 📌 **How is the Confidence Score Used?**  
-- If the retrieved document chunk has a **high confidence score**, the system can **directly answer the query**.  
-- If the retrieved document chunk has a **low confidence score**, the AI **enhances the query** using a **knowledge graph** and **retrieves better chunks**.
-
----
-
-## 🤖 **Role of the AI Agent**  
-
-The **AI Agent** acts as a **decision-maker** that chooses the **best answering approach** based on **confidence scores**.  
-
-### 🔹 **How the Agent Works**
-1. **User submits a query**.
-2. **Document chunks are retrieved** from the database.
-3. **Each chunk has an associated confidence score**.
-4. The AI agent **analyzes the confidence scores** and chooses:
-   - ✅ **Direct Answer** → If confidence is **high (≥ 0.5)**.
-   - 🔄 **Enhanced Answer** → If confidence is **low (< 0.3)**, it **rewrites the query** and **retrieves better chunks**.
-5. The chosen **answering tool is executed**, and the **final response** is provided.  
 
 ---
 ```python
@@ -602,6 +420,7 @@ agent = initialize_agent(
 This **smart decision-making** process makes the AI **more intelligent and reliable** for answering document-based queries. 📖✨  
 
 ---
+
 # 📝 **Step 6: Query Interface with Autonomous Decision-Making**  
 
 This step introduces an **interactive query interface** that allows users to input their questions.  
@@ -645,158 +464,7 @@ based on confidence scores. The decision-making is fully **autonomous**, ensurin
 
 ✅ If the agent chooses "EnhancedAnswer"
 - The query is refined by agnet using a Knowledge Graph.
--A new set of relevant document chunks is retrieved.
-- A more optimized answer is generated.
-
----
-# Step 5: Enhanced query processing with autonomous agent
-class QueryInput(BaseModel):
-    query: str = Field(description="User's original question")
-    chunks: List[Dict] = Field(description="Retrieved document chunks with confidence scores")
-
-def retrieve_chunks(query: str) -> List[Dict]:
-    collection = chroma_client.get_collection("doc_collection")
-    results = collection.query(
-        query_texts=[query],
-        n_results=1,
-        include=['documents', 'metadatas']
-    )
-
-    # Ensure metadata is returned and handle cases where it's missing
-    documents = results['documents'][0]
-    metadatas = results.get('metadatas', [[{}] * len(documents)])[0]  # Default to empty dicts if metadata is missing
-
-    # Simulate low-confidence chunks for testing
-    simulated_chunks = [
-        {"text": doc, "value": random.uniform(0.2, 0.4)}  # Simulate low confidence scores (0.2 to 0.4)
-        for doc, meta in zip(documents, metadatas)
-    ]
-
-    return simulated_chunks
-
-def knowledge_graph(query: str) -> str:
-    # Enhanced knowledge graph mappings
-    kg_mappings = {
-        "customer": "Company Name Referenced in Master Agreement Only",
-        "Master Agreement": "Contract",
-        "Service Order": "Service Agreement"
-    }
-    
-    # Replace terms in the query using the knowledge graph mappings
-    enhanced_query = query
-    for term, replacement in kg_mappings.items():
-        enhanced_query = enhanced_query.replace(term, replacement)
-
-    
-    return enhanced_query
-
-def base_answer(input: QueryInput) -> str:
-    context = "\n\n".join([chunk["text"] for chunk in input.chunks])
-    prompt = f"Answer: {input.query}\nContext:\n{context}"
-    answer = llm(prompt)
-    values = [f"{chunk['value']:.2f}" for chunk in input.chunks]
-    return f"Answer: {answer}\nConfidence Scores: {values}"
-
-def enhanced_answer(input: QueryInput) -> str:
-    enhanced_query = knowledge_graph(input.query)
-    enhanced_chunks = retrieve_chunks(enhanced_query)
-    context = "\n\n".join([chunk["text"] for chunk in enhanced_chunks])
-    prompt = f"Answer: {enhanced_query}\nContext:\n{context}"
-    answer = llm(prompt)
-    values = [f"{chunk['value']:.2f}" for chunk in enhanced_chunks]
-    return f"Optimized Answer: {answer}\nEnhanced Confidence: {values}"
-
-
-# Define Tools 
-tools = [
-    StructuredTool.from_function(
-        name="DirectAnswer",
-        description="Use this when the retrieved chunks have high confidence scores (>= 0.5) and sufficient context to directly answer the query.",
-        func=base_answer
-    ),
-    StructuredTool.from_function(
-        name="EnhancedAnswer",
-        description="Use this when the retrieved chunks have low confidence scores (< 0.3) or insufficient context, and the query needs to be enhanced using a knowledge graph.",
-        func=enhanced_answer
-    )
-]
-
-# Initialize the agent with a custom prompt
-agent_prompt = """You are an intelligent assistant that decides how to answer user queries based on the context and confidence scores of retrieved document chunks.
-
-Here are the tools available to you:
-1. DirectAnswer: Use this when the retrieved chunks have high confidence scores (>= 0.5) and sufficient context to directly answer the query.
-2. EnhancedAnswer: Use this when the retrieved chunks have low confidence scores (< 0.3) or insufficient context, and the query needs to be enhanced using a knowledge graph.
-
-Your task is to analyze the query, retrieved chunks, and their confidence scores, and decide which tool to use. Provide a reason for your decision.
-
-Query: {query}
-Retrieved Chunks: {chunks}
-
-Decision: Which tool should be used? Respond in the following format:
-Tool: [DirectAnswer or EnhancedAnswer]
-Reason: [Your reasoning]"""
-
-agent = initialize_agent(
-    tools=tools,
-    llm=llm,
-    agent="structured-chat-zero-shot-react-description",
-    verbose=True
-)
-```
----
-# 🎯 **Final Outcome**
-- If the retrieved document is **relevant**, the AI answers immediately.  
-- If the information is **uncertain**, the AI **optimizes** the search before answering.  
-- The AI agent makes **independent decisions** for the best response. 🚀  
-
-This **smart decision-making** process makes the AI **more intelligent and reliable** for answering document-based queries. 📖✨  
-
----
-# 📝 **Step 6: Query Interface with Autonomous Decision-Making**  
-
-This step introduces an **interactive query interface** that allows users to input their questions.  
-The AI agent **analyzes** the query, **retrieves relevant document chunks**, and **decides how to answer**  
-based on confidence scores. The decision-making is fully **autonomous**, ensuring **optimized responses**.
-
----
-
-## 🎯 **How the Query Interface Works**  
-
-### 🔹 **User Input & Query Submission**  
-- You have to enters their query in the input field (`query_input`).
-- Clicking the "Submit" button (`submit_btn`) triggers the `handle_query` function.
-
-# 🔍 Step-by-Step Query Processing Flow
-**1️⃣ Step 1: Query Asked**
-- The user inputs a query.
-- The query is displayed in a notification box for reference.
-
-**2️⃣ Step 2: Retrieve Relevant Chunks**
-- The query is searched in the document database (ChromaDB).
-- The most relevant text chunks are retrieved, along with their confidence scores.
-- Retrieved chunks are displayed in a green notification box.
-
-**3️⃣ Step 3: Generate an Initial (Poor) Answer**
-- The system tries to generate an answer from the retrieved chunks.
-- This is an unoptimized response that might be incorrect due to low confidence scores.
-- The poor answer is displayed in a red notification box.
-
-**4️⃣ Step 4: AI Agent Decision**
-- The AI agent analyzes the retrieved chunks and confidence scores.
-- It decides whether to:
-  - Use the DirectAnswer tool (if confidence scores are high).
-  - Use the EnhancedAnswer tool (if confidence scores are low).
-- The agent's decision is displayed in a magenta notification box.
-
-**5️⃣ Step 5: Generate the Final Answer**
-
-✅ If the agent chooses "DirectAnswer"
-- The initial answer is used without modifications.
-
-✅ If the agent chooses "EnhancedAnswer"
-- The query is refined by agnet using a Knowledge Graph.
--A new set of relevant document chunks is retrieved.
+- A new set of relevant document chunks is retrieved.
 - A more optimized answer is generated.
 
 ---
