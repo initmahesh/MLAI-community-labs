@@ -7,7 +7,7 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 ### **What You'll Achieve** 🎯
 
-By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retrieval-Augmented Generation)** and how it revolutionizes the way we interact with documents. Here's what you'll learn:
+By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retrieval-Augmented Generation)** and how to we solve the accuracy problem in scenarios where a simple RAG pipeline fails.
 
 ---
 
@@ -43,43 +43,6 @@ By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retri
 ### **Let's Get Started!** 🚀
 Ready to dive in? Follow the steps in the lab to see how these concepts come to life in code. By the end, you'll not only understand **Agentic RAG** but also know how to implement it in real-world applications.
 
-### **What You'll Achieve** 🎯
-
-By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retrieval-Augmented Generation)** and how it revolutionizes the way we interact with documents. Here's what you'll learn:
-
----
-
-#### **1. Storing Documents Intelligently Using Vector Embeddings** 🗂️
-- **What**: Learn how to convert documents into numerical representations (vector embeddings) that capture their meaning.
-- **How**: Use **ChromaDB**, a vector database, to store and organize these embeddings efficiently.
-- **Why**: This allows the system to understand and retrieve information based on semantic meaning, not just keywords.
-
----
-
-#### **2. Retrieving Information with Semantic Understanding** 🔍
-- **What**: Discover how to fetch relevant information from a large document collection using semantic search.
-- **How**: Leverage **LangChain** to query ChromaDB and retrieve the most contextually relevant chunks.
-- **Why**: This ensures that the system understands the intent behind your questions, not just the literal words.
-
----
-
-#### **3. Generating Context-Aware Answers Using Agentic Decision-Making** 🤖
-- **What**: Explore how **Agentic RAG** makes smart decisions about how to answer questions.
-- **How**: Implement a decision-making agent that evaluates the confidence of retrieved information and chooses the best response strategy.
-- **Why**: This allows the system to provide accurate and contextually appropriate answers, even when the information is incomplete or ambiguous.
-
----
-
-#### **4. Optimizing Responses Through Knowledge Graph Enhancements** 🧠
-- **What**: Learn how to enhance answers by connecting related concepts using a knowledge graph.
-- **How**: Build a knowledge graph that maps terms and relationships (e.g., "Master Agreement" → "Contract") to improve understanding.
-- **Why**: This enables the system to provide more comprehensive and insightful answers by leveraging contextual connections.
-
----
-
-
-### **Let's Get Started!** 🚀
-Ready to dive in? Follow the steps in the lab to see how these concepts come to life in code. By the end, you'll not only understand **Agentic RAG** but also know how to implement it in real-world applications.
 
 ![System Flow](Flow_Diagram.png)
 
