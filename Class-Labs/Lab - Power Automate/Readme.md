@@ -26,7 +26,10 @@ With **150+ standard connectors** (and additional premium ones), Power Automate 
 
 # Let's Start with My Flow  
 
-In this section, we will go through the **flow** that I have created using Power Automate. This flow automates tasks efficiently and enhances productivity. Let's dive in! 🚀  
+In this section, we will go through the **flow** that I have created using Power Automate. This flow automates tasks efficiently and enhances productivity. Let's dive in! 🚀 
+
+![Flow Diagram](Images/flow.png)  
+
 
 ## Step 1: Importing the Flow  
 
