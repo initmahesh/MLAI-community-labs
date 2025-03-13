@@ -92,19 +92,31 @@ Now that your flow has been successfully imported, you can see it in your **My F
 > **Feel free to explore and experiment with it!** 🎯  
 > You can modify actions, add conditions, or test the flow to ensure it works as expected.  
 
-# Step 6 : Demo Video  
+
+
+# Step 6: Demo Video  
 
 ## Demo Video 1  
 In this video, I extract all the key terms from the MSA document and pass them to the user, showing the extracted terms.  
-![Watch Demo Video 1](Videos/v1.mp4)  
+<video width="600" controls>
+  <source src="Videos/v1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>  
 
 ## Demo Video 2  
 If any key term is not found, the system enhances the query and tests again. If still not found, it sends an email to the admin for manual review.  
-![Watch Demo Video 2](Videos/v2.mp4)  
+<video width="600" controls>
+  <source src="Videos/v2.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>  
 
 ## Demo Video 3  
 If the attachment contains irrelevant content, the flow will not proceed.  
-[Watch Demo Video 3](Videos/v3.mp4)  
+<video width="600" controls>
+  <source src="Videos/v3.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>  
+
 
 
 🚀 **Start automating now!**  
