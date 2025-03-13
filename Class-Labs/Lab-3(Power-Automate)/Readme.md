@@ -55,7 +55,7 @@ In this section, we will go through the **flow** that I have created using Power
 ## Step 2 : Uploading the Flow  
 
 > **1. Select and upload the **ZIP file** that has been provided to you in the repo.** 
-📥 **Download the ZIP file from here:** [Insert Download Link] 
+📥 **Download the ZIP file from here:** [https://github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Power-Automate)/PowerAutomateLab_20250312211304.zip] 
 ![Power Automate Dashboard](Images/Screenshot%20(1747).png)
 
 > **2. Click on "Upload"** 
