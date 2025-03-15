@@ -4,7 +4,6 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2(Understanding%20RAG)/Lab-2.1(Generating-Response-without-RAG)/WithoutRAGGeneration.ipynb>)
 
-
 # Welcome to Lab 1
 
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
@@ -13,8 +12,8 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 ### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
-1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md))
-2. Google colab setup. Follow the Instructions here to set them up: [Click Here](<../Lab-0(Setting-up-Google-Colab)/README.md>)
+1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)#firstly-visit-the-openai-playground>))
+2. Google colab setup. Follow the Instructions here to set them up: [Click Here](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)#creating-a-runtime>))
 3. You can find some contracts here: [Small Doc](AWS1.pdf),
    [Large Doc](credit_agreement.pdf)
 
