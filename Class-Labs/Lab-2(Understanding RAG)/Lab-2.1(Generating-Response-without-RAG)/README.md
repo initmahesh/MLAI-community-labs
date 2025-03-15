@@ -4,7 +4,6 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2(Understanding%20RAG)/Lab-2.1(Generating-Response-without-RAG)/WithoutRAGGeneration.ipynb>)
 
-
 # Welcome to Lab 1
 
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
@@ -20,7 +19,7 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 ### **_ You can use GPT-3.5 key from OpenAI. _**
 
-You can create OpenAI key using these Instruction: [Click Here](../../Lab2-solargen-with-function-calling/openaiAPI.md)
+You can create OpenAI key using these Instruction: [Click Here](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites))
 
 ## First Let Us learn the basics of Prompt Engineering (Essential for using GPT)
 
