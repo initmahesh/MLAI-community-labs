@@ -13,7 +13,7 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 ### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
 1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)))
-2. Google colab setup. Follow the Instructions here to set them up: [Click Here](<../Lab-0(Setting-up-Google-Colab)/README.md>)
+2. Google colab setup. Follow the Instructions here to set them up: [Click Here](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)#creating-a-runtime)
 3. You can find some contracts here: [Small Doc](AWS1.pdf),
    [Large Doc](credit_agreement.pdf)
 
