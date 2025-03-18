@@ -1,14 +1,8 @@
-## What is Agentic AI?
-At its core, Agentic AI is a type of AI that’s all about autonomy. This means that it can make decisions, take actions, and even learn on its own to achieve specific goals. It’s kind of like having a virtual assistant that can think, reason, and adapt to changing circumstances without needing constant direction.
+## Enterprise scale automation with MSFT Power Automate
 
-## What is a Tool in Agents?  
-In the context of agents, a tool is a function or interface that an agent can use to perform specific actions or tasks. Tools extend the agent's capabilities, allowing it to interact with the environment or access external systems to gather information or execute commands. For example, an agent might use a tool to retrieve the current time, access an external database, or perform web searches.
+For this lab, we are using Power Automate to create and manage automated workflows. This tool helps streamline repetitive tasks, improve efficiency, and integrate various services seamlessly. 
 
-## What Is Reflection?
-Reflection is a prompting strategy used to improve the quality and success rate of agents and similar AI systems. It involves prompting an LLM to reflect on and critique its past actions, sometimes incorporating additional external information such as tools and observations.
-
-## 📌 Note
-For this lab, we are using **Power Automate** to create and manage automated workflows. This tool helps streamline repetitive tasks, improve efficiency, and integrate various services seamlessly.  
+In this flow, you will learn how you can automate workflows, we will also cover reflection where we will check if the extracted terms meet our expectation. For example, if they all terms are extracted and they don't have "not found" key term from contract - in cases where we do have not found terms we call "human in loop" to verify and respond to customers.
 
 ## What is Power Automate?  
 
@@ -20,7 +14,8 @@ With **150+ standard connectors** (and additional premium ones), Power Automate 
 
 
 ### Step 1:  
-> **Click on** [this link](https://make.powerautomate.com) **to be redirected to Power Automate.**
+> **Click on** [this link](https://make.powerautomate.com) **to be redirected to Power Automate. You need a work or college email address to create your account to get a 30 days free trail access.**
+![Create Account Button](Images/Screenshot%20(1783).png)
 
 ### Step 2:  
 > **Click on "Create one"** to start setting up your account.  
@@ -55,8 +50,10 @@ In this section, we will go through the **flow** that I have created using Power
 ## Step 2 : Uploading the Flow  
 
 > **1. Select and upload the **ZIP file** that has been provided to you in the repo.** 
-📥 **Download the ZIP file from here:** [https://github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Power-Automate)/PowerAutomateLab_20250312211304.zip] 
-![Power Automate Dashboard](Images/Screenshot%20(1747).png)
+
+## **"This is the ZIP file you need. Just click on the file and download it from the top."**
+![Power Automate Dashboard](Images/Screenshot%20(1791).png)
+![Power Automate Dashboard](Images/Screenshot%20(1792).png)
 
 > **2. Click on "Upload"** 
 
@@ -81,13 +78,23 @@ In this section, we will go through the **flow** that I have created using Power
 ### 📌 Step 4 : Final Step: Accessing Your Imported Flow   
 
 > **1. Once you click on "Import", you will see a confirmation message that the package has been imported successfully.**  
-> **2. Click on "Open Flow" to access and review your imported flow.**  
-![Power Automate Dashboard](Images/Screenshot%20(1753).png)
-
+> **2. Once the flow is imported, go to 'My Flow' in the sidebar, click on your flow, and then click 'Turn On,' as shown in the image.**  
+![Power Automate Dashboard](Images/Screenshot%20(1787).png)
+> **3."Now, click on the 'Edit' option."**
+![Power Automate Dashboard](Images/Screenshot%20(1788).png)
 ## Step 5 : Interacting with Your Flow  
 
 Now that your flow has been successfully imported, you can see it in your **My Flows** section.  
 ![Power Automate Dashboard](Images/Screenshot%20(1754).png)
+
+## **Note : In Condition 3, if the condition is false, click on the Email component. In the sidebar, provide a different email address to which the document should be sent for human evaluation. Enter the email of the specific human reviewer or admin.**
+
+![Power Automate Dashboard](Images/Screenshot%20(1790).png)
+
+
+## **When using this agent, you might be prompted to log in to an agent account. You will need to log in to another app, and you will receive a notification indicating that login is required to access it. Please note that the agent account comes with a 30-day free trial.**
+![Power Automate Dashboard](Images/Screenshot%20(1793).png)
+
 
 > **Feel free to explore and experiment with it!** 🎯  
 > You can modify actions, add conditions, or test the flow to ensure it works as expected.  
