@@ -12,9 +12,11 @@ With **150+ standard connectors** (and additional premium ones), Power Automate 
 
 🎥 **Watch this video to learn more:** [Power Automate Overview](https://youtu.be/yVAEH6-ui0w?si=Ne3pXYQp-uZnHGOR)  
 
+# Note: Account Creation Prerequisite {#note-account-creation-prerequisite data-source-line="16"}
+**To create your account and access the 30-day free trial, you will need a valid work or college email address. If you don't have a work or college email address, please don't go further. Reach out to our team and they will help you.**
 
 ### Step 1:  
-> **Click on** [this link](https://make.powerautomate.com) **to be redirected to Power Automate. You need a work or college email address to create your account to get a 30 days free trail access.**
+> **Click on** [this link](https://make.powerautomate.com) **to be redirected to Power Automate.**
 ![Create Account Button](Images/Screenshot%20(1783).png)
 
 ### Step 2:  
