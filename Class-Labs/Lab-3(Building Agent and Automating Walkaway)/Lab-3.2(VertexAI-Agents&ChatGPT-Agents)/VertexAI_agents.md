@@ -25,6 +25,8 @@ Here One Main Agent `Car Repair Agent` will call `CRM Agent` that will use the A
 - Create a service accout and project in google cloud console.
   [Google Console Platform](https://console.cloud.google.com/)
 
+- Check out this [101 guide](https://medium.com/@viviennediegoencarnacion/step-by-step-guide-to-get-started-with-google-cloud-platform-for-data-scientists-76e0f5834650) on creating an account on google cloud
+
   Service account:[Link Here tutorial](https://cloud.google.com/iam/docs/service-accounts-create#console)
 
   Project account:[Link Here tutorial](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
