@@ -7,11 +7,12 @@ In this readme we will show you how you can build you own agent and use it for g
 ## So why do we need Agents?
 
 Agents are like your customized personal assistants.
-* They will learn whatever you train them to become.
-* They can refer to external knowledge sources and API.
-* They have information about external world knowledge.
-* They can answer questions in a proper format that you provide.
-* Integrate them to your existing system and use it for generating responses.
+
+- They will learn whatever you train them to become.
+- They can refer to external knowledge sources and API.
+- They have information about external world knowledge.
+- They can answer questions in a proper format that you provide.
+- Integrate them to your existing system and use it for generating responses.
 
 Also Here we will be using Multi Agent Configuration:
 
@@ -19,57 +20,62 @@ Also Here we will be using Multi Agent Configuration:
 
 Here One Main Agent `Car Repair Agent` will call `CRM Agent` that will use the Airtable tool to save data in the table. Also the Car Repair Agent will be interactive Car mechanic that can use the Places API to get nearest Garage information.
 
-
 ## Prerequisites
 
-* Create a service accout and project in google cloud console.
+- Create a service accout and project in google cloud console.
+  [Google Console Platform](https://console.cloud.google.com/)
+
+- Check out this [101 guide](https://medium.com/@viviennediegoencarnacion/step-by-step-guide-to-get-started-with-google-cloud-platform-for-data-scientists-76e0f5834650) on creating an account on google cloud
 
   Service account:[Link Here tutorial](https://cloud.google.com/iam/docs/service-accounts-create#console)
-  
+
   Project account:[Link Here tutorial](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
-* API for integrating with the Agent
-  
+
+- API for integrating with the Agent
+
   For example: Here we are using Google Places API for finding different places and their information.
 
   To get your own Google Places API follow the instruction given below:
 
   1. Go to Google Console platform.
-     
+
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4c97b699-aa5d-4e94-8af4-27a300e5d796)
+
   2. Click on the button shown below in the image.
- 
+
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ed8ffc44-6b32-4d8d-9b97-5bca9a92eb71)
-     
-  3.  Click on the API & Services show below.
- 
-     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/307b0430-cfd0-487d-a16d-cf3af2f6e566)
+
+  3. Click on the API & Services show below.
+
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/307b0430-cfd0-487d-a16d-cf3af2f6e566)
 
   4. Click on the Enable APIS and Services
-     
+
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/6e98b9af-a227-4fd0-a208-1681de0f4031)
 
   5. Search for the Places API
-     
+
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c5b82ffc-8554-4495-830d-09fed32883c5)
-     
+
   6. You need to enable both of these APIs.
 
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/afff0b09-dba3-44c0-bead-d1ffb401e3e6)
-     
+
   7. Click on API and enable it and you will see something like this. CLick on the manage button
- 
+
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a5008144-b462-470b-a54b-ba88cf01a849)
-     
+
   8. You will land on this page.
-     
+
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ac3b2288-509c-4787-9f77-e181cec78444)
 
      Click on the Keys & Credentials
 
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8c139e9f-1c27-445f-a1df-c31377917b3e)
+
   9. You will be landed on this page.
- 
-      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5ca369e9-ff89-487a-a876-27b19266b3a9)
+
+     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5ca369e9-ff89-487a-a876-27b19266b3a9)
 
      Click on the show key button
 
@@ -79,16 +85,15 @@ Here One Main Agent `Car Repair Agent` will call `CRM Agent` that will use the A
 
       ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4ba5f2ff-b33f-4cc5-a250-12b4a1529bd7)
 
-* ### Any Airtable related query please refer to the instructions provide in the following file:
+- ### Any Airtable related query please refer to the instructions provide in the following file:
 
-    [Click here](../../Lab2-solargen-with-function-calling/airtableapi.md)
-    
-    
-    After creating an airtable account and setting up the API key, and adding key terms you should see something like this:
-    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/54a73384-eb81-4e4e-9cdd-29cbd496709e)
+  [Click here](../../Lab2-solargen-with-function-calling/airtableapi.md)
 
+  After creating an airtable account and setting up the API key, and adding key terms you should see something like this:
+  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/54a73384-eb81-4e4e-9cdd-29cbd496709e)
 
 ## Starting the creation of the Agent
+
 1. Go to Google console platform and search for **Agents Builder** in the search tab.
    [Google Console Platform](https://console.cloud.google.com/)
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/889200ff-9afc-43d8-9247-c36b0d510ed2)
@@ -115,11 +120,11 @@ Now we have created our App and we will move on to customizing it.
 ## Configuration of the First Agent
 
 1. First set the Name of the Agent, here this Agent will be responsible for Inserting data to Airtable CRM, so we name the agent as `CRM_Agent`
-   
+
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5557733b-c688-4853-b8d4-225b6cfcf9ac)
 
 2. Then we set the description of the Agent as
-   
+
    `You are a database engineer and you need to make entries to a CRM table.`
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/42f138fc-bb4e-49b2-a5dc-7d032573b8dd)
@@ -143,7 +148,7 @@ Now we have created our App and we will move on to customizing it.
 7. Set the description of the tool as
 
    `This tool is used to call the Airtable CRM to save the information.`
-   
+
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2d5cb5fd-a1fd-4c94-9adf-df19ddefa994)
 
 8. Then we will setup the `Schema`, Select `YAML` as the type
@@ -153,98 +158,95 @@ Now we have created our App and we will move on to customizing it.
 9. Copy paste the schema given below and replace the path of the Airtable with you own.
 
    ```yaml
-    openapi: 3.0.1
-    info:
-      title: Airtable CRM insert data API
-      description: Inserts the customer information in the Airtable CRM using the API
-      version: "1.0.0"
-    
-    servers:
-      - url: https://api.airtable.com/v0 # Base URL for the API
-    
-    # Paths for the API endpoints
-    paths:
-      /appdp97LZaCHF7uuy/Table%201:
-        post:
-        #   parameters:
-        #       - in: query
-        #         name: fields
-        #         schema:
-        #           type: string
-        #           default: "places.name,places.formatted_address,places.price_level"
-          summary: Insert customer information in the table
-          operationId: customerInformation
-          requestBody:
-            required: true
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    records:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          fields:
-                            type: object
-                            properties:
-                            # type: object
-                            # properties:
-                              Name:
-                                type: string
-                                description: Name of the customer.
-                              PhoneNumber:
-                                type: number
-                                description: Phone Number of the customer.
-                              CurrentAddress:
-                                type: string
-                                description: Current address of the customer.
-                              
-                        
-          responses:
-            '200':
-              description: Successful response
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                        result:
-                          type: string
-                          description: The response from the API after sending POST request.
-                    
-                    # $ref: "#/components/schemas/placeResponse"
-                
+   openapi: 3.0.1
+   info:
+     title: Airtable CRM insert data API
+     description: Inserts the customer information in the Airtable CRM using the API
+     version: '1.0.0'
+
+   servers:
+     - url: https://api.airtable.com/v0 # Base URL for the API
+
+   # Paths for the API endpoints
+   paths:
+     /appdp97LZaCHF7uuy/Table%201:
+       post:
+         #   parameters:
+         #       - in: query
+         #         name: fields
+         #         schema:
+         #           type: string
+         #           default: "places.name,places.formatted_address,places.price_level"
+         summary: Insert customer information in the table
+         operationId: customerInformation
+         requestBody:
+           required: true
+           content:
+             application/json:
+               schema:
+                 type: object
+                 properties:
+                   records:
+                     type: array
+                     items:
+                       type: object
+                       properties:
+                         fields:
+                           type: object
+                           properties:
+                             # type: object
+                             # properties:
+                             Name:
+                               type: string
+                               description: Name of the customer.
+                             PhoneNumber:
+                               type: number
+                               description: Phone Number of the customer.
+                             CurrentAddress:
+                               type: string
+                               description: Current address of the customer.
+
+         responses:
+           '200':
+             description: Successful response
+             content:
+               application/json:
+                 schema:
+                   type: object
+                   properties:
+                     result:
+                       type: string
+                       description: The response from the API after sending POST request.
+
+                   # $ref: "#/components/schemas/placeResponse"
    ```
-    
-    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/11aa0ea6-dd56-43e5-bfb6-071bc8de68b4)
+
+   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/11aa0ea6-dd56-43e5-bfb6-071bc8de68b4)
 
 10. Select the `Bearer Token` option in the `Authentication type` and paste your Airtable Token in the field like shown below.
 
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/6dc34935-2fca-465a-8583-9f8ea33a7b74)
-    
+
 11. Now Click on `Save`
 
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/409589b5-4a57-4c13-82f8-2d897de99d61)
-    
-13. Now we need to go back to the CRM Agent again, so click on the Agents option in the side bar.
-    
+
+12. Now we need to go back to the CRM Agent again, so click on the Agents option in the side bar.
+
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ba5ebe0-70f3-4566-a7d7-32bebf72f675)
 
-14. Click on the `CRM_Agent`.
+13. Click on the `CRM_Agent`.
 
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a2947fed-b032-4461-a10b-0f0fd6b6b1ba)
-    
-16. This Agent will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
 
-   ```
-     - Take the Name, Phone Number, Current Address and use ${TOOL:Airtable CRM} to save them in the CRM
-     - Format the Phone Number as String before calling the tool.
-   ```
-    
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/74aea9bc-0e0c-4ed5-954c-cef1d1b0ea2a)
+14. This Agent will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
 
+```
+  - Take the Name, Phone Number, Current Address and use ${TOOL:Airtable CRM} to save them in the CRM
+  - Format the Phone Number as String before calling the tool.
+```
+
+![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/74aea9bc-0e0c-4ed5-954c-cef1d1b0ea2a)
 
 17. In the Available tools section you will see the tool that you just created for Airtable. Click on it.
 
@@ -254,9 +256,7 @@ Now we have created our App and we will move on to customizing it.
 
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/47a0795d-4902-4e7b-9da7-f8629deef34f)
 
-
 Now, your first agent is ready. Lets Configure our second agent.
-   
 
 ## Configuration of the Second Agent
 
@@ -272,7 +272,7 @@ Now, your first agent is ready. Lets Configure our second agent.
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a93c8fe9-6975-4c1e-8f4f-18506191274b)
 
-1. Then we will set the Goal of the Agent
+4. Then we will set the Goal of the Agent
 
    In our case we are building a car repair agent who is helpful in answering questions related to the car problems. So we set the Goal as per the requirement as such.
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/87c68c43-a5a9-434c-9f54-354171c40753)
@@ -281,7 +281,7 @@ Now, your first agent is ready. Lets Configure our second agent.
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/b62cac3a-bfcf-4180-9ba6-c16f8fa062fe)
 
-2. Next step we will create a Tool for the agent to use.
+5. Next step we will create a Tool for the agent to use.
 
    Head over to the Tools section and click on it
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/c0f1d2c1-6d20-4db4-a940-6d60b9ff8fca)
@@ -289,105 +289,116 @@ Now, your first agent is ready. Lets Configure our second agent.
    Click on the create button. This is what you will be shown
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/05c4c377-f7a8-407d-84a1-b22bdde4052f)
-   * Select the type of the tool as OpenAPI
+
+   - Select the type of the tool as OpenAPI
 
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/670010a6-13a1-4ff1-91e5-26a2074f2f62)
 
-   * Also set the description of the Tools. As we are integrating the Places API from Google we will set the description as that.
+   - Also set the description of the Tools. As we are integrating the Places API from Google we will set the description as that.
 
      ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/af74736d-1cec-43d7-9037-b42657dac564)
 
-   * Now we will create an OpenAPI schema that we need to provide the tool for making API calls and getting the request. This will help the agent to know when it needs to call the API on its own, without having to explicitly mention it.
-  
+   - Now we will create an OpenAPI schema that we need to provide the tool for making API calls and getting the request. This will help the agent to know when it needs to call the API on its own, without having to explicitly mention it.
+
      **Open API schema**
 
      In our case we write the Open API schema in YAML format, but if you are already well versed in writing schema you can choose JSONL format too and try to create you own, else feel free to follow along.
 
-   * *   ```YAML
-          openapi: 3.0.1
-          info:
-            title: Google Places Text Search API
-            description: Search for places by text query.
-            version: "1.0.0"
-         ```
-         In this sction we are mentioning the version of Open API schema that we will be using. We are going with the latest version currently.
+   - - ```YAML
+        openapi: 3.0.1
+        info:
+          title: Google Places Text Search API
+          description: Search for places by text query.
+          version: "1.0.0"
+       ```
 
-         The **info** section mentions the title of the OpenAPI schema, the description of what this schema does and version of our schema.
+       In this sction we are mentioning the version of Open API schema that we will be using. We are going with the latest version currently.
 
-    * * ```YAML
-        servers:
-            - url: https://places.googleapis.com/v1  # Base URL for the API
-        ```
-        Here, we are setting the base URL of the API, that the Agent is supposed to call.
-    * * ```YAML
-        paths:
-          /places:searchText?fields=places.displayName,places.formatted_address,places.price_level:
-            post:
-        ```
-        Here we are mentioning the path on which a Post request will be sent.
+       The **info** section mentions the title of the OpenAPI schema, the description of what this schema does and version of our schema.
 
-        (Notice how we have specified a query parameter in the path itself as (fields=places.displayName,places.formatted_address,places.price_level)? This is done because the Tools in Agent builder does not provide more than one field for mentioning the query parameter which is already taken up by the API key. Same goes for Request Headers.)
-    * * ```YAML
-        summary: Search for places by text query.
-        operationId: searchPlaces
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  textQuery:
-                    type: string
-                    description: Text query to search for places.
-        ```
-        The POST request sent should have a request body. So, here we are describing the requestBody and the contents of the requestBody. Also, the summary describes the POST request.
+   - - ```YAML
+       servers:
+           - url: https://places.googleapis.com/v1  # Base URL for the API
+       ```
+       Here, we are setting the base URL of the API, that the Agent is supposed to call.
+   - - ```YAML
+       paths:
+         /places:searchText?fields=places.displayName,places.formatted_address,places.price_level:
+           post:
+       ```
 
-        The content section describes the type of the payload, and the properties describes the variables and they type with descriptions.
-    * * ```YAML
-        responses:
-          '200':
-            description: Successful response
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/placeResponse"
-        ```
+       Here we are mentioning the path on which a Post request will be sent.
 
-        This section mentions the responses, and their description and the content should be taken from the Path "#/components/schemas/placeResponse" which will be mentioned below.
-    * * ```YAML
-        components:
-          schemas:
-            placesNames:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: Name of the place.
-                formattedAddress:
-                  type: string
-                  description: Formatted address of the place.
-                priceLevel:
-                  type: string
-                  description: Price level of the place (e.g., PRICE_LEVEL_EXPENSIVE).
-            placeResponse:
-              type: object
-              properties:
-                places:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/placesNames"
-        ```
-        This section mentions the components that we are referencing in the point above as "#/components/schemas/placeResponse". So, lets understand the flow:
+       (Notice how we have specified a query parameter in the path itself as (fields=places.displayName,places.formatted_address,places.price_level)? This is done because the Tools in Agent builder does not provide more than one field for mentioning the query parameter which is already taken up by the API key. Same goes for Request Headers.)
 
-        Path: "#/components/schemas/placeResponse"
+   - - ```YAML
+       summary: Search for places by text query.
+       operationId: searchPlaces
+       requestBody:
+         required: true
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 textQuery:
+                   type: string
+                   description: Text query to search for places.
+       ```
 
-        References the PlaceResponse schema from the components section which in turn references "#/components/schemas/placesNames", this will call the placesNames schema that in turn mentions the contents and the description of each property.
-        Properties:
-        * * * name: The name of the place and type as string
-            * formattedAddress: The formatted address of the place.
-            * priceLevel: The pricing level of the place from high to low.
+       The POST request sent should have a request body. So, here we are describing the requestBody and the contents of the requestBody. Also, the summary describes the POST request.
+
+       The content section describes the type of the payload, and the properties describes the variables and they type with descriptions.
+
+   - - ```YAML
+       responses:
+         '200':
+           description: Successful response
+           content:
+             application/json:
+               schema:
+                 $ref: "#/components/schemas/placeResponse"
+       ```
+
+       This section mentions the responses, and their description and the content should be taken from the Path "#/components/schemas/placeResponse" which will be mentioned below.
+
+   - - ```YAML
+       components:
+         schemas:
+           placesNames:
+             type: object
+             properties:
+               name:
+                 type: string
+                 description: Name of the place.
+               formattedAddress:
+                 type: string
+                 description: Formatted address of the place.
+               priceLevel:
+                 type: string
+                 description: Price level of the place (e.g., PRICE_LEVEL_EXPENSIVE).
+           placeResponse:
+             type: object
+             properties:
+               places:
+                 type: array
+                 items:
+                   $ref: "#/components/schemas/placesNames"
+       ```
+
+       This section mentions the components that we are referencing in the point above as "#/components/schemas/placeResponse". So, lets understand the flow:
+
+       Path: "#/components/schemas/placeResponse"
+
+       References the PlaceResponse schema from the components section which in turn references "#/components/schemas/placesNames", this will call the placesNames schema that in turn mentions the contents and the description of each property.
+       Properties:
+
+       - - - name: The name of the place and type as string
+           - formattedAddress: The formatted address of the place.
+           - priceLevel: The pricing level of the place from high to low.
+
 ## The Full Open AI Schema
+
 ```YAML
 openapi: 3.0.1
 info:
@@ -420,7 +431,7 @@ paths:
                 textQuery:
                   type: string
                   description: Text query to search for places.
-                    
+
       responses:
         '200':
           description: Successful response
@@ -428,7 +439,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/placeResponse"
-                
+
 components:
   schemas:
     placesNames:
@@ -453,24 +464,28 @@ components:
 ```
 
 ## Set the Authentication
+
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/030414af-cbac-493a-8cf4-aca59d33ed31)
 
-* Select the Authentication type as API key
-* Set the API key location as Query string parameter
+- Select the Authentication type as API key
+- Set the API key location as Query string parameter
 
   Specify the name as the one required by the API. In our case the name is simply "key". Also enter the API key secret in the field the one which you got by enabling the Places API in google console while doing the pre-requisite section.
 
 ## Continuing on our Agents creation.
-* Select the tool that you just created in the available tools
+
+- Select the tool that you just created in the available tools
   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d3ef8ad9-2abe-4f3f-84e1-c7b5010d578b)
 
-* The last step is to create the Instructions.
+- The last step is to create the Instructions.
 
   In the Instructions set, you will need to mention the tool that you created along with the situation when the agent needs to call the tool and also the Agent name.
+
   ```
   ${TOOL: tool name}
   &{AGENT: Agent name}
   ```
+
   Full Instructions-
 
   ```
@@ -512,8 +527,8 @@ We mention the Agent to `use` a Tool whereas we mention it to `route to` another
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/14f40211-be27-4cf5-b012-df08a9bd4f8a)
 
-  
 ## Output
+
 You can test out your agent by talkin to it in the Preview agent tab.
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/ae83ffc0-e8af-4acf-aa13-b0b628ed8955)
@@ -525,5 +540,3 @@ You can test out your agent by talkin to it in the Preview agent tab.
 Also we can see the data has been stored in the Airtable CRM:
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2ed7c136-7c9a-4318-94ae-bd8cb9fdc7b4)
-
-
