@@ -260,7 +260,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 226
+          "height": 227
         },
         "dragging": false
       },
@@ -269,7 +269,7 @@
         "type": "genericNode",
         "position": {
           "x": 873.8059621783375,
-          "y": -496.35076866871475
+          "y": -488.59859004787404
         },
         "data": {
           "node": {
@@ -422,7 +422,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 339
+          "height": 341
         },
         "dragging": false
       },
@@ -715,7 +715,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 521
+          "height": 523
         },
         "dragging": false
       },
@@ -723,8 +723,8 @@
         "id": "CrewAIAgentComponent-RZHNp",
         "type": "genericNode",
         "position": {
-          "x": 884.6416791104454,
-          "y": 1219.0353061920136
+          "x": 902.892890831425,
+          "y": 1285.1103277996067
         },
         "data": {
           "node": {
@@ -1008,7 +1008,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 521
+          "height": 523
         },
         "dragging": false
       },
@@ -1301,7 +1301,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 521
+          "height": 523
         },
         "dragging": false
       },
@@ -1309,8 +1309,8 @@
         "id": "OpenAIModel-YVaVm",
         "type": "genericNode",
         "position": {
-          "x": -49.47616282123403,
-          "y": 601.0742171733854
+          "x": -602.1123271648942,
+          "y": 656.4179227932073
         },
         "data": {
           "node": {
@@ -1686,7 +1686,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 651
+          "height": 653
         },
         "dragging": false
       },
@@ -1899,7 +1899,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 437
+          "height": 439
         },
         "dragging": false
       },
@@ -2112,7 +2112,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 437
+          "height": 439
         },
         "dragging": false
       },
@@ -2325,7 +2325,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 437
+          "height": 439
         },
         "dragging": false
       },
@@ -2333,8 +2333,8 @@
         "id": "SequentialCrewComponent-88bEW",
         "type": "genericNode",
         "position": {
-          "x": 2515.8076184288657,
-          "y": 686.8233858379398
+          "x": 2822.6794489065824,
+          "y": 765.2461869600228
         },
         "data": {
           "node": {
@@ -2543,7 +2543,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 210
+          "height": 211
         },
         "dragging": false
       },
@@ -2551,8 +2551,8 @@
         "id": "ChatOutput-afVJ6",
         "type": "genericNode",
         "position": {
-          "x": 3081.209547514739,
-          "y": 777.0312509841624
+          "x": 3708.5919564914034,
+          "y": 961.1543492707922
         },
         "data": {
           "node": {
@@ -2852,9 +2852,298 @@
         "selected": false,
         "measured": {
           "width": 192,
-          "height": 65
+          "height": 66
         },
         "dragging": false
+      },
+      {
+        "id": "note-WJAi5",
+        "type": "noteNode",
+        "position": {
+          "x": -267.97036721404544,
+          "y": -577.6244963391439
+        },
+        "data": {
+          "node": {
+            "description": "# **File Component**  \n### This is the file component where you need to upload the MSA document.\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "neutral"
+            }
+          },
+          "type": "note",
+          "id": "note-WJAi5"
+        },
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-m80hO",
+        "type": "noteNode",
+        "position": {
+          "x": 516.9512614669615,
+          "y": -96.77579304655859
+        },
+        "data": {
+          "node": {
+            "description": "# **First Crew AI Agent**  \n\n### This is my Crew AI agent, which extracts key terms from the document, such as payment methods and limitation of liability etc.  \n\n## **Agent Overview:**  \n- **Role:** PDF Data Extractor  \n- **Goal:** Extract key contract terms from PDFs  \n- **Backstory:** Expert in extracting contract terms from PDFs  \n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-m80hO"
+        },
+        "measured": {
+          "width": 325,
+          "height": 438
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-fhotE",
+        "type": "noteNode",
+        "position": {
+          "x": 525.427546893397,
+          "y": 547.9286022758249
+        },
+        "data": {
+          "node": {
+            "description": "# **Second AgentComparison AI Agent**  \n\n### This is my second AI agent, which compares the extracted terms with the reference values. If you click on \"Goal Prompt,\" you will see the reference values being used.  \n\n## **Agent Overview:**  \n- **Role:** Data Comparison Analyst  \n- **Goal:** Compare contract terms with reference values  \n- **Reference Values:**  \n  ```json\n  {\n    \"limitation of liability\": \"30 days\",\n    \"owner expiry date\": \"30 days\",\n    \"notice period\": \"30 days\",\n    \"agreement duration\": \"12 months\",\n    \"payment terms\": \"30 days\",\n    \"confidentiality period\": \"3 years\",\n    \"insurance coverage\": \"$1,000,000\",\n    \"maximum monthly hours\": \"120\"\n  }\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-fhotE"
+        },
+        "measured": {
+          "width": 325,
+          "height": 389
+        },
+        "selected": false,
+        "dragging": false,
+        "width": 324,
+        "height": 389,
+        "resizing": false
+      },
+      {
+        "id": "note-ufPA8",
+        "type": "noteNode",
+        "position": {
+          "x": 868.708456489182,
+          "y": -847.1245249702978
+        },
+        "data": {
+          "node": {
+            "description": "# **Data to Message Component**  \n### This component extracts data from the PDF and converts it into plain text or message format.\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "neutral"
+            }
+          },
+          "type": "note",
+          "id": "note-ufPA8"
+        },
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-D2Bj6",
+        "type": "noteNode",
+        "position": {
+          "x": 551.96669573134,
+          "y": 1141.6883797795965
+        },
+        "data": {
+          "node": {
+            "description": "# **Third Agent Report Generation AI Agent**  \n\n### This is my third AI agent, which generates a report of the mismatched data.  \n\n\n## **Agent Overview:**  \n- **Role:** Compliance Report Generator  \n- **Goal:** Create a detailed report of contract deviations  \n- **Backstory:** Expert in compliance reporting  ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-D2Bj6"
+        },
+        "measured": {
+          "width": 325,
+          "height": 451
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-xSt3M",
+        "type": "noteNode",
+        "position": {
+          "x": 1921.8903987797999,
+          "y": -126.70626028338526
+        },
+        "data": {
+          "node": {
+            "description": "# **Sequential AI Agent Workflow**  \n\n### Each agent performs a sequential task.  \n\n## **Task 1: PDF Data Extraction**  \nThis is the first step, where I extract data from the PDF and send it to my agent. The agent, with the help of an LLM, extracts key terms from the document.  \n\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "rose"
+            }
+          },
+          "type": "note",
+          "id": "note-xSt3M"
+        },
+        "measured": {
+          "width": 325,
+          "height": 346
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-IS0da",
+        "type": "noteNode",
+        "position": {
+          "x": 1942.9262087951913,
+          "y": 601.8517232749132
+        },
+        "data": {
+          "node": {
+            "description": "# **Task 2: Data Comparison**  \n### In this step, the extracted key terms are compared against predefined reference data. My agent analyzes the data and identifies mismatches.  \n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "rose"
+            }
+          },
+          "type": "note",
+          "id": "note-IS0da"
+        },
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-YtMtZ",
+        "type": "noteNode",
+        "position": {
+          "x": 1945.5008910232368,
+          "y": 1103.98930772116
+        },
+        "data": {
+          "node": {
+            "description": "## **Task 3: Compliance Report Generation**  \n### In this final step, my agent creates a comprehensive analysis report detailing the findings, including identified mismatches and deviations.  ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "rose"
+            }
+          },
+          "type": "note",
+          "id": "note-YtMtZ"
+        },
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-buoqy",
+        "type": "noteNode",
+        "position": {
+          "x": 2817.456553003351,
+          "y": 1008.1319592396958
+        },
+        "data": {
+          "node": {
+            "description": "# **Sequential Crew Execution**  \n\nThe **Sequential Crew** will determine the order in which each agent needs to be called, ensuring a structured and logical workflow.  \n\n### **Workflow Execution:**  \n1. **PDF Data Extractor** – Extracts key terms from the document.  \n2. **Data Comparison Analyst** – Compares extracted terms with reference data and identifies mismatches.  \n3. **Compliance Report Generator** – Creates a comprehensive analysis report with findings.  \n\nEach agent is triggered in a sequential manner to ensure smooth data processing and accurate reporting.  \n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "neutral"
+            }
+          },
+          "type": "note",
+          "id": "note-buoqy"
+        },
+        "measured": {
+          "width": 325,
+          "height": 566
+        },
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "note-6hEkX",
+        "type": "noteNode",
+        "position": {
+          "x": 3641.083298145948,
+          "y": 616.3756861540135
+        },
+        "data": {
+          "node": {
+            "description": "# **Final Output Display**  \n\n### After obtaining the final analysis report, we use the **Chat Output Component** to display the results in the **Playground** section.  ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "neutral"
+            }
+          },
+          "type": "note",
+          "id": "note-6hEkX"
+        },
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "selected": false,
+        "dragging": false,
+        "width": 324,
+        "height": 324,
+        "resizing": false
+      },
+      {
+        "id": "note-4Lua4",
+        "type": "noteNode",
+        "position": {
+          "x": -615,
+          "y": 270
+        },
+        "data": {
+          "node": {
+            "description": "# **OpenAI Component**  \n\n### The **OpenAI Component** enables the LLM to assist agents in performing their operations efficiently. It powers the sequential workflow by providing intelligence\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {}
+          },
+          "type": "note",
+          "id": "note-4Lua4"
+        },
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "selected": true
       }
     ],
     "edges": [
@@ -3097,7 +3386,8 @@
             ]
           }
         },
-        "id": "xy-edge__SequentialTaskComponent-FI10m{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}"
+        "id": "xy-edge__SequentialTaskComponent-FI10m{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "className": ""
       },
       {
         "source": "SequentialTaskComponent-gBWf2",
@@ -3122,7 +3412,8 @@
             ]
           }
         },
-        "id": "xy-edge__SequentialTaskComponent-gBWf2{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}"
+        "id": "xy-edge__SequentialTaskComponent-gBWf2{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "className": ""
       },
       {
         "source": "SequentialTaskComponent-TQl2F",
@@ -3147,7 +3438,8 @@
             ]
           }
         },
-        "id": "xy-edge__SequentialTaskComponent-TQl2F{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}"
+        "id": "xy-edge__SequentialTaskComponent-TQl2F{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "className": ""
       },
       {
         "source": "SequentialCrewComponent-88bEW",
@@ -3174,13 +3466,14 @@
             ]
           }
         },
-        "id": "xy-edge__SequentialCrewComponent-88bEW{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-88bEWœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-afVJ6{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-afVJ6œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}"
+        "id": "xy-edge__SequentialCrewComponent-88bEW{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-88bEWœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-afVJ6{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-afVJ6œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "className": ""
       }
     ],
     "viewport": {
-      "x": 151.88892940079472,
-      "y": 139.21581357822504,
-      "zoom": 0.24127025994131848
+      "x": 797.2647976843152,
+      "y": -162.57355908128085,
+      "zoom": 1.0212674206646215
     }
   },
   "description": "Unfolding Linguistic Possibilities.",
