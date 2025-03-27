@@ -87,7 +87,7 @@ Here One Main Agent `Car Repair Agent` will call `CRM Agent` that will use the A
 
 - ### Any Airtable related query please refer to the instructions provide in the following file:
 
-  [Click here](../../Lab2-solargen-with-function-calling/airtableapi.md)
+  [Click here](https://github.com/initmahesh/MLAI-community-labs/blob/main/Lab2-solargen-with-function-calling/airtableapi.md)
 
   After creating an airtable account and setting up the API key, and adding key terms you should see something like this:
   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/54a73384-eb81-4e4e-9cdd-29cbd496709e)
