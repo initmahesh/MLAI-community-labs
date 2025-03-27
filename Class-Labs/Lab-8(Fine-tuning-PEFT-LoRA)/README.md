@@ -47,11 +47,7 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d8920030-b617-41c9-b638-e18c10da977d)
 
 ## 📌 Project Overview  
-We are fine-tuning **Phi-3-mini-128k-instruct** to develop an **AI chatbot** that provides **accurate and context-aware responses**..  
-
-## 🎯 Goal  
-- Fine-tune Phi-3 using **LoRA** for efficient adaptation.  
-- Optimize responses using **ChatML prompt engineering**.  
+We are fine-tuning **Phi-3-mini-128k-instruct** on our datase. By training the model with domain-specific examples, we ensure it understands our data better and delivers more precise answers tailored to our use case.    
 
 ---
 
@@ -87,14 +83,11 @@ We are fine-tuning **Phi-3-mini-128k-instruct** to develop an **AI chatbot** tha
 | **Fine-Tuning**    | LoRA (Low-Rank Adaptation)             |
 | **Quantization**   | 4-bit (Memory Efficient)               |
 | **Dataset**        | AT&T Customer Support (`dataset.jsonl`) |
-| **Inference**      | ChatML + Fine-Tuned Phi-3              |
 
 ---
-
-## Output
+### Example :
 
 ### Question
-
 So we asked about the Customer name for a contract, that we provided the chunks for in the content
 
 ### Answer
