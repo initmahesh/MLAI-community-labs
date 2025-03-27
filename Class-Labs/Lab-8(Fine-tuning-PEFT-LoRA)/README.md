@@ -1,4 +1,4 @@
-[Open in Google Colab](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
+[Open in Google Colab](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-8(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
 
 # Fine tuning models using PEFT for generating adapters.
 
@@ -13,7 +13,7 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 - QLoRA = This technique is the same as LoRA, but here we used Quantized versions of the model.
 - - nf4 being a 4 bit quantization technique, where the weights of the models are converted to 4 bits. This is an extensize process, you can read about it [here](https://www.kaggle.com/code/lorentzyeung/what-s-4-bit-quantization-how-does-it-help-llama2)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-3(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github.com/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-8(Fine-tuning-PEFT-LoRA)/Fine_Tuning_Lora_Lab.ipynb>)
 
 ### Prerequisites
 
@@ -46,48 +46,56 @@ of a model can be time consuming and also can be resource-intensive and costly, 
 
 ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/d8920030-b617-41c9-b638-e18c10da977d)
 
-## 📌 Project Overview  
-We are fine-tuning **Phi-3-mini-128k-instruct** on our datase. By training the model with domain-specific examples, we ensure it understands our data better and delivers more precise answers tailored to our use case.    
+## 📌 Project Overview
+
+We are fine-tuning **Phi-3-mini-128k-instruct** on our datase. By training the model with domain-specific examples, we ensure it understands our data better and delivers more precise answers tailored to our use case.
 
 ---
 
-## 🛠️ Key Features  
+## 🛠️ Key Features
 
-### 1️⃣ Custom Fine-Tuning with LoRA  
+### 1️⃣ Custom Fine-Tuning with LoRA
+
 ✅ Fine-tune **only specific layers** to reduce computational cost.  
-✅ Ensures **faster adaptation** to AT&T-specific queries.  
+✅ Ensures **faster adaptation** to AT&T-specific queries.
 
-### 2️⃣ Efficient Model Compression (4-bit Quantization)  
+### 2️⃣ Efficient Model Compression (4-bit Quantization)
+
 ✅ Uses **BitsAndBytes** to reduce model size.  
-✅ Enables deployment on **low-cost GPUs**.  
+✅ Enables deployment on **low-cost GPUs**.
 
-### 3️⃣ Custom Dataset for Personalized Responses  
+### 3️⃣ Custom Dataset for Personalized Responses
+
 ✅ Dataset: `dataset.jsonl` (AT&T-specific Q&A pairs).  
-✅ Helps AI provide **relevant & contextual answers**.  
+✅ Helps AI provide **relevant & contextual answers**.
 
-### 4️⃣ ChatML-Powered Prompt Engineering  
+### 4️⃣ ChatML-Powered Prompt Engineering
+
 ✅ Uses **ChatML formatting** to structure inputs & outputs.  
-✅ Helps in **reducing hallucinations & improving accuracy**.  
+✅ Helps in **reducing hallucinations & improving accuracy**.
 
-### 5️⃣ Smart Inference Pipeline  
+### 5️⃣ Smart Inference Pipeline
+
 ✅ Optimized parameters: `temperature`, `top_p`, `top_k`.  
-✅ Limits **response length** for more **precise answers**.  
+✅ Limits **response length** for more **precise answers**.
 
 ---
 
-## 📂 Project Structure  
+## 📂 Project Structure
 
-| Component           | Description                             |
-|---------------------|-----------------------------------------|
-| **Model**          | `Phi-3-mini-128k-instruct`             |
-| **Fine-Tuning**    | LoRA (Low-Rank Adaptation)             |
-| **Quantization**   | 4-bit (Memory Efficient)               |
-| **Dataset**        | AT&T Customer Support (`dataset.jsonl`) |
+| Component        | Description                             |
+| ---------------- | --------------------------------------- |
+| **Model**        | `Phi-3-mini-128k-instruct`              |
+| **Fine-Tuning**  | LoRA (Low-Rank Adaptation)              |
+| **Quantization** | 4-bit (Memory Efficient)                |
+| **Dataset**      | AT&T Customer Support (`dataset.jsonl`) |
 
 ---
+
 ### Example :
 
 ### Question
+
 So we asked about the Customer name for a contract, that we provided the chunks for in the content
 
 ### Answer
