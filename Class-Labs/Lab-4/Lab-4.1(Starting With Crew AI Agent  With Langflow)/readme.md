@@ -46,7 +46,7 @@ The best way to learn **anything** is by practicing it in real-time.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1518).png)
 
-- Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the [JSON File](https://drive.google.com/file/d/1q2eLOkk40CCYvdF2iRKiKWszI-LIalfH/view?usp=sharing) to view the flow diagram that has been provided to you.
+- Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the [JSON File](https://drive.google.com/file/d/14qQFiHlZBBfHUV-IdSccLpjsdT9TbUjC/view?usp=drive_link) to view the flow diagram that has been provided to you.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1520).png)
 
@@ -54,7 +54,7 @@ The best way to learn **anything** is by practicing it in real-time.
 
 **⚠️ Note: Sometimes while uploading your JSON file the links can be disconnected from each other, so make sure all the links are connected to each other as shown in the screenshot provided to you below.**
 
-![Langflow Screenshot](./Images/Screenshot%20(1823).png)
+![Langflow Screenshot](./Images/Screenshot%20(1877).png)
 
 - Now the first step is you have to provide the document in the file component. We are using a reference MSA document, you can upload yours as well. Click on the blue circle icon to upload your document.
 
@@ -75,7 +75,7 @@ Reference MSA Document link: [MSA document link](https://drive.google.com/file/d
 
 - Now, click on the **Playground Section**.
 
-![Langflow Screenshot](./Images/Screenshot%20(1777).png)
+![Langflow Screenshot](./Images/Screenshot%20(1878).png)
 
 ---
 
