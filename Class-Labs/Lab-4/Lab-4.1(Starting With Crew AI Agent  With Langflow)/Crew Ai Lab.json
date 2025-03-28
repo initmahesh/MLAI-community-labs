@@ -7,7 +7,7 @@
         "type": "genericNode",
         "position": {
           "x": 97.86128567417933,
-          "y": -370.5890160926535
+          "y": -465.0445724527062
         },
         "data": {
           "node": {
@@ -260,7 +260,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 227
+          "height": 226
         },
         "dragging": false
       },
@@ -422,7 +422,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 341
+          "height": 339
         },
         "dragging": false
       },
@@ -715,7 +715,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 523
+          "height": 521
         },
         "dragging": false
       },
@@ -723,8 +723,8 @@
         "id": "CrewAIAgentComponent-RZHNp",
         "type": "genericNode",
         "position": {
-          "x": 902.892890831425,
-          "y": 1285.1103277996067
+          "x": 925.6595276351107,
+          "y": 1433.0934670235647
         },
         "data": {
           "node": {
@@ -1008,7 +1008,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 523
+          "height": 521
         },
         "dragging": false
       },
@@ -1016,8 +1016,8 @@
         "id": "CrewAIAgentComponent-UcFhq",
         "type": "genericNode",
         "position": {
-          "x": 876.7703856566347,
-          "y": 570.6530403663199
+          "x": 888.2940168317989,
+          "y": 620.3520082410078
         },
         "data": {
           "node": {
@@ -1301,7 +1301,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 523
+          "height": 521
         },
         "dragging": false
       },
@@ -1309,8 +1309,8 @@
         "id": "OpenAIModel-YVaVm",
         "type": "genericNode",
         "position": {
-          "x": -602.1123271648942,
-          "y": 656.4179227932073
+          "x": -613.495645566737,
+          "y": 656.4179227932074
         },
         "data": {
           "node": {
@@ -1686,7 +1686,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 653
+          "height": 651
         },
         "dragging": false
       },
@@ -1694,8 +1694,8 @@
         "id": "SequentialTaskComponent-gBWf2",
         "type": "genericNode",
         "position": {
-          "x": 1561.1858653657223,
-          "y": -27.88576070592674
+          "x": 1475.6174112584706,
+          "y": -51.61840243350288
         },
         "data": {
           "node": {
@@ -1899,7 +1899,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 439
+          "height": 437
         },
         "dragging": false
       },
@@ -1907,8 +1907,8 @@
         "id": "SequentialTaskComponent-FI10m",
         "type": "genericNode",
         "position": {
-          "x": 1590.8822595168683,
-          "y": 595.9637736938213
+          "x": 1964.250616511456,
+          "y": 447.7079335359099
         },
         "data": {
           "node": {
@@ -2109,19 +2109,19 @@
           "type": "SequentialTaskComponent",
           "id": "SequentialTaskComponent-FI10m"
         },
-        "selected": false,
+        "selected": true,
         "measured": {
           "width": 320,
-          "height": 439
+          "height": 437
         },
-        "dragging": false
+        "dragging": true
       },
       {
         "id": "SequentialTaskComponent-TQl2F",
         "type": "genericNode",
         "position": {
-          "x": 1605.7231795506602,
-          "y": 1224.388212727455
+          "x": 2542.28422693446,
+          "y": 1165.3260956891156
         },
         "data": {
           "node": {
@@ -2325,7 +2325,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 439
+          "height": 437
         },
         "dragging": false
       },
@@ -2333,8 +2333,8 @@
         "id": "SequentialCrewComponent-88bEW",
         "type": "genericNode",
         "position": {
-          "x": 2822.6794489065824,
-          "y": 765.2461869600228
+          "x": 3009.5184595321584,
+          "y": 852.8075768203025
         },
         "data": {
           "node": {
@@ -2534,7 +2534,8 @@
             "tool_mode": false,
             "category": "crewai",
             "key": "SequentialCrewComponent",
-            "score": 0.00021002192191843841
+            "score": 0.00021002192191843841,
+            "lf_version": "1.2.0"
           },
           "showNode": true,
           "type": "SequentialCrewComponent",
@@ -2543,7 +2544,7 @@
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 211
+          "height": 210
         },
         "dragging": false
       },
@@ -2551,8 +2552,8 @@
         "id": "ChatOutput-afVJ6",
         "type": "genericNode",
         "position": {
-          "x": 3708.5919564914034,
-          "y": 961.1543492707922
+          "x": 3824.533042627802,
+          "y": 999.7627868422384
         },
         "data": {
           "node": {
@@ -2843,7 +2844,8 @@
             "tool_mode": false,
             "category": "outputs",
             "key": "ChatOutput",
-            "score": 0.21151956556842494
+            "score": 0.21151956556842494,
+            "lf_version": "1.2.0"
           },
           "showNode": false,
           "type": "ChatOutput",
@@ -2852,7 +2854,7 @@
         "selected": false,
         "measured": {
           "width": 192,
-          "height": 66
+          "height": 65
         },
         "dragging": false
       },
@@ -2860,8 +2862,8 @@
         "id": "note-WJAi5",
         "type": "noteNode",
         "position": {
-          "x": -267.97036721404544,
-          "y": -577.6244963391439
+          "x": 89.14254514862643,
+          "y": -842.1525795707527
         },
         "data": {
           "node": {
@@ -2876,7 +2878,7 @@
           "id": "note-WJAi5"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 324
         },
         "selected": false,
@@ -2902,8 +2904,8 @@
           "id": "note-m80hO"
         },
         "measured": {
-          "width": 325,
-          "height": 438
+          "width": 324,
+          "height": 437
         },
         "selected": false,
         "dragging": false
@@ -2928,7 +2930,7 @@
           "id": "note-fhotE"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 389
         },
         "selected": false,
@@ -2957,7 +2959,7 @@
           "id": "note-ufPA8"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 324
         },
         "selected": false,
@@ -2967,8 +2969,8 @@
         "id": "note-D2Bj6",
         "type": "noteNode",
         "position": {
-          "x": 551.96669573134,
-          "y": 1141.6883797795965
+          "x": 540.583377329497,
+          "y": 1249.8299045971041
         },
         "data": {
           "node": {
@@ -2983,8 +2985,8 @@
           "id": "note-D2Bj6"
         },
         "measured": {
-          "width": 325,
-          "height": 451
+          "width": 324,
+          "height": 450
         },
         "selected": false,
         "dragging": false
@@ -2993,8 +2995,8 @@
         "id": "note-xSt3M",
         "type": "noteNode",
         "position": {
-          "x": 1921.8903987797999,
-          "y": -126.70626028338526
+          "x": 1855.8206977498037,
+          "y": -38.30169380559917
         },
         "data": {
           "node": {
@@ -3009,7 +3011,7 @@
           "id": "note-xSt3M"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 346
         },
         "selected": false,
@@ -3019,8 +3021,8 @@
         "id": "note-IS0da",
         "type": "noteNode",
         "position": {
-          "x": 1942.9262087951913,
-          "y": 601.8517232749132
+          "x": 2314.3003027116188,
+          "y": 453.62455981987995
         },
         "data": {
           "node": {
@@ -3035,7 +3037,7 @@
           "id": "note-IS0da"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 324
         },
         "selected": false,
@@ -3045,8 +3047,8 @@
         "id": "note-YtMtZ",
         "type": "noteNode",
         "position": {
-          "x": 1945.5008910232368,
-          "y": 1103.98930772116
+          "x": 2549.446625895785,
+          "y": 1651.1596307830332
         },
         "data": {
           "node": {
@@ -3061,7 +3063,7 @@
           "id": "note-YtMtZ"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 324
         },
         "selected": false,
@@ -3071,8 +3073,8 @@
         "id": "note-buoqy",
         "type": "noteNode",
         "position": {
-          "x": 2817.456553003351,
-          "y": 1008.1319592396958
+          "x": 3031.7052210669312,
+          "y": 1133.3442461727755
         },
         "data": {
           "node": {
@@ -3087,8 +3089,8 @@
           "id": "note-buoqy"
         },
         "measured": {
-          "width": 325,
-          "height": 566
+          "width": 324,
+          "height": 565
         },
         "selected": false,
         "dragging": false
@@ -3097,8 +3099,8 @@
         "id": "note-6hEkX",
         "type": "noteNode",
         "position": {
-          "x": 3641.083298145948,
-          "y": 616.3756861540135
+          "x": 3761.663507363025,
+          "y": 573.7699884043757
         },
         "data": {
           "node": {
@@ -3113,13 +3115,13 @@
           "id": "note-6hEkX"
         },
         "measured": {
-          "width": 325,
-          "height": 324
+          "width": 330,
+          "height": 359
         },
         "selected": false,
         "dragging": false,
-        "width": 324,
-        "height": 324,
+        "width": 330,
+        "height": 359,
         "resizing": false
       },
       {
@@ -3140,10 +3142,10 @@
           "id": "note-4Lua4"
         },
         "measured": {
-          "width": 325,
+          "width": 324,
           "height": 324
         },
-        "selected": true
+        "selected": false
       }
     ],
     "edges": [
@@ -3364,58 +3366,6 @@
         "className": ""
       },
       {
-        "source": "SequentialTaskComponent-FI10m",
-        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
-        "target": "SequentialCrewComponent-88bEW",
-        "targetHandle": "{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "data": {
-          "targetHandle": {
-            "fieldName": "tasks",
-            "id": "SequentialCrewComponent-88bEW",
-            "inputTypes": [
-              "SequentialTask"
-            ],
-            "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "SequentialTaskComponent",
-            "id": "SequentialTaskComponent-FI10m",
-            "name": "task_output",
-            "output_types": [
-              "SequentialTask"
-            ]
-          }
-        },
-        "id": "xy-edge__SequentialTaskComponent-FI10m{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "className": ""
-      },
-      {
-        "source": "SequentialTaskComponent-gBWf2",
-        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
-        "target": "SequentialCrewComponent-88bEW",
-        "targetHandle": "{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "data": {
-          "targetHandle": {
-            "fieldName": "tasks",
-            "id": "SequentialCrewComponent-88bEW",
-            "inputTypes": [
-              "SequentialTask"
-            ],
-            "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "SequentialTaskComponent",
-            "id": "SequentialTaskComponent-gBWf2",
-            "name": "task_output",
-            "output_types": [
-              "SequentialTask"
-            ]
-          }
-        },
-        "id": "xy-edge__SequentialTaskComponent-gBWf2{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "className": ""
-      },
-      {
         "source": "SequentialTaskComponent-TQl2F",
         "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
         "target": "SequentialCrewComponent-88bEW",
@@ -3439,7 +3389,8 @@
           }
         },
         "id": "xy-edge__SequentialTaskComponent-TQl2F{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "className": ""
+        "className": "",
+        "animated": false
       },
       {
         "source": "SequentialCrewComponent-88bEW",
@@ -3467,13 +3418,68 @@
           }
         },
         "id": "xy-edge__SequentialCrewComponent-88bEW{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-88bEWœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-afVJ6{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-afVJ6œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "className": "",
+        "animated": false
+      },
+      {
+        "source": "SequentialTaskComponent-gBWf2",
+        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
+        "target": "SequentialTaskComponent-FI10m",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-FI10mœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "SequentialTaskComponent-FI10m",
+            "inputTypes": [
+              "SequentialTask"
+            ],
+            "type": "other"
+          },
+          "sourceHandle": {
+            "dataType": "SequentialTaskComponent",
+            "id": "SequentialTaskComponent-gBWf2",
+            "name": "task_output",
+            "output_types": [
+              "SequentialTask"
+            ]
+          }
+        },
+        "id": "xy-edge__SequentialTaskComponent-gBWf2{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialTaskComponent-FI10m{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-FI10mœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "SequentialTaskComponent-FI10m",
+        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
+        "target": "SequentialTaskComponent-TQl2F",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "SequentialTaskComponent-TQl2F",
+            "inputTypes": [
+              "SequentialTask"
+            ],
+            "type": "other"
+          },
+          "sourceHandle": {
+            "dataType": "SequentialTaskComponent",
+            "id": "SequentialTaskComponent-FI10m",
+            "name": "task_output",
+            "output_types": [
+              "SequentialTask"
+            ]
+          }
+        },
+        "id": "xy-edge__SequentialTaskComponent-FI10m{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialTaskComponent-TQl2F{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "animated": false,
         "className": ""
       }
     ],
     "viewport": {
-      "x": 797.2647976843152,
-      "y": -162.57355908128085,
-      "zoom": 1.0212674206646215
+      "x": -140.18857154619195,
+      "y": 86.59873851130095,
+      "zoom": 0.20949327524681
     }
   },
   "description": "Unfolding Linguistic Possibilities.",
