@@ -487,7 +487,7 @@ components:
 
   ```
   ${TOOL: tool name}
-  &{AGENT: Agent name}
+  &{Playbook: Playbook name}
   ```
 
   Full Instructions-
@@ -499,11 +499,11 @@ components:
   - Display the listing in a bullet proof, markdown format. You should not show more than 5 output response.
       - After displaying the results using the tool, Always ask the user "Do you want us to connect you to them?"
           - If they say "yes", ask them for their Name, Phone Number, Current address.
-              - If the Name, Phone Number, Current address is provided by them, route them to ${AGENT:CRM_Agent}. Save the Name, Phone Number, Current address in the CRM
+              - If the Name, Phone Number, Current address is provided by them, route them to ${Playbook:CRM}. Save the Name, Phone Number, Current address in the CRM
           - After storing the data successfully output response "Someone from the Company will get back to you.
   ```
 
-  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/f0612f38-1e56-4b86-8dc2-fea87b4f1c25)
+  ![image](./assets/images/agent_playbook_inst.png)
 
 ### Quick Note:
 
