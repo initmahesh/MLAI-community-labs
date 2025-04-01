@@ -105,11 +105,16 @@ Here One Main Agent `Car Repair Agent` will call `CRM Agent` that will use the A
 
    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/1cf97488-d862-46fd-968c-c0f8c1badaff)
 
-   You will be shown this page, and you should select the **Agent** as app type
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4cd3cdf0-1a36-4d72-84a3-f8585a4c25d1)
+   You will be shown this page, and you should select the **Conversational Agent** as app type
+
+![image](./assets/images/crate_agent.png)
+
+   <!-- ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/4cd3cdf0-1a36-4d72-84a3-f8585a4c25d1) -->
 
 4. Mention the name of the app that you want to create and the region (best: leave it to us-central1)
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/17810ac6-224a-4e54-a5f1-161f8ba10668)
+   ![image](./assets/images/3.png)
+      <!-- ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/17810ac6-224a-4e54-a5f1-161f8ba10668)-->
+
    Click on Create
 
 5. This is the main page where you will land.
@@ -119,9 +124,11 @@ Now we have created our App and we will move on to customizing it.
 
 ## Configuration of the First Agent
 
-1. First set the Name of the Agent, here this Agent will be responsible for Inserting data to Airtable CRM, so we name the agent as `CRM_Agent`
+1. First set the Name of the Playbook, here this Playbook will be responsible for Inserting data to Airtable CRM, so we name the playbook as `CRM`
 
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5557733b-c688-4853-b8d4-225b6cfcf9ac)
+![image](./assets/images/4.png)
+
+   <!-- ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/5557733b-c688-4853-b8d4-225b6cfcf9ac) -->
 
 2. Then we set the description of the Agent as
 
@@ -231,15 +238,16 @@ Now we have created our App and we will move on to customizing it.
 
     ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/409589b5-4a57-4c13-82f8-2d897de99d61)
 
-12. Now we need to go back to the CRM Agent again, so click on the Agents option in the side bar.
+12. Now we need to go back to the CRM playbook again, so click on the playbook option in the side bar.
+    ![image](./assets/images/7.png)
 
-    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ba5ebe0-70f3-4566-a7d7-32bebf72f675)
+   <!--  ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/8ba5ebe0-70f3-4566-a7d7-32bebf72f675) -->
 
-13. Click on the `CRM_Agent`.
+13. Click on the `CRM` playbook.
 
-    ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a2947fed-b032-4461-a10b-0f0fd6b6b1ba)
+    ![image](./assets/images/8.png)
 
-14. This Agent will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
+14. This Playbook will save the Name, Phone number and the Current Address of a Customer to the CRM, thus we set the instruction of the Agent.
 
 ```
   - Take the Name, Phone Number, Current Address and use ${TOOL:Airtable CRM} to save them in the CRM
@@ -258,19 +266,15 @@ Now we have created our App and we will move on to customizing it.
 
 Now, your first agent is ready. Lets Configure our second agent.
 
-## Configuration of the Second Agent
+## Configuration of the Second Playbook
 
-1. Click on the back button shown below
+1. Click on the back button shown below and set the car repair playbook as follows
 
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/fe67b72c-530f-42df-a944-6acbfbcde004)
+   ![image](./assets/images/5.png)
 
 2. Click on `Create` button
 
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/2188df35-94e3-4d28-af08-f1134b26aace)
-
-3. Set the name of the Agent as `Car Repair Agent`
-
-   ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/a93c8fe9-6975-4c1e-8f4f-18506191274b)
+3. Set the name of the Playbook as `Car Repair`
 
 4. Then we will set the Goal of the Agent
 
