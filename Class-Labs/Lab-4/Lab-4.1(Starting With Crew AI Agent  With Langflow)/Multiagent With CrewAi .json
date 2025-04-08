@@ -1,13 +1,13 @@
 {
-  "id": "f1105e32-5561-4089-b2d2-38b0cbd94eaf",
+  "id": "22ea1034-2bd3-49b2-a2fc-c2c541fe2e80",
   "data": {
     "nodes": [
       {
-        "id": "File-sZ0CL",
+        "id": "File-fyLOb",
         "type": "genericNode",
         "position": {
-          "x": 97.86128567417933,
-          "y": -465.0445724527062
+          "x": 727.8612856741793,
+          "y": 427.0799525175916
         },
         "data": {
           "node": {
@@ -36,7 +36,7 @@
               },
               "path": {
                 "trace_as_metadata": true,
-                "file_path": "f1105e32-5561-4089-b2d2-38b0cbd94eaf/2025-03-17_15-53-02_contract.pdf",
+                "file_path": "22ea1034-2bd3-49b2-a2fc-c2c541fe2e80/2025-04-07_20-29-10_contract.pdf",
                 "fileTypes": [
                   "txt",
                   "md",
@@ -255,21 +255,20 @@
           },
           "showNode": true,
           "type": "File",
-          "id": "File-sZ0CL"
+          "id": "File-fyLOb"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 226
-        },
-        "dragging": false
+          "height": 227
+        }
       },
       {
-        "id": "ParseData-zfJbt",
+        "id": "ParseData-gzNTk",
         "type": "genericNode",
         "position": {
-          "x": 873.8059621783375,
-          "y": -488.59859004787404
+          "x": 1503.8059621783375,
+          "y": 403.52593492242374
         },
         "data": {
           "node": {
@@ -417,21 +416,20 @@
           },
           "showNode": true,
           "type": "ParseData",
-          "id": "ParseData-zfJbt"
+          "id": "ParseData-gzNTk"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 339
-        },
-        "dragging": false
+          "height": 341
+        }
       },
       {
-        "id": "CrewAIAgentComponent-hv3SX",
+        "id": "CrewAIAgentComponent-swh2b",
         "type": "genericNode",
         "position": {
-          "x": 875.0157165665103,
-          "y": -38.96750094213252
+          "x": 1505.0157165665103,
+          "y": 853.1570240281653
         },
         "data": {
           "node": {
@@ -567,7 +565,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "goal",
-                "value": "Extract key contract terms from PDF",
+                "value": "Extract the following key contract terms from PDF documents and present them in a structured JSON format:\n\nLimitation of Liability\n\nOwner Expiry Date\n\nNotice Period\n\nAgreement Duration\n\nPayment Terms\n\nConfidentiality Period\n\nInsurance Coverage\n\nMaximum Monthly Hours\n\nThese terms should be extracted accurately and presented in a JSON format for easy reference and further analysis.",
                 "display_name": "Goal",
                 "advanced": false,
                 "input_types": [
@@ -710,21 +708,20 @@
           },
           "showNode": true,
           "type": "CrewAIAgentComponent",
-          "id": "CrewAIAgentComponent-hv3SX"
+          "id": "CrewAIAgentComponent-swh2b"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 521
-        },
-        "dragging": false
+          "height": 523
+        }
       },
       {
-        "id": "CrewAIAgentComponent-RZHNp",
+        "id": "CrewAIAgentComponent-UvFIn",
         "type": "genericNode",
         "position": {
-          "x": 925.6595276351107,
-          "y": 1433.0934670235647
+          "x": 1555.6595276351109,
+          "y": 2325.2179919938626
         },
         "data": {
           "node": {
@@ -860,7 +857,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "goal",
-                "value": "Create detailed report of contract deviations",
+                "value": "Create a comprehensive comparison report in table format showing how extracted contract terms compare with reference values. For each key term:\n\nCompare the extracted value from the document against our reference standard\nEvaluate the level of risk any discrepancy presents\nProvide a brief analysis of implications\nAssign a status indicator based on the comparison:\n\nGREEN: Values match exactly or contract term is more favorable\nYELLOW: Values are close but not exact (within acceptable tolerance)\nRED: Values significantly differ or term is missing/unfavorable\n\n\n\nFormat the output as a table with these columns:\n| Term Name | Reference Value | Extracted Value | Risk Level | Analysis Summary | Status |",
                 "display_name": "Goal",
                 "advanced": false,
                 "input_types": [
@@ -1003,21 +1000,20 @@
           },
           "showNode": true,
           "type": "CrewAIAgentComponent",
-          "id": "CrewAIAgentComponent-RZHNp"
+          "id": "CrewAIAgentComponent-UvFIn"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 521
-        },
-        "dragging": false
+          "height": 523
+        }
       },
       {
-        "id": "CrewAIAgentComponent-UcFhq",
+        "id": "CrewAIAgentComponent-FymSt",
         "type": "genericNode",
         "position": {
-          "x": 888.2940168317989,
-          "y": 620.3520082410078
+          "x": 1518.294016831799,
+          "y": 1512.4765332113057
         },
         "data": {
           "node": {
@@ -1153,7 +1149,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "goal",
-                "value": "Compare contract terms with reference values\n\nreference_values = {\n    \"limitation of liability\": \"30 days\",      \n    \"owner expiry date\": \"30 days\",          \n    \"notice period\": \"30 days\",               \n    \"agreement duration\": \"12 months\",         \n    \"payment terms\": \"30 days\",               \n    \"confidentiality period\": \"3 years\",       \n    \"insurance coverage\": \"$1,000,000\",        \n    \"maximum monthly hours\": \"120\"            \n}",
+                "value": "Compare the extracted contract terms with our reference values and identify any discrepancies. For each term:\n\nCompare the extracted value against our reference standard\nDetermine if the contract term is equal to, more favorable, or less favorable than our reference\nCalculate the variance (where applicable)\nFlag terms requiring negotiation\n\nReference values:\n\nLimitation of liability: 30 days\nOwner expiry date: 34 days\nNotice period: 10 days\nAgreement duration: 12 months\nPayment terms: 80 days\nConfidentiality period: 3 years\nInsurance coverage: $1,000,000\nMaximum monthly hours: 120",
                 "display_name": "Goal",
                 "advanced": false,
                 "input_types": [
@@ -1296,21 +1292,20 @@
           },
           "showNode": true,
           "type": "CrewAIAgentComponent",
-          "id": "CrewAIAgentComponent-UcFhq"
+          "id": "CrewAIAgentComponent-FymSt"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 521
-        },
-        "dragging": false
+          "height": 523
+        }
       },
       {
-        "id": "OpenAIModel-YVaVm",
+        "id": "OpenAIModel-DE9us",
         "type": "genericNode",
         "position": {
-          "x": -613.495645566737,
-          "y": 656.4179227932074
+          "x": 16.50435443326296,
+          "y": 1548.5424477635052
         },
         "data": {
           "node": {
@@ -1681,21 +1676,20 @@
           },
           "showNode": true,
           "type": "OpenAIModel",
-          "id": "OpenAIModel-YVaVm"
+          "id": "OpenAIModel-DE9us"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 651
-        },
-        "dragging": false
+          "height": 653
+        }
       },
       {
-        "id": "SequentialTaskComponent-gBWf2",
+        "id": "SequentialTaskComponent-CiYsj",
         "type": "genericNode",
         "position": {
-          "x": 1475.6174112584706,
-          "y": -51.61840243350288
+          "x": 2105.6174112584704,
+          "y": 840.5061225367949
         },
         "data": {
           "node": {
@@ -1833,7 +1827,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "task_description",
-                "value": "Use the document and extract key terms from the document .",
+                "value": "Extract key contract terms from the provided document with precision and completeness. Focus on identifying the following specific terms:\n\n1 Limitation of liability period\n2 Owner expiry date\n3 period requirements\n4 Agreement duration/term length\n5 Payment terms and conditions\n6 Confidentiality period obligations\n7 Insurance coverage requirements\n8 Maximum monthly hours allowance\n\n\nFormat results in a structured manner, including:\n\n1 The exact clause text containing the term\n2 The normalized value (standardized format for comparison)",
                 "display_name": "Description",
                 "advanced": false,
                 "input_types": [
@@ -1894,21 +1888,20 @@
           },
           "showNode": true,
           "type": "SequentialTaskComponent",
-          "id": "SequentialTaskComponent-gBWf2"
+          "id": "SequentialTaskComponent-CiYsj"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 437
-        },
-        "dragging": false
+          "height": 439
+        }
       },
       {
-        "id": "SequentialTaskComponent-FI10m",
+        "id": "SequentialTaskComponent-aPtMo",
         "type": "genericNode",
         "position": {
-          "x": 1964.250616511456,
-          "y": 447.7079335359099
+          "x": 2607.2928682119905,
+          "y": 1422.5584348889513
         },
         "data": {
           "node": {
@@ -2022,7 +2015,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "expected_output",
-                "value": "List of mismatches between extracted and reference data",
+                "value": "Here's an optimized expected output for your second agent:\nList of mismatches between extracted and reference data:\n\nTerm: [term name]\n\nReference value: [reference value]\nExtracted value: [extracted value]\nVariance: [specific difference]\nSeverity: [High/Medium/Low]\n\n\nTerm: [term name]\n\nReference value: [reference value]\nExtracted value: [extracted value]\nVariance: [specific difference]\nSeverity: [High/Medium/Low]",
                 "display_name": "Expected Output",
                 "advanced": false,
                 "input_types": [
@@ -2046,7 +2039,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "task_description",
-                "value": "Compare extracted terms with reference data and identify mismatches.",
+                "value": "Compare the extracted contract terms with our reference standards and generate a detailed analysis of any discrepancies. For each key term:\n\nEvaluate the extracted value against the corresponding reference value\nDetermine the exact nature and magnitude of any variance\nAssess the business impact and risk level of each discrepancy\nApply a standardized rating system to quantify the severity of mismatches\n\nAnalyze each comparison using these criteria:\n\nEXACT MATCH: Extracted term precisely matches reference value\nFAVORABLE: Extracted term offers better conditions than our reference\nMINOR VARIANCE: Small difference that presents minimal risk\nSIGNIFICANT MISMATCH: Major discrepancy requiring attention\nCRITICAL GAP: Missing term or severe discrepancy creating substantial risk\n\nFor terms involving time periods, calculate the exact difference in days/months/years. For monetary terms, calculate the percentage deviation from reference.\nPrioritize findings based on business impact and present a risk-ranked assessment that highlights the most critical issues requiring negotiation or mitigation.",
                 "display_name": "Description",
                 "advanced": false,
                 "input_types": [
@@ -2107,21 +2100,20 @@
           },
           "showNode": true,
           "type": "SequentialTaskComponent",
-          "id": "SequentialTaskComponent-FI10m"
+          "id": "SequentialTaskComponent-aPtMo"
         },
-        "selected": true,
+        "selected": false,
         "measured": {
           "width": 320,
-          "height": 437
-        },
-        "dragging": true
+          "height": 439
+        }
       },
       {
-        "id": "SequentialTaskComponent-TQl2F",
+        "id": "SequentialTaskComponent-vTbpp",
         "type": "genericNode",
         "position": {
-          "x": 2542.28422693446,
-          "y": 1165.3260956891156
+          "x": 2981.3563709793343,
+          "y": 2132.4168925998765
         },
         "data": {
           "node": {
@@ -2235,7 +2227,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "expected_output",
-                "value": "Detailed analysis report with findings and recommendations",
+                "value": "Copy# CONTRACT TERMS ANALYSIS REPORT\n\n## Executive Summary\nBrief overview of contract compliance, major discrepancies, and key risk areas. Include compliance percentage and overall risk assessment.\n\n## Comparison Table\n| Term Name | Reference Value | Extracted Value | Risk Level | Analysis Summary | Status |\n|-----------|----------------|-----------------|------------|------------------|--------|\n| [Term 1]  | [Ref value]    | [Extracted]     | [H/M/L]    | [Brief analysis] | 🟢/🟡/🔴 |\n| [Term 2]  | [Ref value]    | [Extracted]     | [H/M/L]    | [Brief analysis] | 🟢/🟡/🔴 |\n...etc.\n\n## Risk Assessment\nDetailed analysis of significant discrepancies, their business implications, and potential contractual risks.\n\n## Recommendations\n1. [Specific action recommendation for highest risk item]\n2. [Specific action recommendation for second highest risk item]\n3. [Additional recommendations in priority order]\n",
                 "display_name": "Expected Output",
                 "advanced": false,
                 "input_types": [
@@ -2259,7 +2251,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "task_description",
-                "value": "Create comprehensive analysis report with findings.",
+                "value": "Create comprehensive analysis report with findings:\nGenerate a detailed, actionable analysis report that synthesizes all contract term comparisons. The report should:\n\nPresent an executive summary highlighting overall compliance and key risk areas\nDisplay a comprehensive comparison table with clear visual indicators:\n\nTerm name\nReference value\nExtracted value\nRisk level assessment\nConcise analysis of implications\nStatus indicators (Green/Yellow/Red)\n\n\nPrioritize findings by severity and business impact\nProvide specific, actionable recommendations for addressing each discrepancy\nInclude quantitative metrics on overall contract compliance\nHighlight potential negotiation points with suggested alternative language\nAssess the cumulative risk profile of all identified discrepancies",
                 "display_name": "Description",
                 "advanced": false,
                 "input_types": [
@@ -2320,21 +2312,20 @@
           },
           "showNode": true,
           "type": "SequentialTaskComponent",
-          "id": "SequentialTaskComponent-TQl2F"
+          "id": "SequentialTaskComponent-vTbpp"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 437
-        },
-        "dragging": false
+          "height": 439
+        }
       },
       {
-        "id": "SequentialCrewComponent-88bEW",
+        "id": "SequentialCrewComponent-I5Dcs",
         "type": "genericNode",
         "position": {
-          "x": 3009.5184595321584,
-          "y": 852.8075768203025
+          "x": 3639.5184595321584,
+          "y": 1744.9321017906004
         },
         "data": {
           "node": {
@@ -2539,21 +2530,20 @@
           },
           "showNode": true,
           "type": "SequentialCrewComponent",
-          "id": "SequentialCrewComponent-88bEW"
+          "id": "SequentialCrewComponent-I5Dcs"
         },
         "selected": false,
         "measured": {
           "width": 320,
-          "height": 210
-        },
-        "dragging": false
+          "height": 211
+        }
       },
       {
-        "id": "ChatOutput-afVJ6",
+        "id": "ChatOutput-UZgqi",
         "type": "genericNode",
         "position": {
-          "x": 3824.533042627802,
-          "y": 999.7627868422384
+          "x": 4454.5330426278015,
+          "y": 1891.8873118125362
         },
         "data": {
           "node": {
@@ -2849,21 +2839,20 @@
           },
           "showNode": false,
           "type": "ChatOutput",
-          "id": "ChatOutput-afVJ6"
+          "id": "ChatOutput-UZgqi"
         },
         "selected": false,
         "measured": {
           "width": 192,
-          "height": 65
-        },
-        "dragging": false
+          "height": 66
+        }
       },
       {
-        "id": "note-WJAi5",
+        "id": "note-G9rkf",
         "type": "noteNode",
         "position": {
-          "x": 89.14254514862643,
-          "y": -842.1525795707527
+          "x": 719.1425451486264,
+          "y": 49.97194539954512
         },
         "data": {
           "node": {
@@ -2875,25 +2864,24 @@
             }
           },
           "type": "note",
-          "id": "note-WJAi5"
+          "id": "note-G9rkf"
         },
+        "selected": false,
         "measured": {
-          "width": 324,
+          "width": 325,
           "height": 324
-        },
-        "selected": false,
-        "dragging": false
+        }
       },
       {
-        "id": "note-m80hO",
+        "id": "note-nJWuW",
         "type": "noteNode",
         "position": {
-          "x": 516.9512614669615,
-          "y": -96.77579304655859
+          "x": 1149.2607262430736,
+          "y": 806.882526111131
         },
         "data": {
           "node": {
-            "description": "# **First Crew AI Agent**  \n\n### This is my Crew AI agent, which extracts key terms from the document, such as payment methods and limitation of liability etc.  \n\n## **Agent Overview:**  \n- **Role:** PDF Data Extractor  \n- **Goal:** Extract key contract terms from PDFs  \n- **Backstory:** Expert in extracting contract terms from PDFs  \n",
+            "description": "# **First Crew AI Agent**  \n\n## The first agent is going to extract key terms from the document.  \n\n ## If you expand the **Goal**, you will see the prompt describing what the first agent is going to do.\n",
             "display_name": "",
             "documentation": "",
             "template": {
@@ -2901,50 +2889,50 @@
             }
           },
           "type": "note",
-          "id": "note-m80hO"
-        },
-        "measured": {
-          "width": 324,
-          "height": 437
+          "id": "note-nJWuW"
         },
         "selected": false,
-        "dragging": false
-      },
-      {
-        "id": "note-fhotE",
-        "type": "noteNode",
-        "position": {
-          "x": 525.427546893397,
-          "y": 547.9286022758249
-        },
-        "data": {
-          "node": {
-            "description": "# **Second AgentComparison AI Agent**  \n\n### This is my second AI agent, which compares the extracted terms with the reference values. If you click on \"Goal Prompt,\" you will see the reference values being used.  \n\n## **Agent Overview:**  \n- **Role:** Data Comparison Analyst  \n- **Goal:** Compare contract terms with reference values  \n- **Reference Values:**  \n  ```json\n  {\n    \"limitation of liability\": \"30 days\",\n    \"owner expiry date\": \"30 days\",\n    \"notice period\": \"30 days\",\n    \"agreement duration\": \"12 months\",\n    \"payment terms\": \"30 days\",\n    \"confidentiality period\": \"3 years\",\n    \"insurance coverage\": \"$1,000,000\",\n    \"maximum monthly hours\": \"120\"\n  }\n",
-            "display_name": "",
-            "documentation": "",
-            "template": {
-              "backgroundColor": "blue"
-            }
-          },
-          "type": "note",
-          "id": "note-fhotE"
-        },
         "measured": {
-          "width": 324,
-          "height": 389
+          "width": 325,
+          "height": 435
         },
-        "selected": false,
         "dragging": false,
         "width": 324,
-        "height": 389,
+        "height": 435,
         "resizing": false
       },
       {
-        "id": "note-ufPA8",
+        "id": "note-5KFcQ",
         "type": "noteNode",
         "position": {
-          "x": 868.708456489182,
-          "y": -847.1245249702978
+          "x": 1164.6171337333733,
+          "y": 1405.5921765962116
+        },
+        "data": {
+          "node": {
+            "description": "### 🧠 Agent Description: Contract Term Comparator\n\nThis agent is responsible for **analyzing extracted contract terms** and **comparing them against predefined reference values** to ensure alignment with organizational standards. Its key tasks include:\n\n1. **Term Matching**  \n   For each extracted contract term, the agent identifies its corresponding standard from a predefined list of reference values.\n\n2. **Comparative Evaluation**  \n   It determines whether each term is:\n   - **Equal to** the reference value,\n   - **More favorable**, or\n   - **Less favorable** than the reference.\n\n3. **Variance Calculation**  \n   Where applicable (e.g., numerical values like days, months, or dollar amounts), the agent calculates the difference or variance between the extracted value and the reference.\n\n4. **Discrepancy Flagging**  \n   Terms that differ from the standard and may require renegotiation are flagged for human review or escalation.\n\nBy automating this comparison, the agent ensures consistent contract evaluation and helps streamline the review process, reducing manual effort and minimizing risk.\n",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "blue"
+            }
+          },
+          "type": "note",
+          "id": "note-5KFcQ"
+        },
+        "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 859
+        },
+        "dragging": false
+      },
+      {
+        "id": "note-idGq7",
+        "type": "noteNode",
+        "position": {
+          "x": 1498.708456489182,
+          "y": 45
         },
         "data": {
           "node": {
@@ -2956,25 +2944,24 @@
             }
           },
           "type": "note",
-          "id": "note-ufPA8"
-        },
-        "measured": {
-          "width": 324,
-          "height": 324
+          "id": "note-idGq7"
         },
         "selected": false,
-        "dragging": false
+        "measured": {
+          "width": 325,
+          "height": 324
+        }
       },
       {
-        "id": "note-D2Bj6",
+        "id": "note-qWgc3",
         "type": "noteNode",
         "position": {
-          "x": 540.583377329497,
-          "y": 1249.8299045971041
+          "x": 1165.5226206945763,
+          "y": 2338.3739569004806
         },
         "data": {
           "node": {
-            "description": "# **Third Agent Report Generation AI Agent**  \n\n### This is my third AI agent, which generates a report of the mismatched data.  \n\n\n## **Agent Overview:**  \n- **Role:** Compliance Report Generator  \n- **Goal:** Create a detailed report of contract deviations  \n- **Backstory:** Expert in compliance reporting  ",
+            "description": "### 🧠 Agent Description: Contract Compliance Evaluator\n\nThis agent is responsible for generating a **comprehensive comparison report** between extracted contract terms and predefined reference standards. Its goal is to evaluate how closely each extracted term aligns with expected values and to highlight potential risks or discrepancies.\n\n#### Key Responsibilities:\n\n1. **Term Comparison**  \n   Compares each extracted contract term from the document with its corresponding reference value.\n\n2. **Risk Evaluation**  \n   Assesses the level of risk associated with any deviations between the extracted value and the reference value.\n\n3. **Implication Analysis**  \n   Provides a brief summary explaining what the deviation means and its potential impact on the agreement.\n\n4. **Status Assignment**  \n   Assigns a color-coded status indicator to each term:\n   - 🟢 **GREEN**: Value matches exactly or is more favorable than the reference.\n   - 🟡 **YELLOW**: Value is close, within an acceptable range.\n   - 🔴 **RED**: Value significantly differs, is missing, or less favorable.\n\nThis agent helps ensure contract terms are reviewed consistently and efficiently, reducing manual effort and minimizing the risk of unfavorable agreements.\n",
             "display_name": "",
             "documentation": "",
             "template": {
@@ -2982,21 +2969,21 @@
             }
           },
           "type": "note",
-          "id": "note-D2Bj6"
+          "id": "note-qWgc3"
         },
+        "selected": true,
         "measured": {
-          "width": 324,
-          "height": 450
+          "width": 325,
+          "height": 942
         },
-        "selected": false,
-        "dragging": false
+        "dragging": true
       },
       {
-        "id": "note-xSt3M",
+        "id": "note-4Idu0",
         "type": "noteNode",
         "position": {
-          "x": 1855.8206977498037,
-          "y": -38.30169380559917
+          "x": 2485.820697749804,
+          "y": 853.8228311646986
         },
         "data": {
           "node": {
@@ -3008,21 +2995,20 @@
             }
           },
           "type": "note",
-          "id": "note-xSt3M"
-        },
-        "measured": {
-          "width": 324,
-          "height": 346
+          "id": "note-4Idu0"
         },
         "selected": false,
-        "dragging": false
+        "measured": {
+          "width": 325,
+          "height": 346
+        }
       },
       {
-        "id": "note-IS0da",
+        "id": "note-NXXRW",
         "type": "noteNode",
         "position": {
-          "x": 2314.3003027116188,
-          "y": 453.62455981987995
+          "x": 2933.968363626053,
+          "y": 1447.3464857982412
         },
         "data": {
           "node": {
@@ -3034,25 +3020,24 @@
             }
           },
           "type": "note",
-          "id": "note-IS0da"
-        },
-        "measured": {
-          "width": 324,
-          "height": 324
+          "id": "note-NXXRW"
         },
         "selected": false,
-        "dragging": false
+        "measured": {
+          "width": 325,
+          "height": 324
+        }
       },
       {
-        "id": "note-YtMtZ",
+        "id": "note-ZJTGt",
         "type": "noteNode",
         "position": {
-          "x": 2549.446625895785,
-          "y": 1651.1596307830332
+          "x": 2987.272324177717,
+          "y": 2617.7625917210626
         },
         "data": {
           "node": {
-            "description": "## **Task 3: Compliance Report Generation**  \n### In this final step, my agent creates a comprehensive analysis report detailing the findings, including identified mismatches and deviations.  ",
+            "description": "# *Task 3: Compliance Report Generation**  \n### In this final step, my agent creates a comprehensive analysis report detailing the findings, including identified mismatches and deviations.  ",
             "display_name": "",
             "documentation": "",
             "template": {
@@ -3060,21 +3045,21 @@
             }
           },
           "type": "note",
-          "id": "note-YtMtZ"
-        },
-        "measured": {
-          "width": 324,
-          "height": 324
+          "id": "note-ZJTGt"
         },
         "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
         "dragging": false
       },
       {
-        "id": "note-buoqy",
+        "id": "note-4S2Mx",
         "type": "noteNode",
         "position": {
-          "x": 3031.7052210669312,
-          "y": 1133.3442461727755
+          "x": 3711.846521676301,
+          "y": 2025.4687711430734
         },
         "data": {
           "node": {
@@ -3086,21 +3071,21 @@
             }
           },
           "type": "note",
-          "id": "note-buoqy"
-        },
-        "measured": {
-          "width": 324,
-          "height": 565
+          "id": "note-4S2Mx"
         },
         "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 566
+        },
         "dragging": false
       },
       {
-        "id": "note-6hEkX",
+        "id": "note-4GTVT",
         "type": "noteNode",
         "position": {
-          "x": 3761.663507363025,
-          "y": 573.7699884043757
+          "x": 4391.663507363025,
+          "y": 1465.8945133746734
         },
         "data": {
           "node": {
@@ -3112,24 +3097,20 @@
             }
           },
           "type": "note",
-          "id": "note-6hEkX"
-        },
-        "measured": {
-          "width": 330,
-          "height": 359
+          "id": "note-4GTVT"
         },
         "selected": false,
-        "dragging": false,
-        "width": 330,
-        "height": 359,
-        "resizing": false
+        "measured": {
+          "width": 325,
+          "height": 324
+        }
       },
       {
-        "id": "note-4Lua4",
+        "id": "note-ranUR",
         "type": "noteNode",
         "position": {
-          "x": -615,
-          "y": 270
+          "x": 15,
+          "y": 1162.124524970298
         },
         "data": {
           "node": {
@@ -3139,351 +3120,491 @@
             "template": {}
           },
           "type": "note",
-          "id": "note-4Lua4"
+          "id": "note-ranUR"
         },
+        "selected": false,
         "measured": {
-          "width": 324,
+          "width": 325,
+          "height": 324
+        }
+      },
+      {
+        "id": "note-TOoBw",
+        "type": "noteNode",
+        "position": {
+          "x": 3649.7115231294947,
+          "y": 1370.1144243285319
+        },
+        "data": {
+          "node": {
+            "description": "# Orchestration  \n\n### Here, the orchestration is sequential. This means that orchestrator just execute call one agent after another. ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-TOoBw"
+        },
+        "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 324
+        }
+      },
+      {
+        "id": "note-nPtA0",
+        "type": "noteNode",
+        "position": {
+          "x": 770.8907656447474,
+          "y": 806.7917076567621
+        },
+        "data": {
+          "node": {
+            "description": "# FOCUS  \n\n### Instead of single agent. We created three agent with focused goals, backstory and goals.",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-nPtA0"
+        },
+        "selected": false,
+        "measured": {
+          "width": 325,
           "height": 324
         },
-        "selected": false
+        "dragging": false
+      },
+      {
+        "id": "note-I1YcO",
+        "type": "noteNode",
+        "position": {
+          "x": 2265.3100755053483,
+          "y": 1888.6746511187207
+        },
+        "data": {
+          "node": {
+            "description": "# Co-operation \n\n### Here, you can see that the agent depends on each other to get to final compliance report. ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-I1YcO"
+        },
+        "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "dragging": false
+      },
+      {
+        "id": "note-wJ8aC",
+        "type": "noteNode",
+        "position": {
+          "x": 3735,
+          "y": 828.63875929048
+        },
+        "data": {
+          "node": {
+            "description": "# [Open] Tools and Reflection\n\n### We have not added tools and reflection/guardrails. Feel free to add them as homework to this lab and update :) .",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-wJ8aC"
+        },
+        "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 324
+        }
+      },
+      {
+        "id": "note-WmYEq",
+        "type": "noteNode",
+        "position": {
+          "x": 799.9165610979377,
+          "y": 1450.6767788581726
+        },
+        "data": {
+          "node": {
+            "description": "# Memory\n\n### Here, you can see that each agent has its own memory block that help agent keep track of previous conversations.  ",
+            "display_name": "",
+            "documentation": "",
+            "template": {
+              "backgroundColor": "lime"
+            }
+          },
+          "type": "note",
+          "id": "note-WmYEq"
+        },
+        "selected": false,
+        "measured": {
+          "width": 325,
+          "height": 324
+        },
+        "dragging": false
       }
     ],
     "edges": [
       {
-        "source": "File-sZ0CL",
-        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-sZ0CLœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
-        "target": "ParseData-zfJbt",
-        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-zfJbtœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "source": "File-fyLOb",
+        "target": "ParseData-gzNTk",
+        "sourceHandle": "{œdataTypeœ:œFileœ,œidœ:œFile-fyLObœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}",
+        "targetHandle": "{œfieldNameœ:œdataœ,œidœ:œParseData-gzNTkœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-File-fyLOb{œdataTypeœ:œFileœ,œidœ:œFile-fyLObœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-ParseData-gzNTk{œfieldNameœ:œdataœ,œidœ:œParseData-gzNTkœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "data",
-            "id": "ParseData-zfJbt",
-            "inputTypes": [
-              "Data"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "File",
-            "id": "File-sZ0CL",
+            "id": "File-fyLOb",
             "name": "data",
             "output_types": [
               "Data"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "data",
+            "id": "ParseData-gzNTk",
+            "inputTypes": [
+              "Data"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__File-sZ0CL{œdataTypeœ:œFileœ,œidœ:œFile-sZ0CLœ,œnameœ:œdataœ,œoutput_typesœ:[œDataœ]}-ParseData-zfJbt{œfieldNameœ:œdataœ,œidœ:œParseData-zfJbtœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "OpenAIModel-YVaVm",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YVaVmœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
-        "target": "CrewAIAgentComponent-hv3SX",
-        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-hv3SXœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "source": "OpenAIModel-DE9us",
+        "target": "CrewAIAgentComponent-swh2b",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-DE9usœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-swh2bœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OpenAIModel-DE9us{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-DE9usœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-CrewAIAgentComponent-swh2b{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-swh2bœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "llm",
-            "id": "CrewAIAgentComponent-hv3SX",
-            "inputTypes": [
-              "LanguageModel"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "OpenAIModel",
-            "id": "OpenAIModel-YVaVm",
+            "id": "OpenAIModel-DE9us",
             "name": "model_output",
             "output_types": [
               "LanguageModel"
             ]
-          }
-        },
-        "id": "xy-edge__OpenAIModel-YVaVm{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YVaVmœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-CrewAIAgentComponent-hv3SX{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-hv3SXœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "animated": false,
-        "className": ""
-      },
-      {
-        "source": "OpenAIModel-YVaVm",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YVaVmœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
-        "target": "CrewAIAgentComponent-UcFhq",
-        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-UcFhqœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "data": {
+          },
           "targetHandle": {
             "fieldName": "llm",
-            "id": "CrewAIAgentComponent-UcFhq",
+            "id": "CrewAIAgentComponent-swh2b",
             "inputTypes": [
               "LanguageModel"
             ],
             "type": "other"
-          },
+          }
+        },
+        "selected": false,
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "OpenAIModel-DE9us",
+        "target": "CrewAIAgentComponent-FymSt",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-DE9usœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-FymStœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OpenAIModel-DE9us{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-DE9usœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-CrewAIAgentComponent-FymSt{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-FymStœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "data": {
           "sourceHandle": {
             "dataType": "OpenAIModel",
-            "id": "OpenAIModel-YVaVm",
+            "id": "OpenAIModel-DE9us",
             "name": "model_output",
             "output_types": [
               "LanguageModel"
             ]
-          }
-        },
-        "id": "xy-edge__OpenAIModel-YVaVm{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YVaVmœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-CrewAIAgentComponent-UcFhq{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-UcFhqœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "animated": false,
-        "className": ""
-      },
-      {
-        "source": "OpenAIModel-YVaVm",
-        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YVaVmœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
-        "target": "CrewAIAgentComponent-RZHNp",
-        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-RZHNpœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
-        "data": {
+          },
           "targetHandle": {
             "fieldName": "llm",
-            "id": "CrewAIAgentComponent-RZHNp",
+            "id": "CrewAIAgentComponent-FymSt",
             "inputTypes": [
               "LanguageModel"
             ],
             "type": "other"
-          },
+          }
+        },
+        "selected": false,
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "OpenAIModel-DE9us",
+        "target": "CrewAIAgentComponent-UvFIn",
+        "sourceHandle": "{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-DE9usœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}",
+        "targetHandle": "{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-UvFInœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-OpenAIModel-DE9us{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-DE9usœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-CrewAIAgentComponent-UvFIn{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-UvFInœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "data": {
           "sourceHandle": {
             "dataType": "OpenAIModel",
-            "id": "OpenAIModel-YVaVm",
+            "id": "OpenAIModel-DE9us",
             "name": "model_output",
             "output_types": [
               "LanguageModel"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "llm",
+            "id": "CrewAIAgentComponent-UvFIn",
+            "inputTypes": [
+              "LanguageModel"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__OpenAIModel-YVaVm{œdataTypeœ:œOpenAIModelœ,œidœ:œOpenAIModel-YVaVmœ,œnameœ:œmodel_outputœ,œoutput_typesœ:[œLanguageModelœ]}-CrewAIAgentComponent-RZHNp{œfieldNameœ:œllmœ,œidœ:œCrewAIAgentComponent-RZHNpœ,œinputTypesœ:[œLanguageModelœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "CrewAIAgentComponent-hv3SX",
-        "sourceHandle": "{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-hv3SXœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}",
-        "target": "SequentialTaskComponent-gBWf2",
-        "targetHandle": "{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "source": "CrewAIAgentComponent-swh2b",
+        "target": "SequentialTaskComponent-CiYsj",
+        "sourceHandle": "{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-swh2bœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}",
+        "targetHandle": "{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-CiYsjœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-CrewAIAgentComponent-swh2b{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-swh2bœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}-SequentialTaskComponent-CiYsj{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-CiYsjœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "agent",
-            "id": "SequentialTaskComponent-gBWf2",
-            "inputTypes": [
-              "Agent"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "CrewAIAgentComponent",
-            "id": "CrewAIAgentComponent-hv3SX",
+            "id": "CrewAIAgentComponent-swh2b",
             "name": "output",
             "output_types": [
               "Agent"
             ]
-          }
-        },
-        "id": "xy-edge__CrewAIAgentComponent-hv3SX{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-hv3SXœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}-SequentialTaskComponent-gBWf2{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
-        "animated": false,
-        "className": ""
-      },
-      {
-        "source": "CrewAIAgentComponent-UcFhq",
-        "sourceHandle": "{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-UcFhqœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}",
-        "target": "SequentialTaskComponent-FI10m",
-        "targetHandle": "{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-FI10mœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
-        "data": {
+          },
           "targetHandle": {
             "fieldName": "agent",
-            "id": "SequentialTaskComponent-FI10m",
+            "id": "SequentialTaskComponent-CiYsj",
             "inputTypes": [
               "Agent"
             ],
             "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "CrewAIAgentComponent",
-            "id": "CrewAIAgentComponent-UcFhq",
-            "name": "output",
-            "output_types": [
-              "Agent"
-            ]
           }
         },
-        "id": "xy-edge__CrewAIAgentComponent-UcFhq{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-UcFhqœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}-SequentialTaskComponent-FI10m{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-FI10mœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "CrewAIAgentComponent-RZHNp",
-        "sourceHandle": "{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-RZHNpœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}",
-        "target": "SequentialTaskComponent-TQl2F",
-        "targetHandle": "{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "source": "CrewAIAgentComponent-FymSt",
+        "target": "SequentialTaskComponent-aPtMo",
+        "sourceHandle": "{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-FymStœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}",
+        "targetHandle": "{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-aPtMoœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-CrewAIAgentComponent-FymSt{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-FymStœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}-SequentialTaskComponent-aPtMo{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-aPtMoœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
         "data": {
+          "sourceHandle": {
+            "dataType": "CrewAIAgentComponent",
+            "id": "CrewAIAgentComponent-FymSt",
+            "name": "output",
+            "output_types": [
+              "Agent"
+            ]
+          },
           "targetHandle": {
             "fieldName": "agent",
-            "id": "SequentialTaskComponent-TQl2F",
+            "id": "SequentialTaskComponent-aPtMo",
             "inputTypes": [
               "Agent"
             ],
             "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "CrewAIAgentComponent",
-            "id": "CrewAIAgentComponent-RZHNp",
-            "name": "output",
-            "output_types": [
-              "Agent"
-            ]
           }
         },
-        "id": "xy-edge__CrewAIAgentComponent-RZHNp{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-RZHNpœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}-SequentialTaskComponent-TQl2F{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "ParseData-zfJbt",
-        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-zfJbtœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "SequentialTaskComponent-gBWf2",
-        "targetHandle": "{œfieldNameœ:œexpected_outputœ,œidœ:œSequentialTaskComponent-gBWf2œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "source": "CrewAIAgentComponent-UvFIn",
+        "target": "SequentialTaskComponent-vTbpp",
+        "sourceHandle": "{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-UvFInœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}",
+        "targetHandle": "{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-vTbppœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-CrewAIAgentComponent-UvFIn{œdataTypeœ:œCrewAIAgentComponentœ,œidœ:œCrewAIAgentComponent-UvFInœ,œnameœ:œoutputœ,œoutput_typesœ:[œAgentœ]}-SequentialTaskComponent-vTbpp{œfieldNameœ:œagentœ,œidœ:œSequentialTaskComponent-vTbppœ,œinputTypesœ:[œAgentœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "expected_output",
-            "id": "SequentialTaskComponent-gBWf2",
-            "inputTypes": [
-              "Message"
-            ],
-            "type": "str"
+          "sourceHandle": {
+            "dataType": "CrewAIAgentComponent",
+            "id": "CrewAIAgentComponent-UvFIn",
+            "name": "output",
+            "output_types": [
+              "Agent"
+            ]
           },
+          "targetHandle": {
+            "fieldName": "agent",
+            "id": "SequentialTaskComponent-vTbpp",
+            "inputTypes": [
+              "Agent"
+            ],
+            "type": "other"
+          }
+        },
+        "selected": false,
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "ParseData-gzNTk",
+        "target": "SequentialTaskComponent-CiYsj",
+        "sourceHandle": "{œdataTypeœ:œParseDataœ,œidœ:œParseData-gzNTkœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œexpected_outputœ,œidœ:œSequentialTaskComponent-CiYsjœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-ParseData-gzNTk{œdataTypeœ:œParseDataœ,œidœ:œParseData-gzNTkœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-SequentialTaskComponent-CiYsj{œfieldNameœ:œexpected_outputœ,œidœ:œSequentialTaskComponent-CiYsjœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
           "sourceHandle": {
             "dataType": "ParseData",
-            "id": "ParseData-zfJbt",
+            "id": "ParseData-gzNTk",
             "name": "text",
             "output_types": [
               "Message"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "expected_output",
+            "id": "SequentialTaskComponent-CiYsj",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
           }
         },
-        "id": "xy-edge__ParseData-zfJbt{œdataTypeœ:œParseDataœ,œidœ:œParseData-zfJbtœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-SequentialTaskComponent-gBWf2{œfieldNameœ:œexpected_outputœ,œidœ:œSequentialTaskComponent-gBWf2œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "SequentialTaskComponent-TQl2F",
-        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
-        "target": "SequentialCrewComponent-88bEW",
-        "targetHandle": "{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "source": "SequentialTaskComponent-vTbpp",
+        "target": "SequentialCrewComponent-I5Dcs",
+        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-vTbppœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
+        "targetHandle": "{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-I5Dcsœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-SequentialTaskComponent-vTbpp{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-vTbppœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-I5Dcs{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-I5Dcsœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "tasks",
-            "id": "SequentialCrewComponent-88bEW",
-            "inputTypes": [
-              "SequentialTask"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "SequentialTaskComponent",
-            "id": "SequentialTaskComponent-TQl2F",
+            "id": "SequentialTaskComponent-vTbpp",
             "name": "task_output",
             "output_types": [
               "SequentialTask"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "tasks",
+            "id": "SequentialCrewComponent-I5Dcs",
+            "inputTypes": [
+              "SequentialTask"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__SequentialTaskComponent-TQl2F{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialCrewComponent-88bEW{œfieldNameœ:œtasksœ,œidœ:œSequentialCrewComponent-88bEWœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "className": "",
-        "animated": false
+        "selected": false,
+        "animated": false,
+        "className": ""
       },
       {
-        "source": "SequentialCrewComponent-88bEW",
-        "sourceHandle": "{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-88bEWœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-afVJ6",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-afVJ6œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "source": "SequentialCrewComponent-I5Dcs",
+        "target": "ChatOutput-UZgqi",
+        "sourceHandle": "{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-I5Dcsœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-UZgqiœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-SequentialCrewComponent-I5Dcs{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-I5Dcsœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-UZgqi{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-UZgqiœ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
         "data": {
+          "sourceHandle": {
+            "dataType": "SequentialCrewComponent",
+            "id": "SequentialCrewComponent-I5Dcs",
+            "name": "output",
+            "output_types": [
+              "Message"
+            ]
+          },
           "targetHandle": {
             "fieldName": "input_value",
-            "id": "ChatOutput-afVJ6",
+            "id": "ChatOutput-UZgqi",
             "inputTypes": [
               "Data",
               "DataFrame",
               "Message"
             ],
             "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "SequentialCrewComponent",
-            "id": "SequentialCrewComponent-88bEW",
-            "name": "output",
-            "output_types": [
-              "Message"
-            ]
           }
         },
-        "id": "xy-edge__SequentialCrewComponent-88bEW{œdataTypeœ:œSequentialCrewComponentœ,œidœ:œSequentialCrewComponent-88bEWœ,œnameœ:œoutputœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-afVJ6{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-afVJ6œ,œinputTypesœ:[œDataœ,œDataFrameœ,œMessageœ],œtypeœ:œotherœ}",
-        "className": "",
-        "animated": false
-      },
-      {
-        "source": "SequentialTaskComponent-gBWf2",
-        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
-        "target": "SequentialTaskComponent-FI10m",
-        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-FI10mœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
-        "data": {
-          "targetHandle": {
-            "fieldName": "task",
-            "id": "SequentialTaskComponent-FI10m",
-            "inputTypes": [
-              "SequentialTask"
-            ],
-            "type": "other"
-          },
-          "sourceHandle": {
-            "dataType": "SequentialTaskComponent",
-            "id": "SequentialTaskComponent-gBWf2",
-            "name": "task_output",
-            "output_types": [
-              "SequentialTask"
-            ]
-          }
-        },
-        "id": "xy-edge__SequentialTaskComponent-gBWf2{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-gBWf2œ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialTaskComponent-FI10m{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-FI10mœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "selected": false,
         "animated": false,
         "className": ""
       },
       {
-        "source": "SequentialTaskComponent-FI10m",
-        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
-        "target": "SequentialTaskComponent-TQl2F",
-        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "source": "SequentialTaskComponent-CiYsj",
+        "target": "SequentialTaskComponent-aPtMo",
+        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-CiYsjœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-aPtMoœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-SequentialTaskComponent-CiYsj{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-CiYsjœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialTaskComponent-aPtMo{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-aPtMoœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
         "data": {
-          "targetHandle": {
-            "fieldName": "task",
-            "id": "SequentialTaskComponent-TQl2F",
-            "inputTypes": [
-              "SequentialTask"
-            ],
-            "type": "other"
-          },
           "sourceHandle": {
             "dataType": "SequentialTaskComponent",
-            "id": "SequentialTaskComponent-FI10m",
+            "id": "SequentialTaskComponent-CiYsj",
             "name": "task_output",
             "output_types": [
               "SequentialTask"
             ]
+          },
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "SequentialTaskComponent-aPtMo",
+            "inputTypes": [
+              "SequentialTask"
+            ],
+            "type": "other"
           }
         },
-        "id": "xy-edge__SequentialTaskComponent-FI10m{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-FI10mœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialTaskComponent-TQl2F{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-TQl2Fœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "selected": false,
+        "animated": false,
+        "className": ""
+      },
+      {
+        "source": "SequentialTaskComponent-aPtMo",
+        "target": "SequentialTaskComponent-vTbpp",
+        "sourceHandle": "{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-aPtMoœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-vTbppœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "id": "reactflow__edge-SequentialTaskComponent-aPtMo{œdataTypeœ:œSequentialTaskComponentœ,œidœ:œSequentialTaskComponent-aPtMoœ,œnameœ:œtask_outputœ,œoutput_typesœ:[œSequentialTaskœ]}-SequentialTaskComponent-vTbpp{œfieldNameœ:œtaskœ,œidœ:œSequentialTaskComponent-vTbppœ,œinputTypesœ:[œSequentialTaskœ],œtypeœ:œotherœ}",
+        "data": {
+          "sourceHandle": {
+            "dataType": "SequentialTaskComponent",
+            "id": "SequentialTaskComponent-aPtMo",
+            "name": "task_output",
+            "output_types": [
+              "SequentialTask"
+            ]
+          },
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "SequentialTaskComponent-vTbpp",
+            "inputTypes": [
+              "SequentialTask"
+            ],
+            "type": "other"
+          }
+        },
+        "selected": false,
         "animated": false,
         "className": ""
       }
     ],
     "viewport": {
-      "x": -140.18857154619195,
-      "y": 86.59873851130095,
-      "zoom": 0.20949327524681
+      "x": 291.44332393026866,
+      "y": -154.4509668330531,
+      "zoom": 0.28717458874925944
     }
   },
-  "description": "Unfolding Linguistic Possibilities.",
-  "name": "Crew Ai Lab",
+  "description": "Language Engineering Excellence.",
+  "name": "Multiagent With CrewAi ",
   "last_tested_version": "1.2.0",
   "endpoint_name": null,
   "is_component": false
