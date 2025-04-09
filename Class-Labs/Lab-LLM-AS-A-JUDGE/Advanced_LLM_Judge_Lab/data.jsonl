@@ -1,0 +1,36 @@
+{"query":"What is the Service Provider Name?", "response":"Arvato Services Inc."}
+{"query":"What is the Customer Name?", "response":"Intuit Inc."}
+{"query":"What is the Contract start date?", "response":"28-May-03"}
+{"query":"What is the Contract end date / Expiration Date?", "response":"28-May-06"}
+{"query":"What is the total term period or duration of this contract?", "response":"36 Months"}
+{"query":"What is the total amount to be paid by the customer?", "response":"N/A"}
+{"query":"What is the Governing Law?", "response":"State of California"}
+{"query":"Will this agreement Automatically Renew?", "response":"No"}
+{"query":"What is the duration before which either party may terminate the Agreement?", "response":"20 days"}
+{"query":"What is the duration of Data Breach Notice?", "response":"N/A"}
+{"query":"What is the billing frequency of this agreement?", "response":"Monthly"}
+{"query":"What is the renewal period for this contract?", "response":"N/A"}
+{"query":"Do customer has to send a notice to stop the auto renewal?", "response":"N/A"}
+{"query":"What are the number of days within which the client is expected to make payment to the service provider?", "response":"Net 20"}
+{"query":"Does this contract allow for termination for material breach?", "response":"Yes"}
+{"query":"Does this contract allow for termination for cause?", "response":"Yes"}
+{"query":"Does this contract allow for termination without cause?", "response":"Yes"}
+{"query":"Does this contract allow for termination for convenience?", "response":"N/A"}
+{"query":"What is the duration of notice period that each party needs to provide before applying for termination?", "response":"N/A"}
+{"query":"Do customers need to pay charges or penalties for the late payment of invoices?", "response":"N/A"}
+{"query":"How are the late payment penalties or fees charged to customers?", "response":"N/A"}
+{"query":"What is the amount covered in the clause for limitations of liability?", "response":"$5,000,000 or amounts paid by Intuit to Contractor in the past 12 months"}
+{"query":"Do customers need to provide consent to the service provider before assigning its rights or obligations?", "response":"Consent"}
+{"query":"Does this contract allow the service provider to use the name and logo of the customer?", "response":"N/A"}
+{"query":"Does this contract have a provision that mentions that customer data will be deleted upon request?", "response":"Yes"}
+{"query":"What are the terms for customer indemnification?", "response":"Intuit agrees to defend, indemnify, and hold Contractor and its affiliates harmless."}
+{"query":"What are the terms for service provider indemnification?", "response":"Contractor defends, indemnifies Intuit from claims, liabilities, losses, and damages."}
+{"query":"Do customers or clients need to send a notice for claiming indemnification?", "response":"The party seeking indemnification under Section 11(a) or 11(b), as the case may be."}
+{"query":"Do the indemnification terms cover the attorney's fees for both the service provider and customer?", "response":"Yes"}
+{"query":"Does this contract have a provision for increasing the fees or payment or price?", "response":"Yes"}
+{"query":"What is the duration of notice for notifying customers about the increase in price or fees?", "response":"N/A"}
+{"query":"What is the insurance clause according to this agreement?", "response":"Contractor will maintain its current insurance policies at its expense."}
+{"query":"What is the provision for maintenance of insurance in this agreement?", "response":"Contractor will maintain its current insurance policies at its expense."}
+{"query":"What is the notice period for providing the insurance?", "response":"N/A"}
+{"query":"What are the intellectual property rights for the service provider in this agreement?", "response":"Contractor shall own all intellectual property rights in and to the Contractor Materials."}
+{"query":"What are the intellectual property rights for the customer in this agreement?", "response":"Contractor shall own all intellectual property rights in and to the Contractor Materials."}
