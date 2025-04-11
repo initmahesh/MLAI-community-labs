@@ -1,8 +1,8 @@
-**"In this lab, we will create an agent that writes blogs for you based on prompts you provide. First, we use the Composio component, which automatically reads the email of the person you enter in the chatbot. If a URL is found in the email body, the agent will extract content from that URL and generate a blog based on the prompt you define.
+In this lab, we will create an agent that writes blogs for you based on prompts you provide. First, we use the Composio component, which automatically reads the email of the person you enter in the chatbot. If a URL is found in the email body, the agent will extract content from that URL and generate a blog based on the prompt you define.
 
-To build this, we are using LangFlow, a Node.js-based tool platform.
+To build this, we are using LangFlow.
 
-Let’s get started!"**
+Let’s get started!
 
 In the rapidly evolving world of artificial intelligence, the rise of no-code platforms has revolutionized the way we approach AI development. LangFlow, a powerful and innovative tool, has emerged as a game-changer in this space, offering a user-friendly and accessible way to create AI applications without the need for extensive coding knowledge.
 
@@ -37,64 +37,91 @@ LangFlow simplifies the process of integrating and orchestrating LLMs by offerin
 
 - LangFlow also excels in automating workflows and tasks, thanks to its seamless integration with over 5000+ integrations through Zapier. By connecting LangFlow with other tools and platforms, users can streamline their processes, reduce manual effort, and increase efficiency across various domains.
 
+# Prerequisites
+- Download the required JSON file from the link below:
+
+[⬇️ Download JSON File](https://drive.google.com/file/d/11Grlo95HU6qOavehle1f1CK2yUfCnDcL/view?usp=sharing)
+
+---
+
+
+# **Let's Start Learning with Hands-On Experience!**  
+
+The best way to learn **anything** is by practicing it in real-time.
+🚀 **Let's dive in and start experimenting**  
+
+
 ## Setup the Project
 
-- Go to the LangFlow page and click on "Get Started for Free", as shown in the image below.
+- Go to the [LangFlow page](https://accounts.datastax.com/session-service/v1/login) and create your account first.
 
-![Langflow Screenshot](./Images/Screenshot%20(1515).png)
+![Langflow Screenshot](./Images/Screenshot%20(1920).png)
 
-- Create your account on LangFlow.
+---
 
-![Langflow Screenshot](./Images/Screenshot%20(1516).png)
+- Now, from the top dropdown, click on **LangFlow**.
 
-- After creating your account, click on "New Flow".
+![Langflow Screenshot](./Images/Screenshot%20(1921).png)
 
-![Langflow Screenshot](./Images/Screenshot%20(1517).png)
+---
 
+- Click on **"New Flow"**.
+
+![Langflow Screenshot](./Images/Screenshot%20(1922).png)
+
+---
 - Now click on Blank Flow, as we are building it from scratch.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1518).png)
+
+---
 
 - Now, click on the untitled document above, and in the dropdown, click on the Import Option to import the JSON file that has been provided to you.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1520).png)
 
+---
+
 - Now, you will see that your project has been successfully imported, and you can view all the agents.
 
-![Langflow Screenshot](./Images/img1.png)
+![Langflow Screenshot](./Images/Screenshot%20(1937).png)
+
+---
 
 - To use the first component, you'll need an API key from composio. You can obtain a free API key with some initial credits by visiting the following URL: [https://app.composio.dev/developers]. Once you have your key, you can proceed with the integration.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1549).png)
 
-- Once you have the key, enter it in the designated field and click 'Refresh.' Next, select 'GMAIL' as the app name and choose 'GMAIL_FETCH_EMAIL' as the action to use.
-  🔹 Note: You will see that my auth status is green. However, when you run it for the first time, you will need to authenticate it. An authentication option will appear, and you must complete the authentication process before proceeding."**
+---
 
-![Langflow Screenshot](./Images/Refresh%20Button.png)
+- Now you have to put your Composio API key and then click on the tool name.
 
-![Langflow Screenshot](./Images/Screenshot%20(1551).png)
+![Langflow Screenshot](./Images/Screenshot%20(1930).png)
 
-- Provide the Open API Key to the agent and the Open API Key component to enable authentication and access. Ensure that the API key is securely stored and used only for authorized requests.
+---
+- Now select Gmail.
+
+![Langflow Screenshot](./Images/Screenshot%20(1931).png)
+
+---
+- Now click on Action Point and select Get Fetch Email.
+
+![Langflow Screenshot](./Images/Screenshot%20(1933).png)
+
+---
+
+- Provide your OpenAI API key to the agent and the OpenAI component.
 
 ![Langflow Screenshot](./Images/Screenshot%20(1552).png)
+![Langflow Screenshot](./Images/Screenshot%20(1936).png)
 
-- In the Text Section Component, click on the text, and you can define the styling of your blog, such as the tone, the heading, etc.
+---
 
-![Langflow Screenshot](./Images/Screenshot%20(1555).png)
+- Now go to the Playground section.
 
-- Now, from here, you can edit your prompt and click on Check, then Save.
+![Langflow Screenshot](./Images/Screenshot%20(1924).png)
 
-![Langflow Screenshot](./Images/Screenshot%20(1554).png)
-
-- Now, click on the Playground Section.
-
-![Langflow Screenshot](./Images/Screenshot%20(1553).png)
-
-- In the Playground section, enter a query such as: 'Please provide me the latest email from this particular user.' The system will then fetch and display the email body of the specified email.
-  Example:
-  Input: "Give me the recent email from abcd@gmail.com"
-
-![Langflow Screenshot](./Images/Screenshot%20(1556).png)
+---
 
 - In the Playground section, enter a query such as: 'Please provide me the latest email from this particular user.' The system will fetch and display the email body of the specified email.
 
@@ -111,11 +138,11 @@ LangFlow simplifies the process of integrating and orchestrating LLMs by offerin
 
 - ⚠️ Note: If no URL is found in the email body, the URL component will fail, and the blog generation will not proceed.
 
-![Langflow Screenshot](./Images/Screenshot%20(1557).png)
+![Langflow Screenshot](./Images/Screenshot%20(1938).png)
 
 - The Blog Output .
 
-![Langflow Screenshot](./Images/Screenshot%20(1558).png)
+![Langflow Screenshot](./Images/Screenshot%20(1939).png)
 
 
 
@@ -126,6 +153,6 @@ As we look to the future, it is clear that no-code AI development platforms like
 
 
 ## Reference Tutorial Video
-[Get Started With Lanflow](https://youtu.be/LPfstlhSA_w?si=HMYVZ5q60IBJ7H9x)
+[Get Started With Langflow](https://youtu.be/LPfstlhSA_w?si=HMYVZ5q60IBJ7H9x)
 
 
