@@ -51,13 +51,13 @@ Follow these steps to import and set up the RAG flow in Langflow:
 
 1. Go to [https://langflow.org](https://langflow.org) and click on "Get Started Free" button
 
-![Step 1: Langflow Homepage](<images/Screenshot%20(1515).png>)
+![Step 1: Langflow Homepage](images/Screenshot%20(1515).png)
 
 ---
 
 ### Step 2: Sign Up for Langflow
 
-![Step 2: Langflow Sign Up](<images/Screenshot%20(1516).png>)
+![Step 2: Langflow Sign Up](images/Screenshot%20(1516).png)
 
 ---
 
@@ -65,7 +65,7 @@ Follow these steps to import and set up the RAG flow in Langflow:
 
 1. After logging in, click on the "New Flow" button in the dashboard
 
-![Step 3: Create New Flow](<images/Screenshot%20(1517).png>)
+![Step 3: Create New Flow](images/Screenshot%20(1517).png)
 
 ---
 
@@ -74,7 +74,7 @@ Follow these steps to import and set up the RAG flow in Langflow:
 1. In the flow creation menu, click on "Blank Flow" to start with an empty template
 2. This will open a new workspace where you can build your RAG application
 
-![Step 4: Select Blank Flow](<images/Screenshot%20(1518).png>)
+![Step 4: Select Blank Flow](images/Screenshot%20(1518).png)
 
 ---
 
@@ -85,7 +85,7 @@ Follow these steps to import and set up the RAG flow in Langflow:
 3. Wait for the import process to complete
 4. The RAG flow components will be automatically loaded into your workspace
 
-![Step 5: Import JSON Flow](<images/Screenshot%20(1519).png>)
+![Step 5: Import JSON Flow](images/Screenshot%20(1519).png)
 
 ---
 
@@ -97,7 +97,7 @@ All components will be properly connected, showing the data flow from input to o
 
 > # **Important Note:** After importing, always verify that all nodes are properly connected to each other. Sometimes during import, nodes might become disconnected. Check the flow diagram carefully and reconnect any disconnected nodes by dragging the connection points between them. The data flow should be continuous from the input to the output nodes.
 
-![Step 6: Complete RAG Flow in Workspace](<images/Screenshot%20(1977).png>)
+![Step 6: Complete RAG Flow in Workspace](images/Screenshot%20(1977).png)
 
 ---
 
@@ -129,7 +129,7 @@ The RAG flow is divided into two main parts. Let's set up Part 1 which handles d
    - Enter your OpenAI API key.
    - Save the configuration.
 
-![Step 7: Document Processing Setup](<images/Screenshot%20(1978).png>)
+![Step 7: Document Processing Setup](images/Screenshot%20(1978).png)
 
 ---
 
@@ -145,7 +145,7 @@ The RAG flow is divided into two main parts. Let's set up Part 1 which handles d
 4. Wait for the process to complete - you'll see progress indicators for each step
 5. Verify that all components show successful completion
 
-![Step 8: Running Part 1](<images/Screenshot%20(1979).png>)
+![Step 8: Running Part 1](images/Screenshot%20(1979).png)
 
 ---
 
@@ -160,11 +160,11 @@ Now that your document is processed and stored in the vector database, you can a
 > 3. Enter your OpenAI API key (same key used for the language model)
 > 4. Save the configuration
 
-![Step 9: Question Answering Interface](<images/Screenshot%20(1980).png>)
+![Step 9: Question Answering Interface](images/Screenshot%20(1980).png)
 
 > ## **Note:** Also add your OpenAI API key to the OpenAI component in the flow.
 
-![Step 9: Question Answering Interface](<images/Screenshot%20(1981).png>)
+![Step 9: Question Answering Interface](images/Screenshot%20(1981).png)
 
 ---
 
@@ -174,7 +174,7 @@ Now that your document is processed and stored in the vector database, you can a
 2. Click on the "Playground" section
 3. This will open the interactive
 
-![Step 9: Question Answering Interface](<images/Screenshot%20(1982).png>)
+![Step 9: Question Answering Interface](images/Screenshot%20(1982).png)
 
 ---
 
@@ -194,4 +194,4 @@ Now that your document is processed and stored in the vector database, you can a
 > - Compare different parts of the document
 > - Ask for summaries or explanations
 
-![Step 11: Question and Answer Example](<images/Screenshot%20(1983).png>)
+![Step 11: Question and Answer Example](images/Screenshot%20(1983).png)
