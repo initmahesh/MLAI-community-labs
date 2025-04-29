@@ -184,7 +184,7 @@ Now that your document is processed and stored in the vector database, you can a
 2. The system will:
    - Search the vector database for relevant information
    - Generate a response based on the retrieved content
-   - Display the answer along with relevant document chunks
+   - Display the answer
 3. Each response will be based on the actual content of your uploaded document
 
 > **Tip:** Try asking questions that:
@@ -210,6 +210,6 @@ In this video, we'll walk you through:
 - Creating the document processing pipeline
 - Configuring the vector store
 - Building the question-answering system
-- Testing and optimizing the RAG application
+
 
 Follow along with the video to create your own RAG application step by step!
