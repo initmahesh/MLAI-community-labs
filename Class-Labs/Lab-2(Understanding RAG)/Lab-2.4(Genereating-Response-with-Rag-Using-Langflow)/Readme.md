@@ -195,3 +195,21 @@ Now that your document is processed and stored in the vector database, you can a
 > - Ask for summaries or explanations
 
 ![Step 11: Question and Answer Example](<./Images/Screenshot%20(1983).png>)
+
+---
+
+# Build it From Scratch
+
+If you want to learn how to build this RAG application from scratch, check out our detailed video tutorial:
+
+# [Click Here](https://drive.google.com/file/d/1cK1TI3n4smf77GV2FCaWA-5LVpX0pdeD/view?usp=sharing)
+
+In this video, we'll walk you through:
+
+- Setting up the Langflow environment
+- Creating the document processing pipeline
+- Configuring the vector store
+- Building the question-answering system
+- Testing and optimizing the RAG application
+
+Follow along with the video to create your own RAG application step by step!
