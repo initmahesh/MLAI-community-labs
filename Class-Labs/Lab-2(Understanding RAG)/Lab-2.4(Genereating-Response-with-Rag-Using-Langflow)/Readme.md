@@ -184,7 +184,7 @@ Now that your document is processed and stored in the vector database, you can a
 2. The system will:
    - Search the vector database for relevant information
    - Generate a response based on the retrieved content
-   - Display the answer along with relevant document chunks
+   - Display the answer
 3. Each response will be based on the actual content of your uploaded document
 
 > **Tip:** Try asking questions that:
@@ -195,3 +195,21 @@ Now that your document is processed and stored in the vector database, you can a
 > - Ask for summaries or explanations
 
 ![Step 11: Question and Answer Example](<./Images/Screenshot%20(1983).png>)
+
+---
+
+# Build it From Scratch
+
+If you want to learn how to build this RAG application from scratch, check out our detailed video tutorial:
+
+# [Click Here](https://drive.google.com/file/d/1cK1TI3n4smf77GV2FCaWA-5LVpX0pdeD/view?usp=sharing)
+
+In this video, we'll walk you through:
+
+- Setting up the Langflow environment
+- Creating the document processing pipeline
+- Configuring the vector store
+- Building the question-answering system
+
+
+Follow along with the video to create your own RAG application step by step!
