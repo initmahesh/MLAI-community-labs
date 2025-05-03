@@ -2,11 +2,24 @@
 
 ## Introduction
 
-In this lab, we'll build a system that takes an MSA (Master Service Agreement) document and analyzes its risks. The system consists of three sequential agents:
+In this lab, we'll build a system that takes an MSA (Master Service Agreement) document and analyzes its risks. The system consists of three sequential agents, each with specific responsibilities:
 
-1. **Extraction Agent**: Extracts key terms from the document
-2. **Comparison Agent**: Compares the extracted key terms with reference values
-3. **Report Generation Agent**: Generates a comprehensive summary report
+1. **Extraction Agent**:
+
+   - Extracts key terms from the document
+   - Identifies important clauses and sections
+   - Creates a structured representation of the document
+
+2. **Comparison Agent**:
+
+   - Compares the extracted key terms with reference values
+   - Analyzes potential risks and deviations
+   - Flags any concerning terms or conditions
+
+3. **Report Generation Agent**:
+   - Generates a comprehensive summary report
+   - Provides risk assessment and recommendations
+   - Creates an executive summary of findings
 
 The system also provides an interactive chat interface where users can ask specific questions about the contract, and the appropriate agent(s) will provide detailed responses.
 
@@ -77,7 +90,8 @@ After successfully importing the JSON file, you will see the complete flow in yo
 
 1. Locate the OpenAI API Key component in your flow
 2. Click on the component to open its settings
-3. Enter your OpenAI API key in the designated field and also provide the OpenAI API key to the Agent component as well
+3. Enter your OpenAI API key in the designated field
+4. Also provide the same API key to the Agent component
 
 ![Step 7: Configure API Key](<Images/Screenshot%20(2013).png>)
 
@@ -98,14 +112,20 @@ After successfully importing the JSON file, you will see the complete flow in yo
    - Test different types of queries
    - See responses from different agents
 
-![Step 9: Playground Interface](<Images/Screenshot%20(2014).png>)
+#### Sample Questions to Test
+
+- "What are the key terms in this contract?"
+- "What are the potential risks in this agreement?"
+- "Can you summarize the main points of this document?"
+
+![Step 9: Playground Interface](<Images/Screenshot%20(2019).png>)
 
 ### Understanding Agent Responses
 
 When you ask a question:
 
-1. The specialist agent analyzes the relevant parts of the document
+1. The appropriate agent analyzes the relevant parts of the document
 2. The response combines insights from the document and agent expertise
 3. You'll see which agent provided the answer in the response
+4. The response will include relevant sections from the document
 
-![Agent Response Example](<Images/Screenshot%20(2019).png>)
