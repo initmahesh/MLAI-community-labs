@@ -33,7 +33,7 @@ Before getting started with this RAG application, you'll need to download the fo
 
 1. **Document for Processing**
 
-   - Download the document from: [Document Link](https://drive.google.com/file/d/1-M_t0phSpNfPdyFuWqf0mcoy7LBlLYNr/view?usp=sharing)
+   - Download the document from: [Document Link](https://drive.google.com/file/d/1GYAKFyXLitx83xCMVWkh-cc2OcIxq3d-/view?usp=sharing)
    - This document will be used as the knowledge base for the RAG system
 
 2. **Langflow JSON Flow File**
