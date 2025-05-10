@@ -1,3 +1,19 @@
+## Prerequisites
+
+Before starting this lab, please ensure you have the following:
+
+1. **OpenAI API Key:**
+   - Follow the instructions in [Lab-0 (Pre-requisites)](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)>) to generate your OpenAI API key
+   - Ensure you have at least $5 credit in your OpenAI account
+   - Keep your API key secure and never share it publicly
+     <br>
+2. **Required Documents:**
+
+   - [Download MSA Document](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/EbFs56xdcD1Kh24AX7pKkYYBP3AJCwUCjgrOor6C8Ddjog?e=vi8N2c) - The reference document for this lab
+   - [ Download JSON File](https://drive.google.com/file/d/1e-WctnpHV1b7rwIgtM9wGjL4FJ-jL571/view?usp=drive_link) - Contains the flow diagram for Langflow
+
+---
+
 ## Objective
 
 By the end of this lesson, you will:
@@ -8,10 +24,27 @@ By the end of this lesson, you will:
 - Experiment with different types of prompts and analyze their outcomes.
 - Apply prompt engineering techniques to optimize AI-generated outputs.
 
-🔗 **[Click here](https://app.eraser.io/workspace/PM7tvkjIPm8WEhp1kn6I?origin=share) to view the flow diagram** and see how the lab is working. 🛠️
+## High-Level Summary
 
+This lab focuses on prompt engineering using Langflow, a no-code tool for designing and testing AI prompts. Here's what we'll do:
 
----
+1. Set up the environment:
+
+   - Upload pre-created flow in JSON format
+   - Upload MSA document as input
+   - Configure OpenAI API key
+   - Ensure all components are properly connected
+
+2. Test and experiment:
+   - Use the Playground to test prompts
+   - Analyze responses
+   - Adjust parameters for optimal results
+
+This lab is part of the Data Understanding and Data Preparation phases of the CRISP-DM process, where we're exploring how to effectively interact with AI models and prepare our prompts for optimal results.
+
+- 🔗 **[Click here](https://app.eraser.io/workspace/PM7tvkjIPm8WEhp1kn6I?origin=share) to view the flow diagram** and see how the lab is working. 🛠️
+
+  ***
 
 ## What is Prompt Engineering?
 
@@ -26,33 +59,63 @@ AI models, such as ChatGPT, Gemini etc process natural language inputs and gener
 To better understand **Prompt Engineering**, we will be using **Langflow**, a no-code tool that allows us to design and experiment with AI prompts interactively.
 
 ### **Why Langflow?**
-- Provides a **visual interface** to create and test AI prompts.  
-- Helps in **understanding how different prompts impact AI responses**.  
-- Allows us to **iterate and refine prompts** for better accuracy.  
-- Enables **rapid prototyping** of AI-driven applications without coding.  
+
+- Provides a **visual interface** to create and test AI prompts.
+- Helps in **understanding how different prompts impact AI responses**.
+- Allows us to **iterate and refine prompts** for better accuracy.
+- Enables **rapid prototyping** of AI-driven applications without coding.
 
 By using Langflow, you will gain **practical experience** in crafting, testing, and optimizing prompts, reinforcing key concepts in prompt engineering.
 
-#### ***🔗 Want to learn more about Langflow? [Click Here](https://docs.langflow.org)***
+#### **🔗 Want to learn more about Langflow? [Click Here](https://docs.langflow.org)**
+
+---
+
+## Visual Example: LLM Workflow in Langflow
+
+Below is an example of how the basic building blocks of an LLM workflow or AI agent are visually represented in Langflow:
+
+### **Key Components in the Workflow**
+
+| Component Type     | Example in Langflow         | Purpose/When to Use                       |
+| ------------------ | --------------------------- | ----------------------------------------- |
+| Input              | File, Chat Input            | Upload documents, type questions          |
+| Data Processing    | Data to Message, Parse Data | Convert/clean/structure input for the LLM |
+| Prompt Engineering | Prompt (PromptTemplate)     | Standardize and optimize prompts          |
+| Model/LLM          | OpenAI                      | Generate responses                        |
+| Output             | Chat Output                 | Display results to the user               |
+
+### **How to Decide What Components to Include**
+
+1. **Start with your use case:**
+   - Are you analyzing documents, answering questions, summarizing, or extracting data?
+2. **Identify your inputs:**
+   - Will users upload files, type questions, or both?
+3. **Consider preprocessing needs:**
+   - Do you need to parse, clean, or split the data before sending it to the LLM?
+4. **Design your prompt:**
+   - Will you use a static prompt, or do you need a template that changes based on user input?
+5. **Choose your model:**
+   - Which LLM fits your needs (e.g., GPT-3.5, GPT-4)?
+6. **Plan your output:**
+   - How should results be displayed or used? (chat, table, file, etc.)
+   
 ---
 
 # **Deep Dive : Prompt Engineering and Best Practices**
 
+## **Building Blocks of a Prompt:**
 
-## **Building Blocks of a Prompt:**  
 Prompts are not created equal and have ways to get different responses. Here are the building blocks that make a prompt:
 
 - **Instruction** - A specific task or instruction you want the model to perform:  
-  *"Find the capital of the top 10 countries by GDP?"*
-  
+  _"Find the capital of the top 10 countries by GDP?"_
 - **Context** - Can involve external information or additional context that can steer the model to better responses.  
-  *Context (You are a student listing all countries and their capitals as comma-separated files); Instruction (Find the capital of the top 10 countries by GDP?)*
-  
+  _Context (You are a student listing all countries and their capitals as comma-separated files); Instruction (Find the capital of the top 10 countries by GDP?)_
 - **Input Data** - The input or question that we are interested in finding a response for.  
-  *Context (You are a student, preparing a list of countries and capitals in any order); Input (Can you list the capital of the USA in that format?)*
-  
+  _Context (You are a student, preparing a list of countries and capitals in any order); Input (Can you list the capital of the USA in that format?)_
 - **Output Indicator** - Indicates the type or format of the output.  
-  *Context (You are a student, preparing a list of countries and capitals in any order); Input (Can you list the capital of the USA in the given output format?); Output Format: "Paris; France", "New Delhi; India"*
+  _Context (You are a student, preparing a list of countries and capitals in any order); Input (Can you list the capital of the USA in the given output format?); Output Format: "Paris; France", "New Delhi; India"_
 
 Like Legos, you can pick up all or any combination of these prompts to perform the task at hand.
 
@@ -62,10 +125,12 @@ Like Legos, you can pick up all or any combination of these prompts to perform t
 
 There are different types of prompts that you can use to interact with large models based on your task:
 
-### **1) Instructions**  
+### **1) Instructions**
+
 Here, you simply tell the machine what to do, and it does that for you. For example:
 
-**INPUT:**  
+**INPUT:**
+
 ```text
 Read the following sales email. Remove any personally identifiable information (PII), and replace it with the appropriate placeholder. For example, replace the name "Mahesh Yadav" with "[NAME]".
 
@@ -74,12 +139,13 @@ Hi John,
 I'm writing to you because I noticed you recently purchased a new car. I'm a salesperson at a local dealership (Cheap Dealz), and I wanted to let you know that we have a great deal on a new car. If you're interested, please let me know.
 
 Thanks,
-Mahesh Yadav  
-Phone: 410-805-2345  
-Email: initmahesh@gmail.com  
+Mahesh Yadav
+Phone: 410-805-2345
+Email: initmahesh@gmail.com
 ```
 
-**OUTPUT:**  
+**OUTPUT:**
+
 ```text
 Hi [NAME],
 
@@ -91,99 +157,104 @@ Phone: [PHONE]
 Email: [EMAIL]
 ```
 
-### **2) Role Prompting**  
+### **2) Role Prompting**
+
 Here, you assign a role and then ask questions based on that role.
 
-**INPUT:**  
+**INPUT:**
+
 ```text
 You are a frontend engineer. Now estimate what it takes to build a stunning website for a startup with 10 pages, with very basic interactions and simple functionality. Just give the estimate in weeks, restrict your answer to 2 lines.
 ```
 
-**OUTPUT:**  
+**OUTPUT:**
+
 ```text
 A stunning website for a startup with 10 pages, basic interactions, and simple functionality could take approximately 4-8 weeks to complete. However, the actual time required may vary depending on project-specific requirements and available resources.
 ```
 
 ---
 
-## **Parameters You Can Tweak**  
+## **Parameters You Can Tweak**
+
 We have seen how we can use the above blocks, tune our model response, or get different responses. Here are some parameters that affect the results:
 
 - **Temperature** - Controls randomness. A lower temperature leads to more predictable responses, while a higher value increases creativity.
 - **Top_p** - Controls response diversity. A lower value gives exact answers, while a higher value encourages varied responses.
 
-📌 *Recommendation: Alter only one of these at a time.*
+📌 _Recommendation: Alter only one of these at a time._
 
 - **Penalty** - Discourages overuse of specific words or patterns in the response.
 
 ---
 
-# **How AI Models Process Prompts**  
+# **How AI Models Process Prompts**
 
 AI models like GPT work by predicting the most likely next word based on the input prompt. The way you structure the prompt **directly influences** the response quality.
 
-- **A vague prompt** results in **ambiguous** or **generic** responses.  
-- **A detailed, structured prompt** provides **precise, high-quality** responses.  
+- **A vague prompt** results in **ambiguous** or **generic** responses.
+- **A detailed, structured prompt** provides **precise, high-quality** responses.
 
 ---
 
-# **Let's Start Learning Prompt Engineering with Hands-On Experience!**  
+# **Let's Start Learning Prompt Engineering with Hands-On Experience!**
 
 The best way to learn **Prompt Engineering** is by practicing it in real-time.
-🚀 **Let's dive in and start experimenting with prompts!**  
-
+🚀 **Let's dive in and start experimenting with prompts!**
 
 ## Setup the Project
 
 - Go to the [LangFlow page](https://www.langflow.org) and click on **"Get Started for Free"**, as shown in the image below.
 
-![Langflow Screenshot](./Images/Screenshot%20(1515).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1515).png>)
 
 - Create your account on LangFlow.
 
-![Langflow Screenshot](./Images/Screenshot%20(1516).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1516).png>)
 
 - After creating your account, click on **"New Flow"**.
 
-![Langflow Screenshot](./Images/Screenshot%20(1517).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1517).png>)
 
 - Now click on **Blank Flow**, as we are building it from scratch.
 
-![Langflow Screenshot](./Images/Screenshot%20(1518).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1518).png>)
 
 - Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the [JSON File](https://drive.google.com/file/d/1e-WctnpHV1b7rwIgtM9wGjL4FJ-jL571/view?usp=drive_link) to view the flow diagram that has been provided to you.
 
-![Langflow Screenshot](./Images/Screenshot%20(1520).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1520).png>)
 
 - Now, you will see that your project has been successfully imported, and you can view all the components.
 
-**⚠️ Note: Sometimes while uploading your JSON file the links can be disconnected from each other, so make sure all the links are connected to each other as shown in the screenshot provided to you below.**
+# **⚠️ Note: Sometimes while uploading your JSON file the links can be disconnected from each other, so make sure all the links are connected to each other as shown in the screenshot provided to you below.**
 
-![Langflow Screenshot](./Images/Screenshot%20(1687).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1687).png>)
 
 - Now the first step is you have to provide the document in the first component you want to chat with. We are using a reference MSA document, you can upload yours as well. Click on the blue circle icon to upload your document.
 
 Reference MSA Document link: [MSA document link](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/EbFs56xdcD1Kh24AX7pKkYYBP3AJCwUCjgrOor6C8Ddjog?e=vi8N2c)
 
-![Langflow Screenshot](./Images/Screenshot%20(1688).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1688).png>)
 
 ---
 
-⚠️ **Important Note**  
-- Provide your **OpenAI API Key** to the agent and the **OpenAI Model** component to enable authentication and access.  
-- **[Follow this article](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites))** to generate an OpenAI API key. 🔑  
-- Ensure that the **API key is securely stored** and used **only for authorized requests** to prevent misuse.  
+⚠️ **Important Note**
 
-![Langflow Screenshot](./Images/Screenshot%20(1691).png)
+- Provide your **OpenAI API Key** to the agent and the **OpenAI Model** component to enable authentication and access.
+- **[Follow this article](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)>)** to generate an OpenAI API key. 🔑
+- Ensure that the **API key is securely stored** and used **only for authorized requests** to prevent misuse.
+
+![Langflow Screenshot](<./Images/Screenshot%20(1691).png>)
 
 ---
 
 - Now, click on the **Playground Section**.
 
-![Langflow Screenshot](./Images/Screenshot%20(1588).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1588).png>)
 
 ---
-- In the **Playground section**, enter a query such as: 
+
+- In the **Playground section**, enter a query such as:
 
 ```
 Please analyze the uploaded document and provide a comprehensive summary of its content. Specifically:
@@ -199,65 +270,67 @@ Please organize your response in a clear, structured format that helps me unders
 
 The system will fetch and display the output based on the document that you have uploaded.
 
-![Langflow Screenshot](./Images/Screenshot%20(1690).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1690).png>)
 
 - **⚠️ Note: If no document is found in the upload document, the file uploader component will fail, and the output generation will not proceed**.
 
 ---
 
-## **Improving Prompt Quality: From Basic to Optimized**  
+## **Improving Prompt Quality: From Basic to Optimized**
+
 Let's explore how the quality of your prompt dramatically affects the results you get from AI assistants. We'll compare outputs from poor prompts versus well-crafted ones.
 
+### **🔴 Basic Poor Prompt:**
 
-### **🔴 Basic Poor Prompt:**  
 ```text
-Input 
-Extract these Information from the document: Key Term, Description, and Location in Contract. 
+Input
+Extract these Information from the document: Key Term, Description, and Location in Contract.
 ```
-![Langflow Screenshot](./Images/Screenshot%20(1589).png)
+
+![Langflow Screenshot](<./Images/Screenshot%20(1589).png>)
 
 ```text
 Output
 Here are some key terms extracted from the document along with their descriptions and locations in the contract:
 
-1. **Key Term:** Kaseya Master Agreement  
-   **Description:** A binding legal contract between Kaseya and the entity making purchases under this Agreement.  
+1. **Key Term:** Kaseya Master Agreement
+   **Description:** A binding legal contract between Kaseya and the entity making purchases under this Agreement.
    **Location in Contract:** Introduction (Effective as of April 1, 2024)
 
-2. **Key Term:** Scope  
-   **Description:** Governs the interactions between the customer and Kaseya, including access to Kaseya portals and platforms, and the right to purchase Kaseya Products.  
+2. **Key Term:** Scope
+   **Description:** Governs the interactions between the customer and Kaseya, including access to Kaseya portals and platforms, and the right to purchase Kaseya Products.
    **Location in Contract:** Section 1(a)
 
-3. **Key Term:** Product Terms of Use  
-   **Description:** Terms applicable to the use, marketing, resale, and distribution of Kaseya Products.  
+3. **Key Term:** Product Terms of Use
+   **Description:** Terms applicable to the use, marketing, resale, and distribution of Kaseya Products.
    **Location in Contract:** Section 1(a)
 
-4. **Key Term:** License  
-   **Description:** The right to use a Product pursuant to the terms of the Agreement and as defined in the applicable Documentation.  
+4. **Key Term:** License
+   **Description:** The right to use a Product pursuant to the terms of the Agreement and as defined in the applicable Documentation.
    **Location in Contract:** Section 2(c)
 
-5. **Key Term:** End User  
-   **Description:** The person or entity that purchases a Product for its own use and owns, licenses, or uses Content.  
+5. **Key Term:** End User
+   **Description:** The person or entity that purchases a Product for its own use and owns, licenses, or uses Content.
    **Location in Contract:** Section 16
 
-6. **Key Term:** Confidential Information  
-   **Description:** Any business, operational, and/or technical information that is designated as confidential or that a reasonable person would believe to be confidential.  
+6. **Key Term:** Confidential Information
+   **Description:** Any business, operational, and/or technical information that is designated as confidential or that a reasonable person would believe to be confidential.
    **Location in Contract:** Section 7(a)
 
-7. **Key Term:** Termination for Convenience  
-   **Description:** Either party may terminate the Agreement at any time without cause upon 30 calendar days written notice.  
+7. **Key Term:** Termination for Convenience
+   **Description:** Either party may terminate the Agreement at any time without cause upon 30 calendar days written notice.
    **Location in Contract:** Section 9(b)
 
-8. **Key Term:** Indemnification  
-   **Description:** Obligations of Kaseya and the customer to defend and hold harmless against certain claims.  
+8. **Key Term:** Indemnification
+   **Description:** Obligations of Kaseya and the customer to defend and hold harmless against certain claims.
    **Location in Contract:** Section 11
 
-9. **Key Term:** Governing Law  
-   **Description:** The laws of the State of Delaware, USA, govern all disputes arising out of the Agreement.  
+9. **Key Term:** Governing Law
+   **Description:** The laws of the State of Delaware, USA, govern all disputes arising out of the Agreement.
    **Location in Contract:** Section 14(a)
 
-10. **Key Term:** Fair Use  
-    **Description:** Policies that prohibit excessive use of Products that harms Kaseya's resources or circumvents the intended use of the Product.  
+10. **Key Term:** Fair Use
+    **Description:** Policies that prohibit excessive use of Products that harms Kaseya's resources or circumvents the intended use of the Product.
     **Location in Contract:** Section 2(f)
 
 These terms provide a foundational understanding of the Kaseya Master Agreement and its key components.
@@ -265,17 +338,20 @@ These terms provide a foundational understanding of the Kaseya Master Agreement 
 
 **⚠️ Issue With This Prompt**
 When you give an AI an prompt like:
-- You might get a response, but it might not be structured the way you expected. The reason? You didn’t specify how you want the output to be formatted.
-- Imagine you're asking a friend to summarize a book. If you don’t tell them whether you want bullet points, a table, or a short paragraph, they might just ramble on in their own way.
+
+- You might get a response, but it might not be structured the way you expected. The reason? You didn't specify how you want the output to be formatted.
+- Imagine you're asking a friend to summarize a book. If you don't tell them whether you want bullet points, a table, or a short paragraph, they might just ramble on in their own way.
 
 ---
 
 ### **🟡 Better Prompt**
+
 ```text
 Input
  Create a table with the following columns: Key Term, Description, and Location in Contract. Populate it with the extracted details of the service provider name, customer name, and termination clauses.
 ```
-![Langflow Screenshot](./Images/Screenshot%20(1590).png)
+
+![Langflow Screenshot](<./Images/Screenshot%20(1590).png>)
 
 ```text
 Output
@@ -294,16 +370,18 @@ This table summarizes the key terms related to the service provider name, custom
 
 ✅ Why This Works:
 You see, when we clearly define the format of the output, the AI follows our instructions and provides the response in the exact structure we need. Instead of a random or unstructured reply, we now get information that is neatly organized.
-- Example, in this case, we used a table format, which ensures that the AI categorizes key terms properly. Each term is placed under three distinct columns:
-   - **Key Term** – What is being defined.
-   - **Description** – A brief explanation.
-   - **Location in Contract** – Where it is found in the document.
 
-By setting this structure in the prompt, we eliminate ambiguity, making the AI’s response clear, concise, and easy to navigate. This approach enhances readability and ensures that we receive the information in a way that is practical and useful.
+- Example, in this case, we used a table format, which ensures that the AI categorizes key terms properly. Each term is placed under three distinct columns:
+  - **Key Term** – What is being defined.
+  - **Description** – A brief explanation.
+  - **Location in Contract** – Where it is found in the document.
+
+By setting this structure in the prompt, we eliminate ambiguity, making the AI's response clear, concise, and easy to navigate. This approach enhances readability and ensures that we receive the information in a way that is practical and useful.
 
 ---
 
 ### **🟢 Optimized Prompt:**
+
 ```text
 Create a comprehensive contract analysis table with three columns: 'Key Term', 'Description', and 'Location in Contract (Section/Page)'. Extract and populate this table with the following specific elements:
 
@@ -315,7 +393,8 @@ Create a comprehensive contract analysis table with three columns: 'Key Term', '
 
 Format the table using markdown for clean presentation. For the Description column, provide direct quotes from the contract when possible, followed by a brief plain-language summary. For the Location column, specify both section numbers and page numbers to enable quick reference.
 ```
-![Langflow Screenshot](./Images/Screenshot%20(1692).png)
+
+![Langflow Screenshot](<./Images/Screenshot%20(1692).png>)
 
 ```text
 Output:
@@ -334,6 +413,7 @@ This table summarizes the key terms of the Kaseya Master Agreement, providing di
 ```
 
 ✅ Why This Works:
+
 - Specifies exactly what information to extract (5 key elements versus just 3)
 - Requests specific formatting (markdown table)
 - Details what should be included in each column
@@ -344,44 +424,45 @@ This table summarizes the key terms of the Kaseya Master Agreement, providing di
 
 ---
 
-## **Top 10 Best Practices Walkthrough**  
-Using our *Contract Summarization App*, you can playaround and apply these ten best practices for prompt engineering:
+## **Top 10 Best Practices Walkthrough**
+
+Using our _Contract Summarization App_, you can playaround and apply these ten best practices for prompt engineering:
 
 1. **Be Specific with Information Requests**  
-   📌 *Example:* Extract the service provider name, start and end date of the contract, and the total deal value.
+   📌 _Example:_ Extract the service provider name, start and end date of the contract, and the total deal value.
 
 2. **Supply Examples for Context**  
-   📌 *Example:* Given the format "Service Provider Name: [Name], Start Date: [Date], End Date: [Date], Deal Value: [Amount]", summarize accordingly.
+   📌 _Example:_ Given the format "Service Provider Name: [Name], Start Date: [Date], End Date: [Date], Deal Value: [Amount]", summarize accordingly.
 
 3. **Include Relevant Data**  
-   📌 *Example:* Referencing Section 1.5, summarize the deal value and billing frequency terms.
+   📌 _Example:_ Referencing Section 1.5, summarize the deal value and billing frequency terms.
 
 4. **Specify Desired Output Format**  
-   📌 *Example:* Create a table with "Key Term", "Description", and "Location in Contract" columns.
+   📌 _Example:_ Create a table with "Key Term", "Description", and "Location in Contract" columns.
 
 5. **Use Positive Instructions**  
-   📌 *Example:* Extract key terms including 'termination for breach' and 'limitations of liability' in JSON format.
+   📌 _Example:_ Extract key terms including 'termination for breach' and 'limitations of liability' in JSON format.
 
 6. **Assign a Persona or Frame of Reference**  
-   📌 *Example:* Imagine you are a legal analyst. Summarize auto-renewal terms, notice periods, and liabilities.
+   📌 _Example:_ Imagine you are a legal analyst. Summarize auto-renewal terms, notice periods, and liabilities.
 
 7. **Implement Chain of Thought Prompting**  
-   📌 *Example:* Identify 'termination without cause' clauses → Summarize → Explain implications.
+   📌 _Example:_ Identify 'termination without cause' clauses → Summarize → Explain implications.
 
 8. **Break Down Complex Tasks**  
-   📌 *Example:* Identify and summarize indemnification terms. Then extract coverage for attorney fees.
+   📌 _Example:_ Identify and summarize indemnification terms. Then extract coverage for attorney fees.
 
 9. **Acknowledge the Model's Limitations**  
-   📌 *Example:* Extract governing law and indemnification terms. Flag unclear sections for expert review.
+   📌 _Example:_ Extract governing law and indemnification terms. Flag unclear sections for expert review.
 
 10. **Take an Experimental Approach**  
-    📌 *Example:* Extract 'termination for cause' using a bullet list, then as a paragraph. Compare clarity.
+    📌 _Example:_ Extract 'termination for cause' using a bullet list, then as a paragraph. Compare clarity.
 
 ---
 
-## **Optimized Example Prompt for Contract GPT** 
+## **Optimized Example Prompt for Contract GPT**
 
-![Langflow Screenshot](./Images/Screenshot%20(1693).png)
+![Langflow Screenshot](<./Images/Screenshot%20(1693).png>)
 
 ```xml
 Input:
@@ -410,7 +491,8 @@ Use your legal expertise to review the provided contract document. Your primary 
 5. Acknowledge model limitations: flag uncertain sections for professional review.
 </Guardrails>
 ```
-![Langflow Screenshot](./Images/Screenshot%20(1694).png)
+
+![Langflow Screenshot](<./Images/Screenshot%20(1694).png>)
 
 ```xml
 Output:
@@ -456,34 +538,68 @@ Recommendation: Further review is necessary to clarify the duration of the Agree
 
 ---
 
-### 📌 Conclusion  
+### 📌 Conclusion
 
-Effective prompt engineering is an iterative process. Start with these patterns and adapt them based on your specific needs and the AI model’s capabilities. Remember to:
+Effective prompt engineering is an iterative process. Start with these patterns and adapt them based on your specific needs and the AI model's capabilities. Remember to:
+
 - Be specific and clear
 - Provide structured formats
 - Include examples when possible
 - Iterate and refine based on results
 
-💡 **Note:** In the upcoming weeks, we will dive into **advanced prompt engineering techniques**, including **reasoning models** and their real-world applications. Stay tuned! 🚀  
-
-## 📚 Resources  
-
-We have provided you with the **document** and the **JSON file** used in this lab, available in the same repository. You can use them to **explore, experiment, and practice** on your own. 🚀  
-
-🔗 Feel free to **modify and play around** with these resources to deepen your understanding! 🎯  
-
-
-
+💡 **Note:** In the upcoming weeks, we will dive into **advanced prompt engineering techniques**, including **reasoning models** and their real-world applications. Stay tuned! 🚀
 
 ---
 
-## ⚠️ Challenges You May Face in Langflow
-While running Langflow, you might encounter some bugs related to network connectivity and session creation. If you see an error or face issues while creating a new session, don’t worry. Simply refresh the page and try again.
+# **⚠️ Important Warnings:**
 
-Behind the scenes, everything continues to function properly—this is just a known Langflow bug that you can safely ignore.
+1. **Component Updates Required:**
+
+   - If you see a message saying "Some components need to be updated", click "Update All" to ensure all components are running the latest version
+   - This helps prevent compatibility issues and ensures smooth operation of the flow
+
+2. **JSON File Connection:**
+
+   - Sometimes while uploading your JSON file the links can be disconnected from each other
+   - Make sure all the links are connected to each other as shown in the screenshot provided below
+
+3. **API Key Security:**
+   - When sharing the flow or images of it with others, make sure to hide the API key for security purposes
+   - Never share screenshots or recordings that show your API key
+   - If you accidentally expose your API key, regenerate it immediately in your OpenAI account
+
+---
+
+# **🎮 Ways to Play Around**
+
+Now that you've mastered the basics, here are some ways to experiment and learn more:
+
+1. **Try Your Own Prompts:**
+
+   - Create different types of prompts (instruction-based, role-based, etc.)
+   - Experiment with different prompt structures and formats
+   - Test how different phrasings affect the output quality
+
+2. **Use Different Models:**
+
+   - Try different OpenAI models (GPT-3.5, GPT-4)
+   - Compare responses between models
+   - Observe how model capabilities affect output quality
+
+3. **Adjust LLM Parameters:**
+
+   - Experiment with temperature settings (0.0 to 1.0)
+   - Try different top_p values
+   - Test penalty settings
+   - Observe how these parameters affect response creativity and accuracy
+
+4. **Test with Different Documents:**
+   - Upload non-MSA documents (e.g., technical documentation, articles)
+   - Compare how the model handles different types of content
+   - Test the model's ability to extract and summarize different document structures
+
+Remember: The best way to learn is through experimentation! 🚀
 
 ---
 
 © **All rights reserved Mahesh Yadav Institute**. No part of this course can be reproduced, distributed, or transmitted in any form without permission.
-
-
