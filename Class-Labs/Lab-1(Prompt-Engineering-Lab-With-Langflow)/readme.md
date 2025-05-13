@@ -228,7 +228,7 @@ The best way to learn **Prompt Engineering** is by practicing it in real-time.
 
 # **⚠️ Note: Sometimes while uploading your JSON file the links can be disconnected from each other, so make sure all the links are connected to each other as shown in the screenshot provided to you below.**
 
-![Langflow Screenshot](<./Images/Screenshot%20(1687).png>)
+![Langflow Screenshot](<./Images/Screenshot%20(2042).png>)
 
 - Now the first step is you have to provide the document in the first component you want to chat with. We are using a reference MSA document, you can upload yours as well. Click on the blue circle icon to upload your document.
 
