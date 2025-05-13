@@ -9,7 +9,7 @@ Before starting this lab, please ensure you have the following:
      <br>
 2. **Required Documents:**
 
-   - [Download MSA Document](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/EbFs56xdcD1Kh24AX7pKkYYBP3AJCwUCjgrOor6C8Ddjog?e=vi8N2c) - The reference document for this lab
+   - [Download MSA Document](https://drive.google.com/file/d/1ZgnpgX6CeMpqLQCzPOqOOaqMETAavm5D/view?usp=sharing) - The reference document for this lab
    - [ Download JSON File](https://drive.google.com/file/d/17v3b2SXulWZrnhqmm-qUDHzssmPNypU1/view?usp=sharing) - Contains the flow diagram for Langflow
 
 ---
