@@ -391,7 +391,6 @@ Create a comprehensive contract analysis table with three columns: 'Key Term', '
 4 Contract Term/Duration (initial term and renewal provisions)
 5 Payment Terms (including due dates, late fees, and escalation clauses)
 
-Format the table using markdown for clean presentation. For the Description column, provide direct quotes from the contract when possible, followed by a brief plain-language summary. For the Location column, specify both section numbers and page numbers to enable quick reference.
 ```
 
 ![Langflow Screenshot](<./Images/Screenshot%20(1692).png>)
