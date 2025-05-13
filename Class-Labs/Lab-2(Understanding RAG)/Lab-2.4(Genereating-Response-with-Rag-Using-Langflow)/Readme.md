@@ -37,7 +37,7 @@ Before getting started with this RAG application, you'll need to download the fo
    - This document will be used as the knowledge base for the RAG system
 
 2. **Langflow JSON Flow File**
-   - Download the pre-configured flow from: [Flow File Link](https://drive.google.com/file/d/1-M_t0phSpNfPdyFuWqf0mcoy7LBlLYNr/view?usp=sharing)
+   - Download the pre-configured flow from: [Flow File Link](https://drive.google.com/file/d/1ntOfttJ-BacL6ru-nVXTOEyxUFqKC1q7/view?usp=sharing)
    - This JSON file contains the complete Langflow configuration for the RAG pipeline
    - Import this file into your Langflow instance to get started quickly
 
