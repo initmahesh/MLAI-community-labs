@@ -17,7 +17,8 @@ This Copilot agent transforms your team's knowledge base into an intelligent ass
 - **Knowledge Processing**: Automatically processes and indexes team documents
 - **Intelligent Responses**: Uses Azure OpenAI to provide accurate, context-aware answers
 - **Team Integration**: Built-in support for team collaboration and access control
-```
+
+
 
 ## Video Tutorial
 
