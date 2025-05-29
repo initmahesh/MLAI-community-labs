@@ -2,27 +2,28 @@
 
 ## Overview
 
-This repository contains two labs demonstrating enterprise-grade automation and multi-agent frameworks:
+This repository contains three labs demonstrating enterprise-grade automation and multi-agent frameworks:
 
-- Lab 1: Microsoft Power Automate integration with email and contract analysis (human-in-the-loop).
-- Lab 2: Building multi-agent systems using Google Cloud’s Vertex AI.
+- Lab 1: Building and Integrating Knowledge Copilot Agent with MS Teams
+- Lab 2: Microsoft Power Automate integration with email and contract analysis (human-in-the-loop)
 
-## Lab 1: Power Automate Integration with Email and Contract Analysis
+## Lab 1: Building and Integrating Knowledge Copilot Agent with MS Teams
+
+### Description
+
+Microsoft Copilot Agent is an AI-powered assistant that helps you build, customize, and deploy conversational AI solutions. In this lab, you will:
+
+- Build a Copilot agent
+- Add knowledge processing capabilities
+- Integrate with MS Teams for team collaboration
+
+## Lab 2: Power Automate Integration with Email and Contract Analysis
 
 ### Description
 
 Microsoft Power Automate is a workflow automation tool that enables seamless integration of enterprise systems. In this lab, you will:
 
-- Automate email-triggered workflows for contract analysis.
-- Integrate a contract analysis agent to process incoming requests.
-- Implement human-in-the-loop validation to ensure accuracy before finalizing outcomes.
+- Automate email-triggered workflows for contract analysis
+- Integrate a contract analysis agent to process incoming requests
+- Implement human-in-the-loop validation
 
-## Lab 2: Multi-Agent Systems with Google Cloud Vertex AI
-
-### Description
-
-Google Cloud’s Vertex AI is a no-code platform for building and deploying multi-agent frameworks. In this lab, you will:
-
-- Explore how AI agents use tools to collaborate and solve complex tasks.
-- Connect multiple agents to work in tandem (e.g., data processing, decision-making).
-- Deploy a scalable multi-agent system using Vertex AI’s enterprise-ready infrastructure.
