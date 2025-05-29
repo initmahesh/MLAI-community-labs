@@ -15,7 +15,12 @@ This project implements an intelligent Copilot agent that processes Master Servi
 
 ### Step 1: Building Flow
 
-[Video Tutorial: How to Build Flow](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EfA-kILQ6nVFtdge61NL2hwB1-RnEv6xccrIFPEI_hgLWw?e=upZltq&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+[Video Tutorial: How to Build Flow](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EcK7u0NBywJBhYGlNafqN1YBvUq9mAX0BLUduQnzX7XIKw?e=0fFiRh&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+
+#### Required Tools
+
+- [Power Apps](https://make.powerapps.com/) - For building prompts
+- [Copilot Studio](https://copilotstudio.microsoft.com/) - For creating and managing the Copilot agent
 
 The initial flow setup includes document processing and key term extraction using two main prompts:
 
@@ -156,7 +161,7 @@ If ALL five elements are found, return them in this JSON format without any mark
 }
 ```
 
-### Step 2: Building Flow in Agent
+### Step 2: Building Flow in Copilot Agent
 
 [Video Tutorial: How to Build Flow in Agent](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EdP3eSOYjMxOs-bnEzVija8ByjmMUSfJBkfCFdZveDfMwg?e=QhZpNk&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
