@@ -16,7 +16,7 @@ Before starting with the implementation, please ensure you have:
 
 - A working professional email address
 
-If you don't have these prerequisites, please contact our team and they will provide you the credentials for completing this lab.
+If you don't have these prerequisites, please contact Sachin he will provide you the credentials for completing this lab.
 
 ---
 
