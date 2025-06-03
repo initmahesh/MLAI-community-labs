@@ -37,7 +37,7 @@ If you don't have these prerequisites, please contact Sachin he will provide you
 5. Use your professional email address to sign in. If you don't have one, please contact Sachin and he will provide it.
 6. After signing in, you'll see the dashboard, something like this as provided in the below image:
 
-![Copilot Studio Landing Page](Images\1.png)
+![Copilot Studio Landing Page](Images/1.png)
 
 ---
 
@@ -48,7 +48,7 @@ If you don't have these prerequisites, please contact Sachin he will provide you
 3. This will direct you to the agents management page where you can create and manage your copilot agents
 4. Click on the "New Agent" button
 
-![Copilot Studio Agents Page](Images\2.png)
+![Copilot Studio Agents Page](Images/2.png)
 
 ---
 
@@ -69,7 +69,7 @@ If you don't have these prerequisites, please contact Sachin he will provide you
    - Provide recommendations for implementation
    - Help you define the agent's capabilities
 
-![Agent Creation Chat Interface](Images\3.png)
+![Agent Creation Chat Interface](Images/3.png)
 
 ---
 
@@ -79,7 +79,7 @@ If you don't have these prerequisites, please contact Sachin he will provide you
 2. Click on the "Create" button to start building your agent
 3. Since we already have a clear idea of what we're building (a knowledge-based agent), we can skip the chat interface and proceed directly to creation
 
-![Create Button Location](Images\4.png)
+![Create Button Location](Images/4.png)
 
 ---
 
@@ -89,7 +89,7 @@ If you don't have these prerequisites, please contact Sachin he will provide you
 2. **The agent has automatically generated a description that matches your requirements for a knowledge-based agent that only responds using provided knowledge**
 3. Review the description to ensure it aligns with your needs
 
-![Agent Description](Images\5.png)
+![Agent Description](Images/5.png)
 
 ---
 
@@ -101,7 +101,7 @@ Great! Now that we have our agent set up, let's teach it some knowledge. Here's 
 2. Click on the "Knowledge" tab - this is where we'll add all the information our agent needs to know
 3. Think of this as teaching our agent everything it needs to help users
 
-![Knowledge Tab](Images\6.png)
+![Knowledge Tab](Images/6.png)
 
 ---
 
@@ -116,7 +116,7 @@ Now, let's feed our agent with some knowledge! You'll see various options to add
 
 For this example, we're using an MSA document, but you can use any type of content that contains the information you want your agent to know about. The agent will process and learn from whatever resources you provide.
 
-![Adding Knowledge Sources](Images\7.png)
+![Adding Knowledge Sources](Images/7.png)
 
 ---
 
@@ -133,11 +133,11 @@ This is where you can see your agent in action and make sure it's working as exp
 
 #### Test Button
 
-![Testing Interface](Images\10.png)
+![Testing Interface](Images/10.png)
 
 #### Testing Interface
 
-![Testing Interface](Images\11.png)
+![Testing Interface](Images/11.png)
 
 ---
 
@@ -150,7 +150,7 @@ Now that we've tested our agent and it's working well, let's make it available f
 3. This will make your agent available for integration with MS Teams
 4. The publishing process might take a few minutes
 
-![Publish Button](Images\12.png)
+![Publish Button](Images/12.png)
 
 ---
 
@@ -163,7 +163,7 @@ Now that your agent is published, let's connect it to MS Teams:
 3. Select it to start the Teams integration process
 4. This will make your agent available as a Teams app
 
-![Channels Selection](Images\13.png)
+![Channels Selection](Images/13.png)
 
 ---
 
@@ -175,7 +175,7 @@ Let's add the Teams channel to your agent:
 2. This will start the process of connecting your agent to Teams
 3. You'll see a confirmation message once the channel is added successfully
 
-![Add Channel Button](Images\14.png)
+![Add Channel Button](Images/14.png)
 
 ---
 
@@ -188,7 +188,7 @@ Great! Now that the channel is added, let's see your agent in Teams:
 3. This will take you directly to your agent in the Teams interface
 4. You can now start using your knowledge-based agent in Teams!
 
-![See Agent in Teams](Images\15.png)
+![See Agent in Teams](Images/15.png)
 
 ---
 
@@ -200,7 +200,7 @@ Now, let's open MS Teams to start using your agent:
 2. Sign in with your professional account
 3. You'll see your agent available in the Teams interface
 
-![MS Teams Interface](Images\16.png)
+![MS Teams Interface](Images/16.png)
 
 ---
 
@@ -211,7 +211,7 @@ Let's add your agent to MS Teams:
 1. CLick "Add" button
 2. Your agent will be added as a Teams app
 
-![Add to Teams Button](Images\17.png)
+![Add to Teams Button](Images/17.png)
 
 ---
 
@@ -223,7 +223,7 @@ Now that your agent is added to Teams, let's open it:
 2. Click on it to launch your agent in Teams
 3. This will open a chat interface where you can start interacting with your knowledge-based agent
 
-![Open Agent Button](Images\18.png)
+![Open Agent Button](Images/18.png)
 
 ---
 
@@ -236,7 +236,7 @@ Congratulations! Your agent is now fully integrated with MS Teams:
 3. Try asking questions about the content you uploaded
 4. You'll notice that the agent's responses are based on your specific knowledge sources
 
-![Agent Chat Interface](Images\19.png)
+![Agent Chat Interface](Images/19.png)
 
 ---
 
