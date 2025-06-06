@@ -21,7 +21,7 @@ After creating an airtable account and setting up the API key, and adding key te
 ### <a name="opschema"></a> OpenAPI Schema
 Now we will create the OpenAPI schema for the Agent to call in order to save the data generated
 
-Click here to find the OpenAPI schema that we are using: [Schema](Airtable_OpenAPI.yaml)
+Click here to find the OpenAPI schema that we are using is in the same directory Airtable_OpenAPI.yaml : [Schema](Airtable_OpenAPI.yaml)
 
 1. The Airtable URL that you had just saved is broken into two parts-
    1. Base URL- This is how the base URL looks like ![image](https://github.com/initmahesh/MLAI-community-labs/assets/72710483/9c1b0118-75ab-4489-85f7-57c58820c270)
