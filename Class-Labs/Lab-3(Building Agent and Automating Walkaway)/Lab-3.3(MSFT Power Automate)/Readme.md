@@ -112,7 +112,7 @@ In this video, I extract all the key terms from the MSA document and pass them t
 ## Demo Video 2  
 If any key term is not found, the system enhances the query and tests again. If still not found, it sends an email to the admin for manual review.  
 📄 [Reference Doc Link](https://drive.google.com/file/d/1o9FG4zd4C0GwKTjMvumNzIS6UoGobFOd/view?usp=sharing)  
-🎬 [Watch Demo Video 2](https://drive.google.com/file/d/14AQZ-Z87t2dgsRTX13uZKM9O4jnoGyok/view?usp=sharing)  
+🎬 [Watch Demo Video 2](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EVzGRFiXXjVEo0HLHtV1fLIB5FzKoegkGVeEZ6TfaxagBg?e=jzrDQg&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)  
 
 ## Demo Video 3  
 If the attachment contains irrelevant content, the flow will not proceed.  
