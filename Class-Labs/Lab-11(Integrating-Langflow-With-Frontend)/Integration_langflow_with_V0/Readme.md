@@ -97,7 +97,7 @@ Before starting the lab, please download the following required files:
 
 ---
 
-## ��️ About V0
+## About V0
 
 V0 is a generative user interface system developed by Vercel Labs that leverages AI to create modern React components. It offers several key features:
 
