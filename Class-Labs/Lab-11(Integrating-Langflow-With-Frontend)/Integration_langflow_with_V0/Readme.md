@@ -197,7 +197,7 @@ The curl command to be used for processing the file context is as follows:
 curl --request POST \
   --url 'https://api.langflow.astra.datastax.com/lf/54941d66-0c11-4ef7-9c95-c7c80194b2be/api/v1/run/2b745936-0d00-4228-b999-5c915e070c78?stream=false' \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer AstraCS:nmyXLJZXQADUXAZfLICGDyRh:3abccc11cb68db16ba4ebe57bd7dffae817558e2543c9fefdceedb92eaac10bb' \
+  --header 'Authorization: Bearer <YOUR TOKEN>' \
   --data '{ "input_value": "hello world!", "output_type": "chat", "input_type": "chat", "tweaks": { "TextInput-gMY7d": { "input_value": "Hello World" } } }'
 
 ## Sample Response
