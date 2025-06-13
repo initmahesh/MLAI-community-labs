@@ -34,13 +34,70 @@ Before starting the lab, please download the following required files:
    - Required for setting up the backend integration
 
 2. **Reference Documentation**
+
    - [Download Link](https://drive.google.com/file/d/1YfVQI9ZbEppM00CGi5aU0yJsuyFfe7WH/view?usp=sharing)
+
+3. **Dummy Context for Testing**
+
+   You can use the following sample document to test your implementation:
+
+   ```markdown
+   # MASTER SERVICES AGREEMENT
+
+   This Master Services Agreement ("Agreement") is made and entered into on this 1st day of May 2025 by and between:
+
+   **Service Provider Name:** TechNova Solutions Inc. ("Service Provider")  
+   **Customer Name:** BrightWave Media Ltd. ("Customer")
+
+   ## 1. Scope of Services
+
+   Service Provider agrees to provide IT consulting and development services as outlined in individual Statements of Work ("SOWs") to be agreed upon by both parties.
+
+   ## 2. Contract Term/Duration
+
+   This Agreement shall commence on May 1, 2025, and shall remain in effect for a period of two (2) years, unless terminated earlier in accordance with the terms herein.
+
+   ### 2.1 Auto-Renewal Clause
+
+   This Agreement shall automatically renew for successive one (1) year periods unless either party provides sixty (60) days written notice of non-renewal prior to the expiration of the then-current term.
+
+   ## 3. Payment Terms
+
+   Customer shall pay Service Provider according to the rates defined in each SOW. Unless otherwise stated, invoices are payable within thirty (30) days of receipt by Customer.
+
+   ### 3.1 Billing Frequency
+
+   Service Provider shall submit invoices to Customer on a monthly basis for all services rendered during the preceding calendar month.
+
+   ### 3.2 Late Payment
+
+   Any invoice not paid within the specified payment terms shall accrue interest at the rate of 1.5% per month or the maximum rate permitted by law, whichever is less.
+
+   ## 4. Termination Clauses
+
+   Either party may terminate this Agreement with thirty (30) days' written notice. In the event of breach, the non-breaching party may terminate the Agreement immediately upon notice.
+
+   ## 5. Contact Information and Authorized Representatives
+
+   ### 5.1 Service Provider Contact
+
+   **Primary Contact:** Sarah Mitchell, Director of Client Services  
+   **Email:** sarah.mitchell@technovasolutions.com  
+   **Phone:** (555) 123-4567
+
+   ### 5.2 Customer Contact
+
+   **Primary Contact:** David Chen, IT Operations Manager  
+   **Email:** david.chen@brightwavemedia.com  
+   **Phone:** (555) 987-6543
+
+   ```
 
 > **Note:** Make sure to keep these files in a secure location as they contain important configuration details for your Langflow agent.
 
 ---
 
-## 🛠️ About V0
+## ��️ About V0
 
 V0 is a generative user interface system developed by Vercel Labs that leverages AI to create modern React components. It offers several key features:
 
