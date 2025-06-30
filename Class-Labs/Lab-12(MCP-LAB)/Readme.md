@@ -85,7 +85,15 @@ Now, return to your Claude application. At the top, click on the icon, then sele
 
 ---
 
-### Step 6: Edit Developer Config in Claude
+### Step 6: Enable Developer Mode
+
+Before editing the configuration, you need to enable Developer Mode in Claude. Go to the 'Help' menu, then select 'Troubleshooting'. You will see an option to 'Enable Developer Mode'—click on that to proceed.
+
+![Screenshot: Claude Login Page](images/img-14.png)
+
+---
+
+### Step 7: Edit Developer Config in Claude
 
 In the Settings menu, go to the 'Developer' section mode. Then, click on 'Edit Config' button. This will allow you to add or modify the configuration needed to connect to the Puppeteer MCP server.
 
@@ -93,7 +101,7 @@ In the Settings menu, go to the 'Developer' section mode. Then, click on 'Edit C
 
 ---
 
-### Step 7: Update the Configuration File (`claude_desktop_config`)
+### Step 8: Update the Configuration File (`claude_desktop_config`)
 
 Okay, now once you click on the 'Edit Config' button, you will be redirected to the configuration file. The file is usually named `claude_desktop_config`. Open this file in any JSON editor—Notepad, VS Code, or (as we are using here) Cursor. You can use any editor you prefer.
 
@@ -126,13 +134,13 @@ Replace or update the configuration with the following code:
 
 ---
 
-### Step 8: Save and Reopen Claude
+### Step 9: Save and Reopen Claude
 
 Once you have finished editing and saving the configuration file, close and reopen your Claude application. This will ensure that the new settings take effect and your integration with the Puppeteer MCP server is active.
 
 ---
 
-### Step 9: Click on the Addition (+) Symbol
+### Step 10: Click on the Addition (+) Symbol
 
 After reopening Claude, click on the addition (+) symbol in the interface. This will allow you to add or start a new integration, project, or workflow as needed.
 
@@ -140,7 +148,7 @@ After reopening Claude, click on the addition (+) symbol in the interface. This 
 
 ---
 
-### Step 10: Click on 'Add from Puppeteer'
+### Step 11: Click on 'Add from Puppeteer'
 
 After clicking the addition (+) symbol, select the option 'Add from Puppeteer'. This will connect your Claude application to the Puppeteer MCP server and enable browser automation features.
 
@@ -148,18 +156,24 @@ After clicking the addition (+) symbol, select the option 'Add from Puppeteer'. 
 
 ---
 
-### Step 11: Add the Browser Console Log File in Your Chat
+### Step 12: Add the Browser Console Log File in Your Chat
 
 To facilitate troubleshooting or verify the connection, include the browser console log file in your chat.
 
 ---
 
-### Step 12: Ask a Question and See Real-Time Web Content Fetching
+### Step 13: Ask a Question and See Real-Time Web Content Fetching
 
 Now, try asking a question in Claude that requires fetching content from a website (for example, "go get me latest filling details for SEC.gov for wallmart"). You will see that Claude, using the Puppeteer integration, fetches the content from the website in real time. You can observe all the actions—like navigating to the site, extracting information, and returning results—happening live!
 
 ---
 
+## Build it From Scratch
+
+- [Video Link Click Here](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EdLPu7SqWuFCg9eRdfGwY4oBtriGRIw8r-_5kgxDr2Hy8g?e=nM3gdm)
+
+
+---
 > **Tip:** You can use any JSON editor, but VS Code provides syntax highlighting and error checking.
 
 > ⚠️ **Warning:** Never share your configuration file with sensitive paths or credentials.
