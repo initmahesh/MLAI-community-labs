@@ -252,15 +252,13 @@ Create a landing page for my startup that processes MSA (Master Service Agreemen
 
 Use this prompt in V0 to generate a high-quality landing page that meets your requirements.
 
-### Step 18: See How It Works (Demo Video)
+### Step 18: Demo Video
 
-To see the complete process and how your integrated Copilot agent works within your frontend, watch the demo video below:
+Watch the demo video below:
 
-<video src="Images/demo.webm" controls style="max-width: 100%; height: auto;">
-  Your browser does not support the video tag.
-</video>
+![Example](Images/26.png)
 
-This video demonstrates the user experience from setup to interacting with the embedded chatbot on your landing page.
+# ![Demo Video](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EYIGXngKJ8lPm-TdcwCK2Y0BlSOxV7W8p6OuZCxOPY4Ntg?e=9J5Gc3)
 
 ---
 
