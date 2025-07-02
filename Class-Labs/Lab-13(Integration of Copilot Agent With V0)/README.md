@@ -256,7 +256,9 @@ Use this prompt in V0 to generate a high-quality landing page that meets your re
 
 To see the complete process and how your integrated Copilot agent works within your frontend, watch the demo video below:
 
-![Demo Video](Images/demo.webm)
+<video src="Images/demo.webm" controls style="max-width: 100%; height: auto;">
+  Your browser does not support the video tag.
+</video>
 
 This video demonstrates the user experience from setup to interacting with the embedded chatbot on your landing page.
 
