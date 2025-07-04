@@ -200,15 +200,14 @@ This will allow your agent to be accessed without additional authorization requi
 ### Step 16: Create the Frontend with V0 and Integrate the Agent
 
 1. Go to [V0](https://v0.dev/) – a tool for quickly building frontend UIs
-2. Use V0 to design and create your desired frontend interface
 
 ![Publish Button](Images/27.png)
 
-3. Open V0 and find the chat interface. Paste your prompt, including the desired design and the iFrame code generated from the Copilot agent, and press enter [Refer to Step 17 for the Prompt](#step-17-provide-a-detailed-prompt-for-v0)
+2. Open you open your V0 and in the chat interface. Paste your prompt, including the desired design and the iFrame code generated from the Copilot agent, and press enter [Refer to Step 17 for the Prompt](#step-17-provide-a-detailed-prompt-for-v0)
 
 ![Publish Button](Images/28.png)
 
-4. Deploy or preview your frontend to see the integrated Copilot agent in action
+3. Preview your frontend to see the integrated Copilot agent in action
 
 This allows users to interact with your Copilot agent directly from your custom frontend.
 
