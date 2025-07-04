@@ -203,7 +203,7 @@ This will allow your agent to be accessed without additional authorization requi
 
 ![Publish Button](Images/27.png)
 
-2. Open you open your V0 and in the chat interface. Paste your prompt, including the desired design and the iFrame code generated from the Copilot agent, and press enter [Refer to Step 17 for the Prompt](#step-17-provide-a-detailed-prompt-for-v0)
+2. Once you open your V0 and in the chat interface. Paste your prompt, including the desired design and the iFrame code generated from the Copilot agent, and press enter [Refer to Step 17 for the Prompt](#step-17-provide-a-detailed-prompt-for-v0)
 
 ![Publish Button](Images/28.png)
 
