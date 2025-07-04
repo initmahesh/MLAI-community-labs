@@ -201,7 +201,13 @@ This will allow your agent to be accessed without additional authorization requi
 
 1. Go to [V0](https://v0.dev/) – a tool for quickly building frontend UIs
 2. Use V0 to design and create your desired frontend interface
-3. Once your frontend is ready, paste the iFrame code (copied in the previous step) into your frontend where you want the agent to appear
+
+![Publish Button](Images/27.png)
+
+3. Open V0 and find the chat interface. Paste your prompt, including the desired design and the iFrame code generated from the Copilot agent, and press enter [Refer to Step 17 for the Prompt](#step-17-provide-a-detailed-prompt-for-v0)
+
+![Publish Button](Images/28.png)
+
 4. Deploy or preview your frontend to see the integrated Copilot agent in action
 
 This allows users to interact with your Copilot agent directly from your custom frontend.
@@ -248,17 +254,15 @@ Create a landing page for my startup that processes MSA (Master Service Agreemen
 - Ensure accessibility best practices are followed (contrast, font size, alt text, etc.)
 - The page should load quickly and be optimized for performance
 
----
-
 Use this prompt in V0 to generate a high-quality landing page that meets your requirements.
+
+---
 
 ### Step 18: Demo Video
 
 Watch the demo video below:
 
-![Example](Images/26.png)
-
-# ![Demo Video](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EYIGXngKJ8lPm-TdcwCK2Y0BlSOxV7W8p6OuZCxOPY4Ntg?e=9J5Gc3)
+[Demo Video: Click here](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EYIGXngKJ8lPm-TdcwCK2Y0BlSOxV7W8p6OuZCxOPY4Ntg?e=2kKo5h)
 
 ---
 
