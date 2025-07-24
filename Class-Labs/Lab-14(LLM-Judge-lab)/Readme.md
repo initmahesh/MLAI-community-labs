@@ -6,16 +6,18 @@ This repository contains hands-on labs designed to explore the use of Large Lang
 
 ## Lab Overviews
 
-### Lab 1: LLM as a Judge with Advanced Azure AI Evaluation
+### Lab 1: Advanced Azure AI Evaluation
 
 - **Objective:** Enhance contract evaluation by integrating Azure AI’s advanced evaluation tools.
-
 
 ### Lab 2: LLM as a Judge with LLM
 
 - **Objective:** Use a standard LLM to evaluate contract clauses against ground truth data.
 
-
 ### Lab 3: LLM vs. Human Judgment
 
 - **Objective:** Compare the effectiveness of LLM-based evaluation with human evaluation to determine which is more reliable or insightful for contract clause assessment.
+
+### Lab 4: Continuous Monitoring Your Evaluators in Azure
+
+- **Objective:** Learn how to continuously monitor the performance and resource usage of your evaluation pipeline using Azure AI Studio.
