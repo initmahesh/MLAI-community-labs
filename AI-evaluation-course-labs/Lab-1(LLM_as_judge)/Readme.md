@@ -1,5 +1,7 @@
 # Lab 1: LLM-as-a-Judge - Introduction
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/AI-evaluation-course-labs/Lab-1(LLM_as_judge)/LLM_As_A_Judge.ipynb)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/AI-evaluation-course-labs/Lab-1(LLM_as_judge)/LLM_As_A_Judge.ipynb>)
+
 
 ---
 
