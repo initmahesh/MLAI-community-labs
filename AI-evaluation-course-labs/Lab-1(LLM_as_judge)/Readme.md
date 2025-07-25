@@ -1,7 +1,6 @@
 # Lab 1: LLM-as-a-Judge - A Complete Guide to Run LLM Evals
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/AI-evaluation-course-labs/Lab-1(LLM_as_judge)/LLM_As_A_Judge.ipynb)
-
 ---
 
 ## 🧠 Overview
