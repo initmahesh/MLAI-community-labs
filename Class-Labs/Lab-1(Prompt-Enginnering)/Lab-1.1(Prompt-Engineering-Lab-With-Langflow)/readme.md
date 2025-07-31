@@ -3,7 +3,7 @@
 Before starting this lab, please ensure you have the following:
 
 1. **OpenAI API Key:**
-   - Follow the instructions in [Lab-0 (Pre-requisites)](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)>) to generate your OpenAI API key
+   - Follow this [Instruction](https://medium.com/@lorenzozar/how-to-get-your-own-openai-api-key-f4d44e60c327) to get the open api key.
    - Ensure you have at least $5 credit in your OpenAI account
    - Keep your API key secure and never share it publicly
      <br>
@@ -11,6 +11,11 @@ Before starting this lab, please ensure you have the following:
 
    - [Download MSA Document](https://drive.google.com/file/d/1ZgnpgX6CeMpqLQCzPOqOOaqMETAavm5D/view?usp=sharing) - The reference document for this lab
    - [ Download JSON File](https://drive.google.com/file/d/17v3b2SXulWZrnhqmm-qUDHzssmPNypU1/view?usp=sharing) - Contains the flow diagram for Langflow
+<br>
+
+3. **Langflow Login Setup**
+   - Follow the instructions provided in the Langflow Login Guide:  
+   - 📘 [Langflow Login Guide](../../Lab-0(Pre-requisites)/Langflow-Login-Guide/Readme.md)
 
 ---
 
@@ -204,23 +209,12 @@ The best way to learn **Prompt Engineering** is by practicing it in real-time.
 
 ## Setup the Project
 
-- Go to the [LangFlow page](https://www.langflow.org) and click on **"Get Started for Free"**, as shown in the image below.
+- Follow this [Langflow Login Guide](../../Lab-0(Pre-requisites)/Langflow-Login-Guide/Readme.md) to log in to your Langflow account.
 
-![Langflow Screenshot](<./Images/Screenshot%20(1515).png>)
+- Once logged in, click on the **Untitled Document** at the top, then select the **Import** option from the dropdown.  
+  Import the provided JSON flow file from the following link to view your pre-built flow diagram:  
+  [Download JSON Flow File](https://drive.google.com/file/d/1e-WctnpHV1b7rwIgtM9wGjL4FJ-jL571/view?usp=drive_link)
 
-- Create your account on LangFlow.
-
-![Langflow Screenshot](<./Images/Screenshot%20(1516).png>)
-
-- After creating your account, click on **"New Flow"**.
-
-![Langflow Screenshot](<./Images/Screenshot%20(1517).png>)
-
-- Now click on **Blank Flow**, as we are building it from scratch.
-
-![Langflow Screenshot](<./Images/Screenshot%20(1518).png>)
-
-- Now, click on the untitled document above, and in the dropdown, click on the **Import Option** to import the [JSON File](https://drive.google.com/file/d/1e-WctnpHV1b7rwIgtM9wGjL4FJ-jL571/view?usp=drive_link) to view the flow diagram that has been provided to you.
 
 ![Langflow Screenshot](<./Images/Screenshot%20(1520).png>)
 

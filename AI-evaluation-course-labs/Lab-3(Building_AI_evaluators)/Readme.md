@@ -1,6 +1,6 @@
 # Lab 3: Advanced Azure AI Evaluation - Introduction
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/AI-evaluation-course-labs/Lab-3(Building_AI_evaluators)/Advanced_Azure_AI_Evaluation.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/AI-evaluation-course-labs/Lab-3(Building_AI_evaluators)/Advanced_Azure_AI_Evaluation.ipynb>)
 
 ---
 
