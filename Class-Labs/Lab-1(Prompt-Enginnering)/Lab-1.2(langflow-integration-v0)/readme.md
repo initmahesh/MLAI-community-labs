@@ -49,7 +49,7 @@ Follow the instructions provided in the Langflow Login Guide:
 ### 4. Langflow Flow File
 
 Download the required Langflow flow from the link below:  
-📁 [Download Langflow Flow](https://drive.google.com/file/d/1Yhq5JXC7O7NMgHT4erNg2rH1TCtXoCVm/view?usp=sharing)
+📁 [Download Langflow Flow](https://drive.google.com/file/d/1JI0bKCRMNS6mzbA8-zXsrtZYY4S6eEUn/view?usp=sharing)
 
 ---
 
@@ -114,9 +114,26 @@ Locate the components that require API keys (OpenAI, Tavily) and enter your resp
 **Tip:** Customizing prompts improves accuracy and relevance of the AI responses.
 
 ### Step 8: Navigate to the Publish Section
-Go to the **Publish** tab in the top-right corner of Langflow to expose your flow as an API.
 
-![Publish Section](./images/img-7.png)
+You can also test the flow in the **Playground** section before publishing:
+
+> **Tip 1:**  
+> Click on the **Playground Section** button to open the interactive testing environment.  
+> ![Playground Section](./images/img-21.png)
+
+> **Tip 2:**  
+> Click on **Run Flow** — make sure to provide the competitors' names in both text input components.  
+> ![Run Flow](./images/img-22.png)
+
+---
+
+#### ✅ Now, proceed to publish:
+
+1. **Go to the Publish Tab**  
+   In the top-right corner of Langflow, navigate to the **Publish** tab to expose your flow as an API.  
+   ![Publish Tab](./images/img-7.png)
+
+
 
 ### Step 9: Access the API Endpoint
 Click on the **API Access** tab to retrieve your flow's base URL and authorization details.
