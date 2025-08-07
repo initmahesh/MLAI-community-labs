@@ -41,7 +41,7 @@ Head over to **V0.dev**, the AI-powered UI generation platform. Once you're ther
 
 ![Playground Section](./images/img-3.png)
 
-> 📸 *Above: V0.dev chat interface where you’ll enter your prompt*
+> 📸 *Above: V0.dev chat interface where you’ll enter yours prompt*
 
 ### Step 2: Paste This Prompt in V0
 
