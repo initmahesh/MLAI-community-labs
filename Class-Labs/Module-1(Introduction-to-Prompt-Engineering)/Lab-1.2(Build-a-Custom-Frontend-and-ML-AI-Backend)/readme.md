@@ -49,7 +49,7 @@ Follow the instructions provided in the Langflow Login Guide:
 ### 4. Langflow Flow File
 
 Download the required Langflow flow from the link below:  
-📁 [Download Langflow Flow](https://drive.google.com/file/d/1JI0bKCRMNS6mzbA8-zXsrtZYY4S6eEUn/view?usp=sharing)
+📁 [Download Langflow Flow](https://drive.google.com/file/d/1B4ZCKSxQXmrtmxR2AcW3ybVtmpAnXBaf/view?usp=sharing)
 
 ---
 
