@@ -235,7 +235,7 @@ Reference MSA Document link: [MSA document link](https://pragyaallc-my.sharepoin
 ⚠️ **Important Note**
 
 - Provide your **OpenAI API Key** to the agent and the **OpenAI Model** component to enable authentication and access.
-- **[Follow this article](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)>)** to generate an OpenAI API key. 🔑
+- **[Follow this article](https://medium.com/@lorenzozar/how-to-get-your-own-openai-api-key-f4d44e60c327)** to generate an OpenAI API key. 🔑
 - Ensure that the **API key is securely stored** and used **only for authorized requests** to prevent misuse.
 
 ![Langflow Screenshot](<./Images/Screenshot%20(1691).png>)
