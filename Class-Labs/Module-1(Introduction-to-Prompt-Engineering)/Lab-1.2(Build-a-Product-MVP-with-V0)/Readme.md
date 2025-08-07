@@ -39,7 +39,7 @@ Let’s see how you can build a working product interface in under a minute. We�
 
 Head over to **V0.dev**, the AI-powered UI generation platform. Once you're there, you’ll see a chat interface where you can describe the UI you want to build.
 
-![V0 Interface Screenshot](./images/img-3.png)
+![Playground Section](./images/img-3.png)
 
 > 📸 *Above: V0.dev chat interface where you’ll enter your prompt*
 
@@ -89,13 +89,13 @@ Now that your MVP interface is ready, it's time to see it in action!
 Here’s what to do:
 
 1. **Go to the Settings tab** (top-right corner of your interface).
-![V0 Interface Screenshot](./images/img-1%20-%20Copy.png)
+![Playground Section](./images/img-1%20-%20Copy.png)
 2. **Paste your OpenAI API key** into the secure input field.
-![V0 Interface Screenshot](./images/img-2.png)
+![Playground Section](./images/img-2.png)
 3. **Enter the names of the two companies** you want to compare in the provided input boxes.
 4. **Click the "Analyze Companies" button** to generate your side-by-side AI-powered comparison.
 
-![V0 Interface Screenshot](./images/img-4.png)
+![Playground Section](./images/img-4.png)
 
 In just a few seconds, you'll see a clean, structured table showing the key differences between the two companies — pulled and processed live via the OpenAI API.
 
