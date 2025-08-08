@@ -211,6 +211,14 @@ The best way to learn **Prompt Engineering** is by practicing it in real-time.
 
 - Follow this [Langflow Login Guide](../../Lab-0(Pre-requisites)/Langflow-Login-Guide/Readme.md) to log in to your Langflow account.
 
+- Click the **New Flow** button on your Langflow dashboard.
+
+![New Flow Button](./Images/img-1.png)
+ 
+- Choose **Blank Flow** to start with a clean canvas.
+
+![Blank Flow Selection](./images/img-2.png)
+
 - Once logged in, click on the **Untitled Document** at the top, then select the **Import** option from the dropdown.  
   Import the provided JSON flow file from the following link to view your pre-built flow diagram:  
   [Download JSON Flow File](https://drive.google.com/file/d/1e-WctnpHV1b7rwIgtM9wGjL4FJ-jL571/view?usp=drive_link)
@@ -235,7 +243,7 @@ Reference MSA Document link: [MSA document link](https://pragyaallc-my.sharepoin
 ⚠️ **Important Note**
 
 - Provide your **OpenAI API Key** to the agent and the **OpenAI Model** component to enable authentication and access.
-- **[Follow this article](<https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)>)** to generate an OpenAI API key. 🔑
+- **[Follow this article](https://medium.com/@lorenzozar/how-to-get-your-own-openai-api-key-f4d44e60c327)** to generate an OpenAI API key. 🔑
 - Ensure that the **API key is securely stored** and used **only for authorized requests** to prevent misuse.
 
 ![Langflow Screenshot](<./Images/Screenshot%20(1691).png>)
