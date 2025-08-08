@@ -76,18 +76,15 @@ Log in to the official v0 platform:
 
 ### 6. Postman Login
 
-Log in using the web version of Postman:  
-🧪 [Postman Web Portal](https://www.postman.com/)
-
-**Note:** If you are unable to log in through the browser, download the desktop app from the [Postman Downloads Page](https://www.postman.com/downloads/).
+Download the desktop app from the [Postman Downloads Page](https://www.postman.com/downloads/).
 
 
 ---
 
 ## Step-by-Step Integration Instructions
 
-### Step 1: Log in to Langflow
-Ensure you are logged in to Langflow. Refer to the login guide if you have not completed this step.
+### Step 1: Log in to Langflow Web
+Ensure you are logged in to Langflow web. Refer to the login guide if you have not completed this step.
 
 ### Step 2: Create a New Flow
 Click the **New Flow** button on your Langflow dashboard.
@@ -107,7 +104,7 @@ Click the dropdown menu in the top-left corner and select **Import**.
 ### Step 5: Import the Langflow JSON File
 Select the `.json` file downloaded in the prerequisites step to load the predefined flow.
 
-![Select JSON File](./images/img-4.png)
+![Select JSON File](./images/img-24.png)
 
 **Note:** Ensure all components in the flow are properly connected as shown in the interface.
 
@@ -145,14 +142,14 @@ You can also test the flow in the **Playground** section before publishing:
 
 1. **Go to the Publish Tab**  
    In the top-right corner of Langflow, navigate to the **Publish** tab to expose your flow as an API.  
-   ![Publish Tab](./images/img-7.png)
+   ![Publish Tab](./images/img-24%20-%20Copy.png)
 
 
 
 ### Step 9: Access the API Endpoint
 Click on the **API Access** tab to retrieve your flow's base URL and authorization details.
 
-![API Access](./images/img-8.png)
+![API Access](./images/img-25.png)
 
 **Note:** This API endpoint will be required for v0 integration.
 
@@ -201,31 +198,42 @@ curl --request POST \
 
 > Replace the `<YOUR_APPLICATION_TOKEN>` token and input values with your own to match your Langflow setup.
 
+### Step 13: Test the API Call Using Postman
 
-### Step 13: Open Postman
-Launch the Postman application to begin testing your Langflow API.
+Once you're done with the previous steps, it's time to test your API.
+
+1. If you haven’t already, download the **Postman** app from the link provided in the **Prerequisites** section.
+2. Install and open the app, then log in with your credentials.
+3. You will see an interface similar to the one shown in the image provided.
+4. Click on **"New"** → **"HTTP Request"** or simply **"Request"** to begin.
+
+This will help you validate your API is working as expected.
+![Open Postman](./images/img-23.png)
+
+### Step 14: Postman Interface
+ Once you've completed the login process, you will see an interface like the one shown in the image below.
 
 ![Open Postman](./images/img-12.png)
 
-### Step 14: Import cURL Command
+### Step 15: Import cURL Command
 Copy the cURL command from Langflow and paste it into the Postman input field. Postman will automatically configure the request with the appropriate method, URL, headers, and body.
 
 ![Paste cURL in Postman](./images/img-13.png)
 
 
-### Step 15: Send Request and Retrieve Response
+### Step 16: Send Request and Retrieve Response
 Click the **Send** button in Postman. The Langflow backend will process the request and provide a response based on your prompt and parameters. You can copy this response for further use or testing.
 
 ![Send Request and Response](./images/img-15.png)
 
 **Note:** Sometimes the request may take longer to process due to Langflow server latency. If the response does not appear immediately, retry the request.
 
-### Step 16: Navigate to V0 Interface
+### Step 17: Navigate to V0 Interface
 Access the [V0 Platform](https://v0.dev/). Once logged in, you will see an interface similar to the one shown below:
 
 ![V0 Interface](./images/img-16.png)
 
-### Step 17: Use the Reference Prompt in V0
+### Step 18: Use the Reference Prompt in V0
 Below is a reference prompt you can use in V0 to connect your Langflow API.
 
 **Important:** Make sure to replace the Bearer Token with your actual token and update the sample response with the one you received from Postman.
@@ -262,7 +270,7 @@ Here is my sample Response:
   `<your Postman sample response>`  // Use the response you captured in **Step 15** (from Postman)
 
 ```
-### 18. Final Integration & Frontend Behavior
+### 19. Final Integration & Frontend Behavior
 
 Once you are done with all the setup:
 
