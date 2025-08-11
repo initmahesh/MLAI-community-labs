@@ -12,14 +12,12 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 ### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
-1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)))
-2. Google colab setup. Follow the Instructions here to set them up: [Click Here](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites)#creating-a-runtime)
+1. OPEN_API_KEY (You can create OpenAI key using these Instruction: [Click Here](https://medium.com/@lorenzozar/how-to-get-your-own-openai-api-key-f4d44e60c327))
+2. Google colab setup. Follow the Instructions here to set them up: [Click Here](https://medium.com/@aditya_dev30/getting-started-with-google-colab-your-ultimate-setup-guide-for-generative-ai-projects-53fe25f3fc04)
 3. You can find some contracts here: [Small Doc](AWS1.pdf),
    [Large Doc](credit_agreement.pdf)
 
-### **_ You can use GPT-3.5 key from OpenAI. _**
 
-You can create OpenAI key using these Instruction: [Click Here](https://github.com/initmahesh/MLAI-community-labs/tree/main/Class-Labs/Lab-0(Pre-requisites))
 
 ## First Let Us learn the basics of Prompt Engineering (Essential for using GPT)
 
