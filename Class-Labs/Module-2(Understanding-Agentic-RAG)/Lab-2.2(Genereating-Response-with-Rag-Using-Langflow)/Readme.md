@@ -1,29 +1,49 @@
-# RAG Application using Langflow
+# Build RAG Application using Langflow
 
-## Introduction
 
-This project implements a Retrieval-Augmented Generation (RAG) application using Langflow, a visual programming environment for building language model applications. RAG combines the power of large language models with external knowledge retrieval to provide more accurate and contextually relevant responses.
+## The Limitations of Generative Models
+
+Think about a very smart student.  
+They’ve studied for years, read thousands of books, articles, and websites, and know a lot about many subjects.  
+
+Now imagine you ask them a question about your company’s internal policy, a new law that was passed last month, or a small detail from a specific technical manual.  
+The problem is — they’ve never seen that information before.  
+
+What do they do?  
+Sometimes they guess.  
+And because they are confident, their guess sounds true, even when it’s wrong. In AI, this guessing is called **hallucination**. It can lead to wrong answers, and in business, that can cause real problems.  
+
+There’s another issue: even if you give the AI a huge document to help it answer, there’s a limit to how much it can read at once.  
+If the document is too long, you might get an error like **"maximum context length exceeded"**.  
+This means the model’s “memory window” is full, and it can’t process all your text in one go.  
+
+So, we need a way to give the model exactly the right pieces of information — enough to answer well, but without overloading it.
 
 ---
 
-### What is RAG?
+## The Solution — Retrieval-Augmented Generation (RAG)
 
-Retrieval-Augmented Generation (RAG) is an AI framework that:
+Retrieval-Augmented Generation (RAG) is a framework that augments the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand retrieved from an external data source.
 
-1. Retrieves relevant information from external knowledge sources
-2. Augments the input prompt with this retrieved information
-3. Generates responses using a language model that has access to this additional context
+External data sources can include internal databases, files, and repositories, as well as publicly available data such as news articles, websites, or other online content. Access to this data empowers the model to respond more factually, cite its sources in its responses, and avoid “guessing” when prompted about information not found in the model’s original training dataset.
 
----
+Common use cases for RAG include retrieving up-to-date information, accessing specialized domain knowledge, and answering complex, data-driven queries. 
 
-### Why Langflow?
+Here’s how it works:  
 
-Langflow provides a visual interface to:
+1. **Retrieve** — When you ask a question, the system searches your documents, databases, or other sources for the most relevant pieces of information.  
+2. **Augment** — These pieces are added to your question so the AI has all the important details right in front of it.  
+3. **Generate** — The AI uses both its general knowledge and the new context to write a clear, accurate answer.  
 
-- Design and build complex language model workflows
-- Connect different components like vector stores, language models, and retrieval systems
-- Test and iterate on RAG pipelines without extensive coding
-- Deploy and share your RAG applications easily
+This approach solves both major problems:  
+- The AI no longer has to guess because it has the exact facts it needs.  
+- We avoid hitting the context length limit by giving the AI only the most relevant chunks instead of the entire document.
+
+With RAG, even the largest, most complex documents can be turned into quick, accurate, and trustworthy answers.
+
+![New Flow Button](./Images/flow-diagram.png)
+
+By the end, you won’t just have built a RAG system — you’ll have learned how to tame even the largest, most complex documents into a resource that delivers instant, intelligent insights.
 
 ---
 
@@ -33,43 +53,33 @@ Before getting started with this RAG application, you'll need to download the fo
 
 1. **Document for Processing**
 
-   - Download the document from: [Document Link](https://drive.google.com/file/d/1GYAKFyXLitx83xCMVWkh-cc2OcIxq3d-/view?usp=sharing)
+   - Download the document from: **[Document Link](https://drive.google.com/file/d/1GYAKFyXLitx83xCMVWkh-cc2OcIxq3d-/view?usp=sharing)**
    - This document will be used as the knowledge base for the RAG system
 
 2. **Langflow JSON Flow File**
-   - Download the pre-configured flow from: [Flow File Link](https://drive.google.com/file/d/1ntOfttJ-BacL6ru-nVXTOEyxUFqKC1q7/view?usp=sharing)
+   - Download the pre-configured flow from: **[Flow File Link](https://drive.google.com/file/d/1ntOfttJ-BacL6ru-nVXTOEyxUFqKC1q7/view?usp=sharing)**
    - This JSON file contains the complete Langflow configuration for the RAG pipeline
    - Import this file into your Langflow instance to get started quickly
 
+3. **Langflow Login Guide**
+   - Follow the instructions provided in the Langflow Login Guide:  **[Click Here](../../Lab-0(Pre-requisites)/Langflow-Login-Guide/Readme.md)**
 ---
 
 ## Importing the Flow in Langflow
 
 Follow these steps to import and set up the RAG flow in Langflow:
 
-### Step 1: Access Langflow
+### Step 1: Log in to Langflow Web
+Ensure you are logged in to Langflow web. Refer to the login guide if you have not completed this step.
 
-1. Go to [https://langflow.org](https://langflow.org) and click on "Get Started Free" button
+### Step 2: Create a New Flow
+Click the **New Flow** button on your Langflow dashboard.
 
-![Step 1: Langflow Homepage](<./Images/Screenshot%20(1515).png>)
-
----
-
-### Step 2: Sign Up for Langflow
-
-![Step 2: Langflow Sign Up](<./Images/Screenshot%20(1516).png>)
+![New Flow Button](./Images/img-1.png)
 
 ---
 
-### Step 3: Create New Flow
-
-1. After logging in, click on the "New Flow" button in the dashboard
-
-![Step 3: Create New Flow](<./Images/Screenshot%20(1517).png>)
-
----
-
-### Step 4: Select Blank Flow
+### Step 3: Select Blank Flow
 
 1. In the flow creation menu, click on "Blank Flow" to start with an empty template
 2. This will open a new workspace where you can build your RAG application
@@ -78,18 +88,18 @@ Follow these steps to import and set up the RAG flow in Langflow:
 
 ---
 
-### Step 5: Import JSON Flow File
+### Step 4: Import JSON Flow File
 
 1. Click on the "Import" button in the upper toolbar
 2. Select the downloaded JSON flow file from your computer
 3. Wait for the import process to complete
 4. The RAG flow components will be automatically loaded into your workspace
 
-![Step 5: Import JSON Flow](<./Images/Screenshot%20(1519).png>)
+![Step 5: Import JSON Flow](<./Images/Screenshot%20(1520).png>)
 
 ---
 
-### Step 6: View Imported Flow
+### Step 5: View Imported Flow
 
 After successfully importing the JSON file, you will see the complete RAG flow in your workspace. The flow will include:
 
@@ -101,7 +111,7 @@ All components will be properly connected, showing the data flow from input to o
 
 ---
 
-### Step 7: Setup Document Processing (Part 1)
+### Step 6: Setup Document Processing (Part 1)
 
 The RAG flow is divided into two main parts. Let's set up Part 1 which handles document processing and vector storage:
 
@@ -133,7 +143,7 @@ The RAG flow is divided into two main parts. Let's set up Part 1 which handles d
 
 ---
 
-### Step 8: Run Part 1 of the Flow
+### Step 7: Run Part 1 of the Flow
 
 1. Locate the "Run" button in the upper toolbar (highlighted in the screenshot)
 2. Click the "Run" button to execute Part 1 of the flow
@@ -149,7 +159,7 @@ The RAG flow is divided into two main parts. Let's set up Part 1 which handles d
 
 ---
 
-### Step 9: Question Answering (Part 2)
+### Step 8: Question Answering (Part 2)
 
 Now that your document is processed and stored in the vector database, you can ask questions about its content:
 
@@ -168,7 +178,7 @@ Now that your document is processed and stored in the vector database, you can a
 
 ---
 
-### Step 10: Access Playground
+### Step 9: Access Playground
 
 1. Go to the top of the interface
 2. Click on the "Playground" section
@@ -178,7 +188,7 @@ Now that your document is processed and stored in the vector database, you can a
 
 ---
 
-### Step 11: Ask Questions and Get Answers
+### Step 10: Ask Questions and Get Answers
 
 1. In the playground interface, type your question about the document content
 2. The system will:
@@ -198,18 +208,15 @@ Now that your document is processed and stored in the vector database, you can a
 
 ---
 
-# Build it From Scratch
 
-If you want to learn how to build this RAG application from scratch, check out our detailed video tutorial:
+## Conclusion
 
-# [Click Here](https://drive.google.com/file/d/1cK1TI3n4smf77GV2FCaWA-5LVpX0pdeD/view?usp=sharing)
+Boom we are done ! 🎉  
 
-In this video, we'll walk you through:
+You’ve just built a **RAG application** that transforms the way large, complex documents can be explored and understood.  
 
-- Setting up the Langflow environment
-- Creating the document processing pipeline
-- Configuring the vector store
-- Building the question-answering system
-
-
-Follow along with the video to create your own RAG application step by step!
+You now know how to :
+   - Break massive documents into context-rich chunks for smarter retrieval  
+   - Empower language models to answer with precision and depth  
+   - Build a visual, no-code/low-code AI workflow in Langflow  
+   - Turn dense, hard-to-navigate information into something your users can query like a live expert  
