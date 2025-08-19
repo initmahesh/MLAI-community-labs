@@ -217,7 +217,7 @@ The best way to learn **Prompt Engineering** is by practicing it in real-time.
  
 - Choose **Blank Flow** to start with a clean canvas.
 
-![Blank Flow Selection](./images/img-2.png)
+![Blank Flow Selection](./Images/img-2.png)
 
 - Once logged in, click on the **Untitled Document** at the top, then select the **Import** option from the dropdown.  
   Import the provided JSON flow file from the following link to view your pre-built flow diagram:  
