@@ -2,7 +2,8 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Lab-2%28Understanding%20RAG%29/Lab-2.3%28Agentic-Rag-Embedding-Document%29/Agentic_RAG.ipynb>)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Module-2%28Understanding-Agentic-RAG%29/Lab-2.4%28Agentic-Rag-Embedding-Document%29/AgenticRAG.ipynb)
+
 
 
 ### **What You'll Achieve** 🎯
