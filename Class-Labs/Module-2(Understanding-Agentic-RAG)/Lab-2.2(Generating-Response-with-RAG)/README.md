@@ -9,7 +9,9 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 ## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 0.1.
 
-## What is Retrieval Augmented Generation or RAG?
+![New Flow Button](./images/flow-diagram.png)
+
+## What is Retrieval Agmented Generation or RAG?
 
 As NVIDIA quotes it in the best and easiest way possible "Retrieval-augmented generation (RAG) is a technique for enhancing the accuracy and reliability of generative AI models with facts fetched from external sources."
 
