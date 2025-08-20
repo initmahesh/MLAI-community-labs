@@ -81,6 +81,10 @@ Download the desktop app from the [Postman Downloads Page](https://www.postman.c
 
 ---
 
+> # **Important Note:** After importing, always verify that all nodes are properly connected to each other. Sometimes during import, nodes might become disconnected. Check the flow diagram carefully and reconnect any disconnected nodes by dragging the connection points between them. The data flow should be continuous from the input to the output nodes.
+
+---
+
 ## Step-by-Step Integration Instructions
 
 ### Step 1: Log in to Langflow Web
@@ -182,7 +186,6 @@ curl --request POST \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer AstraCS:pClJHlQZdoUoDGzyTYnQRoQh:679219da964bc27070547762e971b9c08d96fde8b12490ac762b238f49e231bd' \
 --data '{
-  "input_value": "hello world!",   ❌ Remove the line `"input_value": "hello world!"`  from your curl command before copying it.
   "output_type": "chat",
   "input_type": "text",
   "tweaks": {
