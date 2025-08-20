@@ -170,7 +170,7 @@ Under **Input Variables**, change the values to competitors you would like to co
 ### Step 12: Generate Token and Copy cURL Command
 Complete the following steps:
 
-**Important:** Before copying the cURL command, remove `input_value = hello world` or similar default values from the command to ensure clean integration.
+### **Important:** Before copying the cURL command, remove `input_value = hello world` or similar default values from the command to ensure clean integration.
 
 1. Click **Generate Token** to obtain a valid authentication token
 2. Copy the **cURL command** displayed below
