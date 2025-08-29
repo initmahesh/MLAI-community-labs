@@ -17,7 +17,7 @@ As NVIDIA quotes it in the best and easiest way possible "Retrieval-augmented ge
 
 It is needed for mapping the best embeddings there are in a knowledge base index, to the prompt that will be submnitted to the model. The model will use these embeddings along with its generative AI capability to respond to the query in the best possible way.
 
-In the notebook [RAG_Responsible_AI.ipynb](WithRagGeneration.ipynb), we have curated the easiest implementation of RAG, using newer technologies like creating embeddings and using **faiss** for creating index of embeddings. Also we have implemented **sentence transformers** all of which you can see in action upon running the notebook.
+In the notebook we have curated the easiest implementation of RAG, using newer technologies like creating embeddings and using **faiss** for creating index of embeddings. Also we have implemented **sentence transformers** all of which you can see in action upon running the notebook.
 
 ### Pre-requisites (If you have already completed Lab-0 then ignore this)
 
