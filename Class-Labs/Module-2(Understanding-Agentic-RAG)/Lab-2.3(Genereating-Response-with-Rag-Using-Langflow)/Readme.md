@@ -1,33 +1,22 @@
 # Build RAG Application using Langflow
 
+![Intro](./Images/poster.png)
 
-## The Limitations of Generative Models
+## Limitations of Large Language Models
 
-Think about a very smart student.  
-They’ve studied for years, read thousands of books, articles, and websites, and know a lot about many subjects.  
+Despite powerful capabilities with many tasks, Large Language Models (LLMs) are not know-it-alls. If you've used ChatGPT or other models, you'll have experienced how they can’t reasonably answer questions about proprietary information. What’s worse, it isn’t just that they don't know about proprietary information, they are unaware of their own limitations and, even if they were aware, they don’t have access to proprietary information. That's where options like Retrieval Augmented Generation (RAG) come in and give LLMs the ability to incorporate new and proprietary information into their answers.
 
-Now imagine you ask them a question about your company’s internal policy, a new law that was passed last month, or a small detail from a specific technical manual.  
-The problem is — they’ve never seen that information before.  
+For instance, in a previous lab exercise, we observed how Large Language Models (LLMs) struggle when provided with documents that exceed their context window. This limitation highlights the need for more effective methods of supplying external information to the model this is precisely where Retrieval-Augmented Generation (RAG) becomes valuable.
 
-What do they do?  
-Sometimes they guess.  
-And because they are confident, their guess sounds true, even when it’s wrong. In AI, this guessing is called **hallucination**. It can lead to wrong answers, and in business, that can cause real problems.  
-
-There’s another issue: even if you give the AI a huge document to help it answer, there’s a limit to how much it can read at once.  
-If the document is too long, you might get an error like **"maximum context length exceeded"**.  
-This means the model’s “memory window” is full, and it can’t process all your text in one go.  
-
-So, we need a way to give the model exactly the right pieces of information — enough to answer well, but without overloading it.
+#### In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 2.1.
 
 ---
 
-## The Solution — Retrieval-Augmented Generation (RAG)
+## Retrieval-Augmented Generation (RAG)
 
-Retrieval-Augmented Generation (RAG) is a framework that augments the general knowledge of a generative LLM by providing it with additional data relevant to the task at hand retrieved from an external data source.
+RAG, or Retrieval-Augmented Generation, is a framework designed to overcome the limitations of large language models (LLMs). Traditional LLMs are trained on fixed datasets and can only respond based on what they learned during training.
 
-External data sources can include internal databases, files, and repositories, as well as publicly available data such as news articles, websites, or other online content. Access to this data empowers the model to respond more factually, cite its sources in its responses, and avoid “guessing” when prompted about information not found in the model’s original training dataset.
-
-Common use cases for RAG include retrieving up-to-date information, accessing specialized domain knowledge, and answering complex, data-driven queries. 
+This means they are unaware of any information released or created after their training cutoff date. RAG addresses this issue by allowing LLMs to retrieve relevant external documents in real time and generate responses based on those documents. In essence, RAG combines the strengths of information retrieval with natural language generation to produce more accurate, fact-based answers.
 
 Here’s how it works:  
 
@@ -35,15 +24,8 @@ Here’s how it works:
 2. **Augment** — These pieces are added to your question so the AI has all the important details right in front of it.  
 3. **Generate** — The AI uses both its general knowledge and the new context to write a clear, accurate answer.  
 
-This approach solves both major problems:  
-- The AI no longer has to guess because it has the exact facts it needs.  
-- We avoid hitting the context length limit by giving the AI only the most relevant chunks instead of the entire document.
-
-With RAG, even the largest, most complex documents can be turned into quick, accurate, and trustworthy answers.
 
 ![New Flow Button](./Images/flow-diagram.png)
-
-By the end, you won’t just have built a RAG system — you’ll have learned how to tame even the largest, most complex documents into a resource that delivers instant, intelligent insights.
 
 ---
 
@@ -210,11 +192,6 @@ Now that your document is processed and stored in the vector database, you can a
 
 
 ## Conclusion
-
-Boom we are done ! 🎉  
-
-You’ve just built a **RAG application** that transforms the way large, complex documents can be explored and understood.  
-
 You now know how to :
    - Break massive documents into context-rich chunks for smarter retrieval  
    - Empower language models to answer with precision and depth  

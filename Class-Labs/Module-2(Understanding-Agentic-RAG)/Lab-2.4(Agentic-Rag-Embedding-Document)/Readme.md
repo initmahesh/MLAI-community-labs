@@ -1,73 +1,68 @@
-# **Understanding Agentic RAG: Building Intelligent Document Assistants with ChromaDB(Vectore DB) & LangChain(Framework)** 
+# **Understanding Agentic RAG** 
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Module-2%28Understanding-Agentic-RAG%29/Lab-2.4%28Agentic-Rag-Embedding-Document%29/AgenticRAG.ipynb)
 
+## What is Agentic RAG?
+To fully grasp Agentic RAG, it's essential to first understand its two fundamental building blocks: AI agents and Retrieval-Augmented Generation (RAG).
 
+An AI agent is an autonomous entity capable of perceiving its environment, making decisions, and taking action to achieve its goals. Agentic AI takes this autonomy further by incorporating reasoning and planning, enabling agents to be proactive instead of merely reactive. This allows AI to determine its next action independently instead of waiting for instructions.
 
-### **What You'll Achieve** 🎯
+On the other hand, RAG (Retrieval-Augmented Generation) bridges the gap between static AI models and the constantly changing world. Instead of relying solely on pre-trained knowledge, RAG systems dynamically retrieve up-to-date information from sources like APIs or databases, enabling them to generate contextually accurate and relevant responses. I find RAG useful in fields like healthcare, education, and business, where real-time data is critical.
 
-By the end of this lab, you'll gain a deep understanding of **Agentic RAG (Retrieval-Augmented Generation)** and how to we solve the accuracy problem in scenarios where a simple RAG pipeline fails.
-
----
-
-#### **1. Storing Documents Intelligently Using Vector Embeddings** 🗂️
-- **What**: Learn how to convert documents into numerical representations (vector embeddings) that capture their meaning.
-- **How**: Use **ChromaDB**, a vector database, to store and organize these embeddings efficiently.
-- **Why**: This allows the system to understand and retrieve information based on semantic meaning, not just keywords.
-
----
-
-#### **2. Retrieving Information with Semantic Understanding** 🔍
-- **What**: Discover how to fetch relevant information from a large document collection using semantic search.
-- **How**: Leverage **LangChain** to query ChromaDB and retrieve the most contextually relevant chunks.
-- **Why**: This ensures that the system understands the intent behind your questions, not just the literal words.
-
----
-
-#### **3. Generating Context-Aware Answers Using Agentic Decision-Making** 🤖
-- **What**: Explore how **Agentic RAG** makes smart decisions about how to answer questions.
-- **How**: Implement a decision-making agent that evaluates the confidence of retrieved information and chooses the best response strategy.
-- **Why**: This allows the system to provide accurate and contextually appropriate answers, even when the information is incomplete or ambiguous.
-
----
-
-#### **4. Optimizing Responses Through Knowledge Graph Enhancements** 🧠
-- **What**: Learn how to enhance answers by connecting related concepts using a knowledge graph.
-- **How**: Build a knowledge graph that maps terms and relationships (e.g., "Master Agreement" → "Contract") to improve understanding.
-- **Why**: This enables the system to provide more comprehensive and insightful answers by leveraging contextual connections.
 
 ---
 
 
-### **Let's Get Started!** 🚀
-Ready to dive in? Follow the steps in the lab to see how these concepts come to life in code. By the end, you'll not only understand **Agentic RAG** but also know how to implement it in real-world applications.
+### **Let's Started!** 
+
+In this lab, we are building an **agentic application** that enhances information retrieval and response generation by combining vector databases with a knowledge graph. The workflow proceeds as follows:  
+
+1. **Document Upload & Chunking**  
+   - The user uploads a document.  
+   - The document is divided into smaller **chunks** to enable efficient retrieval.  
+   - These chunks are stored in a **ChromaDB vector database** for semantic search.  
+
+2. **Query Handling**  
+   - When the user submits a query, the system searches the vector database to identify the most **relevant chunks**.  
+
+3. **Relevance Scoring & Knowledge Graph Integration**  
+   - Retrieved chunks are evaluated based on their similarity score.  
+   - If the relevance score of the chunks falls **below 0.5**, the system leverages a **knowledge graph** (currently implemented as a dummy version) to **refine or modify the user’s query**.  
+   - This modification helps in retrieving **more enriched and contextually accurate chunks**.  
+
+4. **LLM Response Generation**  
+   - Once the refined and relevant chunks are identified, the **LLM processes them** to generate a coherent and contextually appropriate response.  
+
+5. **Output Delivery**  
+   - The final response is then presented back to the user.  
 
 
-![System Flow](Flow_Diagram.png)
+
+
+This workflow goes beyond a traditional RAG pipeline by introducing **decision-making and adaptive behavior**.  
+Instead of passively retrieving chunks and passing them to the LLM, the system:  
+
+- **Evaluates relevance dynamically** (checks similarity score).  
+- **Decides when to use additional reasoning tools** (the knowledge graph) to refine the user query.  
+- **Adapts its strategy** to improve retrieval and generate more accurate answers.  
+
+These characteristics—**autonomy, adaptability, and tool usage**—are what make this an **agentic application**.  
+
+
+--- 
+
+
+
+![System Flow](./images/Screenshot%20(443).png)
 
 ---
 
-## 🤖 What is Agentic RAG?
-**RAG (Retrieval-Augmented Generation)**:
-- Combines document search with AI answers
-- "Looks up" information before answering
 
-**Agentic RAG** adds:
-- Ability to automatically improve questions
-- Self-correcting answers
-- Better understanding through context
+### **Code Breakdown & Explanation**
 
-*Example:*
-If you ask "customer name?", the system might change it to "company name?" for better results
-
----
-
-
-## 📜 **Code Breakdown & Explanation**
-
-### 📌 **Step 1: Installing Required Libraries**
+#### **Step 1: Installing Required Libraries**
 ```python
 
 # Step 1: Install required libraries 
@@ -80,25 +75,24 @@ Before we start, we install the necessary Python libraries:
 
 
 
-# **Step 2: Setting Up the Lab 🧪**
+#### **Step 2: Setting Up the Lab 🧪**
 
----
-## Import necessary modules
+#### Import necessary modules
 Before we start, we need to install the necessary tools. These packages are like the ingredients for our recipe – without them, the lab won't work!
 
-# 📌 Explanation of Imported Modules  
+#### Explanation of Imported Modules  
 
-## 🔹 UI Components  
+##### UI Components  
 - **`ipywidgets`** → Provides interactive widgets like buttons, text boxes, and dropdowns.  
 - **`IPython.display`** → Used to display widgets, clear output, and update UI dynamically.  
 
-## 🔹 Data Processing & Utility  
+##### Data Processing & Utility  
 - **`random`** → Generates random numbers, useful for testing and sampling.  
 - **`typing (List, Dict)`** → Provides type hints for better code readability and debugging.  
 - **`io.BytesIO`** → Handles in-memory file operations without saving to disk.  
 - **`os`** → Interacts with the operating system (e.g., file paths, environment variables).  
 
-## 🔹 LangChain Components  
+##### LangChain Components  
 - **`langchain.vectorstores.Chroma`** → Stores and retrieves document embeddings efficiently.  
 - **`langchain.embeddings.HuggingFaceEmbeddings`** → Uses Hugging Face models for text embeddings.  
 - **`langchain.text_splitter.RecursiveCharacterTextSplitter`** → Splits text into manageable chunks for processing.  
@@ -109,21 +103,22 @@ Before we start, we need to install the necessary tools. These packages are like
 - **`langchain.prompts.ChatPromptTemplate`** → Creates structured prompts for AI interactions.  
 - **`langchain.schema.runnable.RunnablePassthrough`** → Allows passing data through AI models without modification.  
 
-## 🔹 PDF Handling  
+##### PDF Handling  
 - **`PyPDF2.PdfReader`** → Reads and extracts text from PDF documents.  
 
-## 🔹 Database & Storage  
+##### Database & Storage  
 - **`chromadb`** → A fast and scalable vector database for storing and retrieving embeddings.  
 
-## 🔹 UI Styling  
+##### UI Styling  
 - **`pyboxen.boxen`** → Formats text in visually appealing boxed outputs.  
 
-## 🔹 Data Validation  
+##### Data Validation  
 - **`pydantic.BaseModel, Field`** → Ensures structured and validated data inputs.  
 
 
+---
 
-### 📌 **Step 3: Initializing Components**
+#### **Step 3: Initializing Components**
 ```python
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
@@ -139,11 +134,11 @@ llm = OpenAI(temperature=0)
 
 ---
 
-# 📌 **Step 4: Upload & Process a PDF Document**  
+#### **Step 4: Upload & Process a PDF Document**  
 
 This step allows users to upload a PDF file, extract its text, split it into smaller chunks, and store it in a vector database for AI processing.  
 
-## 🔹 How It Works  
+#### How It Works  
 1. **File Upload Widget**  
    - A button appears that lets you upload a **PDF file**.  
    - The system only accepts **one file at a time**.  
@@ -214,7 +209,7 @@ display(uploader, process_btn, process_output)
 process_btn.on_click(process_file)
 ``` 
 
-## 🔹 Steps to Use  
+#### Steps to Use  
 ✅ **Step 1** → Click on **"Upload Document"** and select a PDF file.  
 ✅ **Step 2** → Click **"Process File"** to analyze and store it.  
 ✅ **Step 3** → Wait for the **success message** confirming the file is processed.  
@@ -225,50 +220,49 @@ This setup makes it easy to upload and process PDFs with AI-powered storage. �
   
 
 ---
-# 📝 Step 5: Enhanced Query Processing with an Agent  
+#### Step 5: Enhanced Query Processing with an Agent  
 
 This step enhances **query processing** by implementing an **AI agent** that decides how to answer user queries based on **confidence scores**. It retrieves relevant document chunks and determines whether the response should be **directly generated** or **refined using a knowledge graph** for better accuracy.  
 
----
-## 🔹 Overview of the Query Processing Flow  
+#### Overview of the Query Processing Flow  
 
-### 1️⃣ **User Query Retrieval**  
+##### 1️⃣ **User Query Retrieval**  
 - The user submits a **query**.
 - The system **retrieves relevant document chunks** using ChromaDB.
 - Each retrieved chunk has an **associated confidence score**.
 
-### 2️⃣ **Confidence Score Evaluation**  
+##### 2️⃣ **Confidence Score Evaluation**  
 - If the confidence score is **high (≥ 0.5)** → Use a **direct answer** approach.
 - If the confidence score is **low (< 0.3)** → Use a **knowledge-enhanced answer**.
 
-### 3️⃣ **Knowledge Graph Enhancement** (for low-confidence cases)  
+##### 3️⃣ **Knowledge Graph Enhancement** (for low-confidence cases)  
 - Some terms in the query are mapped to **more meaningful alternatives** using a **knowledge graph**.
 - The query is **rewritten** with these enhancements.
 - A new document search is performed using the improved query.
 
-### 4️⃣ **Generating the Final Answer**  
+##### 4️⃣ **Generating the Final Answer**  
 - The system **chooses the best response strategy** using an autonomous agent.
 - The **final answer is generated** based on the refined context and confidence evaluation.
 
----
 
-## 🔍 **Understanding Confidence Scores**  
+
+#### **Understanding Confidence Scores**  
 
 A **confidence score** is a measure of **how relevant** a retrieved document chunk is to the user's query.  
 - **Higher confidence (≥ 0.5)** → The retrieved text is **relevant and reliable**.  
 - **Lower confidence (< 0.3)** → The retrieved text **may not be relevant or sufficient**.  
 
-### 📌 **How is the Confidence Score Used?**  
+### **How is the Confidence Score Used?**  
 - If the retrieved document chunk has a **high confidence score**, the system can **directly answer the query**.  
 - If the retrieved document chunk has a **low confidence score**, the AI **enhances the query** using a **knowledge graph** and **retrieves better chunks**.
 
 ---
 
-## 🤖 **Role of the AI Agent**  
+#### **Role of the AI Agent**  
 
 The **AI Agent** acts as a **decision-maker** that chooses the **best answering approach** based on **confidence scores**.  
 
-### 🔹 **How the Agent Works**
+#### **How it Works**
 1. **User submits a query**.
 2. **Document chunks are retrieved** from the database.
 3. **Each chunk has an associated confidence score**.
@@ -376,30 +370,29 @@ agent = initialize_agent(
 )
 ```
 ---
-# 🎯 **Final Outcome**
+#### **Final Outcome**
 - If the retrieved document is **relevant**, the AI answers immediately.  
 - If the information is **uncertain**, the AI **optimizes** the search before answering.  
 - The AI agent makes **independent decisions** for the best response. 🚀  
 
-This **smart decision-making** process makes the AI **more intelligent and reliable** for answering document-based queries. 📖✨  
+This **smart decision-making** process makes the AI **more intelligent and reliable** for answering document-based queries. 
 
 ---
 
-# 📝 **Step 6: Query Interface with Autonomous Decision-Making**  
+#### **Step 6: Query Interface with Autonomous Decision-Making**  
 
 This step introduces an **interactive query interface** that allows users to input their questions.  
 The AI agent **analyzes** the query, **retrieves relevant document chunks**, and **decides how to answer**  
 based on confidence scores. The decision-making is fully **autonomous**, ensuring **optimized responses**.
 
----
 
-## 🎯 **How the Query Interface Works**  
+#### **How the Query Interface Works**  
 
-### 🔹 **User Input & Query Submission**  
+##### **User Input & Query Submission**  
 - You have to enters their query in the input field (`query_input`).
 - Clicking the "Submit" button (`submit_btn`) triggers the `handle_query` function.
 
-# 🔍 Step-by-Step Query Processing Flow
+### Step-by-Step Query Processing Flow
 **1️⃣ Step 1: Query Asked**
 - The user inputs a query.
 - The query is displayed in a notification box for reference.
@@ -508,7 +501,7 @@ submit_btn.on_click(handle_query)
 
 ---
 
-# 🏁 How to Use the Query Interface?
+## How to Use the Query Interface?
 1️⃣ Enter your question in the input box.
 
 ```text

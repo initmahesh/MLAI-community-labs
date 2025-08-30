@@ -5,9 +5,10 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Module-2%28Understanding-Agentic-RAG%29/Lab-2.2%28Generating-Response-with-RAG%29/RAG_GRADIO.ipynb)
 
 
+
 # Welcome to Lab 2
 
-## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 0.1.
+## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length and adding RAG to solve the issue that we face in Lab 2.1.
 
 ![New Flow Button](./images/flow-diagram.png)
 

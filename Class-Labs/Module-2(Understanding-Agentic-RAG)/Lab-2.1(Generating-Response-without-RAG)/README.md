@@ -10,7 +10,7 @@ You can open this Jupyter notebook directly in Google Colab by clicking the link
 
 # Welcome to Lab 1
 
-## In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
+#### In this Lab we will show you how to Generated/analyse contracts using GPT-3.5-turbo 16k context length.
 
 ### We will also stumble across an error which might seem like the end of the world but we will fix it using an awesome technique called RAG, so hang tight.
 
