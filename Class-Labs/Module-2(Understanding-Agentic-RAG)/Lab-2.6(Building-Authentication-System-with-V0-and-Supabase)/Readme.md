@@ -1,11 +1,11 @@
 # Building a Secure Authentication System with V0 and Supabase
 
-
+![into image](./images/imgop.jpeg)
 ## Overview
 
 Imagine this:  
 
-You’re an **AI Product Manager or Builder** working on a platform that delivers powerful AI-driven insights. But before users can interact with your models, you need a **secure way for them to register, log in, and manage sessions**.  
+You’re an **AI Product Manager or Builder** working on a platform that delivers powerful AI-driven insights. But before users can interact with your application, you need a **secure way for them to register, log in, and manage sessions**.  
 
 That’s exactly what this lab helps you build.  
 

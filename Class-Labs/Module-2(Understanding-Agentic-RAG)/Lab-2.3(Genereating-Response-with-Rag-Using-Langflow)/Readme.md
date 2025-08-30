@@ -1,4 +1,4 @@
-# Build RAG Application using Langflow
+# Buildig RAG Application using Langflow
 
 ![Intro](./Images/poster.png)
 
