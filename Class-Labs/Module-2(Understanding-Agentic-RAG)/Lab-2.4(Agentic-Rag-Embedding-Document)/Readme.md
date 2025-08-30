@@ -55,7 +55,7 @@ These characteristics—**autonomy, adaptability, and tool usage**—are what ma
 
 
 
-![System Flow](./images/Screenshot%20(443).png)
+![System Flow](./images/Screenshot%20(447).png)
 
 ---
 
