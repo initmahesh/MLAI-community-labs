@@ -14,6 +14,7 @@ In this lab, we focus on the use case of analyzing an MSA document. The Main Age
 
 By combining these agents under the control of the Main Agent, the system can handle end-to-end contract analysis from extracting raw entities to providing clause interpretations and compliance checks. Through this lab, you will move beyond the idea of a single agent and learn how multiple agents can collaborate to solve complex, real-world problems in a scalable and efficient way.
 
+![Flow](./images/flow.png)
 ---
 
 ## Introduction to Multi-Agent Systems
