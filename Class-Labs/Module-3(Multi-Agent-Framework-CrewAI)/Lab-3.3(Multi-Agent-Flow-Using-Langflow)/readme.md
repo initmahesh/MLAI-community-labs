@@ -35,7 +35,7 @@ Before starting this lab, please ensure you have the following:
 2. **Required Documents:**
 
    - [Download MSA Document](https://drive.google.com/file/d/1ZgnpgX6CeMpqLQCzPOqOOaqMETAavm5D/view?usp=sharing) - The reference document for this lab
-   - [ Download JSON File](https://drive.google.com/file/d/1tWZIQN1wPSZCxzkdZqskXYrCzFJ_ePoU/view?usp=sharing) - Contains the flow diagram for Langflow
+   - [ Download JSON File](https://drive.google.com/file/d/1zyqI4GVQoVAHURlgsle587223scoY_MP/view?usp=sharing) - Contains the flow diagram for Langflow
      <br>
 
 3. **Langflow Login Setup**
@@ -61,7 +61,7 @@ Before starting this lab, please ensure you have the following:
 ### Step 2: Import the Pre-built Flow
 - Once logged in, click on **Untitled Document** at the top, then select the **Import** option from the dropdown.  
 - Import the provided JSON flow file from the following link:  
-  [📥 Download JSON Flow File](https://drive.google.com/file/d/1tWZIQN1wPSZCxzkdZqskXYrCzFJ_ePoU/view?usp=sharing)
+  [📥 Download JSON Flow File](https://drive.google.com/file/d/1zyqI4GVQoVAHURlgsle587223scoY_MP/view?usp=sharing)
 
 ![Import Screenshot](<./images/Screenshot (1520).png>)
 
