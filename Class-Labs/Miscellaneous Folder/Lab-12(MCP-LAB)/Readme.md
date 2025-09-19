@@ -168,10 +168,6 @@ Now, try asking a question in Claude that requires fetching content from a websi
 
 ---
 
-## Build it From Scratch
-
-- [Video Link Click Here](https://pragyaallc-my.sharepoint.com/:v:/g/personal/sachin_parmar_legalgraph_ai/EdLPu7SqWuFCg9eRdfGwY4oBtriGRIw8r-_5kgxDr2Hy8g?e=nM3gdm)
-
 
 ---
 > **Tip:** You can use any JSON editor, but VS Code provides syntax highlighting and error checking.
