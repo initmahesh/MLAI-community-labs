@@ -1,4 +1,4 @@
-# Lab-1: Memory Integration In Langflow
+# Memory Integration In Langflow
 
 ![flow](./images/img-14.png)
 
