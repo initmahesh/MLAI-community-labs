@@ -57,6 +57,10 @@ Now let's import the pre-built workflow into n8n:
    ![](./images/img-5.png)
 4. The workflow will be imported and displayed on your canvas
 
+> **💡 Note:** Make sure you have configured your OpenAI API key. If you have already completed **Lab 1.1**, you don't need to do it again — n8n will automatically use the credentials you saved from the environment variables.
+
+> ![](./images/img-3.gif)
+
 > Your workflow is now ready to be configured!
 
 ---
