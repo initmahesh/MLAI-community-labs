@@ -107,7 +107,7 @@ However, each lab is self-contained and can be completed independently based on 
 
 ---
 
-## 💡 Key Concepts Covered
+## Key Concepts Covered
 
 ### Prompt Engineering
 
@@ -142,7 +142,7 @@ However, each lab is self-contained and can be completed independently based on 
 
 ---
 
-## 🎓 Learning Outcomes
+## Learning Outcomes
 
 After completing this module, you will be able to:
 
@@ -171,11 +171,11 @@ If you encounter any issues or have questions:
 1. Review the lab documentation carefully
 2. Check the prerequisites section of each lab
 3. Refer to the additional resources listed above
-4. Reach out to the MLAI Community for support
+4. Reach out Sachin for support
 
 ---
 
-**Ready to get started?** Choose your first lab and begin your journey into AI-powered no-code development! 🚀
+**Ready to get started?** Start With your first lab and begin your journey ! 
 
 ---
 
