@@ -38,7 +38,7 @@ By the end of this module, you'll have hands-on experience building three comple
 - A complete n8n workflow that demonstrates prompt engineering concepts
 - An AI-powered contract analysis agent that processes documents intelligently
 
-**Duration:** ~2 hours
+
 
 ---
 
@@ -59,7 +59,7 @@ By the end of this module, you'll have hands-on experience building three comple
 - A clean, professional landing page with interactive features
 - A settings interface for securely managing API keys
 
-**Duration:** ~1 hour
+
 
 ---
 
@@ -80,65 +80,7 @@ By the end of this module, you'll have hands-on experience building three comple
 - Integration between v0 (frontend) and n8n (backend workflow)
 - A complete workflow that demonstrates real-time data processing
 
-**Duration:** ~2 hours
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Before starting any lab in this module, ensure you have:
-
-1. **n8n Account** — [Sign up here](https://n8n.io/signup)
-2. **OpenAI API Key** — [Get your key here](https://youtu.be/YyaZ8zaGS-Q?si=bOw8C_TWgMg8S1hU)
-3. **V0.dev Account** — [Access v0 here](https://v0.dev/)
-4. **A modern web browser** (Chrome, Firefox, Safari, or Edge)
-
-### Recommended Learning Path
-
-We recommend completing the labs in sequence:
-
-1. **Start with Lab 1.1** to understand prompt engineering fundamentals and n8n basics
-2. **Move to Lab 1.2** to learn rapid UI prototyping with v0.dev
-3. **Complete Lab 1.3** to integrate both platforms and build a complete solution
-
-However, each lab is self-contained and can be completed independently based on your interests.
-
----
-
-## Key Concepts Covered
-
-### Prompt Engineering
-
-- Instruction-based prompts
-- Role-based prompting
-- Chain of thought reasoning
-- Output formatting and constraints
-- Iterative prompt refinement
-
-### Workflow Automation
-
-- Visual workflow design
-- Node-based programming
-- API integrations
-- Data transformation
-- Error handling
-
-### No-Code Development
-
-- Rapid prototyping
-- UI/UX best practices
-- Component-based design
-- Responsive layouts
-- API integration
-
-### System Integration
-
-- Webhooks and event-driven architecture
-- Real-time data processing
-- Frontend-backend communication
-- File uploads and processing
 
 ---
 
