@@ -56,10 +56,13 @@ Now let's import the pre-built workflow into n8n:
 3. Upload the **JSON workflow file** that you downloaded from the Prerequisites section (Step 4)
    ![](./images/img-5.png)
 4. The workflow will be imported and displayed on your canvas
+  ![](./images/img-8.png)
 
 > **💡 Note:** Make sure you have configured your OpenAI API key. If you have already completed **Lab 1.1**, you don't need to do it again — n8n will automatically use the credentials you saved from the environment variables.
 
-> ![](./images/img-3.gif)
+> **If you haven't configured it yet:** Click on the **OpenAI Chat Model** component and add your API key as shown in the GIF below.
+
+![](./images/img-3.gif)
 
 > Your workflow is now ready to be configured!
 
@@ -71,9 +74,10 @@ The webhook is the key connection point between v0 and n8n. Let's get the webhoo
 
 1. Click on the **Webhook** component in your workflow canvas
 2. Locate the **Webhook URL** field in the node settings
-   ![](./images/img-6.gif)
-3. Click the **Copy** button next to the URL to copy it to your clipboard
+3. **Copy** the URL .
 4. Save this URL somewhere safe - you'll need it when setting up the v0 interface
+
+![](./images/img-6.gif)
 
 > This webhook URL is where v0 will send the uploaded document data!
 
