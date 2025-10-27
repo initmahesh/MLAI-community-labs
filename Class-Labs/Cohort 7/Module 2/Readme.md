@@ -1,6 +1,6 @@
 # Module 2: Understanding Agentic RAG
 
-[](./images/poster.png)
+![Module 2 Poster](./images/poster.png)
 
 ## Lab Overview
 
@@ -60,6 +60,5 @@ This module guides you through building a complete RAG (Retrieval-Augmented Gene
   - Integrate Supabase authentication
 - **Key takeaway:** Production-ready authentication without backend code
 - **Tech:** v0.dev, Supabase Auth, React
-
 
 **Start with Lab 1.1 and follow the sequence for the complete journey! **
