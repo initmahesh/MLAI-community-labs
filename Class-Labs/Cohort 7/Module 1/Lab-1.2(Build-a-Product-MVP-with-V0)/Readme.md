@@ -48,14 +48,21 @@ Head over to **V0.dev**, the AI-powered UI generation platform. Once you're ther
 Copy and paste the following full prompt into the V0 chat to generate your MVP landing page:
 
 ```
-Design a clean, modern landing page for an AI-powered competitor analysis tool. Users enter two company names and their OpenAI API key (securely, via a settings tab at the top-right). Use the API to create a fact-based, side-by-side comparison—presenting key differences in a clear, structured table. Generate a concise side-by-side comparison using the API, and display results in a clean and user-friendly table.
+Create an landing page where the user can input two company names and their OpenAI API key.
+When the user clicks the “Compare” button, use the OpenAI GPT-4o-mini model to compare the two companies (e.g., based on description, market position, or performance).
+Requirements:
+Include three input fields:
+Company Name 1
+Company Name 2
+User’s OpenAI API Key
+On submission, call the OpenAI API using the provided API key from the frontend.
+Add debug statements in the console to log:
+What data is being sent to the OpenAI API
+What response is being received from the API
+Display the comparison result neatly on the UI.
+Code should be modular, optimized, and split into reusable components (e.g., CompanyComparisonForm, ComparisonResult).
+Design should follow a clean, modern aesthetic with subtle animations and proper spacing.
 
-Guardrails:
-1. Ensure the API route correctly uses the OpenAI SDK with the user-provided API key—do not hardcode or misconfigure the client.
-2. Use createOpenAI from @ai-sdk/openai to dynamically configure the SDK with the user's API key (per request).
-3. Instruct the model to return only raw JSON (no ```json or markdown wrappers).
-4. Properly pass and configure the user’s API key into the OpenAI provider or function call—avoid global/static config misuse.
-5. The LLM's response should be concise and relevant—avoid unnecessary or off-topic content; limit verbosity and keep the comparison focused.
 ```
 
 
