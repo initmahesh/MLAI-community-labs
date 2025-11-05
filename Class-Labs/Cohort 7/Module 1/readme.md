@@ -65,7 +65,7 @@ By the end of this module, you'll have hands-on experience building three comple
 
 ### Lab 1.3: Connecting n8n with V0
 
-**[📖 View Lab Documentation](<./Lab-1.3(n8n-with-v0)/Doc.md>)**
+**[📖 View Lab Documentation](<./Lab-1.3(n8n-with-v0)/Readme.md>)**
 
 **What You'll Learn:**
 
