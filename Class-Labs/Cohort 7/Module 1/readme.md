@@ -23,7 +23,7 @@ By the end of this module, you'll have hands-on experience building three comple
 
 ### Lab 1.1: Prompt Engineering with n8n
 
-**[📖 View Lab Documentation](<./Lab-1.1(n8n-PromptEngineering-Lab)/doc.md>)**
+**[📖 View Lab Documentation](<./Lab-1.1(n8n-PromptEngineering-Lab)/Readme.md>)**
 
 **What You'll Learn:**
 
@@ -37,8 +37,6 @@ By the end of this module, you'll have hands-on experience building three comple
 
 - A complete n8n workflow that demonstrates prompt engineering concepts
 - An AI-powered contract analysis agent that processes documents intelligently
-
-
 
 ---
 
@@ -59,8 +57,6 @@ By the end of this module, you'll have hands-on experience building three comple
 - A clean, professional landing page with interactive features
 - A settings interface for securely managing API keys
 
-
-
 ---
 
 ### Lab 1.3: Connecting n8n with V0
@@ -79,8 +75,6 @@ By the end of this module, you'll have hands-on experience building three comple
 - An AI-powered document analyzer that extracts key terms from uploaded documents
 - Integration between v0 (frontend) and n8n (backend workflow)
 - A complete workflow that demonstrates real-time data processing
-
-
 
 ---
 
@@ -104,6 +98,65 @@ After completing this module, you will be able to:
 - **V0.dev Documentation:** [https://v0.dev/docs](https://v0.dev/docs)
 - **n8n Community Forum:** [https://community.n8n.io](https://community.n8n.io)
 
+> **📝 Note:** If you are building from scratch, here is the prompt of the agent that I have used for my agent:
+>
+> **Prompt:**
+>
+> ```
+> You are a Contract Analysis Agent.
+>
+> Your task is to analyze the provided contract {data0} or Master Service Agreement (MSA) and extract all important key terms and their values.
+>
+> ### Extraction Goal:
+> Identify and extract the following key terms (if present) from the document, along with their corresponding values and page numbers.
+>
+> ### Key Terms to Extract:
+> 1. Agreement Title
+> 2. Effective Date
+> 3. Parties Involved (including their roles, e.g., "Provider," "Customer," "Client")
+> 4. Scope of Agreement
+> 5. Order of Precedence
+> 6. Product or Service Names Covered
+> 7. License Type and Usage Rights
+> 8. Payment Terms (fees, due date, late fee, refund policy)
+> 9. Renewal Terms
+> 10. Taxes and Responsibilities
+> 11. Term and Termination (convenience and cause)
+> 12. Confidentiality Obligations
+> 13. Indemnification Clauses (by both parties)
+> 14. Warranty Period and Limitations
+> 15. Limitation of Liability
+> 16. Governing Law and Jurisdiction
+> 17. Export/Compliance Requirements
+> 18. Data Privacy and Security Provisions
+> 19. Notices (contact method and address)
+> 20. Audit Rights
+> 21. Training or Support Obligations
+> 22. Intellectual Property Ownership
+> 23. Dispute Resolution or Arbitration Clauses
+>
+> ### Output Format:
+> Provide the results as a structured JSON array with the following fields:
+>
+> [
+>   {
+>     "key_term": "<Term Name>",
+>     "value": "<Extracted Value or Clause Summary>",
+>     "page_number": "<Page number or section reference>"
+>   }
+> ]
+>
+> If a key term is not found, include it with `"value": "Not mentioned"`.
+>
+> ### Notes:
+> - Preserve the exact clause wording where possible (no paraphrasing for legal text).
+> - If the same key term appears multiple times, merge or list them together clearly.
+> - Do not include unrelated boilerplate text.
+> - If the document has defined terms (like "Product Terms of Use"), capture their references under relevant key terms.
+>
+> Return only the JSON — no explanations.
+> ```
+
 ---
 
 ## 🤝 Need Help?
@@ -117,7 +170,7 @@ If you encounter any issues or have questions:
 
 ---
 
-**Ready to get started?** Start With your first lab and begin your journey ! 
+**Ready to get started?** Start With your first lab and begin your journey !
 
 ---
 
