@@ -53,7 +53,7 @@ Before beginning this lab, ensure you have completed the following:
 **Important:** Make sure you have completed **Module 1** and **Lab 1.1 of Module 2** before starting this lab.
 
 - **New to n8n!** Set up your account: **[Click Here](../../Module%200%20-%20Prerequisite/n8n-loginSetup/Doc.md)**
-- **Setup Supabase Account:** Configure your Supabase database: **[Click Here](../../Module 0 - Prerequisite/supabase-configuration/Readme.md)**
+- **Setup Supabase Account:** Configure your Supabase database: **[Click Here](../../Module%200%20-%20Prerequisite/supabase-configuration/Readme.md)**
 - **v0 by Vercel Account:** Access to v0 for building the web interface: **[Click Here](https://v0.dev/)**
 - **Generate your OpenAI API key:** **[Click Here](https://youtu.be/YyaZ8zaGS-Q?si=bOw8C_TWgMg8S1hU)**
 - **Download n8n workflow file:** **[Click Here](https://drive.google.com/file/d/1cMk6ihLPtMh5MNTJoRJvhdJ560mydXWb/view?usp=sharing)**
