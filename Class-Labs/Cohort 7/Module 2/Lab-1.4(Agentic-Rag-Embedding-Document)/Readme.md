@@ -2,7 +2,8 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034/MLAI-community-labs/blob/main/Class-Labs/Module-2%28Understanding-Agentic-RAG%29/Lab-2.4%28Agentic-Rag-Embedding-Document%29/AgenticRAG.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Class-Labs/Cohort%207/Module%202/Lab-1.4(Agentic-Rag-Embedding-Document)/AgenticRAG.ipynb)
+
 
 ## What is Agentic RAG?
 To fully grasp Agentic RAG, it's essential to first understand its two fundamental building blocks: AI agents and Retrieval-Augmented Generation (RAG).
