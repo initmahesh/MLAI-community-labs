@@ -57,7 +57,11 @@ Before beginning this lab, ensure you have completed the following:
 - **v0 by Vercel Account:** Access to v0 for building the web interface: **[Click Here](https://v0.dev/)**
 - **Generate your OpenAI API key:** **[Click Here](https://youtu.be/YyaZ8zaGS-Q?si=bOw8C_TWgMg8S1hU)**
 - **Download n8n workflow file:** **[Click Here](https://drive.google.com/file/d/1cMk6ihLPtMh5MNTJoRJvhdJ560mydXWb/view?usp=sharing)**
-- **Download reference document:** **[Click Here](https://drive.google.com/file/d/1zUUPpyFVsLXPzvnbjCDYtEDFmmwh4M3C/view?usp=sharing)**
+
+**Note:** You can download any one file from below. The larger file will take 15-20 minutes for processing.
+
+- **Download Large Contract reference document:** **[Click Here](https://drive.google.com/file/d/1RMzUyryxh88qiXTW6psH6lEfrhQ8H2ZQ/view?usp=sharing)**
+- **Download Small Contract reference document:** **[Click Here](https://drive.google.com/file/d/1RMzUyryxh88qiXTW6psH6lEfrhQ8H2ZQ/view?usp=sharing)**
 
 ---
 
