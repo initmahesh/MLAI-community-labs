@@ -210,3 +210,20 @@ This Agentic RAG workflow processes user queries through a sophisticated multi-s
 6. **Generate Final Answer**
 
 ---
+
+## Additional Resources
+
+### Learn More About RAG Evaluation
+
+If you want to learn more about evaluating and optimizing RAG systems, check out this resource:
+
+- **Evaluating RAG Systems:** **[Click Here](https://blog.n8n.io/evaluating-rag-aka-optimizing-the-optimization/)**
+
+This article covers 4 main points:
+
+1. **Four Types of RAG Hallucinations** - Understanding Evident Conflict, Subtle Conflict, Evident Introduction of Baseless Information, and Subtle Introduction of Baseless Information
+2. **RAG Document Relevance** - How to measure Context Recall and Context Precision to ensure the right information is retrieved
+3. **RAG Groundedness** - Evaluating Faithfulness and Response Relevancy to ensure LLM answers are consistent with retrieved context
+4. **RAG Evaluations in n8n** - How to implement RAG evaluations natively in n8n without external libraries
+
+---
