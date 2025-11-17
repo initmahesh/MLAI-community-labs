@@ -36,6 +36,14 @@ This workflow implements a sophisticated query processing system that:
 
 The system uses an **Orchestration Agent** that acts as a decision-maker, routing queries to specialized **Thought Agents** based on query type (Factual or Analytical). Each agent enhances the query before retrieval and synthesizes the final answer using both the enhanced query and retrieved context.
 
+### What You'll Learn
+
+In this lab, we will learn about **Agentic RAG Architecture** and how multi-agent systems enhance traditional RAG workflows by introducing intelligent routing and decision-making capabilities. You'll discover how to **classify user queries** (Factual vs. Analytical) to determine the most appropriate processing strategy, and master **query enhancement techniques** for improving query quality before retrieval, including context clarification, query expansion, and reformulation.
+
+We'll explore **agent orchestration** by building an orchestration layer that routes queries to specialized agents based on their type and complexity. You'll learn to implement **vector store integration** for document storage and retrieval using Simple Vector Store in n8n workflows, and understand how different specialized agents (Factual Agent, Analytical Agent) collaborate to process queries and generate responses.
+
+Finally, you'll master **context-aware response generation** by combining enhanced queries with retrieved context to produce accurate, contextually relevant answers. By the end of this lab, you'll have built a production-ready Agentic RAG system that can intelligently handle different types of queries and provide more accurate responses than traditional RAG implementations.
+
 ---
 
 ## What is Agentic RAG?
