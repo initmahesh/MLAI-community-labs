@@ -55,7 +55,7 @@ Before beginning this lab, ensure you have completed the following:
 - **New to n8n!** Set up your account: **[Click Here](../../Module%200%20-%20Prerequisite/n8n-loginSetup/Doc.md)**
 - **Generate your OpenAI API key:** **[Click Here](https://youtu.be/YyaZ8zaGS-Q?si=bOw8C_TWgMg8S1hU)**
 - **Download n8n workflow file:** **[Click Here](https://drive.google.com/file/d/1bsHT4DsEvLFZv2WPBdnXJoEAfEn9R6Ka/view?usp=sharing)**
-- **Download Small Contract reference document:** **[Click Here](https://drive.google.com/file/d/1RMzUyryxh88qiXTW6psH6lEfrhQ8H2ZQ/view?usp=sharing)**
+- **Download Contract reference document:** **[Click Here](https://drive.google.com/file/d/1RMzUyryxh88qiXTW6psH6lEfrhQ8H2ZQ/view?usp=sharing)**
 
 ---
 
@@ -89,7 +89,7 @@ Now let's import the pre-built workflow into n8n:
 
 1. Click on **"Create Workflow"** button in your n8n dashboard
 
-   ![](./images/img-4.png)
+CC
 
 2. Go to the menu (three dots or hamburger icon) and select **"Import from File"**
 
