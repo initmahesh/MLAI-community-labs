@@ -1,6 +1,7 @@
 # Lab 1.3: Supervised Fine-Tuning (SFT) with Microsoft Phi-1.5
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034-tech/MLAI-community-labs/blob/main/Class-Labs/Cohort%207/Module%205/Lab-1.3%28Fine-Tuning-Lab%29/Fine_Tuning.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sachin0034-tech/MLAI-community-labs/blob/main/Class-Labs/Cohort%207/Module%205/Lab-1.3%28Fine-Tuning-Lab%29/Fine_Tuning_Lab.ipynb)
+
 
 
 
