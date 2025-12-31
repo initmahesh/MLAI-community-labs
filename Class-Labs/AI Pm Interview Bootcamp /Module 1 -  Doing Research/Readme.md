@@ -1,6 +1,6 @@
 # Module 1: Doing Research
 
-![banner](./marketreserachimages/banner.png)
+![banner](./marketreserachimages/bn.png)
 
 Welcome to Module 1! This module is all about teaching you how to conduct research effectively as a Product Manager. You'll learn how to use Claude Code as an AI-powered assistant to perform market research and user research, gathering insights that inform your product decisions.
 
@@ -16,6 +16,14 @@ We'll cover two essential types of research that every PM needs to master:
 - **User Research** — Understanding what your users actually need, not what you think they need
 
 Instead of working manually, you'll learn how to use Claude Code as an **AI-powered research assistant**, enabling you to gather insights, analyze data, and create documentation in minutes instead of days.
+
+
+## Quick Start Guide
+
+1. **Start Here:** Read [1.0 Introduction to Market Research](./1.0-Introduction-to-Market-Research.md) to understand the module's foundation
+2. **Market Research:** Complete [1.1 Doing Market Research](./1.1-Doing-Market-Research.md) to analyze the competitive landscape
+3. **User Research Intro:** Read [1.2 Introduction to User Research](./1.2-Introduction-to-User-Research.md) to understand user research fundamentals
+4. **User Research:** Complete [1.3 Doing User Research](./1.3-Doing-User-Research.md) to understand user needs and behaviors
 
 ---
 
@@ -80,15 +88,6 @@ Build on your market research to understand user behaviors, pain points, and nee
 - How to generate actionable user research reports
 
 **Key Takeaway:** By the end of this lab, you'll have a comprehensive user research report (`userresearch.txt`) that complements your market research.
-
----
-
-## Quick Start Guide
-
-1. **Start Here:** Read [1.0 Introduction to Market Research](./1.0-Introduction-to-Market-Research.md) to understand the module's foundation
-2. **Market Research:** Complete [1.1 Doing Market Research](./1.1-Doing-Market-Research.md) to analyze the competitive landscape
-3. **User Research Intro:** Read [1.2 Introduction to User Research](./1.2-Introduction-to-User-Research.md) to understand user research fundamentals
-4. **User Research:** Complete [1.3 Doing User Research](./1.3-Doing-User-Research.md) to understand user needs and behaviors
 
 ---
 
