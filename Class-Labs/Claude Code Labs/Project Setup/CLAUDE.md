@@ -12,15 +12,15 @@ LegalGraph helps in-house legal teams review contracts faster using AI-powered c
 ### ALWAYS read these files before starting ANY task:
 
 **Core Context (Read First):**
-- `company-context/company-overview.md` - Company background, team, metrics, strategy, OKRs
-- `company-context/user-personas.md` - Three personas: Jennifer (GC), David (Senior Counsel), Rachel (Legal Ops)
-- `company-context/product-description.md` - Current product features, roadmap, tech stack
-- `company-context/competitive-landscape.md` - Competitors (Ironclad, Kira, LawGeex, Evisort, etc.)
+- `@company-context/company-overview.md` - Company background, team, metrics, strategy, OKRs
+- `@company-context/user-personas.md` - Three personas: Jennifer (GC), David (Senior Counsel), Rachel (Legal Ops)
+- `@company-context/product-description.md` - Current product features, roadmap, tech stack
+- `@company-context/competitive-landscape.md` - Competitors (Ironclad, Kira, LawGeex, Evisort, etc.)
 
 **Templates (Use for Output Structure):**
-- `templates/market-research-format.md` - Structure for market research deliverables
-- `templates/user-research-format.md` - Structure for user research deliverables
-- `templates/prd-template.md` - Structure for Product Requirements Documents
+- `@templates/market-research-format.md` - Structure for market research deliverables
+- `@templates/user-research-format.md` - Structure for user research deliverables
+- `@templates/prd-template.md` - Structure for Product Requirements Documents
 
 ---
 
