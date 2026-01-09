@@ -64,11 +64,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - What you'll accomplish in this module
 - Module structure and progression
 
-**Key Skills:**
-- Module navigation
-- Learning path understanding
-- Context system overview
-
 ---
 
 ### [Lesson 2.1: Understanding File Structure](./2.1-understanding-file-structure.md)
@@ -81,12 +76,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Working with templates for output formats
 - Managing CLAUDE.md and CLAUDE.local.md files
 - Best practices for file organization
-
-**Key Skills:**
-- File structure management
-- Context organization
-- Template usage
-- Project navigation
 
 ---
 
@@ -101,12 +90,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Understanding context limitations and best practices
 - Leveraging context for better AI assistance
 
-**Key Skills:**
-- Context management
-- Context optimization
-- AI interaction patterns
-- Information architecture
-
 ---
 
 ### [Lesson 2.3: Doing Market Research Using Context](./2.3-doing-marketresearch-using-context.md)
@@ -119,13 +102,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Using templates to structure research output
 - Analyzing competitive landscape
 - Generating actionable market insights
-
-**Key Skills:**
-- Market research methodology
-- Competitive analysis
-- Context-driven research
-- Research synthesis
-- Strategic analysis
 
 ---
 
@@ -140,13 +116,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Creating structured user research documents
 - Identifying user pain points and opportunities
 
-**Key Skills:**
-- User research methodology
-- Persona analysis
-- User needs identification
-- Research documentation
-- User-centric thinking
-
 ---
 
 ### [Lesson 2.5: Writing PRD Using Context](./2.5-writing-prd.md)
@@ -160,12 +129,5 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Creating well-structured product documentation
 - Synthesizing research into actionable product requirements
 
-**Key Skills:**
-- PRD writing
-- Product documentation
-- Requirements synthesis
-- Product specification
-- Cross-functional communication
 
 ---
-

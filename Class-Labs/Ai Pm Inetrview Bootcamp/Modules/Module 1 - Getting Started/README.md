@@ -61,10 +61,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Understanding the learning path
 - What to expect from this bootcamp
 
-**Key Skills:**
-- Course navigation
-- Learning path understanding
-
 ---
 
 ### [Lesson 1.1: What is Claude Code?](./1.1-what-is-claude-code.md)
@@ -76,11 +72,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Key features and capabilities of Claude Code
 - How Claude Code works with your codebase
 - The difference between Claude Code and traditional AI assistants
-
-**Key Skills:**
-- Understanding AI-assisted development
-- Context-aware AI concepts
-- Code generation and analysis
 
 ---
 
@@ -95,12 +86,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Organizing design feedback and technical discussions
 - Creating PRDs and strategic documents
 
-**Key Skills:**
-- Product Management workflows
-- Document generation
-- Research synthesis
-- Strategic thinking
-
 ---
 
 ### [Lesson 1.3: Installation](./1.3-installation.md)
@@ -114,12 +99,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Verifying your installation
 - Troubleshooting common installation issues
 
-**Key Skills:**
-- Environment setup
-- Node.js installation
-- Command-line basics
-- Installation verification
-
 ---
 
 ### [Lesson 1.4: Setting Up Claude](./1.4-setting-up-claude.md)
@@ -132,12 +111,6 @@ Each lesson builds on the previous one, so we recommend following them in order.
 - Configuring Claude Code settings
 - Opening projects and using Claude Code
 - Basic usage and commands
-
-**Key Skills:**
-- VS Code extension management
-- Authentication setup
-- Configuration management
-- Basic Claude Code operations
 
 ---
 
