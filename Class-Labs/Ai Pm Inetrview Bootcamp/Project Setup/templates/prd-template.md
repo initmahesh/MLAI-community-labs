@@ -1,140 +1,98 @@
 # Product Requirements Document: [Feature Name]
 
-**Status**: Draft | In Review | Approved
-**Author**: [Name]
-**Date**: [Date]
+**Status**: Draft | In Review | Approved  
+**Author**: [Name]  
+**Date**: [Date]  
 **Last Updated**: [Date]
 
-## Executive Summary
-[One paragraph overview]
+---
 
-## Problem Statement
-### User Problem
-[What problem are we solving?]
+## 1. Introduction & Context
 
-### Business Problem
-[Why does this matter to the business?]
+### Problem / Opportunity Statement
 
-### Supporting Evidence
-- Market research: [Link to research doc]
-- User research: [Link to research doc]
-- Data: [Relevant metrics]
+**Objective:** What problem or opportunity are we trying to address?
 
-## Goals & Success Metrics
-### User Goals
-1. [Goal] - measured by [metric]
+- Provide a succinct summary of the user/customer pain points
+- Outline any background context (e.g., market data, competitor analysis, regulatory changes)
 
-### Business Goals
-1. [Goal] - measured by [metric]
+### Key Observations, Data & Insights
 
-## User Stories & Use Cases
-### Primary Use Case
-**Actor**: [Persona]
-**Goal**: [What they want to accomplish]
-**Steps**:
-1. [Step]
-2. [Step]
+- Summarize relevant data or research findings that justify the need to solve this problem
+- Could include user interviews, analytics, A/B tests, surveys, etc.
+- Show how these insights build confidence in pursuing the project
+- Specifically define what success would look like for the product or feature
+- Examples: "Improve funnel conversion by 20%," "Reduce churn by 10%," "Expand into a new user segment"
 
-[Repeat for 3-5 use cases]
+### Impact Sizing
 
-## Requirements
+- **Qualitative Impact:** How will this help users, customers, or internal teams?
+- **Quantitative Impact:** Estimated revenue, cost savings, increased engagement, or other numeric KPIs
 
-### Must Have (P0)
-1. **[Requirement]**
-   - User story: As a [persona], I want to [action] so that [benefit]
-   - Acceptance criteria:
-     - [ ] [Criterion]
-     - [ ] [Criterion]
+---
 
-### Should Have (P1)
-[Same structure]
+## 2. Goals & Metrics
 
-### Nice to Have (P2)
-[Same structure]
+### Success Metrics
 
-## Design & User Experience
-[Wireframes, mockups, flow diagrams]
+Define primary success metrics tied to the project's objective. For example:
+- Conversion rate
+- NPS or CSAT improvements
+- DAU/MAU lift
+- Revenue or cost savings
 
-## Technical Considerations
-### Architecture
-[High-level technical approach]
+### Guardrail Metrics
 
-### Dependencies
-[What this depends on]
+- Identify secondary metrics that should not degrade while focusing on the primary metrics
+- Example: If increasing acquisition is the goal, ensure onboarding completion or user satisfaction does not drop below a threshold
 
-### Security & Compliance
-[Relevant requirements]
+### Leading vs. Lagging Indicators (Optional)
 
-## Out of Scope
-[What we're explicitly NOT doing]
+- **Leading Indicators:** Early signals of success (e.g., user sign-up rate, trial activation)
+- **Lagging Indicators:** Longer-term outcomes (e.g., retention at 3 months, LTV/CAC ratio)
 
-## Launch Plan
-### Phase 1: [Name]
-- Timeline: [Dates]
-- Features: [List]
-- Success criteria: [Metrics]
+---
 
-## Risks & Mitigations
-| Risk | Impact | Probability | Mitigation |
-|------|--------|-------------|------------|
-| [Risk] | High/Med/Low | High/Med/Low | [Strategy] |
+## 3. Risks & Assumptions
 
-## Open Questions
-1. [Question] - Owner: [Name] - Due: [Date]
+### Known Risks
 
-## Appendix
-### Research References
-- [Link to market research]
-- [Link to user research]
+- **Technical Risks:** If the system is complex or there are uncertain dependencies
+- **Product Risks:** Potential user backlash, brand impact, etc.
+- **Market Risks:** Competitive moves, regulatory changes
 
-### Change Log
-| Date | Author | Change |
-|------|--------|--------|
-| [Date] | [Name] | [Description] |
-```
+---
 
-### Module 7: Sample Queries & Expected Outputs
+## 4. Scope
 
-#### Sample Query Set 1: Market Research
-```
-Query: "Conduct market research for AI legal contract review platforms. Focus on enterprise segment."
+### Out-of-Scope
 
-Expected Claude Actions:
-1. Read company-context/company-overview.md
-2. Read company-context/competitive-landscape.md
-3. Read templates/market-research-format.md
-4. Execute web searches:
-   - "legal tech market size 2026"
-   - "AI contract review platforms comparison"
-   - "enterprise legal software trends"
-5. Structure output per template
-6. Save to outputs/market-research-[date].md
-```
+List what is explicitly not part of this project to avoid ambiguity.
 
-#### Sample Query Set 2: User Research
-```
-Query: "Research user needs for contract risk assessment features targeting legal ops managers."
+---
 
-Expected Claude Actions:
-1. Read company-context/user-personas.md (focus on legal ops persona)
-2. Read templates/user-research-format.md
-3. Execute web searches:
-   - "legal operations manager workflow"
-   - "contract risk management best practices"
-   - "legal ops technology adoption"
-4. Structure findings per template
-5. Save to outputs/user-research-[date].md
-```
+## 5. User Stories
 
-#### Sample Query Set 3: PRD Writing
-```
-Query: "Write a PRD for automated clause extraction feature. Use all previous research."
+**Persona / User Segment:** For whom are we building this feature or product?
 
-Expected Claude Actions:
-1. Read outputs/market-research-[date].md
-2. Read outputs/user-research-[date].md
-3. Read company-context/* (all files)
-4. Read templates/prd-template.md
-5. Write comprehensive PRD following template
-6. Include references to research
-7. Save to outputs/prd-clause-extraction.md
+**User Story:** "As a [type of user], I want [goal], so that [benefit]."
+
+**Acceptance Criteria:** The conditions that must be met for the feature to be considered complete.
+
+---
+
+## 6. Milestones & GTM
+
+### Project Plan
+
+**Phases / Milestones:** Break the implementation down into phases or sprints with target dates.
+
+Example milestones: Requirements finalized, design complete, dev complete, QA, Beta release, General Availability (GA).
+
+### Release / Rollout Strategy
+
+- **Release Plan:** Outline how the product/feature will roll out (e.g., A/B test, phased rollout, feature flag)
+- **Rollout Communications:** Plan for notifying stakeholders or users (internal and/or external)
+- **Beta Users & Feedback Loops:** If relevant, outline a plan for a beta or pilot to gather early feedback
+
+---
