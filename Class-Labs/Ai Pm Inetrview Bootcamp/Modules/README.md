@@ -8,7 +8,7 @@ Welcome to the AI PM Interview Bootcamp! This comprehensive course is designed t
 
 ## Course Overview
 
-This bootcamp is structured into three progressive modules that will take you from understanding Claude Code basics to building advanced AI-powered tools and visualizations. Each module builds upon the previous one, providing hands-on experience with real Product Management tasks.
+This bootcamp is structured into four progressive modules that will take you from understanding Claude Code basics to building advanced AI-powered tools, visualizations, and personal career assistants. Each module builds upon the previous one, providing hands-on experience with real Product Management tasks.
 
 ---
 
@@ -19,6 +19,7 @@ The course follows a structured progression:
 1. **Module 1: Getting Started** - Foundation and setup
 2. **Module 2: Understanding Claude Code Context System** - Mastering context for PM tasks
 3. **Module 3: Building Agents & Visualizations** - Advanced AI-powered tools
+4. **Module 4: AI Assistant for Job Preparation** - Personal career assistant
 
 ---
 
@@ -35,6 +36,9 @@ By completing this bootcamp, you will be able to:
 - ✅ Create autonomous AI agents for complex tasks
 - ✅ Build interactive websites, mockups, and visualizations
 - ✅ Generate data dashboards and transform data into actionable insights
+- ✅ Build a personal AI assistant for job interview preparation
+- ✅ Analyze resume strengths and gaps against job descriptions
+- ✅ Generate personalized study plans and mock interview questions
 
 ---
 
@@ -115,6 +119,32 @@ Before starting this course, you should have:
 
 ---
 
+### [Module 4: AI Assistant for Product Manager Job Preparation](./Module%204%20-%20AI%20Assistant%20for%20Product%20Manager%20Job%20Preparation/Readme.md)
+
+**[Click here to access Module 4](./Module%204%20-%20AI%20Assistant%20for%20Product%20Manager%20Job%20Preparation/Readme.md)**
+
+**Duration:** Career-focused module (1 lesson)
+
+**Prerequisites:** Module 1
+
+**What you'll learn:**
+- Setting up a custom AI assistant for job preparation
+- Leveraging context files to define preparation strategies
+- Processing multiple documents (resume and job description) with AI
+- Generating comprehensive interview preparation plans
+- Creating structured analysis in table formats
+- Building reusable workflows for multiple job applications
+
+**Key Outcomes:**
+- Personalized AI assistant for job preparation
+- Comprehensive interview preparation plan
+- Resume strengths and gap analysis
+- Topic-wise study plan
+- Mock interview questions
+- Reusable workflow for future job applications
+
+---
+
 ## How to Use This Course
 
 ### Recommended Learning Path
@@ -122,6 +152,7 @@ Before starting this course, you should have:
 1. **Start with Module 1** - Complete all lessons in order
 2. **Move to Module 2** - Build on your foundation
 3. **Complete Module 3** - Master advanced techniques
+4. **Finish with Module 4** - Build your career preparation assistant
 
 ### Learning Tips
 
@@ -165,11 +196,12 @@ Ready to begin? Start with Module 1:
 
 ## Course Completion
 
-Upon completing all three modules, you will have:
+Upon completing all four modules, you will have:
 
 - A comprehensive understanding of Claude Code
 - Practical experience with AI-powered PM tools
 - A portfolio of work including PRDs, research documents, agents, and visualizations
+- A personal AI assistant for job interview preparation
 - The skills to leverage AI tools in your Product Management career
 
 ---
