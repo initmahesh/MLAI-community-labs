@@ -7,14 +7,16 @@ Welcome to Module 4! This module focuses on leveraging Claude Code as your perso
 ## Module Overview
 
 In this module, you will learn how to:
+- Identify core problem areas from job descriptions and market signals
 - Create a comprehensive job interview strategy plan using your resume
-- Generate compelling stories for first-round interviews
+- Generate compelling stories aligned to company challenges
 - Develop frameworks for explaining your projects effectively
+- Generate strategic questions for hiring managers
 - Build an AI-powered hiring manager assistant agent for realistic interview practice
 - Receive detailed feedback and recommendations for interview improvement
 
-
 ---
+
 
 ## Prerequisites
 
@@ -28,36 +30,10 @@ Before starting this module, make sure you have:
 
 ## Quick Start Guide
 
-1. **Start with Lesson 4.1** - Create your job interview strategy plan and preparation materials
-2. **Continue to Lesson 4.2** - Build your hiring manager assistant agent for interview practice
+1. **Start with Lesson 4.0** - Learn to identify core problem areas from job descriptions and market signals - [Click here](./4.0-Identify%20Core%20Problem%20Areas%20from%20JD%20+%20Market%20Signal.md)
+2. **Continue to Lesson 4.1** - Create your job interview strategy plan and preparation materials - [Click here](./4.1-job-strategy-builder.md)
+3. **Finish with Lesson 4.2** - Build your hiring manager assistant agent for interview practice - [Click here](./4.2-creating-an-hiring-manager-agent.md)
 
 Each lesson builds on the previous one, so we recommend following them in order.
 
----
-
-## Lessons in This Module
-
-### [Lesson 4.1: Creating Job Interview Strategy Plan with Claude Code](./4.1-job-strategy-builder.md)
-
-**[Click here to access the lesson](./4.1-job-strategy-builder.md)**
-
-**What you'll learn:**
-- Upload and analyze your resume using Claude Code
-- Generate a personalized interview strategy plan following a template
-- Create 5 compelling stories for first call round interviews
-- Develop key discussion points for your major projects
-- Build a CLAUDE.md file that acts as your interview preparation assistant
-
----
-
-### [Lesson 4.2: Creating a Hiring Manager Assistant Agent for Interview Prep](./4.2-creating-an-hiring-manager-agent.md)
-
-**[Click here to access the lesson](./4.2-creating-an-hiring-manager-agent.md)**
-
-**What you'll learn:**
-- Create an AI-powered hiring manager assistant agent
-- Configure the agent to conduct realistic 45-minute interviews
-- Practice interviews with customizable difficulty levels and personality modes
-- Receive detailed feedback reports with scoring and recommendations
-- Get answer suggestions when you don't know how to respond
 ---
