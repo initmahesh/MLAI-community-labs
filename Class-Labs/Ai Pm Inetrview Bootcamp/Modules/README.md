@@ -119,9 +119,9 @@ Before starting this course, you should have:
 
 ---
 
-### [Module 4: AI Assistant for Product Manager Job Preparation](./Module%204%20-%20AI%20Assistant%20for%20Product%20Manager%20Job%20Preparation/Readme.md)
+### [Module 4: AI Assistant for Product Manager Job Preparation](./Module%204%20-%20AI%20Assistant%20for%20Product%20Manager%20Job%20Preparation/4.1-job-strategy-builder.md)
 
-**[Click here to access Module 4](./Module%204%20-%20AI%20Assistant%20for%20Product%20Manager%20Job%20Preparation/Readme.md)**
+**[Click here to access Module 4](./Module%204%20-%20AI%20Assistant%20for%20Product%20Manager%20Job%20Preparation/4.1-job-strategy-builder.md)**
 
 **Duration:** Career-focused module (1 lesson)
 
