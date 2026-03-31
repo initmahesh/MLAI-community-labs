@@ -17,6 +17,11 @@ LegalGraph helps in-house legal teams review contracts faster using AI-powered c
 - `@company-context/product-description.md` - Current product features, roadmap, tech stack
 - `@company-context/competitive-landscape.md` - Competitors and market positioning
 
+**User Data (Read for User Research Tasks):**
+- `@data/support-tickets.csv` - Real support tickets from Jennifer, David, and Rachel (pain points users have escalated)
+- `@data/nps-survey-responses.csv` - NPS scores and verbatim user feedback (includes exact user quotes)
+- `@data/feature-requests.csv` - Feature requests with vote counts and persona attribution (includes cross-persona conflicts)
+
 **Templates (Use for Output Structure):**
 - `@templates/market-research-format.md` - Structure for market research deliverables
 - `@templates/user-research-format.md` - Structure for user research deliverables
@@ -149,6 +154,10 @@ project-setup/
 │   ├── competitive-landscape.md
 │   ├── user-personas.md
 │   └── product-description.md
+├── data/
+│   ├── support-tickets.csv        ← real user pain points (25 tickets)
+│   ├── nps-survey-responses.csv   ← NPS scores + verbatim feedback (18 responses)
+│   └── feature-requests.csv       ← voted feature requests with persona conflicts (15 requests)
 ├── templates/
 │   ├── market-research-format.md
 │   ├── user-research-format.md
