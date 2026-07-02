@@ -1,23 +1,28 @@
-# Snowflake Trial Setup & SQL Execution
+# Setting Up Snowflake
 
 ![image](./images/banner.png)
 
-## Overview
+---
 
-In this lesson you will provision a free Snowflake trial account, run SQL in a worksheet, explore your database, and generate the config file needed for connecting Snowflake to external tools like n8n.
+Think about the last time you worked on a big project and had a ton of files — spreadsheets, documents, notes — scattered everywhere. At some point you probably thought, "I need one place where all of this lives, so I can actually find and use it."
 
-By the end of this module you will:
+That's exactly the problem we're about to solve.
 
-- Have an active Snowflake trial account
-- Be able to create and run SQL worksheets
-- Know how to explore your database structure
-- Have your Snowflake config file ready for the n8n setup
+We're going to be collecting a lot of data from diff sources like linkedIn , Youtube. Profiles, links, job titles, company names — all kinds of information. And we need somewhere to put it so our application can find it, search through it, and make sense of it. Without that, we're just collecting data with nowhere for it to go.
+
+That's where Snowflake comes in.
+
+Snowflake is basically a giant, organized storage space in the cloud kind of like Google Drive, but built specifically for storing data that your application can search and use. You don't need to install anything, you don't need to manage anything, and they offer a free 30-day trial that's more than enough for this course.
+
+Let's get you set up. It only takes a few minutes.
 
 ---
 
-## Step 1: Go to Snowflake
+## Step 1: Go to the Snowflake Sign-Up Page
 
-Open your browser and go to [https://signup.snowflake.com/](https://signup.snowflake.com/)
+Open your browser and go to:
+
+[https://signup.snowflake.com/](https://signup.snowflake.com/)
 
 ![Snowflake Homepage](./images/img-1.png)
 
@@ -25,48 +30,47 @@ Open your browser and go to [https://signup.snowflake.com/](https://signup.snowf
 
 ## Step 2: Click "Get Started"
 
-Click the **"Get Started"** button at the top of the page to begin the sign-up process.
+Click the **"Get Started"** button at the top of the page.
 
 ![Get Started](./images/2.png)
 
 ---
 
-## Step 3: Create Your Account
+## Step 3: Fill In Your Details
 
-Fill in your personal details on the sign-up form:
+You'll see a simple sign-up form. Fill in:
 
 - **First Name** and **Last Name**
-- **Email Address** — use a valid email you can access
-- **WHy are you signing up**
+- **Email Address** — use one you can check right now, because they'll send you a confirmation link
+- **Why are you signing up** — just pick whatever feels closest
 
-Click **"Continue"** to proceed.
+Click **"Continue"** when you're done.
 
 ![Account Creation Form](./images/3.png)
 
 ---
 
-## Step 4: Enter Company Details and Choose Your Edition
+## Step 4: A Few More Details
 
-On the next screen, complete the remaining fields:
+On the next screen, fill in:
 
 | Field | What to Enter |
 |---|---|
-| **Company Name** | Your company or organization name |
-| **Job Title** | Your role (e.g. `SDE`, `Data Analyst`, `Student`) |
-| **Snowflake Edition** | Select **Standard** for this course |
+| **Company Name** | Your company, school, or just your own name — anything works |
+| **Job Title** | Whatever your role is (e.g. `Student`, `Manager`, `Analyst`) |
+| **Snowflake Edition** | Select **Standard** — this is the free one, and it's all we need |
 
-Click **"Get Started"** when done.
+Click **"Get Started"**.
 
-![Onboarding Questions](./images/6.png)
+![Edition Selection](./images/6.png)
 
 ---
 
-## Step 5: Answer the Onboarding Questions (Optional)
+## Step 5: Skip the Extra Questions
 
-Snowflake may ask a few onboarding questions such as your coding experience level.
+Snowflake might ask you a few questions about your background and what you're planning to build. These are just to personalize your experience — they don't affect anything.
 
-- You can answer honestly **or** click **"Skip"** to bypass these questions
-- These do not affect your account setup
+Feel free to answer them or just click **"Skip"**.
 
 ![Onboarding Questions](./images/7.png)
 
@@ -76,41 +80,32 @@ Snowflake may ask a few onboarding questions such as your coding experience leve
 
 ## Step 6: Check Your Email
 
-Once you complete the sign-up form, Snowflake will send an **activation email** to the address you provided.
+After you submit, Snowflake will send a confirmation email to the address you entered.
 
-- Check your inbox for an email from **Snowflake**
-- Subject: *Activate your Snowflake account*
+Go check your inbox now. Look for an email from Snowflake with the subject **"Activate your Snowflake account"**.
 
-> Check your spam or junk folder if you do not see it within a few minutes.
+> Don't see it? Check your spam or junk folder — it sometimes ends up there.
 
-![Activation Email Sent](./images/10.png)
+![Activation Email](./images/10.png)
 
 ---
 
 ## Step 7: Activate Your Account
 
-1. Open the Snowflake activation email
-2. Click **"CLICK TO ACTIVATE"**
+Open that email and click the big **"CLICK TO ACTIVATE"** button.
 
-This will open a browser tab to complete your account setup.
+It'll open a new tab in your browser where you can set your password and finish the setup. Follow the steps on screen — it's straightforward.
 
 ![Click to Activate](./images/10.png)
 
 ---
 
+You now have your own space in the cloud where all your data will live. That's a big step.
 
+But here's the thing — Snowflake is empty right now. We have the storage, but nothing to put in it yet. So the natural next question is: where does the data actually come from?
 
----
-
-## What You Learned
-
-- How to provision a free Snowflake trial account
-
-- How to navigate your database structure in the Snowflake console
-- How to locate your account credentials for connecting external tools
+In the next lesson, we're going to use Apify to fetch real data from sources like LinkedIn and YouTube — and start filling that storage up.
 
 ---
 
-## Next Module
-
-[Lab 01 — Setting Up Composio with Snowflake →](../01-setup-composio/readme.md)
+[Lab 01 — Connecting Snowflake with Composio →](../01-setup-composio/readme.md)
