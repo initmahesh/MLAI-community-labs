@@ -8,6 +8,8 @@
 
 ![images](./images/banner.png)
 
+
+
 ## The Problem We Are Solving
 
 Picture a founder at a 20-person SaaS company. A potential enterprise client sends over a 30-page Master Service Agreement. She needs to sign it by end of week. She has no in-house lawyer, so she either spends 90–120 minutes reading every clause herself, or she pays $400 for an hour of legal time to get a summary she barely understands.
@@ -28,7 +30,7 @@ The tool does not replace a lawyer for high-stakes situations. It gives people e
 
 ## Step 1 — Fork the Starter Repository
 
-We are not starting from a blank folder. A starter repository has already been set up with the project structure, configuration files, and workflow rules you will need throughout this course.
+A starter repository has already been set up with the project structure, configuration files, and workflow rules you will need throughout this course. Your first move is to make your own copy of it.
 
 Go to this URL in your browser: [https://github.com/sachin0034-tech/dev-os](https://github.com/sachin0034-tech/dev-os)
 
@@ -38,15 +40,25 @@ In the top-right corner of the page, click the **Fork** button. GitHub will ask 
 
 ![images](./images/2.png)
 
-Forking creates your own copy of the repository under your GitHub account. This matters because you need a place to save your work as you build. The original repository stays untouched. Your fork is yours to commit to, experiment on, and share.
-
 ![images](./images/3.png)
+
+---
+
+**Here's the interesting part — what does "forking" actually mean?**
+
+On GitHub, a repository is a project folder stored in the cloud. Every file, every decision, every version of the code lives there. The problem is: it belongs to someone else. You can't save your work into their copy.
+
+Forking creates your own version under your account. Think of it like photocopying a recipe from someone's cookbook — you get the full original, and now you can scribble notes in the margins without touching their book. The original repository stays untouched. Your fork is yours to commit to, experiment on, and share.
+
+> **Learn more:** [GitHub forks →](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
 
 ---
 
 ## Step 2 — Clone Your Fork to Your Computer
 
-Once the fork is created, GitHub will take you to your copy of the repository. Click the green **Code** button, make sure **HTTPS** is selected, and copy the URL shown.
+The fork now exists on GitHub — but it's still in the cloud. To actually work with the files, you need them on your local machine.
+
+Click the green **Code** button on your fork's page, make sure **HTTPS** is selected, and copy the URL shown.
 
 ![images](./images/4.png)
 
@@ -56,9 +68,15 @@ Open your terminal and run:
 git clone <paste the URL you copied here>
 ```
 
-Cloning downloads the repository from GitHub onto your local machine. From this point on, you work on the local copy and push changes back to GitHub when you are ready.
-
 ![images](./images/5.png)
+
+---
+
+**You might be wondering — what did that command just do?**
+
+Cloning downloads the entire repository from GitHub onto your machine. It's the difference between a document you can only read online and one you can open, edit, and save locally. From this point on, you work on the local copy and push changes back to GitHub when you are ready to save them.
+
+> **Learn more:** [Git cloning →](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 
 ---
 
@@ -70,9 +88,7 @@ Open VS Code. Go to **File > Open Folder** and select the `dev-os` folder that w
 
 You will see a file tree on the left side. Here is what each part of the project contains and why it is there.
 
----
-
-## Understanding the File Structure
+![images](./images/7.png)
 
 ```
 dev-os/
@@ -93,50 +109,79 @@ dev-os/
         └── SKILL.md
 ```
 
+---
 
-![images](./images/7.png)
+**Here's the interesting part — this project is built to be understood by Claude, not just by you.**
 
+Every file in this structure serves a specific purpose for your AI coding assistant. Let's walk through each one.
+
+---
 
 **`CLAUDE.md`**
-This is the instruction manual for your AI coding assistant, Claude Code. It defines the rules Claude follows when helping you build — which stage of development you are in, what it is allowed to do, and what order work gets done. Think of it as the project constitution that keeps Claude focused and consistent across the entire build.
 
-**`docs/design.md`**
-The design system for ContractIQ — the colors, fonts, spacing rules, and component patterns that every page in the app will follow. When Claude builds a new screen, it refers here first so the product looks and feels consistent without you having to describe the style every time.
+This is the instruction manual for Claude Code. Every time you open a Claude Code session inside this project, Claude reads this file first — before doing anything else. It defines what stage of development you're in, which rules apply, and what Claude is allowed to do.
+
+**You might be wondering — why does an AI need a separate instructions file?**
+
+Every new Claude session starts completely fresh. Claude has no memory of what you built yesterday or what decisions you made last week. `CLAUDE.md` solves this. It's a permanent record of your project's rules that Claude re-reads every session, so you never have to re-explain context from scratch.
+
+Think of it as your project's constitution — the rules that stay in effect no matter who is working on it or when.
+
+> **Learn more:** [CLAUDE.md and persistent context →](https://docs.anthropic.com/en/docs/claude-code/memory)
+
+---
 
 **`docs/ContractIQ_PRD.md`**
-The Product Requirements Document — the same document you have been reading in this lesson. It defines the problem, the users, the features, the database schema, the pricing, and the metrics. Every technical decision in this lab traces back to something in this file.
 
-**`skills/engineering-planner/SKILL.md`**
-A custom slash command for Claude Code. When you run `/engineering-planner`, Claude reads the PRD and produces a set of engineering documents — architecture decisions, data models, API contracts — that translate the product vision into a technical plan.
+This is the Product Requirements Document — the same document you've been reading in this lesson. It defines the problem, the users, the features, the database schema, the pricing, and the metrics. Every technical decision in this course traces back to something written here.
 
-**`skills/implementation-specs/SKILL.md`**
-The next step after engineering planning. Running `/implementation-specs` takes those engineering documents and breaks them down into granular, file-by-file implementation instructions, including the complete SQL file needed to set up the database.
-
-**`skills/security-foundation/SKILL.md`**
-Used in Lab 3. It audits the planned implementation for security gaps — missing Row Level Security policies, exposed API keys, unsigned URLs — and produces a checklist of controls that must be in place before any code ships.
-
-**`skills/frontend-setup/SKILL.md`**
-Used in Lab 2. Scaffolds the Next.js 14 project with the right folder structure, dependencies, and configuration. Running this skill creates the skeleton of the application you will build into over the coming lessons.
-
-**`skills/design-system/SKILL.md`**
-Applied throughout all frontend work in Lab 2. It enforces the rules in `design.md` at the component level — making sure buttons, cards, and layouts match the design system without requiring you to manually check every file.
+When you run a skill like `/engineering-planner`, Claude reads this document to understand what it's building before producing a single line of output. The PRD is the source of truth for everything.
 
 ---
 
-Each lesson in this lab — and the labs that follow it — works the same way: you run a skill, review what Claude produces, and move to the next stage only when the output looks right. The skills directory is the engine that drives that flow.
+**`docs/design.md`**
 
-In the next lesson, you will explore all five skills in detail and review the design system before turning the PRD into a concrete technical plan.
+The design system for ContractIQ — the colors, fonts, spacing rules, and component patterns that every page in the app will follow. When Claude builds a new screen, it refers here first so the product looks and feels consistent without you having to describe the style on every prompt.
 
 ---
 
-## What You Learned
+**`skills/`**
 
-- **Forking and cloning** — how to create your own copy of a GitHub repository and download it to your machine so you have a personal working environment for the build.
-- **`CLAUDE.md` as a project constitution** — how a single instructions file controls what Claude Code is allowed to do, what stage the project is in, and which rules apply across every session.
-- **The PRD as the source of truth** — why every technical decision in this project traces back to the Product Requirements Document, and how to read it to understand what is being built and for whom.
-- **Skills as reusable slash commands** — how the `skills/` folder turns complex, multi-step AI instructions into short commands (`/engineering-planner`, `/design-system`) that anyone on the team can run consistently.
-- **Stage-gated development** — the pattern of running a skill, reviewing the output, and approving before the next stage begins — keeping you in control of direction at every step.
-- **Why the design system comes first** — setting `docs/design.md` up before writing any component code means every screen inherits the same colors, fonts, and spacing without manual checking later.
+**This is where everything starts to connect.**
+
+The `skills/` folder contains five subfolders, each named after a slash command. Type `/engineering-planner` into Claude Code and Claude reads the `SKILL.md` file inside that folder and follows its instructions exactly — every time, for every session, for every teammate on the project.
+
+Think of a skill like a detailed job description you hand to Claude. Instead of explaining the same task from scratch each session, you write the instructions once and Claude executes them consistently.
+
+Here's what each skill does and when you'll use it:
+
+| Skill | What it does | When you run it |
+|-------|-------------|-----------------|
+| `/engineering-planner` | Reads the PRD and produces an architecture plan, data models, and API contracts | Lesson 3 |
+| `/implementation-specs` | Takes the architecture plan and breaks it into file-by-file build instructions | Lesson 3 |
+| `/security-foundation` | Audits the planned code for security gaps before anything ships | Lab 3 |
+| `/frontend-setup` | Scaffolds the Next.js application with the design system already baked in | Lab 2 |
+| `/design-system` | Enforces the rules in `design.md` at the component level throughout all UI work | Lab 2 |
+
+> **Learn more:** [The Complete Guide to Building Skills for Claude →](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)
+
+---
+
+Each lesson from here works the same way: you run a skill, review what Claude produces, and move to the next stage only when the output looks right. The `skills/` directory is the engine that drives that flow.
+
+The project is open on your machine and the structure makes sense. But `docs/engineering/` doesn't exist yet — there's no architecture plan, no database schema, no list of files to build. Before writing a single line of code, those documents need to exist. Code improvised without a plan falls apart mid-build; code written from a solid plan holds together.
+
+In Lesson 2, you'll look closely at all five skills and the design system before putting either to use. In Lesson 3, you'll run the first two skills and watch an engineering plan generate itself directly from the PRD.
+
+---
+
+## Claude Concepts Covered in This Lesson
+
+| Concept | Where we covered it | Learn more |
+|---------|---------------------|------------|
+| **CLAUDE.md** | **Step 3** — "Every time you open a Claude Code session inside this project, Claude reads this file first. It defines what stage of development you're in, which rules apply, and what Claude is allowed to do." | [Claude Code memory →](https://docs.anthropic.com/en/docs/claude-code/memory) |
+| **Skills / slash commands** | **Step 3** — "Type `/engineering-planner` into Claude Code and Claude reads the `SKILL.md` file inside that folder and follows its instructions exactly — every time, for every session, for every teammate on the project." | [Skills guide →](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) |
+| **PRD as source of truth** | **Step 3** — "When you run a skill like `/engineering-planner`, Claude reads this document to understand what it's building before producing a single line of output." | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
 
 ---
 

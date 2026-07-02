@@ -8,71 +8,49 @@
 
 ![images](./images/banner.png)
 
-## Where We Are
+---
 
-By this point you have completed **Lab 1 — Planning & Architecture**:
+You finished Lab 1 with two documents sitting in `docs/engineering/` — an architecture plan and a file-by-file implementation blueprint. You know what ContractIQ needs to do, how the data connects, and which files need to be built in which order.
 
-- Forked the `dev-os` starter repo, cloned it to your machine, and opened it in VS Code.
-- Explored the five skills and reviewed the design system in `docs/design.md`.
-- Used Plan Mode to run `/engineering-planner` and `/implementation-specs`, producing the engineering documents in `docs/engineering/`.
+Now comes the part where all of that planning turns into a real, running application.
 
-Now it is time to build. This lesson walks through four prompts that take you from an empty folder to a running application connected to a live database.
+There's just one problem. An app like ContractIQ needs somewhere to store things — user accounts, uploaded contracts, analysis results, chat messages. Right now there's nowhere. Before Claude can build a single screen, that foundation needs to exist.
+
+That's what the first half of this lesson sets up. By the end, you'll have a live database connected to a running application you can open in a browser.
 
 ---
 
-## What You Will Do in This Lesson
+## Before You Build — Set Up Supabase
 
-| Step | What Happens |
-|---|---|
-| Prompt 1 | Scaffold the Next.js folder structure |
-| Prompt 2 | Implement the application based on the engineering documents |
-| Prompt 3 | Generate the database SQL schema |
-| Prompt 4 | Load the schema into Supabase and connect the app |
+**You might be wondering — what is Supabase, and why do we need it?**
 
-By the end, you will have a working app you can open in a browser.
+Every app that stores data needs a database. You could set up your own server, install PostgreSQL, configure authentication from scratch, and manage everything yourself. That's a weeks-long project on its own.
 
----
+Supabase handles all of that for you. It gives you a hosted database, user authentication, and automatic API connections — all in one place, on a generous free tier.
 
-## Before You Start — Set Up Supabase
+Think of it like renting a fully staffed office. The filing cabinets (database), the security desk (authentication), and the mail room (API) all come with the building. You just move your project in.
 
-## What is Supabase?
-
-**Supabase** is an open-source Firebase alternative built on top of PostgreSQL. It gives you a hosted database, instant REST and GraphQL APIs, authentication, storage, and realtime subscriptions — all in one platform.
-
-| Feature | What It Means |
-|---|---|
-| PostgreSQL | Full relational database — standard SQL |
-| Auto-generated API | REST and GraphQL APIs built from your tables automatically |
-| Row Level Security | Fine-grained access control per row |
-| Free tier | Generous free plan — no credit card required |
+> **Learn more:** [Supabase documentation →](https://supabase.com/docs)
 
 ---
 
-## Step 1: Go to Supabase and Click "Start Your Project"
+## Step 1 — Create Your Supabase Account
 
-1. Open your browser and go to [https://supabase.com/](https://supabase.com/)
-2. Click **"Start your project"**
+Open your browser and go to [https://supabase.com/](https://supabase.com/). Click **"Start your project"**.
 
 ![Supabase Homepage](./images/1.png)
 
----
-
-## Step 2: Sign Up
-
-Create a Supabase account:
-
-- Sign up with **GitHub** (recommended — fastest), or
-- Use your **email address**
+Sign up with **GitHub** (recommended — fastest) or with your email address.
 
 ![Sign Up](./images/2.png)
 
 ---
 
-## Step 3: Create a New Organization
+## Step 2 — Create an Organization
 
 After signing in, Supabase will prompt you to create an organization:
 
-1. Enter a name for your organization (e.g. your name or team name)
+1. Enter a name (your name or team name works fine)
 2. Select the **Free** plan
 3. Click **"Create organization"**
 
@@ -80,55 +58,66 @@ After signing in, Supabase will prompt you to create an organization:
 
 ---
 
-## Step 4: Create a New Project
+## Step 3 — Create a New Project
 
-Inside your organization:
+Inside your organization, click **"New project"** and fill in the details:
 
-1. Click **"New project"**
-2. Enter a **Project Name** (e.g. `contractIQ-db`)
-3. Set a strong **Database Password** — save this somewhere safe
-4. Choose the **Region** closest to you
-5. Click **"Create new project"**
+1. Enter a **Project Name** — something like `contractIQ-db`
+2. Set a strong **Database Password** — save this somewhere safe
+3. Choose the **Region** closest to you
+4. Click **"Create new project"**
 
-> Wait 1–2 minutes while Supabase provisions your database.
-
+Supabase will take 1–2 minutes to provision your database. Wait for it to finish before moving on.
 
 ![Project Setup](./images/5.png)
 
+---
 
-### Copy Your Credentials
+## Step 4 — Copy Your Credentials
 
-You need three values from Supabase. Here is where to find them:
+You need three values from Supabase. Here is where to find each one.
 
 **Project URL**
-1. Go to your project overview — the URL is shown at the top. It looks like `https://xyzxyzxyz.supabase.co`.
+
+Go to your project overview — the URL is shown at the top. It looks like `https://xyzxyzxyz.supabase.co`.
 
 ![Project Setup](./images/6.png)
 
 **Anon Key (public)**
-1. Click **Project Settings** in the left sidebar.
-2. Click **API**.
-3. Scroll down to **Project API keys** and copy the value next to **`anon` `public`** (also listed as the **legacy anon key**). This is safe to use in browser code.
+
+1. Click **Project Settings** in the left sidebar
+2. Click **API**
+3. Scroll to **Project API keys** and copy the value next to **`anon` `public`**
 
 **Service Role Key (secret)**
-1. On the same **API** settings page, go to **Legacy API keys**.
-2. Copy the value next to **`service_role`**. This key bypasses Row Level Security — keep it out of your frontend code and never commit it to GitHub.
+
+On the same **API** settings page, find **Legacy API keys** and copy the value next to **`service_role`**.
 
 ![Project Setup](./images/7.png)
 
-Set these aside. You will add them to your `.env` file at the end of this lesson.
+---
+
+**Here's the interesting part — these two keys are very different things.**
+
+The anon key is safe to use in your frontend code. It's meant to be public — it identifies your project but only gives users access to data they're allowed to see.
+
+The service role key bypasses all access rules. It has full unrestricted access to your entire database. That makes it powerful for server-side operations — and dangerous if it leaks. It must never appear in your frontend code and must never be committed to GitHub.
+
+Set both aside. You'll add them to your `.env` file in a few minutes.
+
+> **Learn more:** [Supabase API keys →](https://supabase.com/docs/guides/api/api-keys)
 
 ---
 
-## Open Claude Code in VS Code
+## Open Claude Code
 
-For every prompt in this lesson: open your project folder in **VS Code**, open the integrated terminal (**Terminal > New Terminal**, or `` Ctrl+` ``), and start the Claude Code CLI:
+Open your project folder in **VS Code**, open the integrated terminal (**Terminal > New Terminal**, or `` Ctrl+` ``), and start Claude Code:
 
 ```bash
 claude
 ```
 
-Paste each prompt below into that same terminal session, one at a time, and let Claude finish before moving to the next one.
+Paste each prompt below into the same terminal session, one at a time, and let Claude finish completely before moving to the next one.
 
 ---
 
@@ -138,13 +127,19 @@ Paste each prompt below into that same terminal session, one at a time, and let 
 Use @skills/frontend-setup/SKILL.md to set up the frontend foundation for this project.
 ```
 
-> **Note:** Claude may ask whether to create a new subfolder or work inside the current directory. Choose **current directory** and continue.
+> Claude may ask whether to create a new subfolder or work in the current directory. Choose **current directory** and continue.
 
-### What This Does
+![Project Setup](./images/8.png)
 
-The `frontend-setup` skill creates the complete Next.js 14 folder structure — pages, components, API routes, and configuration files — with the design system already baked in. Think of it as building the empty shell of the house before any furniture goes in: every room exists, every door is in the right place, and the wiring is ready.
+---
 
-**What you get after this prompt:**
+**Here's the interesting part — notice the `@` at the start of that prompt.**
+
+That `@` tells Claude to read a specific file from your project before doing anything else. Instead of guessing how to set up the folder structure, Claude reads the exact instructions you wrote in `SKILL.md` and follows them precisely.
+
+This is the same pattern you'll use throughout the build. Any time you want Claude to work from a specific document rather than general knowledge, you point it there with `@`.
+
+When this prompt finishes, your project will have a complete Next.js 14 folder structure — every page, component folder, and API route — with your design system already baked into Tailwind:
 
 ```
 apps/web/
@@ -170,17 +165,17 @@ apps/web/
 └── package.json
 ```
 
-The design tokens from `docs/design.md` are loaded into Tailwind so your brand colors and fonts are available from the first component you write. The Supabase client is configured and waiting for your credentials.
+Think of it as the empty shell of the building — every room exists, every door is in the right place, and the wiring is ready. No furniture yet.
 
-Review the file tree once the skill finishes. If anything looks off, describe the issue and Claude will correct it before you move on.
+Review the file tree once the skill finishes. If anything looks off, describe the issue to Claude and it will correct it before you move on.
 
-![Project Setup](./images/8.png)
+> **Learn more:** [Claude Code `@` file references →](https://docs.anthropic.com/en/docs/claude-code)
 
-
+---
 
 ### Add Your Credentials to `.env`
 
-> **Note:** You will now see a `.env.local.example` file in your project. Rename it to `.env.local`, then paste in your Supabase Project URL, Anon Key, and Service Role Key — both the anon key and service role key go in as shown below. Also add your OpenAI API key.
+You'll now see a `.env.local.example` file in your project. Rename it to `.env.local`, then paste in the credentials you copied from Supabase:
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://xyzxyzxyz.supabase.co
@@ -189,8 +184,7 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
 OPENAI_API_KEY=sk-...
 ```
 
-Replace the placeholder values with the credentials you copied earlier.
-
+Replace each placeholder with the real values. Notice that `NEXT_PUBLIC_` variables are safe to expose to the browser — anything without that prefix stays server-side only.
 
 ![Project Setup](./images/9.png)
 
@@ -198,7 +192,7 @@ Replace the placeholder values with the credentials you copied earlier.
 
 ## Prompt 2 — Implement the Application
 
-Once the folder structure looks right, paste this prompt into the same Claude Code terminal session:
+Once the folder structure looks right, paste this prompt into the same Claude Code terminal:
 
 ```
 Based on docs/engineering/engineering-doc.md and docs/engineering/implementation-specs.md, start implementing the application.
@@ -225,34 +219,32 @@ Implementation Rules:
 
 ![Project Setup](./images/10.png)
 
+---
 
+**You might be wondering — why does this prompt tell Claude to read the documents before writing any code?**
 
-> **Note:** Once Claude finishes, open a new terminal in VS Code and run the development server to see your app. Make sure you are in the frontend folder first — `cd` into it if needed, then run:
->
-> ```bash
-> cd apps/web
-> npm run dev
-> ```
+Because the order matters. If Claude starts writing a component that references the database before it understands the full data model, it'll make assumptions. Those assumptions create mismatches that surface three files later as errors that are hard to trace back.
 
-Once the server starts, you will see a local URL in the terminal — click it or open `http://localhost:3000` in your browser.
+Reading the engineering documents first gives Claude the complete picture — every feature, every dependency, every file that needs to exist before another one can reference it. It builds in the correct order, so nothing references something that doesn't exist yet.
+
+This prompt takes the most time. Claude may ask clarifying questions before it begins — answer them fully. Do not interrupt mid-implementation unless something is clearly wrong.
+
+Once Claude finishes, open a new terminal in VS Code and run the development server:
+
+```bash
+cd apps/web
+npm run dev
+```
+
+Click the local URL that appears in the terminal, or open `http://localhost:3000` in your browser.
 
 ![Project Setup](./images/13.png)
-
-### What This Does
-
-Claude reads both engineering documents — the high-level architecture and the file-by-file implementation specs — before writing a single line of code. It maps dependencies between features, then builds them in the correct order so nothing references something that does not exist yet.
-
-The result is production-quality code: typed, styled to the design system, with loading states, error boundaries, and validated inputs throughout.
-
-This prompt takes the most time. Claude may ask clarifying questions before it begins — answer them so it has full context. Do not interrupt mid-implementation unless something is clearly wrong.
 
 ---
 
 ## Prompt 3 — Generate the Database Schema
 
-The application code is now written, but the database is still empty — there are no tables to store users, contracts, or chat messages yet. This prompt tells Claude to read the data models from your engineering documents and produce a single `database.sql` file you can run directly in Supabase to create everything at once.
-
-Once the application code is in place, run this prompt in the same Claude Code terminal:
+The application code now exists, but the database is still empty — no tables, no structure, nowhere to store anything. This prompt tells Claude to read the data models from your engineering documents and produce a single SQL file you can run directly in Supabase.
 
 ```
 Create a database.sql file that contains all SQL statements required to set up the database for the application. Based on the Engineering Document and Implementation Specifications, generate a complete production-ready database schema.
@@ -260,44 +252,44 @@ Create a database.sql file that contains all SQL statements required to set up t
 
 ![Project Setup](./images/14.png)
 
-### What This Does
+---
 
-Claude reads the data models in your engineering documents and writes a single `database.sql` file that creates every table, relationship, index, and Row Level Security policy the app needs. This file is ready to paste directly into Supabase.
+**Here's the interesting part — this SQL file does more than create tables.**
+
+Claude reads the data models in your engineering documents and writes every table, every relationship, every index, and every Row Level Security policy the app needs.
+
+Row Level Security means each user can only access rows in the database that belong to them — even if they're in the same table as other users' data. Think of it like giving everyone in a shared office their own locked drawer. They can open their own. Everyone else's stays shut.
+
+Claude generates these access rules automatically from the data model, so they're in place from the moment the database goes live.
 
 ---
 
-## Load the Schema and Connect the App
+## Step 5 — Load the Schema into Supabase
 
-### Run the SQL in Supabase
-
-1. Open your Supabase project dashboard.
-2. Click **SQL Editor** in the left sidebar.
+1. Open your Supabase project dashboard
+2. Click **SQL Editor** in the left sidebar
 
 ![Project Setup](./images/19.png)
 
-3. Open `database.sql` in VS Code. Select all (`Cmd+A` on Mac, `Ctrl+A` on Windows). Copy.
-4. Paste the SQL into the Supabase SQL Editor.
-5. Click **Run** (or press `Cmd+Enter`).
+3. Open `database.sql` in VS Code, select all (`Cmd+A` / `Ctrl+A`), and copy
+4. Paste the SQL into the Supabase SQL Editor
+5. Click **Run** (or press `Cmd+Enter`)
 
-Supabase will execute all the statements. When it finishes without errors, your database tables are live.
+Supabase will execute every statement. When it finishes without errors, your database tables are live and ready.
 
-If you see an error, read the message — it usually names the exact line that failed. Common causes are a table being referenced before it is created (a foreign key ordering issue) or a typo in a policy name. Paste the error back into the Claude Code terminal and it will fix the specific line.
-
-
-
-> **Important:** `SUPABASE_SERVICE_ROLE_KEY` must never appear in browser-side code and must never be committed to GitHub. The `.env` file should already be listed in `.gitignore` — verify this before your first push (you'll do this for real in Lab 3).
+If you see an error, read the message — it usually names the exact line that failed. Common causes are a table being referenced before it's created (a foreign key ordering issue) or a typo in a policy name. Paste the error back into the Claude Code terminal and it will fix the specific line.
 
 ---
 
-## Test Your Application
+## Step 6 — Test the Application
 
-Open a terminal in VS Code (**Terminal > New Terminal**), make sure you're inside your frontend folder, then start the development server:
+Open a terminal in VS Code, make sure you're inside the frontend folder, and start the server:
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:3000` in your browser and walk through these checks:
+Open `http://localhost:3000` and walk through these checks one by one:
 
 | Check | What to Look For |
 |---|---|
@@ -310,33 +302,26 @@ Open `http://localhost:3000` in your browser and walk through these checks:
 
 If anything fails, open the browser dev console (`F12`) and read the error. Most issues at this stage come from a missing environment variable or a table name mismatch between the SQL schema and the application code. Paste the error into the Claude Code terminal with the relevant file path and it will fix it.
 
-
-
 ![Project Setup](./images/15.png)
 
 ---
 
-## What You Have Built
+You now have a running application — real authentication, a live database, and the core features of ContractIQ working in a browser. The build is no longer a plan on paper.
 
-At the end of this lesson you have:
+But there's something missing. Right now, every conversation the user has with the app disappears the moment they close the tab. There's no memory of what was discussed, no context carried across sessions, no way for the app to feel like it knows who they are.
 
-- A Next.js 14 application with a complete production folder structure
-- A live Supabase database with the full schema loaded and Row Level Security enabled
-- Authentication wired end-to-end
-- The core features of ContractIQ implemented and running in a browser
-
-The next lesson adds the memory layer — giving the application the ability to remember user context across sessions.
+That's what the next lesson solves.
 
 ---
 
-## What You Learned
+## Claude Concepts Covered in This Lesson
 
-- **Supabase setup and credentials** — how to create a project, locate the three keys you need (URL, anon key, service role key), and why the service role key must stay server-side and out of version control.
-- **The four-step build sequence** — scaffold folder structure → implement from engineering documents → generate SQL schema → load schema and connect credentials; each step depends on the previous one being complete.
-- **Reading engineering documents before writing code** — Claude uses the architecture and implementation specs as a map so every file is placed correctly, every dependency is resolved in the right order, and nothing is left as a placeholder.
-- **Loading a database schema into Supabase** — how to paste and run `database.sql` in the SQL Editor, and how to diagnose the two most common errors (foreign key ordering, table name mismatches).
-- **End-to-end verification checklist** — testing home page load, sign-up, login, dashboard render, core feature, and database writes as a structured sequence rather than clicking around and hoping for the best.
-- **Environment variable safety** — the difference between `NEXT_PUBLIC_` variables (safe in browser code) and secret keys that must only appear in server-side routes, and how `.gitignore` protects `.env.local` from accidental commits.
+| Concept | Where we covered it | Learn more |
+|---------|---------------------|------------|
+| **`@` file references** | **Prompt 1** — "That `@` tells Claude to read a specific file from your project before doing anything else. Instead of guessing, Claude reads the exact instructions in `SKILL.md` and follows them precisely." | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Engineering documents as build context** | **Prompt 2** — "Reading the engineering documents first gives Claude the complete picture — every feature, every dependency, every file that needs to exist before another one can reference it." | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
+| **Row Level Security** | **Prompt 3** — "Claude reads the data models and writes every table, relationship, index, and Row Level Security policy the app needs — so access rules are in place from the moment the database goes live." | [Supabase RLS →](https://supabase.com/docs/guides/database/postgres/row-level-security) |
+| **Environment variable safety** | **Prompt 1 / Add credentials** — "`NEXT_PUBLIC_` variables are safe to expose to the browser — anything without that prefix stays server-side only." | [Next.js env vars →](https://nextjs.org/docs/app/building-your-application/configuring/environment-variables) |
 
 ---
 
