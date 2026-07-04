@@ -18,6 +18,20 @@ No prior Azure experience required. If you can click a button, you can finish th
 
 ---
 
+## Before You Begin
+
+Make sure you have these accounts and files ready before starting:
+
+- **Azure account with AI Foundry access** — this is where you'll build and deploy your agent. Start a free trial at [azure.microsoft.com](https://azure.microsoft.com). When creating your account, make sure Azure AI Foundry is available in your subscription (most Pay-As-You-Go and trial subscriptions include it).
+- **Microsoft Teams account** — needed for Part 9 when you publish your agent so your team can use it. If your organization uses Microsoft 365, you already have this.
+- **Knowledge base files downloaded** — two `.docx` files you'll upload to your agent in Part 3. Download links are in the table below. Save them to your desktop before starting.
+- **Test contract file downloaded** — a sample NDA PDF used in Part 7 to test your agent. Download link is in the table below.
+- **A modern web browser** — Chrome, Edge, or Firefox. Edge is recommended since it has the tightest integration with Microsoft 365 and Teams.
+
+If you're missing any of these, complete the account setup before continuing.
+
+---
+
 ## Prerequisites
 
 Before we start, make sure you have:
