@@ -123,7 +123,8 @@ Press **Enter**.
 
 > **Note:** This step can take 10–15 minutes. Let Claude finish without interrupting — in the meantime, let's discuss the `@` symbol in Claude.
 
-![images](./images/meme.png)
+
+
 
 
 # The `@` File Reference Syntax
@@ -146,6 +147,50 @@ Example :
 Claude reads each referenced file at the start of the task before it generates any output. This means your prompt stays short, but Claude has the full context of every document you care about.
 
 Use `@` whenever you want Claude to work from your actual project files rather than its own general knowledge. For a task like engineering planning, this is essential — the plan should be grounded in your specific PRD, not a generic template.
+
+
+## Step 5 — Generate the Implementation Specs
+
+### What Are Implementation Specs?
+
+The engineering document you just created describes *what* to build and *in what order*. Implementation specs take that one level deeper — they translate each engineering decision into precise, file-by-file build instructions.
+
+Each spec covers a single feature: the exact files to create or modify, the functions to write, the API routes to wire up, the database changes to apply, and the acceptance criteria that confirm it is working correctly. This is the document the AI reads in Lab 2 when it actually writes code.
+
+### Run the Specs Prompt
+
+Once your engineering document has been approved and saved, run the following prompt:
+
+```
+Use the @skills/implementation-specs/SKILL.md skill and my engineering document to create a comprehensive implementation specification for my app. Ensure the spec covers all features, workflows, technical requirements, APIs, database changes, frontend and backend implementation details, edge cases, and acceptance criteria.
+```
+
+![images](./images/specs.png)
+
+### What Gets Created
+
+Once Claude finishes, you will find a new `specs/` folder in your project. Each file inside it is the build specification for one feature:
+
+```
+specs/
+    ├── 01-auth.md
+    ├── 02-contract-upload.md
+    ├── 03-ai-analysis.md
+    ├── 04-dashboard.md
+    └── ...
+```
+
+Each spec file contains:
+
+
+- **Files to create or modify** — exact paths and what goes in each one
+- **API routes** — the endpoint, method, request shape, and response shape
+- **Database changes** — any new tables, columns, or migrations required
+- **Frontend implementation** — the components to build and the data they need
+- **Edge cases** — known failure modes and how to handle them
+- **Acceptance criteria** — the specific conditions that confirm the feature is working
+
+These files are what Lab 2 runs against. Every build command in the next lab reads a spec file and implements exactly what it describes.
 
 ---
 

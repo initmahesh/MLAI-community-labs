@@ -22,11 +22,32 @@ That's what the first half of this lesson sets up. By the end, you'll have a liv
 
 ## Before You Build — Set Up Supabase
 
-**You might be wondering — what is Supabase, and why do we need it?**
+### Why This App Needs a Database
 
-Every app that stores data needs a database. You could set up your own server, install PostgreSQL, configure authentication from scratch, and manage everything yourself. That's a weeks-long project on its own.
+Imagine ContractIQ without one. A user uploads a contract, Claude analyzes it, and the result appears on screen. The moment they close the tab, everything is gone no record of which user uploaded what, what Claude found, or what questions were asked. Every session starts from zero.
 
-Supabase handles all of that for you. It gives you a hosted database, user authentication, and automatic API connections — all in one place, on a generous free tier.
+An app that can't remember anything isn't an app — it's a demo. The moment you need users, sessions, history, or shared data, you need a database.
+
+### Choosing the Right Type
+
+Databases come in two broad families, and picking the wrong one creates problems down the line.
+
+**Relational databases (SQL)** store data in tables with rows and columns, with strict rules about how tables relate to each other. They are the right choice when records connect — a user *has many* contracts, a contract *has many* analyses. Most production apps run on relational databases.
+
+**Non-relational databases (NoSQL)** store data as flexible documents or key-value pairs. They suit unstructured data, variable-shape records, or extreme write-speed requirements like real-time feeds.
+
+ContractIQ has structured, relational data. A relational database is the correct choice.
+
+### Why Supabase
+
+Supabase is a hosted Postgres database — Postgres being one of the most battle-tested relational databases in existence — with a set of tools built around it that make it practical for a modern web app:
+
+- **Authentication** — built-in user sign-up, login, and session management
+- **Row Level Security (RLS)** — rules written directly on the database so each user can only read or write their own rows; one user's contracts are never visible to another
+- **Storage** — a place to store the actual contract PDF files alongside the metadata
+- **Auto-generated APIs** — Supabase exposes your tables as REST endpoints automatically, which is what the Next.js app calls when it reads or writes data
+
+The engineering document you generated in Lab 1 already contains the full schema for this app — every table, column, type, and RLS rule. Later in this lesson you'll take that schema and run it directly in Supabase to make it live.
 
 Think of it like renting a fully staffed office. The filing cabinets (database), the security desk (authentication), and the mail room (API) all come with the building. You just move your project in.
 
