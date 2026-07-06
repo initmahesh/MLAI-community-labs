@@ -7,7 +7,7 @@
 
 ---
 
-## What You'll Learn
+af## What You'll Learn
 
 By the end of this lab, you will understand:
 
