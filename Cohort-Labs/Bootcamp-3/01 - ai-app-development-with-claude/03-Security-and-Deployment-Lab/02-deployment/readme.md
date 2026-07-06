@@ -8,27 +8,83 @@
 
 ![images](./images/51.png)
 
-## Where We Are
+---
 
-By this point you have:
+Think about what you've built.
 
-- **Lab 1** — Forked the `dev-os` starter repo, explored the skills and design system, and produced the engineering documents in `docs/engineering/`.
-- **Lab 2** — Scaffolded the Next.js project, implemented the application, ran the database schema in Supabase, and added a memory layer so the assistant can recall conversation history within and across sessions.
-- **Lab 3, Lesson 1** — Scanned the codebase with the `security-fix` skill and patched all common vulnerabilities.
+A user can sign up, upload a contract, get an AI-powered analysis back in seconds, ask follow-up questions in plain English, and return the next day to find their full conversation history exactly where they left it. The security vulnerabilities are patched. The data is protected.
 
-Your app works locally and is secure. This lesson puts it on the internet so anyone can access it — not just you on your own machine.
+It works perfectly.
+
+On your machine.
+
+The moment you close your laptop, the app disappears. Nobody else can use it. That URL — `http://localhost:3000` — only resolves on your computer. The moment someone else tries to open it, they get nothing.
+
+This lesson changes that. By the end, your app will be live on a public URL, automatically redeploying every time you push new code, with your secrets stored securely outside the repository.
+
+---
+
+## Why Deployment Is a Design Decision
+
+Here's something most tutorials skip.
+
+There are dozens of ways to deploy a Next.js app. You could run it on a virtual machine. You could containerize it with Docker. You could deploy to AWS, GCP, Azure, or a dozen other cloud providers.
+
+For a production application with real traffic and complex infrastructure requirements, those options matter. But you're not there yet. You're at the stage where the most important thing is getting a working, shareable URL as fast as possible — so you can get real feedback on the product.
+
+For that goal, Netlify is the right choice:
+
+| What you need | What Netlify gives you |
+|---|---|
+| Public URL immediately | Subdomain on `.netlify.app` within minutes |
+| No server management | Netlify handles the infrastructure completely |
+| Automatic redeploys | Every `git push` triggers a fresh build — no manual steps |
+| Secure environment variables | Secrets stored encrypted, never in the repo |
+| Free to start | No credit card required for personal projects |
+
+The entire deployment pipeline — push code, Netlify builds, app goes live — becomes a single command:
+
+```bash
+git push origin main
+```
+
+---
+
+## Where You Are in the Process
+
+```
+Idea
+↓
+Research
+↓
+PRD  ✓
+↓
+Engineering Document  ✓
+↓
+Implementation Specs  ✓
+↓
+Build  ✓
+↓
+Memory Layer  ✓
+↓
+Security Foundation  ✓
+↓
+Deployment  ← YOU ARE HERE
+↓
+Iteration
+```
 
 ---
 
 ## Part 1 — Push Your Code to GitHub
 
-Netlify deploys by reading your GitHub repository. Your code must be on GitHub before Netlify can see it. Work through these steps first, in a terminal in VS Code.
+Netlify deploys by reading your GitHub repository. Before Netlify can see anything, your code needs to be there.
 
 ---
 
 ### Step 1 — Check Your `.gitignore`
 
-Before staging any files, confirm that your `.env` file is listed in `.gitignore`. This file contains your secret API keys — it must never be pushed to GitHub.
+Before staging anything, confirm that `.env.local` is listed in `.gitignore`. This file contains your secret API keys — it must never reach GitHub.
 
 Run:
 
@@ -36,41 +92,43 @@ Run:
 cat .gitignore
 ```
 
-Look for a line that says `.env` or `.env.local`. If it is there, you are safe to continue. If it is not, run this command first to add it:
+Look for a line that says `.env.local`. If it's there, continue. If it's missing, add it now:
 
 ```bash
 echo ".env.local" >> .gitignore
 ```
 
+This is the last line of defence before your secrets go public. Don't skip it.
+
 ---
 
 ### Step 2 — Stage Your Changes
 
-Add all your new and modified files to the staging area — this tells Git which files you want to include in your commit:
+Add all new and modified files to the staging area:
 
 ```bash
 git add .
 ```
 
-Run `git status` to confirm. Files listed in green are staged and ready to commit. Confirm that `.env.local` does **not** appear in the list.
+Run `git status` to confirm. Files listed in green are staged and ready to commit. Verify that `.env.local` does **not** appear in the list — if it does, stop and check your `.gitignore`.
 
 ---
 
 ### Step 3 — Commit Your Changes
 
-A commit is a snapshot of your project at this moment in time. Give it a clear message describing what you built:
+Create a snapshot of your project:
 
 ```bash
 git commit -m "Build full-stack AI contract review app with Supabase and memory layer"
 ```
 
-You will see a summary of how many files changed. This snapshot is now saved in your local Git history.
+You'll see a summary of how many files changed. This snapshot is now saved in your local Git history.
 
 ---
 
 ### Step 4 — Push to GitHub
 
-Send your committed changes up to GitHub:
+Send your committed changes to GitHub:
 
 ```bash
 git push origin main
@@ -78,20 +136,11 @@ git push origin main
 
 > If your default branch is called `master` instead of `main`, use `git push origin master`.
 
-You will see output showing the files being transferred. When it finishes, open your forked repo on GitHub in the browser — refresh the page and you will see all your new files there.
+When it finishes, open your forked repo on GitHub in the browser — refresh the page and your new files will be there.
 
 ---
 
 ## Part 2 — Deploy with Netlify
-
-**Netlify** is a free hosting platform that connects directly to your GitHub repository. Every time you push new code, Netlify automatically rebuilds and redeploys your app. No servers to manage, no complex configuration.
-
-| Feature | What It Means |
-|---|---|
-| GitHub integration | Push to `main` and your app redeploys automatically |
-| Environment variables | Secrets are stored securely in Netlify, not in your repo |
-| Free tier | No credit card required for personal projects |
-| Build logs | Every deploy shows a full log so you can diagnose failures |
 
 ---
 
@@ -124,34 +173,32 @@ Once logged in:
 
 ### Step 7 — Select Your Repository
 
-Netlify will show a list of your GitHub repositories.
-
-Find and click on your forked repo (e.g. `dev-os` or whatever you named it).
+Netlify will show a list of your GitHub repositories. Find and click on your forked repo.
 
 ![Select repository](./images/57.png)
 
 ---
 
-### Step 8 — Configure the Project
+### Step 8 — Configure the Build
 
-On the project settings screen, fill in the following:
+On the project settings screen, fill in:
 
 | Setting | Value |
 |---|---|
-| **Project name** | A name for your app — this becomes part of your URL (e.g. `your-app-name.netlify.app`) |
+| **Project name** | A name for your app — this becomes your URL (e.g. `your-app-name.netlify.app`) |
 | **Branch to deploy** | `main` |
 | **Build command** | `npm run build` |
 | **Publish directory** | `.next` |
 
 ![Project configuration](./images/56.png)
 
-> **Note:** If your project is inside a subdirectory (e.g. `apps/web`), set the **Base directory** field to that path before filling in the build command and publish directory.
+> **Note:** If your project is inside a subdirectory (e.g. `apps/web` or `contractiq`), set the **Base directory** field to that path before filling in the build command and publish directory.
 
 ---
 
 ### Step 9 — Add Your Environment Variables
 
-Your deployed app needs the same secret keys you have in your local `.env.local` file. Netlify stores these securely so they are available at build time and runtime without ever being committed to your repo.
+Your deployed app needs the same secrets you have in your local `.env.local` file. Netlify stores these encrypted so they're available at build time and runtime — without ever being committed to your repo.
 
 1. Scroll down to the **Environment variables** section
 2. Click **Add environment variables**
@@ -161,19 +208,19 @@ Your deployed app needs the same secret keys you have in your local `.env.local`
 
 ![Environment variables](./images/58.png)
 
-All your keys — Supabase URL, Supabase API keys, OpenAI key — will be imported automatically.
+All your keys — Supabase URL, Supabase API keys, Anthropic API key — will be imported automatically.
 
-> **Important:** The Netlify environment variables panel is private and encrypted — this is the correct and only place your secrets should live outside your local machine.
+> **Important:** The Netlify environment variables panel is private and encrypted. This is the only place your secrets should live outside your local machine.
 
 ---
 
 ### Step 10 — Deploy
 
-Click the **Deploy project** button.
+Click **Deploy project**.
 
-Netlify will start building your app. This takes 1–2 minutes. You will see a live build log scrolling as it compiles your Next.js app.
+Netlify will start building your app. This takes 1–2 minutes. A live build log will scroll as it compiles your Next.js app.
 
-If the build fails, read the error message in the log — it will name the exact line or file that caused the failure. See the Troubleshooting section at the end of this lesson for how to fix common build errors.
+If the build fails, read the error message in the log — it names the exact line or file that caused the failure. See the Troubleshooting section at the end of this lesson for how to fix common build errors.
 
 ---
 
@@ -185,26 +232,26 @@ When the build finishes, Netlify will show a green **Published** status and a UR
 https://your-app-name.netlify.app
 ```
 
-Click that URL — your app is now live on the internet.
+Click it. Your app is now live on the internet.
 
 ![Published app](./images/59.png)
 
-> **Note:** Any time you push new code to GitHub, Netlify will automatically detect the change and redeploy your app within a couple of minutes. You never need to manually trigger a deploy again.
+> From this point on, every `git push origin main` automatically triggers a redeploy. You never need to manually deploy again.
 
 ---
 
 ### Step 12 — Update `NEXTAUTH_URL` and Redeploy
 
-Now that your app has a live Netlify URL, you need to update one environment variable — `NEXTAUTH_URL`. This tells your app where it is running so that authentication redirects work correctly on the live site.
+Now that your app has a live URL, you need to update one environment variable. `NEXTAUTH_URL` tells your authentication library where the app is running — so login redirects land on the right URL, not back on `localhost`.
 
-**Update the variable locally**
+**Update locally:**
 
 1. Open your `.env.local` file in VS Code
 2. Find this line:
    ```
    NEXTAUTH_URL=http://localhost:3000
    ```
-3. Replace `http://localhost:3000` with your Netlify URL:
+3. Replace it with your Netlify URL:
    ```
    NEXTAUTH_URL=https://your-app-name.netlify.app
    ```
@@ -212,7 +259,7 @@ Now that your app has a live Netlify URL, you need to update one environment var
 
 ![Update env file](./images/60.png)
 
-**Update the variable in Netlify**
+**Update in Netlify:**
 
 1. Go to your Netlify project dashboard
 2. Click **Project configuration** → **Environment variables**
@@ -220,11 +267,9 @@ Now that your app has a live Netlify URL, you need to update one environment var
 4. Replace the `localhost` value with your Netlify URL
 5. Click **Save**
 
-![Update env file](./images/61.png)
+![Update in Netlify](./images/61.png)
 
-**Push and redeploy**
-
-Open the terminal again and redeploy the app:
+**Push and redeploy:**
 
 ```bash
 git add .env.local
@@ -232,17 +277,13 @@ git commit -m "Update NEXTAUTH_URL to Netlify production URL"
 git push origin main
 ```
 
-Wait 1–2 minutes for Netlify to redeploy. Your authentication flow will now work correctly on the live site.
-
-<!-- 📸 Add a screenshot here as ./images/62.png showing the Netlify "Published" deploy log
-     after this redeploy, and uncomment the line below.
-![Redeployed](./images/62.png) -->
+Wait 1–2 minutes for Netlify to redeploy. Authentication will now work correctly on the live site.
 
 ---
 
-## What You Have Built
+## What You Built
 
-At the end of this lesson your application is:
+Your application is:
 
 - **Live on the internet** — accessible at a public URL, not just on your local machine
 - **Automatically redeploying** — every `git push` to `main` triggers a fresh build with no manual steps
@@ -251,71 +292,85 @@ At the end of this lesson your application is:
 
 ---
 
-## What You Learned
-
-- **Why GitHub comes first** — Netlify reads your code directly from a GitHub repository; nothing can be connected or deployed until the code is pushed and visible there.
-- **Checking `.gitignore` before pushing** — verifying that `.env.local` is ignored before running `git add .` is the last line of defence against accidentally committing API keys to a public repo.
-- **What Netlify does** — it connects to your GitHub repo, builds your Next.js app on every push, and serves it from a global CDN with no server management required.
-- **Environment variables in production** — the same secrets you store in `.env.local` locally must be added to Netlify's environment variable panel for the deployed app to connect to Supabase and call the AI API; they are stored encrypted and never exposed in the repo.
-- **Build configuration for Next.js** — setting the build command to `npm run build` and the publish directory to `.next` tells Netlify how to compile and serve a Next.js application.
-- **Why `NEXTAUTH_URL` must be updated** — authentication libraries use this variable to build redirect URLs; if it still points to `localhost`, logins on the live site will redirect to your local machine instead of the live app.
-- **The push-to-deploy workflow** — after the initial setup, the only action needed to ship new code is `git push origin main`; Netlify handles the build and deploy automatically from that point forward.
-
----
-
 ## Troubleshooting — Let Claude Fix It
 
-If your Netlify deploy fails or something is broken on the live site, use the prompts below in the Claude Code terminal.
+If your Netlify deploy fails or something is broken on the live site, open the Claude Code terminal and paste whichever prompt matches your situation.
 
 ---
 
-#### Build failed — error in the Netlify build log
+**Build failed — error in the Netlify build log**
 
 ```
-My Netlify deploy failed with this error: [paste the full error from the build log]. Fix it so the build succeeds.
+My Netlify deploy failed with this error: [paste the full error from the build log].
+Fix it so the build succeeds.
 ```
 
 > After Claude applies the fix, push the change to GitHub. Netlify will automatically pick it up and redeploy.
 
 ---
 
-#### The app deploys but shows a blank page or crashes on load
+**The app deploys but shows a blank page or crashes on load**
 
 ```
-My app deploys successfully on Netlify but when I open the URL I see a blank page / crash. The browser console shows: [paste the error]. The app works fine locally. Diagnose what is different about the production environment and fix it.
-```
-
----
-
-#### Authentication redirects are going to localhost after login
-
-```
-After logging in on the live Netlify site, the app redirects to localhost:3000 instead of the production URL. I need to update NEXTAUTH_URL to point to https://my-app.netlify.app. Check .env.local and confirm the variable is set correctly, then tell me exactly where to update it in Netlify.
+My app deploys successfully on Netlify but when I open the URL I see a blank page
+or crash. The browser console shows: [paste the error]. The app works fine locally.
+Diagnose what is different about the production environment and fix it.
 ```
 
 ---
 
-#### Environment variables are not being picked up in production
+**Authentication redirects are going to localhost after login**
 
 ```
-The deployed app is throwing an error that suggests an environment variable is missing or undefined. The variable exists in my local .env.local file but the Netlify build cannot see it. The error is: [paste the error]. Check which variable is missing and tell me exactly where to add it in the Netlify dashboard.
-```
-
----
-
-#### A feature works locally but breaks on the live site
-
-```
-This feature works perfectly locally but is broken on the live Netlify site: [describe the feature]. The error shown in the browser console is: [paste the error]. Diagnose what is different between the local and production environments and fix it.
+After logging in on the live Netlify site, the app redirects to localhost:3000
+instead of the production URL. I need NEXTAUTH_URL to point to
+https://my-app.netlify.app. Check .env.local and confirm the variable is set
+correctly, then tell me exactly where to update it in Netlify.
 ```
 
 ---
 
-## You're Done
+**Environment variables are not being picked up in production**
 
-Your app is live, secure, and automatically redeploys on every push. This completes the three-lab path:
+```
+The deployed app is throwing an error that suggests an environment variable is
+missing or undefined. The variable exists in my local .env.local file but the
+Netlify build cannot see it. The error is: [paste the error]. Check which variable
+is missing and tell me exactly where to add it in the Netlify dashboard.
+```
+
+---
+
+**A feature works locally but breaks on the live site**
+
+```
+This feature works perfectly locally but is broken on the live Netlify site:
+[describe the feature]. The error shown in the browser console is: [paste the error].
+Diagnose what is different between the local and production environments and fix it.
+```
+
+---
+
+## You Shipped It
+
+Take a moment to think about what just happened.
+
+You started this course with a problem — a founder spending 90 minutes reading a 30-page contract she didn't fully understand. You turned that problem into a product: an AI-powered contract review tool with real authentication, a live database, persistent conversation memory, security hardened for production, and now a public URL anyone can open.
+
+You did it in three labs, using Claude Code to plan, build, secure, and ship — the same workflow professional product teams use, compressed from weeks into hours.
+
+The app is live.
 
 **[Lab 1: Planning](../../01-Planning-and-Architecture-Lab/readme.md) → [Lab 2: Building](../../02-Building-the-Application-Lab/readme.md) → [Lab 3: Security & Deployment](../readme.md)**
+
+---
+
+## Claude Concepts Covered in This Lesson
+
+| Concept | Where it appeared | Learn more |
+|---------|-------------------|------------|
+| **Claude Code for production debugging** | **Troubleshooting — Let Claude Fix It** — "If your Netlify deploy fails or something is broken on the live site, open the Claude Code terminal and paste whichever prompt matches your situation." | [Claude Code →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Descriptive prompting for accurate diagnosis** | **Troubleshooting — Let Claude Fix It** — "Diagnose what is different about the production environment and fix it." / "Check which variable is missing and tell me exactly where to add it in the Netlify dashboard." | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
 
 ---
 

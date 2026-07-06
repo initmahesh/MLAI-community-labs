@@ -8,16 +8,59 @@
 
 ![images](./images/banner.png)
 
-## Where We Are
+---
 
-By this point you have:
+You have a PRD. It describes the product in detail — the users, the features, the data, the edge cases.
 
-- **Lesson 1** — Forked the `dev-os` starter repo, cloned it to your machine, and opened it in VS Code. You read the PRD and understood the project structure.
-- **Lesson 2** — Learned what Claude Code skills are, explored the five skills in the project, and reviewed the design system in `docs/design.md`.
+Now imagine handing it to a senior engineer and saying: *"Build this."*
 
-Now you are going to use the AI to turn that PRD into a concrete engineering plan. Before a single line of application code is written, you need a document that answers: *What are we building, how is it structured, and in what order does it get built?*
+A good engineer doesn't open their editor and start typing. They ask questions first. What database tables do we need? What happens if a user uploads a corrupted file? Which features share the same data? What do we build first so we can ship something working — and what comes later?
 
-This lesson introduces **Plan Mode** — one of the most powerful features in Claude Code — and walks you through running the `/plan` command to produce the engineering documents that all of Lab 2 (Building the Application) depends on.
+They're turning a product description into an **engineering plan**.
+
+That's exactly what this lesson does — except the senior engineer is Claude, and the plan gets written in minutes instead of days.
+
+---
+
+## The Problem With Jumping Straight to Code
+
+Here's what happens when developers skip the planning step.
+
+They paste the PRD into Claude and say *"build the frontend."* Claude builds something. Then they say *"now add authentication."* Claude adds it — but it doesn't quite match the database shape from the first prompt. Then they say *"now add the contract upload."* Claude builds it — but it assumes a file path structure that conflicts with what was set up in step one.
+
+Each prompt produces working code in isolation. Together, they don't hold together.
+
+The root cause is always the same: there was no shared plan. Every prompt started from scratch, making its own assumptions about how the pieces connect.
+
+An engineering plan solves this. It answers all the structural questions once — data models, API contracts, build order, feature dependencies — so every prompt that follows is working from the same foundation.
+
+---
+
+## Where You Are in the Process
+
+You've built the foundation (Lesson 1) and understood the tools (Lesson 2). Now it's time to generate the documents that Lab 2 is built from.
+
+```
+Idea
+↓
+Research
+↓
+PRD  ✓
+↓
+Engineering Document  ← YOU ARE HERE
+↓
+Implementation Specs
+↓
+Build
+↓
+Memory Layer
+↓
+Deployment
+↓
+Iteration
+```
+
+By the end of this lesson, `docs/engineering/engineering-doc.md` will exist — and the blueprint for everything in Lab 2 will be in place.
 
 ---
 
@@ -25,7 +68,9 @@ This lesson introduces **Plan Mode** — one of the most powerful features in Cl
 
 ![images](./images/plan.png)
 
-Plan Mode is a special state in Claude Code where the AI is allowed to **read and reason, but not write or change anything**.
+Before running anything, there's one Claude Code feature worth understanding: **Plan Mode**.
+
+Plan Mode is a special state where Claude is allowed to **read and reason, but not write or change anything**.
 
 When you prefix a prompt with `/plan`, Claude:
 
@@ -36,13 +81,13 @@ When you prefix a prompt with `/plan`, Claude:
 
 No files are created. No code is touched. You see the complete plan first and decide whether to approve it or send Claude back to revise.
 
-This matters because AI coding tools are most dangerous when they act before they think. Plan Mode forces a checkpoint. You stay in control of the direction before any work begins.
+This matters because AI tools are most dangerous when they act before they think. Plan Mode forces a checkpoint. You stay in control of the direction before any work begins.
 
 ---
 
 ## When to Use Plan Mode
 
-Use `/plan` whenever you are about to start something non-trivial and want to align on the approach before implementation begins.
+Use `/plan` whenever you're about to start something non-trivial and want to align on the approach before implementation begins.
 
 | Situation | Use `/plan`? |
 |---|---|
@@ -54,18 +99,6 @@ Use `/plan` whenever you are about to start something non-trivial and want to al
 | Starting a new application from scratch | Yes |
 
 The rule of thumb: if reviewing the approach *before* the work would save you time, use Plan Mode.
-
----
-
-## How Plan Mode Works in Practice
-
-When Claude finishes generating a plan, you will see a structured breakdown — sections, decisions, trade-offs — displayed in the terminal. Claude then pauses and asks whether you want to proceed.
-
-- If the plan looks right, you approve it and Claude carries it out.
-- If something is off, you type a correction and Claude revises the plan.
-- If you want to start over, you reject it entirely.
-
-Nothing is committed to your files until you say yes.
 
 ---
 
@@ -81,7 +114,7 @@ You should see the file tree on the left with `CLAUDE.md`, `docs/`, and `skills/
 
 In VS Code, go to **Terminal > New Terminal** (or press `` Ctrl+` ``).
 
-A terminal panel will open at the bottom of the screen, already pointed at your project folder. You will run all commands from here.
+A terminal panel will open at the bottom of the screen, already pointed at your project folder.
 
 ![images](./images/4.png)
 
@@ -96,7 +129,6 @@ claude
 ```
 
 Claude Code will start and show its interactive prompt. You are now in a Claude Code session scoped to your project. Claude can read all files in the folder and will follow the rules defined in `CLAUDE.md`.
-
 
 ![images](./images/3.png)
 
@@ -114,18 +146,15 @@ Press **Enter**.
 
 ![images](./images/4.png)
 
-
 > **Note:** Claude may ask a few clarifying questions before proceeding — go with the recommended option unless you have a specific reason to change it.
 
 ![images](./images/5.png)
 
 ---
 
-> **Note:** This step can take 10–15 minutes. Let Claude finish without interrupting — in the meantime, let's discuss the `@` symbol in Claude.
+> **Note:** This step can take 10–15 minutes. Let Claude finish without interrupting — in the meantime, let's talk about the `@` symbol.
 
-
-
-
+---
 
 # The `@` File Reference Syntax
 
@@ -139,64 +168,18 @@ The `@` symbol is how you point Claude at a specific file or folder in your proj
 You can use `@` anywhere in a prompt and chain as many references as you need:
 
 ```
-Example :
-
 /plan Review @docs/ContractIQ_PRD.md and apply the rules in @skills/engineering-planner/SKILL.md
 ```
 
-Claude reads each referenced file at the start of the task before it generates any output. This means your prompt stays short, but Claude has the full context of every document you care about.
+Claude reads each referenced file at the start of the task before it generates any output. Your prompt stays short, but Claude has the full context of every document you care about.
 
-Use `@` whenever you want Claude to work from your actual project files rather than its own general knowledge. For a task like engineering planning, this is essential — the plan should be grounded in your specific PRD, not a generic template.
-
-
-## Step 5 — Generate the Implementation Specs
-
-### What Are Implementation Specs?
-
-The engineering document you just created describes *what* to build and *in what order*. Implementation specs take that one level deeper — they translate each engineering decision into precise, file-by-file build instructions.
-
-Each spec covers a single feature: the exact files to create or modify, the functions to write, the API routes to wire up, the database changes to apply, and the acceptance criteria that confirm it is working correctly. This is the document the AI reads in Lab 2 when it actually writes code.
-
-### Run the Specs Prompt
-
-Once your engineering document has been approved and saved, run the following prompt:
-
-```
-Use the @skills/implementation-specs/SKILL.md skill and my engineering document to create a comprehensive implementation specification for my app. Ensure the spec covers all features, workflows, technical requirements, APIs, database changes, frontend and backend implementation details, edge cases, and acceptance criteria.
-```
-
-![images](./images/specs.png)
-
-### What Gets Created
-
-Once Claude finishes, you will find a new `specs/` folder in your project. Each file inside it is the build specification for one feature:
-
-```
-specs/
-    ├── 01-auth.md
-    ├── 02-contract-upload.md
-    ├── 03-ai-analysis.md
-    ├── 04-dashboard.md
-    └── ...
-```
-
-Each spec file contains:
-
-
-- **Files to create or modify** — exact paths and what goes in each one
-- **API routes** — the endpoint, method, request shape, and response shape
-- **Database changes** — any new tables, columns, or migrations required
-- **Frontend implementation** — the components to build and the data they need
-- **Edge cases** — known failure modes and how to handle them
-- **Acceptance criteria** — the specific conditions that confirm the feature is working
-
-These files are what Lab 2 runs against. Every build command in the next lab reads a spec file and implements exactly what it describes.
+Use `@` whenever you want Claude to work from your actual project files rather than its own general knowledge. For engineering planning, this is essential — the plan must be grounded in what the PRD actually says, not a generic template.
 
 ---
 
 ## What This Prompt Does
 
-There are three parts to this prompt worth understanding:
+There are three parts worth understanding:
 
 **`/plan`**
 Activates Plan Mode. Claude will read, reason, and show you a plan — but will not write any files until you approve.
@@ -213,13 +196,11 @@ Points Claude at the engineering-planner skill. Claude reads its instructions fo
 
 After Claude processes the PRD through the engineering-planner skill, it will generate a plan covering:
 
-- **Architecture Overview** — The system components and how they connect: Next.js frontend, Supabase database, Claude AI API, and file storage.
-- **Data Models** — Every database table, its columns, types, relationships, and the Row Level Security rules that control access.
-- **API Design** — The server-side routes the application needs, what each one accepts, and what it returns.
-- **Feature Breakdown** — Each PRD feature mapped to the specific components, database tables, and API routes required to build it.
-- **Build Sequence** — The order in which features should be built so each stage produces something working before the next one starts.
-
-These documents are saved to `docs/engineering/` and become the input for Lab 2, where you run `/implementation-specs` to break each engineering decision into file-by-file build instructions.
+- **Architecture Overview** — The system components and how they connect: Next.js frontend, Supabase database, Claude AI API, and file storage
+- **Data Models** — Every database table, its columns, types, relationships, and the Row Level Security rules that control access
+- **API Design** — The server-side routes the application needs, what each one accepts, and what it returns
+- **Feature Breakdown** — Each PRD feature mapped to the specific components, database tables, and API routes required to build it
+- **Build Sequence** — The order in which features should be built so each stage produces something working before the next one starts
 
 ![images](./images/6.png)
 
@@ -227,39 +208,54 @@ These documents are saved to `docs/engineering/` and become the input for Lab 2,
 
 ## Reviewing and Approving the Plan
 
-When Claude finishes generating the plan, read through it carefully before approving.
+When Claude finishes, read through the plan carefully before approving.
+
+This is the most important step in the entire lab. A gap caught here — a missing table, a feature with no API route, a circular dependency in the build order — takes 30 seconds to fix in a document. The same gap discovered three days into Lab 2 takes hours to untangle.
 
 Ask yourself:
 
-- Does the data model capture everything described in the PRD?
-- Can every action a user takes in the app — uploading a file, asking a question, viewing results — actually be handled? If a feature exists in the PRD but has no corresponding backend step in the plan, it will silently break later.
-- Does the build sequence make sense — does each stage produce something you could actually open in a browser and use, rather than a half-built piece that only works once the next stage is also done?
-- Is anything missing that is clearly required by the PRD?
+- Does the data model capture everything described in the PRD? Can every piece of information the app needs to store actually be stored?
+- Can every user action be handled end to end? If a feature exists in the PRD but has no corresponding backend step in the plan, it will silently break later.
+- Does the build sequence make sense — does each stage produce something you could open in a browser and actually use?
+- Is anything missing that the PRD clearly requires?
 
-If the plan looks correct, type `yes` or `proceed` to approve it. Claude will then write the engineering documents to `docs/engineering/`.
+If the plan looks right, type `yes` or `proceed` to approve. Claude will write the engineering documents to `docs/engineering/`.
 
-If you want to adjust something, describe the change and Claude will revise the plan before asking again.
+If something is off, describe the change and Claude will revise before asking again.
 
 ---
 
 ## What Gets Saved
 
-Once approved, you will find new files under `docs/engineering/`:
+Once approved, you will find a new file under `docs/engineering/`:
 
 ```
 docs/
-└── engineering
+└── engineering/
+    └── engineering-doc.md
 ```
 
-These files are the technical foundation for everything that follows. Every future skill — `/implementation-specs`, `/security-foundation`, `/frontend-setup` — reads these documents to understand what has already been decided.
+This document is the technical foundation for everything that follows. Every future skill — `/frontend-setup`, `/security-foundation` — reads it to understand what has already been decided.
 
 ![images](./images/6.png)
 
 ---
 
+## How Real Engineering Teams Do This
+
+In a professional software company, what you just did has a name: **architecture review**.
+
+Before any significant feature gets built, a **Tech Lead** or **Staff Engineer** writes an architecture document — sometimes called an RFC (Request for Comments) or a design doc. It covers the same things Claude just produced: the data model, the API surface, the component breakdown, the build order.
+
+Then the team reviews it. Not the code — the plan. Other engineers look for missing edge cases, circular dependencies, data shape mismatches, security gaps. They catch these in a document, not in a pull request review three sprints later.
+
+The engineering document Claude just wrote is that document. The difference is it took 15 minutes instead of two days, and it was grounded in the PRD from the start.
+
+---
+
 ## The Stage-Gated Principle
 
-Each lesson in this lab — and the two labs that follow it — follows the same pattern:
+Every step in this lab — and the two labs that follow — follows the same pattern:
 
 1. You run a command
 2. Claude produces output for your review
@@ -270,26 +266,25 @@ This is intentional. Real software projects fail when decisions are made without
 
 ---
 
-## What You Learned
-
-- **Plan Mode as a safety checkpoint** — `/plan` puts Claude into a read-and-reason-only state; no files are created or changed until you explicitly approve, giving you full visibility into the direction before any work begins.
-- **`@` file references in practice** — pointing a prompt at `@docs/ContractIQ_PRD.md` and `@skills/engineering-planner/SKILL.md` grounds Claude's output in your specific documents rather than generic templates.
-- **What a complete engineering plan contains** — architecture overview, data models, API design, feature-to-component mapping, and a build sequence that produces something usable at each stage.
-- **How to review a plan before approving** — checking that every PRD feature has a corresponding backend step, that the data model captures all the information the app needs to store, and that the build order is logically sequenced.
-- **The stage-gated principle in action** — the engineering documents saved to `docs/engineering/` become the direct input for Lab 2's implementation prompts; each stage depends on the previous one being correct.
-- **Why catching gaps at the plan stage matters** — a missing table or a circular dependency in the build order is trivial to fix in a document and very expensive to fix after several lessons of code have been written on top of it.
-
----
-
 ## This Lab Is Complete
 
 You now have everything Lab 2 needs:
 
 - A local clone of `dev-os`, open in VS Code
 - An understanding of the five skills and the design system
-- `docs/engineering/engineering-doc.md` and `docs/engineering/implementation-specs.md`
+- `docs/engineering/engineering-doc.md` — the complete architecture plan
 
-Continue to **[Lab 2 — Building the Application](../../02-Building-the-Application-Lab/readme.md)**, where you'll scaffold the Next.js app, set up Supabase, and implement everything end to end.
+Continue to **[Lab 2 — Building the Application](../../02-Building-the-Application-Lab/readme.md)**, where you'll scaffold the Next.js app, generate implementation specs, set up Supabase, and implement everything end to end.
+
+---
+
+## Claude Concepts Covered in This Lesson
+
+| Concept | Where it appeared | Learn more |
+|---------|-------------------|------------|
+| **Plan Mode** | **Step 4** — "Claude will read, reason, and show you a plan — but will not write any files until you approve." | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **`@` file references** | **Step 4** — "Instead of copying and pasting content into your prompt, you reference the path — Claude reads it directly." | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Stage-gated principle** | **Reviewing the plan** — "A gap caught here takes 30 seconds to fix in a document. The same gap discovered three days into Lab 2 takes hours to untangle." | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
 
 ---
 

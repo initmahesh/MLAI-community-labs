@@ -1,81 +1,92 @@
 # AI App Development with Claude Code
 
-A hands-on, three-lab path that takes you from a blank idea to a deployed, production-ready AI application — using the **Claude Code CLI inside VS Code** to plan, build, secure, and ship every step of the way.
+---
 
-You will build **ContractIQ**: a full-stack web app where users upload contract PDFs and receive an AI-powered breakdown of every clause that matters — what it says, where it appears, and how confident the model is in its reading.
+## What This Course Teaches
 
-No prior AI development experience required. This is an **implement-first** course: you build the real thing first, and the "why" behind each step is explained as you go, not before.
+This is a **three-lab hands-on path** that teaches you how world-class engineering teams build AI products — not just how to prompt.
+
+You will build **ContractIQ**: a full-stack AI application where users upload a contract PDF and get a structured breakdown of every clause that matters, with multi-turn chat, persistent memory, row-level database security, and automatic deployment.
+
+But the application is the vehicle, not the destination.
+
+What you're really learning is **a repeatable process**:
+
+```
+Plan before you build
+↓
+Build with precise context
+↓
+Add memory intentionally
+↓
+Secure before you ship
+↓
+Deploy with confidence
+```
+
+Every Claude prompt you write in this course follows that sequence. By the end, you won't just have a deployed app — you'll have a mental model for building AI products that hold together.
 
 ---
 
 ## The Three Labs
 
-| Lab | Focus | Lessons |
+| Lab | What You Do | Lessons |
 |---|---|---|
-| **[Lab 1 — Planning & Architecture](./01-Planning-and-Architecture-Lab/readme.md)** | Everything that happens *before* you write application code: understanding the problem, the starter repo, Claude Code skills, the design system, and turning a product idea into a concrete engineering plan | 3 |
-| **[Lab 2 — Building the Application](./02-Building-the-Application-Lab/readme.md)** | Everything that happens *while* you write application code: scaffolding Next.js, setting up Supabase, implementing the frontend and backend, and adding a persistent memory layer to the chat assistant | 2 |
-| **[Lab 3 — Security & Deployment](./03-Security-and-Deployment-Lab/readme.md)** | Everything that happens *after* the app works on `localhost`: scanning and fixing security vulnerabilities, then pushing to GitHub and deploying live on Netlify | 2 |
+| **[Lab 1 — Planning & Architecture](./01-Planning-and-Architecture-Lab/readme.md)** | Build the foundation that makes every future prompt coherent — the product spec, design system, engineering document, and implementation blueprint | 3 |
+| **[Lab 2 — Building the Application](./02-Building-the-Application-Lab/readme.md)** | Use Claude Code to scaffold the app, implement every feature, and add a persistent memory layer to the chat assistant | 2 |
+| **[Lab 3 — Security & Deployment](./03-Security-and-Deployment-Lab/readme.md)** | Scan and fix every security vulnerability, then push to GitHub and deploy live on Netlify | 2 |
 
-Work through them **in order** — each lab assumes the previous one is finished and reads from files the previous lab produced. You cannot skip to Lab 2 without the engineering documents from Lab 1, and you cannot deploy in Lab 3 without a working app from Lab 2.
+Work through them **in order**. Each lab builds directly on what the previous one produced — the engineering documents from Lab 1 drive every build prompt in Lab 2, and you cannot harden and deploy something that doesn't exist yet.
 
 ```
-Lab 1: Planning  →  Lab 2: Building  →  Lab 3: Security & Deployment
-(no code yet)       (app runs locally)   (app is live on the internet)
+Lab 1: Planning        →   Lab 2: Building        →   Lab 3: Ship It
+(no app code yet)          (app runs on localhost)     (app is live on the internet)
 ```
 
 ---
 
 ## What You Will Build
 
-**ContractIQ** — a full-stack AI application with:
+**ContractIQ** — a production-ready AI application with:
 
 - PDF upload and AI-powered contract analysis
 - Structured clause breakdown with page citations
 - Multi-turn chat with persistent conversation memory
 - Supabase database with Row Level Security
 - Authentication with protected routes
-- Security-hardened codebase
-- Automatic CI/CD deployment via Netlify
+- Security-hardened codebase ready for production
+- Deployment via Netlify — every `git push` redeploys
 
 ---
 
-## Tech Stack
+## The Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | Next.js 14, TypeScript, Tailwind CSS |
-| Database & Auth | Supabase (PostgreSQL + Auth) |
-| AI | Claude API (Anthropic) / OpenAI |
-| Deployment | Netlify |
-| Planning & Build | Claude Code CLI (run from VS Code's integrated terminal) |
+Every choice here was made deliberately. You're not picking the stack — it's fixed in the starter repo — but understanding *why* each piece is there helps you use it correctly.
 
----
-
-## How Each Lesson Is Structured
-
-Every lesson folder across all three labs follows the same pattern, so once you've done one you know what to expect from the rest:
-
-- **Where We Are** — a recap of what's been completed so far in the path
-- **Step-by-step instructions** — including the exact prompts to paste into the Claude Code CLI
-- **Screenshots** — in that lesson's own `images/` folder, referenced inline
-- **What You Have Built / What You Learned** — a summary at the end
-- **Troubleshooting** (where relevant) — ready-to-paste prompts for the most common failure modes
+| Layer | Technology | Why |
+|---|---|---|
+| **Frontend** | Next.js 14, TypeScript, Tailwind CSS | Full-stack React framework with server components, type safety, and utility-first styling that maps cleanly to a design system |
+| **Database & Auth** | Supabase (PostgreSQL + Auth) | Hosted Postgres with built-in authentication and Row Level Security — one user's contracts are never visible to another |
+| **AI** | Claude API (Anthropic) | Powers the contract analysis and chat — the same model you're using as your build tool |
+| **Deployment** | Netlify | Zero-config deployment from GitHub with encrypted environment variables and automatic redeploys |
+| **Build tool** | Claude Code CLI | Plans, writes, secures, and debugs the application — run from the VS Code integrated terminal |
 
 ---
 
-## Screenshots — Where to Put Them
+## Claude Concepts in This Course
 
-Every lesson has its own `images/` folder sitting right next to its `readme.md`. The original walkthrough's screenshots have already been copied into the matching folders across all three labs and are wired up by filename — **you don't need to add anything to start.**
+These are the Claude-specific concepts you will encounter and use across all three labs. Each one is explained in context when it first appears — this table is here so you can go deeper on any concept that interests you.
 
-If you want to refresh a screenshot (UI redesigns happen — Supabase and Netlify both change their dashboards periodically):
-
-1. Open the lesson's `readme.md` and find the `![...](./images/N.png)` reference for the step you want to update.
-2. Save your new screenshot over the existing file at that exact path and filename (e.g. `02-Building-the-Application-Lab/01-building-the-application/images/6.png`).
-3. That's it — no markdown edits needed, since the file is referenced by name, not content.
-
-Two spots have **no screenshot yet** and are marked with an HTML comment in the source explaining what to capture:
-- `03-Security-and-Deployment-Lab/01-security-foundation/` — the original course never captured screenshots for this lesson since it runs entirely in the terminal; add your own if you'd like a visual record of the `security-fix` skill's summary output.
-- `03-Security-and-Deployment-Lab/02-deployment/` — the final "redeployed after updating NEXTAUTH_URL" screenshot was missing from the original course too.
+| Concept | First appears | Learn more |
+|---------|--------------|------------|
+| **Claude Code CLI** | Lab 1, Lesson 1 — the build tool used throughout every lab to plan, write, debug, and ship | [Claude Code →](https://docs.anthropic.com/en/docs/claude-code) |
+| **CLAUDE.md** | Lab 1, Lesson 1 — a project-level file Claude reads at the start of every session to understand context, rules, and current stage | [Memory →](https://docs.anthropic.com/en/docs/claude-code/memory) |
+| **Skills / slash commands** | Lab 1, Lesson 2 — reusable `SKILL.md` files that define exactly how Claude should approach a task, invoked with `/skill-name` | [Skills guide →](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) |
+| **Plan Mode** | Lab 1, Lesson 3 — Claude reads and reasons but writes nothing until you approve; catches architecture gaps before any code is written | [Claude Code →](https://docs.anthropic.com/en/docs/claude-code) |
+| **`@` file references** | Lab 1, Lesson 3 — point Claude directly at a file path instead of pasting content; Claude reads it in context | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
+| **Stateless Claude API** | Lab 2, Lesson 2 — each API call starts fresh with no memory of prior calls; conversation history must be explicitly loaded | [Messages API →](https://docs.anthropic.com/en/api/messages) |
+| **Context windows** | Lab 2, Lesson 2 — the messages[] array Claude sees on each call; short-term memory lives here | [Context windows →](https://docs.anthropic.com/en/docs/build-with-claude/context-windows) |
+| **Prompt engineering** | Throughout — how you structure prompts determines what Claude builds; specificity and context are the levers | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
 
 ---
 

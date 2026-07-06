@@ -8,27 +8,60 @@
 
 ![images](./images/banner.png)
 
----
-
-You finished Lab 1 with two documents sitting in `docs/engineering/` — an architecture plan and a file-by-file implementation blueprint. You know what ContractIQ needs to do, how the data connects, and which files need to be built in which order.
-
-Now comes the part where all of that planning turns into a real, running application.
-
-There's just one problem. An app like ContractIQ needs somewhere to store things — user accounts, uploaded contracts, analysis results, chat messages. Right now there's nowhere. Before Claude can build a single screen, that foundation needs to exist.
-
-That's what the first half of this lesson sets up. By the end, you'll have a live database connected to a running application you can open in a browser.
 
 ---
 
-## Before You Build — Set Up Supabase
+## Where You Are in the Process
 
-### Why This App Needs a Database
+You finished Lab 1 with two documents sitting in `docs/engineering/` — a full architecture plan and a feature-by-feature engineering breakdown. You know what ContractIQ does, how the data connects, and what order things should be built.
 
-Imagine ContractIQ without one. A user uploads a contract, Claude analyzes it, and the result appears on screen. The moment they close the tab, everything is gone no record of which user uploaded what, what Claude found, or what questions were asked. Every session starts from zero.
+Now comes the build.
 
-An app that can't remember anything isn't an app — it's a demo. The moment you need users, sessions, history, or shared data, you need a database.
+Here's exactly where you are in the full engineering lifecycle:
 
-### Choosing the Right Type
+```
+Idea
+↓
+Research
+↓
+PRD  ✓
+↓
+Engineering Document  ✓
+↓
+Implementation Specs  ← (first thing we do today)
+↓
+Build the Application  ← YOU ARE HERE
+↓
+Memory Layer
+↓
+Deployment
+↓
+Iteration
+```
+
+By the end of this lesson you'll have a live database, a running Next.js application, and the core features of ContractIQ working in a browser.
+
+---
+
+## Before You Write a Line of Code — Set Up the Database
+
+### Why the database comes first
+
+Think about what ContractIQ actually does.
+
+A user creates an account. They upload a contract. Claude analyzes it. The results appear. The user asks follow-up questions. Everything gets saved so they can come back next week and pick up where they left off.
+
+Every one of those actions involves storing something — an account, a file, an analysis, a conversation.
+
+If you build the UI first and add the database later, you'll spend hours rewriting components that assumed the wrong data shape. It's the software equivalent of framing the walls before you've poured the foundation.
+
+An app that can't remember anything isn't an app. It's a demo.
+
+The database goes first.
+
+---
+
+### Choosing the Right Type of Database
 
 Databases come in two broad families, and picking the wrong one creates problems down the line.
 
@@ -36,20 +69,26 @@ Databases come in two broad families, and picking the wrong one creates problems
 
 **Non-relational databases (NoSQL)** store data as flexible documents or key-value pairs. They suit unstructured data, variable-shape records, or extreme write-speed requirements like real-time feeds.
 
-ContractIQ has structured, relational data. A relational database is the correct choice.
+ContractIQ has structured, relational data. The choice is clear.
 
-### Why Supabase
+---
 
-Supabase is a hosted Postgres database — Postgres being one of the most battle-tested relational databases in existence — with a set of tools built around it that make it practical for a modern web app:
+### Why Supabase?
+
+Now you might be wondering — why not just set up Postgres directly?
+
+Because building an app isn't just about storing rows. It's about authentication, access control, file storage, and API integration. Setting all of that up from scratch takes weeks.
+
+Supabase gives you all of it in one place:
 
 - **Authentication** — built-in user sign-up, login, and session management
 - **Row Level Security (RLS)** — rules written directly on the database so each user can only read or write their own rows; one user's contracts are never visible to another
 - **Storage** — a place to store the actual contract PDF files alongside the metadata
 - **Auto-generated APIs** — Supabase exposes your tables as REST endpoints automatically, which is what the Next.js app calls when it reads or writes data
 
-The engineering document you generated in Lab 1 already contains the full schema for this app — every table, column, type, and RLS rule. Later in this lesson you'll take that schema and run it directly in Supabase to make it live.
-
 Think of it like renting a fully staffed office. The filing cabinets (database), the security desk (authentication), and the mail room (API) all come with the building. You just move your project in.
+
+The engineering document you generated in Lab 1 already contains the full schema for this app — every table, column, type, and access rule. Later in this lesson you'll take that schema and run it directly in Supabase to make it live.
 
 > **Learn more:** [Supabase documentation →](https://supabase.com/docs)
 
@@ -118,11 +157,11 @@ On the same **API** settings page, find **Legacy API keys** and copy the value n
 
 ---
 
-**Here's the interesting part — these two keys are very different things.**
+Here's where it gets interesting — these two keys are very different things.
 
-The anon key is safe to use in your frontend code. It's meant to be public — it identifies your project but only gives users access to data they're allowed to see.
+The **anon key** is safe to use in your frontend code. It identifies your project but only gives users access to data they're allowed to see. Think of it as a lobby pass.
 
-The service role key bypasses all access rules. It has full unrestricted access to your entire database. That makes it powerful for server-side operations — and dangerous if it leaks. It must never appear in your frontend code and must never be committed to GitHub.
+The **service role key** bypasses all access rules. It has full unrestricted access to your entire database. That makes it powerful for server-side operations — and dangerous if it leaks. It must never appear in your frontend code and must never be committed to GitHub.
 
 Set both aside. You'll add them to your `.env` file in a few minutes.
 
@@ -130,40 +169,42 @@ Set both aside. You'll add them to your `.env` file in a few minutes.
 
 ---
 
-## Open Claude Code
+## Now Let's Build
 
-Open your project folder in **VS Code**, open the integrated terminal (**Terminal > New Terminal**, or `` Ctrl+` ``), and start Claude Code:
+You have a live database waiting. Now it's time to wire up the application.
+
+Open your project folder in which you are working in  **VS Code**, open the integrated terminal (**Terminal > New Terminal**, or `` Ctrl+` ``), and start Claude Code:
 
 ```bash
 claude
 ```
 
-Paste each prompt below into the same terminal session, one at a time, and let Claude finish completely before moving to the next one.
+Paste each prompt below into the same terminal session, one at a time. Let Claude finish completely before moving to the next one.
 
 ---
 
 ## Prompt 1 — Scaffold the Folder Structure
 
+Before Claude writes a single line of business logic, the project needs a structure it can build into.
+
+Think of this as putting up the skeleton of the building — every floor, every room, every doorway — before any of the furniture or wiring goes in. If you skip this and let Claude invent the structure as it goes, you'll end up with inconsistent file locations, naming conflicts, and components that don't know where to import from.
+
+The frontend-setup skill defines exactly how this project should be organized. Claude reads it and builds the structure precisely.
+
 ```
 Use @skills/frontend-setup/SKILL.md to set up the frontend foundation for this project.
 ```
 
-> Claude may ask whether to create a new subfolder or work in the current directory. Choose **current directory** and continue.
+> **Note:** Claude may ask whether to create a new subfolder or work in the current directory. Choose **New subfolder** — a new folder will be created (for example: `contractiq`).
 
 ![Project Setup](./images/8.png)
 
 ---
 
-**Here's the interesting part — notice the `@` at the start of that prompt.**
-
-That `@` tells Claude to read a specific file from your project before doing anything else. Instead of guessing how to set up the folder structure, Claude reads the exact instructions you wrote in `SKILL.md` and follows them precisely.
-
-This is the same pattern you'll use throughout the build. Any time you want Claude to work from a specific document rather than general knowledge, you point it there with `@`.
-
 When this prompt finishes, your project will have a complete Next.js 14 folder structure — every page, component folder, and API route — with your design system already baked into Tailwind:
 
 ```
-apps/web/
+contractiq/
 ├── app/
 │   ├── (auth)/
 │   │   ├── login/
@@ -186,11 +227,7 @@ apps/web/
 └── package.json
 ```
 
-Think of it as the empty shell of the building — every room exists, every door is in the right place, and the wiring is ready. No furniture yet.
-
 Review the file tree once the skill finishes. If anything looks off, describe the issue to Claude and it will correct it before you move on.
-
-> **Learn more:** [Claude Code `@` file references →](https://docs.anthropic.com/en/docs/claude-code)
 
 ---
 
@@ -202,21 +239,77 @@ You'll now see a `.env.local.example` file in your project. Rename it to `.env.l
 NEXT_PUBLIC_SUPABASE_URL=https://xyzxyzxyz.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
-OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-Replace each placeholder with the real values. Notice that `NEXT_PUBLIC_` variables are safe to expose to the browser — anything without that prefix stays server-side only.
+Replace each placeholder with the real values.
+
+Notice the naming pattern: `NEXT_PUBLIC_` variables are safe to expose to the browser — React components can read them. Anything without that prefix stays server-side only and never reaches the client. The service role key has no `NEXT_PUBLIC_` prefix for exactly this reason.
 
 ![Project Setup](./images/9.png)
 
 ---
 
-## Prompt 2 — Implement the Application
+## Prompt 2 — Generate the Implementation Specs
 
-Once the folder structure looks right, paste this prompt into the same Claude Code terminal:
+Here's where most people skip a step — and pay for it later.
+
+You have an engineering document that says *what* to build. But Claude doesn't build from high-level architecture descriptions. It builds from precise instructions: exactly which file to create, exactly what that file exports, exactly what API route it calls, exactly what database columns it reads.
+
+That gap — between "what to build" and "how to build it file by file" — is what implementation specs fill.
+
+### What Are Implementation Specs?
+
+Each spec covers one feature end to end:
+
+- The exact files to create or modify
+- The functions and components to write
+- The API routes to wire up
+- The database changes required
+- The edge cases to handle
+- The acceptance criteria that confirm it's working
+
+This is the document Claude reads when it actually writes code. Without it, Claude makes assumptions. Those assumptions create mismatches. Those mismatches surface as bugs three features later that are very hard to trace back.
+
+### Run the Specs Prompt
 
 ```
-Based on docs/engineering/engineering-doc.md and docs/engineering/implementation-specs.md, start implementing the application.
+Use the @skills/implementation-specs/SKILL.md skill and my engineering document to create a comprehensive implementation specification for my app. Ensure the spec covers all features, workflows, technical requirements, APIs, database changes, frontend and backend implementation details, edge cases, and acceptance criteria.
+```
+
+![images](./images/specs.png)
+
+> **Note:** Claude may ask a few clarifying questions — go with the recommended option unless you have a specific reason to change it.
+
+### What Gets Created
+
+Once Claude finishes, you'll find a `specs/` folder in your project:
+
+```
+specs/
+    ├── 01-auth.md
+    ├── 02-contract-upload.md
+    ├── 03-ai-analysis.md
+    ├── 04-dashboard.md
+    └── ...
+```
+
+Each file is the complete build instruction for one feature. Every prompt that follows reads from these files.
+
+---
+
+## Prompt 3 — Implement the Application
+
+Now you have everything Claude needs to build correctly:
+
+- A structured folder to build into
+- An engineering document describing the architecture
+- Spec files describing every feature file by file
+
+This is the moment the plan becomes code.
+
+```
+Based on the engineering doc and all of my specs files, start implementing the application.
 
 Before writing any code:
 - Read and understand the Engineering Document.
@@ -235,25 +328,28 @@ Implementation Rules:
 - Implement proper loading, error, and empty states.
 - Implement validation and security requirements defined in the specs.
 - Keep code modular and scalable.
-- Use the gpt-4o-mini model.
 ```
 
 ![Project Setup](./images/10.png)
 
 ---
 
-**You might be wondering — why does this prompt tell Claude to read the documents before writing any code?**
+You might be wondering — why does this prompt tell Claude to read the documents before writing any code?
 
-Because the order matters. If Claude starts writing a component that references the database before it understands the full data model, it'll make assumptions. Those assumptions create mismatches that surface three files later as errors that are hard to trace back.
+Because the order matters.
 
-Reading the engineering documents first gives Claude the complete picture — every feature, every dependency, every file that needs to exist before another one can reference it. It builds in the correct order, so nothing references something that doesn't exist yet.
+If Claude starts writing a component that references the database before it understands the full data model, it makes assumptions. Those assumptions create mismatches that surface three files later as errors that are very hard to trace back.
+
+Reading the engineering documents and specs first gives Claude the complete picture — every feature, every dependency, every file that needs to exist before another one can reference it. It builds in the correct order. Nothing references something that doesn't exist yet.
 
 This prompt takes the most time. Claude may ask clarifying questions before it begins — answer them fully. Do not interrupt mid-implementation unless something is clearly wrong.
 
 Once Claude finishes, open a new terminal in VS Code and run the development server:
 
+> **Note:** Replace `contractiq` with the actual folder name Claude created in Prompt 1.
+
 ```bash
-cd apps/web
+cd contractiq
 npm run dev
 ```
 
@@ -263,9 +359,13 @@ Click the local URL that appears in the terminal, or open `http://localhost:3000
 
 ---
 
-## Prompt 3 — Generate the Database Schema
+## Prompt 4 — Generate the Database Schema
 
-The application code now exists, but the database is still empty — no tables, no structure, nowhere to store anything. This prompt tells Claude to read the data models from your engineering documents and produce a single SQL file you can run directly in Supabase.
+The application code now exists — but the database is still empty. No tables. No structure. Nowhere to store anything.
+
+This is the same problem we talked about at the start of this lesson, and now we solve it properly.
+
+Claude reads the data models from your engineering documents and produces a single SQL file — every table, every column, every relationship, and every Row Level Security policy. One file that you run once in Supabase and the entire database structure comes to life.
 
 ```
 Create a database.sql file that contains all SQL statements required to set up the database for the application. Based on the Engineering Document and Implementation Specifications, generate a complete production-ready database schema.
@@ -275,13 +375,13 @@ Create a database.sql file that contains all SQL statements required to set up t
 
 ---
 
-**Here's the interesting part — this SQL file does more than create tables.**
+Here's something worth pausing on.
 
-Claude reads the data models in your engineering documents and writes every table, every relationship, every index, and every Row Level Security policy the app needs.
+This SQL file doesn't just create tables. It also writes the access rules — Row Level Security policies that determine who can read or write each row.
 
 Row Level Security means each user can only access rows in the database that belong to them — even if they're in the same table as other users' data. Think of it like giving everyone in a shared office their own locked drawer. They can open their own. Everyone else's stays shut.
 
-Claude generates these access rules automatically from the data model, so they're in place from the moment the database goes live.
+Claude generates these access rules automatically from the data model, so they're in place from the moment the database goes live. You don't have to add them later. You don't have to remember them. They're part of the schema.
 
 ---
 
@@ -304,7 +404,7 @@ If you see an error, read the message — it usually names the exact line that f
 
 ## Step 6 — Test the Application
 
-Open a terminal in VS Code, make sure you're inside the frontend folder, and start the server:
+Open a terminal in VS Code, make sure you're inside the project folder, and start the server:
 
 ```bash
 npm run dev
@@ -327,22 +427,56 @@ If anything fails, open the browser dev console (`F12`) and read the error. Most
 
 ---
 
-You now have a running application — real authentication, a live database, and the core features of ContractIQ working in a browser. The build is no longer a plan on paper.
+## How Real Engineering Teams Do This
 
-But there's something missing. Right now, every conversation the user has with the app disappears the moment they close the tab. There's no memory of what was discussed, no context carried across sessions, no way for the app to feel like it knows who they are.
+In a professional product team, this sequence — scaffold, spec, implement, wire up data — is not a shortcut.
 
-That's what the next lesson solves.
+It's the standard.
+
+A **Tech Lead** sets up the project structure and enforces conventions so every engineer writes in the same way. A **Backend Engineer** defines the database schema and API contracts before the frontend touches them. A **Frontend Engineer** builds against those contracts, not against assumptions. A **QA Engineer** validates against the acceptance criteria — the same ones your specs define.
+
+What you just did in four prompts mirrors how a well-run engineering team operates across weeks. The AI compresses the time. The thinking is the same.
+
+---
+
+## What You Accomplished
+
+You started this lesson with a plan. You're ending it with:
+
+- A live Supabase database with every table, relationship, and access rule in place
+- A complete Next.js 14 application scaffold with your design system baked in
+- File-by-file implementation specs for every feature
+- A running application you can open in a browser and use
+
+The build is no longer a document. It's a product.
 
 ---
 
 ## Claude Concepts Covered in This Lesson
 
-| Concept | Where we covered it | Learn more |
-|---------|---------------------|------------|
-| **`@` file references** | **Prompt 1** — "That `@` tells Claude to read a specific file from your project before doing anything else. Instead of guessing, Claude reads the exact instructions in `SKILL.md` and follows them precisely." | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
-| **Engineering documents as build context** | **Prompt 2** — "Reading the engineering documents first gives Claude the complete picture — every feature, every dependency, every file that needs to exist before another one can reference it." | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
-| **Row Level Security** | **Prompt 3** — "Claude reads the data models and writes every table, relationship, index, and Row Level Security policy the app needs — so access rules are in place from the moment the database goes live." | [Supabase RLS →](https://supabase.com/docs/guides/database/postgres/row-level-security) |
-| **Environment variable safety** | **Prompt 1 / Add credentials** — "`NEXT_PUBLIC_` variables are safe to expose to the browser — anything without that prefix stays server-side only." | [Next.js env vars →](https://nextjs.org/docs/app/building-your-application/configuring/environment-variables) |
+| Concept | Where it appeared | Learn more |
+|---------|-------------------|------------|
+| **`@` skill references** | **Prompt 1 & 2** — pointing Claude at a skill file tells it exactly how to structure its output, rather than improvising from general knowledge | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Implementation specs as build context** | **Prompt 2** — specs translate high-level architecture into precise file-by-file instructions Claude can follow without guessing | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
+| **Engineering documents as build context** | **Prompt 3** — reading the full engineering document first gives Claude the complete dependency map before it writes a single file | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
+| **Row Level Security** | **Prompt 4** — Claude writes RLS policies from the data model automatically, so access rules are live from the first SQL run | [Supabase RLS →](https://supabase.com/docs/guides/database/postgres/row-level-security) |
+| **Environment variable safety** | **Add credentials** — `NEXT_PUBLIC_` variables reach the browser; everything else stays server-side only | [Next.js env vars →](https://nextjs.org/docs/app/building-your-application/configuring/environment-variables) |
+
+---
+
+## What's Next
+
+You have a running application.
+
+But there's something missing.
+
+Right now, every conversation a user has with ContractIQ disappears the moment they close the tab. There's no memory of what was discussed, no context carried across sessions, no way for the app to feel like it knows who they are.
+
+Imagine using an assistant that forgets everything the moment you walk out of the room. It gives you the right answer every time you ask. But you have to ask the same questions again and again.
+
+That's ContractIQ right now.
+
+In the next lesson, we fix that.
 
 ---
 

@@ -1,14 +1,61 @@
 # Lab 1 — Planning & Architecture
 
-**Part 1 of 3** in the ContractIQ build path: [Lab 1: Planning](./readme.md) → [Lab 2: Building the Application](../02-Building-the-Application-Lab/readme.md) → [Lab 3: Security & Deployment](../03-Security-and-Deployment-Lab/readme.md)
+**Part 1 of 3** → [Lab 1: Planning](./readme.md) · [Lab 2: Building](../02-Building-the-Application-Lab/readme.md) · [Lab 3: Security & Deployment](../03-Security-and-Deployment-Lab/readme.md)
 
 ---
 
-This is the **"think before you build"** lab. No application code gets written here. By the end of this lab you will have forked a starter repository, understood the problem you're solving, learned how Claude Code's reusable instruction sets ("skills") and design system work, defined your tech stack, and turned a product idea into a concrete, file-by-file engineering plan.
+Most developers who start an AI project with Claude make the same mistake.
 
-If you skip this lab and go straight to coding, you end up improvising the database schema halfway through building a screen, or discovering a missing feature three files deep into implementation. This lab exists so that doesn't happen.
+They open a blank file, type a prompt like *"build me a contract review app"*, and let Claude write. Something appears. It looks promising. They keep going.
 
-No prior AI development or software engineering experience is required. Every step is written assuming this is the first time you've done it.
+Three hours later the database schema doesn't match the frontend. There's a feature in the UI that has no backend. The chat interface works but forgets everything on refresh. The code is technically there — it just doesn't hold together.
+
+The problem wasn't Claude. The problem was that nobody told Claude what it was actually building.
+
+---
+
+## What This Lab Is About
+
+This is the **"think before you build"** lab.
+
+No application code gets written here. What you're doing instead is more important: you're building the foundation that makes every future prompt produce something coherent.
+
+By the end of this lab, Claude will know:
+
+- What ContractIQ is, who it's for, and what "done" looks like
+- The complete database schema, API design, and architecture
+- Which files need to be built and in what order
+- The visual rules every screen must follow
+- The constraints and edge cases that matter for a legal tool
+
+When Lab 2 starts, Claude won't be improvising. It will be executing a plan.
+
+---
+
+## The Problem You Are Solving
+
+Picture a founder at a 20-person SaaS company. A potential enterprise client sends over a 30-page Master Service Agreement. She needs to sign it by end of week. She has no in-house lawyer, so she either spends 90 minutes reading every clause herself — or pays $400 for legal time to get a summary she barely understands.
+
+She does this ten times a month.
+
+You are building **ContractIQ** — a web app where a user uploads a contract PDF and within 30 seconds sees a structured breakdown of every clause that matters: what it says, where it appears in the document, and how confident the AI is in its reading. If something looks off, the user can click through to the exact sentence it came from. And when they have a specific question, they can ask it in plain English and get an answer grounded in the actual document.
+
+The tool doesn't replace a lawyer. It gives people enough understanding to know when they need one.
+
+---
+
+## What You Will Produce
+
+You won't write a single line of frontend or backend code in this lab. What you *will* produce:
+
+- A local clone of the starter repository, open and ready in VS Code
+- A clear mental model of the product, its users, and what "done" looks like
+- An understanding of the five Claude Code skills that drive the rest of the build
+- The design system (`docs/design.md`) that every screen will follow
+- `docs/engineering/engineering-doc.md` — the full architecture plan
+- `docs/engineering/implementation-specs.md` — the file-by-file build blueprint
+
+These last two documents are what Lab 2 is built from. Nothing in Lab 2 makes sense without them.
 
 ---
 
@@ -18,48 +65,33 @@ No prior AI development or software engineering experience is required. Every st
 |---|---|---|
 | 1 | [Project Foundation](./01-project-foundation/readme.md) | Understand the problem you're solving, fork the starter repo, clone it, and open it in VS Code |
 | 2 | [Skills and the Design System](./02-skills-and-design-system/readme.md) | Learn how Claude Code skills work and review the design system that will govern the app's UI |
-| 3 | [Engineering Planning](./03-engineering-planning/readme.md) | Use Plan Mode to turn the product requirements into an architecture document and file-by-file implementation specs |
+| 3 | [Engineering Planning](./03-engineering-planning/readme.md) | Use Plan Mode to turn the product requirements into an architecture document and implementation specs |
 
 ---
 
-## What You Will Build Toward
+## The Tech Stack
 
-Across this lab you will plan **ContractIQ** — a web app where a user uploads a contract PDF and gets back a structured, page-cited breakdown of every clause that matters, plus a chat interface to ask follow-up questions about the document.
-
-You won't write a line of frontend or backend code in this lab. What you *will* produce by the end:
-
-- A local clone of the starter repository, open and ready in VS Code
-- A clear mental model of the product, its users, and what "done" looks like
-- An understanding of the five Claude Code skills that drive the rest of the build
-- The design system (`docs/design.md`) that every screen will follow
-- `docs/engineering/engineering-doc.md` — the architecture plan
-- `docs/engineering/implementation-specs.md` — the file-by-file build blueprint
-
-These last two documents are what Lab 2 is built from. Nothing in Lab 2 makes sense without them.
-
----
-
-## Tech Stack Decided in This Lab
+Every technology choice in this project was made for a reason. You're not choosing the stack from scratch — it's fixed in the starter repo — but you should understand *why* each piece is there before you build on top of it.
 
 | Layer | Technology | Why |
 |---|---|---|
-| Frontend | Next.js 14, TypeScript, Tailwind CSS | Full-stack React framework, type safety, utility-first styling that maps cleanly to a design system |
-| Database & Auth | Supabase (PostgreSQL + Auth) | Hosted Postgres with built-in auth and Row Level Security, generous free tier |
-| AI | Claude API (Anthropic) / OpenAI | Powers the contract analysis and chat features |
-| Planning & Build Tool | Claude Code | Plans, writes, secures, and helps ship the application |
-
-This stack is fixed in the starter repo you fork in Lesson 1 — you are not choosing it from scratch, but you should understand *why* each piece is there before you build on top of it.
+| **Frontend** | Next.js 14, TypeScript, Tailwind CSS | Full-stack React framework with server components, type safety, and utility-first styling that maps cleanly to a design system |
+| **Database & Auth** | Supabase (PostgreSQL + Auth) | Hosted Postgres with built-in authentication and Row Level Security — one user's contracts are never visible to another |
+| **AI** | Claude API (Anthropic) | Powers the contract analysis and chat features — the same model you're using to build the app |
+| **Build Tool** | Claude Code | Plans, writes, secures, and helps ship the application |
 
 ---
 
-## Where to Drop Screenshots
+## How to Navigate the Screenshots
 
-Every lesson folder in this lab has its own `images/` subfolder, and the existing screenshots from the original walkthrough have already been copied in and are wired up — you don't need to add anything to follow along. If you want to **recapture your own screenshots** (recommended if any tool's UI has changed since this was written), drop the new image into the matching lesson's `images/` folder using the **same filename** that's already there (e.g. replace `01-project-foundation/images/3.png` with your own screenshot of the same step) — the lesson's `readme.md` already points at that filename, so nothing else needs to change.
+Every lesson folder has its own `images/` subfolder. Existing screenshots are already wired up — you don't need to add anything to follow along.
+
+If a tool's UI has changed since this was written, drop your own screenshot into the matching `images/` folder using the **same filename** already there (e.g. replace `01-project-foundation/images/3.png` with your version of the same step). The lesson files already point at those filenames — nothing else needs to change.
 
 ---
 
-## Up Next
+## Ready?
 
-Start with [Lesson 1 — Project Foundation](./01-project-foundation/readme.md).
+Start with **[Lesson 1 — Project Foundation](./01-project-foundation/readme.md)**.
 
 When all three lessons are complete, continue to **[Lab 2 — Building the Application](../02-Building-the-Application-Lab/readme.md)**.
