@@ -239,7 +239,7 @@ You'll now see a `.env.local.example` file in your project. Rename it to `.env.l
 NEXT_PUBLIC_SUPABASE_URL=https://xyzxyzxyz.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
-ANTHROPIC_API_KEY=sk-ant-...
+OPEN_API_KEY=sk-ant-...
 ```
 
 Replace each placeholder with the real values.
