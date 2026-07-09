@@ -77,7 +77,7 @@ Every technology choice in this project was made for a reason. You're not choosi
 |---|---|---|
 | **Frontend** | Next.js 14, TypeScript, Tailwind CSS | Full-stack React framework with server components, type safety, and utility-first styling that maps cleanly to a design system |
 | **Database & Auth** | Supabase (PostgreSQL + Auth) | Hosted Postgres with built-in authentication and Row Level Security — one user's contracts are never visible to another |
-| **AI** | Claude API (Anthropic) | Powers the contract analysis and chat features — the same model you're using to build the app |
+| **AI** | Openai API | Powers the contract analysis and chat features — the same model you're using to build the app |
 | **Build Tool** | Claude Code | Plans, writes, secures, and helps ship the application |
 
 ---
