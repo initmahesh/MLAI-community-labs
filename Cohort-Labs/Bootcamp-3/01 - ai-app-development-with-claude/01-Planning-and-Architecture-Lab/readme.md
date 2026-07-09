@@ -38,7 +38,7 @@ Picture a founder at a 20-person SaaS company. A potential enterprise client sen
 
 She does this ten times a month.
 
-You are building **ContractIQ** — a web app where a user uploads a contract PDF and within 30 seconds sees a structured breakdown of every clause that matters: what it says, where it appears in the document, and how confident the AI is in its reading. If something looks off, the user can click through to the exact sentence it came from. And when they have a specific question, they can ask it in plain English and get an answer grounded in the actual document.
+You are building **your idea(ContractIQ)** — a web app where a user uploads a contract PDF and within 30 seconds sees a structured breakdown of every clause that matters: what it says, where it appears in the document, and how confident the AI is in its reading. If something looks off, the user can click through to the exact sentence it came from. And when they have a specific question, they can ask it in plain English and get an answer grounded in the actual document.
 
 The tool doesn't replace a lawyer. It gives people enough understanding to know when they need one.
 
@@ -48,7 +48,6 @@ The tool doesn't replace a lawyer. It gives people enough understanding to know 
 
 You won't write a single line of frontend or backend code in this lab. What you *will* produce:
 
-- A local clone of the starter repository, open and ready in VS Code
 - A clear mental model of the product, its users, and what "done" looks like
 - An understanding of the five Claude Code skills that drive the rest of the build
 - The design system (`docs/design.md`) that every screen will follow
