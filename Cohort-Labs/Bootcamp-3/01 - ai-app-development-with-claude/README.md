@@ -47,7 +47,7 @@ Lab 1: Planning        →   Lab 2: Building        →   Lab 3: Ship It
 
 ## What You Will Build
 
-**ContractIQ** — a production-ready AI application with:
+**Your IDEA (ContractIQ)** — a production-ready AI application with:
 
 - PDF upload and AI-powered contract analysis
 - Structured clause breakdown with page citations
