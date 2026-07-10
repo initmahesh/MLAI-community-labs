@@ -61,6 +61,8 @@ Type `/skills` in the chat or check the toolbar. If the skill is not showing, re
 
 ### Step 3 — Kick Things Off
 
+### Note : Add your resume as context
+
 Start the session with this prompt:
 
 ```
