@@ -76,7 +76,7 @@ Mahesh has provided you with a strategy template that will help you create your 
 2. Now , enter the following prompt:
 
 ```
-Based on the @Startegy for getting a AI role .pdf  template file and my resume @ Mahesh-Resume.pdf , create a comprehensive job strategy plan following the exact template structure provided in the document and store in a file.
+Based on the @Strategy for getting a AI role .pdf  template file and my resume @ Mahesh-Resume.pdf , create a comprehensive job strategy plan following the exact template structure provided in the document and store in a file.
 ```
 
 5. Claude Code will analyze your resume and the strategy template, then generate a personalized job interview strategy plan that follows the template structure
