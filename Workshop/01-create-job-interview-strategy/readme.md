@@ -66,7 +66,7 @@ Type `/skills` in the chat or check the toolbar. If the skill is not showing, re
 Start the session with this prompt:
 
 ```
-Help me create a job interview strategy
+Based on my resume help me create a job interview strategy
 ```
 
 Claude will confirm the skill is running and begin the intake conversation.
