@@ -124,106 +124,260 @@ Below are ready-to-run prompts you can paste directly into Claude. Each one tell
 
 ### YouTube Analytics
 
-**Channel Overview**
+The prompts below cover two scenarios: pulling data from **your own authenticated channel** and researching **competitor channels**. Replace the `[YOUR CHANNEL URL]` placeholder with your actual channel URL before running.
+
+> **Competitor channel example used in these prompts:** `https://www.youtube.com/@MaheshAIPMCommunity`
+
+> **Why do the prompts name specific tools like `YOUTUBE_LIST_USER_PLAYLISTS`?**
+>
+> Composio exposes 51 YouTube tools to Claude. Without a specific tool name, Claude has to guess which one to call and often picks wrong or loops through multiple tools before landing on the right one. Naming the tool explicitly:
+> 1. **Removes ambiguity** — Claude calls the right tool on the first try
+> 2. **Faster execution** — no trial-and-error loop through similar tools
+> 3. **Reproducible** — the prompt behaves the same way every time you run it
+> 4. **Educational** — you learn which tool maps to which intent
+
+---
+
+**My Channel Overview**
 ```
-Using Composio, pull my YouTube channel analytics and give me:
-- Total subscribers
-- Total views (all time)
-- Watch time (last 28 days)
-- Top 5 videos by view count with their titles, views, and like counts
+Using Composio, pull data for my YouTube channel:
+[YOUR CHANNEL URL]
+
+1. Use YOUTUBE_LIST_USER_PLAYLISTS to retrieve all playlists I own and list:
+   - Playlist name
+   - Number of videos
+   - Privacy status (public/private/unlisted)
+
+2. Use YOUTUBE_SEARCH_YOU_TUBE with my channel name and type "channel" to confirm:
+   - Channel title
+   - Channel ID
+   - Channel description
+   - Total video count
+
+Give me a summary of my channel's current content structure.
 
 Then:
-1. Get my YouTube channel name
-2. If a folder doesn't already exist at second-brain/projects/<channel-name>/, create it
-3. Save the full analytics data as a JSON file at:
-   second-brain/projects/<channel-name>/channel-overview.json
+1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
+2. Save all results as a JSON file at:
+   second-brain/projects/my-channel/channel-overview.json
 ```
 
-**Video Engagement Report**
+**My Video Inventory**
 ```
-Using Composio, fetch my last 10 YouTube videos and for each one collect:
-- Title
-- Published date
-- View count
-- Like count
-- Comment count
-- Engagement rate (likes + comments / views)
+Using Composio, fetch my full YouTube video library.
 
-Sort by engagement rate, highest first.
+1. Use YOUTUBE_LIST_USER_PLAYLISTS to get all my playlists
+2. For the "Uploads" playlist (and any others), list each video with:
+   - Video title
+   - Video ID
+   - Published date
+   - Playlist it belongs to
+
+Sort by most recently published. Flag the 5 most recent videos.
 
 Then:
-1. Get my YouTube channel name
-2. If a folder doesn't already exist at second-brain/projects/<channel-name>/, create it
-3. Save the full results as a JSON file at:
-   second-brain/projects/<channel-name>/video-engagement.json
+1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
+2. Save the full video inventory as a JSON file at:
+   second-brain/projects/my-channel/video-inventory.json
 ```
 
-**Comment Sentiment Snapshot**
+**My Playlist Structure Snapshot**
 ```
-Using Composio, pull the 20 most recent comments from my top-performing YouTube video.
-Summarize the overall sentiment, highlight the top 3 themes people are discussing,
-and flag any negative feedback worth responding to.
+Using Composio, map out the full playlist structure for my YouTube channel.
+
+1. Use YOUTUBE_LIST_USER_PLAYLISTS to get all playlists
+2. For each playlist return:
+   - Playlist title
+   - Playlist ID
+   - Video count
+   - Privacy status
+   - Description
+
+Then tell me: based on this structure, how is my content organized, and what gaps or opportunities do you see?
+
+Finally:
+1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
+2. Save the playlist data plus the insight as a JSON file at:
+   second-brain/projects/my-channel/playlist-structure.json
+```
+
+**My Subscriptions Landscape**
+```
+Using Composio, pull my YouTube subscription list to map the channels I follow.
+
+1. Use YOUTUBE_LIST_USER_SUBSCRIPTIONS to get all channels I'm subscribed to
+2. For each subscription return:
+   - Channel title
+   - Channel ID
+   - Subscription date (if available)
 
 Then:
-1. Get my YouTube channel name
-2. If a folder doesn't already exist at second-brain/projects/<channel-name>/, create it
-3. Save the raw comments plus the sentiment summary as a JSON file at:
-   second-brain/projects/<channel-name>/comment-sentiment.json
+- Count total subscriptions
+- Identify any channels in the AI, product management, or community space
+
+This maps what signals I'm already consuming and where to look for inspiration.
+
+Then:
+1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
+2. Save the full subscriptions list as a JSON file at:
+   second-brain/projects/my-channel/subscriptions.json
+```
+
+---
+
+**Competitor Channel Research**
+```
+Using Composio, research this competitor YouTube channel:
+https://www.youtube.com/@MaheshAIPMCommunity
+
+1. Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to find the channel
+2. From the results, extract:
+   - Channel title
+   - Channel ID
+   - Channel description
+   - Published date (when the channel was created)
+   - Thumbnail URL
+
+3. Use YOUTUBE_SEARCH_YOU_TUBE again with query "MaheshAIPMCommunity" and type "video" to find their 10 most recent videos:
+   - Video title, video ID, published date, description snippet
+
+4. Group videos by topic theme (e.g. AI tools, product management, tutorials, community)
+
+Then tell me:
+- What topics does this channel focus on?
+- How frequently do they publish?
+- What content angles are they covering that I could learn from or respond to?
+
+Finally:
+1. Create a folder at second-brain/projects/competitor-channels/ if it doesn't exist
+2. Save all data plus the analysis as a JSON file at:
+   second-brain/projects/competitor-channels/MaheshAIPMCommunity.json
+```
+
+**Competitor Video Topic Analysis**
+```
+Using Composio, do a deep topic analysis on this competitor channel:
+https://www.youtube.com/@MaheshAIPMCommunity
+
+1. Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity AI PM" and type "video"
+2. For each result collect:
+   - Video title
+   - Video ID
+   - Published date
+   - Description snippet
+
+3. Group by content theme and count videos per theme
+4. Identify the top 3 most-covered themes
+
+Then tell me:
+- What are the top 3 content themes this channel owns?
+- What titles or formats repeat most?
+- What gaps exist — topics they haven't covered that are relevant to this space?
+
+Then:
+1. Create a folder at second-brain/projects/competitor-channels/ if it doesn't exist
+2. Save the topic breakdown and gap analysis as a JSON file at:
+   second-brain/projects/competitor-channels/MaheshAIPMCommunity-topics.json
 ```
 
 ---
 
 ### LinkedIn Analytics
 
-**Profile & Page Performance**
+The prompts below target a **company page** as the data source. The example company used throughout is `mahesh-ai-pm-community` — swap the vanity name for any company page you want to pull from.
+
+> **Company page URL format:** `https://www.linkedin.com/company/<vanity-name>/`
+> Example: `https://www.linkedin.com/company/mahesh-ai-pm-community/`
+
+---
+
+**Company Page Overview**
 ```
-Using Composio, pull my LinkedIn page analytics and give me:
-- Follower count
-- Follower growth over the last 30 days
-- Top 5 posts by impressions with their content preview and engagement numbers
+Using Composio, pull data for the LinkedIn company page at:
+https://www.linkedin.com/company/mahesh-ai-pm-community/
+
+Use LINKEDIN_GET_COMPANY_INFO to find the company and retrieve its organization URN.
+Then use LINKEDIN_GET_NETWORK_SIZE to get the current follower count.
+
+Give me:
+- Company name
+- Organization URN
+- Total follower count
+- Page headline / description (if available)
 
 Then:
-1. Get my LinkedIn page or profile name
-2. If a folder doesn't already exist at second-brain/projects/<page-name>/, create it
-3. Save the full analytics data as a JSON file at:
-   second-brain/projects/<page-name>/page-performance.json
+1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
+2. Save all results as a JSON file at:
+   second-brain/projects/mahesh-ai-pm-community/company-overview.json
 ```
 
-**Post Engagement Report**
+**Company Post Engagement Report**
 ```
-Using Composio, fetch my last 10 LinkedIn posts and for each one collect:
-- Post preview (first 100 characters)
+Using Composio, pull share statistics for the LinkedIn company page:
+https://www.linkedin.com/company/mahesh-ai-pm-community/
+
+1. Use LINKEDIN_GET_COMPANY_INFO to resolve the organization URN
+2. Use LINKEDIN_GET_SHARE_STATS to pull post performance metrics
+
+For each post, collect:
+- Post preview (first 100 characters of content)
 - Published date
 - Impressions
-- Reactions
+- Clicks
+- Reactions (likes)
 - Comments
 - Shares
-- Engagement rate
+- Engagement rate (reactions + comments + shares / impressions)
 
 Sort by engagement rate, highest first.
 
 Then:
-1. Get my LinkedIn page or profile name
-2. If a folder doesn't already exist at second-brain/projects/<page-name>/, create it
-3. Save the full results as a JSON file at:
-   second-brain/projects/<page-name>/post-engagement.json
+1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
+2. Save the full results as a JSON file at:
+   second-brain/projects/mahesh-ai-pm-community/post-engagement.json
 ```
 
-**Audience Demographics Snapshot**
+**Company Page Statistics**
 ```
-Using Composio, pull my LinkedIn follower demographics:
-- Top 5 industries my followers work in
-- Top 5 job functions
-- Top 5 locations
+Using Composio, pull page view statistics for the LinkedIn company page:
+https://www.linkedin.com/company/mahesh-ai-pm-community/
 
-Then tell me: based on this audience, what type of content would likely
-perform best on my page?
+1. Use LINKEDIN_GET_COMPANY_INFO to resolve the organization URN
+2. Use LINKEDIN_GET_ORG_PAGE_STATS to retrieve page performance data
+
+Give me:
+- Total page views (lifetime)
+- Page views for the last 30 days
+- Custom button clicks (if any)
+- Breakdown by page section (Overview, About, Posts, etc.) if available
+
+Then tell me: based on this data, which section of the page is getting the most attention?
 
 Finally:
-1. Get my LinkedIn page or profile name
-2. If a folder doesn't already exist at second-brain/projects/<page-name>/, create it
-3. Save the demographics data plus the content recommendation as a JSON file at:
-   second-brain/projects/<page-name>/audience-demographics.json
+1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
+2. Save the statistics plus the insight as a JSON file at:
+   second-brain/projects/mahesh-ai-pm-community/page-stats.json
+```
+
+**Network Size Tracker**
+```
+Using Composio, check the current follower count for this LinkedIn company page:
+https://www.linkedin.com/company/mahesh-ai-pm-community/
+
+1. Use LINKEDIN_GET_COMPANY_INFO to get the organization URN
+2. Use LINKEDIN_GET_NETWORK_SIZE to get the follower count
+
+Return:
+- Company name
+- Organization URN
+- Current follower count
+- Timestamp of this snapshot
+
+Then:
+1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
+2. Append this snapshot to a JSON file at:
+   second-brain/projects/mahesh-ai-pm-community/follower-snapshots.json
+   (if the file exists, add a new entry to the array; if not, create it with the first entry)
 ```
 
 ---
