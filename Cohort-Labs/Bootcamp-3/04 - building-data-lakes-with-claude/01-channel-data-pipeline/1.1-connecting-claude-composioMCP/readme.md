@@ -1,5 +1,7 @@
 # Connecting Claude to Composio via MCP
 
+![image](./images/banner.png)
+
 ---
 
 ## What Is MCP?
@@ -51,6 +53,8 @@ Paste this prompt, replacing the placeholder with the URL you just copied:
 Run the following command in the terminal and add the Composio MCP server:
 
 <paste your MCP URL here>
+
+After running the command, complete the authentication process.
 ```
 
 Claude will run the command and register Composio as a connected tool.
@@ -118,6 +122,15 @@ Claude is no longer in a closed room. It now has a direct line to Composio — a
 The connection is live. Let's actually use it.
 
 Below are ready-to-run prompts you can paste directly into Claude. Each one tells Claude exactly what to fetch and how to structure the output. Try them one at a time — watch Claude reach out through Composio and come back with real data from your accounts.
+
+> **Before you start:** Add your `second-brain` folder to Claude so it can read and write files. You'll see how to do that in the image below.
+
+![Add second-brain folder to Claude](./images/4.png)
+
+> **Tip:** To save tokens, switch to the Sonnet model and set thinking to low before running these prompts.
+
+
+![Add second-brain folder to Claude](./images/6.png)
 
 ---
 
@@ -192,16 +205,20 @@ Combine all videos, deduplicate by video ID, then:
 - Identify the single highest-engagement video (most likes + comments)
 
 Finally:
-1. Create a folder at second-brain/raw/youtube/competitors/ if it doesn't exist
+1. Create a folder at second-brain/raw/ if it doesn't exist
 2. Save the full channel profile, stats, video list, theme breakdown, cadence data, and analysis as a single JSON file at:
-   second-brain/raw/youtube/competitors/MaheshAIPMCommunity.json
+   second-brain/raw/MaheshAIPMCommunity.json
 ```
+
+> **Note:** Claude will ask for permission before writing files — approve it when prompted. Once complete, you'll see the `raw/` folder in your second-brain updated with the fetched data.
+
+![Raw folder updated with fetched data](./images/7.png)
 
 ---
 
 ### LinkedIn Analytics
 
-> **Before running:** Find 3–5 of your recent LinkedIn posts, copy their links (three-dot menu → "Copy link to post"), extract the numeric ID from each URL, and format as `urn:li:share:<id>`. Replace `POST_URN_1`, `POST_URN_2`, etc. below with those values.
+> **Before running:** Find 3–5 of your recent LinkedIn posts, copy their links (three-dot menu → "Copy link to post"), extract the numeric ID from each URL, and format as `urn:li:share:<id>`. You'll paste those into the prompt below.
 
 **My LinkedIn Personal Profile Full Research**
 ```
@@ -266,12 +283,28 @@ Tell me:
 - What should I post more of based on this data?
 
 Finally:
-1. Create a folder at second-brain/raw/linkedin/my-profile/ if it doesn't exist
+1. Create a folder at second-brain/raw/ if it doesn't exist
 2. Save the full profile, images, all post content, reactions, engagement stats, and analysis as a single JSON file at:
-   second-brain/raw/linkedin/my-profile/full-research.json
+   second-brain/raw/LinkedIn-initmahesh.json
 ```
 
+
+
+
 ---
+
+### Adding Data Manually
+
+You don't have to fetch everything through Composio. You can also drop files directly into your `raw/` folder — for example, customer feedback exports, call transcripts, or survey results.
+
+For call transcripts specifically, you can automate this using the Zoom connector in Claude, which fetches transcripts directly. Note that the Zoom integration requires a **Business or Enterprise plan**.
+
+For everything else — just paste the file into `second-brain/raw/` and it will be picked up automatically when the push skill runs.
+
+---
+
+
+You might be thinking — do I need to come back to Claude every day and manually ask it to pull the data? No. That's exactly what the scheduler below solves. Set it once and it triggers itself automatically, fetching fresh data for you every day without any input from you but make sure your claude should be runing 24/7 for that .
 
 ### Daily Auto-Fetch Scheduler
 
@@ -334,6 +367,11 @@ Create both folder paths if they don't exist.
 
 Schedule this as a recurring cron job that runs automatically every day at 10:00 AM.
 ```
+
+
+![Add second-brain folder to Claude](./images/8.png)
+
+
 
 ---
 

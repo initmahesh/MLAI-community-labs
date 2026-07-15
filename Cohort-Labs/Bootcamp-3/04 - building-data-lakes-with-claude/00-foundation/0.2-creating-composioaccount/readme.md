@@ -50,8 +50,6 @@ You can sign up with Google or with an email and password — either works.
 
 If you signed up with email, check your inbox for a verification link. Click it to activate your account.
 
-![Email verification](./images/3.png)
-
 ---
 
 ## Step 4: Log Into Your Dashboard
