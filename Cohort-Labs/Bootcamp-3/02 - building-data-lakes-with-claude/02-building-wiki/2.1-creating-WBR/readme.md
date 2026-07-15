@@ -52,8 +52,6 @@ Open a Claude session with your `second-brain` folder added, then paste:
 run @second-brain/skill/build-wbr.md
 ```
 
-![image](./images/1.png)
-
 That's it. The skill handles everything — querying Snowflake, comparing week-over-week, writing the report, and saving it to the right place.
 
 ---
@@ -87,8 +85,11 @@ Any metric that dropped more than 10% week-over-week. Any company folder that ha
 Based on the week's data, one specific thing to do differently next week — derived from the patterns in the numbers.
 
 
+![image](./images/1.png)
 
-> **Note:** The WBR becomes most valuable once you have a few weeks of data accumulated in Snowflake. If you've just set up the pipeline, run it for a week or two first — then come back and the report will have real week-over-week comparisons to show. In the meantime, you can use this same setup to create an **EBR (Executive Business Review)** — a one-time snapshot of all your data in one place, without needing historical comparison.
+> **Note:** The WBR becomes most valuable once you have a few weeks of data accumulated in Snowflake. If you've just set up the pipeline,run it for a week or two first — then come back and the report will have real week-over-weekcomparisons to show. In the meantime, you canuse this same setup to create an **EBR (Execu
+tive Business Review)** — a one-time snapshotof all your data in one place, without needing historical comparison.
+
 
 ---
 
@@ -180,38 +181,4 @@ The discipline isn't in writing the review. The discipline is in reading it.
 
 ---
 
----
-
-## What You've Learned
-
-- What a WBR is and why Amazon's "data speaks first" principle makes it powerful
-- How the `build-wiki.md` skill compiles your Snowflake data into a structured weekly report
-- What the 6 WBR sections cover: summary, channel performance, top content, company pulse, what needs attention, one recommendation
-- How the weekly scheduler runs every Monday at 8am — before the daily fetch — so the report covers a clean full week
-- That every WBR is saved with a date stamp, building an archive you can query for long-term trends
-
----
-
-## You've Completed the Module
-
-You've built a full data pipeline from scratch — channels connected, data flowing into Snowflake, a wiki that maintains itself, and a weekly review that arrives before your week starts. Here's what you've built end to end:
-
-```
-YouTube + LinkedIn
-       ↓  (Composio MCP)
-    Claude pulls data
-       ↓
-    second-brain/raw/
-       ↓  (push skill, 6am daily)
-    Snowflake (SECOND_BRAIN database)
-       ↓  (build-wiki skill, 12pm daily)
-    second-brain/wiki/
-       ↓  (build-wbr skill, 8am Monday)
-    second-brain/wiki/wbr/YYYY-MM-DD.md
-```
-
-Every step runs automatically. You set it up once.
-
----
-
-[← Back to module index](../../README.md)
+[← Back to module index](../README.md)
