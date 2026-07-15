@@ -16,24 +16,25 @@ This is why we set up a **Second Brain** before doing anything.
 
 The folder we're creating is called `second-brain`.
 
-It's not just a catchy name. The idea comes from the personal knowledge management world a "second brain" is a trusted external system where you store everything you're working on, so your actual brain doesn't have to hold it all.
+It's not just a catchy name. The idea comes from the personal knowledge management world — a "second brain" is a trusted external system where you store everything you're working on, so your actual brain doesn't have to hold it all.
 
 For us, it means one folder that contains:
 
-- Everything Claude needs to understand the current project
-- A place for active work
-- A place for things that are done but worth keeping
+- A place for raw channel data as it comes in
+- A place for structured company and project information
+- A place for call and meeting transcripts
+- A place for completed work worth keeping
 
 Here's the structure we're building today:
 
 ```
 second-brain/
+  ├── raw/
   ├── projects/
-  ├── CLAUDE.md
   └── Archive/
 ```
 
-Three things. That's it. Let's build them.
+Four folders. That's it. Let's build them.
 
 ---
 
@@ -49,40 +50,87 @@ This is the root of your workspace. Everything we build in this module will live
 
 ---
 
-## Step 2: Create the `projects` Subfolder
+## Step 2: Create the `raw` Subfolder
+
+```bash
+mkdir second-brain/raw
+```
+
+This is where your channel data lands — straight from the source, untouched.
+
+Every time you pull data from LinkedIn, YouTube, or any other channel using Composio, it gets stored here first. Raw data is never modified — it's your source of truth. If something goes wrong downstream in a pipeline, you always have the original to fall back on.
+
+```
+second-brain/raw/
+  ├── linkedin/
+  ├── youtube/
+  └── ...
+```
+
+Think of `raw` as the loading dock: data arrives here before it gets processed or analysed.
+
+---
+
+## Step 3: Create the `projects` Subfolder
 
 ```bash
 mkdir second-brain/projects
 ```
 
-This is where active work lives. When we start building data pipelines, ingestion scripts, and analysis notebooks — they go here.
+This is where structured company and project information lives.
 
-The rule is simple: if you're actively working on it, it's in `projects`.
+Once raw data has been processed, the outputs go here — organised by company or project. Company overviews, follower snapshots, engagement reports, competitor analyses — anything that has been shaped into something useful belongs in `projects`.
 
----
-
-## Step 3: Create the `CLAUDE.md` File
-
-```bash
-touch second-brain/CLAUDE.md
+```
+second-brain/projects/
+  └── OngoingProjects/
+      ├── allneurons/
+      │   ├── company-overview.json
+      │   ├── post-engagement.json
+      │   ├── follower-snapshots.json
+      │   └── page-stats.json
+      ├── maven/
+      │   ├── company-overview.json
+      │   ├── post-engagement.json
+      │   ├── follower-snapshots.json
+      │   └── page-stats.json
+      └── legalgraph/
+          ├── company-overview.json
+          ├── post-engagement.json
+          ├── follower-snapshots.json
+          └── page-stats.json
 ```
 
-This file is how you talk to Claude at the project level.
+The rule: raw data lives in `raw`, processed and structured data lives in `projects`.
 
-`CLAUDE.md` is a special file that Claude reads automatically when you open a project. You can use it to tell Claude:
+To create this structure run:
 
-- What this project is about
-- What conventions to follow
-- What tools are available
-- What to do and what to avoid
+```bash
+mkdir -p second-brain/projects/OngoingProjects/allneurons
+mkdir -p second-brain/projects/OngoingProjects/maven
+mkdir -p second-brain/projects/OngoingProjects/legalgraph
+```
 
-Right now it's empty. We'll fill it in as the course progresses. But creating it now means Claude will start looking for it from the very first session.
+Each company folder follows the same pattern — one JSON file per data type. When you run the LinkedIn prompts from the previous lesson, point the save path to the matching company folder here.
 
-> **Why does this matter?** Without a `CLAUDE.md`, Claude starts every session with zero context about your project. With one, it walks in already briefed — like a team member who read the onboarding doc before their first day.
+For example, when Claude saves company data for allneurons, the path will be:
+`second-brain/projects/OngoingProjects/allneurons/company-overview.json`
 
 ---
 
-## Step 4: Create the `Archive` Subfolder
+## Step 4: Create the `Calltranscript` Subfolder
+
+```bash
+mkdir second-brain/Calltranscript
+```
+
+This is where call and meeting transcripts live.
+
+Sales calls, customer interviews, team meetings, demo recordings — any transcript that might feed into your pipeline or analysis goes here. Having a dedicated folder means Claude can reference transcripts directly when summarising, extracting insights, or building context for a project.
+
+---
+
+## Step 5: Create the `Archive` Subfolder
 
 ```bash
 mkdir second-brain/Archive
@@ -108,7 +156,7 @@ You should see:
 
 ```
 second-brain/:
-Archive  CLAUDE.md  projects
+Archive  Calltranscript  projects  raw
 ```
 
 That's your workspace. Clean, intentional, and ready for Claude to work inside.
@@ -123,14 +171,14 @@ In any serious engineering organization, workspace structure is a first-class de
 
 What we just built follows the same logic:
 
-| Folder / File | Purpose |
-|---------------|---------|
-| `projects/` | Active work — what's being built right now |
-| `CLAUDE.md` | Project-level instructions for Claude |
+| Folder | Purpose |
+|--------|---------|
+| `raw/` | Channel data straight from the source — LinkedIn, YouTube, and other platforms |
+| `projects/` | Processed outputs organised by company — overviews, reports, competitor analyses |
+| `Calltranscript/` | Call and meeting transcripts for analysis and context |
 | `Archive/` | Completed work — out of the way but not gone |
 
 The specific names don't matter as much as the habit: **every project gets a home before it gets code.**
-
 
 ---
 

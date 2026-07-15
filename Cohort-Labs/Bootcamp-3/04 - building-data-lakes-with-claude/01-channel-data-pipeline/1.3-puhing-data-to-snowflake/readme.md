@@ -2,228 +2,215 @@
 
 ---
 
-Look at your `projects` folder right now.
+You've pulled data from YouTube and LinkedIn. It's sitting in your `second-brain/raw/` folder — structured, date-stamped, ready.
 
-It has JSON files. YouTube analytics. LinkedIn posts. Maybe some engagement data. All collected, all structured, all sitting there.
+Now it's time to make it permanent.
 
-But none of it is in Snowflake yet.
+Right now that data only exists on your local machine. It can't be queried across time. It can't be shared with a teammate. It can't power a report next month. To do any of that, it needs to live in Snowflake.
 
-That data is one step away from becoming a real data lake — queryable, historical, permanent. The last step is pushing it in. And not just pushing it blindly — pushing it intelligently: creating the right tables, handling new data types automatically, and cleaning up the workspace when it's done.
-
-That's what this lesson is about.
+This lesson is about pushing everything — raw channel data and processed project data — into your Snowflake data lake in one prompt.
 
 ---
 
-## The Problem With Just "Pushing Data"
+## What We're Pushing
 
-Pushing data to a database sounds simple. In practice, it involves a lot of decisions:
-
-- What database do we write to?
-- Does the table already exist?
-- If not, what should the schema look like?
-- What if a new channel type appears — CSV, a new platform?
-- How do we avoid duplicating rows we already inserted?
-- What happens to the local files after we push them?
-
-If you hand Claude a raw instruction like "push my data to Snowflake," it'll do its best — but it'll guess at all of these. Different answers every time. Tables with different column names. Duplicated records. Files left behind cluttering your workspace.
-
-What we need is a **Skill** — a set of instructions Claude follows every time, consistently, so the pipeline behaves the same whether you run it today or six months from now.
-
----
-
-## Skills as Pipeline Instructions
-
-A Skill is a file that contains a complete, reusable set of instructions for Claude.
-
-Think of it like handing a new team member a standard operating procedure. They read it once and they know exactly what to do — in what order, what to create, what to check, what to update. You don't have to explain it from scratch every time.
-
-The Skill we're using today is called `dynamic-snowflake-ingestion`. Here's what it does every time you run it:
-
-```
-1. Check the projects/ folder for data files
-      ↓
-2. Connect to Snowflake, create database if it doesn't exist
-      ↓
-3. For each data type (YouTube, LinkedIn, CSV...)
-   create the right table if it doesn't exist
-      ↓
-4. Insert the data — no duplicates
-      ↓
-5. Update the Skill file with schema info
-   so next run it already knows the structure
-      ↓
-6. Move all processed files to Archive/
-```
-
-Notice step 5 — the Skill updates itself. After the first run, it knows your database name, your table names, your column schemas. The second run is faster and smarter than the first. That's a self-improving pipeline.
-
----
-
-## Before You Start
-
-Make sure you're working inside your `second-brain` folder. Everything in this lesson — skills, projects, archive — is relative to that folder.
-
-If you're not sure where you are, ask Claude:
-
-```
-What is my current working directory?
-```
-
-It should show a path ending in `second-brain`.
-
----
-
-## Step 1: Check Your Snowflake Connection
-
-Before pushing anything, confirm that Claude can actually reach Snowflake through Composio.
-
-Open Claude and run this prompt:
-
-```
-Check if I have an active Snowflake connection through Composio.
-If yes, tell me which account it's connected to.
-If no, tell me what's missing.
-```
-
-You should see confirmation that the connection is live. If not, go back to lesson 1.2 and re-check your Composio setup.
-
----
-
-## Step 2: Create a `skills` Folder in Your Second Brain
-
-We need a home for skills inside your workspace so create a new folder inside the second-brain with name skills
-
-This is where all Claude Skills for this project will live. By keeping them inside `second-brain`, Claude can find and read them automatically when you reference them in a prompt.
-
-Your workspace now looks like this:
+By this point your `second-brain` folder has two types of data worth storing:
 
 ```
 second-brain/
-  ├── projects/         ← your data files live here
-  ├── skills/           ← skills live here  ← new
-  ├── CLAUDE.md
-  └── Archive/
+  ├── raw/                          ← channel data straight from the source
+  │   ├── youtube/
+  │   │   ├── competitors/
+  │   │   │   └── MaheshAIPMCommunity.json
+  │   │   └── daily/
+  │   │       └── YYYY-MM-DD.json
+  │   └── linkedin/
+  │       ├── my-profile/
+  │       │   └── full-research.json
+  │       └── daily/
+  │           └── YYYY-MM-DD.json
+  └── projects/                     ← processed company and project data
+      └── OngoingProjects/
+          ├── allneurons/
+          ├── maven/
+          └── legalgraph/
+```
+
+Both folders go to Snowflake. The difference is what happens after:
+
+| Folder | After push |
+|--------|-----------|
+| `raw/` | Moves to `Archive/` — the push is complete, the original is preserved |
+| `projects/` | Stays in place — this is live working data that continues to be updated |
+
+---
+
+## How This Works: The Skill File
+
+Instead of writing out every Snowflake table and insert command by hand, we use a **skill file**.
+
+A skill file is a reusable set of instructions stored in your `second-brain` folder. Claude reads it at the start of the prompt and knows exactly what to do — which tables to create, how to structure the data, what to log, and what to do when the push is complete.
+
+The skill we're using lives at:
+
+```
+second-brain/skill/push-data-to-snowflake.md
+```
+
+When you reference it in a prompt with `@second-brain/skill/push-data-to-snowflake.md`, Claude loads those instructions and executes them against your current data. You don't need to explain the schema every time — the skill handles it.
+
+---
+
+## Push Your Data to Snowflake
+
+Paste this prompt into Claude:
+
+```
+@second-brain/skill/push-data-to-snowflake.md
+
+Push all data from the second-brain folder to Snowflake using the Composio MCP server.
+
+Step 1 — Push Raw Data
+Scan everything inside second-brain/raw/ and push each JSON file to the corresponding Snowflake table.
+For each file:
+- Detect the source (youtube or linkedin) and the data type (competitors, daily, my-profile)
+- Create the table in Snowflake if it does not exist
+- Insert the data as a new row with a timestamp of when the push ran
+- Log the file path and row count after each successful insert
+
+Step 2 — Push Project Data
+Scan everything inside second-brain/projects/OngoingProjects/ and push each JSON file to Snowflake.
+For each company folder (allneurons, maven, legalgraph):
+- Push company-overview.json, post-engagement.json, follower-snapshots.json, and page-stats.json
+- Create the table if it does not exist
+- Insert the data with the company name and a timestamp
+- Log each successful insert
+
+Step 3 — Archive Raw Data
+Once all raw files have been pushed successfully:
+- Move everything from second-brain/raw/ to second-brain/Archive/raw/
+- Preserve the original folder structure inside Archive
+- Do not move or delete anything from second-brain/projects/
+
+Step 4 — Summary
+After everything is complete, tell me:
+- How many files were pushed total
+- Which Snowflake tables were created or updated
+- Which files were archived
+- If any file failed to push, list it with the reason
 ```
 
 ---
 
-## Step 3: Add the Skill File
-
-Download the `dynamic-snowflake-ingestion` skill file and place it inside `second-brain/skills/`.
-
-- [Download the skill →](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQBDcdh8Vfx4TKiGFk_GjPtPAV7sruWexnM8tBsjQBx0OPI?e=A8WT5p)
-
-Once it's there, your skills folder should look like this:
-
-```
-second-brain/skills/
-  └── dynamic-snowflake-ingestion.md
-```
-
----
-
-> **What's inside this Skill file?**
+> **Why move raw to Archive after pushing?**
 >
-> The Skill contains detailed instructions that tell Claude:
-> - What database to use (`company-second-brain`)
-> - How to detect the data type of each file (YouTube, LinkedIn, CSV)
-> - What table schema to create for each type
-> - How to check if a table already exists before creating it
-> - How to update itself after the first run so schemas are remembered
-> - How to move files to `Archive/` once they've been successfully pushed
->
-> You don't need to edit it. Claude reads it and follows it.
+> Once data is in Snowflake, keeping it in `raw/` creates noise. The next pipeline run will generate a new file with today's date — and you don't want last week's file sitting alongside it pretending to be current. Moving it to `Archive/` means your `raw/` folder always contains only unprocessed data. Clean input. No ambiguity.
 
 ---
 
-## Step 4: Push the Data to Snowflake
+## What Snowflake Looks Like After the Push
 
-Now open Claude, make sure you're in your `second-brain` folder, and run this prompt:
+Once Claude finishes, open your Snowflake account and go to **Data → Databases**. You should see tables created for each data type:
 
+| Table | Source |
+|-------|--------|
+| `YOUTUBE_COMPETITORS` | `raw/youtube/competitors/` |
+| `YOUTUBE_DAILY` | `raw/youtube/daily/` |
+| `LINKEDIN_MY_PROFILE` | `raw/linkedin/my-profile/` |
+| `LINKEDIN_DAILY` | `raw/linkedin/daily/` |
+| `PROJECTS_COMPANY_OVERVIEW` | `projects/OngoingProjects/*/company-overview.json` |
+| `PROJECTS_POST_ENGAGEMENT` | `projects/OngoingProjects/*/post-engagement.json` |
+| `PROJECTS_FOLLOWER_SNAPSHOTS` | `projects/OngoingProjects/*/follower-snapshots.json` |
+| `PROJECTS_PAGE_STATS` | `projects/OngoingProjects/*/page-stats.json` |
+
+Every push adds a new row — so over time you'll have a full historical record of how your channels and projects have changed.
+
+---
+
+## Auto-Sync Scheduler: Push New Files to Snowflake Every Morning
+
+Running the push manually works — but the real power is when it happens automatically.
+
+The scheduler below runs every morning at 6:00 AM using Claude Code's built-in scheduler. It scans both folders, detects any files added since the last run, pushes only the new ones to Snowflake, and archives raw files once they're safely stored. Nothing runs if there's nothing new.
+
+**Set Up Daily Snowflake Sync at 6am**
 ```
-Use the projects folder to push data to Snowflake.
-Use the skill @dynamic-snowflake-ingestion
+Using Claude Code's built-in scheduler, set up a daily job that runs every morning at 6:00 AM. Use the Composio MCP server to push any new data to Snowflake.
+
+Step 1 — Scan for New Files
+Check both folders for files that have been added since the last successful push:
+- second-brain/raw/ (all subfolders)
+- second-brain/projects/OngoingProjects/ (all company subfolders)
+
+A file is considered new if it has not already been pushed to Snowflake in a previous run.
+Skip any file that was already pushed — do not create duplicate rows.
+
+Step 2 — Push New Raw Files
+For each new file found in second-brain/raw/:
+- Detect the source (youtube or linkedin) and data type (competitors, daily, my-profile)
+- Create the Snowflake table if it does not exist
+- Insert the data as a new row with a timestamp of when the push ran
+- Log the file name, table name, and row count
+
+Step 3 — Push New Project Files
+For each new file found in second-brain/projects/OngoingProjects/:
+- Detect the company name and file type (company-overview, post-engagement, follower-snapshots, page-stats)
+- Create the Snowflake table if it does not exist
+- Insert the data with the company name and a timestamp
+- Log each successful insert
+
+Step 4 — Archive Pushed Raw Files
+Once all new raw files have been successfully pushed:
+- Move them from second-brain/raw/ to second-brain/Archive/raw/
+- Preserve the original subfolder structure inside Archive
+- Do not touch second-brain/projects/
+
+Step 5 — Summary Log
+After the run completes, print:
+- Date and time the job ran
+- How many new files were found
+- How many were pushed successfully
+- Which Snowflake tables were updated
+- Any files that failed, with the reason
+- If no new files were found, log: "No new files — nothing to push."
+
+Schedule this as a recurring cron job that runs automatically every day at 6:00 AM.
 ```
 
-Claude will:
-
-1. Read the Skill file for instructions
-2. Scan your `projects/` folder for all data files
-3. Connect to Snowflake via Composio
-4. Create the `company-second-brain` database if it doesn't exist
-5. For each data file, determine the type and create the appropriate table if needed
-6. Insert the data
-7. Update the Skill file with any new schema information
-8. Move all processed files from `projects/` to `Archive/`
-
-When it's done, your `projects/` folder will be empty and your data will be in Snowflake.
-
----
-
-## What Just Happened — Behind the Scenes
-
-Let's break down what Claude actually did during that one prompt.
-
-**Table creation logic:**
-
-| Data type | Table created |
-|-----------|--------------|
-| YouTube channel analytics | `youtube_channel_overview` |
-| YouTube video engagement | `youtube_video_engagement` |
-| LinkedIn page performance | `linkedin_page_performance` |
-| LinkedIn post engagement | `linkedin_post_engagement` |
-| CSV file | Table named after the filename |
-
-If a table already existed from a previous run, Claude skipped creation and went straight to inserting new rows.
-
-**Self-updating behavior:**
-
-After the first run, open `second-brain/skills/dynamic-snowflake-ingestion.md`. You'll see it now contains your database name and the schemas of the tables that were created. The next time you run the same prompt, Claude won't create anything from scratch — it'll use what it already knows.
-
-**Archive cleanup:**
-
-Every file that was in `projects/` is now in `Archive/`. Your workspace is clean and ready for the next pipeline run.
-
----
-
-## Verify the Data in Snowflake
-
-Log into your Snowflake account and go to **Data → Databases**.
-
-You should see `COMPANY-SECOND-BRAIN` listed as a new database.
-
-Open it and browse the tables. Click any table → **Data Preview** to confirm your records are there.
+> **Why 6am?** The daily data fetch (set up in lesson 1.1) runs at 10am. By running the Snowflake sync at 6am, you're pushing any files that landed the previous day before the new day's fetch kicks off — keeping the pipeline clean and in sequence.
 
 ---
 
 ## How Real Teams Think About This
 
-In a production data pipeline, data engineers obsess over three things:
+In production data pipelines, there's a pattern called **ELT — Extract, Load, Transform**.
 
-**Idempotency** — running the pipeline twice shouldn't create duplicate data. Our Skill handles this by checking what already exists before inserting.
+- **Extract** — pull the data from its source (you did this with YouTube and LinkedIn via Composio)
+- **Load** — push it into the warehouse as-is (that's what this lesson does)
+- **Transform** — reshape and analyze it inside the warehouse (that comes later)
 
-**Schema management** — as data sources evolve, tables need to evolve too. Our Skill updates itself with new schemas so future runs stay consistent.
+Most teams separate these stages deliberately. Loading raw data first means you always have the original if a transform goes wrong. You can re-run the transform without re-fetching from the source API.
 
-**Observability** — after a run, you should be able to tell exactly what happened: what was inserted, what was skipped, what failed. Claude's response after running the Skill gives you that summary.
-
-The `dynamic-snowflake-ingestion` Skill embodies all three. It's not just a push script — it's a self-maintaining pipeline component.
-
-```
-
-Your data is now in Snowflake. The pipeline is complete end to end.
+What you've built here follows that same logic: raw data lands in `raw/`, gets pushed to Snowflake unmodified, then moves to `Archive/`. The warehouse becomes the source of truth. Everything downstream queries Snowflake — nothing queries a local file.
 
 ---
 
-## Summary
+## What's Next
 
-You did four things:
+Your data is in Snowflake. Now it can be queried, compared across time, and shared across your team.
 
-1. Created a `skills/` folder inside your second brain
-2. Added the `dynamic-snowflake-ingestion` Skill
-3. Ran a single prompt that pushed all your channel data into Snowflake
-4. Watched the Skill clean up your workspace by moving files to Archive
-
-That one prompt replaced what would otherwise be a custom ETL script, a schema migration tool, a deduplication check, and a file cleanup job.
+In the next lesson, we'll write SQL queries directly from Claude to start pulling insights out of what you've built — trends, comparisons, and reports that would have taken hours to produce manually.
 
 ---
 
+## Claude Concepts Covered in This Lesson
+
+| Concept | Where it appeared | Learn more |
+|---------|-------------------|------------|
+| **Skill files** | **How This Works** — *"A skill file is a reusable set of instructions stored in your second-brain folder."* | [Claude Code slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) |
+| **MCP Tool Use** | **Push Your Data** — *"Push all data from the second-brain folder to Snowflake using the Composio MCP server."* | [MCP Documentation](https://docs.anthropic.com/en/docs/claude-code/mcp) |
+| **File References** | **How This Works** — *"When you reference it in a prompt with @second-brain/skill/push-data-to-snowflake.md"* | [Claude Code Overview](https://docs.anthropic.com/en/docs/claude-code) |
+
+---
+
+[← Back to module index](../README.md)

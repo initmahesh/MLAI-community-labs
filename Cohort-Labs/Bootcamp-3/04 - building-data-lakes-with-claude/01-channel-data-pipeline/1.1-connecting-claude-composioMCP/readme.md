@@ -10,7 +10,7 @@ MCP stands for **Model Context Protocol**. It's the standard language Claude use
 
 Without MCP, Claude is limited to what you type into the chat. With MCP, Claude can reach out to real systems — write to a database, pull from an API, trigger an action in an external tool — all within a single conversation.
 
-Composio acts as the MCP server. It's the endpoint Claude will call every time it needs to interact with Snowflake, YouTube, or LinkedIn or diff chanels.
+Composio acts as the MCP server. It's the endpoint Claude will call every time it needs to interact with Snowflake, YouTube, or LinkedIn or different channels.
 
 ```
 Claude
@@ -63,7 +63,7 @@ Once it does, Claude knows where Composio lives. From this point on, Claude can 
 
 > **What just happened?**
 >
-> Claude ran a terminal command that registered Composio's MCP endpoint in its tool configuration. This is a one-time setup step — you don't need to repeat it in future sessions. Claude will remember this connection.
+> Claude ran a terminal command that registered Composio's MCP endpoint in its tool configuration. This is a one-time setup step — you do not need to repeat it in future sessions. Claude will remember this connection.
 
 ---
 
@@ -72,8 +72,6 @@ Once it does, Claude knows where Composio lives. From this point on, Claude can 
 The last step is giving Claude permission to actually use the connection.
 
 After the command runs, Claude will open a browser window asking you to authorize it. Follow the prompts and approve the access.
-
-
 
 Once you approve, the connection is live.
 
@@ -101,7 +99,8 @@ Claude can now reach Composio on demand. Composio already holds your authenticat
 
 This is exactly what a data engineering team sets up before they write a single line of pipeline code. Authentication first. Integration layer second. Logic third.
 
--
+---
+
 ## Summary
 
 You've done three things that matter:
@@ -124,11 +123,7 @@ Below are ready-to-run prompts you can paste directly into Claude. Each one tell
 
 ### YouTube Analytics
 
-The prompts below cover two scenarios: pulling data from **your own authenticated channel** and researching **competitor channels**. Replace the `[YOUR CHANNEL URL]` placeholder with your actual channel URL before running.
-
-> **Competitor channel example used in these prompts:** `https://www.youtube.com/@MaheshAIPMCommunity`
-
-> **Why do the prompts name specific tools like `YOUTUBE_LIST_USER_PLAYLISTS`?**
+> **Why do these prompts name specific tools like `YOUTUBE_SEARCH_YOU_TUBE`?**
 >
 > Composio exposes 51 YouTube tools to Claude. Without a specific tool name, Claude has to guess which one to call and often picks wrong or loops through multiple tools before landing on the right one. Naming the tool explicitly:
 > 1. **Removes ambiguity** — Claude calls the right tool on the first try
@@ -136,273 +131,209 @@ The prompts below cover two scenarios: pulling data from **your own authenticate
 > 3. **Reproducible** — the prompt behaves the same way every time you run it
 > 4. **Educational** — you learn which tool maps to which intent
 
----
+> **YouTube channel used in this prompt:** `https://www.youtube.com/@MaheshAIPMCommunity`
 
-**My Channel Overview**
+**Full Research + Topic Analysis**
 ```
-Using Composio, pull data for my YouTube channel:
-[YOUR CHANNEL URL]
-
-1. Use YOUTUBE_LIST_USER_PLAYLISTS to retrieve all playlists I own and list:
-   - Playlist name
-   - Number of videos
-   - Privacy status (public/private/unlisted)
-
-2. Use YOUTUBE_SEARCH_YOU_TUBE with my channel name and type "channel" to confirm:
-   - Channel title
-   - Channel ID
-   - Channel description
-   - Total video count
-
-Give me a summary of my channel's current content structure.
-
-Then:
-1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
-2. Save all results as a JSON file at:
-   second-brain/projects/my-channel/channel-overview.json
-```
-
-**My Video Inventory**
-```
-Using Composio, fetch my full YouTube video library.
-
-1. Use YOUTUBE_LIST_USER_PLAYLISTS to get all my playlists
-2. For the "Uploads" playlist (and any others), list each video with:
-   - Video title
-   - Video ID
-   - Published date
-   - Playlist it belongs to
-
-Sort by most recently published. Flag the 5 most recent videos.
-
-Then:
-1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
-2. Save the full video inventory as a JSON file at:
-   second-brain/projects/my-channel/video-inventory.json
-```
-
-**My Playlist Structure Snapshot**
-```
-Using Composio, map out the full playlist structure for my YouTube channel.
-
-1. Use YOUTUBE_LIST_USER_PLAYLISTS to get all playlists
-2. For each playlist return:
-   - Playlist title
-   - Playlist ID
-   - Video count
-   - Privacy status
-   - Description
-
-Then tell me: based on this structure, how is my content organized, and what gaps or opportunities do you see?
-
-Finally:
-1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
-2. Save the playlist data plus the insight as a JSON file at:
-   second-brain/projects/my-channel/playlist-structure.json
-```
-
-**My Subscriptions Landscape**
-```
-Using Composio, pull my YouTube subscription list to map the channels I follow.
-
-1. Use YOUTUBE_LIST_USER_SUBSCRIPTIONS to get all channels I'm subscribed to
-2. For each subscription return:
-   - Channel title
-   - Channel ID
-   - Subscription date (if available)
-
-Then:
-- Count total subscriptions
-- Identify any channels in the AI, product management, or community space
-
-This maps what signals I'm already consuming and where to look for inspiration.
-
-Then:
-1. Create a folder at second-brain/projects/my-channel/ if it doesn't exist
-2. Save the full subscriptions list as a JSON file at:
-   second-brain/projects/my-channel/subscriptions.json
-```
-
----
-
-**Competitor Channel Research**
-```
-Using Composio, research this competitor YouTube channel:
+Using Composio, do a full research and topic analysis on this YouTube channel:
 https://www.youtube.com/@MaheshAIPMCommunity
 
-1. Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to find the channel
-2. From the results, extract:
-   - Channel title
-   - Channel ID
-   - Channel description
-   - Published date (when the channel was created)
-   - Thumbnail URL
+Step 1 — Channel Profile
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to find the channel.
+Extract:
+- Channel title
+- Channel ID
+- Channel description
+- Published date (when the channel was created)
+- Thumbnail URL
 
-3. Use YOUTUBE_SEARCH_YOU_TUBE again with query "MaheshAIPMCommunity" and type "video" to find their 10 most recent videos:
-   - Video title, video ID, published date, description snippet
+Step 2 — Channel Stats + Recent Videos
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to get:
+- Subscriber count
+- Total video count
+- Total view count
 
-4. Group videos by topic theme (e.g. AI tools, product management, tutorials, community)
+Then use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "video" to find their 10 most recent videos.
+For each collect:
+- Video title
+- Video ID
+- Published date
+- Description snippet
+- Like count
+- Comment count
 
-Then tell me:
-- What topics does this channel focus on?
-- How frequently do they publish?
-- What content angles are they covering that I could learn from or respond to?
+Step 3 — Deep Topic Search
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity AI PM" and type "video".
+For each result collect:
+- Video title
+- Video ID
+- Published date
+- Description snippet
+- Like count
+- Comment count
+
+Step 4 — Shorts Search
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity shorts" and type "video".
+Collect the same fields. Note which videos appear to be Shorts.
+
+Step 5 — Publishing Cadence
+From all videos collected across Step 2, 3, and 4:
+- Sort by published date
+- Calculate the average number of days between uploads
+- Identify the most active publishing month
+- Note if they post Shorts vs long-form more frequently
+
+Step 6 — Analysis
+Combine all videos, deduplicate by video ID, then:
+- Group by content theme (e.g. AI tools, product management, tutorials, community, Shorts)
+- Count videos per theme
+- Identify the top 3 most-covered themes
+- Calculate average likes and comments per video
+- Identify the single highest-engagement video (most likes + comments)
 
 Finally:
-1. Create a folder at second-brain/projects/competitor-channels/ if it doesn't exist
-2. Save all data plus the analysis as a JSON file at:
-   second-brain/projects/competitor-channels/MaheshAIPMCommunity.json
-```
-
-**Competitor Video Topic Analysis**
-```
-Using Composio, do a deep topic analysis on this competitor channel:
-https://www.youtube.com/@MaheshAIPMCommunity
-
-1. Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity AI PM" and type "video"
-2. For each result collect:
-   - Video title
-   - Video ID
-   - Published date
-   - Description snippet
-
-3. Group by content theme and count videos per theme
-4. Identify the top 3 most-covered themes
-
-Then tell me:
-- What are the top 3 content themes this channel owns?
-- What titles or formats repeat most?
-- What gaps exist — topics they haven't covered that are relevant to this space?
-
-Then:
-1. Create a folder at second-brain/projects/competitor-channels/ if it doesn't exist
-2. Save the topic breakdown and gap analysis as a JSON file at:
-   second-brain/projects/competitor-channels/MaheshAIPMCommunity-topics.json
+1. Create a folder at second-brain/raw/youtube/competitors/ if it doesn't exist
+2. Save the full channel profile, stats, video list, theme breakdown, cadence data, and analysis as a single JSON file at:
+   second-brain/raw/youtube/competitors/MaheshAIPMCommunity.json
 ```
 
 ---
 
 ### LinkedIn Analytics
 
-The prompts below target a **company page** as the data source. The example company used throughout is `mahesh-ai-pm-community` — swap the vanity name for any company page you want to pull from.
+> **Before running:** Find 3–5 of your recent LinkedIn posts, copy their links (three-dot menu → "Copy link to post"), extract the numeric ID from each URL, and format as `urn:li:share:<id>`. Replace `POST_URN_1`, `POST_URN_2`, etc. below with those values.
 
-> **Company page URL format:** `https://www.linkedin.com/company/<vanity-name>/`
-> Example: `https://www.linkedin.com/company/mahesh-ai-pm-community/`
-
----
-
-**Company Page Overview**
+**My LinkedIn Personal Profile Full Research**
 ```
-Using Composio, pull data for the LinkedIn company page at:
-https://www.linkedin.com/company/mahesh-ai-pm-community/
+Using Composio, scrape everything available from my personal LinkedIn profile.
 
-Use LINKEDIN_GET_COMPANY_INFO to find the company and retrieve its organization URN.
-Then use LINKEDIN_GET_NETWORK_SIZE to get the current follower count.
+Step 1 — Full Profile
+Use LINKEDIN_GET_MY_INFO to retrieve every available field:
+- Full name
+- LinkedIn member URN
+- Headline
+- Profile picture URL
+- Vanity name (my custom LinkedIn URL handle)
+- Industry
+- Description / About section
+- Website (if listed)
+- Location (if available)
+- Current position / title (if available)
+- Number of connections (if available)
 
-Give me:
-- Company name
-- Organization URN
-- Total follower count
-- Page headline / description (if available)
+Step 2 — Profile Images
+Use LINKEDIN_GET_IMAGES to retrieve all images associated with my profile:
+- Image URN
+- Image URL (download URL)
+- Dimensions (width x height)
+- Status
 
-Then:
-1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
-2. Save all results as a JSON file at:
-   second-brain/projects/mahesh-ai-pm-community/company-overview.json
-```
-
-**Company Post Engagement Report**
-```
-Using Composio, pull share statistics for the LinkedIn company page:
-https://www.linkedin.com/company/mahesh-ai-pm-community/
-
-1. Use LINKEDIN_GET_COMPANY_INFO to resolve the organization URN
-2. Use LINKEDIN_GET_SHARE_STATS to pull post performance metrics
-
-For each post, collect:
-- Post preview (first 100 characters of content)
+Step 3 — Post Content
+For each post URN listed above, use LINKEDIN_GET_POST_CONTENT to retrieve:
+- Full post text
 - Published date
-- Impressions
-- Clicks
-- Reactions (likes)
-- Comments
-- Shares
-- Engagement rate (reactions + comments + shares / impressions)
+- Post type (text, image, article, video)
+- Any media attached
 
-Sort by engagement rate, highest first.
+Step 4 — Post Reactions
+For each post URN listed above, use LINKEDIN_LIST_REACTIONS to retrieve:
+- Total reaction count
+- Breakdown by reaction type (like, celebrate, support, love, insightful, curious)
+- Names and titles of people who reacted (if available)
 
-Then:
-1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
-2. Save the full results as a JSON file at:
-   second-brain/projects/mahesh-ai-pm-community/post-engagement.json
-```
+Step 5 — Engagement Analysis
+From all posts collected in Step 3 and 4:
+- Calculate engagement per post (total reactions)
+- Rank posts from highest to lowest reactions
+- Identify the best performing post
+- Calculate average reactions per post
+- Identify what content type (text, image, article) gets the most reactions
+- Calculate publishing cadence (average days between posts based on published dates)
 
-**Company Page Statistics**
-```
-Using Composio, pull page view statistics for the LinkedIn company page:
-https://www.linkedin.com/company/mahesh-ai-pm-community/
+Step 6 — Audience Patterns
+From the reactor names and titles collected in Step 4:
+- Identify the most common job titles engaging with my content
+- Identify the most common industries
+- Note any patterns in who engages most
 
-1. Use LINKEDIN_GET_COMPANY_INFO to resolve the organization URN
-2. Use LINKEDIN_GET_ORG_PAGE_STATS to retrieve page performance data
-
-Give me:
-- Total page views (lifetime)
-- Page views for the last 30 days
-- Custom button clicks (if any)
-- Breakdown by page section (Overview, About, Posts, etc.) if available
-
-Then tell me: based on this data, which section of the page is getting the most attention?
+Step 7 — Analysis
+Tell me:
+- What does my full profile look like — is the headline, about, and website filled in?
+- Which of my posts got the most reactions and what made it stand out?
+- What content type performs best for me (text, image, article)?
+- Who is my audience — what roles and industries engage most?
+- What is my posting cadence and is it consistent?
+- What should I post more of based on this data?
 
 Finally:
-1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
-2. Save the statistics plus the insight as a JSON file at:
-   second-brain/projects/mahesh-ai-pm-community/page-stats.json
-```
-
-**Network Size Tracker**
-```
-Using Composio, check the current follower count for this LinkedIn company page:
-https://www.linkedin.com/company/mahesh-ai-pm-community/
-
-1. Use LINKEDIN_GET_COMPANY_INFO to get the organization URN
-2. Use LINKEDIN_GET_NETWORK_SIZE to get the follower count
-
-Return:
-- Company name
-- Organization URN
-- Current follower count
-- Timestamp of this snapshot
-
-Then:
-1. Create a folder at second-brain/projects/mahesh-ai-pm-community/ if it doesn't exist
-2. Append this snapshot to a JSON file at:
-   second-brain/projects/mahesh-ai-pm-community/follower-snapshots.json
-   (if the file exists, add a new entry to the array; if not, create it with the first entry)
+1. Create a folder at second-brain/raw/linkedin/my-profile/ if it doesn't exist
+2. Save the full profile, images, all post content, reactions, engagement stats, and analysis as a single JSON file at:
+   second-brain/raw/linkedin/my-profile/full-research.json
 ```
 
 ---
 
-### Combined Cross-Channel Report
+### Daily Auto-Fetch Scheduler
 
-Once both channels are pulling data, try this:
+> **What this does:** Uses Claude Code's built-in scheduler to set up a cron job that runs every day at 10:00 AM. Claude handles the scheduling — Composio handles the data fetching from YouTube and LinkedIn. Results land in your raw folder with a date stamp automatically.
 
+**Set Up Daily Data Fetch at 10am**
 ```
-Using Composio, pull the last 30 days of analytics from both my YouTube channel
-and my LinkedIn page. Then give me:
+Using Claude Code's built-in scheduler, set up a daily automated data fetch that runs every day at 10:00 AM. Use the Composio MCP server for all data fetching from YouTube and LinkedIn.
 
-1. A side-by-side comparison of total reach (views vs impressions)
-2. Which platform had higher engagement rate
-3. My top-performing piece of content on each platform
-4. One recommendation for where to focus more effort this month, and why
+Step 1 — YouTube Daily Fetch
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to get:
+- Channel title
+- Channel ID
+- Channel description
+- Published date (when the channel was created)
+- Thumbnail URL
+- Subscriber count
+- Total video count
+- Total view count
 
-Then:
-1. Get both the YouTube channel name and LinkedIn page name
-2. Create a shared folder at second-brain/projects/cross-channel/ if it doesn't exist
-3. Save the full combined report as a JSON file at:
-   second-brain/projects/cross-channel/30-day-report.json
+Then use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "video" to get the 10 most recent videos.
+For each video collect:
+- Video title
+- Video ID
+- Published date
+- Description snippet
+- Like count
+- Comment count
+
+Also run YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity shorts" and type "video" to capture any new Shorts.
+
+Step 2 — LinkedIn Daily Fetch
+Use LINKEDIN_GET_MY_INFO to retrieve:
+- Full name
+- LinkedIn member URN
+- Headline
+- Profile picture URL
+- Vanity name (my custom LinkedIn URL handle)
+- Industry
+- Description / About section
+- Website (if listed)
+- Location (if available)
+- Current position / title (if available)
+- Number of connections (if available)
+
+Then use LINKEDIN_GET_IMAGES to retrieve all images associated with my profile:
+- Image URN
+- Image URL (download URL)
+- Dimensions (width x height)
+- Status
+
+Step 3 — Save with Date Stamp
+After each fetch, save both results with today's date in the filename:
+- second-brain/raw/youtube/daily/YYYY-MM-DD.json
+- second-brain/raw/linkedin/daily/YYYY-MM-DD.json
+
+Where YYYY-MM-DD is the actual date the fetch runs (e.g. 2026-07-15).
+
+Create both folder paths if they don't exist.
+
+Schedule this as a recurring cron job that runs automatically every day at 10:00 AM.
 ```
-
-This is the kind of query that used to require a business analyst, a spreadsheet, and two hours of manual data pulling. Now it's one prompt — and the results are automatically saved to your project folder, ready for the next pipeline step.
 
 ---
 
@@ -424,10 +355,10 @@ In the next lesson, we'll take this further — building a proper data pipeline 
 
 | Concept | Where it appeared | Learn more |
 |---------|-------------------|------------|
-| **MCP (Model Context Protocol)** | **What Is MCP?** — *"MCP stands for Model Context Protocol. It's the standard language Claude uses to say: 'I want to use this tool — here's my request, here's what I need back.'"* | [MCP Documentation →](https://docs.anthropic.com/en/docs/claude-code/mcp) |
-| **MCP Server** | **What Is MCP?** — *"Composio acts as the MCP server. It's the endpoint Claude will call every time it needs to interact with Snowflake, YouTube, or LinkedIn."* | [Claude Code Overview →](https://docs.anthropic.com/en/docs/claude-code) |
-| **Tool Connections** | **Pull Your First Data** — *"When you run any of these prompts, Claude is calling Composio's MCP tools in real time."* | [Claude Code Integrations →](https://docs.anthropic.com/en/docs/claude-code) |
+| **MCP (Model Context Protocol)** | **What Is MCP?** — *"MCP stands for Model Context Protocol. It's the standard language Claude uses to say: 'I want to use this tool — here's my request, here's what I need back.'"* | [MCP Documentation](https://docs.anthropic.com/en/docs/claude-code/mcp) |
+| **MCP Server** | **What Is MCP?** — *"Composio acts as the MCP server. It's the endpoint Claude will call every time it needs to interact with Snowflake, YouTube, or LinkedIn."* | [Claude Code Overview](https://docs.anthropic.com/en/docs/claude-code) |
+| **Tool Connections** | **Pull Your First Data** — *"When you run any of these prompts, Claude is calling Composio's MCP tools in real time."* | [Claude Code Integrations](https://docs.anthropic.com/en/docs/claude-code) |
 
 ---
 
-[← Back to module index](../README.md)
+[Back to module index](../README.md)
