@@ -1,27 +1,27 @@
-# Building Data Lakes with Claude
+# Building Your Second Brain with Claude
 
 ---
 
 ## What We're Building
 
-By the end of this module, you'll have a fully automated data pipeline that runs itself.
+By the end of this module, you'll have a **Second Brain** — a fully automated knowledge system that builds and maintains itself.
 
-Every day, Claude pulls fresh data from your YouTube channel and LinkedIn profile. It pushes that data into a Snowflake data lake. It compiles everything into a structured wiki that stays current without any manual work. And every Monday morning, a Weekly Business Review lands automatically — showing you exactly what changed, what's working, and what needs attention.
+Every day, Claude pulls fresh data from your YouTube channel, LinkedIn profile, and Zoom meetings. It pushes that data into Snowflake. It compiles everything into a structured wiki that stays current without any manual work. And every Monday morning, a Weekly Business Review lands automatically — showing you exactly what changed, what's working, and what needs attention.
 
-You don't write pipeline code. You don't manage credentials. You don't manually update documents. You set it up once and it runs.
+You don't write pipeline code. You don't manage credentials. You don't manually update documents. You set it up once, and your Second Brain runs itself.
 
 ```
-YouTube + LinkedIn
-       ↓  (Composio MCP — 10am daily)
-    Claude pulls channel data
-       ↓
-    second-brain/raw/
-       ↓  (push skill — 6am daily)
-    Snowflake (SECOND_BRAIN database)
-       ↓  (wiki skill — 12pm daily)
-    second-brain/wiki/
-       ↓  (WBR skill — 8am Monday)
-    second-brain/wiki/wbr/YYYY-MM-DD.md
+YouTube + LinkedIn + Zoom
+         ↓  (Composio MCP — 10am daily)
+      Claude pulls channel data + transcripts
+         ↓
+      second-brain/raw/
+         ↓  (push skill — 6am daily)
+      Snowflake (SECOND_BRAIN database)
+         ↓  (wiki skill — 12pm daily)
+      second-brain/wiki/
+         ↓  (WBR skill — 8am Monday)
+      second-brain/wiki/wbr/YYYY-MM-DD.md
 ```
 
 ---
@@ -30,10 +30,11 @@ YouTube + LinkedIn
 
 - How to use **MCP (Model Context Protocol)** to connect Claude to real external systems
 - How to use **Composio** as the integration hub between Claude and your tools
-- How to build a **Snowflake data lake** that accumulates a historical record of your channels
+- How to build a **Second Brain** — a folder structure Claude reads and writes to as your personal knowledge layer
+- How to push **two types of data** to Snowflake: structured JSON (YouTube, LinkedIn) and raw files (Zoom transcripts)
 - How to write **skill files** — reusable Claude instructions that act like pipeline scripts
 - How to use **Claude's built-in scheduler** to run jobs automatically at set times
-- How to compile a **living wiki** from your data lake using Karpathy's personal knowledge OS pattern
+- How to compile a **living wiki** from your data using Karpathy's personal knowledge OS pattern
 - How to generate a **Weekly Business Review** automatically, with week-over-week comparisons
 
 ---
@@ -42,12 +43,13 @@ YouTube + LinkedIn
 
 | Tool | What it's for | Cost |
 |------|--------------|------|
-| **Claude Code** | The AI that runs your pipeline | Paid subscription |
+| **Claude Code** | The AI that runs your Second Brain | Paid subscription |
 | **Composio** | Integration hub connecting Claude to external tools | Free tier available |
-| **Snowflake** | Cloud data warehouse — your data lake | Free 30-day trial |
+| **Snowflake** | Cloud data warehouse — permanent storage for all your data | Free 30-day trial |
 | **Obsidian** | Desktop app for reading your wiki | Free |
 | **YouTube account** | The channel you want to track | Free |
 | **LinkedIn account** | The profile you want to track | Free |
+| **Zoom account** | Meeting transcripts (auto-fetch requires Business/Enterprise plan) | Free / Paid |
 
 ---
 
@@ -85,8 +87,8 @@ Once everything is set up, here's what runs automatically every day:
 
 | Time | What runs | What it does |
 |------|-----------|-------------|
-| **10:00 AM** | Daily data fetch | Pulls fresh YouTube and LinkedIn data into `raw/` |
-| **6:00 AM** (next day) | Snowflake push | Detects new files in `raw/` and `projects/`, pushes to Snowflake, archives raw files |
+| **10:00 AM** | Daily data fetch | Pulls fresh YouTube, LinkedIn, and Zoom data into `raw/` |
+| **6:00 AM** (next day) | Snowflake push | Detects new files in `raw/`, pushes JSON + transcripts to Snowflake, archives raw files |
 | **12:00 PM** | Wiki sync | Queries Snowflake for new data, updates only affected wiki pages |
 | **8:00 AM Monday** | Weekly WBR | Compiles the previous week's data into a full business review |
 

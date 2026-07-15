@@ -2,46 +2,48 @@
 
 ---
 
-You've pulled data from YouTube and LinkedIn. It's sitting in your `second-brain/raw/` folder — structured, date-stamped, ready.
+You've pulled data from YouTube and LinkedIn, and if you've been running calls, Zoom transcripts too. It's all sitting in your `second-brain/raw/` folder — structured, date-stamped, ready.
 
 Now it's time to make it permanent.
 
 Right now that data only exists on your local machine. It can't be queried across time. It can't be shared with a teammate. It can't power a report next month. To do any of that, it needs to live in Snowflake.
 
-This lesson is about pushing everything — raw channel data and processed project data — into your Snowflake data lake in one prompt.
+This lesson is about pushing everything into your Snowflake data lake in one prompt. And here's where it gets interesting — we're pushing **two different types of data**:
+
+- **Structured JSON** (YouTube, LinkedIn) — parsed field by field into Snowflake columns
+- **Raw files** (Zoom transcripts) — pushed as-is, stored as a full text blob in Snowflake
+
+Both end up in Snowflake. The difference is how they get there. Understanding this distinction is what separates a beginner data pipeline from a real one.
 
 ---
 
 ## What We're Pushing
 
-By this point your `second-brain` folder has two types of data worth storing:
+By this point your `second-brain` folder has data from three sources worth storing:
 
 ```
 second-brain/
-  ├── raw/                          ← channel data straight from the source
-  │   ├── youtube/
-  │   │   ├── competitors/
-  │   │   │   └── MaheshAIPMCommunity.json
-  │   │   └── daily/
-  │   │       └── YYYY-MM-DD.json
-  │   └── linkedin/
-  │       ├── my-profile/
-  │       │   └── full-research.json
-  │       └── daily/
-  │           └── YYYY-MM-DD.json
-  └── projects/                     ← processed company and project data
-      └── OngoingProjects/
-          ├── allneurons/
-          ├── maven/
-          └── legalgraph/
+  └── raw/                               ← all channel data straight from the source
+      ├── youtube/
+      │   └── daily/
+      │       └── YYYY-MM-DD.json        ← structured JSON (video title, views, likes)
+      ├── linkedin/
+      │   └── daily/
+      │       └── YYYY-MM-DD.json        ← structured JSON (post text, reactions)
+      └── zoom/
+          └── community-call-YYYY-MM-DD.txt  ← raw transcript file, pushed as-is
 ```
 
-Both folders go to Snowflake. The difference is what happens after:
+Everything in `raw/` goes to Snowflake. But not all data is the same:
 
-| Folder | After push |
-|--------|-----------|
-| `raw/` | Moves to `Archive/` — the push is complete, the original is preserved |
-| `projects/` | Stays in place — this is live working data that continues to be updated |
+| Data type | Example | How it's stored in Snowflake |
+|-----------|---------|------------------------------|
+| **Structured JSON** | YouTube, LinkedIn | Parsed into columns — one field per column |
+| **Raw file** | Zoom transcript | Stored as a text blob — the full file content in one column |
+
+> **This is the key insight of this lesson.** Snowflake can hold both. You don't have to restructure a transcript to store it — you push the file directly and query it later. This is how real data lakes work: ingest first, transform later.
+
+After the push, all files in `raw/` move to `Archive/` — keeping `raw/` clean for the next day's fetch.
 
 ---
 
@@ -68,33 +70,37 @@ Paste this prompt into Claude:
 ```
 @second-brain/skill/push-data-to-snowflake.md
 
-Push all data from the second-brain folder to Snowflake using the Composio MCP server.
+Push all data from second-brain/raw/ to Snowflake using the Composio MCP server.
 
-Step 1 — Push Raw Data
-Scan everything inside second-brain/raw/ and push each JSON file to the corresponding Snowflake table.
+Step 1 — Push Structured JSON (YouTube + LinkedIn)
+Scan second-brain/raw/youtube/ and second-brain/raw/linkedin/ for JSON files.
 For each file:
-- Detect the source (youtube or linkedin) and the data type (ex competitors, daily, my-profile)
-- Create the table in Snowflake if it does not exist
-- Insert the data as a new row with a timestamp of when the push ran
+- Detect the source (youtube or linkedin) and data type (daily, my-profile, etc.)
+- Create the Snowflake table if it does not exist
+- Insert the data as a new row, parsing each JSON field into the appropriate column
+- Add a pushed_at timestamp column with the current time
 - Log the file path and row count after each successful insert
 
-Step 2 — Push Project Data
-Scan everything inside second-brain/projects/OngoingProjects/ and push each JSON file to Snowflake.
-For each company folder (allneurons, maven, legalgraph):
-- Push all the data to snowflake 
-- Create the table if it does not exist
-- Insert the data with the company name and a timestamp
-- Log each successful insert
+Step 2 — Push Zoom Transcripts (Raw File)
+Scan second-brain/raw/zoom/ for any .txt transcript files.
+For each file:
+- Do NOT parse the content — push the full file as a raw text blob
+- Create a ZOOM_TRANSCRIPTS table in Snowflake if it does not exist, with these columns:
+  - meeting_title (extract from filename)
+  - meeting_date (extract from filename)
+  - transcript_text (the full file content)
+  - pushed_at (timestamp of when this push ran)
+- Insert one row per transcript file
+- Log the filename and confirm the insert
 
-Step 3 — Archive Raw Data
-Once all raw files have been pushed successfully:
+Step 3 — Archive All Pushed Files
+Once all files have been pushed successfully:
 - Move everything from second-brain/raw/ to second-brain/Archive/raw/
-- Preserve the original folder structure inside Archive
-- Do not move or delete anything from second-brain/projects/
+- Preserve the original subfolder structure inside Archive
 
 Step 4 — Summary
 After everything is complete, tell me:
-- How many files were pushed total
+- How many files were pushed total (JSON + transcripts)
 - Which Snowflake tables were created or updated
 - Which files were archived
 - If any file failed to push, list it with the reason
@@ -129,18 +135,20 @@ After everything is complete, tell me:
 
 Once Claude finishes, open your Snowflake account and go to **Data → Databases**. You should see tables created for each data type:
 
+**Type 1 — Structured JSON (parsed into columns)**
+
 | Table | Source |
 |-------|--------|
-| `YOUTUBE_COMPETITORS` | `raw/youtube/competitors/` |
-| `YOUTUBE_DAILY` | `raw/youtube/daily/` |
-| `LINKEDIN_MY_PROFILE` | `raw/linkedin/my-profile/` |
-| `LINKEDIN_DAILY` | `raw/linkedin/daily/` |
-| `PROJECTS_COMPANY_OVERVIEW` | `projects/OngoingProjects/*/company-overview.json` |
-| `PROJECTS_POST_ENGAGEMENT` | `projects/OngoingProjects/*/post-engagement.json` |
-| `PROJECTS_FOLLOWER_SNAPSHOTS` | `projects/OngoingProjects/*/follower-snapshots.json` |
-| `PROJECTS_PAGE_STATS` | `projects/OngoingProjects/*/page-stats.json` |
+| `YOUTUBE_DAILY` | `raw/youtube/daily/YYYY-MM-DD.json` |
+| `LINKEDIN_DAILY` | `raw/linkedin/daily/YYYY-MM-DD.json` |
 
-Every push adds a new row — so over time you'll have a full historical record of how your channels and projects have changed.
+**Type 2 — Raw file (stored as a text blob)**
+
+| Table | Source |
+|-------|--------|
+| `ZOOM_TRANSCRIPTS` | `raw/zoom/*.txt` — full transcript stored in `transcript_text` column |
+
+Every push adds a new row — so over time you'll have a full historical record across all three channels. The `ZOOM_TRANSCRIPTS` table grows one row per meeting, with the entire transcript queryable as text.
 
 ---
 
@@ -155,37 +163,37 @@ The scheduler below runs every morning at 6:00 AM using Claude Code's built-in s
 Using Claude Code's built-in scheduler, set up a daily job that runs every morning at 6:00 AM. Use the Composio MCP server to push any new data to Snowflake.
 
 Step 1 — Scan for New Files
-Check both folders for files that have been added since the last successful push:
-- second-brain/raw/ (all subfolders)
-- second-brain/projects/OngoingProjects/ (all company subfolders)
+Check second-brain/raw/ for files added since the last successful push:
+- second-brain/raw/youtube/ (JSON files)
+- second-brain/raw/linkedin/ (JSON files)
+- second-brain/raw/zoom/ (transcript .txt files)
 
 A file is considered new if it has not already been pushed to Snowflake in a previous run.
 Skip any file that was already pushed — do not create duplicate rows.
 
-Step 2 — Push New Raw Files
-For each new file found in second-brain/raw/:
-- Detect the source (youtube or linkedin) and data type (ex competitors, daily, my-profile)
+Step 2 — Push New JSON Files (YouTube + LinkedIn)
+For each new JSON file found in raw/youtube/ or raw/linkedin/:
+- Detect the source and data type
 - Create the Snowflake table if it does not exist
-- Insert the data as a new row with a timestamp of when the push ran
+- Insert the data as a new row, parsing JSON fields into columns
+- Add a pushed_at timestamp
 - Log the file name, table name, and row count
 
-Step 3 — Push New Project Files
-For each new file found in second-brain/projects/OngoingProjects/:
-- Detect the company name and file type (ex company-overview, post-engagement, follower-snapshots, page-stats)
-- Create the Snowflake table if it does not exist
-- Insert the data with the company name and a timestamp
-- Log each successful insert
+Step 3 — Push New Zoom Transcripts
+For each new .txt file found in second-brain/raw/zoom/:
+- Do NOT parse the content — push the full file as a raw text blob
+- Insert one row into ZOOM_TRANSCRIPTS with meeting_title, meeting_date, transcript_text, and pushed_at
+- Log the filename and confirm the insert
 
 Step 4 — Archive Pushed Raw Files
-Once all new raw files have been successfully pushed:
+Once all new files have been successfully pushed:
 - Move them from second-brain/raw/ to second-brain/Archive/raw/
 - Preserve the original subfolder structure inside Archive
-- Do not touch second-brain/projects/
 
 Step 5 — Summary Log
 After the run completes, print:
 - Date and time the job ran
-- How many new files were found
+- How many new files were found (JSON + transcripts)
 - How many were pushed successfully
 - Which Snowflake tables were updated
 - Any files that failed, with the reason
@@ -222,11 +230,13 @@ In the next lesson, we'll write SQL queries directly from Claude to start pullin
 
 ## What You've Learned
 
-- How to use a skill file to push raw and project data to Snowflake in one prompt
+- That Snowflake stores two types of data: structured JSON (parsed into columns) and raw files (stored as text blobs)
+- How to push YouTube and LinkedIn JSON data to Snowflake, with each field mapped to a column
+- How to push a Zoom transcript directly to Snowflake as-is — no parsing required
 - Why raw files move to `Archive/` after a successful push — keeping `raw/` clean for new data
 - How to verify the push worked by checking Data Explorer in Snowflake
 - How the ELT pattern (Extract → Load → Transform) maps to what you've built
-- How to set up a 6am daily scheduler that automatically detects and pushes only new files
+- How to set up a 6am daily scheduler that handles all three data types automatically
 
 ---
 

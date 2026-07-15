@@ -16,16 +16,17 @@ This is why we set up a **Second Brain** before doing anything.
 
 ## Today's Concept: The Second Brain
 
-The folder we're creating is called `second-brain`.
+The folder we're creating is called `Second-Brain`.
 
-It's not just a catchy name. The idea comes from the personal knowledge management world — a "second brain" is a trusted external system where you store everything you're working on, so your actual brain doesn't have to hold it all.
+A **Second Brain** is a trusted external system where you store everything you're working on — raw data, processed insights, and the skill files that power your pipeline. Your actual brain doesn't have to hold it all.
 
-For us, it means one folder that contains:
+For this course we're using **Maven** as our real-world use case. Maven runs courses (like the AI PM Bootcamp and GenAI PM course) and markets them through LinkedIn and YouTube. Our job is to:
 
-- A place for raw channel data as it comes in — immutable, never modified
-- A place for structured company and project documents you write and maintain
-- A place for Claude skill files that power your pipeline
-- A place for completed work worth keeping
+- Pull raw engagement data from **LinkedIn** (ads, campaigns) and **YouTube** (video performance)
+- Push that data into Snowflake
+- Build a structured **wiki** that Claude can read as context when generating reports and analyses
+
+The `wiki/` folder is the heart of the Second Brain. It's where processed, structured knowledge lives — organized by courses and campaigns — so Claude always has the right context when you ask it questions.
 
 ---
 
@@ -39,69 +40,38 @@ This gives you the exact folder layout with example files already in place. You 
 
 ---
 
-## Step 2: Replace the Company Folders With Your Own
-
-Open the downloaded folder and go into `projects/`.
-
-You'll see three example companies already set up:
-
-```
-second-brain/projects/
-  ├── allneurons/
-  │   ├── company-overview.md
-  │   ├── product.md
-  │   └── user-persona.md
-  ├── legalgraph/
-  │   ├── company-overview.md
-  │   ├── product.md
-  │   └── user-persona.md
-  └── maven/
-      ├── course-bootcamp.md
-      └── course-genaipm.md
-```
-
-**Delete these folders and replace them with the companies or projects you're actually tracking.**
-
-For each company, create a folder with its name and add the documents that make sense for it. You don't have to follow the exact file names — use whatever fits:
-
-```
-second-brain/projects/
-  └── your-company/
-      ├── company-overview.md    ← what they do, their positioning, team size
-      ├── product.md             ← what they're building, pricing, features
-      └── user-persona.md        ← who their customers are
-```
-
-These are the context files Claude reads when building your wiki and analyzing your pipeline data. The more you put in, the more useful the output.
-
----
-
 ## The Full Structure
 
 Here's what the complete Second Brain looks like:
 
 ```
-second-brain/
+Second-Brain/
 │
-├── raw/                          ← immutable source data (ingested by push skill)
-│   ├── LinkedIn-initmahesh.json
-│   ├── MaheshAIPMCommunity.json
-│   └── MaheshAIPMCommunity-topics.json
+├── raw/                              ← immutable source data (ingested by push skill)
+│   ├── LinkedIn-ads.json
+│   ├── LinkedIn-campaign.json
+│   └── YouTube-channel.json
 │
-├── projects/                     ← your company and project knowledge docs
-│   └── your-company/
-│       ├── company-overview.md
-│       ├── product.md
-│       └── user-persona.md
+├── skill/                            ← Claude skill files that power the pipeline
+│   ├── push-data-to-snowflake.md     ← pushes raw data → Snowflake
+│   ├── build-wiki.md                 ← fetches Snowflake → compiles wiki pages
+│   └── build-wbr.md                  ← builds weekly business review from wiki
 │
-├── skill/                        ← Claude skill files that power the pipeline
-│   ├── push-data-to-snowflake.md ← pushes raw + projects → Snowflake
-│   └── build-wiki.md             ← fetches Snowflake → compiles wiki pages
+├── wiki/                             ← structured knowledge Claude reads as context
+│   ├── campaigns/
+│   │   ├── README.md                 ← campaign overview across all channels
+│   │   ├── linkedin-ads/
+│   │   │   └── README.md             ← LinkedIn ad performance insights
+│   │   ├── linkedin-campaign/
+│   │   │   └── README.md             ← LinkedIn campaign-level breakdown
+│   │   └── youtube/
+│   │       └── README.md             ← YouTube video and channel metrics
+│   └── courses/
+│       ├── course-bootcamp.md        ← AI PM Bootcamp course details
+│       └── course-genaipm.md         ← GenAI PM course details
 │
-└── Archive/                      ← raw files move here automatically after being pushed
+└── Archive/                          ← raw files move here after being pushed
 ```
-
-> **What about `wiki/`?** The wiki folder is created automatically when you run the `build-wiki.md` skill in a later lesson. You don't create it manually — Claude builds it for you.
 
 ---
 
@@ -109,10 +79,24 @@ second-brain/
 
 | Folder | What it does |
 |--------|-------------|
-| `raw/` | Raw JSON files fetched from LinkedIn/YouTube — never touched after they land |
-| `projects/` | Your own markdown docs about each company — overviews, products, personas |
-| `skill/` | Claude instruction files — tells Claude how to push data and build the wiki |
+| `raw/` | Raw JSON files pulled from LinkedIn and YouTube — never modified after they land |
+| `skill/` | Claude instruction files — tells Claude how to push data, build the wiki, and generate reports |
+| `wiki/` | Structured markdown knowledge base — courses and campaign data organized for Claude to read as context |
 | `Archive/` | Raw files move here automatically after they've been pushed to Snowflake |
+
+---
+
+## Why `wiki/` Replaces `projects/`
+
+In earlier versions of this course, a `projects/` folder held static company docs you wrote by hand. We've moved past that.
+
+Now the **wiki is auto-generated**. Claude pulls live data from Snowflake, structures it into markdown pages, and writes them into `wiki/`. This means:
+
+- Your context is always based on **real, up-to-date data** — not static notes
+- LinkedIn and YouTube metrics flow directly into the wiki pages Claude references
+- You never have to manually maintain context documents
+
+The wiki is the living knowledge layer of your Second Brain.
 
 ---
 
@@ -126,14 +110,13 @@ What we just built follows the same logic. The specific names don't matter as mu
 
 ---
 
----
-
 ## What You've Learned
 
 - The Second Brain folder structure and what each folder is for
-- Why `raw/` is immutable and `projects/` holds your own documents
+- Why `raw/` is immutable and `wiki/` holds Claude's live context
 - How skill files in `skill/` power the entire pipeline without writing code
-- That `wiki/` is auto-generated — you never create it manually
+- That `wiki/` is auto-generated from Snowflake data — you never maintain it manually
+- How Maven's LinkedIn and YouTube data flows into structured wiki pages
 
 ---
 

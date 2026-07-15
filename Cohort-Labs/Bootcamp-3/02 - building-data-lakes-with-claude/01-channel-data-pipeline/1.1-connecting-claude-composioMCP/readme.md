@@ -144,67 +144,31 @@ Below are ready-to-run prompts you can paste directly into Claude. Each one tell
 
 > **YouTube channel used in this prompt:** `https://www.youtube.com/@MaheshAIPMCommunity`
 
-**Full Research + Topic Analysis**
+**Fetch Last 15 Videos — Title, Views, Likes**
 ```
-Using Composio, do a full research and topic analysis on this YouTube channel:
+Using Composio, fetch performance data for the last 15 videos from this YouTube channel:
 https://www.youtube.com/@MaheshAIPMCommunity
 
-Step 1 — Channel Profile
-Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to find the channel.
-Extract:
+Step 1 — Find the Channel
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to get:
 - Channel title
 - Channel ID
-- Channel description
-- Published date (when the channel was created)
-- Thumbnail URL
-
-Step 2 — Channel Stats + Recent Videos
-Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to get:
 - Subscriber count
 - Total video count
 - Total view count
 
-Then use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "video" to find their 10 most recent videos.
-For each collect:
+Step 2 — Fetch Last 15 Videos
+Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "video" to find the 15 most recent videos.
+For each video collect:
 - Video title
 - Video ID
 - Published date
-- Description snippet
+- View count
 - Like count
-- Comment count
 
-Step 3 — Deep Topic Search
-Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity AI PM" and type "video".
-For each result collect:
-- Video title
-- Video ID
-- Published date
-- Description snippet
-- Like count
-- Comment count
-
-Step 4 — Shorts Search
-Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity shorts" and type "video".
-Collect the same fields. Note which videos appear to be Shorts.
-
-Step 5 — Publishing Cadence
-From all videos collected across Step 2, 3, and 4:
-- Sort by published date
-- Calculate the average number of days between uploads
-- Identify the most active publishing month
-- Note if they post Shorts vs long-form more frequently
-
-Step 6 — Analysis
-Combine all videos, deduplicate by video ID, then:
-- Group by content theme (e.g. AI tools, product management, tutorials, community, Shorts)
-- Count videos per theme
-- Identify the top 3 most-covered themes
-- Calculate average likes and comments per video
-- Identify the single highest-engagement video (most likes + comments)
-
-Finally:
-1. Create a folder at second-brain/raw/ if it doesn't exist
-2. Save the full channel profile, stats, video list, theme breakdown, cadence data, and analysis as a single JSON file at:
+Step 3 — Save the Data
+1. Create the folder second-brain/raw/ if it doesn't exist
+2. Save the channel stats and full video list as a single JSON file at:
    second-brain/raw/MaheshAIPMCommunity.json
 ```
 
@@ -218,71 +182,42 @@ Finally:
 
 > **Before running:** Find 3–5 of your recent LinkedIn posts, copy their links (three-dot menu → "Copy link to post"), extract the numeric ID from each URL, and format as `urn:li:share:<id>`. You'll paste those into the prompt below.
 
-**My LinkedIn Personal Profile Full Research**
+**Fetch Profile + Post Metrics**
 ```
-Using Composio, scrape everything available from my personal LinkedIn profile.
+Using Composio, fetch my LinkedIn profile and post performance metrics.
 
-Step 1 — Full Profile
-Use LINKEDIN_GET_MY_INFO to retrieve every available field:
+Step 1 — Profile Info
+Use LINKEDIN_GET_MY_INFO to retrieve:
 - Full name
 - LinkedIn member URN
 - Headline
-- Profile picture URL
 - Vanity name (my custom LinkedIn URL handle)
-- Industry
-- Description / About section
-- Website (if listed)
-- Location (if available)
-- Current position / title (if available)
 - Number of connections (if available)
 
-Step 2 — Profile Images
-Use LINKEDIN_GET_IMAGES to retrieve all images associated with my profile:
-- Image URN
-- Image URL (download URL)
-- Dimensions (width x height)
-- Status
-
-Step 3 — Post Content
-For each post URN listed above, use LINKEDIN_GET_POST_CONTENT to retrieve:
+Step 2 — Post Content
+For each of these post URNs, use LINKEDIN_GET_POST_CONTENT to retrieve:
 - Full post text
 - Published date
 - Post type (text, image, article, video)
-- Any media attached
 
-Step 4 — Post Reactions
-For each post URN listed above, use LINKEDIN_LIST_REACTIONS to retrieve:
+[paste your post URNs here — format: urn:li:share:<id>]
+
+Step 3 — Post Reactions
+For each post URN above, use LINKEDIN_LIST_REACTIONS to retrieve:
 - Total reaction count
 - Breakdown by reaction type (like, celebrate, support, love, insightful, curious)
-- Names and titles of people who reacted (if available)
 
-Step 5 — Engagement Analysis
-From all posts collected in Step 3 and 4:
-- Calculate engagement per post (total reactions)
-- Rank posts from highest to lowest reactions
+Step 4 — Engagement Summary
+From the data collected in Step 2 and 3:
+- Rank posts from highest to lowest total reactions
 - Identify the best performing post
 - Calculate average reactions per post
-- Identify what content type (text, image, article) gets the most reactions
-- Calculate publishing cadence (average days between posts based on published dates)
-
-Step 6 — Audience Patterns
-From the reactor names and titles collected in Step 4:
-- Identify the most common job titles engaging with my content
-- Identify the most common industries
-- Note any patterns in who engages most
-
-Step 7 — Analysis
-Tell me:
-- What does my full profile look like — is the headline, about, and website filled in?
-- Which of my posts got the most reactions and what made it stand out?
-- What content type performs best for me (text, image, article)?
-- Who is my audience — what roles and industries engage most?
-- What is my posting cadence and is it consistent?
-- What should I post more of based on this data?
+- Identify which post type (text, image, article) gets the most reactions
+- Calculate posting cadence (average days between posts)
 
 Finally:
-1. Create a folder at second-brain/raw/ if it doesn't exist
-2. Save the full profile, images, all post content, reactions, engagement stats, and analysis as a single JSON file at:
+1. Create the folder second-brain/raw/ if it doesn't exist
+2. Save the full profile, all post content, reactions, and engagement summary as a single JSON file at:
    second-brain/raw/LinkedIn-initmahesh.json
 ```
 
@@ -291,13 +226,73 @@ Finally:
 
 ---
 
-### Adding Data Manually
+### Zoom Meeting Transcripts
 
-You don't have to fetch everything through Composio. You can also drop files directly into your `raw/` folder — for example, customer feedback exports, call transcripts, or survey results.
+Beyond YouTube and LinkedIn, you can also pull meeting transcripts directly from Zoom into your raw folder. This is useful for tracking community calls, course sessions, or any recurring meetings you want Claude to have context on.
 
-For call transcripts specifically, you can automate this using the Zoom connector in Claude, which fetches transcripts directly. Note that the Zoom integration requires a **Business or Enterprise plan**.
+> **Note:** Fetching transcripts automatically requires a Zoom **Business or Enterprise plan**. If you're on a free or Pro plan, skip to the manual upload option below.
 
-For everything else — just paste the file into `second-brain/raw/` and it will be picked up automatically when the push skill runs.
+#### Connect Claude to Zoom
+
+**Step 1** — Open the Claude desktop app and click **Customize** in the top-right corner.
+
+![image](./images/10.png)
+
+**Step 2** — In the sidebar, click **Connectors**, then click **Browse Connectors**.
+
+![image](./images/11.png)
+
+
+**Step 3** — Search for **Zoom** and click on it.
+
+![image](./images/13.png)
+
+**Step 4** — Click **Connect**.
+
+![image](./images/14.png)
+
+**Step 5** — Complete the OAuth authentication — Zoom will ask you to log in and approve access. Once you approve, Zoom will appear as a connected integration in your Claude sidebar.
+
+That's it. Claude can now reach your Zoom account directly.
+
+---
+
+#### Fetch Transcripts for Last 2 Meetings
+
+Once Zoom is connected, paste this prompt into Claude:
+
+```
+Using the Zoom connector, fetch the transcripts from my 2 most recent meetings.
+
+Step 1 — List Recent Meetings
+Retrieve my last 2 completed meetings, including:
+- Meeting ID
+- Meeting topic / title
+- Start time
+- Duration
+
+Step 2 — Fetch Transcripts
+For each meeting, retrieve the full transcript including:
+- Speaker names
+- Timestamps
+- Full spoken text
+
+Step 3 — Save to Raw Folder
+Save each transcript as a separate file in second-brain/raw/zoom/:
+- second-brain/raw/zoom/<meeting-title>-<date>.txt
+
+Create the folder if it doesn't exist.
+```
+
+---
+
+#### No Zoom Plan? Upload the Transcript Manually
+
+If you're not on a Business or Enterprise plan, Zoom still lets you download transcripts manually from the Zoom web portal under **Recordings**. Once downloaded:
+
+1. Rename the file something clear — e.g. `community-call-2026-07-16.txt`
+2. Drop it into `second-brain/raw/zoom/`
+3. It will be picked up automatically when the push skill runs
 
 ---
 
@@ -316,50 +311,39 @@ Step 1 — YouTube Daily Fetch
 Use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "channel" to get:
 - Channel title
 - Channel ID
-- Channel description
-- Published date (when the channel was created)
-- Thumbnail URL
 - Subscriber count
 - Total video count
 - Total view count
 
-Then use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "video" to get the 10 most recent videos.
+Then use YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity" and type "video" to get the 15 most recent videos.
 For each video collect:
 - Video title
 - Video ID
 - Published date
-- Description snippet
+- View count
 - Like count
-- Comment count
-
-Also run YOUTUBE_SEARCH_YOU_TUBE with query "MaheshAIPMCommunity shorts" and type "video" to capture any new Shorts.
 
 Step 2 — LinkedIn Daily Fetch
 Use LINKEDIN_GET_MY_INFO to retrieve:
 - Full name
 - LinkedIn member URN
 - Headline
-- Profile picture URL
-- Vanity name (my custom LinkedIn URL handle)
-- Industry
-- Description / About section
-- Website (if listed)
-- Location (if available)
-- Current position / title (if available)
+- Vanity name
 - Number of connections (if available)
 
-Then use LINKEDIN_GET_IMAGES to retrieve all images associated with my profile:
-- Image URN
-- Image URL (download URL)
-- Dimensions (width x height)
-- Status
+Then for each post URN in your tracked list, use LINKEDIN_GET_POST_CONTENT and LINKEDIN_LIST_REACTIONS to retrieve:
+- Full post text
+- Published date
+- Post type
+- Total reaction count
+- Reaction breakdown by type
 
 Step 3 — Save with Date Stamp
 After each fetch, save both results with today's date in the filename:
 - second-brain/raw/youtube/daily/YYYY-MM-DD.json
 - second-brain/raw/linkedin/daily/YYYY-MM-DD.json
 
-Where YYYY-MM-DD is the actual date the fetch runs (e.g. 2026-07-15).
+Where YYYY-MM-DD is the actual date the fetch runs (e.g. 2026-07-16).
 
 Create both folder paths if they don't exist.
 

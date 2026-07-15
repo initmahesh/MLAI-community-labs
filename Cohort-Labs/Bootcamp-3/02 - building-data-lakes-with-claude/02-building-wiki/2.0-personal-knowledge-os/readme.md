@@ -103,20 +103,6 @@ Each page is written by reading across all source rows for that entity, then syn
 **Step 8 — Save context**
 `build-wiki-context.json` is updated with the new page hashes and entity map. This is what makes the next run incremental — it knows exactly where it left off.
 
-**Step 9 — Print run summary**
-The skill logs how many pages were written, updated, skipped, and how many cross-links were added. You see exactly what changed.
-
-```
-===== build-wiki: Run Complete =====
-Pages written    : 3
-Pages updated    : 2
-Pages skipped    : 8  (no changes)
-Cross-links added: 14
-Total wiki pages : 13
-Wiki root        : wiki/
-====================================
-```
-
 Every future run reads the context file first. No data gets compiled twice.
 
 ![images](./images/2.png)
