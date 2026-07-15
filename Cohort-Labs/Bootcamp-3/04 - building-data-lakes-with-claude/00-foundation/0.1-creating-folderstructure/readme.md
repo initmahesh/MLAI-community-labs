@@ -1,5 +1,7 @@
 # Setting Up Your Second Brain Folder Structure
 
+![image](./images/banner.png)
+
 ---
 
 Before we build anything, let's talk about where everything is going to live.
