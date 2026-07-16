@@ -33,55 +33,26 @@ Once this connection is live, Claude can use all of those tools in one flow.
 
 ---
 
-## Step 1: Generate the MCP URL
+## Step 1: Tell Claude About Composio
 
-Open the Composio page and go to the Snowflake toolkit setup for Claude Code:
+Follow these steps:
 
-```text
-https://composio.dev/toolkits/snowflake/framework/claude-code
-```
-
-Click **Generate MCP URL** and copy the URL that appears.
-
-![Generate MCP URL](./images/1.png)
-
-Keep that URL somewhere safe. We will use it in the next step.
-
----
-
-## Step 2: Tell Claude About Composio
-
-Open the Claude desktop app and start a new chat.
-
-Paste this prompt and replace the placeholder with the URL you just copied:
+1. Open Claude and type: `hi`
+2. Click the top icon to open the terminal interface
+3. In the terminal, run this command:
 
 ```text
-Run the following command in the terminal and add the Composio MCP server:
-
-<paste your MCP URL here>
-
-After running the command, complete the authentication process.
+claude mcp login composio
 ```
 
-Claude will run the command and register Composio as a connected tool.
+4. A browser window will open. Authenticate yourself there.
+5. Then ask Claude in the chat:
 
-![Claude running the MCP command](./images/2.png)
+```text
+Can you check if I am connected to the Composio MCP server or not?
+```
 
-Once that is done, Claude knows where Composio lives and can use it whenever it needs to.
-
----
-
-## Step 3: Authenticate the Connection
-
-The last part is giving Claude permission to use the connection.
-
-After the command runs, Claude will open a browser window and ask you to approve access. Follow the prompts and allow it.
-
-Once you do, the connection is live.
-
-![Claude running the MCP command](./images/3.png)
-
-That is it. Claude is now connected to Composio.
+![image](./images/17.png)
 
 ---
 
