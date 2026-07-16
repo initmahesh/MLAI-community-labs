@@ -2,25 +2,31 @@
 
 ---
 
-## Composio as Your Integration Hub
+Before we start, let’s talk about why this step matters.
 
-Composio is a platform that connects AI agents to external tools.
+In the last lesson, we set up our folder structure. Now we need a way for Claude to connect to the tools we will use. We want Claude to work with data from YouTube, LinkedIn, and Snowflake. But we do not want to connect every tool manually every time.
 
-Instead of Claude needing to know how to call the YouTube, the LinkedIn, and the Snowflake — Claude just talks to Composio. Composio knows how to talk to everything else.
+That is where Composio helps us.
 
-```
-Claude
-  ↓
-Composio (your integration hub)
-  ├── YouTube
-  ├── LinkedIn
-  ├── Snowflake
-  └── 250+ other tools
-```
+Composio is like a middle layer between Claude and the tools. Instead of Claude talking to each tool directly, Claude talks to Composio. Composio then connects to the right tool for us.
 
-Every tool you connect in Composio becomes available to Claude through a single MCP server. One setup. One connection. Everything unlocked.
+This makes the whole setup much easier. We connect things once, and then we can use them again and again.
 
-This is the foundation everything else in this module depends on. Let's create your account.
+---
+
+## What Composio Does
+
+Think of Composio as a bridge.
+
+It helps us connect Claude to the tools we need in one place. Once the connection is set up, Claude can use those tools without us doing extra work each time.
+
+In this course, we will use Composio to connect things like:
+
+- YouTube
+- LinkedIn through Apify
+- Snowflake
+
+This is an important step because everything else in this course depends on it.
 
 ---
 
@@ -28,19 +34,17 @@ This is the foundation everything else in this module depends on. Let's create y
 
 Open your browser and go to:
 
-```
 https://app.composio.dev
-```
 
 ![Composio homepage](./images/1.png)
 
 ---
 
-## Step 2: Sign Up
+## Step 2: Create Your Account
 
 Click **Sign Up** and create your account.
 
-You can sign up with Google or with an email and password — either works.
+You can use Google, or you can sign up with your email and password. Either option is fine.
 
 ![Sign up screen](./images/2.png)
 
@@ -48,78 +52,55 @@ You can sign up with Google or with an email and password — either works.
 
 ## Step 3: Verify Your Email
 
-If you signed up with email, check your inbox for a verification link. Click it to activate your account.
+If you sign up with email, check your inbox for the verification email. Click the link to activate your account.
 
 ---
 
-## Step 4: Log Into Your Dashboard
+## Step 4: Open Your Dashboard
 
-Once your account is active, log in. You'll land on the Composio dashboard.
+Once your account is ready, log in. You will land on the Composio dashboard.
 
-This is your integration hub — where all your tool connections will live.
+This is where your connections will live. It is the place where you will connect tools and manage them later.
 
 ![Composio dashboard](./images/4.png)
 
-Take a moment to look around. On the left sidebar you'll see:
+Take a moment to look around. You will see sections like:
 
-| Section | What it's for |
-|---------|---------------|
-| **Toolkit** | Browse and connect external tools |
-| **Projects** | Organize your integrations by project |
-| **Connections** | See all your active authenticated accounts |
-| **MCP Servers** | Generate MCP URLs for Claude |
+- **Toolkit** — where you find and connect tools
+- **Projects** — where you can organize your work
+- **Connections** — where your connected accounts appear
+- **MCP Servers** — where you create the connection for Claude
 
-We'll be using all of these in the next few lessons.
+We will use these sections in the next lessons.
 
 ---
 
-## What You've Actually Set Up
+## Why This Step Is Important
 
-Your Composio account is now the central hub for every external tool Claude will use in this module.
+This step is not just about signing up.
 
-Think of it like this — you've just opened the doors to a building that connects to everything. Right now the building is empty. Over the next few lessons, we'll walk in and connect:
+It is about giving Claude access to the tools it needs. Without this setup, Claude cannot easily reach the systems we want to use. With Composio, we create one central place for these connections.
 
-- YouTube — so Claude can pull channel data and video analytics
-- LinkedIn — so Claude can read posts and engagement data
-- Snowflake — so Claude can store everything in your data lake
-
-Each connection we add makes Claude more capable inside your project. None of it requires managing credentials manually — Composio holds all of that for you.
+This also helps us avoid a common problem. Instead of putting login details directly into scripts, we let Composio handle the connection securely.
 
 ---
 
-## How Real Teams Think About This
+## What You Have Learned
 
-In a production data engineering team, nobody embeds API keys directly into pipeline code.
+By the end of this lesson, you should know:
 
-Keys get rotated. Tokens expire. Services change their auth flows. If your credentials are hardcoded into a script, you're one expiry away from a broken pipeline at 2am.
-
-Real teams use a managed integration layer — a system that handles auth lifecycle, connection health, and credential storage separately from the application code. Engineers write pipeline logic. The integration layer handles authentication.
-
-Composio is that layer for our setup.
-
-| What you'd do manually | What Composio handles for you |
-|------------------------|-------------------------------|
-| Get API credentials from each platform | One OAuth flow per tool |
-| Store and rotate secrets securely | Composio manages tokens automatically |
-| Handle auth errors in pipeline code | Composio surfaces connection health |
-| Learn each platform's API syntax | Claude calls one consistent interface |
+- what Composio is
+- why we use it
+- how to create your account
+- where to find the main parts of the dashboard
 
 ---
 
-## What You've Learned
+## What’s Next
 
-- What Composio is and why it sits between Claude and every external tool
-- How to create and activate your Composio account
-- The four key areas of the Composio dashboard: Toolkit, Projects, Connections, MCP Servers
-- Why a managed integration layer beats hardcoded credentials every time
-
----
-
-## What's Next
+In the next lesson, we will create our Snowflake account. Snowflake will be where our data is stored and organized.
 
 **[Lesson 0.3 → Set Up Snowflake](../0.3-creating-snowflake-account/Readme.md)**
-
-Snowflake is where all your data will live permanently. In the next lesson you'll create your free Snowflake account — the destination that every pipeline run writes to.
 
 ---
 

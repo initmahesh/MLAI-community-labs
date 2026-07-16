@@ -4,128 +4,109 @@
 
 ---
 
-Before we build anything, let's talk about where everything is going to live.
+Before we start, let’s talk about why we are doing this.
 
-Think about the last time you started a new project. You probably had files scattered across your Desktop, a Downloads folder full of random things, maybe a few docs in Google Drive, and some notes somewhere you can't remember. By week two, half your time was spent finding things instead of building things.
+Right now, a lot of people are talking about the Karpathy Wiki idea. The main idea is simple: instead of keeping knowledge only in your head, you store it in a clear system that you can reuse later. We are going to build something similar for ourselves. We will call it a Second Brain.
 
-Now imagine working alongside Claude every day on a growing data lake project. Claude can only help you as well as your workspace allows. If your files have no structure, Claude has no structure to work with.
+Why does this matter? Because when you work with data, tools, and AI, you need a place to keep everything organized. If your files are scattered everywhere, it becomes hard to find things later. A Second Brain helps you keep your work clean, simple, and easy to follow.
 
-This is why we set up a **Second Brain** before doing anything.
+In this lesson, we will set up the folder structure that will hold our data, our instructions, and our wiki. We will also learn how tools like Snowflake, MCP servers, Composio, and Apify fit into the process.
+
+Before we begin, you have two choices:
+
+- download the folder template we prepared for you
+- create your own structure from scratch
+
+We will start with the template so you can move faster and focus on learning.
 
 ---
 
-## Today's Concept: The Second Brain
+## What We Are Building
 
-The folder we're creating is called `Second-Brain`.
+We are creating a folder called `Second-Brain`.
 
-A **Second Brain** is a trusted external system where you store everything you're working on — raw data, processed insights, and the skill files that power your pipeline. Your actual brain doesn't have to hold it all.
+Think of it like this: your brain can think, but it cannot hold everything forever. A Second Brain is a place outside your mind where you keep the work you are doing. It can hold raw data, notes, useful files, and the instructions that help Claude understand your work.
 
-For this course we're using **Maven** as our real-world use case. Maven runs courses (like the AI PM Bootcamp and GenAI PM course) and markets them through LinkedIn and YouTube. Our job is to:
+For this course, we will use Maven as our example. Maven runs courses like the AI PM Bootcamp and GenAI PM course. It also shares content on LinkedIn and YouTube. Our job is to:
 
-- Pull raw engagement data from **LinkedIn** (ads, campaigns) and **YouTube** (video performance)
-- Push that data into Snowflake
-- Build a structured **wiki** that Claude can read as context when generating reports and analyses
+- bring in raw data from LinkedIn, YouTube, and Zoom
+- send that data into Snowflake
+- build a wiki that Claude can read and use when we ask questions
 
-The `wiki/` folder is the heart of the Second Brain. It's where processed, structured knowledge lives — organized by courses and campaigns — so Claude always has the right context when you ask it questions.
+The `wiki/` folder is the main part of this system. It is where we keep our organized knowledge so Claude can use it when needed.
 
 ---
 
 ## Step 1: Download the Template
 
-Download the Second Brain folder structure used in this course:
+You can download the Second Brain template we prepared for this course:
 
 > **[Download Second Brain Template](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQBdu9h0h8gySLzjtxWGDBCrAa6utw4kKY1Ycf0U304Z4CA?e=XXaBFR)**
 
-This gives you the exact folder layout with example files already in place. You don't need to create anything from scratch.
+This gives you the folder structure and example files so you do not have to build everything from zero.
 
 ---
 
 ## The Full Structure
 
-Here's what the complete Second Brain looks like:
+This is what the folder looks like:
 
-```
+```text
 Second-Brain/
-│
-├── raw/                              ← immutable source data (ingested by push skill)
+├── raw/
 │   ├── LinkedIn-ads.json
 │   ├── LinkedIn-campaign.json
 │   └── YouTube-channel.json
-│
-├── skill/                            ← Claude skill files that power the pipeline
-│   ├── push-data-to-snowflake.md     ← pushes raw data → Snowflake
-│   ├── build-wiki.md                 ← fetches Snowflake → compiles wiki pages
-│   └── build-wbr.md                  ← builds weekly business review from wiki
-│
-├── wiki/                             ← structured knowledge Claude reads as context
+├── skill/
+│   ├── push-data-to-snowflake.md
+│   ├── build-wiki.md
+│   └── build-wbr.md
+├── wiki/
 │   ├── campaigns/
-│   │   ├── README.md                 ← campaign overview across all channels
+│   │   ├── README.md
 │   │   ├── linkedin-ads/
-│   │   │   └── README.md             ← LinkedIn ad performance insights
 │   │   ├── linkedin-campaign/
-│   │   │   └── README.md             ← LinkedIn campaign-level breakdown
 │   │   └── youtube/
-│   │       └── README.md             ← YouTube video and channel metrics
 │   └── courses/
-│       ├── course-bootcamp.md        ← AI PM Bootcamp course details
-│       └── course-genaipm.md         ← GenAI PM course details
-│
-└── Archive/                          ← raw files move here after being pushed
+│       ├── course-bootcamp.md
+│       └── course-genaipm.md
+└── Archive/
 ```
 
----
+Each folder has a job:
 
-## What Each Folder Does
-
-| Folder | What it does |
-|--------|-------------|
-| `raw/` | Raw JSON files pulled from LinkedIn and YouTube — never modified after they land |
-| `skill/` | Claude instruction files — tells Claude how to push data, build the wiki, and generate reports |
-| `wiki/` | Structured markdown knowledge base — courses and campaign data organized for Claude to read as context |
-| `Archive/` | Raw files move here automatically after they've been pushed to Snowflake |
+- `raw/` holds the original files we collect from tools like LinkedIn and YouTube
+- `skill/` holds the instruction files that guide Claude
+- `wiki/` holds the organized knowledge that Claude can read
+- `Archive/` is where files go after they have been used
 
 ---
 
-## Why `wiki/` Replaces `projects/`
+## Why This Structure Matters
 
-In earlier versions of this course, a `projects/` folder held static company docs you wrote by hand. We've moved past that.
+A good folder structure makes work easier.
 
-Now the **wiki is auto-generated**. Claude pulls live data from Snowflake, structures it into markdown pages, and writes them into `wiki/`. This means:
+When everything has a home, you spend less time searching and more time building. You also make it easier for others to understand your work. This is how real teams work too. They do not leave things in random places.
 
-- Your context is always based on **real, up-to-date data** — not static notes
-- LinkedIn and YouTube metrics flow directly into the wiki pages Claude references
-- You never have to manually maintain context documents
-
-The wiki is the living knowledge layer of your Second Brain.
+This structure helps us keep our work clear from the beginning.
 
 ---
 
-## How Real Teams Think About This
+## What You Have Learned
 
-Senior engineers don't skip this step.
+By now, you should understand:
 
-In any serious engineering organization, workspace structure is a first-class decision — not an afterthought. Teams have conventions for where code lives, where documentation lives, where experiments go. New engineers get onboarded to the structure before they write anything.
-
-What we just built follows the same logic. The specific names don't matter as much as the habit: **every project gets a home before it gets code.**
-
----
-
-## What You've Learned
-
-- The Second Brain folder structure and what each folder is for
-- Why `raw/` is immutable and `wiki/` holds Claude's live context
-- How skill files in `skill/` power the entire pipeline without writing code
-- That `wiki/` is auto-generated from Snowflake data — you never maintain it manually
-- How Maven's LinkedIn and YouTube data flows into structured wiki pages
+- what a Second Brain is
+- why we are building one
+- what each folder in the structure is for
+- how data moves from tools into Snowflake and then into the wiki
 
 ---
 
-## What's Next
+## What’s Next
 
 **[Lesson 0.2 → Create Your Composio Account](../0.2-creating-composioaccount/readme.md)**
 
-Composio is the integration hub that connects Claude to YouTube, LinkedIn, and Snowflake. In the next lesson you'll create your account and get familiar with the dashboard — the foundation every lesson after this depends on.
+In the next lesson, we will create our Composio account. Composio helps connect Claude with tools like YouTube, LinkedIn, and Snowflake.
 
 ---
-
-[← Back to module index](../../README.md)

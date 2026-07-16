@@ -1,45 +1,62 @@
-# Building Your Second Brain with Claude
+# Build Your Second Brain with Claude
 
 ---
 
-## What We're Building
+## Why This Is Worth Building
 
-By the end of this module, you'll have a **Second Brain** — a fully automated knowledge system that builds and maintains itself.
+You are about to build something that feels more useful than a notebook, more practical than a dashboard, and more powerful than a pile of scattered notes.
 
-Every day, Claude pulls fresh data from your YouTube channel, LinkedIn profile, and Zoom meetings. It pushes that data into Snowflake. It compiles everything into a structured wiki that stays current without any manual work. And every Monday morning, a Weekly Business Review lands automatically — showing you exactly what changed, what's working, and what needs attention.
+This lab turns your online activity into a living system you can actually use. Claude pulls data from your YouTube channel, LinkedIn profile, and Zoom meetings. It stores that data in Snowflake. Then it turns the information into a searchable wiki and a weekly business review.
 
-You don't write pipeline code. You don't manage credentials. You don't manually update documents. You set it up once, and your Second Brain runs itself.
+The goal is simple: stop letting important ideas, updates, and signals live in random places. Instead, build one system that keeps working for you.
 
-```
+If you have ever thought, “I wish I had a better way to organize all this,” this is the lesson for you.
+
+---
+
+## What You Will Build
+
+By the end of this module, you will have a Second Brain that runs more like a real personal operating system than a manual workflow.
+
+You will build a system that:
+
+- collects fresh data from your channels and meetings
+- stores it in a real data warehouse
+- turns that data into a wiki you can explore
+- generates a weekly review every Monday
+
+It is not just a tutorial. It is a practical build you can actually use.
+
+```text
 YouTube + LinkedIn + Zoom
-         ↓  (Composio MCP — 10am daily)
-      Claude pulls channel data + transcripts
-         ↓
-      second-brain/raw/
-         ↓  (push skill — 6am daily)
-      Snowflake (SECOND_BRAIN database)
-         ↓  (wiki skill — 12pm daily)
-      second-brain/wiki/
-         ↓  (WBR skill — 8am Monday)
-      second-brain/wiki/wbr/YYYY-MM-DD.md
+        ↓
+     Claude pulls data
+        ↓
+   Snowflake stores it
+        ↓
+   Wiki updates itself
+        ↓
+   WBR shows what changed
 ```
 
 ---
 
-## What You'll Learn
+## What You Will Learn
 
-- How to use **MCP (Model Context Protocol)** to connect Claude to real external systems
-- How to use **Composio** as the integration hub between Claude and your tools
-- How to build a **Second Brain** — a folder structure Claude reads and writes to as your personal knowledge layer
-- How to push **two types of data** to Snowflake: structured JSON (YouTube, LinkedIn) and raw files (Zoom transcripts)
-- How to write **skill files** — reusable Claude instructions that act like pipeline scripts
-- How to use **Claude's built-in scheduler** to run jobs automatically at set times
-- How to compile a **living wiki** from your data using Karpathy's personal knowledge OS pattern
-- How to generate a **Weekly Business Review** automatically, with week-over-week comparisons
+In this module, you will learn how to:
+
+- connect Claude to real tools using MCP and Composio
+- create a folder structure that Claude can read and write to
+- move data into Snowflake as structured JSON and raw files
+- use skill files to automate work
+- build a wiki from your data
+- generate a weekly business review automatically
+
+This is a hands-on build, not just a theory lesson.
 
 ---
 
-## What You'll Need
+## What You Will Need
 
 | Tool | What it's for | Cost |
 |------|--------------|------|
@@ -49,50 +66,52 @@ YouTube + LinkedIn + Zoom
 | **Obsidian** | Desktop app for reading your wiki | Free |
 | **YouTube account** | The channel you want to track | Free |
 | **LinkedIn account** | The profile you want to track | Free |
-| **Zoom account** | Meeting transcripts (auto-fetch requires Business/Enterprise plan) | Free / Paid |
+| **Zoom account** | Meeting transcripts (auto-fetch requires) | Free / Paid |
 
 ---
 
-## Module Structure
+## How the Module Flows
+
+This module is designed as a step-by-step build.
 
 ### Foundation — Set Up Your Workspace
 
 | Lesson | What you'll do |
 |--------|---------------|
-| [0.1 — Create Your Second Brain Folder](./00-foundation/0.1-creating-folderstructure/readme.md) | Download and set up the folder structure Claude will read and write to |
-| [0.2 — Create Your Composio Account](./00-foundation/0.2-creating-composioaccount/readme.md) | Set up the integration hub that connects Claude to YouTube, LinkedIn, and Snowflake |
-| [0.3 — Set Up Snowflake](./00-foundation/0.3-creating-snowflake-account/Readme.md) | Create your free cloud data warehouse — the permanent destination for all your data |
+| [0.1 — Create Your Second Brain Folder](./00-foundation/0.1-creating-folderstructure/readme.md) | Set up the folder structure Claude will read and write to |
+| [0.2 — Create Your Composio Account](./00-foundation/0.2-creating-composioaccount/readme.md) | Connect the tools that will power your workflow |
+| [0.3 — Set Up Snowflake](./00-foundation/0.3-creating-snowflake-account/Readme.md) | Create the cloud storage layer for your data |
 
 ### Channel Data Pipeline — Connect and Automate
 
 | Lesson | What you'll do |
 |--------|---------------|
-| [1.0 — Enable Channels in Composio](./01-channel-data-pipeline/1.0-enabling-channels%20-in-composio/readme.md) | Authenticate YouTube and LinkedIn in Composio so Claude can access both |
-| [1.1 — Connect Claude to Composio via MCP](./01-channel-data-pipeline/1.1-connecting-claude-composioMCP/readme.md) | Register Composio as an MCP server in Claude and pull your first live data |
-| [1.2 — Connect Snowflake to Composio](./01-channel-data-pipeline/1.2-connecting-snowflake-composio/Readme.md) | Authorize Composio to write to your Snowflake account via OAuth |
-| [1.3 — Push Data to Snowflake](./01-channel-data-pipeline/1.3-puhing-data-to-snowflake/readme.md) | Use a skill file to push all your data into Snowflake and set up daily auto-sync |
+| [1.0 — Enable Channels in Composio](./01-channel-data-pipeline/1.0-enabling-channels%20-in-composio/readme.md) | Connect YouTube and LinkedIn so Claude can access them |
+| [1.1 — Connect Claude to Composio via MCP](./01-channel-data-pipeline/1.1-connecting-claude-composioMCP/readme.md) | Register Composio as an MCP server and pull your first live data |
+| [1.2 — Connect Snowflake to Composio](./01-channel-data-pipeline/1.2-connecting-snowflake-composio/Readme.md) | Authorize Composio to write to Snowflake |
+| [1.3 — Push Data to Snowflake](./01-channel-data-pipeline/1.3-puhing-data-to-snowflake/readme.md) | Use a skill file to send your data into Snowflake and automate the sync |
 
 ### Building Your Wiki — Knowledge That Maintains Itself
 
 | Lesson | What you'll do |
 |--------|---------------|
-| [2.0 — Create Your Wiki](./02-building-wiki/2.0-personal-knowledge-os/readme.md) | Compile your Snowflake data into a structured, cross-linked wiki using the build-wiki skill |
-| [2.1 — Create Your Weekly Business Review](./02-building-wiki/2.1-creating-WBR/readme.md) | Automate a weekly report that shows week-over-week performance every Monday at 8am |
+| [2.0 — Create Your Wiki](./02-building-wiki/2.0-personal-knowledge-os/readme.md) | Turn your Snowflake data into a structured, linked wiki |
+| [2.1 — Create Your Weekly Business Review](./02-building-wiki/2.1-creating-WBR/readme.md) | Automate a weekly report that shows what changed every Monday |
 
 ---
 
-## How the Timing Works
+## How the Automation Works
 
-Once everything is set up, here's what runs automatically every day:
+Once everything is set up, this is what runs automatically:
 
 | Time | What runs | What it does |
 |------|-----------|-------------|
 | **10:00 AM** | Daily data fetch | Pulls fresh YouTube, LinkedIn, and Zoom data into `raw/` |
 | **6:00 AM** (next day) | Snowflake push | Detects new files in `raw/`, pushes JSON + transcripts to Snowflake, archives raw files |
-| **12:00 PM** | Wiki sync | Queries Snowflake for new data, updates only affected wiki pages |
+| **12:00 PM** | Wiki sync | Queries Snowflake for new data and updates only affected wiki pages |
 | **8:00 AM Monday** | Weekly WBR | Compiles the previous week's data into a full business review |
 
-You set each of these up once. After that, they run without you.
+You set each of these up once. After that, they keep running without you.
 
 ---
 

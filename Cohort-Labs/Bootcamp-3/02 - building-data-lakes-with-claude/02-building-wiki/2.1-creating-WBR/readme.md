@@ -4,66 +4,100 @@
 
 ---
 
-## What Is a WBR?
+## Why This Lesson Matters
 
-A **Weekly Business Review** is a structured document that gives you a complete picture of your business performance in one place, once a week.
+By now, you have already built the system that collects data and turns it into a usable wiki.
 
-Amazon famously runs WBRs every week across the entire company. Every team shows up with the same format — the same metrics, the same structure, the same questions — so leaders can spot problems fast, compare across teams, and make decisions without spending two hours hunting for context.
+That is a great foundation. But a wiki alone is not the full story. A wiki tells you what exists. A WBR tells you what changed.
 
-The same principle applies here. Instead of manually pulling your YouTube numbers, checking your LinkedIn stats, and flipping between your company pages every Monday morning, your WBR compiles everything automatically and presents it in a consistent format — every single week.
+This is where the habit becomes useful in real life.
 
-Your WBR answers four questions:
+Every Monday morning, instead of opening five tabs and trying to remember what happened last week, you open one report that gives you the answer in a clean, repeatable format. It shows you:
 
-1. **What happened this week?** — channel performance, engagement, reach
-2. **What changed from last week?** — what went up, what went down, by how much
-3. **What's working?** — top content, best engagement, highest-performing company
-4. **What needs attention?** — drops, gaps, stalled metrics
+1. What happened this week
+2. What changed from last week
+3. What is working well
+4. What deserves your attention
 
-When this is automated, you walk into every week with a full briefing already waiting for you.
+That is the purpose of a Weekly Business Review.
+
+It is not just a report. It is a weekly briefing that helps you make better decisions without wasting time gathering context.
 
 ---
 
-## How It Works: The `build-wbr.md` Skill
+## What a WBR Actually Is
 
-The WBR is built by a skill file that lives in your `second-brain` folder:
+A WBR is a simple weekly summary of your business signals.
 
+Think of it as your normal Monday morning check-in, but automated.
+
+Instead of manually pulling numbers from YouTube, LinkedIn, Snowflake, and your company pages, the system compiles everything into one structured document. The result is a weekly snapshot that is easy to read and easy to compare.
+
+A good WBR answers four questions:
+
+- What happened this week?
+- What changed from last week?
+- What is performing well?
+- What needs attention?
+
+That is the difference between reacting to noise and making decisions from a clear view of the data.
+
+---
+
+## How It Works: The Build-WBR Skill
+
+The WBR is powered by a skill file in your second-brain folder:
+
+```text
+run @second-brain/skill/build-wbr.md
 ```
-run second-brain/skill/build-wbr.md
-```
 
-The skill connects to Snowflake via Composio, queries the last 7 days of data across all your tables, compares it against the previous week, and compiles a structured markdown report. It saves the report to your wiki folder with the week's date in the filename so you build up a historical archive automatically.
+This skill connects to Snowflake through Composio, pulls the last 7 days of data, compares it with the previous 7 days, and writes a markdown report for you.
 
-```
+It saves the output into your wiki folder with a date-based filename, so your reports build into a real archive over time.
+
+```text
 second-brain/wiki/wbr/
   ├── 2026-07-07.md
   ├── 2026-07-14.md   ← this week
   └── ...
 ```
 
-You never write the WBR manually. You invoke the skill — Claude does the rest.
+You do not need to write the WBR by hand. You run the skill, and Claude creates the review for you.
 
 ---
 
 ## Build Your First WBR
 
-Open a Claude session with your `second-brain` folder added, then paste:
+Open a Claude session with your second-brain folder added, then run:
 
-```
+```text
 run @second-brain/skill/build-wbr.md
 ```
 
-That's it. The skill handles everything — querying Snowflake, comparing week-over-week, writing the report, and saving it to the right place.
+That is the full prompt.
+
+The skill will:
+
+- connect to Snowflake
+- pull this week's and last week's data
+- calculate changes
+- write the report
+- save it into your WBR folder
+
+![image](./images/1.png)
 
 ---
 
 ## What the WBR Contains
 
-The skill compiles a report with these sections every week:
+Each weekly report is built in a consistent format so you can scan it quickly.
 
-**1. Week Summary**
-A 3–5 sentence plain-English overview of what happened this week — written by Claude, not a template fill-in.
+### 1. Week Summary
+A short plain-English summary of what happened this week.
 
-**2. Channel Performance**
+### 2. Channel Performance
+A table with the main numbers for your channels, such as subscribers, views, connections, and reactions.
 
 | Metric | This week | Last week | Change |
 |--------|-----------|-----------|--------|
@@ -72,53 +106,47 @@ A 3–5 sentence plain-English overview of what happened this week — written b
 | LinkedIn connections | — | — | — |
 | LinkedIn post reactions | — | — | — |
 
-**3. Top Content This Week**
-The single best-performing YouTube video and LinkedIn post from the last 7 days — title, engagement numbers, and a one-line note on why it performed well.
+### 3. Top Content This Week
+The best-performing YouTube video and LinkedIn post from the last 7 days, along with why they did well.
 
-**4. Company Pulse**
-For each company in your `projects/` folder — any new data added this week, notable changes, or flags if nothing has been updated in a while.
+### 4. Company Pulse
+A quick view of the companies in your projects folder — what changed, what was added, and what may need attention.
 
-**5. What Needs Attention**
-Any metric that dropped more than 10% week-over-week. Any company folder that hasn't been updated in 14+ days. Any table in Snowflake with no new rows this week.
+### 5. What Needs Attention
+The sections that are underperforming or falling behind, such as:
 
-**6. One Recommendation**
-Based on the week's data, one specific thing to do differently next week — derived from the patterns in the numbers.
+- metrics that dropped by more than 10%
+- companies that have not been updated in 14+ days
+- tables in Snowflake with no new data this week
 
+### 6. One Recommendation
+A single action for next week based on the patterns in the data.
 
-![image](./images/1.png)
-
-> **Note:** The WBR becomes most valuable once you have a few weeks of data accumulated in Snowflake. If you've just set up the pipeline,run it for a week or two first — then come back and the report will have real week-over-weekcomparisons to show. In the meantime, you canuse this same setup to create an **EBR (Execu
-tive Business Review)** — a one-time snapshotof all your data in one place, without needing historical comparison.
-
+> The WBR becomes more useful once you have a few weeks of history in Snowflake. If you are still early in the setup, run it after a week or two so the week-over-week comparisons actually mean something. In the meantime, you can also use the same structure to create an Executive Business Review, which is a one-time snapshot of everything in one place.
 
 ---
 
-## What's Happening Behind the Scenes
+## What Happens Behind the Scenes
 
-When you run `build-wbr.md`, here's what Claude does:
+When you run the skill, Claude does a few important things in order:
 
-**1. Connects to Snowflake via Composio**
-The skill searches for the Snowflake SQL tool via Composio MCP — same as the wiki skill — and uses it to run all queries.
+1. Connects to Snowflake through Composio
+2. Pulls data from the last 7 days
+3. Pulls the previous 7 days for comparison
+4. Writes the report in markdown
+5. Saves it to a dated file in the WBR folder
 
-**2. Queries this week's data**
-Pulls rows from every table where the timestamp falls within the last 7 days.
-
-**3. Queries last week's data**
-Pulls the same rows for the 7 days before that, so it can calculate week-over-week changes.
-
-**4. Compiles the report**
-Writes the WBR in structured markdown — numbers filled in, changes calculated, summary written, recommendation generated.
-
-**5. Saves with the date**
-Saves to `second-brain/wiki/wbr/YYYY-MM-DD.md` using the Monday of the current week as the filename. Every week's report is a separate file — you always have the full history.
+That means every week you get a fresh report without needing to rebuild it from scratch.
 
 ---
 
 ## Automate It: Weekly WBR Every Monday at 8am
 
-Set it once — your WBR is ready before your week starts.
+Once this is set up, you do not have to remember it.
 
-```
+Use Claude Code's scheduler to run the WBR every Monday at 8:00 AM.
+
+```text
 Using Claude Code's built-in scheduler, set up a weekly job that runs every Monday at 8:00 AM.
 
 When the job runs, execute:
@@ -136,15 +164,15 @@ If no data is found for the current week, log: "No data for this week — WBR sk
 Schedule this as a recurring job that runs automatically every Monday at 8:00 AM.
 ```
 
-> **Why Monday at 8am?** Your weekly data fetch runs at 10am. By scheduling the WBR for 8am, it processes data from the previous week — everything from Monday through Sunday — before the new week's first fetch kicks in. You get a clean, complete review of the week that just ended.
+> Why Monday at 8am? Because your weekly data fetch usually happens later in the morning. Scheduling the WBR earlier gives you a clean review of the previous week before the new cycle begins.
 
 ---
 
 ## Your WBR Archive Over Time
 
-After a few months, your `wiki/wbr/` folder becomes one of the most valuable assets in your second brain:
+After a few weeks and months, your WBR folder becomes one of the most valuable parts of your second brain.
 
-```
+```text
 second-brain/wiki/wbr/
   ├── 2026-06-01.md
   ├── 2026-06-08.md
@@ -155,30 +183,31 @@ second-brain/wiki/wbr/
   └── 2026-07-14.md
 ```
 
-Every report is a snapshot in time. You can ask Claude to read across all of them and surface trends you'd never catch week-to-week — which months had the best growth, which content themes have been building momentum, where you've been consistently losing ground.
+Each file is a snapshot in time. Over time, you can ask Claude to read across multiple WBRs and spot trends that would be hard to notice from week to week.
 
 ---
 
-## How Real Teams Think About This
+## Why This Pattern Matters
 
-Amazon's WBR process is famous for one rule: **the data speaks first**.
+Amazon is famous for its WBR process because it creates one shared source of truth.
 
-Before any discussion, everyone reads the same document with the same numbers. No one summarizes from memory. No one brings a different version of the metrics. The WBR is the shared source of truth — and because it's always in the same format, the team gets faster at reading it every week.
+Everyone looks at the same numbers. Everyone reads the same summary. Everyone starts from the same context.
 
-What you've built here follows the same logic. The format is consistent because the skill writes it. The data is current because it comes straight from Snowflake. And because it runs automatically, you never skip a week because you were too busy to pull it together.
+That is exactly what you are building here.
 
-The discipline isn't in writing the review. The discipline is in reading it.
+The value is not in writing the report. The value is in making sure you always have a clear and consistent view of what changed.
+
+---
+
+## What You Have Learned
+
+- Why a WBR is useful as a weekly decision-making tool
+- How the build-wbr skill pulls data from Snowflake and compiles a report
+- How to structure a weekly review around summary, performance, attention areas, and recommendations
+- How to automate the report so it runs every week without manual effort
 
 ---
 
-## Claude Concepts Covered in This Lesson
-
-| Concept | Where it appeared | Learn more |
-|---------|-------------------|------------|
-| **Skill files** | **How It Works** — *"The WBR is built by a skill file that lives in your second-brain folder."* | [Claude Code slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands) |
-| **Scheduled tasks** | **Automate It** — *"Set up a weekly job that runs every Monday at 8:00 AM."* | [Claude Code Overview](https://docs.anthropic.com/en/docs/claude-code) |
-| **MCP Tool Use** | **Behind the Scenes** — *"The skill searches for the Snowflake SQL tool via Composio MCP."* | [MCP Documentation](https://docs.anthropic.com/en/docs/claude-code/mcp) |
-
----
+## What's Next
 
 [← Back to module index](../README.md)
