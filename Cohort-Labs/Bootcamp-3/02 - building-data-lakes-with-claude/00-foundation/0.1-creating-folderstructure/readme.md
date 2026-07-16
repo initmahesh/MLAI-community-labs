@@ -34,7 +34,7 @@ The `wiki/` folder is the heart of the Second Brain. It's where processed, struc
 
 Download the Second Brain folder structure used in this course:
 
-> **[Download Second Brain Template](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQA2txH3NdrqTruh-6z1qmgiATevR5uChgptEBnW8GCP3U4?e=EWIdSb)**
+> **[Download Second Brain Template](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQBdu9h0h8gySLzjtxWGDBCrAa6utw4kKY1Ycf0U304Z4CA?e=XXaBFR)**
 
 This gives you the exact folder layout with example files already in place. You don't need to create anything from scratch.
 

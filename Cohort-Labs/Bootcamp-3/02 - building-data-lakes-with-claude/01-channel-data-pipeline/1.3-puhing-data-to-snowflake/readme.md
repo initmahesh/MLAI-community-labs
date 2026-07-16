@@ -68,7 +68,7 @@ When you reference it in a prompt with `@second-brain/skill/push-data-to-snowfla
 Paste this prompt into Claude:
 
 ```
-@second-brain/skill/push-data-to-snowflake.md
+@second-brain/assets/push-data-to-snowflake.md
 
 Push all data from second-brain/raw/ to Snowflake using the Composio MCP server.
 

@@ -2,11 +2,11 @@
 
 ---
 
-You've connected your channels. Claude can now reach YouTube and LinkedIn through Composio.
+You've connected your channels. Claude can now reach YouTube, LinkedIn, and Zoom through Composio.
 
 But here's the problem — where does all that data actually go?
 
-Right now, every time Claude pulls analytics from your channels, the results live inside a single chat conversation. Close the window and they're gone. Run it again next week and you have no way to compare. Share it with a teammate and they see a screenshot, not queryable data.
+Right now, every time Claude pulls analytics from your channels or a Zoom transcript, the results live inside a single chat conversation. Close the window and they're gone. Run it again next week and you have no way to compare. Share it with a teammate and they see a screenshot, not queryable data.
 
 That's not a data pipeline. That's a manual process with an AI in the middle.
 
@@ -41,11 +41,11 @@ For our pipeline, Snowflake plays one role: **the destination**.
 
 ```
 YouTube  ──→
-              Claude + Composio  ──→  Snowflake
-LinkedIn ──→
+LinkedIn ──→  Claude + Composio  ──→  Snowflake
+Zoom     ──→
 ```
 
-Every time the pipeline runs, Claude will pull data from your channels and push it into Snowflake. The data accumulates run after run — building a historical record you can query, analyze, and report on over time.
+Every time the pipeline runs, Claude pulls data from your channels and Zoom, then pushes it into Snowflake. The data accumulates run after run — building a historical record you can query, analyze, and report on over time.
 
 But before Claude can write to Snowflake, Composio needs permission to enter. That's what this lesson is about — creating a secure, authorized connection between Composio and your Snowflake account.
 
@@ -201,16 +201,17 @@ Let's take stock of where we are.
 Claude
   ↓  (MCP)
 Composio
-  ├── YouTube  (authenticated ✓)
-  ├── LinkedIn (authenticated ✓)
+  ├── YouTube   (authenticated ✓)
+  ├── LinkedIn  (authenticated ✓)
+  ├── Zoom      (authenticated ✓)
   └── Snowflake (authenticated ✓)
 ```
 
 Every piece of the pipeline now has a live connection:
-- YouTube and LinkedIn are the **sources** — where data comes from
-- Snowflake is the **destination** — where data gets stored permanently
+- YouTube, LinkedIn, and Zoom are the **sources** — where data comes from
+- Snowflake is the **destination** — where everything gets stored permanently
 
-Claude can now pull from both channels and write to the database, all in a single automated run.
+Claude can now pull from all three sources and write to the database, all in a single automated run.
 
 ---
 
@@ -248,7 +249,7 @@ By connecting Snowflake today, you've moved from "data that answers a question" 
 
 **[Lesson 1.3 → Push Data to Snowflake](../1.3-puhing-data-to-snowflake/readme.md)**
 
-All three systems are connected. Now it's time to actually move data. In the next lesson you'll use the `push-data-to-snowflake.md` skill to push everything from your `raw/` and `projects/` folders into Snowflake in a single prompt — and set up a daily scheduler to keep it in sync automatically.
+All four systems are connected. Now it's time to actually move data. In the next lesson you'll use the `push-data-to-snowflake.md` skill to push YouTube and LinkedIn JSON and Zoom transcripts from your `raw/` folder into Snowflake in a single prompt — and set up a 6am daily scheduler to keep it in sync automatically.
 
 ---
 

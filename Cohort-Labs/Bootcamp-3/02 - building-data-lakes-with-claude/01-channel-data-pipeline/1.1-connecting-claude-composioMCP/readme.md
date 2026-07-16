@@ -167,58 +167,44 @@ For each video collect:
 - Like count
 
 Step 3 — Save the Data
-1. Create the folder second-brain/raw/ if it doesn't exist
+1. Create the folder raw/ if it doesn't exist
 2. Save the channel stats and full video list as a single JSON file at:
-   second-brain/raw/MaheshAIPMCommunity.json
+   raw/MaheshAIPMCommunity.json
 ```
 
 > **Note:** Claude will ask for permission before writing files — approve it when prompted. Once complete, you'll see the `raw/` folder in your second-brain updated with the fetched data.
 
-![Raw folder updated with fetched data](./images/7.png)
+![Raw folder updated with fetched data](./images/15.png)
 
 ---
 
 ### LinkedIn Analytics
 
-> **Before running:** Find 3–5 of your recent LinkedIn posts, copy their links (three-dot menu → "Copy link to post"), extract the numeric ID from each URL, and format as `urn:li:share:<id>`. You'll paste those into the prompt below.
+> **Before running:** Get your Apify API token from [apify.com](https://apify.com) → Settings → Integrations → API token. Paste it into the prompt below.
 
-**Fetch Profile + Post Metrics**
+> **Why Apify?** Composio's LinkedIn tools require a specific post URN for every call — there's no tool to list recent posts. Apify's LinkedIn scraper takes a company page URL and returns all posts automatically, no URNs needed.
+
+**Fetch Page Followers + Last 10 Posts — Reactions, Comments, Reposts**
 ```
-Using Composio, fetch my LinkedIn profile and post performance metrics.
+Use the Apify API to scrape the Mahesh AI PM Community LinkedIn page.
+https://www.linkedin.com/company/mahesh-ai-pm-community/
 
-Step 1 — Profile Info
-Use LINKEDIN_GET_MY_INFO to retrieve:
-- Full name
-- LinkedIn member URN
-- Headline
-- Vanity name (my custom LinkedIn URL handle)
-- Number of connections (if available)
+Wait for the run to finish, then fetch the results from the dataset.
 
-Step 2 — Post Content
-For each of these post URNs, use LINKEDIN_GET_POST_CONTENT to retrieve:
-- Full post text
-- Published date
-- Post type (text, image, article, video)
+Step 2 — Extract the Data
+From the actor results, collect:
+- Company name
+- Follower count
+- For each of the 10 posts:
+  - Post text
+  - Published date
+  - Reaction count
+  - Comment count
+  - Repost count
 
-[paste your post URNs here — format: urn:li:share:<id>]
-
-Step 3 — Post Reactions
-For each post URN above, use LINKEDIN_LIST_REACTIONS to retrieve:
-- Total reaction count
-- Breakdown by reaction type (like, celebrate, support, love, insightful, curious)
-
-Step 4 — Engagement Summary
-From the data collected in Step 2 and 3:
-- Rank posts from highest to lowest total reactions
-- Identify the best performing post
-- Calculate average reactions per post
-- Identify which post type (text, image, article) gets the most reactions
-- Calculate posting cadence (average days between posts)
-
-Finally:
-1. Create the folder second-brain/raw/ if it doesn't exist
-2. Save the full profile, all post content, reactions, and engagement summary as a single JSON file at:
-   second-brain/raw/LinkedIn-initmahesh.json
+Step 3 — Save the Data
+1. Create the folder /raw if it doesn't exist
+2. Save the full results as a single JSON file at: raw/LinkedIn-MaheshAIPM.json
 ```
 
 
@@ -242,6 +228,7 @@ Beyond YouTube and LinkedIn, you can also pull meeting transcripts directly from
 
 ![image](./images/11.png)
 
+![image](./images/12.png)
 
 **Step 3** — Search for **Zoom** and click on it.
 
@@ -278,8 +265,8 @@ For each meeting, retrieve the full transcript including:
 - Full spoken text
 
 Step 3 — Save to Raw Folder
-Save each transcript as a separate file in second-brain/raw/zoom/:
-- second-brain/raw/zoom/<meeting-title>-<date>.txt
+Save each transcript as a separate file in raw/zoom/:
+- raw/zoom/<meeting-title>-<date>.txt
 
 Create the folder if it doesn't exist.
 ```
@@ -324,19 +311,18 @@ For each video collect:
 - Like count
 
 Step 2 — LinkedIn Daily Fetch
-Use LINKEDIN_GET_MY_INFO to retrieve:
-- Full name
-- LinkedIn member URN
-- Headline
-- Vanity name
-- Number of connections (if available)
+Make a POST request to the Apify actor:
+https://api.apify.com/v2/acts/bebity~linkedin-company-posts-scraper/runs?token=<your-apify-token>
 
-Then for each post URN in your tracked list, use LINKEDIN_GET_POST_CONTENT and LINKEDIN_LIST_REACTIONS to retrieve:
-- Full post text
-- Published date
-- Post type
-- Total reaction count
-- Reaction breakdown by type
+With this JSON body:
+{
+  "startUrls": ["https://www.linkedin.com/company/mahesh-ai-pm-community/"],
+  "maxPosts": 10
+}
+
+Wait for the run to finish, fetch the dataset results and collect:
+- Follower count
+- For each post: post text, published date, reaction count, comment count, repost count
 
 Step 3 — Save with Date Stamp
 After each fetch, save both results with today's date in the filename:
