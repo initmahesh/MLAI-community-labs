@@ -198,10 +198,11 @@ Use this prompt:
 Using Claude Code's built-in scheduler, set up a daily job that runs every morning at 6:00 AM. Use the Composio MCP server to push any new data to Snowflake.
 
 Step 1 — Scan for New Files
-Check second-brain/raw/ for files added since the last successful push:
+Check second-brain/raw/ for files and /wiki added since the last successful push:
 - second-brain/raw/youtube/ (JSON files)
 - second-brain/raw/linkedin/ (JSON files)
 - second-brain/raw/zoom/ (transcript .txt files)
+- all the /wiki files also
 
 A file is considered new if it has not already been pushed to Snowflake in a previous run.
 Skip any file already pushed so you do not create duplicates.
