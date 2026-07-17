@@ -91,7 +91,7 @@ Paste this prompt into Claude:
 ```text
 @second-brain/assets/push-data-to-snowflake.md
 
-Push all data from raw/ and assets/ to Snowflake using the Composio MCP server.
+Push all data from raw/ and wiki/ to Snowflake using the Composio MCP server.
 
 Step 1 — Push Structured JSON (YouTube + LinkedIn)
 Scan second-brain/raw/youtube/ and second-brain/raw/linkedin/ for JSON files.
