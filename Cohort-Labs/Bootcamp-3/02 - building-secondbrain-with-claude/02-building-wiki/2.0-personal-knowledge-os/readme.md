@@ -42,12 +42,12 @@ Just like the Snowflake push used a skill file, the wiki has one too.
 The skill lives here:
 
 ```text
-second-brain/skill/build-wiki.md
+second-brain/assets/build-wiki.md
 ```
 
 It contains the instructions Claude needs to structure the wiki — what pages to create, how to format company profiles, how to link data across sources, and where to save everything.
 
-When you reference it in a prompt with `@second-brain/skill/build-wiki.md`, Claude reads those instructions and applies them to the data you point it at. The result is a consistent wiki instead of a one-off document.
+When you reference it in a prompt with `@second-brain/assets/build-wiki.md`, Claude reads those instructions and applies them to the data you point it at. The result is a consistent wiki instead of a one-off document.
 
 ---
 
@@ -56,7 +56,7 @@ When you reference it in a prompt with `@second-brain/skill/build-wiki.md`, Clau
 The skill is fully self-contained. It discovers your data, builds the pages, and saves its own tracking state. You simply invoke it:
 
 ```text
-run @second-brain/skill/build-wiki.md
+run @second-brain/assets/build-wiki.md
 ```
 
 ![image](./images/1.png)

@@ -33,26 +33,44 @@ Once this connection is live, Claude can use all of those tools in one flow.
 
 ---
 
-## Step 1: Tell Claude About Composio
+## Step 1: Connect Claude to Composio
 
-Follow these steps:
+1. Open **Claude Code** in your terminal.
 
-1. Open Claude and type: `hi`
-2. Click the top icon to open the terminal interface
-3. In the terminal, run this command:
+2. Run this prompt — paste it exactly as written:
 
 ```text
-claude mcp login composio
+Run claude mcp remove composio for this project, confirm it's gone from ~/.claude.json, then run claude mcp add composio --transport http https://connect.composio.dev/mcp again and show me the output.
 ```
 
-4. A browser window will open. Authenticate yourself there.
-5. Then ask Claude in the chat:
+3. Once that completes, run this second prompt:
 
 ```text
-Can you check if I am connected to the Composio MCP server or not?
+Run claude mcp list and check the status of the composio connection. If it shows as needing authentication, run whatever command triggers the OAuth/login flow for it (check claude mcp auth composio or similar) and open the resulting URL.
 ```
 
-![image](./images/17.png)
+Claude will handle the commands and may open a browser window for authentication. Complete the login flow there.
+
+
+
+---
+
+## Step 2: Provide Your Snowflake Credentials
+
+After connecting Composio, Claude will ask you to authenticate with Snowflake. You will need three things:
+
+- **Username** — the email or username you used when you created your Snowflake account
+- **Password** — the password you set when creating your Snowflake account
+- **Account Identifier** — follow these steps to find it:
+
+  1. Log in to your Snowflake account
+  2. Click on your **profile icon** in the bottom-left corner
+  3. Select **Connect a tool to Snowflake**
+  ![image](./images/18.png)
+  4. Your account identifier will be displayed there — it looks something like `abc12345.us-east-1`
+  ![image](./images/19.png)
+
+Enter all three when Claude asks for them.
 
 ---
 

@@ -41,7 +41,7 @@ The `wiki/` folder is the main part of this system. It is where we keep our orga
 
 You can download the Second Brain template we prepared for this course:
 
-> **[Download Second Brain Template](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQBdu9h0h8gySLzjtxWGDBCrAa6utw4kKY1Ycf0U304Z4CA?e=XXaBFR)**
+> **[Download Second Brain Template](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQAUsrYoxGGQQIac0V-00YINAToTpnUql1AzHqr4BjxQXA0?e=Xp2PXH)**
 
 This gives you the folder structure and example files so you do not have to build everything from zero.
 
@@ -57,7 +57,7 @@ Second-Brain/
 │   ├── LinkedIn-ads.json
 │   ├── LinkedIn-campaign.json
 │   └── YouTube-channel.json
-├── skill/
+├── assets/
 │   ├── push-data-to-snowflake.md
 │   ├── build-wiki.md
 │   └── build-wbr.md
@@ -76,7 +76,7 @@ Second-Brain/
 Each folder has a job:
 
 - `raw/` holds the original files we collect from tools like LinkedIn and YouTube
-- `skill/` holds the instruction files that guide Claude
+- `assets/` holds the instruction files that guide Claude
 - `wiki/` holds the organized knowledge that Claude can read
 - `Archive/` is where files go after they have been used
 

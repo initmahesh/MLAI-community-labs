@@ -46,10 +46,10 @@ That is the difference between reacting to noise and making decisions from a cle
 
 ## How It Works: The Build-WBR Skill
 
-The WBR is powered by a skill file in your second-brain folder:
+The WBR is powered by a assets file in your second-brain folder:
 
 ```text
-run @second-brain/skill/build-wbr.md
+run @second-brain/assets/build-wbr.md
 ```
 
 This skill connects to Snowflake through Composio, pulls the last 7 days of data, compares it with the previous 7 days, and writes a markdown report for you.
@@ -72,7 +72,7 @@ You do not need to write the WBR by hand. You run the skill, and Claude creates 
 Open a Claude session with your second-brain folder added, then run:
 
 ```text
-run @second-brain/skill/build-wbr.md
+run @second-brain/assets/build-wbr.md
 ```
 
 That is the full prompt.

@@ -61,11 +61,11 @@ After the push, the files move into an Archive folder so your raw folder stays c
 
 ---
 
-## How the Skill File Helps
+## How the assets File Helps
 
-Instead of writing every Snowflake table and insert command by hand, we use a skill file.
+Instead of writing every Snowflake table and insert command by hand, we use a assets file.
 
-That skill file contains the instructions Claude needs to:
+That assets file contains the instructions Claude needs to:
 
 - create the right Snowflake tables
 - map the JSON fields into columns
@@ -74,10 +74,10 @@ That skill file contains the instructions Claude needs to:
 
 You can think of it as a reusable playbook for your pipeline.
 
-The skill file is usually stored here:
+The assets file is usually stored here:
 
 ```text
-second-brain/skill/push-data-to-snowflake.md
+second-brain/assets/push-data-to-snowflake.md
 ```
 
 When you reference it in a prompt, Claude loads those instructions and runs them for you.
