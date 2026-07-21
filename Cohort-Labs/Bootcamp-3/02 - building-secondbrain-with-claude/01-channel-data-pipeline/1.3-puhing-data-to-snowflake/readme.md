@@ -77,7 +77,8 @@ You can think of it as a reusable playbook for your pipeline.
 The assets file is usually stored here:
 
 ```text
-second-brain/assets/push-data-to-snowflake.md
+second-brain/assets
+/push-data-to-snowflake.md
 ```
 
 When you reference it in a prompt, Claude loads those instructions and runs them for you.
@@ -279,4 +280,4 @@ Your data is now stored in Snowflake. The next step is to turn it into something
 
 ---
 
-[← Back to module index](../README.md)
+[← Back to module index](../../README.md)

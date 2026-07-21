@@ -98,9 +98,9 @@ By the end of this lesson, you should know:
 
 ## What’s Next
 
-In the next lesson, we will create our Snowflake account. Snowflake will be where our data is stored and organized.
+In the next lesson, we will set up Apify. Apify will let Claude collect data from LinkedIn without building a scraper from scratch.
 
-**[Lesson 0.3 → Set Up Snowflake](../0.3-creating-snowflake-account/Readme.md)**
+**[Lesson 0.3 → Set Up Apify](../0.3-setup-apify/readme.md)**
 
 ---
 

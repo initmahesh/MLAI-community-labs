@@ -124,3 +124,12 @@ In the next step, we will connect this flow to our larger system so the data can
 
 ---
 
+## What's Next
+
+**[Lesson 0.4 → Set Up Snowflake](../0.4-creating-snowflake-account/Readme.md)**
+
+In the next lesson, we will create our Snowflake account. Snowflake will be the permanent home where all the data we collect gets stored and organized.
+
+---
+
+[← Back to module index](../../README.md)

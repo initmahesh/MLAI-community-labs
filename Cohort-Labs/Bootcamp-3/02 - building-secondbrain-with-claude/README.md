@@ -80,15 +80,16 @@ This module is designed as a step-by-step build.
 |--------|---------------|
 | [0.1 — Create Your Second Brain Folder](./00-foundation/0.1-creating-folderstructure/readme.md) | Set up the folder structure Claude will read and write to |
 | [0.2 — Create Your Composio Account](./00-foundation/0.2-creating-composioaccount/readme.md) | Connect the tools that will power your workflow |
-| [0.3 — Set Up Snowflake](./00-foundation/0.3-creating-snowflake-account/Readme.md) | Create the cloud storage layer for your data |
+| [0.3 — Set Up Apify](./00-foundation/0.3-setup-apify/readme.md) | Install the web data connector for LinkedIn scraping |
+| [0.4 — Set Up Snowflake](./00-foundation/0.4-creating-snowflake-account/Readme.md) | Create the cloud storage layer for your data |
 
 ### Channel Data Pipeline — Connect and Automate
 
 | Lesson | What you'll do |
 |--------|---------------|
 | [1.0 — Enable Channels in Composio](./01-channel-data-pipeline/1.0-enabling-channels%20-in-composio/readme.md) | Connect YouTube and LinkedIn so Claude can access them |
-| [1.1 — Connect Claude to Composio via MCP](./01-channel-data-pipeline/1.1-connecting-claude-composioMCP/readme.md) | Register Composio as an MCP server and pull your first live data |
-| [1.2 — Connect Snowflake to Composio](./01-channel-data-pipeline/1.2-connecting-snowflake-composio/Readme.md) | Authorize Composio to write to Snowflake |
+| [1.1 — Connect Claude to Composio via MCP](./01-channel-data-pipeline/1.2-connecting-claude-composioMCP/readme.md) | Register Composio as an MCP server and pull your first live data |
+| [1.2 — Connect Snowflake to Composio](./01-channel-data-pipeline/1.1-connecting-snowflake-composio/Readme.md) | Authorize Composio to write to Snowflake |
 | [1.3 — Push Data to Snowflake](./01-channel-data-pipeline/1.3-puhing-data-to-snowflake/readme.md) | Use a skill file to send your data into Snowflake and automate the sync |
 
 ### Building Your Wiki — Knowledge That Maintains Itself
