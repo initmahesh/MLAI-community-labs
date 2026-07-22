@@ -88,7 +88,7 @@ This module is designed as a step-by-step build.
 | Lesson | What you'll do |
 |--------|---------------|
 | [1.0 — Enable Channels in Composio](./01-channel-data-pipeline/1.0-enabling-channels%20-in-composio/readme.md) | Connect YouTube and LinkedIn so Claude can access them |
-| [1.1 — Connect Claude to Composio via MCP](./01-channel-data-pipeline/1.2-connecting-claude-composioMCP/readme.md) | Register Composio as an MCP server and pull your first live data |
+| [1.1 — Connect Claude to Composio via MCP](./01-channel-data-pipeline/1.1-connecting-snowflake-composio/Readme.md) | Register Composio as an MCP server and pull your first live data |
 | [1.2 — Connect Snowflake to Composio](./01-channel-data-pipeline/1.1-connecting-snowflake-composio/Readme.md) | Authorize Composio to write to Snowflake |
 | [1.3 — Push Data to Snowflake](./01-channel-data-pipeline/1.3-puhing-data-to-snowflake/readme.md) | Use a skill file to send your data into Snowflake and automate the sync |
 
