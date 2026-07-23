@@ -313,7 +313,7 @@ By the end of this lesson, you should know:
 
 ## What’s Next
 
-**[Lesson 1.2 → Connect Snowflake to Composio](../1.1-connecting-snowflake-composio/Readme.md)**
+**[Lesson 1.2 → Connect Snowflake to Composio](../1.3-puhing-data-to-snowflake/readme.md)**
 
 Now that Claude can access your tools, the next step is to give it a place to store the data permanently in Snowflake.
 

@@ -237,7 +237,7 @@ By the end of this lesson, you should know:
 
 ## What’s Next
 
-**[Lesson 1.3 → Push Data to Snowflake](../1.3-puhing-data-to-snowflake/readme.md)**
+**[Lesson 1.3 → Push Data to Snowflake](../1.2-connecting-claude-composioMCP/readme.md)**
 
 Now that Snowflake is connected, the next step is to actually move data into it. In the next lesson, you will push your collected files into Snowflake and set up the daily sync.
 
