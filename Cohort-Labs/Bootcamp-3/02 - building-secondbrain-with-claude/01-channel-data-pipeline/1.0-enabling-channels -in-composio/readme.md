@@ -113,7 +113,7 @@ By the end of this lesson, you should know:
 
 ## What’s Next
 
-**[Lesson 1.1 → Connect Claude to Composio via MCP](../1.2-connecting-claude-composioMCP/readme.md)**
+**[Lesson 1.1 → Connect Claude to Composio via MCP](../1.1-connecting-snowflake-composio/Readme.md)**
 
 Now that your channels are connected, the next step is to connect Claude itself to Composio so everything works together in one flow.
 

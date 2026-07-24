@@ -111,7 +111,7 @@ Every future run reads the context file first. No data gets compiled twice.
 
 ---
 
-> **Before you run the prompts below:** Open a new Claude session and add your `second-brain/wiki/` folder to the chat. Claude will read directly from those wiki pages to answer your questions.
+> **Before you run the prompts below:** Open a new Claude session and add your `second-brain/wiki/` folder to the cowork. Claude will read directly from those wiki pages to answer your questions.
 
 ## Test Your Wiki: Three Strategic Questions
 
