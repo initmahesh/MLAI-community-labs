@@ -101,7 +101,7 @@ claude
 Paste the following prompt into the Claude Code terminal:
 
 ```
-Use @skills/security-fix/SKILL.md to scan the codebase and fix all security issues.
+Use @skills/security-foundation/SKILL.md to scan the codebase and fix all security issues.
 ```
 
 Press **Enter** and let the skill run completely.
