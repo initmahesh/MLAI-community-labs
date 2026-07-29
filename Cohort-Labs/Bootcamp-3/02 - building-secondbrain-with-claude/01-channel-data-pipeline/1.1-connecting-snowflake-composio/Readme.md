@@ -234,7 +234,18 @@ By the end of this lesson, you should know:
 - how to copy the client credentials and finish the connection in Composio
 
 ---
+## Troublr shorritn 
+if you gace this below issue while authenticatin composo and snowdlake 
+![images](./images/16.png)
 
+DESCRIBE SECURITY INTEGRATION composio_oauth;
+ALTER USER <username> SET DEFAULT_ROLE = SYSADMIN;
+
+run the above SQL query in the snowflake replace the  <username> with your username and run it and then try again !
+
+
+
+---
 ## What’s Next
 
 **[Lesson 1.3 → Push Data to Snowflake](../1.2-connecting-claude-composioMCP/readme.md)**
