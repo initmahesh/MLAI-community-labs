@@ -234,14 +234,18 @@ By the end of this lesson, you should know:
 - how to copy the client credentials and finish the connection in Composio
 
 ---
-## Troublr shorritn 
-if you gace this below issue while authenticatin composo and snowdlake 
+## Troubleshooting
+
+If you face the issue below while authenticating Composio and Snowflake:
+
 ![images](./images/16.png)
 
+Run the following SQL queries in Snowflake, replacing `<username>` with your username, then try again:
+
+```sql
 DESCRIBE SECURITY INTEGRATION composio_oauth;
 ALTER USER <username> SET DEFAULT_ROLE = SYSADMIN;
-
-run the above SQL query in the snowflake replace the  <username> with your username and run it and then try again !
+```
 
 
 
