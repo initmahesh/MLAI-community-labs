@@ -6,6 +6,25 @@
 
 ---
 
+## Index
+
+| Part | Title |
+|---|---|
+| [Part 1](#part-1--enable-the-new-azure-ai-foundry-experience) | Enable the New Azure AI Foundry Experience |
+| [Part 2](#part-2--create-your-agent) | Create Your Agent |
+| [Part 3](#part-3--add-tools-to-your-agent) | Add Tools to Your Agent |
+| [Part 4](#part-4--connect-foundry-iq-knowledge-graph) | Connect Foundry IQ (Knowledge Graph) |
+| [Part 5](#part-5--add-memory-to-your-agent) | Add Memory to Your Agent |
+| [Part 6](#part-6--configure-guardrails) | Configure Guardrails |
+| [Part 7](#part-7--test-your-agent) | Test Your Agent |
+| [Part 8](#part-8--save-your-agent) | Save Your Agent |
+| [Part 9](#part-9--publish-to-microsoft-teams-and-microsoft-365-copilot) | Publish to Microsoft Teams and Microsoft 365 Copilot |
+| [Part 10](#part-10--open-and-test-in-microsoft-teams) | Open and Test in Microsoft Teams |
+| [Part 11](#part-11--monitor-your-agent) | Monitor Your Agent |
+| [Part 12](#part-12--set-up-continuous-evaluation) | Set Up Continuous Evaluation |
+
+---
+
 ## Who This Lab Is For
 
 | You are… | You'll get… |
