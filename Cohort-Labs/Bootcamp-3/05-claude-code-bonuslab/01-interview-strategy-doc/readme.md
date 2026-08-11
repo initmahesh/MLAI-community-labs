@@ -1,7 +1,5 @@
 # Bonus Lab — Update Your Interview Strategy Doc
 
-![banner](./images/banner.png)
-
 ---
 
 ## Where This Picks Up
@@ -17,10 +15,6 @@ This lab isn't about writing a new strategy doc from scratch. It's about handing
 ## Step 1 — Download the Skill and Add It to Claude
 
 Download the skill file below and save it into your personal Claude skills folder:
-
-```
-~/.claude/skills/interview-strategy-updater/
-```
 
 > **[Download the skill file →](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQCgp6R-V9KWTqnvUe-eiNpjAcNHgs4R0KZjPVg__HGea9U?e=U1nqyx)**
 
