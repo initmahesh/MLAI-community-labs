@@ -116,7 +116,7 @@ In VS Code, go to **Terminal > New Terminal** (or press `` Ctrl+` ``).
 
 A terminal panel will open at the bottom of the screen, already pointed at your project folder.
 
-![images](./images/4.png)
+![images](./images/1.png)
 
 ---
 

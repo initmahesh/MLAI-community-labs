@@ -6,6 +6,25 @@
 
 ---
 
+## Index
+
+| Part | Title |
+|---|---|
+| [Part 1](#part-1--enable-the-new-azure-ai-foundry-experience) | Enable the New Azure AI Foundry Experience |
+| [Part 2](#part-2--create-your-agent) | Create Your Agent |
+| [Part 3](#part-3--add-tools-to-your-agent) | Add Tools to Your Agent |
+| [Part 4](#part-4--connect-foundry-iq-knowledge-graph) | Connect Foundry IQ (Knowledge Graph) |
+| [Part 5](#part-5--add-memory-to-your-agent) | Add Memory to Your Agent |
+| [Part 6](#part-6--configure-guardrails) | Configure Guardrails |
+| [Part 7](#part-7--test-your-agent) | Test Your Agent |
+| [Part 8](#part-8--save-your-agent) | Save Your Agent |
+| [Part 9](#part-9--publish-to-microsoft-teams-and-microsoft-365-copilot) | Publish to Microsoft Teams and Microsoft 365 Copilot |
+| [Part 10](#part-10--open-and-test-in-microsoft-teams) | Open and Test in Microsoft Teams |
+| [Part 11](#part-11--monitor-your-agent) | Monitor Your Agent |
+| [Part 12](#part-12--set-up-continuous-evaluation) | Set Up Continuous Evaluation |
+
+---
+
 ## Who This Lab Is For
 
 | You are… | You'll get… |
@@ -59,7 +78,7 @@ Download this and use it to query your agent in **Part 7 (Testing)**:
 
 | File | Download Link | Purpose |
 |---|---|---|
-| `Aurelios-System-NDA.pdf` | [Download](https://pragyaallc-my.sharepoint.com/my?id=%2Fpersonal%2Fsachin%5Fparmar%5Flegalgraph%5Fai%2FDocuments%2FCohort%20%2D%209%2Fweek%20%2D%201%2FAurelios%20System%20NDA%201%2Epdf&parent=%2Fpersonal%2Fsachin%5Fparmar%5Flegalgraph%5Fai%2FDocuments%2FCohort%20%2D%209%2Fweek%20%2D%201&ga=1) | Sample NDA contract to test clause extraction and risk detection |
+| `Aurelios-System-NDA.pdf` | [Download](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQDUsJHERD5XRoC-X--B7en4AedH4Osfd9xZ0I0Y2NO3Psw?e=bnbGaC) | Sample NDA contract to test clause extraction and risk detection |
 
 ---
 
