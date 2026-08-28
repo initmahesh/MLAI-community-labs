@@ -1,4 +1,4 @@
-# Lesson 2.2 — Skills: Stop Rewriting Prompts, Start Running Skills
+# Lesson — Skills: Stop Rewriting Prompts, Start Running Skills
 
 ---
 
