@@ -26,12 +26,6 @@ Claude isn't one thing. There are three modes, and using the wrong one caps what
 
 ![banner](./assets/2.png)
 
-**Claude Chat** is for thinking. Ask, iterate, reason through a problem. No file access, no autonomy — just conversation. Great for brainstorming. The trap is staying here when you need to actually produce something.
-
-**Claude Cowork** is for doing. Describe a task and it executes autonomously — creates Word docs, slide decks, PDFs, spreadsheets. Connects to Gmail, GitHub, Slack. Good for non-technical users who want output without a terminal.
-
-**Claude Code** is for building. It lives in your terminal, reads and writes your actual files, runs your tests, sees errors in real time, knows your git state. Every action is visible and traceable. This is where builders work.
-
 **See it on this exact project.** Before you touch the contract review app, here's how the same task would route through each mode:
 
 - **Chat** — You're not sure yet whether reviewers should ask questions in a free-text chat or pick from a dropdown of common clauses. You open Claude Chat and talk through the trade-offs. Nothing gets built. You leave with a decision.
@@ -78,7 +72,7 @@ Choosing the right model helps balance capability, speed, and usage.
 
 ✅ **Lab 1.1 complete** — your n8n contract review workflow is built, the AI agent responded correctly inside n8n's own chat interface, and you've swapped the Chat Trigger for a Webhook (the "Prepare the Agent to Receive Outside Messages" section at the end of that lab). You'll come back to this same workflow partway through this lab.
 
-✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../week%200%20%20-%20foundation/lesson-1-claude-code-setup/Lesson1.0%20-%20Installation.md) to get it running in under 5 minutes.
+✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../0.0%20foundations/how-to-setup-claude/installation.md) to get it running in under 5 minutes.
 
 ✅ **Claude Code** — built into the Claude desktop app, no extra install needed.
 
@@ -87,8 +81,6 @@ Choosing the right model helps balance capability, speed, and usage.
 ---
 
 ## Part 1: Build First, Ask Questions Later
-
-Let's start with action. No theory, no setup rituals — just build.
 
 Open the Claude desktop app. If you haven't installed it yet, go to claude.ai/download, install it for your OS, and sign in with your Claude account.
 
@@ -138,7 +130,7 @@ At this point in Claude Code, type:
 /context
 ```
 
-> It shows how Claude's **context window is being used in the current session**. The space is divided between your conversation, Claude's instructions, connected tools, skills, project memory, and reserved space for compaction. **Free space** shows how much room is still available for the session.
+It shows how Claude's **context window is being used in the current session**. The space is divided between your conversation, Claude's instructions, connected tools, skills, project memory, and reserved space for compaction. **Free space** shows how much room is still available for the session.
 
 ![context-window](./assets/context-window.png)
 
@@ -214,6 +206,14 @@ In the design canvas, enter:
 - Make the layout clean, professional, and easy to read
 - Keep both panels visible side by side
 ```
+
+![flow](./assets/24.png)
+
+`/design` makes no changes to your app's code — it just opens a canvas so you can see the direction before committing to it.
+
+![flow](./assets/25.png)
+
+This is the canvas: a two-column mockup you can look over and approve before asking Claude Code to build it for real.
 
 Once you're happy with the direction, bring that design back into your app:
 
@@ -378,23 +378,26 @@ Try a few more:
 
 Every answer comes from the actual document. Every response travels through your agent. The two sides of your product are now one.
 
+![flow](./assets/26.gif)
+
 ---
 
 ## What You Learned
 
-You started this lab by just building — no setup, no theory, straight into a working prototype. Along the way you also learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, and what your own session is actually costing you as it grows. By the end, you connected that prototype to a real agent and had a working product talking back to you.
+You started this lab by just building — no setup, no theory, straight into a working prototype. Along the way you learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, what your session is costing you as it grows, and how to preview a design before committing to it. By the end, you connected that prototype to a real agent (over a webhook — the one non-Claude piece of this lab) and had a working product talking back to you.
 
-**Three modes, three jobs.** Chat for thinking. Cowork for doing. Code for building. Using the right one isn't just about speed — it's about what's even possible.
-
-**The model tier is a dial, not a default.** Haiku for routine structured work, Sonnet for most everyday building, Opus for genuinely hard judgment calls, Fable for creative writing. Set it per task, not once for the whole project.
-
-**Your session has a budget, and you can watch it.** Tokens are the unit Claude actually reads and prices in. The context window is a fixed ceiling on how much of that fits in one request. `/context` and `/usage` let you check both instead of guessing.
-
-**Iteration-first prototyping.** Structure first, polish second, AI integration third. Trying to do all three at once is how prototypes stall.
-
-**Every AI product has two sides.** A user-facing side that collects input, and an intelligence side that does the actual thinking. Most products fail because these two sides don't talk well. Now you know how to connect them.
-
-**Webhooks are the bridge.** An address your agent publishes so the outside world can reach it. Your web app calls it, your agent answers, the response comes back. That's the whole idea — and it's the same pattern behind most AI products you'll ever build.
+| What | What it means | Why it matters |
+|---|---|---|
+| **Chat, Cowork, Code — three modes** | Chat for thinking something through, Cowork for generating a doc or report, Code for actually writing files to disk | Using the wrong mode doesn't just cost time — it caps what's even possible for the task |
+| **Model tier is a dial** | Haiku for routine, structured work · Sonnet for most everyday building · Opus for genuinely hard judgment calls · Fable for creative, tone-sensitive writing | Set per task, not once for the whole project — avoids over-engineering simple work and under-resourcing hard work |
+| **Tokens** | The small pieces (words, word-parts, punctuation) Claude breaks your text into before processing it | It's the actual unit Claude reads and prices in |
+| **Context window** | A fixed ceiling on how much of your conversation, instructions, files, and tool output can fit in one request | Run out of room and Claude may not process a request, or a response can cut off mid-way |
+| **`/context`** | Shows how your current session's context window is being used right now | Lets you check how full your "bag" is before it becomes a problem |
+| **`/usage`** | Shows how much Claude you've used across the session | Tells you how far you've traveled, not just how full your backpack is |
+| **`/compact` and `/clear`** | `/compact` summarizes the conversation to free up space; `/clear` starts a fresh context window without touching your project files | Two different ways to manage a filling context window, depending on whether you want to keep history or drop it |
+| **`/design`** | Opens a visual canvas to sketch layout and style changes without touching your app's actual code | Lets you preview and approve a direction before spending a build turn on it |
+| **Iteration-first prototyping** | Structure first, polish second, AI integration third | Trying to do all three at once is how prototypes stall |
+| **Two-sided product shape** | A user-facing side (what you build in Claude Code) and an intelligence side (your agent) that don't know about each other until you connect them | Most AI products fail because these two sides never get wired together |
 
 ---
 
