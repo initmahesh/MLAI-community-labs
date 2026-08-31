@@ -7,9 +7,10 @@ You're about to build your first AI agent — one that reads contracts and answe
 By the end of this lab, you will:
 
 ✦ Have a live AI agent running inside n8n
-✦ Understand what a system message is and why it controls everything
+✦ Understand what a system message is and why it controls everything — and see it prove itself across bad, good, and best prompts
 ✦ Know how to connect OpenAI to your workflow and pick the right model
 ✦ Be able to upload any document and interrogate it with natural language questions
+✦ Expose your agent to the outside world with a Webhook, so any app can reach it
 
 No coding experience needed. Just a browser, an API key, and about 25 minutes.
 
