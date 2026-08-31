@@ -328,6 +328,8 @@ You'll likely see an error. That's completely normal — and it's actually a goo
 
 It means your web app successfully reached the agent. The error is coming from inside the workflow, not from a broken connection. The bridge is working. There's just one small configuration left.
 
+![flow](./assets/23.png)
+
 > An error at this stage means your two sides are talking to each other. The connection is live. Now we just need to make sure the agent is reading the right message.
 
 ---
@@ -393,12 +395,6 @@ You started this lab by just building — no setup, no theory, straight into a w
 **Every AI product has two sides.** A user-facing side that collects input, and an intelligence side that does the actual thinking. Most products fail because these two sides don't talk well. Now you know how to connect them.
 
 **Webhooks are the bridge.** An address your agent publishes so the outside world can reach it. Your web app calls it, your agent answers, the response comes back. That's the whole idea — and it's the same pattern behind most AI products you'll ever build.
-
----
-
-## What's Next
-
-You have a fully working product — an AI agent and a real interface, talking to each other. Two labs. One working product. Not a demo, not a mockup — something you built.
 
 ---
 
