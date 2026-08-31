@@ -1,4 +1,4 @@
-# Claude Code → AWS OTel Pipeline: Complete Beginner's Setup Guide
+# Claude → AWS OTel Pipeline: Complete Beginner's Setup Guide
 
 **Account used while building this guide:** 174683182856 ("Muktida Pandey") · **Region:** `eu-north-1` (Stockholm) · **Org:** Pragyaa (Claude Team/Enterprise)
 
