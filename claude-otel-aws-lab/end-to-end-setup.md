@@ -10,7 +10,7 @@ If you've never opened the AWS Console before, that's fine — Part A, Step 0 be
 
 Set aside **2–3 hours** the first time you do this. It is not technically hard, but there are ~20 small resources to create in a specific order, and AWS's console has a lot of unfamiliar buttons if this is your first time in it. Go slowly, check every screenshot against your own screen before clicking "next" or "create," and you will not need to redo anything.
 
-## What you're building, in plain English
+## What you're building
 
 Claude Code (the coding assistant your developers run on their laptops) can optionally send anonymous usage data — which tools got used, how many tokens got spent, which skills ran — to a destination you control. By default it sends nothing anywhere. This guide turns that on and builds a small pipeline so that data ends up somewhere you can query it and build dashboards from it.
 
