@@ -94,7 +94,7 @@ Open your n8n account and click **"Create Workflow"** in the top right. You'll l
 
 **Step 2. Import the starter file.**
 
-Click the **three-dot menu (⋮)** at the top right, select **"Import from File"**, and upload the `n8n-workflow.json` file from the prerequisites.
+Click the **three-dot menu (⋮)** at the top left, select **"Import from File"**, and upload the `n8n-workflow.json` file from the prerequisites.
 
 Your canvas will populate with all the nodes already connected.
 
@@ -286,7 +286,23 @@ File Context: {{ $('Extract From File').item.json.text }}
 
 This is the most important part of the entire lab.
 
-The system message is the agent's job description. It tells the model who it is, what it should do, what it should never do, and how it should format its answers. You write it once and it runs at the start of every conversation.
+Imagine hiring someone on their first day and giving them zero instructions — no job title, no rules, no sense of what's in bounds or out of bounds. They'd still do *something*. They'd guess, freelance, improvise answers to questions they were never trained to answer. That's exactly what an LLM does without a system message.
+
+The system message is the agent's job description. It tells the model who it is, what it should do, what it should never do, and how it should format its answers. You write it once and it runs at the start of every conversation — before the user types a single word.
+
+**Why does this matter so much for a contract assistant specifically?** Because the cost of guessing is high. A generic chatbot making things up is annoying. A contract assistant making things up — inventing a termination clause that isn't there, or casually dispensing legal advice — is a liability. The system message is the only thing standing between "helpful tool" and "confidently wrong tool." It's the PM's highest-leverage lever, and it's plain text. No code required.
+
+---
+
+**See the difference a prompt makes.** Below are three versions of the same instruction — bad, good, and best. Each one is a real prompt you could paste into the System Message field. Only one of them should actually go into your workflow.
+
+| | **Bad** | **Good** | **Best** |
+|---|---|---|---|
+| **Prompt** | `You are a contract assistant. Answer questions about the contract.` | `You are a contract assistant. Only answer using the contract text provided. If the answer isn't in the contract, say so. Don't give legal advice.` | The full Role / Instructions / Guardrails / Response Format prompt below |
+| **What happens** | Model answers confidently even when the clause isn't in the document. No format, no boundaries — it behaves like a general-purpose chatbot that happens to have a PDF nearby. | Better — it grounds itself and refuses to guess. But answers are inconsistent in length and structure, and nothing stops it from narrating its process ("I checked the contract and found...") or drifting into a legal opinion when the language is ambiguous. | Consistent, structured, defensive by design. Every answer follows the same format, every edge case (no match, unclear language) has a scripted response, and the model is explicitly blocked from the failure modes that matter most for a legal document tool. |
+| **Missing** | Role, guardrails, output format, fallback behavior | Output format, tone control, explicit fallback for ambiguous language | Nothing — this is what you'll paste |
+
+> ✓ Tip. If you want to see the difference yourself, paste the **Bad** prompt into the System Message field first, ask a question the contract doesn't answer, and watch it guess. Then swap in the **Best** prompt below and ask the same question again. That side-by-side is the fastest way to internalize why prompt structure matters.
 
 In the **System Message** field, paste this:
 
@@ -317,6 +333,10 @@ Evidence: [Relevant clause/section]
 ![flow](./assets/16.png)
 
 > **Why does this prompt matter so much?** The model has no idea who it is or what it's for until you tell it. Without a system message, it would answer any question, from any domain, based on its general training — including making things up. The system message is what transforms a general-purpose AI into a focused contract assistant. The guardrails stop hallucination. The response format ensures answers are always grounded in the document. This is the single highest-leverage thing you control as a PM building on AI.
+
+> **Why "Bad → Good → Best" instead of just giving you the answer?** Because you'll write dozens of system messages after this lab, for agents that have nothing to do with contracts. The pattern generalizes: define the role, give explicit instructions, add guardrails for the specific ways this agent could fail, and force a consistent output format. Every strong system message you'll ever write follows that same shape.
+
+![flow](./assets/18.png)
 
 ---
 
@@ -374,13 +394,132 @@ Watch how it responds — specific, grounded in the document, citing the actual 
 
 ---
 
+## Prepare the Agent to Receive Outside Messages
+
+![flow](./assets/17.png)
+
+> When you save a workflow in n8n, it stays on n8n's servers — not your computer. You can close the browser, come back days later, and everything is exactly as you left it.
+
+---
+
+### Delete the "When Chat Message Received" node
+
+Find the node at the very beginning of your workflow labeled **"When Chat Message Received"**. Click it to select it, then press Delete.
+
+This node only works inside n8n's own built-in chat. It listens for messages typed in n8n — and nowhere else. Your web app is outside of n8n, so this node can't hear it. We need to replace it with something that's open to the outside world.
+
+![flow](./assets/18.png)
+
+> Don't worry about breaking anything. Removing this node only disconnects the starting point. You'll reconnect everything in the next steps.
+
+---
+
+### Add the Webhook and Respond to Webhook nodes
+
+
+![flow](./assets/19.jpg)
+
+
+**What is a Webhook?**
+
+Imagine you're at home and someone comes to your door to deliver a package. They don't just walk in — they ring the doorbell. That ring is the signal: "Someone is here. They have something for you." You go to the door, take the package, and send them on their way.
+
+A webhook works exactly like that doorbell.
+
+Your agent needs a way for the outside world to reach it. A **webhook** is a URL — a specific address on the internet — that your agent publishes and listens to. When your web app wants to send a contract and ask a question, it calls that address. The agent wakes up, receives what was sent, does its thinking, and sends the answer back.
+
+
+The two nodes always work as a pair:
+
+| Node | What it does |
+|---|---|
+| **Webhook** | The doorbell — or the phone. Receives the contract and question from your web app. |
+| **Respond to Webhook** | The reply. Sends the agent's answer back to your web app. |
+
+Click the **(+)** button on the canvas, search for **"Webhook"**, and add it to the canvas. Then search for **"Respond to Webhook"** and add that one too.
+
+You should now have both nodes sitting on the canvas, unconnected.
+
+![flow](./assets/20.png)
+
+![flow](./assets/21.png)
+
+> Every question-and-answer interaction on the internet works this way. Something asks. Something else answers. Your web app will ask — the Webhook node receives it. Your agent will answer — the Respond to Webhook node delivers it. This is the same pattern behind every search, every login, every payment. You're building the same thing, just visually in n8n.
+
+---
+
+### Connect the Webhook node to the Extract from File node
+
+Draw a connection from the **Webhook** node's output to the **Extract from File** node — the same node that was previously connected to the trigger you just deleted.
+
+Your workflow now starts at the Webhook instead.
+
+![flow](./assets/22.png)
+
+> When a user uploads a contract in your web app, the file arrives at the webhook in a raw format that isn't readable text yet. The Extract from File node is what converts it into actual words the AI can read. Think of it like opening a sealed envelope — the file arrives sealed, this node opens it, and then the agent can read what's inside.
+
+---
+
+### Configure the Webhook node
+
+Click the **Webhook** node to open its settings. Make these four changes in order:
+
+**1. Set the HTTP Method to POST.**
+
+There are two ways to use a webhook address — you can ask it for information, or you can send it information. We're sending it a contract and a question, so set this to **POST** (sending data). Think of it as the difference between checking a mailbox and dropping a letter in it. We're dropping a letter.
+
+**2. Set the Response field to "Using 'Respond to Webhook' node".**
+
+This tells n8n to wait until the agent finishes thinking before it sends a reply. Without this, n8n would send an empty response immediately — before the agent even reads the contract.
+
+**3. Click "Add Option" and add: Field Name for Binary Data.**
+
+This gives the uploaded contract a label so the rest of the workflow knows how to find it.
+
+**4. Click "Add Option" again and add: Allowed Origins (CORS). Set the value to `*`.**
+
+This one needs a small explanation. Browsers have a built-in safety rule: by default, your web app is only allowed to send information to the same place it was loaded from. Your prototype loads from your own computer, but the webhook lives on n8n's servers somewhere else. Without this setting, your browser will refuse to send anything — it'll block the request before n8n even gets a chance to receive it. Setting this to `*` is like telling the browser: "it's okay, you have permission to reach out to that address." Fine for building and testing.
+
+![flow](./assets/23.png)
+
+> If your app ever stops responding with no clear reason, and n8n shows no activity, this permission setting is almost always the cause. It's the most common invisible blocker when connecting a web app to an outside service.
+
+After saving, you'll see your webhook address appear in the settings panel. It looks something like:
+
+```
+https://your-instance.app.n8n.cloud/webhook-test/your-unique-id
+```
+
+Copy this and keep it somewhere handy — you'll paste it into your web app in the next phase.
+
+![flow](./assets/24.png)
+
+---
+
+### Connect the AI Agent to the Respond to Webhook node
+
+Draw a connection from the **AI Agent** node's output to the **Respond to Webhook** node.
+
+Your full workflow now follows this path:
+
+**Webhook → Extract from File → AI Agent → Respond to Webhook**
+
+![flow](./assets/25.png)
+
+Before moving on, trace every connection visually. Every node in that chain must be linked. One missing connection and the whole thing stops.
+
+> Your agent now has an address the outside world can reach. Once the workflow is running, any app — your prototype, a mobile app, anything — can send it a contract and a question and get a real AI answer back. This is exactly how real AI products work in production.
+
+---
+
+
 ## What You Built
 
 ![flow](./assets/design.png)
 
 You just built a working AI agent from scratch. Here's what you now understand that most people don't:
 
-**Triggers are the on-switch.** Every workflow needs something that says "start now." The Chat Trigger listens for messages and fires the workflow. Change the trigger and you change when and how the agent activates.
+**Triggers are the on-switch.** Every workflow needs something that says "start now." You started with the Chat Trigger to test inside n8n, then swapped it for a Webhook so anything outside n8n — your web app included — could reach the agent. Change the trigger and you change when and how the agent activates.
 
 **Binary data needs processing.** A PDF file isn't readable text — it's bytes. Extract From File is what converts it. Skip this step and the AI sees gibberish. This pattern (receive → process → pass forward) repeats constantly in agent building.
 
