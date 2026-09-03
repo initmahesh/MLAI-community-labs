@@ -111,7 +111,7 @@ Every node should be linked with a visible line. If anything looks disconnected,
 
 **Step 4. Add your OpenAI API key.**
 
-Click the **"OpenAI Chat Model"** node. In the settings panel, click **"Credential"** → **"Create New Credential"** → paste your API key → Save.
+Click the **"OpenAI Chat Model"** node. In the Parameters panel, click **"Credential"** → **"Create New Credential"** → paste your API key → Save.
 
 n8n encrypts and stores it. You won't need to paste it again across any of the labs.
 
@@ -530,20 +530,16 @@ specific elements:
 ```
 Here's a comprehensive contract analysis table based on the provided Kaseya Master Agreement:
 
-| Key Term                    | Description                                                                     | Location in Contract |
-|------------------------------|-----------------------------------------------------------------------------------|------------------------|
-| Service Provider Name       | "Kaseya US, LLC" for US customers; other entities per Exhibit A.                | Exhibit A, p. 1      |
-| Customer Name               | The entity purchasing under this Agreement, per registration.                   | Section 1, p. 1      |
-| Termination - For Cause     | Kaseya may terminate for uncured non-payment (10 days) or violating Section 2.  | Section 9, p. 12     |
-| Termination - Without Cause | Either party may terminate anytime, without cause, on 30 days' written notice.  | Section 9, p. 12     |
-| Termination - Fees          | Trailing Subscription payments remain due through expiration.                   | Section 9, p. 12     |
-| Contract Term               | Commences on acceptance; continues until terminated under Section 9.            | Section 9, p. 11     |
-| Renewal                     | Committed Service Terms auto-renew unless 30 days' non-renewal notice is given. | Section 9, p. 11     |
-| Payment Terms               | Charges are billed per Kaseya's own records for Products ordered.               | Section 6, p. 8      |
-| Late Fees                   | Balances over 30 days overdue accrue interest at 2.0% per month.                | Section 6, p. 8      |
+| Key Term                       | Description                                                                                                                                                                                                 | Location in Contract (Section/Page) |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| Service Provider Name          | "Kaseya US, LLC" (for customers in the United States) and other entities for different countries as specified in Exhibit A.                                                                                 | Exhibit A, Page 1                   |
+| Customer Name                  | The entity making purchases under this Agreement, as specified by the customer during the registration process.                                                                                             | Section 1, Page 1                   |
+| Termination Clauses            | **For-Cause Termination:** "Kaseya may terminate this Agreement... for: (i) non-payment that is not cured within ten (10) days after notice; or (ii) your violation of Section 2 (Use of Products and Restrictions)." <br> **Without-Cause Termination:** "Either Party may terminate this Agreement, at any time, without cause, upon 30 calendar days written notice." <br> **Termination Fees:** "You are required to continue to make payments for a Trailing Subscription until its expiration." | Section 9, Page 12                  |
+| Contract Term/Duration         | "This Agreement will commence upon the earlier of: (i) your acceptance of this Agreement... and then will continue until terminated in accordance with the provisions of this section." <br> "Committed Service Terms set forth in Orders will automatically renew for additional Committed Service Terms equal in length to the expiring Committed Service Term unless either party gives notice to the other of non-renewal at least thirty (30) days prior to the end of the relevant Committed Service Term." | Section 9, Page 11                  |
+| Payment Terms                  | "You agree to pay all charges applicable to the Products ordered by you including... Fees and payments will be calculated by us based on records maintained by us." <br> "If you are more than thirty (30) days overdue on payments, you agree that Kaseya has the right to... charge interest/late fees at the rate of 2.0% per month." | Section 6, Page 8                   |
 
-This table summarizes the key terms of the Kaseya Master Agreement — split into individually
-scannable rows with location references — so each clause is easy to find at a glance.
+This table summarizes the key terms of the Kaseya Master Agreement, providing direct quotes
+and plain-language summaries for clarity, along with specific locations for easy reference.
 ```
 
 #### ✅ Why This Works
@@ -648,7 +644,7 @@ This one needs a small explanation. Browsers have a built-in safety rule: by def
 
 > If your app ever stops responding with no clear reason, and n8n shows no activity, this permission setting is almost always the cause. It's the most common invisible blocker when connecting a web app to an outside service.
 
-After saving, you'll see your webhook address appear in the settings panel. It looks something like:
+After saving, you'll see your webhook address appear in the parameters panel. It looks something like:
 
 ```
 https://your-instance.app.n8n.cloud/webhook-test/your-unique-id
