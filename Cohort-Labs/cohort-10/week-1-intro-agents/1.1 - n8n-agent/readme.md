@@ -35,6 +35,8 @@ Think of n8n like an assembly line. Each station (node) does one specific job an
 
 Your agent is not magic. It's a chain of simple steps:
 
+User message + file → Chat Trigger → Extract From File → AI Agent → Response
+
 ```
 User sends message + file
         ↓
