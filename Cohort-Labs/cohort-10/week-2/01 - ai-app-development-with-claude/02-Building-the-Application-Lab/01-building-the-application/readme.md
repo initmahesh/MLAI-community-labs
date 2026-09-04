@@ -26,6 +26,8 @@ Research
 ↓
 PRD  ✓
 ↓
+Claude Code Agents  ✓
+↓
 Engineering Document  ✓
 ↓
 Implementation Specs  ← (first thing we do today)

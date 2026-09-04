@@ -39,7 +39,9 @@ Research
 ↓
 PRD  ✓
 ↓
-Engineering Document  ← (we get here in Lesson 3)
+Claude Code Agents  ✓
+↓
+Engineering Document  ← (we get here in Lesson 4)
 ↓
 Implementation Specs
 ↓

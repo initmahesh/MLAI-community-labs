@@ -71,6 +71,8 @@ Research
 ↓
 PRD (Product Requirements)
 ↓
+Claude Code Agents
+↓
 Engineering Document
 ↓
 Implementation Specs
