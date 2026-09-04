@@ -343,7 +343,10 @@ Find the **user message** field. It's currently set to read from the old n8n cha
 Replace whatever is in that field with this:
 
 ```
-{{ $json.body.message }}
+
+user_query:{{ $('Webhook').item.json.body.
+message }}
+file_context:{{ $json.text }}
 ```
 
 This tells the agent: "don't look for a hardcoded question — read whatever message the user just sent from the web app." The curly braces are n8n's way of saying "pull this value in live from what just arrived."
