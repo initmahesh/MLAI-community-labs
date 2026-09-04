@@ -12,6 +12,20 @@ No coding experience needed. Just the Claude app and about 50 minutes.
 
 ---
 
+## Table of Contents
+
+- [What Are We Building?](#what-are-we-building)
+- [Before You Build: Pick the Right Claude](#before-you-build-pick-the-right-claude)
+- [Before You Build: Pick the Right Model](#before-you-build-pick-the-right-model)
+- [Prerequisites](#prerequisites)
+- [Part 1: Build First, Ask Questions Later](#part-1-build-first-ask-questions-later)
+- [Part 2: The Thing That's Missing](#part-2-the-thing-thats-missing)
+- [Part 3: One More Iteration](#part-3-one-more-iteration)
+- [Part 4: Connect to Your Real Agent](#part-4-connect-to-your-real-agent)
+- [What You Learned](#what-you-learned)
+
+---
+
 ## What Are We Building?
 
 A **Contract Review Web App** — the same use case from Lab 1.1, now as a real interface, wired directly into the agent you already built.
