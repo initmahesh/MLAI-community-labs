@@ -12,13 +12,13 @@
 
 Picture a founder at a 20-person SaaS company.
 
-A potential enterprise client sends over a 30-page Master Service Agreement — and three more contracts from other vendors land in her inbox the same week. She needs to sign the MSA by end of week, but the rest can't wait either. She has no in-house lawyer, so for each one she either spends 90–120 minutes reading every clause herself — more when a document runs long — or she pays $400 an hour for legal time to get a summary she barely understands.
+A potential enterprise client sends over a 30-page Master Service Agreement. She needs to sign it by end of week. She has no in-house lawyer, so she either spends 90–120 minutes reading every clause herself — or she pays $400 for an hour of legal time to get a summary she barely understands.
 
-She does this ten times a month, and increasingly it isn't one contract at a time — it's a batch of them sitting in a folder that all need the same read-through before she can move on with her week.
+She does this ten times a month.
 
-It's slow. It's expensive. And she still worries she's missing something — an auto-renewal trap, a liability clause that could sink the company, an IP assignment she didn't notice buried on page 24 of a much longer document.
+It's slow. It's expensive. And she still worries she's missing something — an auto-renewal trap, a liability clause that could sink the company, an IP assignment she didn't notice buried on page 24.
 
-This is not a rare edge case. It's the daily reality for hundreds of thousands of founders, operations managers, and freelancers who sign contracts — one at a time or in batches — without the legal training to know what they're agreeing to.
+This is not a rare edge case. It's the daily reality for hundreds of thousands of founders, operations managers, and freelancers who sign contracts without the legal training to know what they're agreeing to.
 
 ---
 
@@ -49,8 +49,6 @@ That gap is what this entire course is about.
 ## What We Are Building
 
 We are building **ContractIQ** — a web application where a user uploads a contract PDF and within 30 seconds sees a structured breakdown of every term that matters: what it says, where in the document it appears, and how confident the AI is in its reading.
-
-ContractIQ is also designed to handle contracts at different scales and handle very large contracts by processing them in smaller sections and keeping track of the progress. Users can also upload multiple contracts together and monitor their processing,review the results, and quickly identify which contracts or clauses need attention.
 
 If something looks off, the user can click into that term and see the exact sentence the AI pulled it from. They can also correct it. And when they have a specific question — *"what happens if I miss a payment?"* — they can ask it in plain English and get an answer grounded in the actual document, not a generic legal explanation from the internet.
 
