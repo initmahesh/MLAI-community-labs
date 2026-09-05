@@ -153,13 +153,9 @@ Use the engineering-planner agent to build the engineering document.
 
 Press **Enter**.
 
-![images](./images/4.png)
+![images](./images/10.png)
 
 > **Note:** The detailed PRD-reading, skill-following, self-review, and reviewer handoff instructions already live inside the agents you created in the previous lesson.
-
-![images](./images/5.png)
-
----
 
 > **Note:** This step can take several minutes. Let Claude finish without interrupting. When the planner finishes, it will automatically hand the document to the `engineering-reviewer`.
 
@@ -301,4 +297,4 @@ Continue to **[Lab 2 — Building the Application](../../02-Building-the-Applica
 
 [← Back to Lab 1 Overview](../readme.md)
 
-[← Lesson 2](../02-skills-and-design-system/readme.md) | **Lesson 3** | [Continue to Lab 2 →](../../02-Building-the-Application-Lab/readme.md)
+[← Lesson 3](../03-claude-code-agents/readme.md) | **Lesson 4** | [Continue to Lab 2 →](../../02-Building-the-Application-Lab/readme.md)

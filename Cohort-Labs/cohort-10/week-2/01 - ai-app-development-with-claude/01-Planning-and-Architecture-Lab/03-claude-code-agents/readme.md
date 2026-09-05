@@ -149,7 +149,9 @@ engineering-reviewer
  ↓
 Approved Engineering Document
  ↓
-spec-generator
+implementation-spec-planner
+ ↓
+implementation-spec-reviewer
  ↓
 Implementation Specs
  ↓
@@ -243,9 +245,6 @@ skills/
     └── SKILL.md
 ```
 
-![images](./images/1.png)
-
-> **Screenshot Placeholder:** Project folder open in VS Code.
 
 ---
 
@@ -255,9 +254,7 @@ In VS Code, go to **Terminal > New Terminal**.
 
 A terminal panel will open at the bottom of the screen.
 
-![images](./images/2.png)
-
-> **Screenshot Placeholder:** VS Code terminal.
+![images](./images/1.png)
 
 ---
 
@@ -275,8 +272,6 @@ Claude Code will start inside your current project.
 
 ![images](./images/3.png)
 
-> **Screenshot Placeholder:** Claude Code running in the terminal.
-
 ---
 
 ## Step 4 — Create the Engineering Agents
@@ -289,39 +284,33 @@ The first two agents work together during engineering planning:
 Copy and paste this prompt into Claude Code:
 
 ```text
-Create two project-level Claude Code subagents with `memory: project`.
+Create two project-level Claude Code subagents with `memory: project`. Only create the agents; do not run them.
 
-Only create/configure the agents. Do not run them or generate any engineering document.
+**1. engineering-planner**
 
-1. engineering-planner
-- Run only when explicitly invoked.
-- Read `docs/ContractIQ_PRD.md` completely.
-- Strictly follow `skills/engineering-planner/SKILL.md`.
-- Extract all PRD requirements before writing.
-- Cover functional, technical, security, privacy, data, edge cases, constraints, and acceptance requirements.
-- Do not skip, weaken, invent, or assume requirements.
-- Generate `docs/engineering/engineering-doc.md`.
-- Before finishing, re-read the PRD and self-review requirement-by-requirement.
-- After generation, invoke `engineering-reviewer`.
-- Store important decisions and short run history in project memory.
+* Run only when explicitly invoked.
+* Read `docs/ContractIQ_PRD.md` fully and strictly follow `skills/engineering-planner/SKILL.md`.
+* Generate **only** `docs/engineering/engineering-doc.md`. Do not create implementation specs or other documents.
+* Extract every PRD requirement into an internal checklist, including functional, technical, data, security, privacy, retention, user-flow, edge-case, constraint, and acceptance requirements.
+* Write the engineering doc, then compare it against the PRD requirement-by-requirement.
+* If ANY requirement is missing, vague, incorrect, conflicting, or not technically addressed, fix the document and check again.
+* Repeat this self-review → fix cycle until every PRD requirement is fully covered.
+* Only after reaching zero gaps, invoke `engineering-reviewer`.
+* Store important decisions and run history in project memory.
 
-2. engineering-reviewer
-- Independently compare `docs/ContractIQ_PRD.md` with `docs/engineering/engineering-doc.md`.
-- Check for missing, incorrect, conflicting, or incomplete requirements.
-- Return `👍 😊 APPROVED` only when every requirement is fully covered.
-- Otherwise return `❌ NEEDS REVISION` with exact issues.
-- Store review results and short run history in project memory.
+**2. engineering-reviewer**
 
-Create both agents under `.claude/agents/` and stop.
+* Independently compare `docs/ContractIQ_PRD.md` with `docs/engineering/engineering-doc.md` requirement-by-requirement.
+* Return `👍 😊 APPROVED` only when there are zero gaps; otherwise return `❌ NEEDS REVISION` with exact issues.
+* If revision is needed, send all issues to `engineering-planner`, which must fix them and invoke the reviewer again.
+* Repeat until `👍 😊 APPROVED`.
+* Store review history in project memory.
 
-Do not invoke either agent and do not create `engineering-doc.md`.
+Create both agents under `.claude/agents/` and stop. **Do not generate any document until `engineering-planner` is explicitly invoked.**
 ```
 
 Press **Enter**.
 
-![images](./images/4.png)
-
-> **Screenshot Placeholder:** Claude creating the engineering agents.
 
 ---
 
@@ -336,9 +325,7 @@ Claude should create:
     └── engineering-reviewer.md
 ```
 
-![images](./images/5.png)
-
-> **Screenshot Placeholder:** Engineering agent files inside `.claude/agents/`.
+![images](./images/2.png)
 
 Notice what **didn't** happen.
 
@@ -376,9 +363,7 @@ The rest of the file acts like the agent's **job description**.
 
 It explains what the agent should read, what it should produce, and what rules it must follow when invoked.
 
-![images](./images/6.png)
-
-> **Screenshot Placeholder:** `engineering-planner.md` open in VS Code.
+![images](./images/4.png)
 
 Now open:
 
@@ -396,35 +381,43 @@ They are separate agents because they have separate jobs.
 
 ---
 
-## Step 5 — Create the Spec Generator
+## Step 5 — Create the Implementation Spec Agents
 
 Later, after the engineering document has been reviewed and approved, we'll need to convert it into implementation-ready specs.
 
-For that, we'll create another agent.
+For that, we'll create two agents: one creates the spec and one independently reviews it.
 
 Paste:
 
 ```text
-Create a project-level Claude Code subagent named `spec-generator` with `memory: project`.
+Create two project-level Claude Code subagents with `memory: project`. Only create the agents; do not run them.
 
-Only create/configure the agent. Do not run it or generate any specs.
+**1. implementation-spec-planner**
 
-When explicitly invoked later:
-- Read `docs/engineering/engineering-doc.md`.
-- Convert the approved engineering document into clear implementation-ready specs.
-- Preserve requirements, dependencies, APIs, data models, constraints, edge cases, and acceptance criteria.
-- Do not invent unsupported requirements.
-- Save generated specs under `docs/specs/`.
-- Store important decisions and short run history in project memory.
+* Run only when explicitly invoked.
+* Read `docs/ContractIQ_PRD.md` and `docs/engineering/engineering-doc.md`.
+* Strictly follow `skills/implementation-specs/SKILL.md`.
+* Generate only the implementation specification under `docs/implementation/`.
+* Cover every feature, workflow, technical requirement, API, database change, frontend/backend detail, edge case, and acceptance criterion from both the PRD and engineering doc.
+* Before finishing, compare the spec against both source documents requirement-by-requirement.
+* If anything is missing, vague, conflicting, or incomplete, fix it and check again.
+* Repeat this self-review → fix loop until there are zero gaps.
+* Only then invoke `implementation-spec-reviewer`.
+* Store important decisions and run history in project memory.
 
-Create the agent under `.claude/agents/` and stop.
+**2. implementation-spec-reviewer**
+
+* Independently compare the generated implementation spec against both `docs/ContractIQ_PRD.md` and `docs/engineering/engineering-doc.md`.
+* Return `👍 😊 APPROVED` only if everything is fully and correctly covered.
+* Otherwise return `❌ NEEDS REVISION` with exact gaps.
+* If revision is needed, send all issues back to `implementation-spec-planner` and repeat until approved.
+* Store review history in project memory.
+
+Create both agents under `.claude/agents/` and stop. Do not generate the implementation spec until `implementation-spec-planner` is explicitly invoked.
 ```
 
 Press **Enter**.
 
-![images](./images/7.png)
-
-> **Screenshot Placeholder:** Creating the `spec-generator` agent.
 
 Your agents folder should now contain:
 
@@ -433,7 +426,8 @@ Your agents folder should now contain:
 └── agents/
     ├── engineering-planner.md
     ├── engineering-reviewer.md
-    └── spec-generator.md
+    ├── implementation-spec-planner.md
+    └── implementation-spec-reviewer.md
 ```
 
 ---
@@ -447,27 +441,21 @@ Its responsibility will be to verify that the implementation matches what was pl
 Paste:
 
 ```text
-Create a project-level Claude Code subagent named `testing-agent` with `memory: project`.
+Create a project-level Claude Code subagent named `testing-agent` with `memory: project`. Only create it; do not run it.
 
-Only create/configure the agent. Do not run tests.
+When invoked:
+- Read the PRD, engineering doc, and implementation spec.
+- Test the actual application against every requirement, including features, flows, APIs, DB, frontend/backend, edge cases, security, and acceptance criteria.
+- Do not mark anything passed without evidence.
+- Generate `docs/testing/testing-report.md` with a requirement checklist using `✅ PASS`, `❌ FAIL`, or `⚠️ PARTIAL`, including evidence/issues.
+- Return `👍 😊 ALL REQUIREMENTS VERIFIED` only if everything passes; otherwise report the gaps.
+- Store important findings and run history in project memory.
 
-When explicitly invoked later:
-- Read the approved engineering document and implementation specs.
-- Inspect the implemented application.
-- Test whether the implementation satisfies the documented requirements and acceptance criteria.
-- Check happy paths, failure paths, edge cases, APIs, security-sensitive behavior, and important data rules.
-- Report failures with expected behavior, actual behavior, and the related requirement.
-- Do not change requirements just to make tests pass.
-- Store important findings and short run history in project memory.
-
-Create the agent under `.claude/agents/` and stop.
+Create it under `.claude/agents/` and stop. Run only when explicitly invoked.
 ```
 
 Press **Enter**.
 
-![images](./images/8.png)
-
-> **Screenshot Placeholder:** Creating the `testing-agent`.
 
 ---
 
@@ -480,13 +468,11 @@ Once all agents are created, your project should contain:
 └── agents/
     ├── engineering-planner.md
     ├── engineering-reviewer.md
-    ├── spec-generator.md
+    ├── implementation-spec-planner.md
+    ├── implementation-spec-reviewer.md
     └── testing-agent.md
 ```
 
-![images](./images/9.png)
-
-> **Screenshot Placeholder:** Final `.claude/agents/` folder.
 
 These files are reusable.
 
@@ -557,7 +543,9 @@ engineering-reviewer
         ↓
    👍 APPROVED
         ↓
-spec-generator
+implementation-spec-planner
+        ↓
+implementation-spec-reviewer
         ↓
 implementation specs
         ↓
@@ -582,7 +570,8 @@ The agents you created roughly match responsibilities found on real engineering 
 |---|---|
 | `engineering-planner` | Tech Lead / Architect |
 | `engineering-reviewer` | Technical Reviewer |
-| `spec-generator` | Implementation Planning |
+| `implementation-spec-planner` | Implementation Planning |
+| `implementation-spec-reviewer` | Implementation Review |
 | `testing-agent` | QA / Testing |
 
 The goal isn't to perfectly reproduce an organization chart.
@@ -623,3 +612,17 @@ The workflow controls **when that work should happen**.
 
 ---
 
+## Claude Concepts Covered in This Lesson
+
+| Concept | Where it appeared | Learn more |
+|---------|-------------------|------------|
+| **Claude Code subagents** | **Step 4** — Creating `engineering-planner` and `engineering-reviewer` as separate, focused workers instead of one general-purpose Claude. | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Project-level agent memory (`memory: project`)** | **What Is Agent Memory?** — Configuring each agent to persist decisions and run history across invocations. | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Agent-to-agent delegation** | **Step 4** — `engineering-planner` invokes `engineering-reviewer`, and revision requests flow back from reviewer to planner. | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Skills as agent instructions** | **Agent vs Skill** — The `engineering-planner` agent follows `skills/engineering-planner/SKILL.md` as its playbook. | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
+
+---
+
+[← Back to Lab 1 Overview](../readme.md)
+
+[← Lesson 2](../02-skills-and-design-system/readme.md) | **Lesson 3** | [Lesson 4 →](../04-engineering-planning/readme.md)

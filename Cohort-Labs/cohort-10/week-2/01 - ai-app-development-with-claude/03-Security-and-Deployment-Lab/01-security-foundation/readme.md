@@ -6,9 +6,7 @@
 
 # Lesson 1 — Security Foundation
 
-![images](./images/banner.png)
 
----
 
 ## Why Security Breaks Happen
 
@@ -57,6 +55,8 @@ Build  ✓
 Memory Layer  ✓
 ↓
 Security Foundation  ← YOU ARE HERE
+↓
+Testing Agent
 ↓
 Deployment
 ↓
@@ -148,6 +148,24 @@ If any test fails, paste the description into the Claude Code terminal and it wi
 
 ---
 
+## Step 4 — Run the Testing Agent
+
+After the security checks pass, run the `testing-agent` you created earlier:
+
+```text
+Use testing-agent to validate the implemented application and generate the testing checklist report.
+```
+
+The agent checks the implementation against the PRD, engineering document, and implementation specs, then generates:
+
+```text
+docs/testing/testing-report.md
+```
+
+Review the checklist and fix any `❌ FAIL` or `⚠️ PARTIAL` items. The application is ready to move forward when the agent returns `👍 😊 ALL REQUIREMENTS VERIFIED`.
+
+---
+
 ## How Real Engineering Teams Think About Security
 
 Here's a perspective worth carrying into every project you build.
@@ -234,7 +252,7 @@ steps or code changes needed to resolve it.
 
 ## What's Next
 
-The app is working and secure.
+The app is working, secure, and verified against the project requirements.
 
 But it's still only running on your machine.
 
@@ -249,6 +267,7 @@ In the next lesson, you deploy it — taking everything from `localhost:3000` to
 | **Skills for automated security scanning** | **Step 2 — Run the Security Skill** — "Use `@skills/security-fix/SKILL.md` to scan the codebase and fix all security issues automatically, in one pass." | [Skills guide →](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) |
 | **`NEXT_PUBLIC_` prefix rule** | **How Real Engineering Teams Think About Security** — "`NEXT_PUBLIC_` means 'ship to every browser.' Anything that must stay server-side must never carry that prefix. This is not a rule that changes with context. It is always true." | [Claude Code docs →](https://docs.anthropic.com/en/docs/claude-code) |
 | **Claude Code for iterative debugging** | **Step 3 — Verify the Fixes** — "If any test fails, paste the description into the Claude Code terminal and it will diagnose and fix the specific issue." | [Claude Code →](https://docs.anthropic.com/en/docs/claude-code) |
+| **Claude Code subagents for testing** | **Step 4 — Run the Testing Agent** — Use `testing-agent` to validate the implemented application against the project requirements. | [Claude Code →](https://docs.anthropic.com/en/docs/claude-code) |
 
 ---
 

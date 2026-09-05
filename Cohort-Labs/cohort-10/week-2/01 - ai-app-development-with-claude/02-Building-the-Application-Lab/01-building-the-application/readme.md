@@ -276,7 +276,7 @@ These are the documents Claude reads when it actually writes code. Without them,
 ### Run the Specs Prompt
 
 ```
-Use the `spec-generator` agent to create the implementation specs from the approved engineering document.
+Use implementation-spec-planner to create the implementation specification.
 ```
 
 ![images](./images/specs.png)

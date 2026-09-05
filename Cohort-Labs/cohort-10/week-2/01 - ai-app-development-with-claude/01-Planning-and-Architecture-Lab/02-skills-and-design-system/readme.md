@@ -254,4 +254,4 @@ In Lesson 3, you'll run `/engineering-planner` for the first time — and watch 
 
 [← Back to Lab 1 Overview](../readme.md)
 
-[← Lesson 1](../01-project-foundation/readme.md) | **Lesson 2** | [Lesson 3 →](../03-engineering-planning/readme.md)
+[← Lesson 1](../01-project-foundation/readme.md) | **Lesson 2** | [Lesson 3 →](../03-claude-code-agents/readme.md)
