@@ -6,7 +6,7 @@
 
 This is the **"make it real"** lab. You take the engineering plan from Lab 1 and turn it into a running application: a Next.js frontend, a Supabase database with authentication, an AI-powered backend, and a chat interface that actually remembers what was said five minutes ago.
 
-> **Prerequisite:** You need `docs/engineering/engineering-doc.md` and `docs/engineering/implementation-specs.md` in your project before starting this lab. These come from [Lab 1, Lesson 3 — Engineering Planning](../01-Planning-and-Architecture-Lab/03-engineering-planning/readme.md). If you don't have them yet, go back and run that lesson first — everything in this lab reads from those two files.
+> **Prerequisite:** You need `docs/engineering/engineering-doc.md` and `docs/engineering/implementation-specs.md` in your project before starting this lab. These come from [Lab 1, Lesson 4 — Engineering Planning](../01-Planning-and-Architecture-Lab/04-engineering-planning/readme.md). If you don't have them yet, go back and run that lesson first — everything in this lab reads from those two files.
 
 **Workflow note:** every prompt in this lab is run the same way — open your project in **VS Code**, open the built-in terminal (**Terminal > New Terminal**, or `` Ctrl+` ``), type `claude` to launch the **Claude Code CLI**, and paste the prompt. You stay inside that one terminal session for both lessons.
 
