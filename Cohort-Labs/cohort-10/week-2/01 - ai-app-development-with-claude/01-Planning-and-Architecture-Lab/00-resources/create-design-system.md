@@ -1,9 +1,5 @@
 # Creating Your Own Design System
 
-![banner](./design/banner.png)
-
----
-
 In Lesson 2, you will see coming  how `docs/design.md` works — a single file Claude reads before building any screen, so colors, fonts, and spacing stay consistent across the entire app. The repo already comes with one, and it's ready to use.
 
 But what if you want the app to look like *your* brand?

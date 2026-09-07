@@ -10,7 +10,7 @@ Not because something is wrong with what you built — but because the thing tha
 
 ## What You're Going to Do
 
-Go back to the agent you built in [Lab 1.1 — Build Your First AI Agent in n8n](../../week-1-pm-agent-lan/1.1%20-%20n8n-agent/readme.md), or you can download the workflow from here:
+Go back to the agent you built in [Lab 1.1 — Build Your First AI Agent in n8n](../../../week-1-intro-agents/1.1%20-%20n8n-agent/readme.md), or you can download the workflow from here:
 
 ✅ **Starter workflow file** — [Download n8n-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQCxwBn3DSxjTrx2_WxRoFTeAQ1ni4W0bV2cKybboqYJYC8?e=JQfaYk)
 

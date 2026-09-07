@@ -1,10 +1,10 @@
 [← Back to Lab 1 Overview](../readme.md)
 
-[← Lesson 2](../02-skills-and-design-system/readme.md) | **Lesson 3**
+[← Lesson 3](../03-claude-code-agents/readme.md) | **Lesson 4**
 
 ---
 
-# Lesson 3 — Engineering Planning
+# Lesson 4 — Engineering Planning
 
 ![images](./images/banner.png)
 

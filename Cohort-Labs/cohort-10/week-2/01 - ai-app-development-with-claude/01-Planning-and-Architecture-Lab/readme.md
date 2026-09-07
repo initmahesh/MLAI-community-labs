@@ -70,7 +70,8 @@ These last two documents are what Lab 2 is built from. Nothing in Lab 2 makes se
 |---|---|---|
 | 1 | [Project Foundation](./01-project-foundation/readme.md) | Understand the problem you're solving, fork the starter repo, clone it, and open it in VS Code |
 | 2 | [Skills and the Design System](./02-skills-and-design-system/readme.md) | Learn how Claude Code skills work and review the design system that will govern the app's UI |
-| 3 | [Engineering Planning](./03-engineering-planning/readme.md) | Use Plan Mode to turn the product requirements into an architecture document and implementation specs |
+| 3 | [Claude Code Agents](./03-claude-code-agents/readme.md) | Learn how Claude Code agents work and use them to delegate development tasks|
+| 4 | [Engineering Planning](./04-engineering-planning/readme.md) | Use Agents to turn the product requirements into an architecture document and implementation specs |
 
 ---
 
