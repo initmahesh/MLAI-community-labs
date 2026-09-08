@@ -2,7 +2,13 @@
 
 You can open this Jupyter notebook directly in Google Colab by clicking the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/anushka2423/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-1-intro-agents/1.3-google-collab/notebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-1-intro-agents/1.3-google-colab-concepts/notebook.ipynb)
+
+### **Note:** When you open the notebook, you may see a warning that says *"This notebook was not authored by Google"*. This is expected since it's loaded from GitHub.
+
+If you get this prompt, click on **Run anyway**.
+
+> ![warning](./images/12.png)
 
 ## Contents
 
@@ -87,6 +93,8 @@ Now we actually connect our Python code to Claude.
 Here we're creating an Anthropic client.
 
 I'm keeping my actual API key inside **Colab Secrets**, rather than writing it directly in the notebook.
+
+Put your Anthropic API key in the place where `place your openai api key here` is written.
 
 Once this client is created, whenever you see something like:
 
@@ -242,11 +250,11 @@ First, we ask exactly the same question three times with temperature set to `0`.
 
 The responses should generally be more predictable and consistent.
 
+![imports](./images/5.png)
+
 Then we change temperature to `1` and ask the **same question again three times**.
 
 Now we're allowing more variation in token selection, so we may see more variation in the responses.
-
-![imports](./images/5.png)
 
 ![imports](./images/6.png)
 
@@ -311,6 +319,25 @@ The goal is to use the model that performs well enough for our task.
 And how do we know whether it performs well enough?
 
 That's where the **evals we just discussed** help us.
+
+                         CAPABILITY
+                             ▲
+                             │
+                             │              Opus
+                             │               ●
+                             │
+                             │         Sonnet
+                             │           ●
+                             │
+                             │     Haiku
+                             │       ●
+                             │
+                             └──────────────────────────────► COST
+                            ╱
+                           ╱
+                          ╱
+                         ▼
+                      LATENCY
 
 ---
 
@@ -428,6 +455,8 @@ So:
 
 This is great when we simply need one answer now.
 
+![imports](./images/sync.gif)
+
 ---
 
 ## Streaming
@@ -451,6 +480,8 @@ we get:
 **piece → piece → piece → complete response.**
 
 That's why streaming is very useful for interactive chat experiences.
+
+![stream](./images/stream.gif)
 
 ---
 
@@ -476,6 +507,7 @@ So rather than thinking:
 
 we can have multiple independent requests in progress.
 
+![multi-async](./images/multi-async.gif)
 ---
 
 ## Message Batches
@@ -507,6 +539,8 @@ So the easiest way to remember these patterns is:
 **Async:** I need several requests running concurrently.
 
 **Batch:** I have many independent jobs and don't need the results immediately.
+
+![batch](./images/batch.gif)
 
 ---
 
