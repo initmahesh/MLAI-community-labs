@@ -429,6 +429,61 @@ If anything fails, open the browser dev console (`F12`) and read the error. Most
 
 ---
 
+## Prompt Crafting: Diagnose and Fix a Failed Prompt
+
+Now that the application is working, let's intentionally try a vague prompt and see what happens.
+
+Look at the **"Review a Contract"** button in the top-right of the Dashboard.
+
+### Bad Prompt
+
+Run:
+
+```
+Make the "Review a Contract" button better.
+```
+
+Observe what Claude changes. Don't worry about explaining it yet — just look at the result.
+
+### Good Prompt
+
+Undo that change, then run this instead:
+
+```
+Undo the previous change.
+
+Make only the "Review a Contract" button slightly more prominent:
+- slightly increase its horizontal padding
+- make the text slightly bolder
+- add a subtle shadow
+
+Keep the existing blue color.
+Keep the text "Review a Contract".
+Keep its position and the page layout unchanged.
+Do not change click behavior, routing, or any other functionality.
+```
+
+### Why Did the Second Prompt Work Better?
+
+"Better" in the first prompt was ambiguous, so Claude had to decide things like color, size, styling, spacing, and hover behavior on its own.
+
+The second prompt clearly defined:
+
+- What to change
+- What to keep unchanged
+- What functionality must not be affected
+
+### Takeaway
+
+A better prompt is not necessarily a longer prompt. It gives Claude the context, constraints, and boundaries needed to make the intended change.
+
+```
+Bad prompt  → gives only the goal
+Good prompt → gives the goal + constraints + boundaries
+```
+
+---
+
 ## How Real Engineering Teams Do This
 
 In a professional product team, this sequence — scaffold, spec, implement, wire up data — is not a shortcut.
