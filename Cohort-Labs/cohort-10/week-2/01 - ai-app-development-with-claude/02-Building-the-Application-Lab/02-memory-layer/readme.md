@@ -121,6 +121,24 @@ The classification step is what keeps this efficient. A question like *"what did
 
 ---
 
+### Quick Check: When Does Claude Need More Thinking?
+
+Not every Claude task needs the same amount of reasoning.
+
+Some tasks only require finding a fact. Some require choosing between a few known categories. Others require combining information, comparing constraints, or reasoning across multiple steps.
+
+Extended Thinking is useful when the benefit from deeper reasoning is worth the additional latency and cost.
+
+| Task Type | Example in This App | Extended Thinking |
+| --- | --- | --- |
+| Simple lookup | "What is the governing law?" | Usually unnecessary |
+| Straightforward classification | Classify a question as CONTRACT / HISTORY / BOTH | Usually unnecessary |
+| Multi-step / multi-constraint reasoning | Compare information from conversation history with contract terms and determine whether they conflict | Potentially useful |
+
+> Do not decide based only on how important the task sounds. Decide based on how much reasoning the task actually requires.
+
+---
+
 ## Before vs After
 
 **Before this lesson:**
@@ -244,6 +262,17 @@ A lightweight classification step runs on the user's question before the API cal
 
 This is the intelligence that keeps the context window lean. The model only sees what it actually needs.
 
+> **Extended Thinking check:**
+> This is a straightforward closed-set classification task: Claude chooses one of three known labels. Because this step runs on every message and requires limited reasoning, Extended Thinking would usually be unnecessary here.
+>
+> A BOTH question does not automatically require Extended Thinking either. If Claude is only retrieving one fact from history and one fact from the contract, the task may still be simple.
+>
+> Extended Thinking becomes more useful when Claude must compare, reconcile, or reason across those sources before reaching a conclusion — for example:
+>
+> ```text
+> Compare what I said earlier with the contract terms and tell me whether they conflict.
+> ```
+
 **3. Save messages and add source attribution**
 
 Every user message and every assistant response is saved to `chat_messages` immediately after each turn. Responses include a `[Page X]` citation so the user can trace the answer back to the exact page of the contract.
@@ -287,6 +316,9 @@ Open the app and go to the chat interface for any previously uploaded contract. 
 | 2 | Ask a follow-up — *"What does that mean in practice?"* | AI references its own previous answer — in-context memory is working |
 | 3 | Refresh the page and reopen the same contract | Chat history reloads from Supabase — persistent memory is working |
 | 4 | Ask *"What have I asked you so far?"* | AI summarises the conversation — history retrieval is working |
+
+> **Why no extra thinking?**
+> Turn 1 is a single-fact lookup from the contract. Claude mainly needs to retrieve the relevant information, so additional reasoning would usually add latency without improving the answer.
 
 If Turn 3 fails and the history does not reload, check that the `chat_messages` write in Supabase is completing without error. Open the browser dev console (`F12`) and look for a failed network request.
 

@@ -443,17 +443,61 @@ Its responsibility will be to verify that the implementation matches what was pl
 Paste:
 
 ```text
-Create a project-level Claude Code subagent named `testing-agent` with `memory: project`. Only create it; do not run it.
+Create a project-level Claude Code subagent named `testing-agent` with `memory: project`.
+
+Only create it. Do not run it.
 
 When invoked:
-- Read the PRD, engineering doc, and implementation spec.
-- Test the actual application against every requirement, including features, flows, APIs, DB, frontend/backend, edge cases, security, and acceptance criteria.
-- Do not mark anything passed without evidence.
-- Generate `docs/testing/testing-report.md` with a requirement checklist using `✅ PASS`, `❌ FAIL`, or `⚠️ PARTIAL`, including evidence/issues.
-- Return `👍 😊 ALL REQUIREMENTS VERIFIED` only if everything passes; otherwise report the gaps.
-- Store important findings and run history in project memory.
 
-Create it under `.claude/agents/` and stop. Run only when explicitly invoked.
+* Read the PRD, engineering doc, and implementation spec.
+* Test only these 10 important application checks:
+
+1. Contract upload works
+2. Invalid file type is rejected
+3. Contract processing completes successfully
+4. Extracted key terms are saved correctly
+5. Extracted terms include page references
+6. Contract chat returns grounded answers with citations
+7. Chat returns the correct fallback when information is not found
+8. User sign-in works
+9. Protected routes block unauthenticated users
+10. Users cannot access another user's contract data
+
+Test each item against the actual application and do not mark anything passed without evidence.
+
+Create:
+
+`docs/testing/testing-report.md`
+
+Keep the report very simple:
+
+```md
+# Testing Checklist
+
+- ✅ PASS — Contract upload
+- ❌ FAIL — Invalid file rejection
+- ⚠️ PARTIAL — Contract processing
+...
+```
+
+For each item, show only:
+
+`Status — Test Name`
+
+Use:
+
+* `✅ PASS`
+* `❌ FAIL`
+* `⚠️ PARTIAL`
+
+At the end, show the total PASS, FAIL, and PARTIAL count.
+
+Do not test anything outside these 10 checks.
+
+Store important findings and short run history in project memory.
+
+Create the agent under `.claude/agents/` and stop. Run it only when explicitly invoked.
+
 ```
 
 Press **Enter**.

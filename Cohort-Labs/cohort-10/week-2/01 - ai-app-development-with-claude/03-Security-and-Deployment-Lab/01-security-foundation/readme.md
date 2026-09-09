@@ -162,6 +162,8 @@ The agent checks the implementation against the PRD, engineering document, and i
 docs/testing/testing-report.md
 ```
 
+![image](./images/1.png)
+
 Review the checklist and fix any `❌ FAIL` or `⚠️ PARTIAL` items. The application is ready to move forward when the agent returns `👍 😊 ALL REQUIREMENTS VERIFIED`.
 
 ---
