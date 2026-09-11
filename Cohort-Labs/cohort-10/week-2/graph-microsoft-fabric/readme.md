@@ -1,38 +1,5 @@
 # Build a Contract Relationship Graph in Microsoft Fabric
 
-## Introduction
-
-Most business data is connected.
-
-A normal table is great for storing each of these individually. But when you start asking questions like:
-
-```
-Which party belongs to which contract?
-
-Which clauses are part of that contract?
-
-How are all of these connected?
-```
-
-you are no longer just looking for a value in one row — you are trying to understand a relationship across your data.
-
-That is where Fabric Graph becomes useful.
-
-A graph represents data using:
-
-Node = a thing
-Edge = a relationship between things
-
-So instead of thinking about our contract data only as separate tables, we can represent it as:
-
-Party ── PARTY_TO ──> Contract ── CONTAINS ──> Clause
-
-Now the connections themselves become part of the data we can explore and query.
-
-Microsoft Fabric Graph follows this same approach: data stored in OneLake is brought into a graph model, entities are represented as nodes, relationships are represented as edges, and then the graph can be queried to understand how those entities are connected.
-
-----
-
 In this lab, we are going to use a real contract to see this happen step by step — starting with the document, preparing its data, and finally turning that data into a graph.
 
 We’ll create a workspace, add a Lakehouse named **`ContractLakehouse`**, upload a real contract PDF, and then use that data to understand how Fabric Graph represents and queries relationships.
@@ -90,6 +57,8 @@ Before we upload the contract, we need a place to store both the original PDF an
 A **Lakehouse** is a storage area in Microsoft Fabric where files and tables can live together. In this lab, it will hold our contract PDF first, and later the table data that Fabric Graph will use.
 
 From your workspace, select:
+
+![create-lake-house](images/create-lake-house.png)
 
 ```text
 + New item
@@ -173,6 +142,11 @@ Tables
 Files
 ```
 
+- **Tables** — Store structured data in rows and columns, like `Contracts`, `Parties`, or `Clauses`.
+- **Files** — Store raw files such as PDFs, CSVs, images, or documents before or alongside processing them into tables.
+
+![lakehouse-table-files](images/lakehouse-table-files.png)
+
 Right now, our contract is still just a PDF on our computer.
 
 Let’s bring it into the Lakehouse first.
@@ -189,10 +163,8 @@ Upload
 ```
 
 Upload:
+AWS1.pdf - [Download Link](https://drive.google.com/file/d/1XSe2pSsGN1ssAbif92rvb80AnHb_Ni0F/view?usp=sharing)
 
-```text
-AWS1.pdf
-```
 
 ![Screenshot: Upload files option](./images/03-upload-files.png)
 
@@ -206,6 +178,8 @@ ContractLakehouse
 └── Files
     └── AWS1.pdf
 ```
+
+![file-view-in-onelake](images/file-view-in-onelake.png)
 
 Nice — the actual contract is now inside Fabric.
 
@@ -223,6 +197,8 @@ That is what the notebook will do.
 
 Go back to your workspace.
 
+![Screenshot: Select Notebook](./images/06-select-notebook.png)
+
 Select:
 
 ```text
@@ -236,8 +212,6 @@ Notebook
 ```
 
 Then select **Notebook**.
-
-![Screenshot: Select Notebook](./images/06-select-notebook.png)
 
 Name the notebook:
 
@@ -254,6 +228,8 @@ But the notebook still needs access to the Lakehouse where we uploaded it.
 ---
 
 ## 5. Connect the Existing Lakehouse
+
+![Screenshot: Add lakehouse](./images/08-add-lakehouse.png)
 
 Inside the notebook, select:
 
@@ -273,8 +249,6 @@ Then select:
 ```text
 Add
 ```
-
-![Screenshot: Add lakehouse](./images/08-add-lakehouse.png)
 
 ![Screenshot: Select ContractLakehouse](./images/09-select-contract-lakehouse.png)
 
@@ -296,6 +270,8 @@ So our PDF can be reached at:
 /lakehouse/default/Files/AWS1.pdf
 ```
 
+![fileupload](images/fileupload.png)
+
 ---
 
 ## 6. Read the Real Contract
@@ -316,7 +292,7 @@ contract_text = ""
 for page in reader.pages:
     contract_text += page.extract_text() + "\n"
 
-print(contract_text[:3000])
+print(contract_text)
 ```
 
 Run it.
@@ -367,6 +343,7 @@ Contract → contains → Clause
 That is exactly the kind of question a graph is good at representing.
 
 For this first version, we’ll create a small structured set of records from the contract.
+We’re using a small, ready-made dataset so the lab stays focused on how contracts, parties, and clauses are connected in a graph, rather than on preparing the data itself.
 
 Add a new cell.
 
@@ -472,6 +449,8 @@ contract_parties = [
 ]
 ```
 
+![Screenshot: pypdf installation completed](./images/relationship.png)
+
 Run it.
 
 Now we can describe the contract like this:
@@ -521,6 +500,8 @@ clauses_df = spark.createDataFrame(clauses)
 contract_parties_df = spark.createDataFrame(contract_parties)
 ```
 
+![spark-dataframe](images/spark-dataframe.png)
+
 Run it.
 
 Now preview the contract data:
@@ -569,6 +550,8 @@ contract_parties_df.write.mode("overwrite").format("delta").saveAsTable("contrac
 ```
 
 Run it.
+
+![save-to-onelake](images/save-to-onelake.png)
 
 Now return to:
 
@@ -661,6 +644,9 @@ Add node
 Add edge
 ```
 
+- **Node** — Represents a thing in the graph, such as a **Contract**, **Party**, or **Clause**.
+- **Edge** — Represents the relationship between nodes, such as **Party → belongs to → Contract** or **Contract → contains → Clause**.
+
 ![Screenshot: Empty ContractGraph model](./images/21-empty-graph-model.png)
 
 Right now the graph is empty.
@@ -730,6 +716,12 @@ Key: contract_id
 Add the remaining columns as properties. click on add property then click on add all columns -> Apply
 ```
 
+- **Node type: — The name of the node we are creating in the graph. Each record will represent a contract.
+
+- **Source table: — The Lakehouse table from which Fabric will read the contract data.
+
+- **Key: — The unique value used to identify each contract node.
+
 ![Screenshot: Configure Contract node](./images/25-contract-node.png)
 ![Screenshot: Configure Contract node](./images/properties-in-node.png)
 
@@ -767,6 +759,8 @@ Key: party_id
 Add the remaining columns as properties. click on add property then click on add all columns -> Apply
 ```
 
+![part-node](images/party-node.png)
+
 Now Fabric knows that rows such as:
 
 ```text
@@ -796,6 +790,8 @@ Key: clause_id
 Add the remaining columns as properties. click on add property then click on add all columns -> Apply
 ```
 
+![clause-node](images/clause-node.png)
+
 ### Your graph model should now contain three node types
 
 ```text
@@ -803,6 +799,7 @@ Contract
 Party
 Clause
 ```
+![nodes](images/nodes.png)
 
 At the moment they are still disconnected.
 
@@ -910,6 +907,8 @@ Clause key: clause_id
 Edge field: clause_id
 ```
 
+![contains-relation](images/contains-relation.png)
+
 Save it.
 
 ### Take a look at the model now
@@ -953,11 +952,24 @@ Loaded
 
 ---
 
+Once the graph finishes loading:
+
+1. Go to the **top-right end** of the Graph model.
+2. Click **Query**.
+3. Click **Query Now**
+![query-now](images/query-now.png)
+
+On Queryset page -->
+3. Open **Query Builder** on the top-left side.
+4. Select **Code editor** to start writing your graph query.
+![select-code-editor](images/select-code-editor.png)
+
+
+---
+
 # Query What You Built
 
 ## 18. Ask the Graph Which Parties Belong to the Contract
-
-Once the graph finishes loading, open the Query on top right end -> click on code editor -> select code editor
 
 Run:
 
@@ -965,6 +977,8 @@ Run:
 MATCH (p:Party)-[:PARTY_TO]->(c:Contract)
 RETURN p.partyName, c.contractName
 ```
+
+![Screenshot: Party query result](./images/34-party-query-result.png)
 
 ### You should get results connecting the parties to the contract
 
@@ -974,8 +988,6 @@ For example:
 Amazon Web Services       → AWS Customer Agreement
 XYZ Software Solutions    → AWS Customer Agreement
 ```
-
-![Screenshot: Party query result](./images/34-party-query-result.png)
 
 Notice what changed.
 
@@ -1000,6 +1012,8 @@ MATCH (c:Contract)-[:`CONTAINS`]->(cl:Clause)
 RETURN c.contractName, cl.clauseName
 ```
 
+![Screenshot: Clause query result](./images/36-clause-query-result.png)
+
 ### You should see the contract connected to its clauses
 
 Something like:
@@ -1011,8 +1025,6 @@ AWS Customer Agreement → Fees and Payment
 AWS Customer Agreement → Temporary Suspension
 AWS Customer Agreement → Term and Termination
 ```
-
-![Screenshot: Clause query result](./images/36-clause-query-result.png)
 
 And that completes the full path.
 
