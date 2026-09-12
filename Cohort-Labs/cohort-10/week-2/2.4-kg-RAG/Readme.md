@@ -160,7 +160,7 @@ You write it once, upload it to Claude's Customize section, and it becomes avail
 7. Browse to the skill file you downloaded in the Prerequisites section and select it
 8. Click **Open** — the skill will appear in your skills list
 
-![image](assets/3.png)
+![image](images/3.png)
 
 > ✅ You should see the skill listed with its name. It is now available in every new conversation you start in Claude.
 
@@ -178,7 +178,7 @@ You write it once, upload it to Claude's Customize section, and it becomes avail
 4. Give the project a name — for example: *"KG-RAG Lab"*
 5. When prompted to select a local folder, create a new folder on your computer and select it — this is where Claude will save the graph files it generates
 
-![image](assets/4.png)
+![image](images/4.png)
 
 > 💡 A Project in Claude is a workspace that keeps your files, context, and conversation history together. Linking it to a local folder means Claude can write files directly to your computer — which is how you will get the Markdown graph files into Obsidian.
 
@@ -190,7 +190,7 @@ You write it once, upload it to Claude's Customize section, and it becomes avail
 7. Select the sample loan agreement you downloaded in the Prerequisites section
 8. The contract will appear as an attachment in the chat
 
-![image](assets/5.png)
+![image](images/5.png)
 
 > ✅ You should see the contract file listed above the message input. Claude can now read it.
 
@@ -206,7 +206,7 @@ You write it once, upload it to Claude's Customize section, and it becomes avail
 
 Claude will now read the contract and begin extracting entities and relationships. You will see it working in real time — identifying parties, dates, obligations, cross-references, and the connections between them.
 
-![image](assets/6.png)
+![image](images/6.png)
 
 > ✅ When Claude finishes, check the local folder you linked to the project. You will find a set of **Markdown files** — one file per entity, with links between files representing the relationships. This is your knowledge graph.
 
@@ -221,7 +221,7 @@ Claude will now read the contract and begin extracting entities and relationship
 1. Go to the official [Obsidian Download Page](https://obsidian.md/download)
 2. Select your operating system (**Windows** or **macOS**) and click **Download**
 
-![image](assets/1.png)
+![image](images/1.png)
 
 3. Open the downloaded file and follow the on-screen instructions to install
 4. Launch Obsidian
@@ -234,11 +234,11 @@ Claude will now read the contract and begin extracting entities and relationship
 6. Navigate to the local folder that Claude wrote the Markdown files into and select it
 7. Obsidian will load all the files
 
-![image](assets/7.png)
+![image](images/7.png)
 
 8. Click the **Graph View** icon in the left sidebar (it looks like a network of dots)
 
-![image](assets/8.png)
+![image](images/8.png)
 
 > ✅ You should see a visual graph — each node is an entity from the contract, and each line connecting two nodes is a relationship. Hover over any node to see its name. Click it to open the underlying Markdown file and read the details.
 
