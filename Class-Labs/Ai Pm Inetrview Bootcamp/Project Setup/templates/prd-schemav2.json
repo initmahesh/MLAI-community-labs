@@ -1,0 +1,464 @@
+{
+ "$schema": "http://json-schema.org/draft-07/schema#",
+ "title": "ProductRequirementsDocument",
+ "description": "Schema for validating and generating dual PRDs (Human + Agent) in the AI PM Interview Bootcamp. Supports downstream agent consumption: ticket writers, test generators, deployment orchestrators.",
+ "type": "object",
+ "required": ["title", "status", "author", "date", "tldr", "problem", "goals", "scope", "user_stories", "e2e_journey", "nfrs", "risks", "milestones"],
+ "properties": {
+   "title": {
+     "type": "string",
+     "description": "Name of the feature or product being specified"
+   },
+   "status": {
+     "type": "string",
+     "enum": ["Draft", "In Review", "Approved"],
+     "description": "Current approval status of the PRD"
+   },
+   "author": {
+     "type": "string",
+     "description": "Name of the PM authoring this PRD"
+   },
+   "date": {
+     "type": "string",
+     "format": "date",
+     "description": "Date the PRD was created (YYYY-MM-DD)"
+   },
+   "last_updated": {
+     "type": "string",
+     "format": "date",
+     "description": "Date the PRD was last modified (YYYY-MM-DD)"
+   },
+   "version": {
+     "type": "string",
+     "description": "Version number of the PRD (e.g. 1.0, 1.1)"
+   },
+   "human_prd_reference": {
+     "type": "string",
+     "description": "Relative path to the human-readable markdown PRD this JSON was derived from (e.g. outputs/prd-lease-compliance.md)"
+   },
+   "tldr": {
+     "type": "string",
+     "description": "One-paragraph executive summary of what is being built, why, and what success looks like"
+   },
+   "problem": {
+     "type": "object",
+     "required": ["statement", "insights", "impact"],
+     "properties": {
+       "statement": {
+         "type": "string",
+         "description": "Clear description of the user pain point or business opportunity"
+       },
+       "insights": {
+         "type": "array",
+         "description": "Research findings that validate the problem",
+         "items": {
+           "type": "object",
+           "required": ["finding", "source"],
+           "properties": {
+             "finding": { "type": "string" },
+             "source": { "type": "string", "description": "File path and line number, e.g. outputs/market-research.md:45" }
+           }
+         }
+       },
+       "impact": {
+         "type": "object",
+         "properties": {
+           "qualitative": { "type": "string" },
+           "revenue_opportunity": { "type": "string" },
+           "cost_savings": { "type": "string" },
+           "affected_users": { "type": "string" }
+         }
+       }
+     }
+   },
+   "goals": {
+     "type": "object",
+     "required": ["success_metrics"],
+     "properties": {
+       "success_metrics": {
+         "type": "array",
+         "description": "Primary measurable outcomes",
+         "items": {
+           "type": "object",
+           "required": ["metric", "baseline", "target", "timeline"],
+           "properties": {
+             "metric": { "type": "string" },
+             "baseline": { "type": "string" },
+             "target": { "type": "string" },
+             "timeline": { "type": "string" }
+           }
+         }
+       },
+       "guardrail_metrics": {
+         "type": "array",
+         "description": "Metrics that must not degrade",
+         "items": { "type": "string" }
+       },
+       "leading_indicators": {
+         "type": "array",
+         "items": { "type": "string" }
+       },
+       "lagging_indicators": {
+         "type": "array",
+         "items": { "type": "string" }
+       }
+     }
+   },
+   "scope": {
+     "type": "object",
+     "required": ["in_scope", "out_of_scope"],
+     "properties": {
+       "in_scope": {
+         "type": "array",
+         "items": { "type": "string" }
+       },
+       "out_of_scope": {
+         "type": "array",
+         "items": {
+           "type": "object",
+           "required": ["item", "reason"],
+           "properties": {
+             "item": { "type": "string" },
+             "reason": { "type": "string" }
+           }
+         }
+       }
+     }
+   },
+   "user_stories": {
+     "type": "array",
+     "description": "List of user stories with acceptance criteria and priority",
+     "items": {
+       "type": "object",
+       "required": ["persona", "story", "acceptance_criteria", "priority"],
+       "properties": {
+         "persona": { "type": "string" },
+         "story": {
+           "type": "string",
+           "description": "As a [user], I want [goal], so that [benefit]"
+         },
+         "acceptance_criteria": {
+           "type": "array",
+           "items": {
+             "type": "string",
+             "description": "Given [context], when [action], then [outcome]"
+           }
+         },
+         "priority": {
+           "type": "string",
+           "enum": ["P0", "P1", "P2"],
+           "description": "P0 = must-have for launch, P1 = important, P2 = nice-to-have"
+         },
+         "complexity": {
+           "type": "string",
+           "enum": ["Low", "Medium", "High"]
+         }
+       }
+     }
+   },
+   "e2e_journey": {
+     "type": "object",
+     "description": "One annotated end-to-end scenario grounding all user stories in a real user flow",
+     "required": ["scenario_name", "context", "steps"],
+     "properties": {
+       "scenario_name": {
+         "type": "string",
+         "description": "Short name for this scenario (e.g. Jennifer audit prep)"
+       },
+       "context": {
+         "type": "string",
+         "description": "Setup for the scenario (e.g. Jennifer, Legal Team Lead, 150 leases, audit in 10 days)"
+       },
+       "steps": {
+         "type": "array",
+         "items": {
+           "type": "object",
+           "required": ["step", "user_action", "system_response", "component"],
+           "properties": {
+             "step": { "type": "integer" },
+             "user_action": { "type": "string" },
+             "system_response": { "type": "string" },
+             "component": { "type": "string", "description": "Agent or system component handling this step" },
+             "notes": { "type": "string" }
+           }
+         }
+       },
+       "edge_cases": {
+         "type": "array",
+         "description": "Known edge cases or unhandled inputs for this journey",
+         "items": { "type": "string" }
+       }
+     }
+   },
+   "nfrs": {
+     "type": "object",
+     "description": "Non-functional requirements. Define before engineering begins — NFRs discovered late cause expensive rework.",
+     "properties": {
+       "performance": {
+         "type": "object",
+         "properties": {
+           "api_response_time_ms_p95": { "type": "integer", "description": "p95 API response time in milliseconds" },
+           "report_generation_time_s": { "type": "integer", "description": "Max seconds to generate a report for target volume" },
+           "target_volume": { "type": "string", "description": "e.g. 500 leases" },
+           "max_concurrent_users": { "type": "integer" }
+         }
+       },
+       "security": {
+         "type": "object",
+         "properties": {
+           "encryption_at_rest": { "type": "string", "description": "e.g. AES-256" },
+           "encryption_in_transit": { "type": "string", "description": "e.g. TLS 1.3" },
+           "authentication": { "type": "string", "description": "e.g. OAuth 2.0 + MFA" },
+           "access_control": { "type": "string", "description": "e.g. RBAC with audit log" },
+           "compliance_standards": {
+             "type": "array",
+             "items": { "type": "string" },
+             "description": "e.g. [SOC 2 Type II, GDPR, CCPA]"
+           }
+         }
+       },
+       "data_retention": {
+         "type": "object",
+         "properties": {
+           "retention_period_years": { "type": "integer" },
+           "pii_handling": { "type": "string" },
+           "deletion_policy": { "type": "string" }
+         }
+       },
+       "availability": {
+         "type": "object",
+         "properties": {
+           "uptime_sla_percent": { "type": "number", "description": "e.g. 99.9" },
+           "rto_hours": { "type": "number", "description": "Recovery Time Objective in hours" },
+           "rpo_hours": { "type": "number", "description": "Recovery Point Objective in hours" },
+           "backup_frequency": { "type": "string", "description": "e.g. Daily incremental, weekly full" }
+         }
+       },
+       "accessibility": {
+         "type": "object",
+         "properties": {
+           "wcag_level": { "type": "string", "enum": ["A", "AA", "AAA"], "description": "WCAG 2.1 compliance level" }
+         }
+       }
+     }
+   },
+   "risks": {
+     "type": "object",
+     "properties": {
+       "assumptions": {
+         "type": "array",
+         "description": "Assumptions that if wrong would invalidate this PRD",
+         "items": { "type": "string" }
+       },
+       "known_risks": {
+         "type": "array",
+         "items": {
+           "type": "object",
+           "required": ["risk", "likelihood", "impact", "mitigation"],
+           "properties": {
+             "risk": { "type": "string" },
+             "likelihood": { "type": "string", "enum": ["Low", "Med", "High"] },
+             "impact": { "type": "string", "enum": ["Low", "Med", "High"] },
+             "mitigation": { "type": "string" }
+           }
+         }
+       }
+     }
+   },
+   "technical_considerations": {
+     "type": "object",
+     "properties": {
+       "dependencies": { "type": "array", "items": { "type": "string" } },
+       "integration_points": { "type": "array", "items": { "type": "string" } },
+       "performance_requirements": { "type": "string" },
+       "security_compliance": { "type": "string" }
+     }
+   },
+   "open_questions": {
+     "type": "array",
+     "items": {
+       "type": "object",
+       "required": ["question", "owner", "status"],
+       "properties": {
+         "question": { "type": "string" },
+         "owner": { "type": "string" },
+         "due_date": { "type": "string", "format": "date" },
+         "status": { "type": "string", "enum": ["Open", "Resolved", "Blocked"] }
+       }
+     }
+   },
+   "milestones": {
+     "type": "object",
+     "required": ["phases", "rollout"],
+     "properties": {
+       "phases": {
+         "type": "array",
+         "items": {
+           "type": "object",
+           "required": ["phase", "description", "target_date"],
+           "properties": {
+             "phase": { "type": "string" },
+             "description": { "type": "string" },
+             "target_date": { "type": "string", "format": "date" }
+           }
+         }
+       },
+       "rollout": {
+         "type": "object",
+         "properties": {
+           "release_approach": { "type": "string" },
+           "beta_users": { "type": "string" },
+           "communications": { "type": "string" },
+           "feedback_loop": { "type": "string" }
+         }
+       }
+     }
+   },
+   "agent_workflow": {
+     "type": "object",
+     "description": "Agent-specific workflow specifications. Required for machine-readable handoff to downstream agents (ticket writers, test generators, deployment orchestrators).",
+     "properties": {
+       "task_graph": {
+         "type": "object",
+         "description": "Directed Acyclic Graph (DAG) of agent tasks. Defines what can run in parallel vs. sequentially.",
+         "properties": {
+           "nodes": {
+             "type": "array",
+             "items": {
+               "type": "object",
+               "required": ["id", "agent", "action"],
+               "properties": {
+                 "id": { "type": "string", "description": "Unique task identifier (e.g. lease_data_extraction)" },
+                 "agent": { "type": "string", "description": "Name of the agent responsible (e.g. DataIngestionAgent)" },
+                 "action": { "type": "string", "description": "What this agent does at this step" },
+                 "depends_on": {
+                   "type": "array",
+                   "items": { "type": "string" },
+                   "description": "IDs of tasks that must complete before this one starts. Empty = can start immediately."
+                 },
+                 "can_run_parallel_with": {
+                   "type": "array",
+                   "items": { "type": "string" },
+                   "description": "IDs of tasks that can execute concurrently with this one"
+                 }
+               }
+             }
+           }
+         }
+       },
+       "handoff_contracts": {
+         "type": "array",
+         "description": "Typed payload schemas for every agent-to-agent boundary. Prevents silent failures where Agent A passes a malformed object and Agent B proceeds incorrectly.",
+         "items": {
+           "type": "object",
+           "required": ["from_agent", "to_agent", "input_schema", "output_schema", "invariants", "failure_modes"],
+           "properties": {
+             "from_agent": { "type": "string" },
+             "to_agent": { "type": "string" },
+             "input_schema": {
+               "type": "object",
+               "description": "Typed fields the receiving agent expects. Each key is a field name; value describes type and required status.",
+               "additionalProperties": {
+                 "type": "object",
+                 "properties": {
+                   "type": { "type": "string" },
+                   "required": { "type": "boolean" },
+                   "description": { "type": "string" },
+                   "required_fields": { "type": "array", "items": { "type": "string" } }
+                 }
+               }
+             },
+             "output_schema": {
+               "type": "object",
+               "description": "Typed fields this handoff produces for the next agent.",
+               "additionalProperties": {
+                 "type": "object",
+                 "properties": {
+                   "type": { "type": "string" },
+                   "description": { "type": "string" }
+                 }
+               }
+             },
+             "invariants": {
+               "type": "array",
+               "items": { "type": "string" },
+               "description": "Conditions that must hold true at the point of transfer (e.g. All lease_ids unique, Dates in ISO8601)"
+             },
+             "failure_modes": {
+               "type": "array",
+               "items": {
+                 "type": "object",
+                 "required": ["condition", "action"],
+                 "properties": {
+                   "condition": { "type": "string", "description": "e.g. Malformed input, Partial data" },
+                   "action": { "type": "string", "description": "e.g. Return error and halt pipeline, Log warning and process valid records" }
+                 }
+               }
+             }
+           }
+         }
+       },
+       "tool_manifest": {
+         "type": "array",
+         "description": "Registry of all tools used in agent-to-agent interactions. Idempotency flag determines retry behavior — a non-idempotent tool retried will cause duplicate actions.",
+         "items": {
+           "type": "object",
+           "required": ["tool_id", "tool_name", "owning_agent", "type", "idempotent"],
+           "properties": {
+             "tool_id": { "type": "string", "description": "Unique identifier (e.g. pdf_lease_extractor)" },
+             "tool_name": { "type": "string" },
+             "owning_agent": { "type": "string" },
+             "step": { "type": "string", "description": "Task graph node ID where this tool is used" },
+             "type": {
+               "type": "string",
+               "enum": ["API", "Function", "Database", "FileSystem", "ExternalService"],
+               "description": "Tool category"
+             },
+             "idempotent": {
+               "type": "boolean",
+               "description": "true = safe to retry without side effects. false = retrying may cause duplicates."
+             },
+             "timeout_ms": { "type": "integer", "description": "Max execution time in milliseconds" },
+             "retry_strategy": {
+               "type": "string",
+               "enum": ["none", "linear_backoff", "exponential_backoff"],
+               "description": "Only applies when idempotent is true"
+             },
+             "fallback": { "type": "string", "description": "What to do if this tool fails after retries (e.g. Manual upload form)" }
+           }
+         }
+       }
+     }
+   },
+   "go_no_go_criteria": {
+     "type": "array",
+     "description": "Boolean checklist that must pass before any ship decision. Every P0 item must_pass = true.",
+     "items": {
+       "type": "object",
+       "required": ["criterion", "must_pass"],
+       "properties": {
+         "criterion": {
+           "type": "string",
+           "description": "e.g. All P0 user stories have passing acceptance tests"
+         },
+         "must_pass": {
+           "type": "boolean",
+           "description": "If true, a failing check is a hard blocker to release"
+         },
+         "owner": { "type": "string" },
+         "status": { "type": "string", "enum": ["Pass", "Fail", "Not Evaluated"] }
+       }
+     }
+   },
+   "appendix": {
+     "type": "object",
+     "properties": {
+       "market_research": { "type": "string" },
+       "user_research": { "type": "string" },
+       "design_mockups": { "type": "string" },
+       "technical_spec": { "type": "string" },
+       "human_prd": { "type": "string" }
+     }
+   }
+ }
+}
