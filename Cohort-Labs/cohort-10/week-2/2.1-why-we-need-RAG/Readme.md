@@ -66,6 +66,8 @@ But every AI model has a **context window** — a hard limit on how many tokens 
 | GPT-4o mini | 128,000 tokens | ~96 pages |
 | GPT-4o | 128,000 tokens | ~96 pages |
 
+> See the full list of OpenAI models and their context windows: [platform.openai.com/docs/models](https://platform.openai.com/docs/models)
+
 A 100-page contract easily hits 80,000–120,000 tokens. Add the system message, the user question, and the expected response — and you're at the limit or over it.
 
 When you go over, one of two things happens:
