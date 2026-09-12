@@ -86,10 +86,10 @@ The more cross-referenced the document, the bigger the gap between RAG and KG-RA
 Before you start the lab, download both of these files:
 
 - **Claude Skill file** — the skill that extracts a knowledge graph from your contract
-  [Download the Skill →]()
+  [Download the Skill →](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQAFc5y1wj7RQa1YLPVhsMslAa9EqcDaW3LFtUN--5k3F78?e=5eYchc)
 
 - **Sample Contract** — the loan agreement you will use in this lab
-  [Download the Contract →]()
+  [Download the Contract →](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQAoCWuA_rpWRq9eVWL6MJCeAeF0-mDO7j1ueQe6RxKL4mU?e=YvV2wc)
 
 > 💡 Save both files somewhere easy to find — you will need them in Steps 1 and 2.
 
