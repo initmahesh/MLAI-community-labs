@@ -54,6 +54,21 @@ Scores an AI product concept against a structured PM checklist and gives honest,
 
 **Key principles it enforces:** Feedback sounds like a senior PM colleague, not a rubric. Real competitor names, real market data, concrete next steps — no generic advice.
 
+### `/idea-eval` — Idea Evaluator
+
+Evaluates whether a product idea is a strong candidate for Agentic AI — calibrated on 200+ AI product pitches.
+
+**When to use it:** When you have a product idea and want to know if it's a good fit for agentic AI, how complex it is to build, and what the risks are before investing more time.
+
+**What it does:**
+- Collects four required inputs upfront in one message: product name, target persona and their pain, why agentic AI (not rule-based logic), and your MOAT
+- Runs market research on competitors, recent launches, and relevant data before scoring
+- Scores the idea across 5 weighted sections: Problem Fit (20%), Agentic AI Fit (25%), MOAT Strength (20%), Monetization (15%), and GTM/Acquisition (20%)
+- Adjusts scoring for stage — napkin ideas are not penalized for missing user research or kill criteria
+- Outputs a concise **Complexity · Pros · Cons · Suggestion** evaluation with a single framing sentence, specific MVP scope, and a win condition
+
+**Key principles it enforces:** Direct and specific — names real competitors, flags missing monetization or GTM as explicit cons, always ends with a concrete recommendation on what to build and what to defer.
+
 ---
 
 ## How to Invoke a Skill
@@ -63,6 +78,7 @@ Type the skill name as a slash command in Claude Code:
 ```
 /prd
 /project-eval
+/idea-eval
 ```
 
 Claude will load the skill's instructions and prompt you for any missing inputs before proceeding.
