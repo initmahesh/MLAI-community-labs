@@ -13,11 +13,11 @@
 5. [Prerequisites — What to Download](#5-prerequisites--what-to-download)
 6. [What Is a Claude Skill?](#6-what-is-a-claude-skill)
 7. [Step 1 — Set Up the Skill in Claude](#7-step-1--set-up-the-skill-in-claude)
-8. [Step 2 — Upload the Contract and Build the Context Brain](#8-step-2--upload-the-contract-and-build-the-context-brain)
-9. [Step 3 — Visualize the Brain in Obsidian](#9-step-3--visualize-the-brain-in-obsidian)
-10. [Test It Now — Verify the Token Reduction](#10-test-it-now--verify-the-token-reduction)
+8. [Step 2 — Create a Project and Upload the Contract](#8-step-2--create-a-project-and-upload-the-contract)
+9. [Step 3 — Invoke the Skill and Build Your Context Brain](#9-step-3--invoke-the-skill-and-build-your-context-brain)
+10. [Step 4 — Visualize the Brain in Obsidian](#10-step-4--visualize-the-brain-in-obsidian)
 11. [Understanding Entities and Relationships](#11-understanding-entities-and-relationships)
-12. [Step 4 — Ask Questions Using the Context Brain](#12-step-4--ask-questions-using-the-context-brain)
+12. [Step 5 — Ask Questions Using the Context Brain](#12-step-5--ask-questions-using-the-context-brain)
 13. [What Happened Behind the Scenes](#13-what-happened-behind-the-scenes)
 
 ---
@@ -118,7 +118,7 @@ The more cross-referenced your document, the bigger the gap — in both token sa
 
 ## 5. Prerequisites — What to Download
 
-Before you start the lab, download both of these files:
+Before you start the lab, download and install the following:
 
 - **Claude Skill file** — the skill that extracts the knowledge graph (Context Brain) from your contract
   [Download the Skill →](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQAFc5y1wj7RQa1YLPVhsMslAa9EqcDaW3LFtUN--5k3F78?e=5eYchc)
@@ -126,7 +126,13 @@ Before you start the lab, download both of these files:
 - **Sample Contract** — the loan agreement you will use in this lab
   [Download the Contract →](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQAoCWuA_rpWRq9eVWL6MJCeAeF0-mDO7j1ueQe6RxKL4mU?e=YvV2wc)
 
-> Save both files somewhere easy to find — you will need them in Steps 1 and 2.
+- **Obsidian** — the tool you will use to visualize the knowledge graph
+  [Download Obsidian →](https://obsidian.md/download)
+
+- **Foundation Lab** — complete this before starting if you have not already; it covers the core concepts this lab builds on
+  [Open Foundation Lab →](foundation/Readme.md)
+
+> Save the skill file and contract somewhere easy to find — you will need them in Steps 1 and 2.
 
 ---
 
@@ -199,27 +205,31 @@ You write it once, upload it to Claude's Customize section, and it becomes avail
 
 ---
 
-## 8. Step 2 — Upload the Contract and Build the Context Brain
+## 8. Step 2 — Create a Project and Upload the Contract
 
-### ▶ Open a new chat
+### ▶ Open a new chat 
 
 1. Click **"New Chat"** in the Claude sidebar
-2. Click on the **Project Folder** option and add the folder that the Claude skill will create the graph files in
+2. Click on Project Fodler and add the folder that the claude skill have  reated for you the graph folder
 
 ![image](images/4.png)
 
+
 ---
 
-### ▶ Run the skill on your contract
+### ▶ Upload the contract
 
-3. Inside the session, click the **paperclip icon** (or **"Attach files"**) and select the loan agreement you downloaded in the Prerequisites section
-4. In the chat message box, type `/` — a list of available skills will appear
-5. Select **`/contract-knowledge-graph`** from the list
-6. Press **Enter**
+6. Inside the Session, click the **paperclip icon** (or **"Attach files"**)
+1. In the chat message box, type `/` — a list of available skills will appear
+2. Select the **/contract-knowledge-graph** you uploaded in Step 1
+3. Press **Enter**
 
 ![image](images/5.png)
 
+> ✅ You should see the contract file listed above the message input. Claude can now read it.
+
 > **This is the one time you pay the full token cost.** Claude reads the entire contract here — and converts it into a compact Context Brain. Every question you ask after this step uses only the brain, not the raw contract.
+
 
 Claude will now read the contract and begin extracting entities and relationships. You will see it working in real time — identifying parties, dates, obligations, cross-references, and the connections between them.
 
@@ -229,28 +239,16 @@ Claude will now read the contract and begin extracting entities and relationship
 
 ---
 
-## 9. Step 3 — Visualize the Brain in Obsidian
-
-### ▶ Install Obsidian (if you have not already)
-
-1. Go to the official [Obsidian Download Page](https://obsidian.md/download)
-2. Select your operating system (**Windows** or **macOS**) and click **Download**
-3. Open the downloaded file and follow the on-screen instructions to install
-4. Launch Obsidian
-
----
-
-### ▶ Open your Context Brain as a Vault
 
 5. In Obsidian, click **"Open folder as Vault"**
 6. Navigate to the local folder that Claude wrote the Markdown files into and select it
 7. Obsidian will load all the files
-
+8. 
 ![image](images/6.png)
 
 8. Click the **Graph View** icon in the left sidebar (it looks like a network of dots)
 
-![image](images/7.png)
+![image](images/6.png)
 
 > ✅ You should see a visual graph — each node is an entity from the contract, and each line connecting two nodes is a relationship. Hover over any node to see its name. Click it to open the underlying Markdown file and read the details.
 
@@ -258,13 +256,7 @@ Claude will now read the contract and begin extracting entities and relationship
 
 ---
 
-## 10. Test It Now — Verify the Token Reduction
-
-> **Try it yourself.** Open a new Claude chat, attach the **graph folder** (not the original PDF) as the project context, and ask the same questions you asked in Lab 2.3. Watch the token counter — you will see significantly lower consumption compared to uploading the full contract, while getting more complete answers.
-
-This is the core payoff of the lab: the Context Brain you just built is ~85% smaller than the original document and answers questions more accurately by following connections, not just matching text.
-
----
+## Test it now in claude attach the loan agreementgraph folder with claude and ask the same question now you token consumption will be less compares to compete session 
 
 ## 11. Understanding Entities and Relationships
 
@@ -307,7 +299,7 @@ When you asked *"What is the interest rate?"* in the previous lab, RAG found the
 
 ---
 
-## 12. Step 4 — Ask Questions Using the Context Brain
+## 12. Step 5 — Ask Questions Using the Context Brain
 
 Now you will ask the exact same questions you asked in Lab 2.3 — but this time Claude answers using the Context Brain, not the raw contract.
 
@@ -316,7 +308,7 @@ Now you will ask the exact same questions you asked in Lab 2.3 — but this time
 1. In Claude, create a **new chat** inside the same project
 2. The project already has access to your local folder — the Markdown graph files are available to Claude automatically
 
-> You do not need to re-upload the contract. The Context Brain (the Markdown graph files Claude generated in Step 2) is in the project folder. Claude uses those — not the original PDF. This is where the token saving happens: the brain is ~85% smaller than the original contract.
+> You do not need to re-upload the contract. The Context Brain (the Markdown graph files Claude generated in Step 3) is in the project folder. Claude uses those — not the original PDF. This is where the token saving happens: the brain is ~85% smaller than the original contract.
 
 ---
 
