@@ -126,10 +126,7 @@ Before you start the lab, download and install the following:
 - **Sample Contract** — the loan agreement you will use in this lab
   [Download the Contract →](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQAoCWuA_rpWRq9eVWL6MJCeAeF0-mDO7j1ueQe6RxKL4mU?e=YvV2wc)
 
-- **Obsidian** — the tool you will use to visualize the knowledge graph
-  [Download Obsidian →](https://obsidian.md/download)
-
-- **Foundation Lab** — complete this before starting if you have not already; it covers the core concepts this lab builds on
+- **Foundation Lab** — complete this before starting if you have not already; it walks you through installing Obsidian and covers the core concepts this lab builds on
   [Open Foundation Lab →](foundation/Readme.md)
 
 > Save the skill file and contract somewhere easy to find — you will need them in Steps 1 and 2.
