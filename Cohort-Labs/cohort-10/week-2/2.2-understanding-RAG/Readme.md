@@ -176,6 +176,8 @@ The AI is not the filing room. It is the consultant. The vector store is the fil
 
 ---
 
+✅ **n8n Workflow file** — [Download the pre-built workflow JSON here](https://drive.google.com/file/d/1bsHT4DsEvLFZv2WPBdnXJoEAfEn9R6Ka/view?usp=sharing) if you'd like to import it instead of building from scratch.
+
 ✅ **n8n account** - the same one from Lab 2.1. You'll be creating new workflows inside it.
 
 ✅ **OpenAI API key** - already set up in n8n from Lab 2.1. You won't need to add it again unless you're starting fresh
