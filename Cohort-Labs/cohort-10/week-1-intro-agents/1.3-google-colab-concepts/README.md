@@ -357,6 +357,26 @@ So in this request we're enabling:
 thinking={"type": "adaptive"}
 ```
 
+Claude supports different ways of handling reasoning depending on the complexity of the task.
+
+**No Thinking:** Claude responds directly without spending extra tokens on deeper reasoning.
+
+```python
+thinking={"type": "disabled"}
+```
+
+**Extended Thinking:** Claude performs deeper reasoning using a fixed thinking-token budget that you define.
+
+```python
+thinking={"type": "enabled", "budget_tokens": 5000}
+```
+
+**Adaptive Thinking:** Claude automatically decides when and how much reasoning is needed.
+
+```python
+thinking={"type": "adaptive"}
+```
+
 With adaptive thinking, Claude can determine when additional reasoning is useful for the task.
 
 We're also setting the reasoning effort to `high`.
