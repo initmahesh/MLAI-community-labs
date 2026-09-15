@@ -42,4 +42,12 @@ Think of it as turning your contract Q&A system into a cautious legal research a
 
 ---
 
+### [Lab 2.3.1 — Give Your Agentic RAG a Web Layer](./2.3.1-web-layer/Readme.md)
+
+Your backend just got smarter — it now decides whether a question even needs the contract before it retrieves anything. Your web app from Week 1 doesn't know that happened yet. This lab reconnects the two: rewiring the app to match the new ingestion/chat split, and restyling it from a real design system instead of an improvised palette.
+
+**Time:** ~35 minutes
+
+---
+
 > If you get stuck in any lab, each one has troubleshooting guidance built in. Read the error carefully — most issues in these labs have a one-line fix.

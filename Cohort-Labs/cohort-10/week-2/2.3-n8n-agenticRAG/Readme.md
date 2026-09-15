@@ -43,8 +43,6 @@ This is exactly what makes a workflow **Traditional RAG** rather than **Agentic 
 
 ## 2. The Solution — What This Workflow Does
 
-![image](./assets/banner.png)
-
 This n8n workflow builds an **intelligent contract Q&A system** that:
  
 ✅ Reads and understands your uploaded contract
