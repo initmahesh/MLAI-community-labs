@@ -6,7 +6,7 @@ description: Apply the Design System when designing or
 name: design-system
 ---
 
-# allNeurons Design System
+# Design System
 
 > Last extracted: 2026-05-13
 
@@ -14,7 +14,7 @@ name: design-system
 
 ## Product Design Philosophy
 
-allNeurons follows a **precision-first, data-dense UI** philosophy. The
+The Design System follows a **precision-first, data-dense UI** philosophy. The
 system is:
 
 -   **Information-forward** --- every surface should earn its space; no

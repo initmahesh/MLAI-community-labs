@@ -303,6 +303,59 @@ Instead, RAG retrieves the most relevant chunk — which only contains a *pointe
 
 ---
 
+### One More Thing — Get This Workflow Ready to Talk to a Real Web App
+
+Everything you just did worked inside n8n's own chat window — you clicked **Execute Workflow**, opened n8n's built-in form, opened n8n's built-in chat, and stayed inside n8n the whole time.
+
+A real product doesn't work like that. A real product is a web page someone opens in their browser, with its own upload button and its own chat box — and that web page has no way to open n8n's internal form or chat trigger. It can only do one thing: send a request to a URL and wait for a reply. So before this workflow can sit behind a real app, two of its starting points need to change — the way ingestion starts, and the way chat starts. Let's do ingestion first, then chat.
+
+---
+
+#### Step 1 — Swap the ingestion trigger for a Webhook
+
+1. Click the **"On Form Submission"** node and delete it.
+2. Add a new node, search for **"Webhook"**, and drop it where the form trigger used to sit.
+3. Open it and set it up:
+   - **HTTP Method:** POST
+   - **Respond:** "Using 'Respond to Webhook' Node"
+   - Under **Options**, turn on binary data and set the **Binary Property Name** to `data` — that's the field name the uploaded file will arrive under
+   - Uder **Options** add one more option Allowed Origins (CORS)
+4. Reconnect its output into the same node the form trigger was using (**Simple Vector Store**).
+5. Add a **Respond to Webhook** node at the very end of this pipeline, right after **Simple Vector Store**, so whoever sent the file gets a reply once the contract is fully indexed.
+
+![Swapping the ingestion trigger for a Webhook node — screenshot placeholder](assets/17.png)
+
+---
+
+#### Step 2 — Swap the chat trigger for a Webhook
+
+1. Click the **"When chat message received"** node and delete it.
+2. Add a new **Webhook** node in its place.
+3. Set it up the same way as before:
+   - **HTTP Method:** POST
+   - **Respond:** "Using 'Respond to Webhook' Node"
+   - Uder **Options** add one more option Allowed Origins (CORS)
+4. Connect its output into **Intent Router** — the same place the chat trigger used to feed into.
+
+![Swapping the ingestion trigger for a Webhook node — screenshot placeholder](assets/19.png)
+
+---
+
+#### Step 3 — Give both answer paths a way to actually reply
+
+Right now, both the **Direct Response Agent** path and the contract path still end at a **Chat - Direct** / **Chat - Contract** node — those were built to hand the answer to n8n's own chat window, which doesn't exist in this version anymore.
+
+1. Remove **Chat - Direct**, and add a **Respond to Webhook** node and connect Direct Response Agent node to this respond to webhook node.
+2. Remove **Chat - Contract**, add another **Respond to Webhook** node and connect AI Agent1 node to this respond to webhook node.
+
+![screenshot](assets/18.png)
+
+Activate the workflow, then open both Webhook nodes and copy their URLs somewhere safe — one is for sending a contract to be read, the other is for asking a question about it.
+
+This is exactly the conversion **Lab 2.3.1 — Give Your Agentic RAG a Web Layer** builds on top of. Once you've made these changes here, that's the lab where you connect a real web app to this workflow. [Go to Lab 2.3.1 →](../2.3.1-web-layer/Readme.md)
+
+---
+
 ### The Takeaway Before the Next Lesson
 
 | Contract type | How answers are stored | RAG accuracy |
@@ -420,3 +473,5 @@ Download this Loan Agreement → [Click here](https://pragyaallc-my.sharepoint.c
   you need more than vector search. You need a system that can follow references, resolve defined terms, and reason across chunks.
 
   That is where Knowledge Graphs come in.
+
+[Go to Lab 2.3.1 →](../2.3.1-web-layer/Readme.md)

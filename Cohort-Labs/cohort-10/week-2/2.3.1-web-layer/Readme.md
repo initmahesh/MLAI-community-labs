@@ -14,7 +14,7 @@ No new coding concepts here. Just Claude Code, the app you already have, and abo
 
 - [What Are We Building?](#what-are-we-building)
 - [Prerequisites](#prerequisites)
-- [Part 1: Turn On the New Workflow — and Poke Both Branches](#part-1-turn-on-the-new-workflow--and-poke-both-branches)
+- [Part 1: Open Workflow — and Copy webhook-url from Both Branches](#part-1-open-workflow--and-copy-webhook-url-from-both-branches)
 - [Part 2: Your App Still Thinks There's Only One Job](#part-2-your-app-still-thinks-theres-only-one-job)
 - [Part 3: Test It Inside n8n First](#part-3-test-it-inside-n8n-first)
 - [Part 4: Teach Claude Your Design System — as a Skill](#part-4-teach-claude-your-design-system--as-a-skill)
@@ -43,7 +43,7 @@ By the end of this lab, your app will send the file once, ask questions cheaply 
 
 ---
 
-## Part 1: Turn On the New Workflow — and Copy webhook-url from Both Branches
+## Part 1: Open Workflow — and Copy webhook-url from Both Branches
 
 Open the n8n workflow from Lab 2.3. Click **Execute Workflow** so it's actually listening.
 
@@ -234,11 +234,11 @@ Save this as `write-user-story.md`, upload it, and invoke it with:
 
 ### Now, Back to Your App's Design
 
-`design.md` is the fix for the "described a look in a sentence" problem — a real design system written down once: a color palette, a type scale, a 4px spacing grid, and patterns for things like status badges. Nothing in it is a guess. And instead of pasting its contents into a prompt every time you want Claude to follow it, we're going to turn it into a skill you invoke by name.
+`SKILL.md` is the fix for the "described a look in a sentence" problem — a real design system written down once: a color palette, a type scale, a 4px spacing grid, and patterns for things like status badges. Nothing in it is a guess. And instead of pasting its contents into a prompt every time you want Claude to follow it, we're going to turn it into a skill you invoke by name.
 
 **Download the skill:**
 
-[Download the design.md skill from GitHub](./SKILL.md)
+[Download the SKILL.md skill from GitHub](./SKILL.md)
 
 **Upload it into Claude**, Click on your profile in the bottom left corner → Settings → Skills → Click on Add at top right corner → Select Upload skill → now upload your skill here that you just downloaded → save:
 
@@ -277,10 +277,9 @@ Open the app fresh and walk through it slowly, checking it against the design sy
 
 | What | What it means | Why it matters |
 |---|---|---|
-| **Your app can fall behind your backend** | Your n8n workflow grew from one job into two — reading the contract, and answering questions about it — but the app was still stuck doing everything the old, one-job way | Just because a prototype works today doesn't mean the wiring is done. Check it again whenever the backend changes |
 | **Reading a document and answering questions aren't the same job** | You only need to upload and read the contract once. After that, you're just asking it questions, over and over | Sending the whole file again with every single message is slow and pointless once it's already been read |
 | **Check every path before you trust it** | An agent that quietly fails on one path can still look totally fine — until someone actually hits that path | It only takes a minute to test both sides of a decision point, and it saves you from a confusing bug later |
-| **A real design system beats a good guess** | Describing a look in a sentence gets you something that looks fine for a day. Writing it down once, as `design.md`, gets you something everyone can keep using | When Claude follows an actual file instead of your memory of what "looked nice," you always know exactly why something looks the way it does |
+| **A real design system beats a good guess** | Describing a look in a sentence gets you something that looks fine for a day. Writing it down once, as `SKILL.md`, gets you something everyone can keep using | When Claude follows an actual file instead of your memory of what "looked nice," you always know exactly why something looks the way it does |
 
 ---
 
