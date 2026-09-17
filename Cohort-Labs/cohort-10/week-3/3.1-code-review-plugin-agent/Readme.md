@@ -443,3 +443,9 @@ You should see your submitted feedback as a new row, including the rating, feedb
 - **Connectors are how Claude reaches outside itself.** Supabase isn't something Claude has built in — the connector is what links your actual Supabase account to your Claude session, so Claude can create tables and write data on your behalf instead of you doing it by hand.
 
 - **Now your app can hear back from real users.** With the feedback form wired to Supabase, every rating and comment a user submits lands as a real row in your database — turning "I think this app is good" into something you can actually check.
+
+---
+
+Feedback tells you how people feel about the app — it doesn't tell you whether each answer is actually correct. That's the gap the next lab closes.
+
+[Go to Lab 3.2: Find Out If Your Chatbot's Answers Are Actually Good →](../3.2-microsoft-foundry-eval-plugin/Readme.md)
