@@ -1,6 +1,6 @@
 # Lab 3.1: Give Your Contract Review App a Code Reviewer
 
-Your `contract-review-app` works. You've tested it end to end — upload, ingest, ask, answer, all of it. But "it works" and "it's built well" aren't the same thing. Nobody's actually looked at the code itself and asked: is this handling errors properly? Is anything here a security risk? Is any of this more complicated than it needs to be?
+You built `contract-review-app` in week 1, then updated its backend in week 2. It works — you've tested it end to end — upload, ingest, ask, answer, all of it. But "it works" and "it's built well" aren't the same thing. Nobody's actually looked at the code itself and asked: is this handling errors properly? Is anything here a security risk? Is any of this more complicated than it needs to be? Now it's time to review its code.
 
 That's what this lab is for. You're going to install a plugin called **Superpowers**, use one of its skills to build yourself a dedicated **code review agent**, and point that agent at your own project. Then you'll start setting up **Supabase** — the database you'll use in the next part of this lab to collect feedback on how the review went.
 
@@ -12,24 +12,25 @@ No new coding concepts here either. Just Claude Code Desktop, the app you alread
 
 - [What Are We Building?](#what-are-we-building)
 - [Prerequisites](#prerequisites)
-- [Part 1: What Is Superpowers, and Why Are We Using It?](#part-1-what-is-superpowers-and-why-are-we-using-it)
-- [Part 2: Install the Superpowers Plugin](#part-2-install-the-superpowers-plugin)
-- [Part 3: Build Your Code Reviewer Agent](#part-3-build-your-code-reviewer-agent)
-- [Part 4: Run Your First Review](#part-4-run-your-first-review)
-- [Part 5: Now, Let's Start Taking Feedback From Your Users](#part-5-now-lets-start-taking-feedback-from-your-users)
-- [Part 6: Set Up Your Supabase Project](#part-6-set-up-your-supabase-project)
-- [Part 7: Link Your Supabase Account to the Connector](#part-7-link-your-supabase-account-to-the-connector)
-- [Part 8: Build the Feedback Form](#part-8-build-the-feedback-form)
+- [Part 1: Install the Superpowers Plugin](#part-1-install-the-superpowers-plugin)
+- [Part 2: Put Superpowers to Work — Build Your Code Reviewer Agent](#part-2-put-superpowers-to-work--build-your-code-reviewer-agent)
+- [Part 3: Run Your First Review](#part-3-run-your-first-review)
+- [Part 4: Now, Let's Start Taking Feedback From Your Users](#part-4-now-lets-start-taking-feedback-from-your-users)
+- [Part 5: Set Up Your Supabase Project](#part-5-set-up-your-supabase-project)
+- [Part 6: Link Your Supabase Account to the Connector](#part-6-link-your-supabase-account-to-the-connector)
+- [Part 7: Build the Feedback Form](#part-7-build-the-feedback-form)
 
 ---
 
 ## What Are We Building?
 
-**The reviewer.** You're installing Superpowers, a plugin that gives Claude a library of proven skills — one of which is a structured code review process. You'll turn that skill into a standing agent, `code-reviewer`, whose only job is to read your project and tell you exactly what's wrong with it: bugs, security issues, sloppy error handling, anything. It never touches your files unless you explicitly tell it to.
+**Superpowers**, is a plugin that gives Claude a library of proven skills — things other engineers have already written and tested, like "how to debug systematically" or, the one we care about here, "how to review code properly." Instead of you having to know what a thorough code review looks like, you're borrowing that judgment from a skill built specifically for it.
 
-**The pipeline.** Once the plugin is installed and the agent is built, you'll run it against `contract-review-app` and watch it do two things on purpose: report every issue it finds, grouped by severity, and then stop and ask you what to do before changing anything.
+Here's the flow for this lab:
 
-**The foundation for what's next.** By the end of this lab, you'll also have Claude's Supabase connector linked to your own Supabase account, with a fresh project ready to go. We'll use that project in the next part of this lab to store feedback from a form — but that part comes later.
+- **Review the code.** We'll turn Superpowers' code review skill into a standing agent, `code-reviewer`, and run it against `contract-review-app` to see every issue it finds.
+- **Create a feedback form.** So real users can tell you how the app is doing.
+- **Add Supabase[database] as the connector.** So every form submission lands in a real database instead of disappearing.
 
 ---
 
@@ -39,19 +40,22 @@ No new coding concepts here either. Just Claude Code Desktop, the app you alread
 
 ✅ **Claude Code Desktop** installed and signed in.
 
-✅ **A Supabase account** — or the willingness to make one. Part 6 walks you through it.
+✅ **A Supabase account** — or the willingness to make one. [Set up your Supabase](#part-5-set-up-your-supabase-project).
 
 ---
 
-## Part 1: What Is Superpowers, and Why Are We Using It?
+## Part 1: Install the Superpowers Plugin
 
-Think of Superpowers as a toolbox of skills that other engineers have already written and tested — things like "how to debug systematically," "how to write a plan before building," and, the one we care about here, "how to review code properly." Instead of you having to know what a thorough code review looks like, you're borrowing that judgment from a skill built specifically for it.
+### What's a Plugin
 
-We're using it here because reviewing your own code well is a real skill — you have to know what to check for, in what order, and how to report it clearly. Superpowers' code review skill already encodes all of that. Once it's installed, we're going to wrap it in an agent so it's always one prompt away, instead of something you have to re-explain every time.
+Right now, Claude Code only knows how to do what it comes with out of the box. A **plugin** is how you extend that — it's a packaged bundle of extra skills that someone else has already built, tested, and shared, that you can just add to your own Claude Code setup instead of building from scratch.
 
----
+Why install one instead of teaching Claude everything yourself? Two reasons:
 
-## Part 2: Install the Superpowers Plugin
+- **You don't have to reinvent it.** Someone already figured out what a good code review checklist looks like, tested it, and packaged it as a skill. Installing the plugin means you get that expertise instantly, instead of writing your own from a blank page.
+- **It stays with your setup.** Once installed, the plugin's skills are available any time you open Claude Code — not just for this one project — so you only ever do this install step once.
+
+That's exactly what you're about to do: install a plugin called **Superpowers**, which bundles a whole library of these pre-built skills — including the one you need for a proper code review. Here's how:
 
 1. In Claude Code Desktop, click your **profile icon** in the bottom-left corner.
 2. Click **Settings**.
@@ -91,9 +95,9 @@ and click on -> Use "https://github.com/obra/superpowers-marketplace"
 
 ---
 
-## Part 3: Build Your Code Reviewer Agent
+## Part 2: Put Superpowers to Work — Build Your Code Reviewer Agent
 
-Superpowers is installed, but it's just sitting there until something calls on it. Now you'll build an agent whose entire job is to use its code review skill on your project.
+Superpowers is installed, but it's just sitting there until something calls on it. Now let me show you how to actually put it to work — by building an agent whose entire job is to use its code review skill on your project.
 
 ### What's an Agent
 
@@ -222,9 +226,11 @@ Claude will create the `code-reviewer` subagent from this exact spec.
 
 ![image](./images/19.png)
 
+> **Note:** Make sure you're doing this inside the same `contract-review-app` folder you've been working in this whole time — if you're in a different folder, you won't see the agent, even though it was created successfully.
+
 ---
 
-## Part 4: Run Your First Review
+## Part 3: Run Your First Review
 
 1. open a new session again — the same way you did before building the agent. This is what makes Claude Code pick up the new `code-reviewer` agent you just created. Point this new session at your `contract-review-app` folder.
 2. Ask it to review the project using your new agent — for example:
@@ -233,13 +239,19 @@ Claude will create the `code-reviewer` subagent from this exact spec.
    Use the code-reviewer agent to review this project.
    ```
 
-3. The agent will work through the code and report back every issue it found, grouped by severity, ending with a Summary. It won't have changed a single file yet.
+3. The agent will work through the code and report back every issue it found, grouped by severity, ending with a Summary. It won't have changed a single file yet. That Summary breaks down into:
+
+   - Critical issues
+   - High-priority issues
+   - Medium-priority issues
+   - Low-priority issues
+   - General observations
 
 4. Claude will then stop and ask you: **"Would you like me to fix these issues?"** Say yes.
 
 ![fix-choice](./images/20.png)
 
-6. Watch what happens —  issues get fixed.
+5. Watch what happens —  issues get fixed.
 
 ![fix-choice](./images/21.png)
 
@@ -247,13 +259,20 @@ You now have a way to check your project's code quality. Next time, you can run 
 
 ---
 
-## Part 5: Now, Let's Start Taking Feedback From Your Users
+## Part 4: Now, Let's Start Taking Feedback From Your Users
 
-Your code's been reviewed — now let's find out what the people actually using your app think of it. That means building a feedback form, and a feedback form needs somewhere to store what people submit. That's Supabase's job in this lab.
+Your code's been reviewed — now let's add something new to your app: a feedback form. But a form is only useful if the answers go somewhere, so we'll connect it to **Supabase**, a database, so every submission actually gets saved instead of just vanishing.
 
-A **connector** is what lets Claude actually reach an outside tool like Supabase, instead of just knowing it exists. Once it's connected, Claude can create tables and read or write data in your real Supabase account directly from your conversation — no switching tabs, no copy-pasting credentials by hand.
+### What's a Connector
 
-First step: get Supabase talking to Claude.
+Right now, Claude can't reach anything outside this conversation on its own — it doesn't know your Supabase account exists, let alone how to talk to it. A **connector** is how you fix that: it's a direct link between Claude and an outside tool, so Claude can actually reach in and use it instead of just knowing the tool exists.
+
+Why connect it instead of doing it yourself? Two reasons:
+
+- **No manual work.** Once Supabase is connected, Claude can create tables and read or write data in your real account directly from your conversation — no switching tabs, no copy-pasting credentials by hand.
+- **It's a two-way line.** The connector doesn't just let Claude send data — it can read back what's actually in your Supabase account too, so it's always working off the real, current state instead of guessing.
+
+That's exactly what you're about to do: connect Claude to Supabase, so it has somewhere real to store the feedback your form is about to start collecting.
 
 1. Click your **profile icon** (bottom-left) → **Settings** → **Connectors**.
 2. Click **Discover**.
@@ -261,12 +280,13 @@ First step: get Supabase talking to Claude.
 4. Click the **+** icon on the Supabase card.
 
  ![Supabase Connector](./images/7.png)
+ ![image](./images/22.png)
 
 5. You'll be asked to sign in — use the **same email address** you use for your Claude account.
 
 ---
 
-## Part 6: Set Up Your Supabase Project
+## Part 5: Set Up Your Supabase Project
 
 Now lets setup our supabase account to connect to the Claude Supabase Connector
 
@@ -287,19 +307,22 @@ Now lets setup our supabase account to connect to the Claude Supabase Connector
 4. Click **Create new project** and wait a couple of minutes while Supabase finishes setting it up.
 
 
-5. Once it's ready, go to **Project Settings → API** and copy your **Project URL** (it looks like `https://xxxxxxxxxxxx.supabase.co`). Save it somewhere handy — you'll paste it into a prompt in Part 8.
+5. Once it's ready, go to **Project Settings → API** and copy your **Project URL** (it looks like `https://xxxxxxxxxxxx.supabase.co`). Save it somewhere handy — you'll paste it into a prompt in Part 7.
 
 ![Supabase Connector](./images/12.png)
 
 ---
 
-## Part 7: Link Your Supabase Account to the Connector
+## Part 6: Link Your Supabase Account to the Connector
 
 1. In Claude, go to **Settings → Connectors → Discover** and search for **Supabase**.
 
-   ![Supabase Connector](./images/7.png)
-
 2. Click **+** to add the Supabase connector.
+
+   ![Supabase Connector](./images/7.png)
+   ![image](./images/22.png)
+
+
 
 3. You'll land on a screen asking you to **Authorize Claude** to access your Supabase account. Click **Authorize**.
 
@@ -313,7 +336,7 @@ Plugin installed, review agent built and tested, Supabase account linked. Now le
 
 ---
 
-## Part 8: Build the Feedback Form
+## Part 7: Build the Feedback Form
 
 You've got a connected Supabase project sitting there with nothing in it. Time to give people a way to actually tell you what they think of the app — and have that feedback land somewhere you can see it.
 
@@ -403,10 +426,10 @@ After implementation:
 Follow the `design-system` skill for all UI/design decisions.
 
 Do not create or use any Supabase project other than:
-`<Your Supabase Project URL from Part 6>`
+`<Your Supabase Project URL from Part 5>`
 ```
 
-> Swap in the **Project URL** you copied at the end of Part 6.
+> Swap in the **Project URL** you copied at the end of Part 5.
 
 Claude will inspect your project, create the `feedback` table in Supabase, and wire up the form end to end — styled to match the rest of the app instead of looking bolted on.
 
@@ -449,6 +472,18 @@ You should see your submitted feedback as a new row, including the rating, feedb
 
 ---
 
+### Plugins vs. Connectors — When to Use Which
+
+You used both a plugin and a connector in this lab, and they solve two different problems. Here's how to tell them apart:
+
+| | Plugin | Connector |
+|---|---|---|
+| **What it gives Claude** | A new skill or way of working — like knowing how to run a proper code review | Access to an external account or tool you already have — like your real Supabase database |
+| **Where it lives** | Attached to Claude Code itself, so it's available in every project you open, not just this one | Attached to your Claude account, so Claude can reach outside into that specific service |
+| **When to reach for it** | You want Claude to know *how* to do something it doesn't do by default | You want Claude to actually read or write real data somewhere else, not just know that tool exists |
+
+---
+
 ## What You Learned
 
 - **Plugins give Claude new capabilities.** Out of the box, Claude doesn't know how to run a structured code review — installing Superpowers is what handed it that capability, packaged as a skill you can actually call on.
@@ -464,5 +499,3 @@ You should see your submitted feedback as a new row, including the rating, feedb
 ---
 
 Feedback tells you how people feel about the app — it doesn't tell you whether each answer is actually correct. That's the gap the next lab closes.
-
-[Go to Lab 3.2: Find Out If Your Chatbot's Answers Are Actually Good →](../3.2-microsoft-foundry-eval-plugin/Readme.md)
