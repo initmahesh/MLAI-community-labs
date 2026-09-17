@@ -1,21 +1,16 @@
 # Lab 3.2: Find Out If Your Chatbot's Answers Are Actually Good
 
-In the last lab, you gave your `contract-review-app` a code reviewer and a way to collect feedback from real users through a feedback form. That's great for catching bugs and hearing opinions like "this was helpful" or "this was confusing."
+In the last lab, we are evaluating your app using Azure-AI Foundary Skills
 
-But none of that tells you something more specific: **is the chatbot's actual answer to a question correct, complete, and grounded in the contract it was given?** A user might leave a 5-star rating without noticing the chatbot missed half of what the question asked. Feedback tells you how people *feel* about the app. It doesn't score the *quality* of each individual answer.
-
-That's the gap this lab closes. You're going to use a plugin built by Microsoft called **Microsoft Foundry** to turn your chatbot's real questions and answers into something you can systematically score — and then use that scoring to compare two different AI models and see, in hard numbers, which one actually answers better.
-
-No new coding concepts here. Just some new tools to install, and a lot of copy-pasting prompts into Claude Code.
+You're going to take the real questions and answers your chatbot has already given, score them properly, and then use those scores to settle a simple question: which AI model actually gives better answers?
 
 ---
 
 ## By the End of This Lab, You Will:
 
-- Understand what an **evaluation dataset** is and why you need one before you can measure answer quality.
-- Have your `contract-review-app` automatically save every successful chatbot question and answer, so you can turn real usage into test data.
+- Understand what the Azure-AI Foundary Skills do, and why you need them before you can measure answer quality.
 - Know what **Relevance**, **Groundedness**, **Completeness**, and **Task Completion** mean when judging an AI's answer.
-- Have run a full evaluation of your chatbot's answers using one model (`gpt-4.1-nano`), then again using a different model (`gpt-4.1`).
+- Have run a full evaluation of your chatbot's answers using one model (`gpt-5-nano`), then again using a different model (`gpt-5-mini`).
 - Have a side-by-side report showing exactly how much better (or worse) one model performed than the other — backed by real scores, not guesswork.
 
 ---
@@ -26,10 +21,10 @@ No new coding concepts here. Just some new tools to install, and a lot of copy-p
 - [Part 2: Install the Azure Tooling Microsoft Foundry Needs](#part-2-install-the-azure-tooling-microsoft-foundry-needs)
 - [Part 3: Install the Microsoft Foundry Plugin in Claude Code](#part-3-install-the-microsoft-foundry-plugin-in-claude-code)
 - [Part 4: Teach Your App to Save Its Own Q&A](#part-4-teach-your-app-to-save-its-own-qa)
-- [Part 5: Round 1 — Test with GPT-4.1-nano](#part-5-round-1--test-with-gpt-41-nano)
+- [Part 5: Round 1 — Test with GPT-5-nano](#part-5-round-1--test-with-gpt-5-nano)
 - [Part 6: Turn Your Saved Answers into an Evaluation Dataset](#part-6-turn-your-saved-answers-into-an-evaluation-dataset)
 - [Part 7: Evaluate the Answers](#part-7-evaluate-the-answers)
-- [Part 8: Round 2 — Switch to GPT-4.1, Repeat, and Compare](#part-8-round-2--switch-to-gpt-41-repeat-and-compare)
+- [Part 8: Round 2 — Switch to GPT-5-mini, Repeat, and Compare](#part-8-round-2--switch-to-gpt-5-mini-repeat-and-compare)
 - [What You Built](#what-you-built)
 - [Useful Links](#useful-links)
 
@@ -42,6 +37,35 @@ No new coding concepts here. Just some new tools to install, and a lot of copy-p
 You already met the idea of a **skill** in the previous lab — a pre-packaged, structured way of doing a specific task that Claude can follow precisely, instead of improvising each time. The Microsoft Foundry plugin comes with its own skills for evaluation work, and in this lab you'll use two of them: one that turns raw question-and-answer pairs into something called an **evaluation dataset**, and one that actually scores those pairs.
 
 > **Why this matters:** Without a structured way to measure quality, "is this a good chatbot?" stays a matter of opinion. Foundry gives you a repeatable process to turn that opinion into a number.
+
+### Sub-Skills
+
+The Microsoft Foundry plugin isn't just the two skills you'll use in this lab — it ships with a whole set of sub-skills for different Foundry workflows. In this lab we're specifically using **`eval-datasets`** (to build the evaluation dataset) and **`observe`** (to run the quality evaluation), but you're welcome to explore any of the others too:
+
+| Sub-Skill | When to Use | Reference |
+|---|---|---|
+| `deploy` | Deploy hosted agents to Foundry, smoke-test a deployment, create or update prompt agents, and manage agent versions and multi-environment deploys. | `deploy` |
+| `cicd` | Set up a CI/CD deployment pipeline for a Foundry agent. | `cicd` |
+| `invoke` | Send messages to an agent, single or multi-turn conversations | `invoke` |
+| `routine` | Schedule or event-trigger Foundry agents with routines; use azd for CRUD, enable/disable, manual dispatch, and viewing past runs, or define routines in azure.yaml. | `routine` |
+| `invocations-ws` | Build, deploy, and connect to hosted agents that speak the invocations_ws duplex WebSocket protocol — voice agents, real-time streams, and signaling for out-of-band media transports. | `invocations-ws` |
+| `observe` | Evaluate agent quality, run batch evals, analyze failures, optimize prompts, improve agent instructions, compare versions, set up CI/CD monitoring, and enable continuous production evaluation | `observe` |
+| `insights` | Pull generated agent insights, evidence, and recommendations from an existing monitor; read-only retrieval, not a new analysis run | `insights` |
+| `trace` | Query traces, analyze latency/failures, correlate eval results to specific responses via App Insights customEvents | `trace` |
+| `troubleshoot` | View hosted agent logs, query telemetry, diagnose failures | `troubleshoot` |
+| `validate` | Use only when the user explicitly asks to use this validation sub-skill or to validate Microsoft Foundry hosted-agent code against best practices. Never invoke it proactively or add it to another workflow. | `validate` |
+| `create` (quick start) | Create a new hosted Foundry agent from scratch end-to-end — scaffold, provision or use an existing Foundry project, deploy, and smoke-test. Do not use for any work on existing code. For anything not covered by the quickstart, use `create`. | `create/quick-start-hosted.md` |
+| `create` | Use when the standard end-to-end happy path (quick start) doesn't fit. Create a new Foundry agent, update code of an existing agent, continue development of an existing agent, wire connections at scaffold time, use advanced setup or A2A (Agent2Agent), or recover from a failed quickstart run. | `create` |
+| `agent-optimizer` | Make existing Python hosted-agent code optimization-ready, configure eval.yaml, run Agent Optimizer jobs, apply candidates locally, and deploy through azd after review. | `agent-optimizer` |
+| `eval-datasets` | Harvest production traces into evaluation datasets, manage dataset versions and splits, track evaluation metrics over time, detect regressions, and maintain full lineage from trace to deployment. Use for: create dataset from traces, dataset versioning, evaluation trending, regression detection, dataset comparison, eval lineage. | `eval-datasets` |
+| `project/create` | Creating a new Microsoft Foundry project for hosting agents and models. Use when onboarding to Foundry or setting up new infrastructure. | `project/create/create-foundry-project.md` |
+| `resource/create` | Creating Azure AI Services multi-service resource (Foundry resource) using Azure CLI. Use when manually provisioning AI Services resources with granular control. | `resource/create/create-foundry-resource.md` |
+| `private-network` | Answer questions about Foundry network isolation and deploy Foundry with VNet isolation (BYO VNet, Managed VNet, hybrid). Covers architecture concepts, template selection, deployment, and post-deployment validation. | `resource/private-network/private-network.md` |
+| `models/deploy-model` | Unified model deployment with intelligent routing. Handles quick preset deployments, fully customized deployments (version/SKU/capacity/RAI), and capacity discovery across regions. Routes to sub-skills: preset (quick deploy), customize (full control), capacity (find availability). | `models/deploy-model/SKILL.md` |
+| `quota` | Managing quotas and capacity for Microsoft Foundry resources. Use when checking quota usage, troubleshooting deployment failures due to insufficient quota, requesting quota increases, or planning capacity. | `quota/quota.md` |
+| `rbac` | Managing RBAC permissions, role assignments, managed identities, and service principals for Microsoft Foundry resources. Use for access control, auditing permissions, and CI/CD setup. | `rbac/rbac.md` |
+| `finetuning` | Fine-tune models on Microsoft Foundry — SFT distillation, DPO preference optimization, RFT with graders and tool calling. Dataset preparation, grader calibration, training, checkpoint selection, deployment, evaluation. Use for: fine-tune, SFT, DPO, RFT, training data, grader, distillation, fine-tuned model, large file upload. | `finetuning/SKILL.md` |
+| `azd-guidance` | Provide shared azd knowledge and guidance for managing Foundry agents. Read this first for any workflows related to azd. | `azd-guidance` |
 
 ---
 
@@ -60,11 +84,17 @@ Here's the difference between the two tools you're about to install:
 
  ![images](./images/1.png)
 
-1. Open **Terminal**.
+1. Open **Terminal** (Mac) or **PowerShell** (Windows).
 2. Copy the command below and paste it in, then press Enter:
 
+   **Mac:**
    ```
    brew install azure/azd/azd
+   ```
+
+   **Windows:**
+   ```
+   winget install microsoft.azd
    ```
 
    This installs the Azure Developer CLI (`azd`).
@@ -77,10 +107,18 @@ Here's the difference between the two tools you're about to install:
 
    You should see a version number printed on screen (something like `azd version 1.x.x`). If you see a version number instead of an error, the install worked.
 
+   ![image](./images/t-2.png)
+
 4. Now install the Azure CLI (`az`). Copy and run:
 
+   **Mac:**
    ```
    brew install azure-cli
+   ```
+
+   **Windows:**
+   ```
+   winget install -e --id Microsoft.AzureCLI
    ```
 
 5. Partway through, you'll be asked:
@@ -91,15 +129,23 @@ Here's the difference between the two tools you're about to install:
 
    Type `y` and press Enter to continue.
 
+   ![image](./images/t-3.png)
+
 6. Once installed, log in to your Azure account by running:
 
    ```
    az login
    ```
 
+   ![image](./images/t-4.png)
+
    This will open a browser window asking you to sign in with your Azure account. Sign in as you normally would. Once it succeeds, you'll see a confirmation in your terminal that you're logged in.
 
-7. **Fully quit Claude Code Desktop and reopen it**, then open your `contract-review-app` project again.
+7. login with your Microsoft Azure account
+
+   ![image](./images/login.png)
+
+8. **Fully quit Claude Code Desktop and reopen it**, then open your `contract-review-app` project again.
 
    > **Why this matters:** Claude Code needs to pick up the Azure login session you just created. Restarting is what makes that session visible to it — if you skip this step, Claude Code won't know you're logged in to Azure yet.
 
@@ -116,6 +162,10 @@ With Azure tooling in place, it's time to add the actual plugin that lets Claude
    ```
    claude plugin install azure@claude-plugins-official
    ```
+
+   ![image](./images/cs-1.png)
+
+2. **Fully quit Claude Code Desktop again and reopen it**, then open your `contract-review-app` project again.
 
 **Why this matters:** This plugin is what actually connects Claude Code to Microsoft Foundry's evaluation skills. Without it installed and granted access, Claude has no way to build or score an evaluation dataset. we will use this later in Lab to evaluate our AI's response
 
@@ -163,9 +213,9 @@ You now have a way to capture real chatbot conversations as test data. Next, let
 
 ---
 
-## Part 5: Round 1 — Test with GPT-4.1-nano
+## Part 5: Round 1 — Test with GPT-5-nano
 
-Your chatbot's answers come from an AI model running inside the n8n workflow you built in earlier weeks. That workflow is the "brain" behind every answer your app gives. In this round, you'll point that brain at `gpt-4.1-nano` — a smaller, faster, cheaper model — and see how it performs.
+Your chatbot's answers come from an AI model running inside the n8n workflow you built in earlier weeks. That workflow is the "brain" behind every answer your app gives. In this round, you'll point that brain at `gpt-5-nano` — a smaller, faster, cheaper model — and see how it performs.
 
 **Do this:**
 
@@ -173,7 +223,7 @@ Your chatbot's answers come from an AI model running inside the n8n workflow you
 2. Find where the AI model is configured for that workflow, and set the model to:
 
    ```
-   gpt-4.1-nano
+   gpt-5-nano
    ```
 
    ![image](./images/4.1-nano.png)
@@ -182,7 +232,7 @@ Your chatbot's answers come from an AI model running inside the n8n workflow you
 
    Download it in pdf format :- [Download the sample MSA contract](https://pragyaallc-my.sharepoint.com/:w:/g/personal/anurag_b_legalgraph_ai/IQBCEOeU7iyBRpVaVLJ6iVZEAYa52Oy1bcuzLvoXjVL2F5o?e=zmZTqE)  
 
-5. Ask the chatbot the following 6 questions, one at a time, waiting for each answer before asking the next:
+5. Ask the chatbot the following 4 questions, one at a time, waiting for each answer before asking the next:
 
    ```
    What is the process for resolving disputes between the parties?
@@ -196,20 +246,19 @@ Your chatbot's answers come from an AI model running inside the n8n workflow you
    ```
    If the MSA and an SOW contain conflicting terms, which one takes precedence?
    ```
-   ```
-   Does the MSA allow the parties to execute multiple Statements of Work (SOWs)?
-   ```
-   ```
-   What is the initial term of the agreement, and does it automatically renew?
-   ```
 
-6. Once you've asked all 6, click **Download Responses**. This downloads a `config.json` file containing every successful question-and-answer pair from this round.
+6. Once you've asked all 4, click **Download Responses**. This downloads a `config.json` file containing every successful question-and-answer pair from this round.
 
-7. Open `config.json` in VS Code and check it. You should see only the questions that got a successful answer — anything that failed or errored out won't appear, exactly as the prompt in Part 4 specified.
+7. Attach `config.json` in Claude Code and run:
+```
+Open config.json
+```
+
+ You should see only the questions that got a successful answer
 
    ![config.json opened in VS Code showing saved question-response pairs](./images/5.png)
 
-You now have your first real dataset: 6 real questions, answered by `gpt-4.1-nano`, based on a real contract.
+You now have your first real dataset: 4 real questions, answered by `gpt-5-nano`, based on a real contract.
 
 ---
 
@@ -226,7 +275,7 @@ Use the Microsoft Foundry "Build an evaluation dataset" skill.
 
 Read `config.json`, which contains question and response pairs from my contract-review chatbot.
 
-Build an evaluation dataset from all entries.
+Build an evaluation dataset from all entries using the foundry eval-datasets skill
 
 Use:
 - `question` as the evaluation input
@@ -235,9 +284,13 @@ Use:
 Do not modify `config.json`.
 ```
 
+![image](./images/9.png)
+
+![image](./images/12.png)
+
 > **Why this matters:** Notice the last line — Claude is told not to touch `config.json`. That's intentional. Your original saved answers stay untouched as a record, while Foundry builds a separate, structured copy specifically shaped for evaluation.
 
-Claude will use the Foundry plugin's skill to build this dataset for you from the 6 question-and-answer pairs.
+Claude will use the Foundry plugin's skill to build this dataset for you from the 4 question-and-answer pairs.
 
 ---
 
@@ -255,6 +308,9 @@ Now for the actual scoring. Microsoft Foundry will judge each of your chatbot's 
 > **Why this matters:** These 4 criteria together cover both *what* the chatbot said (Relevance, Completeness) and *whether it can be trusted* (Groundedness, Task Completion). A chatbot can sound confident and still fail on Groundedness if it's not actually backed by the contract text.
 
 **Do this:**
+
+In your Claude Code session, attach the `Sample MSA Contract` and paste this prompt:
+Download it in pdf format :- [Download the sample MSA contract](https://pragyaallc-my.sharepoint.com/:w:/g/personal/anurag_b_legalgraph_ai/IQBCEOeU7iyBRpVaVLJ6iVZEAYa52Oy1bcuzLvoXjVL2F5o?e=zmZTqE)  
 
 Paste this prompt into your Claude Code session:
 
@@ -277,17 +333,19 @@ Also provide an overall summary of the evaluation results.
 Do not modify the original evaluation dataset
 ```
 
-Claude will run each of the 6 answers through Foundry's evaluators and give you a score and explanation for each criterion, plus an overall summary.
+![image](./images/10.png)
 
-![Evaluation results for the GPT-4.1-nano round, showing scores per criterion](./images/6.png)
+Claude will run each of the 4 answers through Foundry's evaluators and give you a score and explanation for each criterion, plus an overall summary.
 
-This is your first real evaluation — a `gpt-4.1-nano`-powered chatbot, scored against 4 criteria, based on real questions. Now let's see if a bigger model does better.
+![Evaluation results for the GPT-5-nano round, showing scores per criterion](./images/6.png)
+
+This is your first real evaluation — a `gpt-5-nano`-powered chatbot, scored against 4 criteria, based on real questions. Now let's see if a bigger model does better.
 
 ---
 
-## Part 8: Round 2 — Switch to GPT-4.1, Repeat, and Compare
+## Part 8: Round 2 — Switch to GPT-5-mini, Repeat, and Compare
 
-Same contract, same 6 questions — but this time, the chatbot's answers will come from `gpt-4.1`, the full model rather than the smaller `nano` version. This lets you compare the two models fairly, since everything else stays identical.
+Same contract, same 4 questions — but this time, the chatbot's answers will come from `gpt-5-mini`, the full model rather than the smaller `nano` version. This lets you compare the two models fairly, since everything else stays identical.
 
 **Do this:**
 
@@ -295,24 +353,24 @@ Same contract, same 6 questions — but this time, the chatbot's answers will co
 2. Go back to your n8n workflow, and this time set the model to:
 
    ```
-   gpt-4.1
+   gpt-5-mini
    ```
 
    ![image](./images/4.1.png)
 
 3. execute the workflow.
-4. Ask the chatbot the **exact same 6 questions** from Part 5, one at a time, in the same order.
-5. Click **Download Responses** again. Remember, `localStorage` never clears old entries — it only appends. So this new `config.json` contains **12 responses**: the 6 from `gpt-4.1-nano` plus the 6 new ones from `gpt-4.1`, all in one file.
+4. Ask the chatbot the **exact same 4 questions** from Part 5, one at a time, in the same order.
+5. Click **Download Responses** again. Remember, `localStorage` never clears old entries — it only appends. So this new `config.json` contains **8 responses**: the 4 from `gpt-5-nano` plus the 4 new ones from `gpt-5-mini`, all in one file.
 
    > **Why this matters:** Having both models' answers to the exact same questions inside one file is what lets the next step compare them side by side, instead of you having to line up two separate reports by hand.
 
 6. Repeat the same two prompts from Part 6 and Part 7 on this new `config.json`:
-   - The **"Build an evaluation dataset"** prompt, to turn this new file (all 12 responses) into a Foundry evaluation dataset.
-   - The **"Evaluate quality"** prompt, to score these 12 answers on the same 4 criteria.
+   - The **"Build an evaluation dataset"** prompt, to turn this new file (all 8 responses) into a Foundry evaluation dataset.
+   - The **"Evaluate quality"** prompt, to score these 8 answers on the same 4 criteria.
 
-![Evaluation results for the GPT-4.1 round, showing scores per criterion](./images/7.png)
+![Evaluation results for the GPT-5-mini round, showing scores per criterion](./images/7.png)
 
-You now have two complete, scored evaluations — one for `gpt-4.1-nano`, one for `gpt-4.1` — both judged on the exact same questions and the exact same criteria.
+You now have two complete, scored evaluations — one for `gpt-5-nano`, one for `gpt-5-mini` — both judged on the exact same questions and the exact same criteria.
 
 Claude will pull both completed evaluations and build a comparison report.
 
@@ -322,7 +380,7 @@ Claude will pull both completed evaluations and build a comparison report.
 
 Here's what came out of this real run:
 
-| Metric | GPT-4.1-nano | GPT-4.1 | Change |
+| Metric | GPT-5-nano | GPT-5-mini | Change |
 |---|---|---|---|
 | Overall average score | 3.13 / 5 | 4.96 / 5 | **+58%** |
 | Completeness | Lower | Higher | **Biggest improvement (+2.16)** |
@@ -331,7 +389,7 @@ Here's what came out of this real run:
 | Task Completion | Lower | Higher | Improved significantly |
 | Answer quality | Several failed/low-quality responses | All responses rated High Quality | — |
 
-> **Why this matters:** The overall average jumped from 3.13/5 with `gpt-4.1-nano` to 4.96/5 with `gpt-4.1` — a 58% improvement. The single biggest gap was in **Completeness**, meaning the smaller model was more likely to leave out important details from its answers. Every other criterion improved too, and where `nano` had produced multiple failed or low-quality responses, `gpt-4.1` didn't have a single one.
+> **Why this matters:** The overall average jumped from 3.13/5 with `gpt-5-nano` to 4.96/5 with `gpt-5-mini` — a 58% improvement. The single biggest gap was in **Completeness**, meaning the smaller model was more likely to leave out important details from its answers. Every other criterion improved too, and where `nano` had produced multiple failed or low-quality responses, `gpt-5-mini` didn't have a single one.
 
 This is exactly the kind of decision evaluation is meant to support: instead of guessing whether the cheaper, faster model is "good enough," you now have real numbers showing where it falls short.
 
@@ -342,7 +400,7 @@ This is exactly the kind of decision evaluation is meant to support: instead of 
 - **An evaluation dataset turns opinions into numbers.** Instead of asking "does this chatbot seem good?", you now have a repeatable process that scores real answers against defined criteria — Relevance, Groundedness, Completeness, and Task Completion.
 - **Real usage data makes for a better test than made-up test cases.** Because you captured actual questions and answers from your own chatbot session using `localStorage`, your evaluation is based on how the app is really used — not hypothetical questions someone guessed a user might ask.
 - **Isolating one variable at a time is what makes a comparison fair.** By keeping the contract, the questions, and the evaluation criteria identical between rounds, and changing only the model, you can be confident the score difference is actually caused by the model — not by anything else changing.
-- **Systematic evaluation catches what casual testing misses.** In this run, `gpt-4.1-nano`'s answers might have looked fine on a quick glance, but scoring them against Completeness specifically revealed it was leaving out important information — something easy to miss just by reading answers casually.
+- **Systematic evaluation catches what casual testing misses.** In this run, `gpt-5-nano`'s answers might have looked fine on a quick glance, but scoring them against Completeness specifically revealed it was leaving out important information — something easy to miss just by reading answers casually.
 - **A data-backed comparison turns a cost/quality tradeoff into an actual decision.** You now know, with real scores, exactly how much quality you'd be trading away by using the cheaper `nano` model instead of the full model — instead of guessing.
 
 ---
