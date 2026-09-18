@@ -1,6 +1,6 @@
 # Lab 3.2: Find Out If Your Chatbot's Answers Are Actually Good
 
-In the last lab, we are evaluating your app using Azure-AI Foundary Skills
+In the last lab, you gave your app a code reviewer and a way to hear from feedback — but a feedback form only tells you how human *feel* about an answer, not whether it was actually correct. This lab closes that gap using Microsoft Foundry's evaluation skills.
 
 You're going to take the real questions and answers your chatbot has already given, score them properly, and then use those scores to settle a simple question: which AI model actually gives better answers?
 
