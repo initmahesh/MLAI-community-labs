@@ -499,3 +499,5 @@ You used both a plugin and a connector in this lab, and they solve two different
 ---
 
 Feedback tells you how people feel about the app — it doesn't tell you whether each answer is actually correct. That's the gap the next lab closes.
+
+[Go to Lab 3.2: Find Out If Your Chatbot's Answers Are Actually Good →](../3.2-microsoft-foundry-eval-plugin/Readme.md)
