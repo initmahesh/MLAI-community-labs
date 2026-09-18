@@ -409,3 +409,25 @@ This is exactly the kind of decision evaluation is meant to support: instead of 
 
 - [Microsoft Foundry plugin for Claude](https://claude.com/plugins/azure)
 - [Using the Microsoft Foundry skill in Claude Code](https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/use-microsoft-foundry-skill?tabs=claude-code)
+
+---
+
+## Troubleshooting
+
+These are the most common problems learners hit in this lab. Check here before asking for help.
+
+---
+
+**Webhook stops responding after switching to the production URL**
+
+This lab runs on n8n's test webhook URL (`/webhook-test/...`), which only listens while you have the workflow open and are running it manually. If you swap in the production URL (`/webhook/...`) instead, requests will fail — the production URL only listens once the workflow has actually been published.
+
+Fix: stick to the test URL for everything in this lab. If you want to use the production URL instead, you need to publish your workflow first, so it listens on that URL even when you're not watching it run.
+
+---
+
+**OpenAI node returns a 429 rate limit error**
+
+If the OpenAI model node in your n8n workflow errors out with something like `429 - Rate limit reached` or `insufficient_quota`, nothing in your workflow is actually broken — it means your OpenAI API key has run out of usage credits.
+
+Fix: go to **platform.openai.com → Billing** and add more credits to your account. Your existing API key keeps working as-is — just retry the request in n8n once billing shows the added credits.
