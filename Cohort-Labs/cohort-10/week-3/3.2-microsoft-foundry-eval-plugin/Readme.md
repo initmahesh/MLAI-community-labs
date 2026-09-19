@@ -1,185 +1,40 @@
-# Lab 3.2: Find Out If Your Chatbot's Answers Are Actually Good
+# Lab 3.2: Evaluating Your n8n AI Agent with Azure AI Foundry
 
-In the last lab, you gave your app a code reviewer and a way to hear from feedback — but a feedback form only tells you how human *feel* about an answer, not whether it was actually correct. This lab closes that gap using Microsoft Foundry's evaluation skills.
+![image](./assets/diagram.png)
 
-You're going to take the real questions and answers your chatbot has already given, score them properly, and then use those scores to settle a simple question: which AI model actually gives better answers?
+## Closing the Loop — From Building to Measuring What Your Agent Actually Does
 
----
+You have come a long way. Over the previous weeks you built a contract-review app, wired it to an n8n agentic RAG backend, and connected a Supabase database to capture user feedback. The app works — but "it works" is not the same as "it works well." That gap is exactly what this lab closes.
 
-## By the End of This Lab, You Will:
-
-- Understand what the Azure-AI Foundary Skills do, and why you need them before you can measure answer quality.
-- Know what **Relevance**, **Groundedness**, **Completeness**, and **Task Completion** mean when judging an AI's answer.
-- Have run a full evaluation of your chatbot's answers using one model (`gpt-5-nano`), then again using a different model (`gpt-5-mini`).
-- Have a side-by-side report showing exactly how much better (or worse) one model performed than the other — backed by real scores, not guesswork.
+This week the focus is **evaluation**. You will measure how well your agent actually answers questions by running a structured eval inside Azure AI Foundry. By the end of this lab you will have a scored report across five quality dimensions — Relevance, Groundedness, Coherence, Similarity, and Fluency — that tells you, with numbers, how your agent is performing.
 
 ---
 
-## Table of Contents
+## Prerequisites
 
-- [Part 1: What Is Microsoft Foundry, and Why Are We Using It?](#part-1-what-is-microsoft-foundry-and-why-are-we-using-it)
-- [Part 2: Install the Azure Tooling Microsoft Foundry Needs](#part-2-install-the-azure-tooling-microsoft-foundry-needs)
-- [Part 3: Install the Microsoft Foundry Plugin in Claude Code](#part-3-install-the-microsoft-foundry-plugin-in-claude-code)
-- [Part 4: Teach Your App to Save Its Own Q&A](#part-4-teach-your-app-to-save-its-own-qa)
-- [Part 5: Round 1 — Test with GPT-5-nano](#part-5-round-1--test-with-gpt-5-nano)
-- [Part 6: Turn Your Saved Answers into an Evaluation Dataset](#part-6-turn-your-saved-answers-into-an-evaluation-dataset)
-- [Part 7: Evaluate the Answers](#part-7-evaluate-the-answers)
-- [Part 8: Round 2 — Switch to GPT-5-mini, Repeat, and Compare](#part-8-round-2--switch-to-gpt-5-mini-repeat-and-compare)
-- [What You Built](#what-you-built)
-- [Useful Links](#useful-links)
+Before you begin, confirm all of the following are in place:
+
+1. You have completed all labs from the previous weeks.
+2. The contract-review app you have been building since Week 1 is running locally in Claude Code.
+3. You have access to an Azure account where you can create an Azure AI Foundry resource. New accounts receive $300 in free credits — you will set this up in Step 4.
+4. Download the MSA (Master Services Agreement) sample contract — **[Download From Here]** — you will upload this into your app when generating the dataset.
+
+**Video walkthrough**: [Watch the full lab walkthrough](https://youtu.be/Is3GgsCEPho?si=WhCt7DQQG_UOMP2o)
 
 ---
 
-## Part 1: What Is Microsoft Foundry, and Why Are We Using It?
+## Phase 1: Prepare Your App to Export Data
 
-**Microsoft Foundry** is Microsoft's platform for building, testing, and evaluating AI applications. The part we care about in this lab is evaluation: Foundry ships with ready-made, proven ways of scoring an AI's answer — so instead of you having to invent your own definition of "is this a good answer," you can lean on scoring methods that are already built and tested.
+### Step 1: Add the "Download Responses" Feature to Your App
 
-You already met the idea of a **skill** in the previous lab — a pre-packaged, structured way of doing a specific task that Claude can follow precisely, instead of improvising each time. The Microsoft Foundry plugin comes with its own skills for evaluation work, and in this lab you'll use two of them: one that turns raw question-and-answer pairs into something called an **evaluation dataset**, and one that actually scores those pairs.
+**What you're doing**: Teaching your app to remember every successful chat exchange and give you a way to export it. This exported file becomes your evaluation dataset.
 
-> **Why this matters:** Without a structured way to measure quality, "is this a good chatbot?" stays a matter of opinion. Foundry gives you a repeatable process to turn that opinion into a number.
+**Why this matters**: Azure AI Foundry needs a dataset of real question-and-answer pairs to evaluate. The cleanest source for that dataset is your own app, with real answers from your own agent. Rather than hand-crafting examples, you'll generate them naturally by chatting with the app — and the Download button captures them automatically.
 
-### Sub-Skills
+**Action items**:
 
-The Microsoft Foundry plugin isn't just the two skills you'll use in this lab — it ships with a whole set of sub-skills for different Foundry workflows. In this lab we're specifically using **`eval-datasets`** (to build the evaluation dataset) and **`observe`** (to run the quality evaluation), but you're welcome to explore any of the others too:
-
-| Sub-Skill | When to Use | Reference |
-|---|---|---|
-| `deploy` | Deploy hosted agents to Foundry, smoke-test a deployment, create or update prompt agents, and manage agent versions and multi-environment deploys. | `deploy` |
-| `cicd` | Set up a CI/CD deployment pipeline for a Foundry agent. | `cicd` |
-| `invoke` | Send messages to an agent, single or multi-turn conversations | `invoke` |
-| `routine` | Schedule or event-trigger Foundry agents with routines; use azd for CRUD, enable/disable, manual dispatch, and viewing past runs, or define routines in azure.yaml. | `routine` |
-| `invocations-ws` | Build, deploy, and connect to hosted agents that speak the invocations_ws duplex WebSocket protocol — voice agents, real-time streams, and signaling for out-of-band media transports. | `invocations-ws` |
-| `observe` | Evaluate agent quality, run batch evals, analyze failures, optimize prompts, improve agent instructions, compare versions, set up CI/CD monitoring, and enable continuous production evaluation | `observe` |
-| `insights` | Pull generated agent insights, evidence, and recommendations from an existing monitor; read-only retrieval, not a new analysis run | `insights` |
-| `trace` | Query traces, analyze latency/failures, correlate eval results to specific responses via App Insights customEvents | `trace` |
-| `troubleshoot` | View hosted agent logs, query telemetry, diagnose failures | `troubleshoot` |
-| `validate` | Use only when the user explicitly asks to use this validation sub-skill or to validate Microsoft Foundry hosted-agent code against best practices. Never invoke it proactively or add it to another workflow. | `validate` |
-| `create` (quick start) | Create a new hosted Foundry agent from scratch end-to-end — scaffold, provision or use an existing Foundry project, deploy, and smoke-test. Do not use for any work on existing code. For anything not covered by the quickstart, use `create`. | `create/quick-start-hosted.md` |
-| `create` | Use when the standard end-to-end happy path (quick start) doesn't fit. Create a new Foundry agent, update code of an existing agent, continue development of an existing agent, wire connections at scaffold time, use advanced setup or A2A (Agent2Agent), or recover from a failed quickstart run. | `create` |
-| `agent-optimizer` | Make existing Python hosted-agent code optimization-ready, configure eval.yaml, run Agent Optimizer jobs, apply candidates locally, and deploy through azd after review. | `agent-optimizer` |
-| `eval-datasets` | Harvest production traces into evaluation datasets, manage dataset versions and splits, track evaluation metrics over time, detect regressions, and maintain full lineage from trace to deployment. Use for: create dataset from traces, dataset versioning, evaluation trending, regression detection, dataset comparison, eval lineage. | `eval-datasets` |
-| `project/create` | Creating a new Microsoft Foundry project for hosting agents and models. Use when onboarding to Foundry or setting up new infrastructure. | `project/create/create-foundry-project.md` |
-| `resource/create` | Creating Azure AI Services multi-service resource (Foundry resource) using Azure CLI. Use when manually provisioning AI Services resources with granular control. | `resource/create/create-foundry-resource.md` |
-| `private-network` | Answer questions about Foundry network isolation and deploy Foundry with VNet isolation (BYO VNet, Managed VNet, hybrid). Covers architecture concepts, template selection, deployment, and post-deployment validation. | `resource/private-network/private-network.md` |
-| `models/deploy-model` | Unified model deployment with intelligent routing. Handles quick preset deployments, fully customized deployments (version/SKU/capacity/RAI), and capacity discovery across regions. Routes to sub-skills: preset (quick deploy), customize (full control), capacity (find availability). | `models/deploy-model/SKILL.md` |
-| `quota` | Managing quotas and capacity for Microsoft Foundry resources. Use when checking quota usage, troubleshooting deployment failures due to insufficient quota, requesting quota increases, or planning capacity. | `quota/quota.md` |
-| `rbac` | Managing RBAC permissions, role assignments, managed identities, and service principals for Microsoft Foundry resources. Use for access control, auditing permissions, and CI/CD setup. | `rbac/rbac.md` |
-| `finetuning` | Fine-tune models on Microsoft Foundry — SFT distillation, DPO preference optimization, RFT with graders and tool calling. Dataset preparation, grader calibration, training, checkpoint selection, deployment, evaluation. Use for: fine-tune, SFT, DPO, RFT, training data, grader, distillation, fine-tuned model, large file upload. | `finetuning/SKILL.md` |
-| `azd-guidance` | Provide shared azd knowledge and guidance for managing Foundry agents. Read this first for any workflows related to azd. | `azd-guidance` |
-
----
-
-## Part 2: Install the Azure Tooling Microsoft Foundry Needs
-
-The Microsoft Foundry plugin runs on top of Microsoft's cloud platform, **Azure**. Before Claude Code can use the plugin, your computer needs two Azure command-line tools installed and you need to be logged in to your Azure account. You'll do this from your **Terminal** app.
-
-Here's the difference between the two tools you're about to install:
-
-| Tool | Full name | What it does | Why we need it here |
-|---|---|---|---|
-| `az` | Azure CLI | Logs you in to Azure and lets you manage Azure resources in general | The Foundry plugin needs your Azure login available on your machine to work at all |
-| `azd` | Azure Developer CLI | A higher-level tool for provisioning and deploying Azure projects | It's the tooling backbone the Microsoft Foundry plugin relies on to do its work |
-
-**Do this:**
-
- ![images](./images/1.png)
-
-1. Open **Terminal** (Mac) or **PowerShell** (Windows).
-2. Copy the command below and paste it in, then press Enter:
-
-   **Mac:**
-   ```
-   brew install azure/azd/azd
-   ```
-
-   **Windows:**
-   ```
-   winget install microsoft.azd
-   ```
-
-   This installs the Azure Developer CLI (`azd`).
-
-3. Once it finishes, confirm it installed correctly by running:
-
-   ```
-   azd version
-   ```
-
-   You should see a version number printed on screen (something like `azd version 1.x.x`). If you see a version number instead of an error, the install worked.
-
-   ![image](./images/t-2.png)
-
-4. Now install the Azure CLI (`az`). Copy and run:
-
-   **Mac:**
-   ```
-   brew install azure-cli
-   ```
-
-   **Windows:**
-   ```
-   winget install -e --id Microsoft.AzureCLI
-   ```
-
-5. Partway through, you'll be asked:
-
-   ```
-   Do you want to proceed with the installation? [y/n]
-   ```
-
-   Type `y` and press Enter to continue.
-
-   ![image](./images/t-3.png)
-
-6. Once installed, log in to your Azure account by running:
-
-   ```
-   az login
-   ```
-
-   ![image](./images/t-4.png)
-
-   This will open a browser window asking you to sign in with your Azure account. Sign in as you normally would. Once it succeeds, you'll see a confirmation in your terminal that you're logged in.
-
-7. login with your Microsoft Azure account
-
-   ![image](./images/login.png)
-
-8. **Fully quit Claude Code Desktop and reopen it**, then open your `contract-review-app` project again.
-
-   > **Why this matters:** Claude Code needs to pick up the Azure login session you just created. Restarting is what makes that session visible to it — if you skip this step, Claude Code won't know you're logged in to Azure yet.
-
----
-
-## Part 3: Install the Microsoft Foundry Plugin in Claude Code
-
-With Azure tooling in place, it's time to add the actual plugin that lets Claude Code talk to Microsoft Foundry.
-
-**Do this:**
-
-1. In your Claude Code session (inside `contract-review-app`), paste this instruction and let Claude run it:
-
-   ```
-   claude plugin install azure@claude-plugins-official
-   ```
-
-   ![image](./images/cs-1.png)
-
-2. **Fully quit Claude Code Desktop again and reopen it**, then open your `contract-review-app` project again.
-
-**Why this matters:** This plugin is what actually connects Claude Code to Microsoft Foundry's evaluation skills. Without it installed and granted access, Claude has no way to build or score an evaluation dataset. we will use this later in Lab to evaluate our AI's response
-
----
-
-## Part 4: Teach Your App to Save Its Own Q&A
-
-Before you can evaluate anything, you need real questions and real answers to evaluate. Right now, every question you ask your chatbot and every answer it gives just disappears once you close the app. You need a way to capture them.
-
-You're going to ask Claude to save every successful question-and-answer pair using something called **`localStorage`**. Think of `localStorage` as a small notepad that lives inside your own browser, tied to this one app — it's not a database on some server, it's just local storage on your machine, which is exactly why it doesn't need any of the backend setup you did for the feedback form in the last lab.
-
-**Do this:**
-
-Open your Claude Code session pointed at `contract-review-app`, and paste this exact prompt:
+1. Open Claude Code with your contract-review app project.
+2. Run the following prompt exactly as written:
 
 ```
 Update the existing contract-review-app to save successful chatbot questions and responses using browser `localStorage`.
@@ -194,240 +49,276 @@ Requirements:
 - If `Download Responses` is clicked again, download the latest `config.json` containing all successful responses.
 - Keep the existing contract upload and chatbot functionality unchanged.
 - Do not make any other changes.
+
 Export `config.json` in this format:
 [
- {
-   "question": "What is the effective date?",
-   "response": "April 1, 2023"
- }
+  {
+    "question": "What is the effective date?",
+    "response": "April 1, 2023"
+  }
 ]
 ```
 
-> **Why this matters:** Only *successful* answers get saved — anything that errored out is automatically excluded. That means your evaluation dataset, later on, is built entirely from real answers your chatbot actually managed to give, not failed requests.
+![image](./assets/1.png)
 
-Claude will update your app so that after the very first successful chatbot response, a **Download Responses** button appears.
+3. Claude Code will update your app. Once it finishes, run your app and verify it still loads correctly.
+4. Upload the MSA contract you downloaded in the Prerequisites step.
 
-![Download Responses button appears after the first successful answer](./images/4.png)
+**Output**: Your app now silently logs every successful Q&A pair in the browser's localStorage. A "Download Responses" button will appear after your first successful chat response.
 
-You now have a way to capture real chatbot conversations as test data. Next, let's actually generate some.
-
----
-
-## Part 5: Round 1 — Test with GPT-5-nano
-
-Your chatbot's answers come from an AI model running inside the n8n workflow you built in earlier weeks. That workflow is the "brain" behind every answer your app gives. In this round, you'll point that brain at `gpt-5-nano` — a smaller, faster, cheaper model — and see how it performs.
-
-**Do this:**
-
-1. Open the n8n workflow that powers your chatbot — the same one you built in [Lab 2.3: Agentic RAG](../../week-2/2.3-n8n-agenticRAG/Readme.md).
-2. Find where the AI model is configured for that workflow, and set the model to:
-
-   ```
-   gpt-5-nano
-   ```
-
-   ![image](./images/4.1-nano.png)
-
-4. Open your `contract-review-app` and upload a sample **MSA (Master Service Agreement)** contract.
-
-   Download it in pdf format :- [Download the sample MSA contract](https://pragyaallc-my.sharepoint.com/:w:/g/personal/anurag_b_legalgraph_ai/IQBCEOeU7iyBRpVaVLJ6iVZEAYa52Oy1bcuzLvoXjVL2F5o?e=zmZTqE)  
-
-5. Ask the chatbot the following 4 questions, one at a time, waiting for each answer before asking the next:
-
-   ```
-   What is the process for resolving disputes between the parties?
-   ```
-   ```
-   What law and jurisdiction govern the agreement?
-   ```
-   ```
-   Can either party terminate the MSA early, and under what conditions?
-   ```
-   ```
-   If the MSA and an SOW contain conflicting terms, which one takes precedence?
-   ```
-
-6. Once you've asked all 4, click **Download Responses**. This downloads a `config.json` file containing every successful question-and-answer pair from this round.
-
-7. Attach `config.json` in Claude Code and run:
-```
-Open config.json
-```
-
- You should see only the questions that got a successful answer
-
-   ![config.json opened in VS Code showing saved question-response pairs](./images/5.png)
-
-You now have your first real dataset: 4 real questions, answered by `gpt-5-nano`, based on a real contract.
+![image](./assets/2.png)
 
 ---
 
-## Part 6: Turn Your Saved Answers into an Evaluation Dataset
+## Phase 2: Generate Your Evaluation Dataset
 
-You have a `config.json` full of questions and answers, but Microsoft Foundry doesn't know how to use a plain file like that yet. It needs to be organized into what Foundry calls an **evaluation dataset** — a structured collection where each entry clearly says "here's the input" and "here's the response that needs to be judged."
+### Step 2: Ask the Five Evaluation Questions
 
-**Do this:**
+**What you're doing**: Using your live agent to answer five carefully chosen contract-law questions, generating the raw material for your evaluation dataset.
 
-In your Claude Code session, attach the `config.json` file you just downloaded and paste this prompt:
+**Why these five questions**: Each question targets a different clause category — termination, IP, liability, payment, and dispute resolution. Together they give the evaluator broad coverage of how well your agent handles the full contract, not just one narrow topic.
 
-```
-Use the Microsoft Foundry "Build an evaluation dataset" skill.
+**Action items**:
 
-Read `config.json`, which contains question and response pairs from my contract-review chatbot.
+1. Make sure the MSA contract is uploaded in your app's contract section.
+2. Go to the chat section of your app.
+3. Ask each of the following five questions, one at a time. Wait for a complete response before moving to the next:
 
-Build an evaluation dataset from all entries using the foundry eval-datasets skill
+> **Question 1**: What is the termination notice period, and what payments are still owed if either party terminates the agreement?
 
-Use:
-- `question` as the evaluation input
-- `response` as the generated model response
+> **Question 2**: Who owns the intellectual property created during the services, and what rights does the Client receive to use the Service Provider's intellectual property?
 
-Do not modify `config.json`.
+> **Question 3**: What is the Service Provider's maximum liability under this agreement, and what types of damages are excluded?
+
+> **Question 4**: What are the payment terms, including the invoice due date, late-payment fee, and deadline for disputing an invoice?
+
+> **Question 5**: How are disputes resolved, and where would mediation or arbitration take place?
+
+4. After all five responses appear, confirm that no errors occurred. All five must be successful responses for the dataset to be complete.
+
+**Output**: Five question-and-answer pairs are now stored in your browser's localStorage.
+
+![image](./assets/3.png)
+
+---
+
+### Step 3: Download Your Responses
+
+**What you're doing**: Exporting the five Q&A pairs as a `config.json` file that you will convert into a properly formatted evaluation dataset in the next phase.
+
+**Action items**:
+
+1. Look for the **Download Responses** button that appeared in your app after the first successful response.
+2. Click it. A file named `config.json` will download to your machine.
+3. Open the file and verify it contains all five question-response pairs in the correct format. It should look like this:
+
+```json
+[
+  {
+    "question": "What is the termination notice period...",
+    "response": "The agreement requires 30 days written notice..."
+  },
+  ...
+]
 ```
 
-![image](./images/9.png)
+4. Keep this file handy — you will need it in the next step.
 
-![image](./images/12.png)
-
-> **Why this matters:** Notice the last line — Claude is told not to touch `config.json`. That's intentional. Your original saved answers stay untouched as a record, while Foundry builds a separate, structured copy specifically shaped for evaluation.
-
-Claude will use the Foundry plugin's skill to build this dataset for you from the 4 question-and-answer pairs.
+**Output**: A `config.json` file on your machine containing your agent's answers to the five contract questions.
 
 ---
 
-## Part 7: Evaluate the Answers
+## Phase 3: Set Up Azure AI Foundry
 
-Now for the actual scoring. Microsoft Foundry will judge each of your chatbot's answers against 4 criteria. Before you run anything, here's what each one actually means:
+### Step 4: Create Your Azure AI Foundry Account and Project
 
-| Criterion | In plain English |
-|---|---|
-| **Relevance** | Does the answer directly and appropriately address the question that was actually asked? |
-| **Groundedness** | Is the answer actually supported by the contract that was uploaded — or did the chatbot make something up? |
-| **Completeness** | Does the answer include everything important needed to fully answer the question, or does it leave things out? |
-| **Task Completion** | Did the chatbot actually finish the job the user asked for, without missing the point or needing unnecessary follow-up? |
+**What you're doing**: Creating the cloud workspace where the evaluation will run before you touch anything else in Foundry.
 
-> **Why this matters:** These 4 criteria together cover both *what* the chatbot said (Relevance, Completeness) and *whether it can be trusted* (Groundedness, Task Completion). A chatbot can sound confident and still fail on Groundedness if it's not actually backed by the contract text.
+> **Note**: If you already have an Azure AI Foundry account and project from a previous lab, skip ahead to Step 5.
 
-**Do this:**
+**Action items**:
 
-In your Claude Code session, attach the `Sample MSA Contract` and paste this prompt:
-Download it in pdf format :- [Download the sample MSA contract](https://pragyaallc-my.sharepoint.com/:w:/g/personal/anurag_b_legalgraph_ai/IQBCEOeU7iyBRpVaVLJ6iVZEAYa52Oy1bcuzLvoXjVL2F5o?e=zmZTqE)  
+1. Go to Azure AI Foundry and create a new account. [Watch: How to create an Azure AI Foundry account](https://youtu.be/Is3GgsCEPho?si=WhCt7DQQG_UOMP2o). New accounts receive $300 in free credits.
 
-Paste this prompt into your Claude Code session:
+![image](./assets/5.png)
+
+2. Once your account is ready, create a new resource group first. [Watch: How to create a resource group in Azure](https://youtu.be/bTeD1Ec62dY?si=gBTiO-oc0M3hvv2q). Then create a new project inside that resource.
+
+![image](./assets/6.png)
+
+3. Fill in all the required details — resource name, region, and subscription — then confirm.
+
+![image](./assets/7.png)
+
+**Output**: An active Azure AI Foundry project ready to receive your dataset and evaluation.
+
+---
+
+## Phase 4: Format the Dataset for Azure AI Foundry
+
+### Step 5: Try to Upload — and Discover the Format Requirement
+
+**What you're doing**: Starting the evaluation setup in Foundry and attempting to upload your `config.json` — and discovering exactly why it needs one more step first.
+
+**Action items**:
+
+1. Inside your Foundry project, navigate to the **Build** section.
+
+![image](./assets/8.png)
+
+2. Click on **Evaluation**, then click **Create**.
+
+![image](./assets/18.png)
+
+3. Select **Dataset** → **Upload Dataset**.
+
+![image](./assets/9.png)
+
+> **Note**: In the next step there may be an option to select **Single Turn** or **Multi-Turn** format. Select **Single Turn**.
+
+![image](./assets/12.png)
+
+4. Try to upload your `config.json` file.
+
+You will notice that **Foundry rejects the file**. This is expected — Foundry requires datasets to follow a specific schema, and `config.json` does not match it yet. Rather than being a blocker, this moment tells you exactly what needs to happen next: reformat the file.
+
+5. Download the **sample dataset** and confirm **Single Turn** is selected as the format type. This sample file is your formatting specification — keep it alongside your `config.json`.
+
+![image](./assets/13.png)
+
+**Output**: You now have the Foundry sample dataset downloaded, and you understand exactly why your `config.json` needs to be reformatted.
+
+---
+
+### Step 6: Convert Your Dataset Using Claude Code
+
+**What you're doing**: Asking Claude Code to reformat your `config.json` into the schema Foundry requires, using the sample file as the specification.
+
+**Action items**:
+
+1. Open Claude Code.
+2. Attach both files: your `config.json` and the sample dataset you downloaded from Foundry.
+3. Run the following prompt:
 
 ```
-Use the Microsoft Foundry "Evaluate quality" skill to evaluate the responses in the evaluation dataset we just created.
+Create a dataset based on the config.json file. Treat config.json as the ground truth and use it as the source of truth for generating the dataset.
 
-Evaluate each response against its corresponding question using these criteria:
-
-1. Relevance — Does the response directly and appropriately answer the question?
-2. Groundedness — Is the response supported by and consistent with the uploaded contract context?
-3. Completeness — Does the response include all important information needed to answer the question?
-4. Task Completion — Did the response successfully complete what the user asked without unnecessary follow-up or missing the task?
-
-Use the appropriate Microsoft Foundry evaluators and run the evaluation.
-
-For each response, show the scores for these criteria and a short explanation of the result.
-
-Also provide an overall summary of the evaluation results.
-
-Do not modify the original evaluation dataset
+I have also attached a sample dataset showing the required format and structure. Follow that format exactly when creating the new dataset.
 ```
 
-![image](./images/10.png)
+![image](./assets/14.png)
 
-Claude will run each of the 4 answers through Foundry's evaluators and give you a score and explanation for each criterion, plus an overall summary.
+4. Claude may ask you a clarifying question about the format — if it does, select the first option it offers (Single Turn).
 
-![Evaluation results for the GPT-5-nano round, showing scores per criterion](./images/6.png)
+![image](./assets/15.png)
 
-This is your first real evaluation — a `gpt-5-nano`-powered chatbot, scored against 4 criteria, based on real questions. Now let's see if a bigger model does better.
+5. Claude will produce a new file formatted to Foundry's specification. Save it.
 
----
-
-## Part 8: Round 2 — Switch to GPT-5-mini, Repeat, and Compare
-
-Same contract, same 4 questions — but this time, the chatbot's answers will come from `gpt-5-mini`, the full model rather than the smaller `nano` version. This lets you compare the two models fairly, since everything else stays identical.
-
-**Do this:**
-
-1. Refresh your `contract-review-app`.
-2. Go back to your n8n workflow, and this time set the model to:
-
-   ```
-   gpt-5-mini
-   ```
-
-   ![image](./images/4.1.png)
-
-3. execute the workflow.
-4. Ask the chatbot the **exact same 4 questions** from Part 5, one at a time, in the same order.
-5. Click **Download Responses** again. Remember, `localStorage` never clears old entries — it only appends. So this new `config.json` contains **8 responses**: the 4 from `gpt-5-nano` plus the 4 new ones from `gpt-5-mini`, all in one file.
-
-   > **Why this matters:** Having both models' answers to the exact same questions inside one file is what lets the next step compare them side by side, instead of you having to line up two separate reports by hand.
-
-6. Repeat the same two prompts from Part 6 and Part 7 on this new `config.json`:
-   - The **"Build an evaluation dataset"** prompt, to turn this new file (all 8 responses) into a Foundry evaluation dataset.
-   - The **"Evaluate quality"** prompt, to score these 8 answers on the same 4 criteria.
-
-![Evaluation results for the GPT-5-mini round, showing scores per criterion](./images/7.png)
-
-You now have two complete, scored evaluations — one for `gpt-5-nano`, one for `gpt-5-mini` — both judged on the exact same questions and the exact same criteria.
-
-Claude will pull both completed evaluations and build a comparison report.
-
-![Final comparison report opened in the in-app preview](./images/8.png)
-
-### What the Comparison Actually Showed
-
-Here's what came out of this real run:
-
-| Metric | GPT-5-nano | GPT-5-mini | Change |
-|---|---|---|---|
-| Overall average score | 3.13 / 5 | 4.96 / 5 | **+58%** |
-| Completeness | Lower | Higher | **Biggest improvement (+2.16)** |
-| Relevance | Lower | Higher | Improved significantly |
-| Groundedness | Lower | Higher | Improved significantly |
-| Task Completion | Lower | Higher | Improved significantly |
-| Answer quality | Several failed/low-quality responses | All responses rated High Quality | — |
-
-> **Why this matters:** The overall average jumped from 3.13/5 with `gpt-5-nano` to 4.96/5 with `gpt-5-mini` — a 58% improvement. The single biggest gap was in **Completeness**, meaning the smaller model was more likely to leave out important details from its answers. Every other criterion improved too, and where `nano` had produced multiple failed or low-quality responses, `gpt-5-mini` didn't have a single one.
-
-This is exactly the kind of decision evaluation is meant to support: instead of guessing whether the cheaper, faster model is "good enough," you now have real numbers showing where it falls short.
+**Output**: A Foundry-compatible dataset file ready for upload.
 
 ---
 
-## What You Built
+## Phase 5: Run the Evaluation
 
-- **An evaluation dataset turns opinions into numbers.** Instead of asking "does this chatbot seem good?", you now have a repeatable process that scores real answers against defined criteria — Relevance, Groundedness, Completeness, and Task Completion.
-- **Real usage data makes for a better test than made-up test cases.** Because you captured actual questions and answers from your own chatbot session using `localStorage`, your evaluation is based on how the app is really used — not hypothetical questions someone guessed a user might ask.
-- **Isolating one variable at a time is what makes a comparison fair.** By keeping the contract, the questions, and the evaluation criteria identical between rounds, and changing only the model, you can be confident the score difference is actually caused by the model — not by anything else changing.
-- **Systematic evaluation catches what casual testing misses.** In this run, `gpt-5-nano`'s answers might have looked fine on a quick glance, but scoring them against Completeness specifically revealed it was leaving out important information — something easy to miss just by reading answers casually.
-- **A data-backed comparison turns a cost/quality tradeoff into an actual decision.** You now know, with real scores, exactly how much quality you'd be trading away by using the cheaper `nano` model instead of the full model — instead of guessing.
+### Step 7: Upload Your Formatted Dataset
 
----
+**What you're doing**: Bringing your formatted dataset into Foundry so the evaluation engine can read it.
 
-## Useful Links
+**Action items**:
 
-- [Microsoft Foundry plugin for Claude](https://claude.com/plugins/azure)
-- [Using the Microsoft Foundry skill in Claude Code](https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/use-microsoft-foundry-skill?tabs=claude-code)
+1. Inside your Foundry project, navigate to **Build** → **Evaluation** → **Create**.
 
----
+![image](./assets/18.png)
 
-## Troubleshooting
+2. Select **Dataset** → **Upload Dataset**.
 
-These are the most common problems learners hit in this lab. Check here before asking for help.
+![image](./assets/16.png)
 
----
+3. Upload the formatted dataset file that Claude produced in Step 6 (not the original `config.json`).
+4. Once uploaded successfully, click **Next**.
 
-**Webhook stops responding after switching to the production URL**
-
-This lab runs on n8n's test webhook URL (`/webhook-test/...`), which only listens while you have the workflow open and are running it manually. If you swap in the production URL (`/webhook/...`) instead, requests will fail — the production URL only listens once the workflow has actually been published.
-
-Fix: stick to the test URL for everything in this lab. If you want to use the production URL instead, you need to publish your workflow first, so it listens on that URL even when you're not watching it run.
+**Output**: Your dataset is live inside Foundry and ready to be evaluated.
 
 ---
 
-**OpenAI node returns a 429 rate limit error**
+### Step 8: Configure and Run the Evaluation
 
-If the OpenAI model node in your n8n workflow errors out with something like `429 - Rate limit reached` or `insufficient_quota`, nothing in your workflow is actually broken — it means your OpenAI API key has run out of usage credits.
+**What you're doing**: Telling Foundry which model to use as the judge, which quality dimensions to measure, and kicking off the evaluation run.
 
-Fix: go to **platform.openai.com → Billing** and add more credits to your account. Your existing API key keeps working as-is — just retry the request in n8n once billing shows the added credits.
+Before you configure the run, Foundry will ask what you are evaluating — an **Agent**, a **Model**, or a **Dataset**. Select **Dataset**, since you are evaluating a pre-generated set of responses rather than running the agent live inside Foundry.
+
+![image](./assets/17.png)
+
+**Action items**:
+
+1. When prompted for scope, select **Individual Turns**.
+
+   > **Why Individual Turns?** Your dataset contains five separate, independent questions — each one stands alone. Individual Turns tells Foundry to evaluate each Q&A pair on its own merits rather than treating the whole conversation as a single unit. This gives you granular scores per question, which is far more useful for diagnosing specific weaknesses.
+
+   ![image](./assets/19.png)
+
+2. Select the **model** you want to use as the evaluator (this is the judge model, not your agent). Choose a capable model available in your Foundry project — GPT-4o is a reliable default if available.
+
+![image](./assets/20.png)
+
+3. Under the **Quality** evaluation category, select the following five metrics:
+
+   | Metric | What it measures |
+   |---|---|
+   | **Relevance** | Does the response directly address what was asked? |
+   | **Groundedness** | Is the response supported by the source contract? |
+   | **Coherence** | Is the response logically structured and easy to follow? |
+   | **Similarity** | How close is the response to the ground-truth answer? |
+   | **Fluency** | Is the language natural, grammatical, and well-formed? |
+
+![image](./assets/22.png)
+
+4. Give your evaluation run a descriptive name (e.g., `msa-contract-agent-eval-v1`).
+
+![image](./assets/23.png)
+
+5. Click **Submit**. The run will take a few minutes to complete.
+
+![image](./assets/24.png)
+
+**Output**: A scored evaluation report showing your agent's performance across five quality dimensions for each of the five contract questions.
+
+![image](./assets/25.png)
+
+---
+
+## What You End Up With
+
+- **A live evaluation pipeline**: You now know the full path from agent response → dataset → Foundry eval → scored report. You can repeat this any time you change your agent.
+- **Five quality scores**: Relevance, Groundedness, Coherence, Similarity, and Fluency — each one a signal for a different kind of failure or success.
+- **A reusable workflow**: The Download Responses feature you added to your app means generating a new evaluation dataset in the future takes five questions and one button click.
+- **A feedback loop**: Supabase captures what users flag; Foundry measures what the model produces. Together they give you both qualitative and quantitative signals about your agent's quality.
+
+![image](./assets/26.png)
+
+---
+
+## Complete Process Flow
+
+1. Add localStorage + Download Responses feature to the app (Claude Code prompt).
+2. Upload the MSA contract and ask the five evaluation questions.
+3. Download `config.json` from the app.
+4. Create your Azure AI Foundry account and project.
+5. Download the Foundry sample dataset (Single Turn format).
+6. Convert `config.json` to Foundry format using Claude Code.
+7. Upload the formatted dataset to Foundry.
+8. Configure the eval: Individual Turns scope, judge model, five quality metrics.
+9. Name the run and submit.
+10. Review the scored report.
+
+---
+
+## Key Principles to Keep in Mind
+
+**Ground truth matters**: Your agent's responses become the ground truth for this eval. Make sure all five chat responses were complete and error-free before downloading — a truncated or failed response will skew your scores.
+
+**The judge model is not your agent**: The model you select in Step 8 is an independent evaluator. It reads your agent's responses and the source contract and scores them. Keep these roles mentally separate.
+
+**Individual Turns = per-question granularity**: Choosing Individual Turns gives you a score for each question independently. This tells you if your agent handles IP clauses differently than payment terms — which is the insight that actually drives improvements.
+
+**Evaluation is iterative**: One run gives you a baseline. Change something in your n8n workflow, regenerate the dataset, rerun the eval, and compare. That loop is how agents get better.
