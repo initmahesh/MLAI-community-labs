@@ -6,13 +6,13 @@ Your `contract-review-app` works end to end, but two questions are still open: i
 
 ## The Labs
 
-### [Lab 3.1.1 — Give Your Contract Review App a Code Reviewer](./3.1.1-code-review-subagent/Readme.md)
+### [Lab 3.1.1 — Review Your App Using Claude's Sub Agent](./3.1.1-code-review-subagent/Readme.md)
 
 Install the **Superpowers** plugin, then learn what a **subagent** is by turning its code-review skill into a standing `code-reviewer` agent you can point at your own project any time.
 
 ---
 
-### [Lab 3.1.2 — Give Your Contract Review App a Feedback Form](./3.1.2-connectors-feedback-form/Readme.md)
+### [Lab 3.1.2 — Connect Your App to Supabase Using Claude's Connectors](./3.1.2-connectors-feedback-form/Readme.md)
 
 Build a feedback form, then learn what a **connector** is by using one to wire that form to a real Supabase database — so user ratings and comments land somewhere real instead of disappearing.
 

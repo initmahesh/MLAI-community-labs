@@ -1,4 +1,4 @@
-# Lab 3.1.2: Give Your Contract Review App a Feedback Form
+# Lab 3.1.2: Connect Your App to Supabase Using Claude's Connectors
 
 ![image](./assets/diagram.png)
 

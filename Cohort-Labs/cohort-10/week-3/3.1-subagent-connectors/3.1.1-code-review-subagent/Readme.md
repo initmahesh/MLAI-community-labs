@@ -1,4 +1,6 @@
-# Lab 3.1.1: Give Your Contract Review App a Code Reviewer
+# Lab 3.1.1: Review Your App Using Claude's Sub Agent
+
+## From Working to Well-Built — Give Your App a Standing Code Reviewer
 
 You built `contract-review-app` in week 1, then updated its backend in week 2. It works — you've tested it end to end — upload, ingest, ask, answer, all of it. But "it works" and "it's built well" aren't the same thing. Nobody's actually looked at the code itself and asked: is this handling errors properly? Is anything here a security risk? Is any of this more complicated than it needs to be?
 
