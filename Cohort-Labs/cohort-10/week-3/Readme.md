@@ -10,9 +10,15 @@ Each lab builds directly on the last. Work through them in order.
 
 ## The Labs
 
-### [Lab 3.1 — Give Your Contract Review App a Code Reviewer](./3.1-code-review-plugin-agent/Readme.md)
+### [Lab 3.1.1 — Review Your App Using Claude's Sub Agent](./3.1-subagent-connectors/3.1.1-code-review-subagent/Readme.md)
 
-Your app works end to end — upload, ingest, ask, answer — but nobody's actually looked at the code underneath and asked whether it's handling errors properly, whether anything's a security risk, or whether it's more complicated than it needs to be. You'll install the **Superpowers** plugin, turn its code-review skill into a standing `code-reviewer` agent, and point it at your own project to surface real issues. Then you'll add a feedback form wired to a real **Supabase** database, so users can start telling you how the app is doing.
+A working demo and well-built code are two different things — nobody's actually looked at the code underneath and asked whether it's handling errors properly, whether anything's a security risk, or whether it's more complicated than it needs to be. You'll install the **Superpowers** plugin and, along the way, learn what a **subagent** is by turning its code-review skill into a standing `code-reviewer` agent you can point at your own project any time.
+
+---
+
+### [Lab 3.1.2 — Connect Your App to Supabase Using Claude's Connectors](./3.1-subagent-connectors/3.1.2-connectors-feedback-form/Readme.md)
+
+Your app's code is in good shape now, but you still have no way to know if it's actually satisfying anyone. You'll build a feedback form and, along the way, learn what a **connector** is by using one to wire that form to a real **Supabase** database, so submissions land somewhere real instead of disappearing.
 
 ---
 
@@ -21,5 +27,3 @@ Your app works end to end — upload, ingest, ask, answer — but nobody's actua
 A feedback form tells you how people *feel* about an answer — not whether it was actually correct. This lab closes that gap. You'll add a Download Responses feature to your app that exports real question-and-answer pairs from your live agent, reformat them into a dataset Azure AI Foundry can read, and run a structured evaluation that scores every answer across five dimensions: **Relevance, Groundedness, Coherence, Similarity, and Fluency**. The result is a scored report — not guesswork — that tells you exactly where your agent is strong and where it falls short.
 
 ---
-
-> If you get stuck in any lab, each one has troubleshooting guidance built in. Read the error carefully — most issues in these labs have a one-line fix.
