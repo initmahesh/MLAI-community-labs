@@ -17,7 +17,7 @@ Before you begin, confirm all of the following are in place:
 1. You have completed all labs from the previous weeks.
 2. The contract-review app you have been building since Week 1 is running locally in Claude Code.
 3. You have access to an Azure account where you can create an Azure AI Foundry resource. New accounts receive $300 in free credits — you will set this up in Step 4.
-4. Download the MSA (Master Services Agreement) sample contract — **[Download From Here]** — you will upload this into your app when generating the dataset.
+4. Download the MSA (Master Services Agreement) sample contract — **[Download From Here](https://drive.google.com/file/d/1kJpujNVGU7Bk8nu35s3BZCtAWo-gHiqb/view?usp=sharing)** — you will upload this into your app when generating the dataset.
 
 **Video walkthrough**: [Watch the full lab walkthrough](https://youtu.be/Is3GgsCEPho?si=WhCt7DQQG_UOMP2o)
 
@@ -194,25 +194,47 @@ You will notice that **Foundry rejects the file**. This is expected — Foundry 
 
 **What you're doing**: Asking Claude Code to reformat your `config.json` into the schema Foundry requires, using the sample file as the specification.
 
+Your `config.json` only has the query and response pairs your agent generated. It does not have ground truth or benchmark values, and Azure AI Foundry needs both to score your evaluation. You'll download a reference file that has this data before asking Claude Code to build the final dataset.
+
 **Action items**:
 
-1. Open Claude Code.
-2. Attach both files: your `config.json` and the sample dataset you downloaded from Foundry.
-3. Run the following prompt:
+1. Download the ground truth and benchmark reference file — **[Download From Here](https://docs.google.com/spreadsheets/d/146uj0YOBdGlScHxgcZwbxhp2rP28NphtuluEdRihcyQ/export?format=csv&gid=1493472500)** — and save it as `sample.csv`.
+2. Open Claude Code.
+3. Attach three files: your `config.json`, the `sample.csv` you just downloaded, and the sample dataset you downloaded from Foundry in Step 5.
+4. Run the following prompt:
 
 ```
-Create a dataset based on the config.json file. Treat config.json as the ground truth and use it as the source of truth for generating the dataset.
+Task: Create Evaluation Dataset
 
-I have also attached a sample dataset showing the required format and structure. Follow that format exactly when creating the new dataset.
+The config.json file contains the queries and responses generated from sample.csv.
+Your task is to create the final evaluation dataset by combining the information from both files.
+
+Instructions
+  1.Read the query and response pairs from config.json.
+  2.For each query, find the corresponding record in sample.csv.
+  3.From sample.csv, fetch the corresponding:
+    -Ground truth
+    -Benchmark
+  4.Map the query and response from config.json with the matching ground truth and benchmark from sample.csv.
+  5.Create the final evaluation dataset using this combined information.
+  6.Use the attached data-sample.jsonl file as the reference for the required dataset structure and format.
+  7.Ensure the output follows the same:
+    -JSONL structure
+    -Field names
+    -Data types
+    -Formatting conventions as shown in data-sample.jsonl.
+  8.Do not invent, modify, or infer any ground-truth or benchmark values. Use only the values available in sample.csv.
+Expected Output
+Generate a complete JSONL evaluation dataset where each record contains the appropriate query, response, ground truth, and benchmark information based on the data in config.json and sample.csv.
 ```
 
 ![image](./assets/14.png)
 
-4. Claude may ask you a clarifying question about the format — if it does, select the first option it offers (Single Turn).
+5. Claude may ask you a clarifying question about the format — if it does, select the first option it offers (Single Turn).
 
 ![image](./assets/15.png)
 
-5. Claude will produce a new file formatted to Foundry's specification. Save it.
+6. Claude will produce a new file formatted to Foundry's specification. Save it.
 
 **Output**: A Foundry-compatible dataset file ready for upload.
 
