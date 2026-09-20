@@ -25,11 +25,4 @@ Your app's code is in good shape now, but you still have no way to know if it's 
 ### [Lab 3.2 — Evaluate Your Agent's Answers with Azure AI Foundry](./3.2-microsoft-foundry-eval-plugin/Readme.md)
 
 A feedback form tells you how people *feel* about an answer — not whether it was actually correct. This lab closes that gap. You'll add a Download Responses feature to your app that exports real question-and-answer pairs from your live agent, reformat them into a dataset Azure AI Foundry can read, and run a structured evaluation that scores every answer across five dimensions: **Relevance, Groundedness, Coherence, Similarity, and Fluency**. The result is a scored report — not guesswork — that tells you exactly where your agent is strong and where it falls short.
-
----
-
-### [Lab 3.3 — From Chatbot to Agent: Tool Use, Streaming, Memory, and Multimodal Input](./3.3-agent-fundamentals/Readme.md)
-
-Your reviewer can chat about a contract, but she can't look anything up, she goes quiet for 40 seconds on a long request, she's about to send a rejection email nobody signed off on, she forgets vendors she's already dealt with, and half her contracts arrive as scans instead of text. This Google Colab lab builds — straight from the Claude API, no framework in between — the five capabilities that fix each of those: tool use, streaming, workflow-vs-agent with a human-in-the-loop checkpoint, memory across sessions, and multimodal input via images, PDFs, and the Files API.
-
 ---
