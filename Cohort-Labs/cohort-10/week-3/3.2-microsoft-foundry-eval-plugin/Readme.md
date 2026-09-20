@@ -230,11 +230,7 @@ Generate a complete JSONL evaluation dataset where each record contains the appr
 
 ![image](./assets/14.png)
 
-5. Claude may ask you a clarifying question about the format — if it does, select the first option it offers (Single Turn).
-
-![image](./assets/15.png)
-
-6. Claude will produce a new file formatted to Foundry's specification. Save it.
+5. Claude will produce a new file formatted to Foundry's specification. Save it.
 
 **Output**: A Foundry-compatible dataset file ready for upload.
 
@@ -309,14 +305,28 @@ Before you configure the run, Foundry will ask what you are evaluating — an **
 
 ---
 
-## What You End Up With
+### Step 9: Re-run the Evaluation with a Different Judge Model
 
-- **A live evaluation pipeline**: You now know the full path from agent response → dataset → Foundry eval → scored report. You can repeat this any time you change your agent.
-- **Five quality scores**: Relevance, Groundedness, Coherence, Similarity, and Fluency — each one a signal for a different kind of failure or success.
-- **A reusable workflow**: The Download Responses feature you added to your app means generating a new evaluation dataset in the future takes five questions and one button click.
-- **A feedback loop**: Supabase captures what users flag; Foundry measures what the model produces. Together they give you both qualitative and quantitative signals about your agent's quality.
+**What you're doing**: Creating a new evaluation run on the same dataset, this time with GPT-5 as the judge model, to see how the choice of judge affects your scores.
 
-![image](./assets/26.png)
+**Why this matters**: One run tells you how your agent scored against a single judge. Swapping the judge model tells you whether that score holds up — a stronger judge model gives you a sharper, more reliable read on your agent's actual performance.
+
+**Action items**:
+
+1. When prompted for scope, select **Individual Turns**, same as before.
+2. Select **GPT-5** as the model you want to use as the evaluator, instead of GPT-4o.
+
+![image](./assets/27.png)
+
+3. Under the **Quality** evaluation category, select the same five metrics: Relevance, Groundedness, Coherence, Similarity, and Fluency.
+4. Give this evaluation run a descriptive name (e.g., `msa-contract-agent-eval-v2-gpt5`).
+5. Click **Submit**. The run will take a few minutes to complete.
+
+**Output**: A second scored evaluation report, run with GPT-5 as the judge. Compare it against your first report — you should see better, more consistent scores across the five quality dimensions, showing how upgrading the judge model sharpens the evaluation.
+
+![image](./assets/28.png)
+
+Look at the overall score in both reports side by side. In this run, the GPT-4o judge scored the agent at **64%**, while the GPT-5 judge scored the same, unchanged responses at **86%**. Nothing about your agent changed between the two runs — only the judge did. That gap is the whole point: a weaker judge model can undersell an agent that's actually performing well, so the judge you pick shapes the score as much as the agent itself.
 
 ---
 
@@ -332,6 +342,8 @@ Before you configure the run, Foundry will ask what you are evaluating — an **
 8. Configure the eval: Individual Turns scope, judge model, five quality metrics.
 9. Name the run and submit.
 10. Review the scored report.
+11. Re-run the eval on the same dataset with GPT-5 as the judge model.
+12. Compare the two reports to see how the judge model change affects your scores.
 
 ---
 
@@ -344,3 +356,9 @@ Before you configure the run, Foundry will ask what you are evaluating — an **
 **Individual Turns = per-question granularity**: Choosing Individual Turns gives you a score for each question independently. This tells you if your agent handles IP clauses differently than payment terms — which is the insight that actually drives improvements.
 
 **Evaluation is iterative**: One run gives you a baseline. Change something in your n8n workflow, regenerate the dataset, rerun the eval, and compare. That loop is how agents get better.
+
+---
+
+## Useful Links
+
+- [Azure AI Foundry — Built-in Evaluators](https://learn.microsoft.com/en-us/azure/foundry/concepts/built-in-evaluators)
