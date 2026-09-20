@@ -26,5 +26,3 @@ Open the notebook using the link below:
 2. **Google Colab setup.** If you haven't used Colab before, follow this guide: [Click Here](https://medium.com/@aditya_dev30/getting-started-with-google-colab-your-ultimate-setup-guide-for-generative-ai-projects-53fe25f3fc04)
 
 ---
-
-> This lab's notebook is on its way — check back here once `notebook.ipynb` has been added to this folder.
