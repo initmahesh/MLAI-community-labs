@@ -142,7 +142,7 @@ Claude will create the `code-reviewer` subagent from this exact spec.
 2. Ask it to review the project using your new agent — for example:
 
    ```
-   Use the code-reviewer agent to review this project.
+   Use the code-reviewer agent to review this project and launch three agent in parallel one to check for js and one for css and the last one for HTML
    ```
 
 3. The agent will work through the code and report back every issue it found, grouped file by file    
