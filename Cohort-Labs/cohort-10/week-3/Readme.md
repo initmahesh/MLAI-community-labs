@@ -24,5 +24,6 @@ Your app's code is in good shape now, but you still have no way to know if it's 
 
 ### [Lab 3.2 — Evaluate Your Agent's Answers with Azure AI Foundry](./3.2-microsoft-foundry-eval-plugin/Readme.md)
 
+
 A feedback form tells you how people *feel* about an answer — not whether it was actually correct. This lab closes that gap. You'll add a Download Responses feature to your app that exports real question-and-answer pairs from your live agent, reformat them into a dataset Azure AI Foundry can read, and run a structured evaluation that scores every answer across five dimensions: **Relevance, Groundedness, Coherence, Similarity, and Fluency**. The result is a scored report — not guesswork — that tells you exactly where your agent is strong and where it falls short.
 ---
