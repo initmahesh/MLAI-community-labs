@@ -1,0 +1,885 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent-Consumable PRD Schema",
+  "description": "Machine-readable Product Requirements Document for agent consumption and automation",
+  "type": "object",
+  "required": [
+    "metadata",
+    "introduction",
+    "goals_and_metrics",
+    "user_stories",
+    "nfrs",
+    "technical_specs",
+    "agent_workflow",
+    "milestones",
+    "validation"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "Document metadata and versioning",
+      "required": ["feature_name", "version", "generated_date", "status"],
+      "properties": {
+        "feature_name": {
+          "type": "string",
+          "description": "Name of the feature or product"
+        },
+        "version": {
+          "type": "string",
+          "description": "PRD version (e.g., '1.0', '2.1')"
+        },
+        "generated_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of when this PRD was generated"
+        },
+        "author": {
+          "type": "string",
+          "description": "Author name or agent that generated this PRD"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "in_review", "approved", "archived"],
+          "description": "Current status of the PRD"
+        },
+        "human_prd_reference": {
+          "type": "string",
+          "description": "File path to corresponding human-readable PRD"
+        },
+        "schema_version": {
+          "type": "string",
+          "description": "Version of this JSON schema being used"
+        }
+      }
+    },
+    "introduction": {
+      "type": "object",
+      "description": "Problem statement, context, and impact sizing",
+      "required": ["problem_statement", "key_insights", "impact_sizing"],
+      "properties": {
+        "problem_statement": {
+          "type": "string",
+          "description": "Clear statement of the problem or opportunity"
+        },
+        "key_insights": {
+          "type": "array",
+          "description": "Key data points and research findings",
+          "items": {
+            "type": "object",
+            "properties": {
+              "insight": {
+                "type": "string",
+                "description": "The insight or finding"
+              },
+              "source": {
+                "type": "string",
+                "description": "Source reference (e.g., 'market-research.md:45')"
+              },
+              "data_point": {
+                "type": "string",
+                "description": "Specific data (e.g., '$12B market size', '40 hours/month saved')"
+              }
+            }
+          }
+        },
+        "impact_sizing": {
+          "type": "object",
+          "properties": {
+            "qualitative_impact": {
+              "type": "string",
+              "description": "How this helps users or business (qualitative)"
+            },
+            "quantitative_impact": {
+              "type": "object",
+              "description": "Numeric impact estimates",
+              "properties": {
+                "revenue_impact": {
+                  "type": "string",
+                  "description": "Expected revenue impact (e.g., '$500K ARR in Y1')"
+                },
+                "cost_savings": {
+                  "type": "string",
+                  "description": "Expected cost savings (e.g., '$200K/year operational savings')"
+                },
+                "user_impact": {
+                  "type": "string",
+                  "description": "User metrics impact (e.g., '30% faster workflow')"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "goals_and_metrics": {
+      "type": "object",
+      "description": "Success metrics and guardrail metrics",
+      "required": ["success_metrics", "guardrail_metrics"],
+      "properties": {
+        "success_metrics": {
+          "type": "array",
+          "description": "Primary success metrics",
+          "items": {
+            "type": "object",
+            "required": ["metric_name", "target", "measurement_method"],
+            "properties": {
+              "metric_name": {
+                "type": "string",
+                "description": "Name of the metric (e.g., 'Report Generation Time')"
+              },
+              "target": {
+                "type": "string",
+                "description": "Target value (e.g., '< 5 minutes for 1000 leases')"
+              },
+              "measurement_method": {
+                "type": "string",
+                "description": "How this metric is measured"
+              },
+              "baseline": {
+                "type": "string",
+                "description": "Current baseline before this feature"
+              },
+              "metric_type": {
+                "type": "string",
+                "enum": ["leading", "lagging"],
+                "description": "Leading (early signal) or lagging (long-term outcome)"
+              }
+            }
+          }
+        },
+        "guardrail_metrics": {
+          "type": "array",
+          "description": "Metrics that should not degrade",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric_name": {
+                "type": "string"
+              },
+              "threshold": {
+                "type": "string",
+                "description": "Minimum acceptable value"
+              }
+            }
+          }
+        }
+      }
+    },
+    "user_stories": {
+      "type": "array",
+      "description": "Structured user stories with acceptance criteria",
+      "items": {
+        "type": "object",
+        "required": ["story_id", "persona", "user_story", "acceptance_criteria", "priority"],
+        "properties": {
+          "story_id": {
+            "type": "string",
+            "description": "Unique identifier (e.g., 'US-001')"
+          },
+          "persona": {
+            "type": "string",
+            "description": "User persona (e.g., 'Legal Team Lead')"
+          },
+          "user_story": {
+            "type": "string",
+            "description": "User story in format: 'As a [user], I want [goal], so that [benefit]'"
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "description": "Specific, testable conditions for completion",
+            "items": {
+              "type": "string"
+            }
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["P0", "P1", "P2"],
+            "description": "P0 = Must-have, P1 = Should-have, P2 = Nice-to-have"
+          },
+          "complexity": {
+            "type": "string",
+            "enum": ["Low", "Medium", "High"],
+            "description": "Estimated implementation complexity"
+          },
+          "estimated_effort": {
+            "type": "string",
+            "description": "Estimated effort (e.g., '2 weeks', '5 story points')"
+          }
+        }
+      }
+    },
+    "nfrs": {
+      "type": "object",
+      "description": "Non-functional requirements (performance, security, availability, data retention)",
+      "required": ["performance", "security", "availability", "data_retention"],
+      "properties": {
+        "performance": {
+          "type": "object",
+          "description": "Performance requirements and targets",
+          "properties": {
+            "response_time_ms": {
+              "type": "integer",
+              "description": "API response time target in milliseconds (p95)"
+            },
+            "throughput": {
+              "type": "string",
+              "description": "System throughput (e.g., '10,000 leases/hour')"
+            },
+            "max_concurrent_users": {
+              "type": "integer",
+              "description": "Maximum simultaneous active users"
+            },
+            "page_load_time_seconds": {
+              "type": "number",
+              "description": "Maximum page load time in seconds"
+            },
+            "report_generation_time": {
+              "type": "string",
+              "description": "Time to generate report (e.g., '< 5 min for 1000 leases')"
+            }
+          }
+        },
+        "security": {
+          "type": "object",
+          "description": "Security requirements and compliance",
+          "properties": {
+            "authentication": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Authentication methods (e.g., ['OAuth 2.0', 'SSO'])"
+            },
+            "authorization": {
+              "type": "string",
+              "description": "Authorization model (e.g., 'RBAC', 'ABAC')"
+            },
+            "encryption_at_rest": {
+              "type": "string",
+              "description": "Encryption standard for stored data (e.g., 'AES-256')"
+            },
+            "encryption_in_transit": {
+              "type": "string",
+              "description": "Encryption for data transmission (e.g., 'TLS 1.3')"
+            },
+            "compliance_standards": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Compliance certifications (e.g., ['SOC 2', 'GDPR', 'HIPAA'])"
+            },
+            "audit_logging": {
+              "type": "boolean",
+              "description": "Whether complete audit trail is required"
+            },
+            "audit_retention_years": {
+              "type": "integer",
+              "description": "How long to retain audit logs"
+            }
+          }
+        },
+        "availability": {
+          "type": "object",
+          "description": "Uptime, recovery, and disaster recovery requirements",
+          "properties": {
+            "uptime_sla_percent": {
+              "type": "number",
+              "description": "Uptime SLA (e.g., 99.9)"
+            },
+            "rto_hours": {
+              "type": "number",
+              "description": "Recovery Time Objective in hours"
+            },
+            "rpo_hours": {
+              "type": "number",
+              "description": "Recovery Point Objective in hours (max acceptable data loss)"
+            },
+            "backup_frequency": {
+              "type": "string",
+              "description": "Backup schedule (e.g., 'Daily incremental, Weekly full')"
+            },
+            "disaster_recovery": {
+              "type": "string",
+              "description": "DR strategy (e.g., 'Multi-region failover')"
+            },
+            "monitoring": {
+              "type": "string",
+              "description": "Monitoring setup (e.g., '24/7 automated with PagerDuty')"
+            }
+          }
+        },
+        "data_retention": {
+          "type": "object",
+          "description": "Data retention and privacy policies",
+          "properties": {
+            "retention_period_years": {
+              "type": "integer",
+              "description": "How long to retain data"
+            },
+            "deletion_policy": {
+              "type": "string",
+              "description": "Deletion approach (e.g., 'Hard delete after retention + 90 days')"
+            },
+            "pii_handling": {
+              "type": "string",
+              "description": "How PII is handled (e.g., 'Anonymized for analytics, encrypted in storage')"
+            },
+            "right_to_deletion": {
+              "type": "boolean",
+              "description": "Whether users can request data deletion (GDPR/CCPA)"
+            },
+            "data_residency": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Allowed data storage regions (e.g., ['US', 'EU'])"
+            }
+          }
+        },
+        "accessibility": {
+          "type": "object",
+          "description": "Accessibility requirements",
+          "properties": {
+            "wcag_compliance_level": {
+              "type": "string",
+              "description": "WCAG level (e.g., 'WCAG 2.1 AA')"
+            },
+            "screen_reader_support": {
+              "type": "boolean",
+              "description": "Whether screen reader support is required"
+            },
+            "keyboard_navigation": {
+              "type": "boolean",
+              "description": "Whether full keyboard navigation is required"
+            }
+          }
+        }
+      }
+    },
+    "technical_specs": {
+      "type": "object",
+      "description": "Technical specifications including data models, APIs, and integrations",
+      "required": ["data_models", "api_specs", "integrations"],
+      "properties": {
+        "data_models": {
+          "type": "object",
+          "description": "Entity schemas and relationships",
+          "patternProperties": {
+            ".*": {
+              "type": "object",
+              "description": "Entity name as key (e.g., 'Lease', 'ComplianceReport')",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "fields": {
+                  "type": "object",
+                  "description": "Field definitions",
+                  "patternProperties": {
+                    ".*": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "description": "Data type (e.g., 'string', 'integer', 'date', 'decimal')"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "unique": {
+                          "type": "boolean"
+                        },
+                        "format": {
+                          "type": "string",
+                          "description": "Format constraint (e.g., 'ISO 8601', 'UUID', 'email')"
+                        },
+                        "enum": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Allowed values if field is enum"
+                        },
+                        "constraints": {
+                          "type": "object",
+                          "description": "Validation constraints (min, max, pattern, etc.)"
+                        }
+                      }
+                    }
+                  }
+                },
+                "relationships": {
+                  "type": "array",
+                  "description": "Relationships to other entities",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "type": "string",
+                        "description": "Related entity name"
+                      },
+                      "relationship_type": {
+                        "type": "string",
+                        "enum": ["one-to-one", "one-to-many", "many-to-many"]
+                      },
+                      "foreign_key": {
+                        "type": "string",
+                        "description": "Foreign key field"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "api_specs": {
+          "type": "object",
+          "description": "API endpoint specifications",
+          "properties": {
+            "base_url": {
+              "type": "string",
+              "description": "Base API URL (e.g., 'https://api.example.com/v1')"
+            },
+            "authentication": {
+              "type": "string",
+              "description": "Authentication method (e.g., 'Bearer token (OAuth 2.0)')"
+            },
+            "endpoints": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["path", "method", "description"],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Endpoint path (e.g., '/leases/{id}')"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "request_schema": {
+                    "type": "object",
+                    "description": "Request body schema"
+                  },
+                  "response_schema": {
+                    "type": "object",
+                    "description": "Response body schema"
+                  },
+                  "error_responses": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "status_code": {
+                          "type": "integer"
+                        },
+                        "error_code": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "rate_limits": {
+              "type": "object",
+              "properties": {
+                "requests_per_minute": {
+                  "type": "integer"
+                },
+                "requests_per_hour": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "integrations": {
+          "type": "array",
+          "description": "Third-party system integrations",
+          "items": {
+            "type": "object",
+            "required": ["system_name", "integration_method", "authentication"],
+            "properties": {
+              "system_name": {
+                "type": "string",
+                "description": "Name of third-party system (e.g., 'QuickBooks Online')"
+              },
+              "integration_method": {
+                "type": "string",
+                "description": "Integration approach (e.g., 'REST API v3', 'Webhook', 'CSV export')"
+              },
+              "data_sync_frequency": {
+                "type": "string",
+                "description": "How often data syncs (e.g., 'Real-time', 'Hourly', 'Daily')"
+              },
+              "authentication": {
+                "type": "string",
+                "description": "Auth method (e.g., 'OAuth 2.0')"
+              },
+              "rate_limits": {
+                "type": "string",
+                "description": "Rate limits for this integration"
+              },
+              "error_handling": {
+                "type": "string",
+                "description": "How errors are handled (e.g., 'Retry 3x with exponential backoff')"
+              },
+              "data_mapping": {
+                "type": "object",
+                "description": "Field mappings between systems"
+              }
+            }
+          }
+        }
+      }
+    },
+    "agent_workflow": {
+      "type": "object",
+      "description": "Agentic workflow specifications (task graph, handoff contracts, tool manifest)",
+      "required": ["task_graph", "handoff_contracts", "tool_manifest"],
+      "properties": {
+        "task_graph": {
+          "type": "object",
+          "description": "Directed Acyclic Graph (DAG) of agent tasks",
+          "required": ["nodes", "edges"],
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "description": "Task nodes (each represents an agent task)",
+              "items": {
+                "type": "object",
+                "required": ["task_id", "agent_name", "action"],
+                "properties": {
+                  "task_id": {
+                    "type": "string",
+                    "description": "Unique task identifier (e.g., 'task_001')"
+                  },
+                  "agent_name": {
+                    "type": "string",
+                    "description": "Name of the agent responsible (e.g., 'DataIngestionAgent')"
+                  },
+                  "action": {
+                    "type": "string",
+                    "description": "What this agent does (e.g., 'Extract lease data from PDF')"
+                  },
+                  "input_schema": {
+                    "type": "object",
+                    "description": "Expected input schema"
+                  },
+                  "output_schema": {
+                    "type": "object",
+                    "description": "Output schema this task produces"
+                  },
+                  "estimated_duration": {
+                    "type": "string",
+                    "description": "Expected execution time (e.g., '30 seconds', '2 minutes')"
+                  }
+                }
+              }
+            },
+            "edges": {
+              "type": "array",
+              "description": "Dependencies between tasks",
+              "items": {
+                "type": "object",
+                "required": ["from_task_id", "to_task_id"],
+                "properties": {
+                  "from_task_id": {
+                    "type": "string",
+                    "description": "Source task ID"
+                  },
+                  "to_task_id": {
+                    "type": "string",
+                    "description": "Destination task ID (depends on source)"
+                  },
+                  "data_passed": {
+                    "type": "string",
+                    "description": "What data is passed between tasks"
+                  }
+                }
+              }
+            },
+            "parallel_execution_opportunities": {
+              "type": "array",
+              "description": "Which tasks can run in parallel",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Array of task IDs that can execute simultaneously"
+              }
+            }
+          }
+        },
+        "handoff_contracts": {
+          "type": "array",
+          "description": "Explicit contracts for agent-to-agent data transfer",
+          "items": {
+            "type": "object",
+            "required": ["from_agent", "to_agent", "input_schema", "output_schema", "invariants", "failure_modes"],
+            "properties": {
+              "from_agent": {
+                "type": "string",
+                "description": "Agent passing data"
+              },
+              "to_agent": {
+                "type": "string",
+                "description": "Agent receiving data"
+              },
+              "input_schema": {
+                "type": "object",
+                "description": "Expected input schema with types, required fields, constraints"
+              },
+              "output_schema": {
+                "type": "object",
+                "description": "Output schema (success and error payloads)"
+              },
+              "invariants": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Conditions that MUST hold true at handoff (e.g., 'All IDs are unique')"
+              },
+              "failure_modes": {
+                "type": "array",
+                "description": "How to handle different failure scenarios",
+                "items": {
+                  "type": "object",
+                  "required": ["condition", "action", "halt_pipeline"],
+                  "properties": {
+                    "condition": {
+                      "type": "string",
+                      "description": "Failure condition (e.g., 'Malformed input', 'Timeout')"
+                    },
+                    "action": {
+                      "type": "string",
+                      "description": "What to do (e.g., 'Return error and halt', 'Log warning and continue')"
+                    },
+                    "halt_pipeline": {
+                      "type": "boolean",
+                      "description": "Whether this failure stops the entire pipeline"
+                    }
+                  }
+                }
+              },
+              "retry_policy": {
+                "type": "object",
+                "description": "Retry behavior for transient failures",
+                "properties": {
+                  "max_retries": {
+                    "type": "integer"
+                  },
+                  "backoff_strategy": {
+                    "type": "string",
+                    "enum": ["linear", "exponential", "none"]
+                  },
+                  "retry_on": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Error types to retry (e.g., ['TIMEOUT', 'RATE_LIMIT'])"
+                  },
+                  "do_not_retry_on": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Error types to never retry (e.g., ['VALIDATION_ERROR'])"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tool_manifest": {
+          "type": "array",
+          "description": "Registry of all tools/services used by agents",
+          "items": {
+            "type": "object",
+            "required": ["tool_id", "tool_name", "owning_agent", "type", "idempotent"],
+            "properties": {
+              "tool_id": {
+                "type": "string",
+                "description": "Unique tool identifier (e.g., 'pdf_extractor')"
+              },
+              "tool_name": {
+                "type": "string",
+                "description": "Human-readable tool name"
+              },
+              "owning_agent": {
+                "type": "string",
+                "description": "Agent that uses this tool"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["API", "Function", "ML_Model", "Database", "External_Service"],
+                "description": "Type of tool"
+              },
+              "idempotent": {
+                "type": "boolean",
+                "description": "CRITICAL: Can this tool be safely retried? (same input = same output, no side effects)"
+              },
+              "timeout_ms": {
+                "type": "integer",
+                "description": "Maximum execution time in milliseconds"
+              },
+              "retry_strategy": {
+                "type": "string",
+                "description": "Retry approach (e.g., 'Exponential backoff (3 attempts)', 'Do not retry')"
+              },
+              "fallback": {
+                "type": "string",
+                "description": "What to do if tool fails (e.g., 'Manual upload form', 'Use cached data')"
+              },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Other tools or services this depends on"
+              }
+            }
+          }
+        }
+      }
+    },
+    "milestones": {
+      "type": "object",
+      "description": "Project phases, timelines, and rollout strategy",
+      "properties": {
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "phase_name": {
+                "type": "string",
+                "description": "Phase name (e.g., 'MVP', 'Phase 2: Integrations')"
+              },
+              "duration": {
+                "type": "string",
+                "description": "Time duration (e.g., '8 weeks')"
+              },
+              "start_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Target start date"
+              },
+              "end_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Target end date"
+              },
+              "deliverables": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Key deliverables for this phase"
+              },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Dependencies or blockers"
+              }
+            }
+          }
+        },
+        "rollout_strategy": {
+          "type": "object",
+          "properties": {
+            "beta_users": {
+              "type": "integer",
+              "description": "Number of beta users"
+            },
+            "beta_duration": {
+              "type": "string",
+              "description": "Beta testing duration"
+            },
+            "ga_date": {
+              "type": "string",
+              "format": "date",
+              "description": "General availability launch date"
+            },
+            "rollout_approach": {
+              "type": "string",
+              "description": "Rollout method (e.g., 'Phased rollout with feature flags', 'Big bang', 'A/B test')"
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Go/no-go criteria and validation checks",
+      "required": ["go_no_go_criteria"],
+      "properties": {
+        "go_no_go_criteria": {
+          "type": "array",
+          "description": "Launch criteria as boolean checks",
+          "items": {
+            "type": "object",
+            "required": ["criterion", "must_pass"],
+            "properties": {
+              "criterion": {
+                "type": "string",
+                "description": "Specific criterion (e.g., 'All P0 features complete')"
+              },
+              "must_pass": {
+                "type": "boolean",
+                "description": "Is this a hard blocker (true) or nice-to-have (false)?"
+              },
+              "validation_method": {
+                "type": "string",
+                "description": "How to validate this (e.g., 'QA test suite', 'Security audit report')"
+              },
+              "owner": {
+                "type": "string",
+                "description": "Who validates this criterion"
+              }
+            }
+          }
+        },
+        "testing_requirements": {
+          "type": "object",
+          "description": "Testing coverage requirements",
+          "properties": {
+            "unit_test_coverage": {
+              "type": "string",
+              "description": "Required coverage (e.g., '> 80%')"
+            },
+            "integration_tests": {
+              "type": "boolean",
+              "description": "Integration tests required?"
+            },
+            "e2e_tests": {
+              "type": "boolean",
+              "description": "End-to-end tests required?"
+            },
+            "load_tests": {
+              "type": "boolean",
+              "description": "Load/performance tests required?"
+            }
+          }
+        }
+      }
+    }
+  }
+}
