@@ -19,8 +19,6 @@ Before you begin, confirm all of the following are in place:
 3. You have access to an Azure account where you can create an Azure AI Foundry resource. New accounts receive $300 in free credits — you will set this up in Step 5.
 4. Download the MSA (Master Services Agreement) sample contract — **[Download From Here](https://drive.google.com/file/d/1kJpujNVGU7Bk8nu35s3BZCtAWo-gHiqb/view?usp=sharing)** — you will upload this into your app when generating the dataset.
 
-**Video walkthrough**: [Watch the full lab walkthrough](https://youtu.be/Is3GgsCEPho?si=WhCt7DQQG_UOMP2o)
-
 ---
 
 ## Phase 1: Prepare Your App to Export Data
