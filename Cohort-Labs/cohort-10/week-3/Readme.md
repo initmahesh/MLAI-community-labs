@@ -27,3 +27,9 @@ Your app's code is in good shape now, but you still have no way to know if it's 
 A feedback form tells you how people *feel* about an answer — not whether it was actually correct. This lab closes that gap. You'll add a **Download Responses** feature to your app that exports real question-and-answer pairs from your live agent, reformat them into a dataset **Azure AI Foundry** can read, and run a structured evaluation that scores every answer across five dimensions: relevance, groundedness, coherence, similarity, and fluency. The result is a scored report — not guesswork — that tells you exactly where your agent is strong and where it falls short.
 
 ---
+
+### [Lab 3.3 — Fix the Greyed-Out Judge Model in Azure AI Foundry](./3.3-foundry-judge-model-fix/Readme.md)
+
+Hitting a locked Judge model dropdown in Lab 3.2 is a common blocker — the dropdown isn't broken, it just has nothing to show yet. This short lab explains exactly why it happens and walks you through deploying the two models you need: **gpt-4.1** (for your first evaluation run) and **gpt-5** (for the comparison run in Step 10). Five minutes and the dropdown opens.
+
+---
