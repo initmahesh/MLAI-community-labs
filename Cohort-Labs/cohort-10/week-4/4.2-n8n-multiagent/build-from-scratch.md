@@ -192,6 +192,8 @@ Contract Content: [reference to extracted text from PDF node]
 
 Click **"Add Option"** inside the AI Agent node and select **"System Message"**. Paste the following:
 
+![image](./images/17.png)
+
 ```
 You are a master contract orchestration agent. 
 You are responsible for reading contracts, 
@@ -393,9 +395,6 @@ Call risk_agent second, get lease risks
 Return combined response with recommendation
 ```
 
-
-![image](./images/17.png)
-
 ---
 
 #### Step 15 — Rename to Orchestration Agent
@@ -477,6 +476,8 @@ Each specialist agent needs three things configured inside it:
 
 Click on the `boundary_guard_agent` node.
 
+![image](./images/25.png)
+
 **Description** — Paste the following. This is what the Orchestration Agent reads when it decides whether to call this agent:
 
 ```
@@ -542,13 +543,13 @@ RESPONSE FORMAT:
 [redirect message from MongoDB]
 ```
 
-![image](./images/25.png)
-
 ---
 
 #### Step 21 — Open playbook_agent
 
 Click on the `playbook_agent` node.
+
+![image](./images/55.png)
 
 **Description** — Paste:
 
@@ -605,6 +606,8 @@ DO NOT ADD ANYTHING BEYOND THE FORMAT ABOVE.
 #### Step 21b — Open risk_agent
 
 Click on the `risk_agent` node.
+
+![image](./images/56.png)
 
 **Description** — Paste:
 
@@ -795,6 +798,7 @@ This step connects the risk_agent to your Snowflake database.
 2. Click **"Tool"** inside the node
 3. Search for `Snowflake` and select the **Snowflake** tool
 4. Click **"Create Credential"** and fill in the fields from your Snowflake config file (saved in of the Snowflake Setup lab):
+![image](./images/54.png)
     - **Account**: your account identifier (e.g. `abc12345.us-east-1`)
     - **Username**: your Snowflake username
     - **Password**: your Snowflake password
