@@ -25,8 +25,8 @@ Before you begin, confirm all of the following are in place:
 
 | File | Download Link | Purpose |
 |---|---|---|
-| `HR-Policy.pdf` | [Download From Here](#) | HR rules covering leave, working hours, remote work, benefits, and more |
-| `Company-Info.pdf` | [Download From Here](#) | Company overview, mission, products, offices, and team structure |
+| `HR-Policy.pdf` | [Download From Here](https://drive.google.com/file/d/1HNgvhgT_wnemB11wJxd6ySEEar50Axbg/view?usp=sharing) | HR rules covering leave, working hours, remote work, benefits, and more |
+| `Company-Info.pdf` | [Download From Here](https://drive.google.com/file/d/1MDxLXW-SgAEi9AAIb1qrDu0REfz6Heow/view?usp=sharing) | Company overview, mission, products, offices, and team structure |
 
 ---
 
