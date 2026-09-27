@@ -2,7 +2,7 @@
 
 Open the notebook using the link below:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-3/3.3-agent-fundamentals/notebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-4/4.4-agent-fundamentals/notebook.ipynb)
 
 
 ### **Note:** When you open the notebook, you may see a warning that says *"This notebook was not authored by Google"*. This is expected since it's loaded from GitHub. If you get this prompt, click on **Run anyway**.
