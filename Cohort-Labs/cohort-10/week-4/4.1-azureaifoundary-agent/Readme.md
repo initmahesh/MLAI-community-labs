@@ -246,30 +246,167 @@ While you're in the Tools section, let's take a quick tour of what else is avail
 
 ---
 
-## Part 4 — Connect Foundry IQ (Knowledge Graph)
+### 3.3 Add a Custom OpenAPI Tool (Airtable CRM Integration)
 
-Foundry IQ is Azure AI Foundry's **knowledge graph and enterprise data connection layer**. This is one of the most powerful — and most underused — features in the platform. Let's break it down.
+This step connects your agent to an **Airtable CRM** via a custom OpenAPI tool, so that when the agent extracts contract details it can automatically save them directly to your Airtable base — no copy-pasting required.
 
-![Foundry IQ](images/10.png)
+#### Step 1 — Add the OpenAPI Tool
 
-### What is Foundry IQ?
+1. In the **Tools** section, click **"Add"**
 
-Foundry IQ sits between your agent and your organization's data. Instead of just searching uploaded files, Foundry IQ can:
+![Upload File](images/32.png)
 
-- Connect to **SharePoint, OneDrive, and Microsoft Graph** data
-- Index your organization's **Teams conversations, emails, and documents**
-- Create a **semantic knowledge graph** — meaning it understands relationships between concepts, not just keyword matches
-- Respect your organization's **permissions model** (users only see data they're already authorized to access)
+2. Go to **"Custom"**
+3. Select **"OpenAPI"** from the list
 
-Note : We have alredy add files in tools so we ont requte it 
+![Upload File](images/33.png)
+
+#### Step 2 — Name and Describe the Tool
+
+Provide a clear name and description so the agent knows when to use it. For example:
+
+- **Name:** `AirtableCRM`
+- **Description:** `Inserts extracted contract details into the Airtable CRM`
+
+#### Step 3 — Set Up Authentication
+
+Under **Authentication Method**, select **"Connection"**, then click **"Add new connection"** and fill in the following:
+
+| Field | Value |
+|---|---|
+| **Key Name** | `Authentication` |
+| **Value** | `Bearer <Token>` |
+
+> **Important:** Replace `<Token>` with the personal access token you generated from Airtable. Make sure to **remove the `<` and `>`** characters — paste only `Bearer yourActualTokenHere`.
+
+![Upload File](images/34.png)
+
+#### Step 4 — Paste the OpenAPI Schema
+
+In the **OpenAPI 3.0+ schema** field, paste the schema below.
+
+Before pasting, you need to replace the two placeholders with your real Airtable IDs:
+
+- `/<<YOUR_BASE_ID>>/<<YOUR_TABLE_ID>>` → go to your Airtable CRM, open the table, and copy the **Base ID** and **Table ID** from the URL (they look like `appXXXXXXXXXXXXXX` and `tblXXXXXXXXXXXXXX`).
+
+![Upload File](images/35.png)
+
+```json
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Airtable CRM insert data API",
+    "description": "Inserts contract details into the Airtable CRM",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "https://api.airtable.com/v0" }
+  ],
+  "security": [
+    { "airtableAuth": [] }
+  ],
+  "paths": {
+    "/<<YOUR_BASE_ID>>/<<YOUR_TABLE_ID>>": {
+      "post": {
+        "summary": "Insert contract details in the table",
+        "operationId": "insertContractDetails",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["records"],
+                "properties": {
+                  "records": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "fields": {
+                          "type": "object",
+                          "properties": {
+                            "ContractName": { "type": "string", "description": "Name or title of the contract." },
+                            "ServiceProviderName": { "type": "string", "description": "Legal name of the service provider." },
+                            "CustomerName": { "type": "string", "description": "Legal name of the customer." },
+                            "Contractstartdate": { "type": "string", "description": "Contract start date in YYYY-MM-DD format." },
+                            "Contractenddate": { "type": "string", "description": "Contract end date in YYYY-MM-DD format." }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "typecast": { "type": "boolean", "default": true }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string" },
+                          "createdTime": { "type": "string" },
+                          "fields": { "type": "object" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "airtableAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  }
+}
+```
+
+#### Step 5 — Test in the Playground
+
+Go to the **Playground** (or Test panel), attach your contract PDF, and run this query:
+
+```
+Extract the contract name, service provider, customer, start date and end date (YYYY-MM-DD) from the uploaded contract, show them in a table, then save them to Airtable using insertContractDetails with this body:
+{"records":[{"fields":{"ContractName":"","ServiceProviderName":"","CustomerName":"","Contractstartdate":"","Contractenddate":""}}],"typecast":true}
+Reply with the Airtable record ID when done.
+```
+
+The agent will extract the contract details, display them in a table, call the Airtable API, and reply with the record ID confirming the data was saved. You can then open your Airtable CRM and see the new row appear automatically.
+
+![Upload File](images/36.png)
+
+
+![Upload File](images/37.png)
+
 
 ---
 
-## Part 5 — Add Memory to Your Agent
+## Part 4 — Add Memory to Your Agent
 
 Without memory, every conversation your agent has starts from zero. The user uploads a contract, gets feedback, asks a follow-up question — and the agent has forgotten everything from two messages ago. Memory fixes this.
 
-### 5.1 Create a Memory Store
+### 4.1 Create a Memory Store
 
 1. In the **Memory** section of the agent configuration page, click **"+ Add"**
 
@@ -300,7 +437,7 @@ Memory is stored as structured records in your memory store backend. When a new 
 
 ---
 
-## Part 6 — Configure Guardrails
+## Part 5 — Configure Guardrails
 
 Your agent comes with **built-in safety guardrails** out of the box — these are content filters and behavioral constraints that prevent the agent from generating harmful, inappropriate, or off-topic responses.
 
@@ -326,11 +463,11 @@ In the **Guardrails** section you can:
 
 ---
 
-## Part 7 — Test Your Agent
+## Part 6 — Test Your Agent
 
 Before deploying to your whole organization, always test in the playground. This is your sandbox.
 
-### 7.1 Run a Test Query
+### 6.1 Run a Test Query
 
 1. In the **Test** panel (usually on the right side of the agent configuration page), you'll see a chat interface
 2. Click the **attachment icon** (paperclip) to attach a contract document — use any sample contract PDF for this from preq section
@@ -350,7 +487,7 @@ Before deploying to your whole organization, always test in the playground. This
 
 ---
 
-## Part 8 — Save Your Agent
+## Part 7 — Save Your Agent
 
 Once you're happy with the test results, save your configuration.
 
@@ -362,11 +499,11 @@ Once you're happy with the test results, save your configuration.
 
 ---
 
-## Part 9 — Publish to Microsoft Teams and Microsoft 365 Copilot
+## Part 8 — Publish to Microsoft Teams and Microsoft 365 Copilot
 
 This is where things get exciting. You're going to take your agent from the Azure portal and put it directly inside Microsoft Teams and Microsoft 365 Copilot — the tools your team uses every day.
 
-### 9.1 Go to the Publish Section
+### 8.1 Go to the Publish Section
 
 1. In the right top corner, click **"Publish"** (or look for a **"Deploy"** tab at the top of your agent page)
 2. You'll see a list of deployment targets — click on **"Teams and Microsoft 365 Copilot"**
@@ -375,7 +512,7 @@ This is where things get exciting. You're going to take your agent from the Azur
 
 ---
 
-### 9.2 Fill in the App Details
+### 8.2 Fill in the App Details
 
 ![Publish Section](images/17.png)
 
@@ -395,7 +532,7 @@ Fill in all fields, then click **"Next"**.
 
 ---
 
-### 9.3 Choose Your Audience
+### 8.3 Choose Your Audience
 
 You'll be asked who can access this agent:
 
@@ -410,7 +547,7 @@ Click **"Publish"**.
 
 ---
 
-### 9.4 Your Agent Is Now Live in Copilot
+### 8.4 Your Agent Is Now Live in Copilot
 
 After publishing, Azure AI Foundry will package your agent as a Microsoft Teams app and make it available in:
 
@@ -421,11 +558,11 @@ After publishing, Azure AI Foundry will package your agent as a Microsoft Teams 
 
 ---
 
-## Part 10 — Open and Test in Microsoft Teams
+## Part 9 — Open and Test in Microsoft Teams
 
 Let's verify everything works end-to-end in the actual Teams environment.
 
-### 10.1 Open the Agent in Teams
+### 9.1 Open the Agent in Teams
 
 1. Go back to the **Publish** section in Azure AI Foundry
 2. Click **"Open in Teams"**
@@ -435,7 +572,7 @@ Let's verify everything works end-to-end in the actual Teams environment.
 
 ---
 
-### 10.2 If the Agent Isn't Visible Yet
+### 9.2 If the Agent Isn't Visible Yet
 
 Sometimes the app takes a few minutes to propagate through the Microsoft 365 ecosystem. If you don't see it automatically:
 
@@ -454,7 +591,7 @@ Sometimes the app takes a few minutes to propagate through the Microsoft 365 eco
 
 ---
 
-### 10.3 Connect the Agent to Azure AI Foundry
+### 9.3 Connect the Agent to Azure AI Foundry
 
 The first time you open the agent in Teams, it will prompt you to **connect to Azure AI Foundry**. This is an authentication step that links your Teams session to your Foundry deployment.
 
@@ -469,9 +606,9 @@ Once connected, the agent is fully operational inside Teams.
 
 ---
 
-### 10.4 Test the Full Flow in Teams
+### 9.4 Test the Full Flow in Teams
 
-Now repeat the test from Part 7, but this time entirely inside Teams:
+Now repeat the test from Part 6, but this time entirely inside Teams:
 
 1. Open a conversation with your agent in Teams
 2. Click the **attachment icon** and upload your contract PDF
@@ -489,17 +626,17 @@ Now repeat the test from Part 7, but this time entirely inside Teams:
 
 ---
 
-## Part 11 — Monitor Your Agent
+## Part 10 — Monitor Your Agent
 
 You've built and deployed an agent — now let's make sure it's running well. Azure AI Foundry has a built-in **Monitoring** section that gives you real-time and historical visibility into your agent's usage.
 
 ![Monitoring Dashboard](images/26.png)
 
-### 11.1 Wait 10–15 Minutes
+### 10.1 Wait 10–15 Minutes
 
 After running some test queries (in the portal and in Teams), wait **10–15 minutes** for the telemetry data to flow into the monitoring dashboard.
 
-### 11.2 Open the Monitoring Section
+### 10.2 Open the Monitoring Section
 
 ![Monitoring Dashboard](images/25.png)
 
@@ -518,7 +655,7 @@ After running some test queries (in the portal and in Teams), wait **10–15 min
 
 ---
 
-## Part 12 — Set Up Continuous Evaluation
+## Part 11 — Set Up Continuous Evaluation
 
 Monitoring tells you *how much* your agent is being used. **Evaluation** tells you *how well* it's performing. This is one of the most valuable — and most overlooked — features in Azure AI Foundry.
 
@@ -526,7 +663,7 @@ Monitoring tells you *how much* your agent is being used. **Evaluation** tells y
 
 Continuous evaluation automatically scores your agent's responses against quality criteria on an ongoing basis. Instead of manually testing your agent after every change, Foundry does it for you and alerts you when quality drops.
 
-### 12.1 Open the Configure Section
+### 11.1 Open the Configure Section
 
 1. In the **Monitoring** section, click the **"Configure"** tab (or look for an **"Evaluation"** option in the sidebar)
 2. Find **"Continuous Evaluation"**
@@ -539,7 +676,7 @@ Continuous evaluation automatically scores your agent's responses against qualit
 
 ---
 
-### 12.2 Choose Built-in Evaluators
+### 11.2 Choose Built-in Evaluators
 
 Once Continuous Evaluation is enabled, you'll be asked to select your evaluators. You have two options:
 
@@ -575,7 +712,7 @@ If you have specific quality criteria that the built-in evaluators don't cover, 
 
 ---
 
-### 12.3 Submit the Evaluation Configuration
+### 11.3 Submit the Evaluation Configuration
 
 1. After selecting your evaluators, click **"Submit"**
 2. Foundry will begin running evaluation jobs against your agent's conversation history
@@ -593,16 +730,15 @@ Congratulations — here's a recap of everything you accomplished:
 |---|---|
 | ✅ Part 1 | Enabled the New Azure AI Foundry experience |
 | ✅ Part 2 | Created and configured an AI agent with a model and instructions |
-| ✅ Part 3 | Added File Search, Web Search, and Code Interpreter tools |
-| ✅ Part 4 | Connected Foundry IQ for enterprise knowledge graph access |
-| ✅ Part 5 | Added a persistent memory store for cross-session context |
-| ✅ Part 6 | Reviewed and customized safety guardrails |
-| ✅ Part 7 | Tested the agent with real contract review queries |
-| ✅ Part 8 | Saved the agent configuration |
-| ✅ Part 9 | Published the agent to Microsoft Teams and M365 Copilot |
-| ✅ Part 10 | Opened and verified the agent in Teams |
-| ✅ Part 11 | Monitored usage, token consumption, and cost |
-| ✅ Part 12 | Enabled continuous evaluation with built-in quality scorers |
+| ✅ Part 3 | Added File Search and Airtable CRM tools |
+| ✅ Part 4 | Added a persistent memory store for cross-session context |
+| ✅ Part 5 | Reviewed and customized safety guardrails |
+| ✅ Part 6 | Tested the agent with real contract review queries |
+| ✅ Part 7 | Saved the agent configuration |
+| ✅ Part 8 | Published the agent to Microsoft Teams and M365 Copilot |
+| ✅ Part 9 | Opened and verified the agent in Teams |
+| ✅ Part 10 | Monitored usage, token consumption, and cost |
+| ✅ Part 11 | Enabled continuous evaluation with built-in quality scorers |
 
 ---
 
@@ -613,7 +749,6 @@ Congratulations — here's a recap of everything you accomplished:
 | **Agent** | An AI assistant with a specific job, tools, and memory |
 | **Instructions (System Prompt)** | The rulebook the agent follows — defines its role and behavior |
 | **File Search** | Lets the agent read and reference uploaded documents |
-| **Foundry IQ** | Connects the agent to your organization's Microsoft 365 data |
 | **Memory Store** | A database that lets the agent remember things between sessions |
 | **Guardrails** | Safety filters that keep the agent on-task and appropriate |
 | **Monitoring** | Tracks usage, cost, and error rates in real time |
