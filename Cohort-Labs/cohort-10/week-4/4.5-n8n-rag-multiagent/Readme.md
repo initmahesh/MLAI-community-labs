@@ -49,6 +49,12 @@ Before starting, confirm all of the following are in place:
 
 > If any of the above are missing, stop here and complete the relevant setup lab before continuing.
 
+**Want to skip straight to testing?**
+
+If you already have all the above set up and just want to see the finished workflow in action, download the completed workflow JSON here: [Agentic RAG Multiagent Workflow](https://drive.google.com/file/d/1wk9Mmm8Gmma5Dllt9WyfS-82LL3E25KX/view?usp=sharing)
+
+Import it into n8n, add your credentials (OpenAI, MongoDB, Snowflake), and jump straight to [Running the Tests](#running-the-tests).
+
 ---
 
 ## Where We Are Starting From
