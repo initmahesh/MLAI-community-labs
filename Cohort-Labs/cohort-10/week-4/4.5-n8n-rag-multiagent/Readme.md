@@ -884,7 +884,7 @@ Before running tests, verify every item below:
 **What you're doing:** Verifying each path through the updated pipeline using five messages that cover different agent routes and the memory feature.
 
 **Action items:**
-1. Open the contract review app you built in [Lab 2.3.1](../week-2/2.3.1-web-layer/Readme.md). Go to your `contract-review-app` folder and double-click `index.html` — this opens the app in your browser.
+1. Open the contract review app you built in [Lab 2.3.1](https://github.com/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-2/2.3.1-web-layer/Readme.md). Go to your `contract-review-app` folder and double-click `index.html` — this opens the app in your browser.
 2. Go to your n8n canvas and click **Execute Workflow** for **webhook** to activate the workflow.
 3. Upload a contract PDF using the upload button before sending any messages.
 4. If you are using the test URL in n8n, each time you send a message in the chat, go back to the n8n canvas and click **Execute Workflow** on **Webhook 1** before sending the next message. The test URL only listens for one request at a time — you need to re-trigger it for each message.
