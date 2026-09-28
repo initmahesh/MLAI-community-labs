@@ -43,8 +43,8 @@ The Agentic RAG workflow you built in Lab 2.3 answers questions from an uploaded
 Before starting, confirm all of the following are in place:
 
 1. You have completed Lab 2.3 (Agentic RAG). Your n8n workflow has two Webhook nodes, an Intent Router, a Direct Response Agent, an AI Node — Query Rewriter, an AI Agent, two Vector Store nodes, and two Respond to Webhook nodes — all wired and working.
-2. You have a **MongoDB Atlas** cluster with the `testdataset` collection loaded. If you have not set this up, complete the [MongoDB Setup lab](../week-4/4.2-n8n-multiagent/setup/mongoDBSetup/Readme.md) first and save your connection string.
-3. You have a **Snowflake** account with the `CONTRACT_DB.PUBLIC.CONTRACT_RISKS` table loaded. If you have not set this up, complete the [Snowflake Setup lab](../week-4/4.2-n8n-multiagent/setup/snowflakeSetup/Readme.md) first and save your account identifier, username, password, and warehouse name.
+2. You have a **MongoDB Atlas** cluster with the `testdataset` collection loaded. If you have not set this up, complete the [MongoDB Setup lab](https://github.com/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-4/4.2-n8n-multiagent/setup/mongoDBSetup/Readme.md) first and save your connection string.
+3. You have a **Snowflake** account with the `CONTRACT_DB.PUBLIC.CONTRACT_RISKS` table loaded. If you have not set this up, complete the [Snowflake Setup lab](https://github.com/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-4/4.2-n8n-multiagent/setup/snowflakeSetup/Readme.md) first and save your account identifier, username, password, and warehouse name.
 4. You have your **OpenAI API key** — the same one used in Lab 2.3.
 
 > If any of the above are missing, stop here and complete the relevant setup lab before continuing.
@@ -59,7 +59,7 @@ Import it into n8n, add your credentials (OpenAI, MongoDB, Snowflake), and jump 
 
 ## Where We Are Starting From
 
-This lab picks up from the Agentic RAG workflow you built in [Lab 2.3](../week-2/2.3-n8n-agenticRAG/Readme.md). That workflow has two Webhook nodes, an Intent Router, a Direct Response Agent, an AI Node — Query Rewriter, an AI Agent node, two Vector Store nodes, and two Respond to Webhook nodes.
+This lab picks up from the Agentic RAG workflow you built in [Lab 2.3](https://github.com/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-2/2.3-n8n-agenticRAG/Readme.md). That workflow has two Webhook nodes, an Intent Router, a Direct Response Agent, an AI Node — Query Rewriter, an AI Agent node, two Vector Store nodes, and two Respond to Webhook nodes.
 
 Every change below happens inside that workflow. Open it in n8n before continuing.
 
