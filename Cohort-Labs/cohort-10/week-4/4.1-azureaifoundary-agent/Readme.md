@@ -375,7 +375,7 @@ Before pasting, you need to replace the two placeholders with your real Airtable
       "airtableAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "Authorization"
+        "name": "Authentication"
       }
     }
   }
@@ -388,7 +388,8 @@ Go to the **Playground** (or Test panel), attach your contract PDF, and run this
 
 ```
 Extract the contract name, service provider, customer, start date and end date (YYYY-MM-DD) from the uploaded contract, show them in a table, then save them to Airtable using insertContractDetails with this body:
-{"records":[{"fields":{"ContractName":"","ServiceProviderName":"","CustomerName":"","Contractstartdate":"","Contractenddate":""}}],"typecast":true}
+{"records":[{"fields":{"Contract Name":"","Service Provider":"","Customer":"","Start Date":"","End Date":""}}],"typecast":true}
+If a field isn't found in the contract, omit it from the request instead of sending an empty string.
 Reply with the Airtable record ID when done.
 ```
 
