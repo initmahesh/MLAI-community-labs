@@ -326,11 +326,11 @@ Before pasting, you need to replace the two placeholders with your real Airtable
                         "fields": {
                           "type": "object",
                           "properties": {
-                            "ContractName": { "type": "string", "description": "Name or title of the contract." },
-                            "ServiceProviderName": { "type": "string", "description": "Legal name of the service provider." },
-                            "CustomerName": { "type": "string", "description": "Legal name of the customer." },
-                            "Contractstartdate": { "type": "string", "description": "Contract start date in YYYY-MM-DD format." },
-                            "Contractenddate": { "type": "string", "description": "Contract end date in YYYY-MM-DD format." }
+                            "Contract Name": { "type": "string", "description": "Name or title of the contract." },
+                            "Service Provider": { "type": "string", "description": "Legal name of the service provider." },
+                            "Customer": { "type": "string", "description": "Legal name of the customer." },
+                            "Start Date": { "type": "string", "description": "Contract start date in YYYY-MM-DD format." },
+                            "End Date": { "type": "string", "description": "Contract end date in YYYY-MM-DD format." }
                           }
                         }
                       }
@@ -385,6 +385,8 @@ Before pasting, you need to replace the two placeholders with your real Airtable
 #### Step 5 — Test in the Playground
 
 Go to the **Playground** (or Test panel), attach your contract PDF, and run this query:
+
+> **Important:** Make sure the column names in Airtable matchs the field names in Prompt and the property names in the schema.
 
 ```
 Extract the contract name, service provider, customer, start date and end date (YYYY-MM-DD) from the uploaded contract, show them in a table, then save them to Airtable using insertContractDetails with this body:
