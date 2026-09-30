@@ -274,7 +274,7 @@ Under **Authentication Method**, select **"Connection"**, then click **"Add new 
 
 | Field | Value |
 |---|---|
-| **Key Name** | `Authentication` |
+| **Key Name** | `Authorization` |
 | **Value** | `Bearer <Token>` |
 
 > **Important:** Replace `<Token>` with the personal access token you generated from Airtable. Make sure to **remove the `<` and `>`** characters — paste only `Bearer yourActualTokenHere`.
@@ -375,7 +375,7 @@ Before pasting, you need to replace the two placeholders with your real Airtable
       "airtableAuth": {
         "type": "apiKey",
         "in": "header",
-        "name": "Authentication"
+        "name": "Authorization"
       }
     }
   }
