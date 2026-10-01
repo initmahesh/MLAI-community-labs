@@ -571,6 +571,10 @@ Let's verify everything works end-to-end in the actual Teams environment.
 2. Click **"Open in Teams"**
 3. This will deep-link directly to your agent in the Microsoft Teams desktop or web app
 
+> **Note:** To open the agent in Teams, you must be signed in with a **work or company Microsoft account**. Personal Microsoft accounts are not supported for Teams app integrations.
+>
+> If you don't have a work/company account, **skip this step** — test your agent in the Playground instead, then proceed directly to **Part 10**.
+
 ![Open in Teams](images/20.png)
 
 ---
@@ -669,57 +673,127 @@ Continuous evaluation automatically scores your agent's responses against qualit
 ### 11.1 Open the Configure Section
 
 1. In the **Monitoring** section, click the **"Configure"** tab (or look for an **"Evaluation"** option in the sidebar)
-2. Find **"Continuous Evaluation"**
+2. Find **"Evaluations"**
 
 ![Continuous Evaluation](images/27.png)
 
-3. Toggle it to **Enabled**
+3. Switch to the **Evaluation Alerts** tab and toggle it to **Enabled**
 
-![Continuous Evaluation](images/28.png)
+4. Click **"Submit"** to save the configuration
+
+![Evaluation Alerts](images/28.png)
 
 ---
 
-### 11.2 Choose Built-in Evaluators
+### 11.2 Run a Evaluation
 
-Once Continuous Evaluation is enabled, you'll be asked to select your evaluators. You have two options:
+Now that alerts are configured, let's actually run an evaluation against your agent's real conversation history.
 
-![Continuous Evaluation](images/29.png)
+1. Switch to the **Recurring evaluations** tab
 
-**Option A — Built-in Evaluators (recommended for getting started):**
+2. Click **"Create recurring evaluation"** — this opens a new multi-step page
 
-Azure AI Foundry includes a library of pre-built evaluators. Click **"Built-in eval"** to see the full list:
+![Create Recurring Evaluation](images/30.png)
 
-| Evaluator | What it measures |
+---
+
+In the page that opened, you'll walk through a multi-step setup page — here's what to do at each step:
+
+#### Step 1 — Target
+
+This is where you tell Foundry *what* to evaluate — pick the agent whose conversations you want scored.
+
+Under **Target**, select your **Agent** from the dropdown, then click **"Next"**
+
+![Select Agent Target](images/38.png)
+
+---
+
+#### Step 2 — Scope
+
+This controls the granularity — evaluating individual turns means each message-response pair gets its own quality score.
+
+Under **Scope**, select **"Individual turns"**, then click **"Next"**
+
+![Select Scope](images/39.png)
+
+---
+
+#### Step 3 — Frequency
+
+This sets how often the evaluation runs — one time means it runs immediately against your existing data, not on a schedule.
+
+Under **Frequency**, select **"One time"**, then click **"Next"**
+
+![Select Frequency](images/40.png)
+
+---
+
+#### Step 4 — Data
+
+This is the conversation history Foundry will score — it pulls from real traces logged when you tested the agent.
+
+Under **Data**, select **"Existing traces"**
+
+> **Important:** This only works if you've already tested your agent in the Playground or Teams. If you haven't sent any messages yet, go back and try a few queries first, then return here.
+
+Once your traces load, click **"Next"**
+
+![Select Existing Traces](images/41.png)
+
+---
+
+#### Step 5 — Criteria
+
+This defines what "good" looks like — Azure AI Foundry pre-selects a comprehensive set of evaluators across three categories. Here's what each one measures:
+
+**Agents**
+
+| Evaluator | What it checks |
 |---|---|
-| **Groundedness** | Are the agent's responses supported by the source documents, or is it hallucinating? |
-| **Relevance** | Are responses actually answering the user's question? |
-| **Coherence** | Are responses logically structured and easy to follow? |
+| **ToolCallSuccess** | Did the agent call the right tools (e.g. File Search, Airtable) successfully? |
+| **IntentResolution** | Did the agent correctly understand what the user was asking for? |
+| **TaskCompletion** | Did the agent actually complete the task end-to-end? |
+| **TaskAdherence** | Did the agent stick to its instructions and stay on-topic? |
+| **CustomerSatisfaction** | Would the user likely be satisfied with this response? |
+
+**Quality**
+
+| Evaluator | What it checks |
+|---|---|
+| **Relevance** | Is the response directly answering the user's question? |
+| **OutputQuality** | Is the overall output well-formed and useful? |
+| **Groundedness** | Is the response supported by the source documents, or is the agent hallucinating? |
 | **Fluency** | Is the language natural and grammatically correct? |
-| **Similarity** | How close is the response to a "gold standard" ideal answer? |
-| **F1 Score** | Precision and recall of factual claims in the response |
+| **Coherence** | Is the response logically structured and easy to follow? |
 
-Select the evaluators most relevant to your use case. For a contract review agent, **Groundedness** and **Relevance** are the most critical — you need responses that are factually tied to the contract, not made up.
+**Safety**
 
-**Option B — Custom Evaluators:**
+| Evaluator | What it checks |
+|---|---|
+| **Violence** | Does the response contain or promote violent content? |
+| **Sexual** | Does the response contain inappropriate sexual content? |
+| **SelfHarm** | Does the response encourage or describe self-harm? |
+| **ProtectedMaterial** | Does the response reproduce copyrighted or protected material? |
+| **IndirectAttack** | Is the agent being manipulated via prompt injection through user input? |
+| **HateAndUnfairness** | Does the response contain hateful, biased, or discriminatory language? |
+| **CodeVulnerability** | Does any generated code contain security vulnerabilities? |
 
-If you have specific quality criteria that the built-in evaluators don't cover, you can create custom evaluators by:
-1. Clicking **"Create custom eval"**
-2. Writing an evaluation prompt — essentially asking a separate LLM to judge the output
-3. Defining the scoring criteria (e.g., 1–5 scale, pass/fail)
+Leave everything as-is and click **"Next"**
 
-![Continuous Evaluation](images/30.png)
-
-> **Example custom evaluator prompt:**
-> *"On a scale of 1–5, how well does this response identify contractual risks? 5 = identifies all major risks with specific citations. 1 = misses obvious risks or provides unsupported claims."*
-
+![Evaluation Criteria](images/42.png)
 
 ---
 
-### 11.3 Submit the Evaluation Configuration
+#### Step 6 — Review & Submit
 
-1. After selecting your evaluators, click **"Submit"**
-2. Foundry will begin running evaluation jobs against your agent's conversation history
-3. Results appear in the Monitoring dashboard — you'll see quality scores over time, not just usage metrics
+A final summary of your setup — give it a meaningful name so you can find it later in the dashboard.
+
+Review the configuration, optionally rename the evaluation (e.g. `agent-evaluations`), then click **"Submit"**
+
+![Review and Submit](images/43.png)
+
+Foundry will now run the evaluation job against your traces. Results will appear in the Monitoring dashboard — you'll see quality scores alongside your usage metrics.
 
 > **The big picture:** When you combine monitoring (usage + cost) with continuous evaluation (quality scores), you have a complete picture of your agent's health. You'll know when to scale up, when to optimize, and when something has gone wrong — before your users tell you about it.
 
