@@ -1,12 +1,10 @@
-# AI App Development with Claude Code
-
----
+# AI App Development with Claude Code and Azure AI Foundry
 
 ## What This Course Teaches
 
-This is a **three-lab hands-on path** that teaches you how world-class engineering teams build AI products — not just how to prompt.
+This is a **four-lab hands-on path** that teaches you how world-class engineering teams build AI products — not just how to prompt.
 
-You will build **ContractIQ**: a full-stack AI application where users upload a contract PDF and get a structured breakdown of every clause that matters, with multi-turn chat, persistent memory, row-level database security, and automatic deployment.
+You will build **ContractIQ**: a full-stack AI application where users upload a contract PDF and get a structured breakdown of every clause that matters, with multi-turn chat, persistent memory, row-level database security, automatic deployment, and an Azure AI Foundry agent powering the backend with real-time usage and monitoring.
 
 But the application is the vehicle, not the destination.
 
@@ -22,25 +20,28 @@ Add memory intentionally
 Secure before you ship
 ↓
 Deploy with confidence
+↓
+Connect to Azure AI Foundry
 ```
 
 Every Claude prompt you write in this course follows that sequence. By the end, you won't just have a deployed app — you'll have a mental model for building AI products that hold together.
 
 ---
 
-## The Three Labs
+## The Four Labs
 
 | Lab | What You Do | Lessons |
 |---|---|---|
 | **[Lab 1 — Planning & Architecture](./01-Planning-and-Architecture-Lab/readme.md)** | Build the foundation that makes every future prompt coherent — the product spec, design system, engineering document, and implementation blueprint | 3 |
 | **[Lab 2 — Building the Application](./02-Building-the-Application-Lab/readme.md)** | Use Claude Code to scaffold the app, implement every feature, and add a persistent memory layer to the chat assistant | 2 |
 | **[Lab 3 — Security & Deployment](./03-Security-and-Deployment-Lab/readme.md)** | Scan and fix every security vulnerability, then push to GitHub and deploy live on Netlify | 2 |
+| **[Lab 4 — Azure AI Agent Integration](./04-integration-of-your-app-with-azureagent/Readme.md)** | Replace the OpenAI backend with an Azure AI Foundry agent, add your Azure keys, redeploy to Netlify, and monitor every conversation in real time via Traces | 1 |
 
-Work through them **in order**. Each lab builds directly on what the previous one produced — the engineering documents from Lab 1 drive every build prompt in Lab 2, and you cannot harden and deploy something that doesn't exist yet.
+Work through them **in order**. Each lab builds directly on what the previous one produced — the engineering documents from Lab 1 drive every build prompt in Lab 2, you cannot harden and deploy something that doesn't exist yet, and Lab 4 requires both a live app (Lab 1–3) and an Azure AI agent (Week 4 — Lab 01).
 
 ```
-Lab 1: Planning        →   Lab 2: Building        →   Lab 3: Ship It
-(no app code yet)          (app runs on localhost)     (app is live on the internet)
+Lab 1: Planning        →   Lab 2: Building        →   Lab 3: Ship It        →   Lab 4: Azure AI
+(no app code yet)          (app runs on localhost)     (app is live online)       (agent powers the app)
 ```
 
 ---
@@ -70,6 +71,7 @@ Every choice here was made deliberately. You're not picking the stack — it's f
 | **AI** | Claude API (Anthropic) | Powers the contract analysis and chat — the same model you're using as your build tool |
 | **Deployment** | Netlify | Zero-config deployment from GitHub with encrypted environment variables and automatic redeploys |
 | **Build tool** | Claude Code CLI | Plans, writes, secures, and debugs the application — run from the VS Code integrated terminal |
+| **AI Agent Platform** | Azure AI Foundry | Hosts and runs the AI agent that powers your app's chat; provides real-time Traces with token usage and monitoring per conversation |
 
 ---
 

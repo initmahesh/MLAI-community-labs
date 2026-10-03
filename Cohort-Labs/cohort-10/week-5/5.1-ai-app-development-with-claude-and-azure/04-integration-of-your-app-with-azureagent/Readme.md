@@ -12,7 +12,7 @@ In this lesson, you are going to build the bridge between them. By the end, your
 
 Before you touch anything in this lesson, make sure you have completed:
 
-- **Week 5 — Lab 01** — This is where you built your web application. If you have not done this yet, stop here, complete that lab, and come back.
+- **Web Application Project** — You should already have your web application built and working. If you have not done this yet, stop here, complete that lab, and come back.
 
 - **Week 4 — Lab 01** — This is where you created your AI agent inside Azure AI Foundry.
 
@@ -95,7 +95,7 @@ Once Claude finishes, you need to add two new keys to your `.env` file: `AZURE_A
 
 **How to get your Azure keys:**
 
-1. Make sure you have completed Week 3 — Lab 01 before proceeding.
+1. Make sure you have completed Week 4 — Lab 01 before proceeding.
 2. Open the **Azure AI Foundry** dashboard.
 3. Go to the **API Keys** section and copy your `AZURE_API_KEY`.
 
@@ -155,7 +155,7 @@ While you are still in Claude, paste in this prompt to push your latest changes 
 > push latest changes to github
 > ```
 
-Claude will handle the push for you. Since you connected GitHub to **Netlify** back in Week 1, Netlify will automatically detect the new code and redeploy your app without you needing to do anything extra.
+Claude will handle the push for you. Since you connected GitHub to **Netlify** back in Previous lab, Netlify will automatically detect the new code and redeploy your app without you needing to do anything extra.
 
 > **Netlify** is the platform that hosts your web app and makes it accessible to anyone on the internet. **GitHub** is where your code is stored — and the two are linked so that every time you push new code to GitHub, Netlify automatically picks it up and updates your live site.
 
