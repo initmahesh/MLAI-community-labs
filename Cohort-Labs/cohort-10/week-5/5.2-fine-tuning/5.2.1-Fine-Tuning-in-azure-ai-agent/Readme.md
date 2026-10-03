@@ -101,6 +101,8 @@ Before you start, make sure you have completed:
 
 ## Phase 2: Fine-Tune the Model
 
+Now that you've seen the problem — the agent returning a full legal briefing when a single sentence would do — the next step is to fix it. That's what fine-tuning is for.
+
 ### Step 2: Open the Fine-Tuning Section
 
 **What you're doing**: Navigating to the fine-tuning feature inside Azure AI Foundry where you'll create the training job.
@@ -110,8 +112,6 @@ Before you start, make sure you have completed:
 **Action items**:
 
 1. In the left sidebar of your Azure AI Foundry project, scroll down until you see **Fine-tuning** and click it.
-
-![image](./assets/7.png)
 
 2. You'll see a screen listing any previous fine-tuning jobs (probably empty for now). Click the **Fine-tune** button in the top right corner.
 
@@ -162,13 +162,9 @@ Before you start, make sure you have completed:
 
 2. On the datasets screen, click **Upload** under **Training dataset** and select the training file you downloaded.
 
-![image](./assets/10.png)
-
 3. Click **Upload** under **Validation dataset** and select the validation file.
 
-![image](./assets/11.png)
-
-4. Wait for both files to show a green checkmark or "Uploaded" status.
+4. Wait for both files to show a green checkmark.
 
 ![image](./assets/12.png)
 
@@ -188,7 +184,7 @@ The form shows these settings:
 
 | Setting | What It Does | Why Default Is Fine |
 |---|---|---|
-| **Display name** | A label for this fine-tuning job so you can find it later | Leave it auto-generated — you can always rename after |
+| **Display name** | A label for this fine-tuning job so you can find it later | Leave it auto-generated or you can change its name |
 | **Seed** | A random starting point for the training process | Keeping it random ensures a fair, unbiased run |
 | **Automatically deploy model after job completion** | Whether Foundry deploys the trained model as soon as training finishes | Leave off for now — you'll deploy manually in Phase 3 so you can review it first |
 | **Hyperparameter tuning** | Whether Foundry experiments with different training settings automatically | Not needed for a first run — keep simple |
@@ -202,8 +198,6 @@ The form shows these settings:
 
 1. Read through the settings — no changes needed.
 2. Click **Submit**.
-
-![image](./assets/14.png)
 
 **Output**: Your fine-tuning job is submitted. Foundry now takes over.
 
@@ -225,11 +219,7 @@ The form shows these settings:
 
 1. After submitting, you'll see your job appear in the fine-tuning list with the status **Queued**.
 
-![image](./assets/15.png)
-
 2. After a few minutes, the status changes to **Running**. This is where the actual learning happens — you can step away and come back.
-
-![image](./assets/16.png)
 
 3. When training finishes, the status updates to **Completed**. You'll see your new fine-tuned model listed here with its name and configuration details.
 
@@ -253,11 +243,7 @@ The form shows these settings:
 
 1. In the left sidebar, click **Agents**.
 
-![image](./assets/18.png)
-
 2. Click on your contract-review agent to open it.
-
-![image](./assets/19.png)
 
 ---
 
@@ -268,8 +254,6 @@ The form shows these settings:
 **Action items**:
 
 1. In the agent configuration panel, find the **Model** dropdown at the top.
-
-![image](./assets/20.png)
 
 2. Click the dropdown and select **Browse more models** at the bottom of the list.
 
@@ -309,8 +293,6 @@ The form shows these settings:
 
 1. In the agent playground, upload the same sample contract you used in Step 1.
 
-![image](./assets/26.png)
-
 2. Type the exact same question:
 
 > **How long does the Company have to pay an invoice?**
@@ -342,9 +324,3 @@ The agent didn't change. The instructions didn't change. The contract didn't cha
 You didn't just make one answer shorter. You changed how the model handles an entire class of questions. Every time someone asks a direct factual question about a contract, your fine-tuned model will now default to giving a direct factual answer — not a legal brief.
 
 That's the difference between patching symptoms and fixing root causes.
-
----
-
-## What's Next
-
-Your agent now responds more precisely to factual questions. The next step is to evaluate whether this improvement holds up across a broader set of questions — which is exactly what the evaluation labs (Lab 3.2) were built to help you measure. Run your fine-tuned model through the same evaluation pipeline you set up in Week 3 and compare the scores. You should see improvements in **Relevance** and **Groundedness** in particular.
