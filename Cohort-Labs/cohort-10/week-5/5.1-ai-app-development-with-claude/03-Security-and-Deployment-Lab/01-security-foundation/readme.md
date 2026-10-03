@@ -6,10 +6,6 @@
 
 # Lesson 1 — Security Foundation
 
-![images](./images/banner.png)
-
----
-
 ## Why Security Breaks Happen
 
 Here's the uncomfortable truth about building quickly with AI.
