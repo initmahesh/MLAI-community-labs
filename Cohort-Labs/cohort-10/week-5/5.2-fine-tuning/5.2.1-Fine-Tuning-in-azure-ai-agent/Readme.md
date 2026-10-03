@@ -157,8 +157,8 @@ Now that you've seen the problem — the agent returning a full legal briefing w
 
 | File | Download Link | Purpose |
 |---|---|---|
-| Training dataset | [Download training data](https://drive.google.com/drive/folders/1YNXAKMBqnQR3sWr_mPBhxPOW4oGj8zCl?usp=sharing) | The examples the model learns from — questions paired with the kind of direct, grounded answers you want |
-| Validation dataset | [Download validation data](https://drive.google.com/drive/folders/1YNXAKMBqnQR3sWr_mPBhxPOW4oGj8zCl?usp=sharing) | A separate set of examples the model doesn't learn from but checks itself against — this tells you if training is working |
+| Training dataset | [Download training data](https://drive.google.com/file/d/1Mpc9OMFf9w41HAXG0LaPPtic_iwt3-9s/view?usp=sharing) | The examples the model learns from — questions paired with the kind of direct, grounded answers you want |
+| Validation dataset | [Download validation data](https://drive.google.com/file/d/1ZkdyJeZFySRxDSf2sNvkY0KF5sJhnX2g/view?usp=sharing) | A separate set of examples the model doesn't learn from but checks itself against — this tells you if training is working |
 
 2. On the datasets screen, click **Upload** under **Training dataset** and select the training file you downloaded.
 
