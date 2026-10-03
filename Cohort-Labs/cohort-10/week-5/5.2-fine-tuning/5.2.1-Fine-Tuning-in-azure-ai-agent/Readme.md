@@ -14,21 +14,21 @@ That's exactly what this lab is about. You're going to see a real example of you
 
 ## The Problem: Your Agent is Doing Too Much
 
-Let's look at a real example. Open your agent in Azure AI Foundry (the same one you built in Week 4), upload the sample contract, and ask it this simple question:
+Consider a simple factual question asked against a contract:
 
 > **How long does the Company have to pay an invoice?**
 
-It's a factual question with a one-sentence answer buried somewhere in the contract. The answer you want is something like: *"The Company has 30 days from the invoice date to make payment."*
+It's a one-sentence answer buried somewhere in the document. The expected response is something like: *"The Company has 30 days from the invoice date to make payment."*
 
-Here's what the agent actually says:
+Here's what the agent actually returns:
 
 ![image](./assets/1.png)
 
-The response is several paragraphs long. It mentions payment terms, yes — but it also includes a risk analysis, recommendations for your legal team, a risk score out of 10, notes about what to watch out for, and general advice about contract negotiations. None of that was asked for.
+The response is several paragraphs long. It mentions payment terms, yes — but it also includes a risk analysis, a risk score out of 10, notes about what to watch out for, and general advice about contract negotiations. None of that was asked for.
 
-**The agent isn't wrong — it's just doing way more than you asked.**
+**The agent isn't wrong — it's just doing way more than required.**
 
-This happens because the base model (gpt-4.1) was trained to be helpful in a general sense. When it sees a legal contract and a question, its instinct is to give you everything it knows about the topic. It doesn't know that for your use case, you just want the fact from the document — not a full legal briefing.
+This happens because the base model (gpt-4.1) was trained to be helpful in a general sense. When it sees a legal contract and a question, its instinct is to give everything it knows about the topic. It doesn't know that for this use case, only the fact from the document is needed — not a full legal briefing.
 
 ---
 
@@ -44,9 +44,9 @@ You can try, and it helps a little. But the model keeps falling back into its ol
 
 ## What Fine-Tuning Actually Does
 
-Think of it this way. The base gpt-4.1 model is like a very smart new hire on their first day. They're brilliant, have read everything, and want to impress you — so they over-explain every answer and add commentary you didn't ask for.
+Think of it this way. The base gpt-4.1 model knows a lot — but without guidance, it tends to over-explain every answer and add commentary you didn't ask for.
 
-Fine-tuning is the training process. You sit with them, go through case after case, and show them: "For this kind of question, this is the right kind of answer." After enough examples, they internalize the pattern. You don't need to remind them every time.
+Fine-tuning is the process of showing it examples. You go through case after case: "For this kind of question, this is the right kind of answer." After enough examples, the model internalizes the pattern. You don't need to spell it out every time.
 
 In this lab, you'll:
 
@@ -62,7 +62,6 @@ In this lab, you'll:
 Before you start, make sure you have completed:
 
 - **Week 4, Lab 4.1** — You should have an AI agent built inside Azure AI Foundry that can read contracts and answer questions.
-- **Week 5, Lab 5.1** — Your agent is connected to your web app.
 - **Azure AI Foundry access** — You'll need to be inside your Foundry project. If you're not sure which one, open the same one you used in Week 4.
 - **Sample contract downloaded** — [Download the sample contract here](https://drive.google.com/file/d/1kJpujNVGU7Bk8nu35s3BZCtAWo-gHiqb/view?usp=sharing). You'll upload this when testing.
 
@@ -78,21 +77,15 @@ Before you start, make sure you have completed:
 
 **Action items**:
 
-1. Go to [Azure AI Foundry](https://ai.azure.com) and open your project.
-
-![image](./assets/2.png)
+1. Go to [Azure AI Foundry](https://ai.azure.com) and open your project and click on **Build** in navbar.
 
 2. In the left sidebar, click **Agents**.
-
-![image](./assets/3.png)
 
 3. Open the contract-review agent you built in Week 4.
 
 ![image](./assets/4.png)
 
-4. In the agent playground on the right, upload the sample contract using the file upload button (look for a paperclip or attachment icon).
-
-![image](./assets/5.png)
+4. In the agent playground on the right, upload the sample contract using the file upload button.
 
 5. Once the contract is uploaded, type this question in the chat box and press Enter:
 
@@ -100,7 +93,7 @@ Before you start, make sure you have completed:
 
 6. Read the full response carefully. Notice: how many paragraphs did it write? Did it mention risks? Did it give a score or recommendations?
 
-![image](./assets/6.png)
+![image](./assets/1.png)
 
 **Output**: You've seen the problem first-hand. The response is technically accurate but far too verbose for a simple factual question. It includes risk analysis, recommendations, and scores that no one asked for.
 
