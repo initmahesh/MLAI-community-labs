@@ -1,10 +1,8 @@
-# Lesson 02 — Connecting Your Azure AI Agent to Your App
-
----
+# Connecting Your Azure AI Agent to Your App
 
 ## Before We Begin
 
-You have already built a smart AI agent inside Azure AI Foundry, and you have a working web application from Week 1. Right now, those two things exist in completely separate worlds — your app does not know about your agent, and your agent has no idea your app exists.
+You have already built a smart AI agent inside Azure AI Foundry, and you have a working web application. Right now, those two things exist in completely separate worlds — your app does not know about your agent, and your agent has no idea your app exists.
 
 In this lesson, you are going to build the bridge between them. By the end, your app will talk to your Azure AI agent, and you will be able to watch every conversation happening in real time — including how many AI tokens are being used and exactly what it is costing you.
 
@@ -14,8 +12,9 @@ In this lesson, you are going to build the bridge between them. By the end, your
 
 Before you touch anything in this lesson, make sure you have completed:
 
-- **Week 1 Lab** — This is where you built your web application. If you have not done this yet, stop here, complete that lab, and come back.
-- **Week 3 — Lab 01** — This is where you created your AI agent inside Azure AI Foundry.
+- **Week 5 — Lab 01** — This is where you built your web application. If you have not done this yet, stop here, complete that lab, and come back.
+
+- **Week 4 — Lab 01** — This is where you created your AI agent inside Azure AI Foundry.
 
 Both of those need to be done before this lesson makes any sense. Think of them as building the two ends of a bridge — this lesson is the final connection.
 
@@ -31,11 +30,11 @@ Azure AI Foundry is Microsoft's platform for building and managing AI agents —
 
 ---
 
-### Step 1 — Open Your Week 1 Project
+### Step 1 — Open Your Project
 
-Open VS Code and load the project you built in Week 1. If you were using **DevOS**, open that in your VS Code.
+Open VS Code and load the project you built. If you were using **DevOS**, open that in your VS Code.
 
-> **VS Code** is the code editor you have been using throughout the bootcamp — the tool where you write and edit code. **DevOS** is a ready-made, cloud-hosted version of that environment so you do not need to set anything up on your personal computer.
+> **VS Code** is the code editor you have been using throughout the project development — the tool where you write and edit code. **DevOS** is a ready-made, cloud-hosted version of that environment so you do not need to set anything up on your personal computer.
 
 ![images](./images/1.png)
 
@@ -198,5 +197,3 @@ This is where you can monitor your app's real usage, catch problems early, and u
 ## You Did It
 
 You have connected your web app to your Azure AI agent. Your app now has a brain powered by Azure AI Foundry, and you can watch that brain work in real time through the Traces dashboard.
-
-In the next lesson, you will go deeper into how to read and act on those traces — turning raw data into real insights about how your AI is performing.
