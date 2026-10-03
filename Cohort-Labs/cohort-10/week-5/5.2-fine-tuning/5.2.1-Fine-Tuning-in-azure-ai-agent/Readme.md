@@ -182,11 +182,12 @@ Now that you've seen the problem — the agent returning a full legal briefing w
 
 The form shows these settings:
 
-| Setting | What It Does | Why Default Is Fine |
+| Setting | What It Does | What to Set |
 |---|---|---|
 | **Display name** | A label for this fine-tuning job so you can find it later | Leave it auto-generated or you can change its name |
 | **Seed** | A random starting point for the training process | Keeping it random ensures a fair, unbiased run |
-| **Automatically deploy model after job completion** | Whether Foundry deploys the trained model as soon as training finishes | Leave off for now — you'll deploy manually in Phase 3 so you can review it first |
+| **Automatically deploy model after job completion** | Whether Foundry deploys the trained model as soon as training finishes | **Turn this ON** — Foundry will automatically deploy the fine-tuned model when training completes, so it's ready to use immediately without a separate deployment step |
+| **Deployment type** | The environment the model is deployed to | Select **Global Standard** — this deploys the model to a globally distributed endpoint suitable for connecting to your agent |
 | **Hyperparameter tuning** | Whether Foundry experiments with different training settings automatically | Not needed for a first run — keep simple |
 | **Batch size (1–256)** | How many training examples the model sees at once before updating | Default is tuned for stability; changing it can cause unstable training |
 | **Number of epochs (1–100)** | How many times the model reads through the full training dataset | Too few and it doesn't learn enough; too many and it over-corrects. Default balances both. |
@@ -251,31 +252,17 @@ The form shows these settings:
 
 **What you're doing**: Switching your agent from the base gpt-4.1 to the fine-tuned version you just trained.
 
+**Why this is simpler now**: Because you enabled **Automatically deploy model after job completion** in Step 5, your fine-tuned model was already deployed as soon as training finished — no manual deployment step needed. It's ready to use immediately.
+
 **Action items**:
 
 1. In the agent configuration panel, find the **Model** dropdown at the top.
 
-2. Click the dropdown and select **Browse more models** at the bottom of the list.
-
-![image](./assets/21.png)
-
-3. A model browser opens. Click the **Fine-tuned models** tab (it may say "My Models" or "Custom Models" depending on your Foundry version).
-
-![image](./assets/22.png)
-
-4. You'll see your fine-tuned model listed here. You can click on it to see its training date and configuration details in the list view.
-
-![image](./assets/23.png)
-
-5. Click **Deploy** next to your fine-tuned model to make it available to your agent.
-
-![image](./assets/24.png)
-
-6. Once deployed, go back to your agent and open the model dropdown again. Your fine-tuned model now appears in the list. Select it.
+2. Select your fine-tuned model from the list. It's already deployed and ready to connect to your agent.
 
 ![image](./assets/25.png)
 
-7. Save your agent settings.
+3. Save your agent settings.
 
 **Output**: Your agent is now running on your fine-tuned model. Everything else about the agent — its instructions, its file search tools, its behavior — stays exactly the same. Only the underlying model has changed.
 
