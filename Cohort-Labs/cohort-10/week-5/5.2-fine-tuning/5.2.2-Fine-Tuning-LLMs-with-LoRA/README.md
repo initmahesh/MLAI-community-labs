@@ -1,4 +1,4 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-5/5.1-Fine-Tuning-LLMs-with-LoRA/Fine_Tuning_Lora_Lab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-10/week-5/5.2-fine-tuning/5.2.2-Fine-Tuning-LLMs-with-LoRA/Fine_Tuning_Lora_Lab.ipynb)
 
 
 # Fine tuning models using PEFT for generating adapters.
