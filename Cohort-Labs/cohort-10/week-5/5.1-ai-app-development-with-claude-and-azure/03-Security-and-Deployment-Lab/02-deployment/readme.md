@@ -65,8 +65,6 @@ Implementation Specs  ✓
 ↓
 Build  ✓
 ↓
-Memory Layer  ✓
-↓
 Security Foundation  ✓
 ↓
 Deployment  ← YOU ARE HERE
@@ -119,7 +117,7 @@ Run `git status` to confirm. Files listed in green are staged and ready to commi
 Create a snapshot of your project:
 
 ```bash
-git commit -m "Build full-stack AI contract review app with Supabase and memory layer"
+git commit -m "Build full-stack AI contract review app with Supabase"
 ```
 
 You'll see a summary of how many files changed. This snapshot is now saved in your local Git history.

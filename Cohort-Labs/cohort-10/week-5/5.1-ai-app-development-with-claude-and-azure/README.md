@@ -4,7 +4,7 @@
 
 This is a **four-lab hands-on path** that teaches you how world-class engineering teams build AI products — not just how to prompt.
 
-You will build **ContractIQ**: a full-stack AI application where users upload a contract PDF and get a structured breakdown of every clause that matters, with multi-turn chat, persistent memory, row-level database security, automatic deployment, and an Azure AI Foundry agent powering the backend with real-time usage and monitoring.
+You will build **ContractIQ**: a full-stack AI application where users upload a contract PDF and get a structured breakdown of every clause that matters, with multi-turn chat, row-level database security, automatic deployment, and an Azure AI Foundry agent powering the backend with real-time usage and monitoring.
 
 But the application is the vehicle, not the destination.
 
@@ -14,8 +14,6 @@ What you're really learning is **a repeatable process**:
 Plan before you build
 ↓
 Build with precise context
-↓
-Add memory intentionally
 ↓
 Secure before you ship
 ↓
@@ -33,7 +31,7 @@ Every Claude prompt you write in this course follows that sequence. By the end, 
 | Lab | What You Do | Lessons |
 |---|---|---|
 | **[Lab 1 — Planning & Architecture](./01-Planning-and-Architecture-Lab/readme.md)** | Build the foundation that makes every future prompt coherent — the product spec, design system, engineering document, and implementation blueprint | 3 |
-| **[Lab 2 — Building the Application](./02-Building-the-Application-Lab/readme.md)** | Use Claude Code to scaffold the app, implement every feature, and add a persistent memory layer to the chat assistant | 2 |
+| **[Lab 2 — Building the Application](./02-Building-the-Application-Lab/readme.md)** | Use Claude Code to scaffold the app and implement every feature from your engineering docs | 1 |
 | **[Lab 3 — Security & Deployment](./03-Security-and-Deployment-Lab/readme.md)** | Scan and fix every security vulnerability, then push to GitHub and deploy live on Netlify | 2 |
 | **[Lab 4 — Azure AI Agent Integration](./04-integration-of-your-app-with-azureagent/Readme.md)** | Replace the OpenAI backend with an Azure AI Foundry agent, add your Azure keys, redeploy to Netlify, and monitor every conversation in real time via Traces | 1 |
 
@@ -52,7 +50,7 @@ Lab 1: Planning        →   Lab 2: Building        →   Lab 3: Ship It        
 
 - PDF upload and AI-powered contract analysis
 - Structured clause breakdown with page citations
-- Multi-turn chat with persistent conversation memory
+- Multi-turn chat interface
 - Supabase database with Row Level Security
 - Authentication with protected routes
 - Security-hardened codebase ready for production
@@ -86,8 +84,6 @@ These are the Claude-specific concepts you will encounter and use across all thr
 | **Skills / slash commands** | Lab 1, Lesson 2 — reusable `SKILL.md` files that define exactly how Claude should approach a task, invoked with `/skill-name` | [Skills guide →](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf) |
 | **Plan Mode** | Lab 1, Lesson 3 — Claude reads and reasons but writes nothing until you approve; catches architecture gaps before any code is written | [Claude Code →](https://docs.anthropic.com/en/docs/claude-code) |
 | **`@` file references** | Lab 1, Lesson 3 — point Claude directly at a file path instead of pasting content; Claude reads it in context | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
-| **Stateless Claude API** | Lab 2, Lesson 2 — each API call starts fresh with no memory of prior calls; conversation history must be explicitly loaded | [Messages API →](https://docs.anthropic.com/en/api/messages) |
-| **Context windows** | Lab 2, Lesson 2 — the messages[] array Claude sees on each call; short-term memory lives here | [Context windows →](https://docs.anthropic.com/en/docs/build-with-claude/context-windows) |
 | **Prompt engineering** | Throughout — how you structure prompts determines what Claude builds; specificity and context are the levers | [Prompt engineering →](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) |
 
 ---

@@ -1,6 +1,6 @@
 [← Back to Lab 2 Overview](../readme.md)
 
-**Lesson 1** | [Lesson 2 →](../02-memory-layer/readme.md)
+**Lesson 1**
 
 ---
 
@@ -31,8 +31,6 @@ Engineering Document  ✓
 Implementation Specs  ← (first thing we do today)
 ↓
 Build the Application  ← YOU ARE HERE
-↓
-Memory Layer
 ↓
 Deployment
 ↓
@@ -468,18 +466,14 @@ The build is no longer a document. It's a product.
 
 You have a running application.
 
-But there's something missing.
+ContractIQ works end to end: PDF upload, AI-powered clause extraction, and a chat interface — all running locally.
 
-Right now, every conversation a user has with ContractIQ disappears the moment they close the tab. There's no memory of what was discussed, no context carried across sessions, no way for the app to feel like it knows who they are.
+But it's only running on your machine. No one else can use it yet. And before it goes live, there's a class of problems it needs to survive that your local environment hides completely: invalid input, authentication gaps, security vulnerabilities that are invisible in development but exploitable in production.
 
-Imagine using an assistant that forgets everything the moment you walk out of the room. It gives you the right answer every time you ask. But you have to ask the same questions again and again.
-
-That's ContractIQ right now.
-
-In the next lesson, we fix that.
+In Lab 3, you address all of that — and ship the app live.
 
 ---
 
 [← Back to Lab 2 Overview](../readme.md)
 
-**Lesson 1** | [Lesson 2 →](../02-memory-layer/readme.md)
+**Lesson 1**
