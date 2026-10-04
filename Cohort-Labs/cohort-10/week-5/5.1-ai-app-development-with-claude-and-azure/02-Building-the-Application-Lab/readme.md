@@ -4,7 +4,7 @@
 
 ---
 
-This is the **"make it real"** lab. You take the engineering plan from Lab 1 and turn it into a running application: a Next.js frontend, a Supabase database with authentication, an AI-powered backend, and a chat interface that actually remembers what was said five minutes ago.
+This is the **"make it real"** lab. You take the engineering plan from Lab 1 and turn it into a running application: a Next.js frontend, a Supabase database with authentication, and an AI-powered backend.
 
 > **Prerequisite:** You need `docs/engineering/engineering-doc.md` and `docs/engineering/implementation-specs.md` in your project before starting this lab. These come from [Lab 1, Lesson 3 — Engineering Planning](../01-Planning-and-Architecture-Lab/03-engineering-planning/readme.md). If you don't have them yet, go back and run that lesson first — everything in this lab reads from those two files.
 
@@ -17,7 +17,6 @@ This is the **"make it real"** lab. You take the engineering plan from Lab 1 and
 | # | Lesson | What You Do |
 |---|---|---|
 | 1 | [Building the Application](./01-building-the-application/readme.md) | Set up a live Supabase database, scaffold the Next.js app, implement the frontend and backend from your engineering docs, generate the SQL schema, and run the app in your browser |
-| 2 | [Memory Layer](./02-memory-layer/readme.md) | Give the chat assistant persistent memory so it can answer follow-up questions within a session and across page refreshes |
 
 ---
 
@@ -26,7 +25,6 @@ This is the **"make it real"** lab. You take the engineering plan from Lab 1 and
 - A Next.js 14 application with a complete, production-style folder structure
 - A live Supabase project: PostgreSQL database, authentication, Row Level Security
 - The full ContractIQ feature set: PDF upload, AI-powered clause extraction, page-cited results
-- A chat interface with persistent, multi-turn conversation memory
 - An app running and fully testable at `http://localhost:3000`
 
 By the end of this lab, ContractIQ works. It is not yet secure for production and it is not yet on the internet — that's Lab 3.
@@ -43,4 +41,4 @@ Each lesson's `images/` folder already has the original walkthrough screenshots 
 
 Start with [Lesson 1 — Building the Application](./01-building-the-application/readme.md).
 
-When both lessons are complete, continue to **[Lab 3 — Security & Deployment](../03-Security-and-Deployment-Lab/readme.md)**.
+When the lesson is complete, continue to **[Lab 3 — Security & Deployment](../03-Security-and-Deployment-Lab/readme.md)**.

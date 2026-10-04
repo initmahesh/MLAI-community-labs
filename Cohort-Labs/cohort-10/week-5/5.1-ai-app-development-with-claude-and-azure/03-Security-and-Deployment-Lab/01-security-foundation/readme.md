@@ -48,8 +48,6 @@ Implementation Specs  ✓
 ↓
 Build  ✓
 ↓
-Memory Layer  ✓
-↓
 Security Foundation  ← YOU ARE HERE
 ↓
 Deployment

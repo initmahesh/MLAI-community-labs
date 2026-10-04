@@ -53,8 +53,6 @@ Implementation Specs
 ↓
 Build
 ↓
-Memory Layer
-↓
 Deployment
 ↓
 Iteration
