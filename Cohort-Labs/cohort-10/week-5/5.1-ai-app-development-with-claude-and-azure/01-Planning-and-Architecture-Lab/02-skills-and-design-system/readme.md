@@ -10,23 +10,9 @@
 
 ---
 
-## The Problem With Starting From Scratch Every Session
+## Skills and the Design System in This Lab
 
-In Lesson 1, you saw the file structure — `CLAUDE.md`, a `docs/` folder, a `skills/` directory with five subfolders.
-
-But there's still a gap between seeing those files and knowing what happens when you actually put them to work.
-
-Here's the problem they solve.
-
-Every time you open a new Claude Code session, it starts completely blank. No memory of the product you're building. No idea what color scheme you chose. No awareness of the coding conventions you established last week.
-
-You could paste in context at the start of every session. But that doesn't scale. What if a teammate opens the project? What if you return three weeks from now? What if you want Claude to follow the exact same process every time — not a slightly different version depending on how well you remembered to explain it?
-
-Real engineering teams face the same challenge with human engineers. They solve it the same way: they write things down.
-
-A **runbook** tells an engineer exactly how to deploy the application — the same steps every time, for every person. A **style guide** tells a designer which colors and fonts to use — no guessing. A **architecture decision record** explains why a technical choice was made, so the next engineer doesn't accidentally undo it.
-
-Skills and the design system are the AI-native version of these documents.
+**Skills** are saved instruction sets (slash commands) and the **design system** is a visual contract — both live in the repo so Claude stays consistent across every session and every teammate.
 
 ---
 
@@ -64,29 +50,7 @@ Read through it. You're not running anything yet — just reading the plain text
 
 ---
 
-**What you're looking at is Claude's job description.**
-
-A skill is a saved set of instructions stored in your project. When you type `/engineering-planner` into Claude Code, Claude finds the `SKILL.md` file inside that folder and follows its instructions exactly — every time, for every session, for every teammate who opens this project.
-
-Think of it like a recipe card. Instead of explaining the dish from scratch every time, you write the recipe once and anyone can cook it consistently. The recipe lives in the project, not in someone's head.
-
-Every `SKILL.md` file follows the same four-section structure:
-
-```
-## Purpose
-What does this skill do and when should someone run it?
-
-## Inputs
-Which files should Claude read before starting? List them by path.
-
-## Instructions
-What should Claude do, step by step? Be specific.
-
-## Output
-What files should exist when the skill finishes?
-```
-
-This gives the skill a clear contract. **Purpose** says what it does. **Inputs** say what it reads. **Instructions** say how it works. **Output** says what proof you have that it finished correctly.
+Each `SKILL.md` defines what Claude does when you type that slash command — Purpose, Inputs, Instructions, and Output — so it runs the same way every time.
 
 > **Learn more:** [The Complete Guide to Building Skills for Claude →](https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf)
 
@@ -134,13 +98,7 @@ Reviews the plan for security issues before anything ships — like a safety ins
 
 ---
 
-**You might be wondering — why run them in this exact order?**
-
-Because each skill depends on what the previous one produced.
-
-`/engineering-planner` needs the PRD to exist. `/implementation-specs` needs the engineering plan. `/frontend-setup` needs the implementation specs. `/design-system` needs the design file. Skip a step or run them out of order and the later skill has nothing meaningful to read.
-
-Think of it like an assembly line — each station feeds directly into the next. The line only works if every station runs in sequence.
+Each skill depends on what the previous one produced — run them in order and each has exactly what it needs.
 
 ---
 
@@ -156,74 +114,9 @@ Scroll through it. You'll see colors defined by name, font choices, spacing scal
 
 ---
 
-**This file is what keeps the entire app visually consistent.**
-
-Without it, here's what happens.
-
-Each page you build drifts slightly from the last. One button is a shade darker than the previous screen. A heading uses a slightly different font weight. Nothing looks broken. Nothing looks *finished* either. The app feels assembled rather than designed.
-
-A design system is a set of visual decisions you make once — colors, fonts, spacing, button shapes — written down so every new screen follows the same rules automatically. In this project, `docs/design.md` is the single source of truth for everything visual.
-
-When Claude builds any screen in Lab 2, it reads this file first so every element matches everything else — without you having to describe your visual style on every prompt.
-
-The `design.md` file is already included in the repository you cloned. If you want to swap it out for your own visual style — using a screenshot, a website URL, or a Figma file — the instructions are here: [How to Create Your Own Design System →](../00-resources/create-design-system.md)
+`docs/design.md` is Claude's single source of truth for colors, fonts, and spacing — it reads this file before building any screen in Lab 2 so everything stays visually consistent. The file is already in the repo; if you want to swap it for your own style: [How to Create Your Own Design System →](../00-resources/create-design-system.md)
 
 > **Learn more:** [Design systems and Claude →](https://docs.anthropic.com/en/docs/claude-code)
-
----
-
-## Bonus — Build Your Own Skill
-
-You don't need to build a skill from scratch for this course — the five that ship with the project are everything you need. But if you ever want to create one for a different job, here's how.
-
-**1. Pick one clear job.** One skill, one purpose. If you can't describe what it does in a single sentence, it's not ready.
-
-**2. Create the folder and file.**
-```
-skills/your-skill-name/
-└── SKILL.md
-```
-The folder name becomes the slash command.
-
-**3. Write the four sections:** Purpose, Inputs, Instructions, Output.
-
-**4. Name your files explicitly.** Don't say "read the design document" — say "read `docs/design.md`". Vague references produce inconsistent results.
-
-**5. Test and refine.** Run the command, review the output, and tighten any instruction that produced something unexpected. Treat `SKILL.md` like code — update it, commit it, iterate.
-
----
-
-### Let Claude Write the Skill for You
-
-You don't have to write the `SKILL.md` yourself. Copy the prompt below, fill in the blanks, and paste it into Claude Code:
-
-```
-I want to create a new Claude Code skill.
-
-Skill name: [what you want to type as a slash command, e.g. brand-voice]
-
-Job: [one sentence — what should this skill do?]
-Example: "Review any new page I build and make sure the writing matches our brand tone document."
-
-Reference files: [any files Claude should read before running the skill]
-Example: docs/brand.md, docs/PRD.md
-
-Output: [what should exist when the skill finishes?]
-Example: A revised version of the page with tone corrections applied.
-
-Please create the folder skills/[skill-name]/ and write a SKILL.md file inside it
-with Purpose, Inputs, Instructions, and Output sections.
-```
-
----
-
-## What You Accomplished
-
-You came into this lesson having seen the project structure but not really understanding it.
-
-You're leaving with something more useful: a mental model of exactly how the build pipeline works before a single command has been run.
-
-You know what each skill does and when it runs. You know why the design system exists as a file rather than a set of instructions you paste in every session. You know why the skills run in order and what breaks if they don't.
 
 ---
 
