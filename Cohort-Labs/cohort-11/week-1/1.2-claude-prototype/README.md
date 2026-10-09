@@ -52,7 +52,7 @@ This lab uses Claude Code.
 
 ---
 
-## Before You Build: Pick the Right Model
+## Now Another Important step is to Pick the Right Model
 
 Picking Claude Code gets you the right capability layer. But inside Claude Code, there's a second choice stacked on top of it: which model tier actually does the work.
 
@@ -84,7 +84,7 @@ Choosing the right model helps balance capability, speed, and usage.
 
 ✅ **Lab 1.1 complete** — your n8n contract review workflow is built, the AI agent responded correctly inside n8n's own chat interface, and you've swapped the Chat Trigger for a Webhook (the "Prepare the Agent to Receive Outside Messages" section at the end of that lab). You'll come back to this same workflow partway through this lab.
 
-✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../0.0%20foundations/how-to-setup-claude/installation.md) to get it running in under 5 minutes.
+✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../0-foundation/how-to-setup-claude/README.md) to get it running in under 5 minutes.
 
 ✅ **Claude Code** — built into the Claude desktop app, no extra install needed.
 
@@ -231,7 +231,7 @@ Once you're happy with the direction, bring that design back into your app:
 
 ```
 Improve the prototype with two changes, matching the layout and polish
-I just sketched in /design:
+I just sketched in above design:
 
 1. UI polish — refine the interface to feel more like a production-ready product.
    Better spacing, visual hierarchy, and polish throughout.
@@ -414,6 +414,3 @@ You started this lab by just building — no setup, no theory, straight into a w
 | **Iteration-first prototyping** | Structure first, polish second, AI integration third | Trying to do all three at once is how prototypes stall |
 | **Two-sided product shape** | A user-facing side (what you build in Claude Code) and an intelligence side (your agent) that don't know about each other until you connect them | Most AI products fail because these two sides never get wired together |
 
----
-
-[← Back to Week 1 Overview](../readme.md)
