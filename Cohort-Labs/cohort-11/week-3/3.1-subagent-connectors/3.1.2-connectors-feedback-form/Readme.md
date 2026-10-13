@@ -164,7 +164,7 @@ Your Supabase account is set up, and Claude is now connected to it. Let's put th
 
 ---
 
-## Part 6: Connect the Feedback Form to Supabase
+## Part 6: Connect the Application to Supabase
 
 Your Supabase account is ready, and Claude is connected to it. Now let's go back and replace that mock submit handler with the real thing — wiring the feedback form you already built to your actual Supabase project.
 
@@ -173,7 +173,7 @@ Go back to your Claude Code session, still pointed at `contract-review-app`, and
 > Replace `<YOUR SUPABASE PROJECT URL>` in the prompt below with the Supabase Project URL you copied in Part 4.
 
 ```
-Integrate the existing Feedback form with Supabase.
+Integrate the existing Feedback form and the Contract Review chat with Supabase.
 
 - Inspect the existing Supabase configuration and architecture first.
 - Use only the existing Supabase project:
@@ -184,7 +184,14 @@ Integrate the existing Feedback form with Supabase.
   `id`, `rating`, `feedback`, `name`, `email`, `created_at`
 - No authentication or `user_id` is required because the app has no login/signup.
 - Connect the existing Feedback form submission to Supabase.
-- Add safe database policies allowing public feedback submission.
+- Also create/use a `chat_messages` table with:
+  `id`, `question`, `response`, `created_at`
+- Every time the user asks a question in the Contract Review chat and the
+  agent's response is displayed, save that question and response as a new
+  row in `chat_messages`. If saving fails, the chat must keep working
+  normally and the user must not see an error.
+- Add safe database policies allowing public feedback submission and public
+  inserts into `chat_messages` (insert only; no public read, update or delete).
 - Never expose a Supabase service-role key or privileged credentials in frontend code.
 - Preserve the existing frontend design and `design-system` implementation.
 - Handle loading, success, error, validation, and duplicate-submission states correctly.
@@ -195,10 +202,11 @@ Verify:
 3. Invalid input is rejected.
 4. Success/error states work.
 5. Duplicate submissions are prevented.
-6. Existing Contract Review functionality still works.
+6. Each chat question and its response is saved to `chat_messages`.
+7. Existing Contract Review functionality still works.
 ```
 
-Claude will inspect your Supabase setup, create the `feedback` table to store the feedback submitted by users.
+Claude will inspect your Supabase setup and create two tables: `feedback`, to store the feedback submitted by users, and `chat_messages`, to store every question asked in the chat along with the response it received.
 
 ---
 
@@ -234,7 +242,13 @@ Open your **Supabase project → Table Editor → `feedback`**.
 
 You should see your submitted feedback as a new row, including the rating, feedback, optional details, and timestamp.
 
-🎉 **If you can see your feedback in Supabase, the complete flow is working.**
+### 4. Are the chat questions and responses saved too? 💬
+
+Go back to the Contract Review chat, upload the sample contract, and ask a question like *"What are the payment terms?"*
+
+Then open **Supabase project → Table Editor → `chat_messages`**. You should see a new row with the question you asked and the response the agent gave.
+
+🎉 **If you can see your feedback and your chat questions and responses in Supabase, the complete flow is working.**
 
 ---
 

@@ -106,7 +106,7 @@ Why build one instead of just typing "review my code" every time? Two reasons:
 
 You're about to build one called `code-reviewer`. Its entire personality — literally, the text you're about to paste — is nothing but Superpowers' code review skill plus a strict set of rules about when it's allowed to touch your code.
 
-**Quit Claude Code Desktop and open a new session** (or just start a fresh session — either works, as long as the plugin has had a chance to load). Then paste this exact prompt:
+**Quit Claude Code Desktop and open a new session pointing your web-app** (or just start a fresh session — either works, as long as the plugin has had a chance to load). Then paste this exact prompt:
 
 ```
 Create a project-level subagent at .claude/agents/code-reviewer.md with:
@@ -151,6 +151,8 @@ Claude will create the `code-reviewer` subagent from this exact spec.
    -`styles.css` 
 
 It won't have changed a single file yet.
+
+![image](./images/23.png)
 
 4. Claude will then stop and ask you: **"Would you like me to fix these issues?"** Say yes.
 
