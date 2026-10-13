@@ -22,10 +22,11 @@ Here's the flow for this lab:
 - [Prerequisites](#prerequisites)
 - [Part 1: The Problem](#part-1-the-problem)
 - [Part 2: The Solution](#part-2-the-solution)
-- [Part 3: Run the Check with Claude Only](#part-3-run-the-check-with-claude-only)
-- [Part 4: Install and Connect Jev](#part-4-install-and-connect-jev)
-- [Part 5: Run the Check with Jev](#part-5-run-the-check-with-jev)
-- [Part 6: Compare the Results](#part-6-compare-the-results)
+- [Part 3: Set Up the Benchmark Folder](#part-3-set-up-the-benchmark-folder)
+- [Part 4: Run the Check with Claude Only](#part-4-run-the-check-with-claude-only)
+- [Part 5: Install and Connect Jev](#part-5-install-and-connect-jev)
+- [Part 6: Run the Check with Jev and Compare](#part-6-run-the-check-with-jev-and-compare)
+- [Next Lab: Extract Key Terms](#next-lab-extract-key-terms)
 
 ---
 
@@ -33,15 +34,11 @@ Here's the flow for this lab:
 
 ✅ **Claude Code Desktop** installed and signed in.
 
-✅ **Three COI documents** to check. Open each link and download the file:
+✅ **The benchmark folder.** Download the zip, it has everything you need:
 
-- [AECOM COI](https://drive.google.com/file/d/1oHl-EZKmRITs7JJYFRZAE6IoOR32IMG2/view?usp=sharing)
-- [Caterpillar COI](https://drive.google.com/file/d/1FJrG_CdcrlgCE41Nzg7JNTZ7XSVP8Ksp/view?usp=sharing)
-- [Proctor COI](https://drive.google.com/file/d/1mWFw4nI8gmTtF-v76OCM0V15_TS5caFL/view?usp=sharing)
+- [coi-benchmark.zip](./coi-benchmark.zip)
 
-✅ **The compliance checklist.** Open the link and download the file:
-
-- [COI Checklist](https://drive.google.com/file/d/1MYiz9iW_7vdpfK6U3xSsnOYixQKtLjYE/view?usp=sharing)
+It comes with the COI documents, the compliance checklist and the skill that runs the check for you.
 
 ---
 
@@ -76,57 +73,69 @@ Jev makes every call. Claude only formats the results into something readable. W
 
 ---
 
-## Part 3: Run the Check with Claude Only
+## Part 3: Set Up the Benchmark Folder
 
-First, set a baseline. Let Claude make every decision on its own.
+1. Download [coi-benchmark.zip](./coi-benchmark.zip).
+2. Unzip it.
+3. Open the unzipped `coi-benchmark` folder in Claude Code Desktop.
 
-1. Open Claude Code Desktop and start a new chat.
-2. Attach your **COI** and the **checklist**.
-3. Paste this prompt:
+Everything for the check lives in one folder. Once unzipped, you'll see this:
 
 ```
-Evaluate the attached COIs against the checklist using Claude.
-
-For every requirement, classify:
-PASS, FAIL, or NOT_EVIDENCED.
-
-Use only explicit COI evidence. Do not infer, invent, or alter results.
-
-Create an INLINE dashboard with this exact structure:
-
-TOP — COI Evaluation
-- 3 vertical stacked bars: AECOM, Caterpillar, Proctor
-- Green = PASS
-- Red = FAIL
-- Orange = NOT_EVIDENCED
-- Show counts inside each segment
-- Show Cost above each bar
-- Show Total requirements above each bar
-
-BOTTOM — "Claude Efficiency (per COI)"
-Show horizontal bars for:
-- Latency
-- Cost
-- Throughput
-
-Show the actual value at the end of every bar.
-Use red for higher/worse Claude metrics and green for better metrics.
-Clearly label measured vs estimated values.
-
-Do NOT show overall score, accuracy score, percentage score, or ranking.
-Do NOT create an Artifact, HTML, or downloadable file.
-Use actual calculated/measured data only; clearly label estimates.
-
-Match this visual style:
-dark background, compact layout, large readable labels, green/red/orange bars, clean typography, and presentation-ready dashboard.
+coi-benchmark/
+│
+├── .claude/
+│   └── skills/
+│       └── coi-benchmark/
+│           └── SKILL.md
+│
+├── coi-documents/
+│   ├── AECOM.pdf
+│   ├── Caterpillar.pdf
+│   ├── Proctor.pdf
+│   └── ...any number of COI PDFs
+│
+├── checklist.csv
+│
+├── results/
+│
+└── README.md
 ```
 
-![image](./images/4.png)
+| Path | What it is | Do you touch it? |
+|------|------------|------------------|
+| `coi-benchmark/` | The project folder. Open this folder in Claude Code Desktop. | Open it, nothing else |
+| `.claude/skills/coi-benchmark/SKILL.md` | The skill behind the `/coi-benchmark` command. It tells Claude how to run the check and build the dashboard. | No |
+| `coi-documents/` | The COIs to check. Comes with AECOM, Caterpillar and Proctor. | Yes, add or remove PDFs to change what gets checked |
+| `checklist.csv` | The requirements every COI is checked against. | Yes, edit it to change the requirements |
+| `results/` | Where each run saves its results. Starts empty. | No, the skill fills it |
+| `README.md` | A short guide to the folder. | No |
 
+> **Note:** Open the `coi-benchmark` folder itself, not the folder above it. Claude only finds the skill when this folder is the one you opened.
 
 ---
 
-## Part 4: Install and Connect Jev
+## Part 4: Run the Check with Claude Only
+
+First, set a baseline. Let Claude make every decision on its own.
+
+1. Open Claude Code Desktop and open the `coi-benchmark` folder.
+2. Start a new chat.
+3. Type this command:
+
+```
+/coi-benchmark run with claude
+```
+
+Claude checks every COI in `coi-documents/` against `checklist.csv`, saves the run to `results/`, and shows you an **Efficiency Dashboard** with latency, cost and throughput.
+
+![image](./images/8.png)
+
+Keep this run. Jev will be measured against it.
+
+---
+
+## Part 5: Install and Connect Jev
 
 ### Install the plugin
 
@@ -183,90 +192,58 @@ the rule from here on: Jev decides, you write. when Jev isn't sure about somethi
 
 ---
 
-## Part 5: Run the Check with Jev
+## Part 6: Run the Check with Jev and Compare
 
 Same documents, same checklist. This time Jev makes the decisions.
 
-1. Start a new chat.
-2. Type `/typesafe` and select **typesafe:typesafe-ai**.
-
-> **Note:** Leave a space between your prompt and the plugin name.
-
-3. Attach your **COI** and the **checklist**.
-4. Paste this prompt:
+1. Stay in the `coi-benchmark` folder and start a new chat.
+2. Type this command:
 
 ```
-Use the attached COIs + checklist.
-
-Use Jev as the sole evaluator; Claude only organizes and visualizes.
-
-For every requirement, classify: PASS, FAIL, or NOT_EVIDENCED. Use only explicit COI evidence; never infer or alter Jev's results.
-
-show only for run 1 
-
-Show:
-
-1. Summary: COI | PASS | FAIL | NOT_EVIDENCED | Cost
-2. INLINE stacked bar chart:
-   - X: COI
-   - Y: requirement count
-   - Stacks: PASS / FAIL / NOT_EVIDENCED
-   - Show total requirements + cost above each bar
-3. Jev vs Claude efficiency visuals for:
-   - latency
-   - cost
-   - throughput
-
-Highlight Jev's advantage where measurable. Use actual values; label estimates.
-
-Do NOT show any overall score, accuracy score, percentage score, or ranking.
-Do NOT create an Artifact, HTML, or downloadable file.
-All visuals must use actual calculated data.
+/coi-benchmark run with jev
 ```
 
-![image](./images/2.png)
+Jev checks every COI in `coi-documents/`, and Claude only organizes the results. Because your Claude run is already saved in `results/`, you get both side by side in one **Efficiency Dashboard: Claude vs Jev**.
 
-5. Repeat for all three COIs and **save each result**.
+![image](./images/9.png)
+
+### What the Dashboard Measures
+
+The dashboard compares the two runs on three numbers:
+
+| Metric | What it means | Better is | In the example run |
+|--------|---------------|-----------|--------------------|
+| **Latency** | Total wall-clock time to check all the COIs, from start to finish. | Lower | Claude 19.8 s, Jev 2.8 s |
+| **Cost** | What it costs to check all the COIs. | Lower | Claude N/A, Jev $0.00064 |
+| **Throughput** | How many COIs get checked per minute. | Higher | Claude 9.07 COIs/min, Jev 63.39 COIs/min |
+
+A few things to know when you read it:
+
+- **Claude's cost shows N/A.** Claude Code doesn't show you the cost of a session inside the chat, so there's no real number for the dashboard to use. Jev's cost is computed from the tokens its API reports back, which is why it has a value.
+
+### What Would Claude's Cost Be?
+
+Since the dashboard can't show it, you can estimate it from Anthropic's [published pricing](https://platform.claude.com/docs/en/about-claude/pricing). Take **3 COIs of 2 pages each, 6 pages in total**:
+
+- **Input:** Anthropic's [PDF docs](https://docs.claude.com/en/docs/build-with-claude/pdf-support) put a page at roughly 1,500 to 3,000 tokens, so 6 pages is about **9,000 to 18,000 tokens**. We'll use about **14,000**, and add about 1,000 for the checklist, so roughly **15,000 input tokens**.
+- **Output:** A verdict and a short reason for each of the 21 requirements on each COI comes to roughly **3,000 output tokens**. This is a rough guess, not a measured number.
+
+| Model | Input price | Output price | Estimated cost for 3 COIs |
+|-------|-------------|--------------|---------------------------|
+| Claude Sonnet 5.5 | $2 / MTok | $10 / MTok | about **$0.06** |
+| Claude Opus 5.5 | $4 / MTok | $20 / MTok | about **$0.12** |
+| Claude Fable 5.1 | $10 / MTok | $50 / MTok | about **$0.30** |
+| **Jev** (measured in the example run) | n/a | n/a | **$0.00064** |
+
+> **Note:** These are estimates, and real sessions usually cost a bit more because of the extra tokens Claude Code uses behind the scenes. Pick the row for the model you're using. At 3 COIs the gap looks tiny, but at 3,000 COIs the same maths turns $0.06 into about $60 and $0.00064 into under $1.
 
 ---
 
-## Part 6: Compare the Results
+## Next Lab: Extract Key Terms
 
-Now put the runs side by side. Paste this prompt along with both sets of results:
+Same COIs, new job. Instead of checking them against a checklist, you'll **pull the key terms out of them**: coverage types, policy limits and important conditions. A router sits in the middle and picks which skill to use. Jev only picks the skill, and Claude does the extraction after.
 
-```
-Using the results above, create an INLINE visual-only comparison dashboard for Claude vs Jev.
-
-Show ONLY Run 1 results for both models. Ignore all other runs.
-
-Automatically identify and extract the Run 1 results from the conversation. Do not ask me to provide the numbers again.
-
-Compare:
-- Latency
-- Cost
-- Throughput
-
-Visual requirements:
-- Claude = RED
-- Jev = GREEN
-- Horizontal comparison bars
-- Show exact values on each bar
-- Clearly label measured vs estimated values
-- Highlight Jev's advantage where supported by the actual data
-- Title: "Jev vs Claude Efficiency"
-
-Do not invent, modify, or recalculate unsupported values.
-Do not show accuracy, scores, PASS/FAIL, or rankings.
-Do not create an Artifact, HTML, or downloadable file.
-Keep it dark, compact, and presentation-ready.
-```
-![image](./images/1.png)
-
-What to look for:
-
-- **Do the decisions match?** High agreement means Jev can be trusted for this job.
-- **How much faster is Jev?** Check latency.
-- **How much cheaper is Jev?** Check cost.
+Start here: [Key Terms Lab](./Key%20Terms%20Lab/Readme.md)
 
 ---
 
