@@ -1,32 +1,23 @@
 # Lab: Make Claude Faster and Cheaper with Jev
 
-## Let Jev Decide, Let Claude Write
+**Jev** is an AI model from [Typesafe](https://docs.typesafe.ai/agent-skill) built for decisions, not writing: give it text and a question, and it instantly picks an option, scores it, or says how likely it is, at a fraction of the cost. In this lab you'll see where Jev fits, where Claude fits, and how combining them makes the same job faster and cheaper: **Jev decides, Claude writes.**
 
-Say you have a pile of insurance certificates (COIs) and a checklist they all need to meet. You ask Claude to check each one. It works, but Claude reads, thinks and writes a full answer every single time. That's slow, and the cost adds up fast when the pile gets big.
+Here's what we'll do in this lab:
 
-Here's the catch: checking a COI against a checklist isn't writing. It's **deciding**. Pass, fail, or not enough information. And deciding is exactly what Jev is built for.
-
-In this lab you'll run the same check twice, once with Claude alone and once with Jev making the decisions, then compare the results side by side.
-
-Here's the flow for this lab:
-
-- **Run it with Claude only.** See how long it takes and what it costs.
-- **Add Jev.** Install the plugin and connect it.
-- **Run it again with Jev.** Same documents, same checklist.
-- **Compare.** Let the numbers tell you which one wins.
+- **Set up.** Open the benchmark folder and connect Jev.
+- **Check COIs against a checklist.** Run it with Claude alone, then with Jev, and compare speed and cost.
+- **Let Jev pick the skill.** Hand the task to a router. Jev picks the right skill, Claude extracts the key terms, and you compare the timings.
 
 ---
 
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Part 1: The Problem](#part-1-the-problem)
-- [Part 2: The Solution](#part-2-the-solution)
-- [Part 3: Set Up the Benchmark Folder](#part-3-set-up-the-benchmark-folder)
-- [Part 4: Run the Check with Claude Only](#part-4-run-the-check-with-claude-only)
-- [Part 5: Install and Connect Jev](#part-5-install-and-connect-jev)
-- [Part 6: Run the Check with Jev and Compare](#part-6-run-the-check-with-jev-and-compare)
-- [Next Lab: Extract Key Terms](#next-lab-extract-key-terms)
+- [Part 1: Set Up](#part-1-set-up)
+- [Part 2: Check COIs Against a Checklist](#part-2-check-cois-against-a-checklist)
+- [Part 3: Let Jev Pick the Skill](#part-3-let-jev-pick-the-skill)
+- [What You Learned](#what-you-learned)
+- [Reference](#reference)
 
 ---
 
@@ -40,40 +31,18 @@ Here's the flow for this lab:
 
 It comes with the COI documents, the compliance checklist and the skill that runs the check for you.
 
----
+✅ **The two skills for the skill-router part (Part 3):**
 
-## Part 1: The Problem
-
-Checking a COI means going through the checklist one line at a time and asking: does this document actually show this? Claude can do it, but it's using a very powerful model that writes full sentences to answer what is really a simple question.
-
-The result:
-
-- **It's expensive.** You pay for all that thinking, on every document.
-- **It doesn't scale.** Three COIs is fine. Three thousand is not.
+- skill-router file: [Link Here](./skill-router/SKILL.md)
+- coi-key-terms file: [Link Here](./coi-key-terms/SKILL.md)
 
 ---
 
-## Part 2: The Solution
+## Part 1: Set Up
 
-### What's Jev
+First, we'll get everything ready: open the benchmark folder with the COIs and the checklist, install the Jev plugin, and connect it with your API key. Once that's done, you can run the same check with Claude and with Jev.
 
-**Jev** is a different kind of AI model. It doesn't write anything. You hand it some text and a few questions, and it answers almost instantly, for almost nothing. It's made for **sorting and deciding**.
-
-It can answer in three ways:
-
-- **Pick one** option from a list (like PASS, FAIL or NOT_EVIDENCED).
-- **Give a score** on a scale.
-- **Say how likely** something is true.
-
-### The Rule
-
-> **Jev decides, Claude writes.**
-
-Jev makes every call. Claude only formats the results into something readable. When you combine them, you get the speed of Jev with the clear writing of Claude.
-
----
-
-## Part 3: Set Up the Benchmark Folder
+### Step 1: Set Up the Benchmark Folder
 
 1. Download [coi-benchmark.zip](./coi-benchmark.zip).
 2. Unzip it.
@@ -113,31 +82,7 @@ coi-benchmark/
 
 > **Note:** Open the `coi-benchmark` folder itself, not the folder above it. Claude only finds the skill when this folder is the one you opened.
 
----
-
-## Part 4: Run the Check with Claude Only
-
-First, set a baseline. Let Claude make every decision on its own.
-
-1. Open Claude Code Desktop and open the `coi-benchmark` folder.
-2. Start a new chat.
-3. Type this command:
-
-```
-/coi-benchmark run with claude
-```
-
-Claude checks every COI in `coi-documents/` against `checklist.csv`, saves the run to `results/`, and shows you an **Efficiency Dashboard** with latency, cost and throughput.
-
-![image](./images/8.png)
-
-Keep this run. Jev will be measured against it.
-
----
-
-## Part 5: Install and Connect Jev
-
-### Install the plugin
+### Step 2: Install the Jev Plugin
 
 In your terminal, run these two commands:
 
@@ -149,7 +94,7 @@ claude plugin install typesafe@typesafe-ai
 ![image](./images/3.png)
 
 
-### Create your API key
+### Step 3: Create Your API Key
 
 Before Claude can reach Jev, you need a Typesafe API key.
 
@@ -169,30 +114,70 @@ Before Claude can reach Jev, you need a Typesafe API key.
 
 > ⚠️ Keep your key private. Don't paste it into any file you might share.
 
-### Add your API key
+### Step 4: Add Your API Key
 
 Now give Claude your key so it can reach Jev. Paste this prompt and replace `TYPESAFE_API_KEY` with your own key when Claude asks for it:
 
 ```
-i want to add a new kind of AI model called Jev to this workspace. Jev doesn't write anything. you hand it some text plus a few questions, and it answers them almost instantly, for almost nothing. it's made for sorting and deciding.
+I want to integrate Jev, a fast, low-cost AI model for classification, scoring, and decision-making, into my existing Claude Code workspace.
 
-* Jev is brand new, so you won't know it yet. before anything else, read how it works:
-https://docs.typesafe.ai/llms.txt
-* i'll use Jev directly through the Typesafe API using a TYPESAFE_API_KEY. follow the official Typesafe docs for the API endpoint, authentication, request format, and response format.
-* ask me for my Typesafe API key. keep it somewhere safe on my computer, never inside a file i might share, and never show it back to me.
-* Jev can only answer in 3 shapes: pick one option from a list, give a score on a scale, or say how likely something is true. most answers also come back with how sure it is.
-* give me full control over when Jev is used. Jev should be off by default and should only be used when i explicitly turn it on or ask to use it. when Jev is off, do not send anything to the Jev API and use the normal model instead.
-* do one real test so i can watch it work. make up a short sales email and ask Jev 3 things: how strong a lead is this, what kind of email is it, and does it need a personal reply. show me its answers, how long it took and what it cost. if the test fails, show me the exact error.
-* then save what you learned as a reusable skill (or whatever your setup calls a saved instruction), so next time i can say "use Jev to sort these" about any pile of text.
+1. Understand Jev
+First, read the official documentation: https://docs.typesafe.ai/llms.txt
 
-the rule from here on: Jev decides, you write. when Jev isn't sure about something, you make the call yourself. anything you send to Jev leaves my computer, so ask me before sending anything private.
+2. Set Up the API
+Connect Jev using the official Typesafe API and TYPESAFE_API_KEY. Ask me for my API key, store it securely on my computer, and never expose or commit it.
+
+3. Configure Jev
+Jev supports three operations: Choice, Score, and Probability. Keep Jev OFF by default and use it only when I explicitly request it. Otherwise, use Claude normally.
+
+4. Run a Real Test
+Create a sample sales email and use Jev to evaluate:
+- Lead quality
+- Email type
+- Whether a personalized reply is needed
+
+Show actual responses, confidence scores, latency, and available cost. If the test fails, show the exact error.
+
+5. Create a Reusable Skill
+Save the working integration as a Claude Code skill so I can invoke it anytime by saying "Use Jev to sort these."
+
+Important Rules:
+- Jev decides, Claude writes.
+- If Jev is uncertain, Claude makes the final decision.
+- Always ask permission before sending private data to Jev.
 ```
 
 > ⚠️ Anything sent to Jev leaves your computer. Never send private documents without checking first.
 
 ---
 
-## Part 6: Run the Check with Jev and Compare
+## Part 2: Check COIs Against a Checklist
+
+Many tasks come down to a simple decision at every step: yes or no, pass or fail. Claude can make these calls, but it reads, thinks and writes a full answer each time, which is slow and costly as the work piles up. These are exactly the calls Jev is built for.
+
+- **Jev's job:** make the decisions, in this case PASS, FAIL or NOT_EVIDENCED for each checklist requirement.
+- **Claude's job:** organize the results into a clear dashboard.
+
+
+### Step 1: Run the Check with Claude Only
+
+First, set a baseline. Let Claude make every decision on its own.
+
+1. Open Claude Code Desktop and open the `coi-benchmark` folder.
+2. Start a new chat.
+3. Type this command:
+
+```
+/coi-benchmark run with claude
+```
+
+Claude checks every COI in `coi-documents/` against `checklist.csv`, saves the run to `results/`, and shows you an **Efficiency Dashboard** with latency, cost and throughput.
+
+![image](./images/8.png)
+
+Keep this run. Jev will be measured against it.
+
+### Step 2: Run the Check with Jev
 
 Same documents, same checklist. This time Jev makes the decisions.
 
@@ -207,7 +192,7 @@ Jev checks every COI in `coi-documents/`, and Claude only organizes the results.
 
 ![image](./images/9.png)
 
-### What the Dashboard Measures
+### Step 3: Read the Dashboard
 
 The dashboard compares the two runs on three numbers:
 
@@ -221,7 +206,7 @@ A few things to know when you read it:
 
 - **Claude's cost shows N/A.** Claude Code doesn't show you the cost of a session inside the chat, so there's no real number for the dashboard to use. Jev's cost is computed from the tokens its API reports back, which is why it has a value.
 
-### What Would Claude's Cost Be?
+### Step 4: Estimate Claude's Cost
 
 Since the dashboard can't show it, you can estimate it from Anthropic's [published pricing](https://platform.claude.com/docs/en/about-claude/pricing). Take **3 COIs of 2 pages each, 6 pages in total**:
 
@@ -237,13 +222,126 @@ Since the dashboard can't show it, you can estimate it from Anthropic's [publish
 
 > **Note:** These are estimates, and real sessions usually cost a bit more because of the extra tokens Claude Code uses behind the scenes. Pick the row for the model you're using. At 3 COIs the gap looks tiny, but at 3,000 COIs the same maths turns $0.06 into about $60 and $0.00064 into under $1.
 
+### What We've Seen So Far
+
+Up to here you saw two things:
+
+- **How to use a skill from a folder.** The `/coi-benchmark` command works because the skill lives in the `coi-benchmark` folder you opened. Claude picks it up from there, so you only type the command.
+- **How much faster Jev is at checking against a checklist.** Same COIs, same checklist. Jev finished in 2.8 s against Claude's 19.8 s, for a fraction of a cent.
+
+But so far *we* told Claude which skill to use. Now let's see how **Jev can help us select the correct skill**.
+
 ---
 
-## Next Lab: Extract Key Terms
+## Part 3: Let Jev Pick the Skill
 
-Same COIs, new job. Instead of checking them against a checklist, you'll **pull the key terms out of them**: coverage types, policy limits and important conditions. A router sits in the middle and picks which skill to use. Jev only picks the skill, and Claude does the extraction after.
+So far we told Claude exactly which skill to use. In real work there are many skills, and something has to **choose the right one** for each task. Choosing from a short list is a decision, not writing, so it's a perfect job for Jev.
 
-Start here: [Key Terms Lab](./Key%20Terms%20Lab/Readme.md)
+- **Jev's job:** read the task and pick the right skill.
+- **Claude's job:** run the chosen skill and do the actual work (here, extracting key terms from the COIs).
+
+We'll run the same task twice, once with Claude choosing the skill and once with Jev choosing it, and compare how long the choosing takes. The goal is the same skill picked either way, with Jev making that step faster. You'll need the `coi-benchmark` folder and Jev connected from [Part 1](#part-1-set-up).
+
+### Step 1: Upload the Skills and Open a New Session
+
+1. Open Claude Code Desktop and go to **Customize**, then **Skills**.
+2. Upload both skills: [skill-router](./skill-router/SKILL.md) and [coi-key-terms](./coi-key-terms/SKILL.md).
+3. Start a **new session** in Claude Code Desktop, pointing to the same `coi-benchmark` folder.
+
+| Skill | What it does |
+|-------|--------------|
+| `skill-router` | Picks the right skill using Claude or Jev, runs it, and reports routing and extraction time separately. |
+| `coi-key-terms` | Extracts key terms, coverage details and policy limits from COIs. |
+
+
+> **Note:** Upload both skills before you start. If `coi-key-terms` is missing, the router has nothing to pick.
+
+![image](./images/kt-1.png)
+
+### Step 2: Run It with Claude
+
+First, set a baseline. Let Claude pick the skill.
+
+Type this command:
+
+```
+/skill-router mode=claude Extract key terms from the attached COIs and show performance metrics.
+```
+
+![image](./images/kt-2.png)
+
+Along with the key terms, you'll see which skill was picked and why. Look for these fields:
+
+```
+Mode: claude
+Selected skill:
+Reason:
+Routing latency:
+```
+
+![image](./images/kt-3.png)
+
+| Field | What it tells you |
+|-------|-------------------|
+| **Mode** | Who picked the skill. Here it's `claude`. |
+| **Selected skill** | The skill the router chose. It should be `coi-key-terms`. |
+| **Reason** | Why that skill was chosen. |
+| **Routing latency** | How long it took to pick the skill. |
+
+### Step 3: Run It with Jev
+
+Same COIs, same task. Only the mode changes.
+
+Type this command:
+
+```
+/skill-router mode=jev Extract key terms from the same COIs and show performance metrics.
+```
+
+You'll see the same fields, now with `Mode: jev`:
+
+```
+Mode: jev
+Selected skill:
+Reason:
+Routing latency:
+```
+
+![image](./images/kt-4.png)
+
+Because your Claude run is already done, this time you also get a **Claude vs Jev** comparison, measured on the same 3 COIs and the same task.
+
+![image](./images/kt-5.png)
+
+### Step 4: Read the Comparison
+
+```
+Claude vs Jev (measured, same 3 COIs and task)
+
+                Claude          Jev
+Routing         2.64 s          0.62 s
+Extraction      4.18 s          5.89 s
+```
+
+| Row | What it measures | Claude | Jev |
+|-----|------------------|--------|-----|
+| **Routing** | Time to pick the right skill for the task. | 2.64 s | 0.62 s |
+| **Extraction** | Time for the chosen skill to pull out the key terms. | 4.18 s | 5.89 s |
+
+What the numbers say:
+
+- **Jev picked the skill faster.** Routing took 0.62 s against 2.64 s, about 4 times faster. That's the one step Jev took over.
+- **Extraction is Claude's job in both runs.** Jev only selects the skill. Once it's picked, Claude runs it, so extraction isn't where Jev is supposed to help. Don't read the gap between 4.18 s and 5.89 s as Jev being slower at extracting.
+
+---
+
+## What You Learned
+
+- **Jev is for deciding.** Pass or fail, which skill to use, how likely something is: anything that's a pick, a score or a probability can go to Jev.
+- **Jev is much faster and cheaper at checking.** On the same COIs and checklist, Jev finished in 2.8 s against Claude's 19.8 s, for $0.00064 instead of roughly $0.06 or more.
+- **Jev picks the right skill quickly.** Routing took 0.62 s with Jev against 2.64 s with Claude, and the result matched.
+- **Claude still writes.** Once Jev has decided, Claude does the reading, extracting and formatting. Jev decides, Claude writes.
+- **Always check the output.** Speed doesn't prove the right skill was picked or the right terms were found.
 
 ---
 
