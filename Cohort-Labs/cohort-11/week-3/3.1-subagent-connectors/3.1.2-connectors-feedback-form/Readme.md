@@ -238,7 +238,7 @@ Now let's verify that the feedback actually reached the database.
 
 Open your **Supabase project → Table Editor → `feedback`**.
 
-![image](./images/18.png)
+![image](./images/25.png)
 
 You should see your submitted feedback as a new row, including the rating, feedback, optional details, and timestamp.
 
@@ -247,6 +247,8 @@ You should see your submitted feedback as a new row, including the rating, feedb
 Go back to the Contract Review chat, upload the sample contract, and ask a question like *"What are the payment terms?"*
 
 Then open **Supabase project → Table Editor → `chat_messages`**. You should see a new row with the question you asked and the response the agent gave.
+
+![image](./images/26.png)
 
 🎉 **If you can see your feedback and your chat questions and responses in Supabase, the complete flow is working.**
 
