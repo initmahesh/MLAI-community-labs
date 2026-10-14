@@ -185,13 +185,17 @@ Integrate the existing Feedback form and the Contract Review chat with Supabase.
 - No authentication or `user_id` is required because the app has no login/signup.
 - Connect the existing Feedback form submission to Supabase.
 - Also create/use a `chat_messages` table with:
-  `id`, `question`, `response`, `created_at`
+  `id`, `question`, `response`, `citation` (text array, nullable),
+  `reasoning` (text, nullable), `created_at`
 - Every time the user asks a question in the Contract Review chat and the
-  agent's response is displayed, save that question and response as a new
-  row in `chat_messages`. If saving fails, the chat must keep working
-  normally and the user must not see an error.
-- Add safe database policies allowing public feedback submission and public
-  inserts into `chat_messages` (insert only; no public read, update or delete).
+  agent's response is displayed, save that question, response, citation and
+  reasoning as a new row in `chat_messages`. If the agent's reply has no
+  citation or reasoning, leave those columns empty. If saving fails, the chat
+  must keep working normally and the user must not see an error.
+- Add safe database policies allowing public feedback submission, and public
+  inserts and reads on `chat_messages` (the app needs to read saved chats back
+  later). No public update or delete on either table, and no public read on
+  `feedback`.
 - Never expose a Supabase service-role key or privileged credentials in frontend code.
 - Preserve the existing frontend design and `design-system` implementation.
 - Handle loading, success, error, validation, and duplicate-submission states correctly.
@@ -202,11 +206,11 @@ Verify:
 3. Invalid input is rejected.
 4. Success/error states work.
 5. Duplicate submissions are prevented.
-6. Each chat question and its response is saved to `chat_messages`.
+6. Each chat question, its response, citation and reasoning is saved to `chat_messages`.
 7. Existing Contract Review functionality still works.
 ```
 
-Claude will inspect your Supabase setup and create two tables: `feedback`, to store the feedback submitted by users, and `chat_messages`, to store every question asked in the chat along with the response it received.
+Claude will inspect your Supabase setup and create two tables: `feedback`, to store the feedback submitted by users, and `chat_messages`, to store every question asked in the chat along with the response, citation and reasoning it received. You'll use these saved chats in Lab 3.2 to build your evaluation dataset.
 
 ---
 
@@ -246,7 +250,7 @@ You should see your submitted feedback as a new row, including the rating, feedb
 
 Go back to the Contract Review chat, upload the sample contract, and ask a question like *"What are the payment terms?"*
 
-Then open **Supabase project → Table Editor → `chat_messages`**. You should see a new row with the question you asked and the response the agent gave.
+Then open **Supabase project → Table Editor → `chat_messages`**. You should see a new row with the question you asked and the response the agent gave (plus citation and reasoning, if the agent returned them).
 
 ![image](./images/26.png)
 

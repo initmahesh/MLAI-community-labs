@@ -16,87 +16,18 @@ Before you begin, confirm all of the following are in place:
 
 1. You have completed all labs from the previous weeks.
 2. The contract-review app you have been building since Week 1 is running locally in Claude Code.
-3. You have access to an Azure account where you can create an Azure AI Foundry resource. New accounts receive $300 in free credits — you will set this up in Step 5.
+3. You have access to an Azure account where you can create an Azure AI Foundry resource. New accounts receive $300 in free credits — you will set this up in Step 4.
 4. Download the MSA (Master Services Agreement) sample contract — **[Download From Here](https://drive.google.com/file/d/1kJpujNVGU7Bk8nu35s3BZCtAWo-gHiqb/view?usp=sharing)** — you will upload this into your app when generating the dataset.
 
 ---
 
 ## Phase 1: Prepare Your App to Export Data
 
-### Step 1: Structure Your Agent's Output for Grounded Evaluation
+### Step 1: Add the "Download Responses" Feature to Your App
 
-**What you're doing**: Rewriting your n8n agent's system prompt so every answer comes back as three separate parts — the answer itself, the exact clauses it was pulled from, and the reasoning that connects them — then teaching your app's chat window to display all three.
+**What you're doing**: Adding a way to export the chats your app already saved in Supabase (from [Lab 3.1.2](../3.1-subagent-connectors/3.1.2-connectors-feedback-form/Readme.md)), letting you choose how many recent responses to include. This exported file becomes your evaluation dataset.
 
-**Why this matters:** Foundry scores groundedness based on how well the response is supported by the source contract. Separating the output into **response, citations, and reasoning** makes that support clear and should be done before creating your evaluation questions.
-
-
-**Action items**:
-
-1. Open your n8n workflow and locate the **AI Agent1** node.
-![image](./assets/29.png)
-2. Replace its system prompt with the following, exactly as written:
-
-```
-You are a precise research assistant with access to a contract retrieval tool.
-
-Your job:
-1. Use the retrieval tool to search the contract for relevant chunks
-2. Reason step by step using only what you retrieve
-3. Never answer from your own knowledge — always retrieve first
-4. If the first retrieval is insufficient, retry with a refined query
-5. Stop after a maximum of 4 tool calls
-
-Rules:
-- Every fact must come from retrieved chunks
-- If evidence is lacking, say: "I could not find enough information to answer this confidently."
-- Be concise and answer in plain language
-- Return ONLY valid JSON.
-- Do not include markdown, code fences, or any text outside the JSON.
-- Always return the output in exactly this structure:
-{
- "response": "final answer based on the retrieved contract",
- "citation": [
-      "relevant clause, section, page, or retrieved chunk"
-   ],
- "reasoning": "brief explanation of how the retrieved evidence supports the response"
-}
-- Do not invent citations.
-- The reasoning must be a short evidence-based explanation, not internal step-by-step reasoning.
-
-Current query: {{$json.rewritten_query}}
-Sub-queries (if any): {{$json.sub_queries}}
-```
-![image](./assets/30.png)
-3. Open Claude Code with your contract-review app project.
-4. Run the following prompt exactly as written:
-
-```
-The chat webhook returns JSON — either { response, citation, reasoning } directly, or wrapped by n8n as { output: "<stringified json>" }.
-
-Update the AI message rendering to:
-1. Safely JSON.parse the reply, unwrapping one level of output (or a 1-item array) to reach { response, citation, reasoning }.
-2. If parsing fails or "response" is missing, fall back to showing the raw text — never break the chat.
-3. On success, render three labeled sections in the bubble, divided by thin rules: "Response" (answer text), "Citation" (bulleted list, hidden if empty), "Reasoning" (short note in a distinct accent color, different from the rest of the text).
-4. Keep existing bubble styling — only restructure content inside it. Don't change how messages are sent.
-
-Find the chat message rendering code and make this change. Verify it works with a mocked webhook reply before confirming it's done.
-```
-
-![image](./assets/31.png)
-
-5. Claude Code will update your chat rendering. Once it finishes, run your app and send a test message to confirm the bubble now shows three sections: Response, Citation, and Reasoning.
-
-![image](./assets/32.png)
-
-**Output**: Your agent now returns structured JSON instead of plain text, and your chat window renders it as three labeled sections — Response, Citation, and Reasoning — inside the same bubble.
-
----
-
-### Step 2: Add the "Download Responses" Feature to Your App
-
-**What you're doing**: Teaching your app to remember every successful chat exchange and give you a way to export it. This exported file becomes your evaluation dataset.
-
-**Why this matters**: Azure AI Foundry needs a dataset of real question-and-answer pairs to evaluate. The cleanest source for that dataset is your own app, with real answers from your own agent. Rather than hand-crafting examples, you'll generate them naturally by chatting with the app — and the Download button captures them automatically.
+**Why this matters**: Azure AI Foundry needs a dataset of real question-and-answer pairs to evaluate. The cleanest source for that dataset is your own app, with real answers from your own agent. Rather than hand-crafting examples, you'll generate them naturally by chatting with the app — every exchange is already saved in your Supabase `chat_messages` table, and the Download button exports the number you choose.
 
 **Action items**:
 
@@ -104,17 +35,19 @@ Find the chat message rendering code and make this change. Verify it works with 
 2. Run the following prompt exactly as written:
 
 ```
-Update the existing contract-review-app to save successful chatbot questions and responses using browser `localStorage`.
+Update the existing contract-review-app to add a Download Responses feature that reads saved chats from the existing Supabase `chat_messages` table.
 Requirements:
-- Do not create or use a backend/server for saving responses.
-- After every successful chatbot response, automatically save the user's exact question and the assistant's exact response, citation, and reasoning to `localStorage`.
-- Save only successful responses. Do not save errors or failed requests.
-- Append new question-response pairs without removing previous ones.
-- After the first successful response, show a `Download Responses` button.
-- When clicked, export all saved question-response pairs from `localStorage` as a `config.json` file.
-- Keep updating `localStorage` as the user asks more questions.
-- If `Download Responses` is clicked again, download the latest `config.json` containing all successful responses.
-- Keep the existing contract upload and chatbot functionality unchanged.
+- Supabase `chat_messages` is the only source to save responses.
+- Do not create a new Supabase project or table. Use the existing `chat_messages` table with `question`, `response`, `citation`, `reasoning`, and `created_at`.
+- Show a `Download Responses` button in the chat section.
+- When clicked, open a small dialog asking how many of the most recent responses to download, with these preset choices: Last 5, Last 10, Last 20, All.
+- Show how many saved responses exist, and disable any preset larger than that number.
+- If there are no saved responses, show a clear message instead of downloading an empty file.
+- After the user picks an option, fetch that many rows from `chat_messages`, newest first, and export them as a `config.json` file in the order they were asked (oldest first).
+- Do not show or export `id` or `created_at`.
+- If the Supabase request fails, show a clear error message and do not download a file.
+- Never expose a Supabase service-role key in frontend code.
+- Keep the existing contract upload, chatbot, and feedback functionality unchanged.
 - Do not make any other changes.
 
 Export `config.json` in this format:
@@ -130,10 +63,10 @@ Export `config.json` in this format:
 
 ![image](./assets/1.png)
 
-3. Claude Code will update your app. Once it finishes, run your app and verify it still loads correctly.
+3. Claude Code will update your app. Once it finishes, run your app and verify it still loads correctly. If Claude asks to change the `chat_messages` policies so the app can read saved chats, allow it.
 4. Upload the MSA contract you downloaded in the Prerequisites step.
 
-**Output**: Your app now silently logs every successful Q&A pair in the browser's localStorage. A "Download Responses" button will appear after your first successful chat response.
+**Output**: Your app now has a "Download Responses" button that exports saved chats from Supabase, in the number you choose.
 
 ![image](./assets/2.png)
 
@@ -141,7 +74,7 @@ Export `config.json` in this format:
 
 ## Phase 2: Generate Your Evaluation Dataset
 
-### Step 3: Ask the Five Evaluation Questions
+### Step 2: Ask the Five Evaluation Questions
 
 **What you're doing**: Using your live agent to answer five carefully chosen contract-law questions, generating the raw material for your evaluation dataset.
 
@@ -165,20 +98,20 @@ Export `config.json` in this format:
 
 4. After all five responses appear, confirm that no errors occurred. All five must be successful responses for the dataset to be complete.
 
-**Output**: Five question-and-answer pairs are now stored in your browser's localStorage.
+**Output**: Five question-and-answer pairs are now saved in your Supabase `chat_messages` table. Check **Table Editor → `chat_messages`** if you want to confirm.
 
 ![image](./assets/3.png)
 
 ---
 
-### Step 4: Download Your Responses
+### Step 3: Download Your Responses
 
 **What you're doing**: Exporting the five Q&A pairs as a `config.json` file that you will convert into a properly formatted evaluation dataset in the next phase.
 
 **Action items**:
 
-1. Look for the **Download Responses** button that appeared in your app after the first successful response.
-2. Click it. A file named `config.json` will download to your machine.
+1. Click the **Download Responses** button in your app's chat section.
+2. In the dialog, choose **Last 5** (the five questions you just asked). A file named `config.json` will download to your machine.
 3. Open the file and verify it contains all five question-response pairs in the correct format. It should look like this:
 
 ```json
@@ -201,11 +134,11 @@ Export `config.json` in this format:
 
 ## Phase 3: Set Up Azure AI Foundry
 
-### Step 5: Create Your Azure AI Foundry Account and Project
+### Step 4: Create Your Azure AI Foundry Account and Project
 
 **What you're doing**: Creating the cloud workspace where the evaluation will run before you touch anything else in Foundry.
 
-> **Note**: If you already have an Azure AI Foundry account and project from a previous lab, skip ahead to Step 6.
+> **Note**: If you already have an Azure AI Foundry account and project from a previous lab, skip ahead to Step 5.
 
 **Action items**:
 
@@ -227,7 +160,7 @@ Export `config.json` in this format:
 
 ## Phase 4: Format the Dataset for Azure AI Foundry
 
-### Step 6: Try to Upload — and Discover the Format Requirement
+### Step 5: Try to Upload — and Discover the Format Requirement
 
 **What you're doing**: Starting the evaluation setup in Foundry and attempting to upload your `config.json` — and discovering exactly why it needs one more step first.
 
@@ -261,7 +194,7 @@ You will notice that **Foundry rejects the file**. This is expected — Foundry 
 
 ---
 
-### Step 7: Convert Your Dataset Using Claude Code
+### Step 6: Convert Your Dataset Using Claude Code
 
 **What you're doing**: Asking Claude Code to reformat your `config.json` into the schema Foundry requires, using the sample file as the specification.
 
@@ -271,7 +204,7 @@ Your `config.json` has the query, response, and citation your agent generated. I
 
 1. Download the ground truth reference file — **[Download From Here](https://docs.google.com/spreadsheets/d/146uj0YOBdGlScHxgcZwbxhp2rP28NphtuluEdRihcyQ/export?format=csv&gid=1493472500)** — and save it as `sample.csv`.
 2. Open Claude Code.
-3. Attach three files: your `config.json`, the `sample.csv` you just downloaded, and the sample dataset you downloaded from Foundry in Step 6.
+3. Attach three files: your `config.json`, the `sample.csv` you just downloaded, and the sample dataset you downloaded from Foundry in Step 5.
 4. Run the following prompt:
 
 ```
@@ -308,7 +241,7 @@ Generate a complete JSONL evaluation dataset where each record contains the appr
 
 ## Phase 5: Run the Evaluation
 
-### Step 8: Upload Your Formatted Dataset
+### Step 7: Upload Your Formatted Dataset
 
 **What you're doing**: Bringing your formatted dataset into Foundry so the evaluation engine can read it.
 
@@ -322,14 +255,14 @@ Generate a complete JSONL evaluation dataset where each record contains the appr
 
 ![image](./assets/16.png)
 
-3. Upload the formatted dataset file that Claude produced in Step 7 (not the original `config.json`).
+3. Upload the formatted dataset file that Claude produced in Step 6 (not the original `config.json`).
 4. Once uploaded successfully, click **Next**.
 
 **Output**: Your dataset is live inside Foundry and ready to be evaluated.
 
 ---
 
-### Step 9: Configure and Run the Evaluation
+### Step 8: Configure and Run the Evaluation
 
 **What you're doing**: Telling Foundry which model to use as the judge, which quality dimensions to measure, and kicking off the evaluation run.
 
@@ -375,7 +308,7 @@ Before you configure the run, Foundry will ask what you are evaluating — an **
 
 ---
 
-### Step 10: Re-run the Evaluation with a Different Judge Model
+### Step 9: Re-run the Evaluation with a Different Judge Model
 
 **What you're doing**: Creating a new evaluation run on the same dataset, this time with GPT-5 as the judge model, to see how the choice of judge affects your scores.
 
@@ -402,19 +335,18 @@ Look at the overall score in both reports side by side. In this run, the GPT-4o 
 
 ## Complete Process Flow
 
-1. Update the n8n AI Agent's system prompt for structured output, then update the app's chat rendering to display it (Claude Code prompt).
-2. Add localStorage + Download Responses feature to the app (Claude Code prompt).
-3. Upload the MSA contract and ask the five evaluation questions.
-4. Download `config.json` from the app.
-5. Create your Azure AI Foundry account and project.
-6. Download the Foundry sample dataset (Single Turn format).
-7. Convert `config.json` to Foundry format using Claude Code.
-8. Upload the formatted dataset to Foundry.
-9. Configure the eval: Individual Turns scope, judge model, five quality metrics.
-10. Name the run and submit.
-11. Review the scored report.
-12. Re-run the eval on the same dataset with GPT-5 as the judge model.
-13. Compare the two reports to see how the judge model change affects your scores.
+1. Add a Download Responses feature that exports saved chats from Supabase, with a choice of how many to include (Claude Code prompt).
+2. Upload the MSA contract and ask the five evaluation questions.
+3. Download `config.json` from the app.
+4. Create your Azure AI Foundry account and project.
+5. Download the Foundry sample dataset (Single Turn format).
+6. Convert `config.json` to Foundry format using Claude Code.
+7. Upload the formatted dataset to Foundry.
+8. Configure the eval: Individual Turns scope, judge model, five quality metrics.
+9. Name the run and submit.
+10. Review the scored report.
+11. Re-run the eval on the same dataset with GPT-5 as the judge model.
+12. Compare the two reports to see how the judge model change affects your scores.
 
 ---
 
@@ -422,7 +354,7 @@ Look at the overall score in both reports side by side. In this run, the GPT-4o 
 
 **Ground truth matters**: Your agent's responses become the ground truth for this eval. Make sure all five chat responses were complete and error-free before downloading — a truncated or failed response will skew your scores.
 
-**The judge model is not your agent**: The model you select in Step 9 is an independent evaluator. It reads your agent's responses and the source contract and scores them. Keep these roles mentally separate.
+**The judge model is not your agent**: The model you select in Step 8 is an independent evaluator. It reads your agent's responses and the source contract and scores them. Keep these roles mentally separate.
 
 **Individual Turns = per-question granularity**: Choosing Individual Turns gives you a score for each question independently. This tells you if your agent handles IP clauses differently than payment terms — which is the insight that actually drives improvements.
 
