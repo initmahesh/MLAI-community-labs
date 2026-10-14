@@ -1,8 +1,8 @@
-# Automate Contract Review Using Claude and Jev
+# Evaluate Contract Review Using Claude and Jev
 
 ![image](./assets/1.png)
 
-Reviewing a Master Services Agreement (MSA) by hand means a person reads every clause and writes down the key terms. For one contract, that costs around **$800** and takes **4 to 5 hours**. In this lab you'll automate the review, check the answers against a human-made ground truth, and see how **Jev** makes the checking step faster and cheaper.
+Reviewing a Master Services Agreement (MSA) by hand means a person reads every clause and writes down the key terms. For one contract, that costs around **$800** and takes **4 to 5 hours**. In this lab you'll evaluate the review, check the answers against a human-made ground truth, and see how **Jev** makes the checking step faster and cheaper.
 
 **Jev** is an AI model from [Typesafe](https://docs.typesafe.ai/agent-skill) built for decisions, not writing: give it text and a question, and it instantly picks an option, scores it, or says how likely it is, at a fraction of the cost. **Jev decides, Claude writes.**
 
