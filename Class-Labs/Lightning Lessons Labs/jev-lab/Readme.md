@@ -1,6 +1,6 @@
 # Automate Contract Review Using Claude and Jev
 
-![image](./images/1.png)
+![image](./assets/1.png)
 
 Reviewing a Master Services Agreement (MSA) by hand means a person reads every clause and writes down the key terms. For one contract, that costs around **$800** and takes **4 to 5 hours**. In this lab you'll automate the review, check the answers against a human-made ground truth, and see how **Jev** makes the checking step faster and cheaper.
 
@@ -163,11 +163,13 @@ and a **Judge model** as gpt-4.1.
 
 Foundry gives you a scored report for every row. In the example run, the evaluation took **2 min 22 s** and cost **$0.39**.
 
-
+![image](./assets/18.png)
 
 ---
 
 ## Part 3: Evaluate with Claude
+
+Foundry scored the answers with five metrics, but it took over two minutes. Let's see if Claude can check the same CSV more simply.
 
 Now we ask a simpler question for each row: *does the answer from the PDF match the ground truth?*
 
@@ -206,6 +208,8 @@ This is our baseline. Classifying is a decision, not writing, so let's see if Je
 ---
 
 ## Part 4: Evaluate with Jev
+
+Claude gave us a baseline of 27 s and about $0.11, so now let's run the same check with Jev and see how it compares.
 
 Same CSV, same three verdicts. This time Jev makes the decisions and Claude only puts the results together.
 

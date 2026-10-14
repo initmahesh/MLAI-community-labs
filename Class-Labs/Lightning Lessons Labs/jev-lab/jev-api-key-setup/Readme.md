@@ -12,7 +12,6 @@ In this lab, you'll install the Jev plugin, create your Typesafe API key, connec
 - [Step 1: Install the Jev Plugin](#step-1-install-the-jev-plugin)
 - [Step 2: Create Your API Key](#step-2-create-your-api-key)
 - [Step 3: Add Your API Key to Claude](#step-3-add-your-api-key-to-claude)
-- [Step 4: Check the Test Results](#step-4-check-the-test-results)
 - [What You Learned](#what-you-learned)
 - [Reference](#reference)
 
@@ -30,7 +29,7 @@ In this lab, you'll install the Jev plugin, create your Typesafe API key, connec
 
 The plugin is what teaches Claude about Jev: what it can do and how to call it.
 
-In your terminal, run these two commands:
+In your terminal (in Claude Code Desktop, click the terminal icon at the top right), run these two commands:
 
 ```
 claude plugin marketplace add typesafe-ai/skills
@@ -39,7 +38,7 @@ claude plugin install typesafe@typesafe-ai
 
 The first command adds Typesafe's skill marketplace. The second installs the Typesafe plugin from it.
 
-![image](./images/2.png)
+![image](../images/3.png)
 
 ---
 
@@ -51,24 +50,22 @@ Before Claude can reach Jev, you need a Typesafe API key.
 2. Enter your email.
 3. Agree to the terms and conditions.
 
-![image](./images/3.png)
+![image](../images/5.png)
 
 4. Skip the next steps.
 5. Click **Enter console**.
 
-![image](./images/4.png)
+![image](../images/6.png)
 
 6. When asked "Can you chat with Jev, TypeSafe's new model?", click **No**.
 7. A message says "TypeSafe only responds with structured decisions". Click **Close**.
 8. Click **API keys** in the sidebar.
-9. Click **Create API key** and create a new key.
+9. Click **Create API key**, give the key a name, and click **Create key**.
 
-![image](./images/5.png)
+![image](../images/7.png)
 
 10. Copy the key and keep it somewhere safe for the next step.
 11. If your balance shows zero, click **Balance**, then **Add funds**.
-
-![image](./images/6.png)
 
 > ⚠️ Keep your key private. Don't paste it into any file you might share, and never commit it to GitHub.
 
@@ -117,46 +114,10 @@ Here is what each part of the prompt does:
 | **4. Run a Real Test** | Claude sends a sample email to Jev, so you see a real response before trusting it. |
 | **5. Create a Reusable Skill** | The working setup is saved as a skill, so you can call Jev later with one sentence. |
 
-![image](./images/7.png)
 
 > ⚠️ Anything sent to Jev leaves your computer. Never send private documents without checking first.
 
----
-
-## Step 4: Check the Test Results
-
-Claude runs the sample sales email through Jev and shows you the results. You should see:
-
-| What to look for | What it tells you |
-|------------------|-------------------|
-| **Lead quality** | A Choice or Score decision from Jev, for example high or low. |
-| **Email type** | A Choice decision, for example inquiry, complaint or follow-up. |
-| **Personalized reply needed** | A yes or no decision, with how likely Jev thinks it is. |
-| **Confidence scores** | How sure Jev is about each decision. |
-| **Latency** | How long each call took. Expect well under a second. |
-| **Cost** | What the calls cost, worked out from the tokens the API reports back. |
-
-![image](./images/8.png)
-
-Then confirm the skill was saved. Start a **new chat** and type:
-
-```
-Use Jev to sort these.
-```
-
-Claude should recognise the saved skill and ask you what to sort and whether it can send the data to Jev.
-
-![image](./images/9.png)
-
-**If the test fails,** Claude shows the exact error. These are the usual causes:
-
-| Problem | Likely cause | Fix |
-|---------|--------------|-----|
-| Authentication error (401) | The key was copied wrongly or has extra spaces. | Create a new key in the console and give it to Claude again. |
-| Balance or payment error | Your balance is zero. | In the console, click **Balance**, then **Add funds**. |
-| Claude doesn't know what Jev is | The plugin isn't installed. | Run the two commands in [Step 1](#step-1-install-the-jev-plugin) again, then start a new chat. |
-
----
+--- 
 
 ## What You Learned
 
