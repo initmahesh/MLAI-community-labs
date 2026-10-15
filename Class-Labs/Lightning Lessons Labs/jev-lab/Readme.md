@@ -393,8 +393,6 @@ Incorrect                                 0
 Time:   13.94 s   (measured)
 ```
 
-![image](./assets/15.png)
-
 ---
 
 ## Step 8: Evaluate with Jev
