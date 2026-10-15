@@ -217,7 +217,7 @@ or
    |---|---|
    | Select agent | `router-agent` |
    | Input message | Select `Local.user_question` from the dropdown |
-   | Save agent output message as | `router_result` |
+   | Save agent output message as | `router_answer` |
    | Automatically include agent response in external conversation | `Off` (the user should not see `HR_POLICY` or `COMPANY_INFO` in the chat) |
 
 ![image](./assets/17.png)

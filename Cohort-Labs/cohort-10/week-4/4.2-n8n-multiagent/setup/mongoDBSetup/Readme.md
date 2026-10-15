@@ -136,7 +136,7 @@ Click the **Add IP Address** button to open the allowlist entry dialog.
 
 In the **Access List Entry** field, type `0.0.0.0/0` and click **Confirm**. Wait until the status changes to **Active**.
 
-> `0.0.0.0/0` is CIDR notation for "every IPv4 address". This is fine for a lab environment. In production you would restrict this to your server's specific IP address to reduce exposure.
+> `0.0.0.0/0` means "allow connections from any IP address on the internet." This is acceptable for a lab environment, but in production you would restrict access to your server's specific IP address to limit exposure.
 
 ![Step 6](images/18.png)
 ---
