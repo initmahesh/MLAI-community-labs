@@ -41,6 +41,7 @@ Before we start, make sure you have:
 - [ ] All **knowledge base files** downloaded (see table below) and saved to your desktop
 - [ ] All **test contract files** downloaded (see table below) — you'll use these in the testing section
 - [ ] A **Microsoft Teams** account (for the deployment section)
+- [ ] An **Airtable account** set up with a CRM base and token — follow the setup guide here: [4.0 Airtable Setup](https://github.com/initmahesh/MLAI-community-labs/tree/main/Cohort-Labs/cohort-10/week-4/4.0-airtable-setup)
 
 > **Tip:** Keep this guide open in one tab and Azure AI Foundry open in another. You'll be switching between them.
 

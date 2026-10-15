@@ -1,8 +1,8 @@
-# Lab: Set Up Your Jev API Key
+# Set Up Your Jev API Key
 
-**Jev** is a **System 1** model from [Typesafe](https://docs.typesafe.ai/agent-skill): built for fast decisions, not writing, it picks an option, scores it, or gives a probability in an instant.
+**Jev** is a **System One** model from [Typesafe](https://docs.typesafe.ai/agent-skill): built for fast decisions, not writing. It picks an option, scores it, or gives a probability in an instant.
 
-In this lab, you'll install the Jev plugin, create your Typesafe API key, connect it to Claude, and run a quick test.
+In this lab you'll install the Jev plugin, create your Typesafe API key, store it securely, and run a quick test to confirm everything works.
 
 ---
 
@@ -11,7 +11,8 @@ In this lab, you'll install the Jev plugin, create your Typesafe API key, connec
 - [Prerequisites](#prerequisites)
 - [Step 1: Install the Jev Plugin](#step-1-install-the-jev-plugin)
 - [Step 2: Create Your API Key](#step-2-create-your-api-key)
-- [Step 3: Add Your API Key to Claude](#step-3-add-your-api-key-to-claude)
+- [Step 3: Store Your API Key Securely](#step-3-store-your-api-key-securely)
+- [Step 4: Verify the Connection](#step-4-verify-the-connection)
 - [What You Learned](#what-you-learned)
 - [Reference](#reference)
 
@@ -31,7 +32,7 @@ The plugin is what teaches Claude about Jev: what it can do and how to call it.
 
 In your terminal (in Claude Code Desktop, click the terminal icon at the top right), run these two commands:
 
-```
+```bash
 claude plugin marketplace add typesafe-ai/skills
 claude plugin install typesafe@typesafe-ai
 ```
@@ -39,6 +40,8 @@ claude plugin install typesafe@typesafe-ai
 The first command adds Typesafe's skill marketplace. The second installs the Typesafe plugin from it.
 
 ![image](../images/3.png)
+
+Restart Claude Code so it picks up the plugin.
 
 ---
 
@@ -71,61 +74,90 @@ Before Claude can reach Jev, you need a Typesafe API key.
 
 ---
 
-## Step 3: Add Your API Key to Claude
+## Step 3: Store Your API Key Securely
 
-Now give Claude your key. Open Claude Code Desktop, start a new chat, and paste this prompt. When Claude asks for your API key, paste the one you just created.
+Keep the key out of the chat. Use one of these two options.
 
+**Option A — environment variable** (simplest):
+
+```bash
+export TYPESAFE_API_KEY="your-key-here"
 ```
-I want to integrate Jev, a fast, low-cost AI model for classification, scoring, and decision-making, into my existing Claude Code workspace.
 
-1. Understand Jev
-First, read the official documentation: https://docs.typesafe.ai/llms.txt
+Run this before launching Claude Code, or add it to your shell profile (`~/.zshrc` or `~/.bashrc`) so it persists across sessions.
 
-2. Set Up the API
-Connect Jev using the official Typesafe API and TYPESAFE_API_KEY. Ask me for my API key, store it securely on my computer, and never expose or commit it.
+**Option B — credentials file** (more durable):
 
-3. Configure Jev
-Jev supports three operations: Choice, Score, and Probability. Keep Jev OFF by default and use it only when I explicitly request it. Otherwise, use Claude normally.
+```bash
+mkdir -p ~/.config/jev && umask 077
+echo 'JEV_API_KEY=your-key-here' > ~/.config/jev/credentials
+chmod 600 ~/.config/jev/credentials
+```
 
-4. Run a Real Test
-Create a sample sales email and use Jev to evaluate:
-- Lead quality
-- Email type
-- Whether a personalized reply is needed
+The `jev-evaluate` skill reads from `JEV_API_KEY`, `TYPESAFE_API_KEY`, or `~/.config/jev/credentials` — whichever it finds first. It never prints the key, even in error messages.
 
-Show actual responses, confidence scores, latency, and available cost. If the test fails, show the exact error.
+---
 
-5. Create a Reusable Skill
-Save the working integration as a Claude Code skill so I can invoke it anytime by saying "Use Jev to sort these."
+## Step 4: Verify the Connection
 
-Important Rules:
+Open Claude Code Desktop, start a new chat, and paste this prompt:
+
+```text
+I've installed the TypeSafe plugin in Claude Code.
+
+Here is my API key: <ADD YOUR API KEY HERE>
+
+1. UNDERSTAND JEV
+Read https://docs.typesafe.ai/llms.txt. Jev returns three shapes only: Choice (pick one
+option), Score (a position on an ordered rubric), Noul (a probability from 0 to 1).
+It does not generate text.
+
+2. VERIFY THE CONNECTION
+Make one trivial Jev call and report ok/fail plus latency. On failure, print the exact
+error text. Never print any part of the key.
+
+3. RULES
+- Jev stays OFF by default. Use it only when I say "use jev".
 - Jev decides, Claude writes.
-- If Jev is uncertain, Claude makes the final decision.
-- Always ask permission before sending private data to Jev.
+- If Jev's confidence is below 0.7, flag the row for human review rather than accepting
+  it silently.
+- Ask before sending contract text to Jev.
+- NEVER fall back to Claude silently if a Jev call fails. Stop and show the error.
+  A silent fallback would make a failed demo look like a successful one.
+
+4. INSTRUMENT EVERY CALL
+For every Jev call record latency_ms, input_tokens, output_tokens, and cost at $0.042
+per 1M input tokens with output free. Keep a running session total. After any batch,
+print: total calls, wall-clock time, total tokens, total cost.
+Report Jev's cost separately from Claude's. Never merge them into one number.
 ```
 
-Here is what each part of the prompt does:
+You should see something like:
 
-| Part | What it does |
-|------|--------------|
-| **1. Understand Jev** | Claude reads Typesafe's docs first, so it uses the API correctly. |
-| **2. Set Up the API** | Claude asks for your key and stores it on your computer instead of in your project. |
-| **3. Configure Jev** | Jev stays off unless you ask for it. The three operations are **Choice** (pick an option), **Score** (rate something) and **Probability** (how likely is it). |
-| **4. Run a Real Test** | Claude sends a sample email to Jev, so you see a real response before trusting it. |
-| **5. Create a Reusable Skill** | The working setup is saved as a skill, so you can call Jev later with one sentence. |
+```text
+OK  latency_ms=360  detail=positive
+total calls : 1
+tokens      : 325 (in 294 / out 31)
+Jev cost    : $0.00001235  @ $0.042/1M input, output free
+```
 
+If you see an error instead, check:
+- The key is set in your environment or credentials file and Claude Code was restarted after.
+- Your Typesafe account has a non-zero balance.
+- You pasted the full key with no extra spaces.
 
-> ⚠️ Anything sent to Jev leaves your computer. Never send private documents without checking first.
+> The `$0.042 per 1M input tokens, output free` rate is the one used in this lab. Check your own TypeSafe plan for your rate.
 
---- 
+---
 
 ## What You Learned
 
-- **Jev needs a plugin and a key.** The plugin teaches Claude how to call it, and the key is what lets the calls through.
-- **Jev is off by default.** It only runs when you ask for it, so Claude keeps working as usual otherwise.
-- **Jev makes three kinds of decisions.** Choice, Score and Probability.
-- **Jev decides, Claude writes.** If Jev is unsure, Claude makes the final call.
-- **Your key stays private.** It's stored on your computer, never in a project you share.
+- **Jev needs a plugin and a key.** The plugin teaches Claude how to call it; the key is what lets the calls through.
+- **Store the key outside the chat.** Use an env var or a credentials file — never paste it into a file you might share.
+- **Jev is off by default.** It only runs when you say "use jev", so Claude keeps working normally otherwise.
+- **Jev makes three kinds of decisions.** Choice, Score, and Noul (probability).
+- **Jev decides, Claude writes.** Claude orchestrates; Jev makes the judgment.
+- **Failed calls must be loud.** Never let Claude silently substitute its own answer if Jev fails.
 
 ---
 
