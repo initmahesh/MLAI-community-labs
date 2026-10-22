@@ -1,85 +1,90 @@
-# Lab 5 Kahoot: Production Engineering, Evals & Security
+# Module 5: Production Engineering, Evals & Security
 
-12 multiple-choice questions (6 Easy, 6 Medium). Pairs with: `production-engineering-evals-security-colab.ipynb`
+12 multiple-choice questions (all Medium), one correct answer each. Pairs with: `production-engineering-evals-security-colab.ipynb`
 
 ---
 
-**1. [Easy] When should you define the eval for a Claude feature?**
+**1. [Medium] A regulated EU bank wants an agent that summarizes customer call transcripts for its support team, with summaries reviewed before they are stored in the EU. Which of the following is a valid functional requirement?**
 
-- A. After the prompt looks good
-- B. Before writing the prompt
-- C. After launch, from user complaints
-- D. Only when accuracy drops
+- A. The agent should be fast and accurate
+- B. The agent produces a summary that a human approves before it is stored
+- C. The system must be built using an approved cloud provider
+- D. Transcript data must not leave the EU
 
-**2. [Medium] Claude must return JSON with number fields. Which grader checks it cheaply?**
+**2. [Medium] From the same scenario, which of the following is a valid infrastructure requirement?**
+
+- A. The agent must produce summaries quickly enough for support staff to act on them
+- B. The agent summarizes transcripts using a pre-approved prompt template
+- C. Transcript data is processed in the EU
+- D. A human reviews each summary before it is stored
+
+**3. [Medium] Which lifecycle phase does this belong to: pinning the full model ID and keeping the prior version?**
+
+- A. Requirements
+- B. Design
+- C. Test
+- D. Deploy
+- E. Operate
+
+**4. [Medium] Which lifecycle phase does this belong to: gating promotion on the eval result before a version goes to production?**
+
+- A. Requirements
+- B. Design
+- C. Test
+- D. Deploy
+- E. Operate
+
+**5. [Medium] Which lifecycle phase does this belong to: deciding data must be processed in a specific region?**
+
+- A. Requirements
+- B. Design
+- C. Test
+- D. Deploy
+- E. Operate
+
+**6. [Medium] Which lifecycle phase does this belong to: instrumenting token cost and latency per call in production?**
+
+- A. Requirements
+- B. Design
+- C. Test
+- D. Deploy
+- E. Operate
+
+**7. [Medium] Which lifecycle phase does this belong to: choosing Amazon Bedrock because the customer holds its compliance posture there?**
+
+- A. Requirements
+- B. Design
+- C. Test
+- D. Deploy
+- E. Operate
+
+**8. [Medium] Claude must return JSON with number fields. Which grader checks it cheaply?**
 
 - A. An LLM judge
 - B. A person reading every answer
 - C. Exact match on the whole text
 - D. Code that checks the JSON shape and the facts
 
-**3. [Easy] Which output needs an LLM judge to grade it?**
-
-- A. A one-word clause label
-- B. A free-text summary of a clause
-- C. A yes or no answer
-- D. A page number
-
-**4. [Medium] A judge scores a padded summary above a short, correct one. What is the fix?**
+**9. [Medium] A judge scores a padded summary above a short, correct one. What is the fix?**
 
 - A. Rerun the judge until the scores match
 - B. Nothing: longer answers are more complete
 - C. It is length bias: calibrate the judge against human scores
 - D. Switch to exact match
 
-**5. [Easy] Which test level checks the handoff between two parts, like search into a model call?**
-
-- A. Unit
-- B. Functional
-- C. Integration
-- D. Manual spot check
-
-**6. [Medium] A trace shows step 4, the parser, raised a KeyError. What did the trace tell you?**
-
-- A. The model is too weak
-- B. The API key expired
-- C. The prompt needs more examples
-- D. Which step caused the failure
-
-**7. [Easy] Which error is worth retrying with backoff?**
-
-- A. 400 invalid request
-- B. 429 rate limit
-- C. 401 unauthorized
-- D. A bug in your own parser
-
-**8. [Medium] Sonnet passes your eval but costs too much. What is the right next step?**
+**10. [Medium] Sonnet passes your eval but costs too much. What is the right next step?**
 
 - A. Run the full eval on Haiku and ship it only if it passes
 - B. Switch to Haiku straight away
 - C. Move up to Opus
 - D. Lower the pass mark to 80%
 
-**9. [Easy] For prompt caching, what should come first in the prompt?**
-
-- A. The user's current question
-- B. The chat history
-- C. Random examples
-- D. Stable content like the system prompt and the contract
-
-**10. [Medium] A clause says to email the contract to an outsider. Which defence is plain code?**
+**11. [Medium] A clause says to email the contract to an outsider. Which defence is plain code?**
 
 - A. A stronger system prompt
 - B. A PreToolUse hook that blocks unapproved recipients
 - C. Asking Claude to be careful
 - D. Using a bigger model
-
-**11. [Easy] Ten workers each get the whole contract. How do input tokens compare to one call?**
-
-- A. About the same
-- B. About half
-- C. About 10 times more
-- D. Lower, because workers share it
 
 **12. [Medium] Claude serves Alice but is asked for Bob's contract. Where should the access rule live?**
 
@@ -94,17 +99,17 @@
 
 | Q | Level | Answer | Why |
 |---|---|---|---|
-| 1 | Easy | **B** | The eval comes first, so you tune the prompt until answers are correct, not until they look good. |
-| 2 | Medium | **D** | Structured output can be code-graded: valid JSON, right fields and types, correct facts. |
-| 3 | Easy | **B** | Open-ended text like summaries has no single right answer, so a calibrated LLM judge scores it. |
-| 4 | Medium | **C** | A judge can be biased toward long answers. Check it against human scores and fix the prompt. |
-| 5 | Easy | **C** | Integration tests isolate the handoff where each side passes alone but the connection breaks. |
-| 6 | Medium | **D** | A trace records each step, so it points to the exact step that failed. |
-| 7 | Easy | **B** | 429 is temporary: retry with growing waits. 400 and 401 are terminal, so fix the cause. |
-| 8 | Medium | **A** | Every model swap is a release. Run the full eval on Haiku before sending it traffic. |
-| 9 | Easy | **D** | Stable content first, changing content last. Anything that changes invalidates what follows. |
-| 10 | Medium | **B** | A hook is code that runs before the tool, so it works even if the model is tricked. |
-| 11 | Easy | **C** | Each worker processes the full context, so ten workers cost about ten times one call. |
+| 1 | Medium | **B** | A functional requirement states what the agent does. Human approval before storage is behaviour. A is vague, C and D are constraints on the platform and data. |
+| 2 | Medium | **C** | An infrastructure requirement is about where and on what the system runs. Processing in the EU is a deployment location. A is performance, B and D are functional. |
+| 3 | Medium | **D** | **Deploy.** Pinning the exact version and keeping the prior one for rollback is a release step. |
+| 4 | Medium | **C** | **Test.** The eval result is the test gate that decides whether a version is promoted. |
+| 5 | Medium | **A** | **Requirements.** Where data may be processed is a constraint set before anything is designed. |
+| 6 | Medium | **E** | **Operate.** Per-call cost and latency metrics are monitored while the system runs. |
+| 7 | Medium | **B** | **Design.** Picking the platform to fit a compliance posture is a design decision. |
+| 8 | Medium | **D** | Structured output can be code-graded: valid JSON, right fields and types, correct facts. |
+| 9 | Medium | **C** | A judge can be biased toward long answers. Check it against human scores and fix the prompt. |
+| 10 | Medium | **A** | Every model swap is a release. Run the full eval on Haiku before sending it traffic. |
+| 11 | Medium | **B** | A hook is code that runs before the tool, so it works even if the model is tricked. |
 | 12 | Medium | **D** | Access rules that must never break belong in code. A prompt can be argued with or injected. |
 
 **Scoring:** 11-12 solid, 8-10 revisit the weak topics, below 8 re-run the lab.
