@@ -13,7 +13,7 @@ Five hands-on Google Colab labs for the Claude certification track. Click a badg
 ## Before you start
 
 - Have your **Anthropic API key** ready. Each lab asks for it once.
-- Lab 1 asks you to upload two contracts (the download links are in the notebook). Lab 2 uses the short AWS contract. Lab 3 asks you to upload the AWS contract (the download link is in the notebook). Lab 5 asks you to upload any contract (PDF or text). Lab 4 downloads the AWS contract for you.
+- Lab 1 asks you to upload two contracts (the download links are in the notebook). Lab 2 uses the short AWS contract. Labs 3 and 4 ask you to upload the AWS contract (the download link is in each notebook). Lab 5 asks you to upload any contract (PDF or text).
 - Do the labs in order. Lab 2 builds on Lab 1, and Lab 3 builds on Lab 2. Lab 4 (evals and security) builds on the ideas from Labs 2 and 3. Lab 5 stands on its own, but it reuses the contract-review idea from the earlier labs.
 - Labs 3 and 4 run Claude through the Agent SDK, which Colab installs for you in the first cell.
 - Run the cells from top to bottom. Don't skip ahead.
