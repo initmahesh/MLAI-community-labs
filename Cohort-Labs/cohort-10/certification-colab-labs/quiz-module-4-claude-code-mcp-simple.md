@@ -1,4 +1,4 @@
-# Lab 4 Kahoot: Claude Code, MCP & Integration (Simple)
+# Module 4: Claude Code, MCP & Integration (Simple)
 
 12 multiple-choice questions for `claude-code-mcp-integration-simple-colab.ipynb`. 6 Easy and 6 Medium, one correct answer each, 20 seconds per question.
 

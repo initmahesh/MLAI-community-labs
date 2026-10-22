@@ -1,4 +1,4 @@
-# Kahoot: Lab 3, Claude Code, MCP & Integration
+# Module 3: Claude Code, MCP & Integration
 
 12 multiple-choice questions (6 Easy, 6 Medium), one correct answer each. Check the answer key at the bottom.
 

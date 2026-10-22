@@ -1,4 +1,4 @@
-# Lab 5 Kahoot: Production Engineering, Evals & Security
+# Module 5: Production Engineering, Evals & Security
 
 12 multiple-choice questions (6 Easy, 6 Medium). Pairs with: `production-engineering-evals-security-colab.ipynb`
 
