@@ -1,6 +1,6 @@
 # Module 1 Quiz — MSO Foundations
 
-15 multiple-choice questions. Pick one answer per question, then check the answer key at the bottom.
+23 multiple-choice questions. Pick one answer per question, then check the answer key at the bottom.
 Pairs with: `mso-foundation-colab.ipynb`
 
 ---
@@ -110,6 +110,62 @@ Pairs with: `mso-foundation-colab.ipynb`
 - C. `AsyncAnthropic` with thousands of concurrent requests
 - D. Streaming each response
 
+**16. A teammate says two identical prompts must return identical text. What is the most accurate response?**
+
+- A. That is true, the model is deterministic
+- B. Not necessarily, the model samples each next token from a probability distribution, so wording can vary even when both answers are correct
+- C. That is only true if streaming is off
+- D. That is only true on the largest model
+
+**17. Which statement best separates model choice from reasoning mode?**
+
+- A. They are the same setting
+- B. Extended thinking is a different model
+- C. Model choice picks which member of the family runs; extended thinking is a per-call setting that any supporting model can run with on or off
+- D. Reasoning mode is fixed per account
+
+**18. A short, well-specified classification task returns the right answer zero-shot. What does adding three examples most likely do?**
+
+- A. Improves accuracy substantially
+- B. Adds token cost on every call for little or no gain
+- C. Changes the model being used
+- D. Disables sampling
+
+**19. You must process thousands of inputs offline at the lowest cost. Which shape fits?**
+
+- A. Synchronous calls in a loop
+- B. Streaming
+- C. Batch submission with polling
+- D. A larger context window
+
+**20. Consider a classification task run at temperature 0 versus the same task run at a high temperature. Predict how the outputs differ across repeated runs.**
+
+- A. At a low temperature, the model concentrates probability on the most likely tokens, so repeated runs return the same label far more consistently, though never with guaranteed determinism, even at temperature 0. At a high temperature, the distribution spreads out, so wording and even the chosen label can vary. For a classifier you want the low-temperature, repeatable behavior
+- B. Both configurations return identical output every run, because temperature only affects response length, not which tokens are chosen
+- C. The high-temperature run is more accurate, because spreading the distribution lets the model consider more of the correct answers
+- D. Temperature has no effect on a classification task, because classification always returns a fixed label regardless of sampling
+
+**21. Consider a task that keeps returning output in the wrong structure under a zero-shot prompt. Predict what changes if you switch to multi-shot.**
+
+- A. Switching to multi-shot retrains the model on the new structure, so the change is permanent across every future call once the examples are sent
+- B. Adding two or three correct input-output examples shows the model the exact structure to match, which usually fixes a structure problem that more instruction text did not. The cost is extra tokens on every call, so add the fewest examples that make the output reliable
+- C. Multi-shot will not help a structure problem; only raising the temperature changes the shape of the output
+- D. Multi-shot lowers the token cost per call, because examples let the model produce shorter responses
+
+**22. Consider a pipeline that must process 50,000 documents overnight with no user waiting. Predict which request shape fits and why.**
+
+- A. A synchronous loop fits best, because calling the API once per document is the simplest pattern and avoids the overhead of submitting a batch
+- B. Streaming fits best, because sending the response in pieces lets the pipeline start processing each document sooner
+- C. The batch pattern fits: submit the requests in a batch and poll for completion, accepting longer latency for a lower per-token cost. A synchronous loop would hit rate limits and tie up the application, and streaming buys nothing because no user is watching
+- D. A larger context window fits best, because fitting all 50,000 documents into one request avoids making repeated calls
+
+**23. Consider a long multi-turn agent session whose context window keeps filling. Predict the symptoms and name the budget at fault.**
+
+- A. The model silently drops the oldest turns to make room, so the session continues but quietly loses early context without any error
+- B. The context window is a fixed token budget; as history and tool results accumulate it fills. An input that is already oversized is rejected with an error before generation, while a request that fits on input but reaches the ceiling mid-generation comes back with truncated output and a `model_context_window_exceeded` stop reason. The symptom is a session that ran fine in testing failing once inputs grow, which is why the application must trim or summarize history
+- C. The symptom is slower sampling, and the budget at fault is the temperature setting, which must be lowered as the session grows
+- D. There is no fixed budget; the window expands automatically to hold whatever history accumulates, so a long session never fails for this reason
+
 ---
 
 <details>
@@ -132,8 +188,16 @@ Pairs with: `mso-foundation-colab.ipynb`
 | 13 | **B** | The SDK is a convenience layer over the same REST API; it does not change the model or the API. |
 | 14 | **C** | Streaming removes the blank-screen wait. For short backend jobs, a synchronous call is simpler. |
 | 15 | **A** | Bulk offline work with no one waiting is exactly the Message Batches use case. Async is for concurrency when results are still needed in real time. |
+| 16 | **B** | Output is sampled from a probability distribution, so identical prompts can yield different, equally correct wording. |
+| 17 | **C** | Model choice selects the family member; extended thinking is a per-call setting that any supporting model can run with on or off. |
+| 18 | **B** | When zero-shot already works, examples add token cost on every call for little or no gain. |
+| 19 | **C** | Offline, cost-sensitive bulk work fits batch submission with polling. |
+| 20 | **A** | Low temperature makes repeated runs far more consistent (never guaranteed identical); high temperature spreads the distribution, so output and even the label can vary. |
+| 21 | **B** | A few correct input-output examples show the exact structure to match. Cost is extra tokens per call, so use the fewest that work. |
+| 22 | **C** | No one is waiting, so batch plus polling trades latency for lower cost. Synchronous loops hit rate limits; streaming buys nothing. |
+| 23 | **B** | The context window is a fixed token budget. Oversized input is rejected up front; hitting the ceiling mid-generation returns truncated output with `model_context_window_exceeded`. Trim or summarize history. |
 
-**Scoring:** 13–15 solid · 10–12 revisit the weak topics · below 10 re-run the MSO Foundations lab.
+**Scoring:** 20–23 solid · 15–19 revisit the weak topics · below 15 re-run the MSO Foundations lab.
 
 *These are original practice questions written from the module content, not the course's own quiz items.*
 
