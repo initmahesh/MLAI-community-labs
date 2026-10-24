@@ -1,6 +1,6 @@
 # Module 2 Quiz — Production-Grade Prompting, Agents & Tool Use
 
-15 multiple-choice questions. Pick one answer per question, then check the answer key at the bottom.
+25 multiple-choice questions. Pick one answer per question, then check the answer key at the bottom.
 Pairs with: `production-grade-prompting-agents-tool-use-colab.ipynb`
 
 ---
@@ -110,6 +110,93 @@ Pairs with: `production-grade-prompting-agents-tool-use-colab.ipynb`
 - C. Use streaming; results arrive in order
 - D. Use extended thinking; it avoids rate limits
 
+**16. A customer support agent assists the same user across daily check-ins over two weeks. Each session starts where the previous one left off. Which memory scope fits?**
+
+- A. In-context memory: all state lives in the active conversation
+- B. External storage: write state to a database at session end, then read it back at session start
+- C. No persistent memory (stateless): each session starts fresh
+- D. Vector database retrieval at every turn, with no state stored between sessions
+
+**17. A document formatter receives a file, applies a transformation, returns the output, and terminates. Each job is fully independent. Which memory scope fits?**
+
+- A. In-context memory: all state lives in the active conversation
+- B. External storage: write state to a database at session end, then read it back at session start
+- C. No persistent memory (stateless): each session starts fresh
+- D. Vector database retrieval at every turn, with no state stored between sessions
+
+**18. A coding assistant works with a developer across a multi-hour session. The session will not continue after it ends. Which memory scope fits?**
+
+- A. In-context memory: all state lives in the active conversation
+- B. External storage: write state to a database at session end, then read it back at session start
+- C. No persistent memory (stateless): each session starts fresh
+- D. Vector database retrieval at every turn, with no state stored between sessions
+
+**19. A reference product diagram is used in every request your pipeline makes. Which encoding method fits?**
+
+- A. Message Batches API: submit all requests in one batch call, poll for completion
+- B. Files API: upload once, reference `file_id` in each request
+- C. Inline base64: encode and include directly in the message block
+- D. Paste the file contents as plain text in the prompt
+
+**20. A one-off screenshot of a UI bug is submitted by a support engineer in a single request. Which encoding method fits?**
+
+- A. Message Batches API: submit all requests in one batch call, poll for completion
+- B. Files API: upload once, reference `file_id` in each request
+- C. Inline base64: encode and include directly in the message block
+- D. Paste the file contents as plain text in the prompt
+
+**21. A job classifies 5,000 customer feedback responses. Which encoding method fits?**
+
+- A. Message Batches API: submit all requests in one batch call, poll for completion
+- B. Files API: upload once, reference `file_id` in each request
+- C. Inline base64: encode and include directly in the message block
+- D. Paste the file contents as plain text in the prompt
+
+**22. Classify 50,000 support tickets into three labels overnight. What is the correct extended-thinking decision?**
+
+- A. Never do this
+- B. Leave it off
+- C. Enable it, budget for the planning step
+- D. Enable it at maximum budget on every call
+
+**23. Plan a multi-step refactor where each step depends on the previous one. What is the correct extended-thinking decision?**
+
+- A. Never do this
+- B. Leave it off
+- C. Enable it, budget for the planning step
+- D. Enable it at maximum budget on every call
+
+**24. Strip the thinking block out of conversation history to save context before the next tool call. What is the correct extended-thinking decision?**
+
+- A. Never do this
+- B. Leave it off
+- C. Enable it, budget for the planning step
+- D. Enable it at maximum budget on every call
+
+**25. The session trace below shows an agent calling a tool, receiving a result, and then failing with an API validation error on the next request. The schema is valid, the tool description is specific, and the tool result content is correct. (Convention: `tool_result` blocks are always sent in the `user` role, even though your application generates the content. The role marks who is sending the message to Claude, not who authored it.) Which targeted fix is right?**
+
+```
+Turn 1: User:
+  [text]: "What is the current balance for account A-4471?"
+
+Turn 2: Assistant:
+  [text]: "I'll look that up."
+  [tool_use]: id="toolu_01", name="get_account_balance",
+              input={"account_id": "A-4471"}
+
+Turn 3: User (tool result):
+  [tool_result]: tool_use_id="toolu_02", content="Balance: $1,240.18"
+
+Turn 4: API response:
+  Error: invalid_request_error
+  "tool_result block references unknown tool_use_id"
+```
+
+- A. Update the description on `get_account_balance` to add an exclusion condition
+- B. Correct the `tool_use_id` on the `tool_result` block so it matches the id issued in the assistant turn
+- C. Add a `required` array to the tool's `input_schema` so `account_id` cannot be omitted
+- D. Change the `tool_result` block to the `assistant` role
+
 ---
 
 <details>
@@ -132,8 +219,18 @@ Pairs with: `production-grade-prompting-agents-tool-use-colab.ipynb`
 | 13 | **D** | Skills are a low-cost on-demand pattern; subagents start clean and need skills listed explicitly. |
 | 14 | **C** | ⌈1000/28⌉ × ⌈1000/28⌉ = 36 × 36 = 1,296. Each model also has a max resolution; larger images are downscaled first. |
 | 15 | **A** | Looping over the sync API is not batching. Batch results are unordered, so join by `custom_id`. |
+| 16 | **B** | State must survive across sessions that are days apart, so write it to external storage at session end and read it back at the next start. |
+| 17 | **C** | Each job is independent and nothing carries over, so no persistent memory is needed. Stateless is the simplest and cheapest scope. |
+| 18 | **A** | The session ends and never resumes, so the active conversation is enough. External storage would add cost and complexity for no benefit. |
+| 19 | **B** | The same file is sent in every request, so upload it once and reference the `file_id`. Re-encoding inline base64 each time bloats every payload. |
+| 20 | **C** | A single one-off image doesn't justify an upload step, so inline base64 is simplest. The Files API adds a round trip for no reuse benefit. |
+| 21 | **A** | Thousands of independent, non-urgent requests fit the Message Batches API: one batch call, then poll. Looping synchronous calls hits rate limits and costs more. |
+| 22 | **B** | Simple three-label classification at volume gains little from reasoning, and thinking tokens would multiply cost and latency across 50,000 calls. Leave it off. |
+| 23 | **C** | Dependent steps where each builds on the last benefit from reasoning, so enable it and budget for the planning step. |
+| 24 | **A** | Signed thinking blocks must be returned unchanged. Stripping them to save context breaks the request, so never do it. |
+| 25 | **B** | The `tool_result` references `toolu_02`, but the assistant issued `toolu_01`. Every `tool_result` must carry the `tool_use_id` of the `tool_use` it answers. The schema and description are not at fault. |
 
-**Scoring:** 13–15 solid · 10–12 revisit the weak topics · below 10 re-run the lab.
+**Scoring:** 21–25 solid · 16–20 revisit the weak topics · below 16 re-run the lab.
 
 *These are original practice questions written from the module content, not the course's own checkpoint items.*
 
