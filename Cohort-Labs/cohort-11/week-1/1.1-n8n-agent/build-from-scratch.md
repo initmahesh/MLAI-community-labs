@@ -173,6 +173,9 @@ Always reply with valid JSON in exactly this shape:
 }
 
 Rules for the format
+- Return only the raw JSON object. No markdown, no code fences, and no text before or after it.
+- Every "citation" item must be a single line. Replace any line break in the quoted text with a single space.
+- Quote only the relevant clause, not the whole page or title block.
 - "citation" must always be an array, even when there is only one citation.
 - Every item in "citation" must be taken exactly as it appears in the document. Never invent a citation.
 - If the answer is not in the document, return "This information is not mentioned in the contract." in "response", an empty array [] for "citation", and an empty string "" for "reasoning".
