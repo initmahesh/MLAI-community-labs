@@ -121,9 +121,9 @@ The agent should reply: *"This information is not mentioned in the document."*
 
 ### Change the instructions, see what changes
 
-Open the **AI Agent** block, swap your System Message for the **Weak** version from [Build from Scratch, Part 4](./build-from-scratch.md#part-4-tell-the-agent-how-to-behave), and ask the same questions again. Then switch back to the **Strong** version.
+Open the **AI Agent** block, swap your System Message for the **Weak** version, ask the same questions again, then switch back to the **Strong** version. Go one step further and add examples to try **zero-shot, one-shot, and multi-shot**. Both are in [Build from Scratch, Part 4](./build-from-scratch.md#part-4-tell-the-agent-how-to-behave).
 
-Same model, same document, same questions — very different answers. That's how much the instructions matter.
+Same model, same document, same questions — very different answers. That's how much the instructions and examples matter.
 
 ---
 

@@ -170,6 +170,29 @@ Evidence: [The exact section or sentence from the document]
 
 > **Use this shape for every agent you build.** The document is just today's example. Whether you're building a support assistant, a meeting-notes summarizer, or an HR policy helper, strong instructions always have the same four parts: **who the agent is**, **what it should do**, **what it must never do**, and **what its answers should look like.**
 
+### Zero-shot, one-shot, multi-shot
+
+The System Message you just pasted has rules but **no examples**. That's called **zero-shot**: you told the agent what to do, but never showed it. It works here because the job is simple.
+
+When the answers need to look a certain way, add examples to the System Message:
+
+| | **Examples you add** | **What it teaches** |
+|---|---|---|
+| **Zero-shot** | None | The rules only. What you pasted above. |
+| **One-shot** | 1 | The exact shape of an answer |
+| **Multi-shot** | 3 or more | The shape, plus the tricky cases, like "not in the document" |
+
+For example, add this to the end of your System Message to make it one-shot:
+
+```
+Example
+Question: When does this agreement renew?
+Answer: It renews automatically for one year.
+Evidence: Section 4.2, "This Agreement renews for successive one-year terms."
+```
+
+Ask the same question again and compare. Rules tell the agent what to do; examples show it what good looks like.
+
 ---
 
 ## Part 5: Connect the AI Model
