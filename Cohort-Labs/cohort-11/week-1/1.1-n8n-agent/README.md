@@ -30,7 +30,7 @@ By the end of this lab, you'll have a working agent, know how to write the instr
 - [Two Ways to Build This](#two-ways-to-build-this)
 - [Import the Workflow](#import-the-workflow)
 - [Test Your Agent](#test-your-agent)
-- [Let Other Apps Talk to Your Agent](#let-other-apps-talk-to-your-agent)
+- [Turn Your Agent Into a Tool Real Apps Can Use](#turn-your-agent-into-a-tool-real-apps-can-use)
 - [Troubleshooting Steps](#-troubleshooting-steps)
 
 ---
@@ -133,7 +133,7 @@ Same model, same document, same questions — very different answers. That's how
 
 ---
 
-## Let Other Apps Talk to Your Agent
+## Turn Your Agent Into a Tool Real Apps Can Use
 
 Right now, the only way to reach your agent is through n8n's built-in chat window. That's fine for testing — but in Lab 1.2 you'll build your own app, and it needs a way to send a document and a question to this agent.
 
@@ -144,6 +144,19 @@ Think of a webhook like a doorbell. Your app rings it, the agent opens the door,
 ![webhook](./assets/19.jpg)
 
 > Your workflow is saved in n8n's cloud, not on your computer. Close the browser, come back days later — everything is exactly where you left it.
+
+### Choose your path
+
+You can get the webhook in two ways. Pick one:
+
+| | **Option A: Import it** | **Option B: Build it yourself** |
+|---|---|---|
+| **How** | Import a ready-made workflow that already has the Webhook and Respond to Webhook blocks connected | Follow the steps below and add them by hand |
+| **Best for** | Getting to Lab 1.2 quickly | Learning how a webhook is wired |
+
+**Option A.** [Download n8n-webhook-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQD-C9GloOmmQ5hNbfrcs98oAdfgziy1kBkc34PdlVixayM?e=rBVvos). In n8n, click the **three-dot menu (⋮)** → **"Import from File"** and upload it. Double-click the **"OpenAI Chat Model"** block to confirm the model is **gpt-5-mini**, then jump to [Copy your webhook link](#step-6-copy-your-webhook-link) to copy your web address.
+
+**Option B.** Keep going with Step 1.
 
 ### Step 1: Remove the chat window trigger
 
@@ -162,7 +175,7 @@ Webhooks come as a pair:
 | **Webhook** | Receives the document and question from your app |
 | **Respond to Webhook** | Sends the agent's answer back to your app |
 
-Click **(+)**, search for **"Webhook"**, and add it. Then search for **"Respond to Webhook"** and add that too.
+Click **(+)**, search for **"Webhook"**, and add it.
 
 ![webhook-node](./assets/20.png)
 
@@ -187,17 +200,9 @@ Click the **Webhook** block and make these four changes:
 
 > If your app ever stops getting answers and n8n shows no activity, setting 4 is almost always the reason.
 
-Once saved, you'll see your agent's web address. It looks like this:
-
-```
-https://your-instance.app.n8n.cloud/webhook-test/your-unique-id
-```
-
-Copy it and keep it handy — you'll need it in Lab 1.2.
-
-![webhook-url](./assets/24.png)
-
 ### Step 5: Connect the AI Agent to Respond to Webhook
+
+Again Click **(+)**, search for **"Respond to Webhook"**, and add it.
 
 **Respond to Webhook** is the reply — if the Webhook is the doorbell, this is you handing the answer back to whoever rang it.
 
@@ -208,6 +213,18 @@ Drag a line from **AI Agent** to **Respond to Webhook**. Your workflow now reads
 ![final-workflow](./assets/25.png)
 
 Check every line before you move on. One missing connection and nothing comes back.
+
+### Step 6: Copy your webhook link
+
+Click the **Webhook** block again. Your agent's web address is shown at the top. It looks like this:
+
+```
+https://your-instance.app.n8n.cloud/webhook-test/your-unique-id
+```
+
+Copy it and keep it handy — you'll need it in Lab 1.2.
+
+![webhook-url](./assets/24.png)
 
 🎉 **Your agent now has its own web address. Any app can send it a document and a question, and get an answer back.**
 
