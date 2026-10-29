@@ -4,7 +4,7 @@ Welcome to Week 1 of the AI PM Certification.
 
 This week you go from zero to a working product. You'll build an AI agent that answers questions about a document, then put a web app in front of it so anyone on your team can use it, without ever opening a workflow tool.
 
-The labs build on each other. Work through them in order. No coding experience needed. You just need the accounts listed in each lab and the setup from the [Foundation module](../0-foundation/README.md).
+The labs build on each other. Work through them in order. No coding experience needed. You just need the accounts listed in each lab and the setup from the [Foundation module](../pre-reads/README.md).
 
 ---
 

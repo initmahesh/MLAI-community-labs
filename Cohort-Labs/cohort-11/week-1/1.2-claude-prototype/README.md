@@ -84,7 +84,7 @@ Choosing the right model helps balance capability, speed, and usage.
 
 ✅ **Lab 1.1 complete** — your n8n contract review workflow is built, the AI agent responded correctly inside n8n's own chat interface, and you've swapped the Chat Trigger for a Webhook (the "Prepare the Agent to Receive Outside Messages" section at the end of that lab). You'll come back to this same workflow partway through this lab.
 
-✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../0-foundation/how-to-setup-claude/README.md) to get it running in under 5 minutes.
+✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../pre-reads/0.1-setup-claude/README.md) to get it running in under 5 minutes.
 
 ✅ **Claude Code** — built into the Claude desktop app, no extra install needed.
 
@@ -105,6 +105,8 @@ Once you're in, find **Claude Code** in the sidebar and click it. You'll land in
 Next, create a new folder on your Desktop called `contract-review-app` and point Claude Code at it using the folder picker. Everything Claude builds will land here.
 
 ![flow](./assets/4.png)
+![flow](./assets/28.png)
+![flow](./assets/27.png)
 
 Now — don't overthink this next part. Just run this prompt exactly as written:
 
@@ -122,7 +124,9 @@ Create all files in the current directory using plain HTML, CSS, and JavaScript.
 No frameworks, no npm, no build tools. Just files I can open in a browser.
 ```
 
-Before you hit enter, here's what actually happens the moment you do.
+![flow](./assets/29.png)
+
+After you hit enter, here's what actually happens the moment you do.
 
 > A token is a small piece of text Claude uses to understand what you give it. Your words, sentences, and documents are broken into these smaller pieces before Claude processes them.
 
@@ -161,7 +165,9 @@ Right now, you still have plenty of **Free Space** — as you saw when you ran `
 
 > ✓ **Tip:** Claude Code gives you two useful commands for managing this. `/compact` summarizes the current conversation to free up context space while keeping the important information. `/clear` starts the conversation with a fresh context window — your project files remain unchanged, but the conversation history is cleared.
 
-When it's done, go to your `contract-review-app` folder and open the app:
+### See What Claude Built
+
+Now that you know how much space that one prompt took, let's see what it actually produced. Once Claude finishes, go to your `contract-review-app` folder and open the app:
 
 **On Mac:** Open Finder → Desktop → contract-review-app → right-click `index.html` → Open With → your browser
 
@@ -332,7 +338,7 @@ Replace the dummy hardcoded responses with this webhook integration.
 
 Paste it into Claude Code and run it.
 
-Claude will update only the part of the app that needs changing — the Send button behaviour. It won't touch the layout, the design, or anything else that's already working.
+Claude will update only the part of the app that needs changing. It won't touch the layout, the design, or anything else that's already working.
 
 ![flow](./assets/11.1.png)
 
