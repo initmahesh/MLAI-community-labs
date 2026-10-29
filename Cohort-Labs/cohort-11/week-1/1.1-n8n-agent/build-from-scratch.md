@@ -182,7 +182,7 @@ The AI Agent knows how to organize the work. Now it needs an AI model to actuall
 
 > **Why is the model a separate block?** So you can swap it. Today it's OpenAI. Tomorrow you could plug in a different AI provider without changing anything else. Like changing the battery in a device instead of buying a new device.
 
-2. Open the **Model** dropdown and select **`gpt-5-mini`**.
+2. Open the **Model** dropdown and check that **`gpt-5-mini`** is selected.
 
 ![select-model](./assets/select-model.png)
 
@@ -194,13 +194,7 @@ The AI Agent knows how to organize the work. Now it needs an AI model to actuall
 
 > Picking a model is always a trade-off between how smart it is, how fast it is, and how much it costs. This agent has a narrow job — find the right part and answer — so a smaller, cheaper model does it well.
 
-3. Add your OpenAI key: click **"Credential"** → **"Create New Credential"** → paste your API key → **Save**.
-
-![add-api-key](./assets/add-api-key.gif)
-
-> ★ **Copy your API key somewhere safe before you paste it here.** Once saved in n8n, you can't view it again. If you lose it, you'll need to create a new one at platform.openai.com.
-
-> ★ Your API key is linked to your OpenAI billing. Treat it like a password — never share it or paste it anywhere public.
+3. **Double-click** the **"OpenAI Chat Model"** block. n8n gives you **$2 of free OpenAI credit**, so you can start without your own key. Leave the model as **gpt-5-mini**.
 
 Your agent is built. Your canvas should look like this:
 

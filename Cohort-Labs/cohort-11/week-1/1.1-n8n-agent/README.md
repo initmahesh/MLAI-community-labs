@@ -37,15 +37,11 @@ By the end of this lab, you'll have a working agent, know how to write the instr
 
 ## Prerequisites
 
-✅ An **n8n account** — sign up free at n8n.io. The cloud version works fine. [Follow this setup guide](../../../Cohort%209/week%200%20%20-%20foundation/n8n-loginSetup/Doc.md) to create your account.
-
-✅ An **OpenAI API key** — this is what lets n8n use OpenAI's AI. Go to platform.openai.com, create an account, and generate a key under **API Keys**. [Watch this video](https://youtu.be/J3y1dOpz9R4?si=fBqIP0TTShbH_6-n) for a walkthrough.
+✅ An **n8n account** — sign up free at n8n.io. The cloud version works fine. [Follow this setup guide](../../pre-reads/0.3-setup-n8n/README.md) to create your account.
 
 ✅ The **ready-made workflow file** — [download n8n-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQCxwBn3DSxjTrx2_WxRoFTeAQ1ni4W0bV2cKybboqYJYC8?e=JQfaYk)
 
 ✅ The **sample document** — [download the sample contract](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQC2WQJhhIuyRq5JrVY13FwNAdwS4M5gB5w-qzBAm9V4mRQ?e=XyvLU4) (a made-up vendor agreement prepared for this lab)
-
-> ✓ Tip. n8n gives you a small amount of free OpenAI credit to start. It won't last through all the labs. Add $5 of credit to your OpenAI account now so you don't run out mid-session.
 
 ---
 
@@ -67,7 +63,7 @@ Both give you the same working agent. If this is your first time, **build from s
 
 **Step 1. Create a new workflow.**
 
-Open n8n and click **"Create Workflow"** in the top right. You'll land on a blank canvas.
+Open n8n and click on the plus icon **"+"** in the top left and select **New Workflow**. You'll land on a blank canvas.
 
 ![create-workflow](./assets/create-workflow.png)
 
@@ -77,6 +73,10 @@ Click the **three-dot menu (⋮)** at the top, select **"Import from File"**, an
 
 ![import-workflow](./assets/import-workflow.png)
 
+n8n may then ask **"Importing this from an AI tool?"**. Click **Skip**.
+
+![import-workflow](./assets/26.png)
+
 **Step 3. Check the connections.**
 
 Every block should be joined by a line. If one isn't, drag from the small circle on its right edge to the next block.
@@ -85,13 +85,11 @@ Every block should be joined by a line. If one isn't, drag from the small circle
 
 > ✓ Tip. If your agent ever stops responding, check the connections first. One missing line stops the whole workflow without any warning.
 
-**Step 4. Add your OpenAI key.**
+**Step 4. Set up the OpenAI model.**
 
-Click the **"OpenAI Chat Model"** block. Click **"Credential"** → **"Create New Credential"** → paste your API key → **Save**.
+**Double-click** the **"OpenAI Chat Model"** block. n8n gives you **$2 of free OpenAI credit**, so you can start without your own key. Leave the model as **gpt-5-mini**.
 
-![add-api-key](./assets/add-api-key.gif)
-
-> ★ Your API key is linked to your OpenAI billing. Treat it like a password — never share it or paste it anywhere public.
+![image](./assets/27.png)
 
 ---
 
@@ -222,16 +220,6 @@ Check every line before you move on. One missing connection and nothing comes ba
 ## 🔧 Troubleshooting Steps
 
 Check here before asking for help.
-
----
-
-**OpenAI credits exhausted**
-
-Your agent stops responding with an error like `429 - You exceeded your current quota` or `insufficient_quota`. This means your OpenAI account has no remaining credits.
-
-Fix: go to **platform.openai.com → Billing → Add payment method** and add $5 of credits. Your API key stays the same — just retry in n8n once billing is active.
-
-> ✓ Tip. n8n gives you a small OpenAI credit when you start. It's enough for a few test runs but won't last through all the labs. Add credits now and you won't have to think about it mid-session.
 
 ---
 
