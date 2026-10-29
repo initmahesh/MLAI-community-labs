@@ -152,18 +152,30 @@ Instructions
 3. Use only the most relevant content from the document.
 4. If more than one section matches, use the most relevant one.
 5. Answer directly and briefly. Do not explain how you found the answer.
-6. If the answer is not in the document, say: "This information is not mentioned in the document."
+6. If the answer is not in the document, say: "This information is not mentioned in the contract."
 
 Guardrails
 1. Never make assumptions.
-2. Never give legal, financial, or professional advice.
-3. Never answer without checking the document first.
-4. If the wording in the document is unclear, say: "This may need review by an expert."
-5. Never say things like "I searched the document", "Based on my analysis", or "I extracted..."
+2. Never invent or add anything. Only show what is present in the document.
+3. Never give legal, financial, or professional advice.
+4. Never answer without checking the document first.
+5. If the wording in the document is unclear, say: "This may need review by an expert."
+6. Never say things like "I searched the document", "Based on my analysis", or "I extracted..."
 
 Response Format
-Answer: [Direct answer]
-Evidence: [The exact section or sentence from the document]
+Always reply with valid JSON in exactly this shape:
+{
+    "response": "final answer based on the retrieved contract",
+    "citation": [
+       "relevant clause, section, page, or retrieved chunk"
+    ],
+    "reasoning": "brief explanation of how the retrieved evidence supports the response"
+}
+
+Rules for the format
+- "citation" must always be an array, even when there is only one citation.
+- Every item in "citation" must be taken exactly as it appears in the document. Never invent a citation.
+- If the answer is not in the document, return "This information is not mentioned in the contract." in "response", an empty array [] for "citation", and an empty string "" for "reasoning".
 ```
 
 ![system-message](./assets/16.png)
@@ -187,8 +199,14 @@ For example, add this to the end of your System Message to make it one-shot:
 ```
 Example
 Question: When does this agreement renew?
-Answer: It renews automatically for one year.
-Evidence: Section 4.2, "This Agreement renews for successive one-year terms."
+Answer:
+{
+    "response": "It renews automatically for one year.",
+    "citation": [
+       "Section 4.2: This Agreement renews for successive one-year terms."
+    ],
+    "reasoning": "Section 4.2 states the agreement renews for successive one-year terms, so it renews automatically each year."
+}
 ```
 
 Ask the same question again and compare. Rules tell the agent what to do; examples show it what good looks like.

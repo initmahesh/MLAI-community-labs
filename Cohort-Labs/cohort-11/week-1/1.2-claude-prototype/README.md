@@ -312,8 +312,20 @@ When the user clicks the Send button:
    <Your Webhook URL>
 
 3. After the webhook processes the request:
-   - Capture the response returned by the webhook
-   - Display that response inside the chat UI as the assistant reply
+   - Capture the JSON response returned by the webhook. It is a valid JSON object
+     with no markdown, no code fences and no text before or after it, in exactly this shape:
+     {
+       "response": "string - final answer based only on the retrieved contract",
+       "citation": ["string - exact clause/section/page text that supports the answer"],
+       "reasoning": "string - 1-2 sentences on how the citations support the response"
+     }
+   - Display "response" inside the chat UI as the assistant reply, with the
+     "citation" items and "reasoning" shown beneath it
+
+4. Rules:
+   - "citation" is always an array of strings. It is [] if nothing relevant was retrieved.
+   - Each citation is the relevant clause only, with its section number or page.
+   - If the contract doesn't contain the answer, "response" is "This information is not mentioned in the contract.", "citation" is [] and "reasoning" is "".
 
 Replace the dummy hardcoded responses with this webhook integration.
 ```
