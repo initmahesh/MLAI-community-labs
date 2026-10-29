@@ -180,6 +180,16 @@ Rules for the format
 
 ![system-message](./assets/16.png)
 
+**What the JSON response means**
+
+| Field | What it holds | Why it's there |
+|---|---|---|
+| `response` | The direct answer | What the user reads first |
+| `citation` | An array of exact clauses or sections from the document | Proof the answer came from the document, not the model's imagination. It's always an array, even for one citation |
+| `reasoning` | One or two sentences linking the citation to the answer | Lets the user check the logic without re-reading the contract. It should only point to the evidence, not narrate how the agent searched |
+
+When the answer isn't in the document, there is nothing to cite or explain. The agent returns `"This information is not mentioned in the contract."` in `response`, an empty array `[]` for `citation`, and an empty string `""` for `reasoning`. Structured output like this is also what lets the app you build in Lab 1.2 show the answer and its evidence separately.
+
 > **Use this shape for every agent you build.** The document is just today's example. Whether you're building a support assistant, a meeting-notes summarizer, or an HR policy helper, strong instructions always have the same four parts: **who the agent is**, **what it should do**, **what it must never do**, and **what its answers should look like.**
 
 ### Zero-shot, one-shot, multi-shot

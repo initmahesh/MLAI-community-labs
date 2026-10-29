@@ -95,7 +95,11 @@ Every block should be joined by a line. If one isn't, drag from the small circle
 
 ## Test Your Agent
 
-Click **"Open Chat"**, upload the sample document, and try these one at a time:
+Click **"Open Chat"**:
+
+![agent-response](./assets/28.png)
+
+upload the **sample document**, and try these one at a time:
 
 *"What is this document about?"*
 
@@ -107,7 +111,7 @@ Click **"Open Chat"**, upload the sample document, and try these one at a time:
 
 ![agent-response](./assets/agent-response.png)
 
-Notice how every answer follows the same format and points to the exact section it came from. That's not luck — it's your System Message at work.
+Notice how every answer follows the same JSON format: a `response` with the answer, a `citation` list with the exact section it came from, and a short `reasoning` that ties the two together. That's not luck — it's your System Message at work.
 
 ### Now try to break it 🤔
 
@@ -115,7 +119,9 @@ Ask something that's *not* in the document:
 
 *"What's the CEO's phone number?"*
 
-The agent should reply: *"This information is not mentioned in the document."*
+The agent should reply with `response` set to *"This information is not mentioned in the contract."*, and both `citation` (`[]`) and `reasoning` (`""`) empty.
+
+![agent-response](./assets/29.png)
 
 > **Why doesn't it make things up?** Because you gave it two things: the full document, and a rule to answer only from it. Keeping an AI tied to a specific source like this is called **grounding**. It's one of the most important ways to make AI answers trustworthy.
 
