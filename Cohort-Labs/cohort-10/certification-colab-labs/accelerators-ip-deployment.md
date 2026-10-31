@@ -4,19 +4,19 @@ This lab covers how to take a working Claude build and make it reusable, shareab
 
 | Section | What you learn | Subtopics | Useful link |
 |---|---|---|---|
-| **[5.1 Packaging for Reuse](#s5-1)** | Turn a working build into an asset the next project can start from | [Three asset types](#s5-1-1)<br>[Document and audit](#s5-1-2)<br>[Packaging checklist](#s5-1-3) | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
-| **[5.2 Contributing Back](#s5-2)** | Share that asset through the right channel | [Match the channel](#s5-2-1)<br>[What makes it verifiable](#s5-2-2)<br>[Rights come first](#s5-2-3) | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
-| **[5.3 Requirements and Lifecycle](#s5-3)** | Capture what the system must do and where each task fits in the project | [Functional requirements](#s5-3-1)<br>[Infrastructure requirements](#s5-3-2)<br>[The lifecycle](#s5-3-3) | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
-| **[5.4 Deployment and Versioning](#s5-4)** | Choose where it runs and lock the model version | [The customer's cloud picks the platform](#s5-4-1)<br>[Pin the version](#s5-4-2) | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
-| **[5.5 Comparing Platforms and Trust Boundaries](#s5-5)** | Compare platforms and secure the connections between components | [Comparing platforms](#s5-5-1)<br>[Trust boundaries](#s5-5-2) | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
+| **5.1 Packaging for Reuse** | Turn a working build into an asset the next project can start from | Three asset types<br>Document and audit<br>Packaging checklist | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
+| **5.2 Contributing Back** | Share that asset through the right channel | Match the channel<br>What makes it verifiable<br>Rights come first | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
+| **5.3 Requirements and Lifecycle** | Capture what the system must do and where each task fits in the project | Functional requirements<br>Infrastructure requirements<br>The lifecycle | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
+| **5.4 Deployment and Versioning** | Choose where it runs and lock the model version | The customer's cloud picks the platform<br>Pin the version | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
+| **5.5 Comparing Platforms and Trust Boundaries** | Compare platforms and secure the connections between components | Comparing platforms<br>Trust boundaries | [Open the module](https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations/accelerators-ip-contribution/486746/scorm/1gpfepjydcsjm) |
 
 This is a reading lab, so there is nothing to run. Prices, model IDs and platform details are examples, so check current sources before you decide.
 
-## 5.1 Packaging for Reuse <a id="s5-1"></a>
+## 5.1 Packaging for Reuse
 
 The most expensive thing a team does is rebuild the same solution for the next customer. An **accelerator** is a solution packaged so the next project starts from something that works. Keep the **reusable core**, and turn everything **customer-specific** into **settings with documented defaults**. The next team then configures the asset instead of rewriting it. Do this while the build is fresh, before anyone forgets why a value was hardcoded.
 
-### Three asset types <a id="s5-1-1"></a>
+### Three asset types
 
 ![Three accelerator formats: agent template, MCP server package, eval suite](https://raw.githubusercontent.com/initmahesh/MLAI-community-labs/main/Cohort-Labs/cohort-10/certification-colab-labs/images/m5-accelerator-formats.png)
 
@@ -28,12 +28,12 @@ The most expensive thing a team does is rebuild the same solution for the next c
 
 > ⚠️ **Common mistake:** shipping loose scripts instead of a template. They run, so they look reusable, but customer-specific values are scattered and the next team copies and diverges them.
 
-### Document and audit <a id="s5-1-2"></a>
+### Document and audit
 
 - **Document what the code cannot say:** the environment it assumes, the inputs it expects, the failures it handles, and the eval that defines "working". Otherwise the next team rebuilds it.
 - **Bundle the audit log.** A regulated customer asks what data the asset touches, what identity it acts under and what log it leaves. Without answers, it stalls at the first security review.
 
-### Packaging checklist <a id="s5-1-3"></a>
+### Packaging checklist
 
 | Asset type | Turn into settings | Document |
 |---|---|---|
@@ -51,15 +51,15 @@ For all three, bundle for audit: the data touched, the identity acted under, and
 
 **Example:** the contract reviewer is an agent template of five files: `system_prompt.md` (rules), `tools.json` (one strict tool returning each clause with a quote and page), `reviewer.py` (working example), `README.md` (use case, constraints, choices) and `evals.py`. The evals check that quotes are word for word, a missing clause is reported as not found, and an instruction hidden in the contract is ignored. A `verify()` function confirms in plain code that every quote and page exists in the original contract.
 
-## 5.2 Contributing Back <a id="s5-2"></a>
+## 5.2 Contributing Back
 
 Packaging for reuse already did most of the work. The **settings** show the asset can be configured, the **documented assumptions** tell a maintainer what environment it expects, and the **eval** lets them confirm it works. The contribution channel takes that package as one unit (version, install steps and components), so a team that never spoke to you gets the same working setup.
 
-### Match the channel <a id="s5-2-1"></a>
+### Match the channel
 
 Each channel fits one kind of contribution. The **Claude Cookbook** is a GitHub repository of focused, self-contained reference implementations. **Open-source MCP servers and tools** each live in their own repository with their own rules. Sending a full multi-component application to the Cookbook is a mismatch: reviewers check one focused pattern, so it stalls. This is one of the most common reasons a contribution is never reviewed.
 
-### What makes it verifiable <a id="s5-2-2"></a>
+### What makes it verifiable
 
 A maintainer accepts what they can verify.
 
@@ -68,7 +68,7 @@ A maintainer accepts what they can verify.
 3. **A test proves it works**, so the result can be checked without redoing your reasoning.
 4. **A short statement names the assumptions**, so the first failure is not the maintainer's problem.
 
-### Rights come first <a id="s5-2-3"></a>
+### Rights come first
 
 Licensing and attribution decide whether a contribution can be accepted at all, so they come **before** technical review. Engagement code may have limits on where it can go. Confirm you have the right to contribute it and credit anything you built on, or the legal team must unwind it later.
 
@@ -84,15 +84,15 @@ Licensing and attribution decide whether a contribution can be accepted at all, 
 | ⚠️ **Adds cost** | The maintainer bar and licensing gate are real work on top of making the code run. |
 | ❌ **Skip it** | If code has an engagement licensing constraint you cannot clear, escalate to the owner instead. |
 
-## 5.3 Requirements and Lifecycle <a id="s5-3"></a>
+## 5.3 Requirements and Lifecycle
 
 Every deployment decision depends on requirements that already exist. This section shows where they come from and where they fit in the project.
 
-### Functional requirements: what it must do <a id="s5-3-1"></a>
+### Functional requirements: what it must do
 
 A business problem is not yet a requirement. "Help support agents answer faster" is a goal. Turn it into checkable statements: sort each ticket into one of four queues, draft a reply that cites the relevant policy, and never send without human approval. A vague goal cannot be tested. A specific one becomes a line in an eval and a point to check at review.
 
-### Infrastructure requirements: what it must satisfy <a id="s5-3-2"></a>
+### Infrastructure requirements: what it must satisfy
 
 The business problem rarely states these, so you find them by asking four questions. Ask them at the start, before a platform is chosen for other reasons.
 
@@ -107,7 +107,7 @@ The business problem rarely states these, so you find them by asking four questi
 
 Keep a short **requirements record** of the behaviors, the limits and the regulation behind each limit. Reviewers did not gather the requirements, so the record lets you show the platform choice follows from them, not from familiarity.
 
-### The lifecycle <a id="s5-3-3"></a>
+### The lifecycle
 
 Requirements are the first of seven phases, the same ones from earlier modules.
 
@@ -131,11 +131,11 @@ A **gate** is a go/no-go decision between phases, and it keeps a regulated proje
 | ⚠️ **Adds cost** | Scoping conversations and gates add checkpoints that teams under deadline are tempted to skip. |
 | ❌ **Skip it** | A throwaway prototype with no review or regulated data can use light notes, and a one-off experiment may merge phases. A regulated deployment cannot. |
 
-## 5.4 Deployment and Versioning <a id="s5-4"></a>
+## 5.4 Deployment and Versioning
 
 Two questions remain: **where does it run**, and **how do we lock its version** so an upstream change never silently changes production?
 
-### The customer's cloud picks the platform <a id="s5-4-1"></a>
+### The customer's cloud picks the platform
 
 The choice is rarely about technical merit. It follows where the customer already has their cloud, login system and compliance agreements. So ask: *which platform does the customer already trust?*
 
@@ -154,7 +154,7 @@ The choice is rarely about technical merit. It follows where the customer alread
 
 The platform answers identity and data location, not your code. Matching the customer's existing compliance agreement avoids a new residency review.
 
-### Pin the version <a id="s5-4-2"></a>
+### Pin the version
 
 A **moving name** (alias) can point to a newer version over time, and to different versions on different platforms. A **pinned ID** stays on one snapshot until *you* change it. It is like asking for "the current edition" of a book versus citing a fixed one.
 
@@ -179,9 +179,9 @@ For Claude 4.6 and later, the ID alone is a fixed snapshot. Earlier models need 
 | ⚠️ **Adds cost** | Pinning, keeping old versions and gating on the eval add steps to every release. |
 | ❌ **Skip it** | A throwaway prototype that never ships can use a moving name. |
 
-## 5.5 Comparing Platforms and Trust Boundaries <a id="s5-5"></a>
+## 5.5 Comparing Platforms and Trust Boundaries
 
-### Comparing platforms <a id="s5-5-1"></a>
+### Comparing platforms
 
 "Right for their cloud" is not yet an argument that procurement and security teams will sign. Compare platforms on three things, and measure each one instead of guessing. **Speed:** a platform in the customer's own region is usually faster, while the first-party API usually gets new features first, so test from the customer's region with their real data, not from your laptop. **Compliance:** this often ends the debate. A customer already certified on one cloud will not re-certify on another, and regulated customers treat residency as pass or fail, so raise it while scoping. **Cost:** token prices are similar everywhere, but data transfer, platform fees and integration effort are not, so compare the total cost per call. If compliance is already pass or fail, skip the full comparison, because it decides the platform alone.
 
@@ -193,7 +193,7 @@ For Claude 4.6 and later, the ID alone is a fixed snapshot. Earlier models need 
 
 > ⚠️ EU-only residency usually means Bedrock or Vertex AI. For Microsoft Foundry it depends on the model, so confirm it with Microsoft. Check current pricing and regional coverage when you scope.
 
-### Trust boundaries <a id="s5-5-2"></a>
+### Trust boundaries
 
 Real applications connect several parts: an API request may start a Claude Code task, which reaches a customer system through an MCP server. Every connection is a **trust boundary**, a place where data or instructions cross from one part to the next. Map who does what before you connect anything, treat everything that crosses a boundary as **data, never as instructions**, and never assume a part is safe just because it worked alone. Give each part only the access its job needs, because the whole application is only as safe as its most over-privileged part. If a boundary cannot be secured, do not ship around it: hand it to a human owner. Regulated reviews will also ask about logging, residency and permissions, so confirm ZDR and HIPAA BAA eligibility for each part before scoping.
 
