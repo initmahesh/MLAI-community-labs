@@ -2,48 +2,60 @@
 
 ![banner](./assets/b.png)
 
-In Lab 2.1, you saw the failure firsthand.
+## The Problem
 
-You took the agent you built in Week 1 - the one that reads a contract and answers questions about it - and you handed it a real, multi-page document. It either threw an error:
+In Lab 2.1, you handed your Week 1 contract agent a real, multi-page document, and it broke. Either it threw this error:
 
 ```
 Bad Request - input exceeds the context
 ```
 
-Or it responded slowly, missed clauses that were clearly in the document, or gave you an answer that had nothing to do with what you asked.
+or it answered slowly, missed clauses that were clearly in the document, or replied with something unrelated to your question.
 
-You traced the problem back to one line in the workflow: the **Extract From File** node dumps the entire document as one giant string directly into the AI's prompt. For a small sample file, that works. For a 40-page vendor agreement, a 80-page SaaS contract, or a 200-page M&A document - it breaks. Not because the AI isn't smart enough. Because every model has a hard limit on how much text it can process at once, and stuffing a full contract through that slot is the wrong architecture.
+The cause was one block: **Extract From File** pastes the *entire* document into the AI's prompt (the text the AI reads before answering). That's fine for a small sample file. For a 40-page vendor agreement, an 80-page SaaS contract, or a 200-page M&A document, it breaks. The AI is smart enough. The problem is that every model has a hard limit on how much text it can read at once, so pushing a full contract through it is the wrong design.
 
-That was the point of Lab 2.1. See the failure. Understand why it happens. Now fix it.
+Lab 2.1 showed you the failure. **This lab fixes it.**
 
-This lab fixes that.
+---
 
-By the end, you'll have a pipeline that breaks large contracts into searchable pieces, stores them, and retrieves exactly the right section when a user asks a question - without hitting context limits.
+## Build a Pipeline That Reads Only What It Needs
 
-This is RAG. And once you build it, you'll see it in every serious AI product.
+You'll build a **RAG pipeline**. It breaks large contracts into small searchable pieces, stores them, and pulls out exactly the right section when someone asks a question, so it never hits the limit.
 
-By the end of this lab, you will:
+**Upload contract → cut it into chunks → store them by meaning → find the right chunks for each question → AI answers**
+
+Once you've built RAG, you'll start spotting it in every serious AI product. By the end of this lab, you will:
 
 - Understand what RAG is and why it exists
-- Build a two-workflow system - one that ingests large documents, one that retrieves from them
-- Know what vector embeddings are and why they're not just a buzzword
+- Build a two-workflow system: one that ingests large documents, and one that retrieves from them
+- Know what vector embeddings are, and why they're more than a buzzword
 - Have a live contract Q&A agent that handles large files and remembers what it's been given
+
+---
+
+## Table of Contents
+
+- [The Big Idea: Why RAG Exists](#the-big-idea-why-rag-exists)
+- [Understanding RAG: The Complete Picture](#understanding-rag-the-complete-picture)
+- [Prerequisites](#prerequisites)
+- [Two Ways to Build This](#two-ways-to-build-this)
+- [Import the Workflow](#import-the-workflow)
+- [Test Everything](#test-everything)
+- [What You Learned](#what-you-learned)
+- [The Problem with This RAG Setup](#the-problem-with-this-rag-setup)
+- [Troubleshooting Steps](#-troubleshooting-steps)
 
 ---
 
 ## The Big Idea: Why RAG Exists
 
-Before we touch n8n, there's a mental model worth having. It makes every step in this lab make sense.
+An AI model only knows what it was trained on. It has never seen your contracts, so on its own it answers from general knowledge. That's not good enough. **RAG (Retrieval Augmented Generation)** fixes this.
 
-An AI model knows a lot. But it only knows what it was trained on - and it can't learn from your specific documents. Hand it a contract it's never seen and it'll try to answer from general knowledge. That's not good enough.
+**Think of it like this.** You've just joined a law firm as a consultant. You've read thousands of contracts, but not *this* firm's contracts, deals or clients. So before answering any question, you go to the filing room, pull the right folder, read the right pages, and *then* answer.
 
-**RAG - Retrieval Augmented Generation** - is the fix.
+**That's RAG: the AI goes to the filing room first.**
 
-Here's how to think about it. Imagine you're a consultant who just joined a law firm. You're smart. You've read thousands of contracts. But you haven't read *this* firm's contracts, their deal history, their specific clients. Before you answer any question, you go to the filing room, pull the relevant folders, read the right pages, and *then* you answer.
-
-That's RAG. The AI goes to the filing room first.
-
-The filing room is a **vector store** - a database that doesn't organize documents alphabetically or by date, but by *meaning*. When the user asks a question, the system finds the chunks of text that mean the most similar thing to that question, pulls them out, and hands them to the AI. The AI answers from that retrieved context, not from general knowledge.
+The filing room is a **vector store**, a database that sorts text by *meaning* rather than alphabetically or by date. When someone asks a question, the system finds the pieces of text closest in meaning, hands them to the AI, and the AI answers from that material.
 
 ```
 User asks a question
@@ -55,35 +67,40 @@ Retrieved chunks land in the AI's prompt
 AI answers from that specific material
 ```
 
-There are two pipelines in this system.
+The system is made of two separate workflows, called pipelines:
 
-**Pipeline 1 - Ingestion:** A user uploads a document. The system breaks it into chunks, converts each chunk into a vector embedding, and stores it in the vector store.
+| | **Pipeline 1: Ingestion** (the filing) | **Pipeline 2: Retrieval** (the looking-up) |
+|---|---|---|
+| **When it runs** | Once per document | Every time someone asks a question |
+| **What it does** | Breaks the document into chunks, turns each chunk into a vector embedding, and stores it in the vector store | Finds the most relevant chunks, passes them to the AI agent, and the agent answers |
 
-**Pipeline 2 - Retrieval:** A user asks a question. The system finds the most relevant chunks, passes them to the AI agent, and the agent answers.
-
-These two pipelines run separately. The ingestion happens once. The retrieval happens every time someone asks a question. That's the architecture.
+You file a document once and search it as often as you like.
 
 ---
 
 ## Understanding RAG: The Complete Picture
 
-**RAG** stands for **Retrieval Augmented Generation**. Each word is doing real work.
+Want to go deeper? This section explains what RAG stands for, why AI models hit a reading limit, how the two pipelines work step by step, and what a vector actually is. It's optional. You can skip straight to [Prerequisites](#prerequisites) and come back later.
+
+<details>
+<summary><b>👉 Click to read the complete picture</b></summary>
+
+<br>
+
+### What the name means
 
 | Word | What it means in practice |
 |---|---|
 | **Retrieval** | Before the AI answers, it *retrieves* the relevant pieces of your document from a search index |
-| **Augmented** | The AI's prompt is *augmented* - extended - with that retrieved context |
+| **Augmented** | The AI's prompt is *augmented* (extended) with that retrieved context |
 | **Generation** | The AI *generates* an answer using both its training knowledge and the retrieved material |
 
-Without RAG, the pipeline is: `question → AI → answer (from training only)`.
+- **Without RAG:** `question → AI → answer (from training only)`
+- **With RAG:** `question → search index → relevant chunks → AI → answer (from your document)`
 
-With RAG, the pipeline is: `question → search index → relevant chunks → AI → answer (from your document)`.
+### Why the context window is the bottleneck
 
----
-
-### Why the Context Window Is the Bottleneck
-
-Every AI model has a context window - the maximum amount of text it can process in a single request. Think of it as working memory.
+A model's **context window** is the most text it can read in one request, like its working memory. Whatever doesn't fit, it doesn't see. It's measured in **tokens**, the small pieces of text a model reads (roughly ¾ of a word each).
 
 | Model | Context Window | Approx. Page Limit |
 |---|---|---|
@@ -91,21 +108,19 @@ Every AI model has a context window - the maximum amount of text it can process 
 | GPT-4o | 128,000 tokens | ~96 pages |
 | Claude Sonnet | 200,000 tokens | ~150 pages |
 
-A 150-page M&A agreement can hit 120,000 tokens on its own. Add the system prompt, chat history, and the expected response - and you're over the limit. The model either errors out or silently drops the parts that don't fit.
+A 150-page M&A agreement can reach 120,000 tokens by itself. Add the instructions, the chat history and room for the answer, and you're over the limit. The model then errors out or quietly drops whatever doesn't fit.
 
-Even when you're under the limit, dumping an entire contract into the prompt is:
+Even when a contract does fit, sending all of it is:
 
-- **Expensive** - you're billed per token. Sending 100,000 tokens every time someone asks about payment terms wastes money on 99,900 tokens of irrelevant text.
-- **Slow** - processing more tokens takes more time. Users wait.
-- **Less accurate** - research shows AI models lose focus when buried in irrelevant context. The right clause is in there, but so are 90 pages of noise.
+- **Expensive:** you pay per token. Sending 100,000 tokens to answer a question about payment terms means paying for 99,900 tokens of irrelevant text.
+- **Slow:** more tokens take longer to process, so users wait.
+- **Less accurate:** research shows models lose focus when buried in irrelevant text. The right clause is in there, but so are 90 pages of noise.
 
-RAG solves all three problems by sending only what matters.
+RAG fixes all three by sending only what matters.
 
----
+### The two pipelines
 
-### The Two Pipelines, Explained
-
-**Pipeline 1: Ingestion** - happens once per document
+**Ingestion** (once per document). After this, your 150-page contract lives in the vector store as thousands of small, searchable pieces.
 
 ```
 PDF Upload
@@ -119,9 +134,7 @@ Embedding (each chunk → vector of numbers)
 Vector Store (store the vectors, indexed by meaning)
 ```
 
-After ingestion, your 150-page contract lives in the vector store as thousands of small, searchable pieces.
-
-**Pipeline 2: Retrieval** - happens every time someone asks a question
+**Retrieval** (every question). The AI never sees the full contract, only the question plus the 5 most relevant chunks: about 3,000–5,000 tokens instead of 100,000. The document isn't made smaller; the AI just reads the part that matters.
 
 ```
 User Question: "What are the payment terms?"
@@ -137,197 +150,160 @@ Chunks + original question → AI model
 AI answers from the retrieved context
 ```
 
-The AI never sees the full contract. It only sees the 5 chunks most relevant to the question - plus the question itself. That's typically 3,000-5,000 tokens instead of 100,000.
+### What is a vector, actually?
 
----
-
-### What Is a Vector, Actually?
-
-An embedding model reads a chunk of text and outputs a list of numbers - something like:
+An **embedding model** turns a piece of text into a long list of numbers, called a **vector**:
 
 ```
-"Payment is due within 30 days of invoice." 
+"Payment is due within 30 days of invoice."
 → [0.23, -0.81, 0.44, 0.12, ..., 0.67]  (1536 numbers)
 ```
 
-Every chunk becomes a point in a 1,536-dimensional space. Chunks that mean similar things end up close to each other in that space - even if the exact words are different.
+Think of those numbers as a location on a map of meaning (a map with 1,536 dimensions instead of two). Text with similar meaning lands close together, even when the words are different.
 
-So when a user asks *"when do invoices need to be paid?"*, the system converts that question into its own vector and finds the chunks whose vectors are closest. "Payment due within 30 days" and "net-30 payment obligation" will both surface - because they mean the same thing, even though they share no keywords.
+So if a user asks *"When do invoices need to be paid?"*, the question gets its own location on the map, and the system returns the nearest chunks. "Payment due within 30 days" and "net-30 payment obligation" both come back, even though neither shares a keyword with the question. This is **semantic search**: matching meaning, not words.
 
-This is **semantic search**. It finds meaning, not word matches.
+### Putting it together: back to the law firm
 
----
+A partner asks you: *"What are the termination conditions in the Acme deal?"* You don't answer from memory. You go to the filing room, pull the Acme folder, turn to the termination clause, read it, then answer.
 
-### The Analogy, One More Time
+| At the law firm | In RAG |
+|---|---|
+| The **filing room** | The vector store |
+| **Pulling the folder** | Retrieval |
+| **Reading the clause** | The retrieved context landing in the AI's prompt |
+| **Answering the partner** | Generation |
 
-You are a consultant at a law firm. It's your first week. You're smart - you've read thousands of contracts over your career. But you haven't read *this* firm's contracts.
+> The AI is not the filing room. It is the consultant. The vector store is the filing room.
 
-A partner asks: *"What are the termination conditions in the Acme deal?"*
-
-You don't try to answer from memory. You go to the filing room, pull the Acme folder, flip to the termination clause, read it, then answer.
-
-That is RAG:
-- The **filing room** is the vector store
-- **Pulling the folder** is retrieval
-- **Reading the clause** is the retrieved context landing in the AI's prompt
-- **Answering the partner** is generation
-
-The AI is not the filing room. It is the consultant. The vector store is the filing room.
+</details>
 
 ---
 
-✅ **n8n Workflow file** — [Download the pre-built workflow JSON here](https://drive.google.com/file/d/1bsHT4DsEvLFZv2WPBdnXJoEAfEn9R6Ka/view?usp=sharing) to import into n8n.
+## Prerequisites
 
-✅ **n8n account** - the same one from Lab 2.1. You'll be creating new workflows inside it.
+✅ The **n8n workflow file**: [download the pre-built workflow JSON](https://drive.google.com/file/d/1bsHT4DsEvLFZv2WPBdnXJoEAfEn9R6Ka/view?usp=sharing) to import into n8n
 
-✅ **OpenAI API key** - already set up in n8n from Lab 2.1. You won't need to add it again unless you're starting fresh
+✅ An **n8n account**: the same one from Lab 2.1. You'll create new workflows inside it.
 
-✅ **A sample contract (PDF)** - [Download the contract in PDF format](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQCIDp0RA0UYS7g3WGOXOH0uAaJOpNKBwgibUIiks0hCkpc?e=n0XlBh)
+✅ An **OpenAI API key**: already set up in n8n from Lab 2.1. Add it again only if you're starting fresh.
 
-✅ **A sample contract (Docx)** - [Download the contract in Docx format](https://pragyaallc-my.sharepoint.com/:w:/g/personal/sachin_parmar_legalgraph_ai/IQAbCBMxqrFrT6hzD6t9oCdpAR8pdsHtVaZf2O5HiyGq5jY?e=4s3M8D)
+✅ A **sample contract (PDF)**: [download the contract in PDF format](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQCIDp0RA0UYS7g3WGOXOH0uAaJOpNKBwgibUIiks0hCkpc?e=n0XlBh)
 
-
-
----
-
-**Quick Note**
-
-If you are facing the issue below while running the workflow, follow these steps:
-
-![banner](./assets/9089.png)
-
-1. Open the default data loader and change the data format from PDF to Docx.
-
-![banner](./assets/9000.png)
-
-2. When uploading the document, ensure the file format is .docx, not .pdf.
-
-If you are not facing this issue, you can continue with the current workflow.
-
-
+✅ A **sample contract (Docx)**: [download the contract in Docx format](https://pragyaallc-my.sharepoint.com/:w:/g/personal/sachin_parmar_legalgraph_ai/IQAbCBMxqrFrT6hzD6t9oCdpAR8pdsHtVaZf2O5HiyGq5jY?e=4s3M8D). If the PDF gives you an error, use this one instead (see [Troubleshooting](#-troubleshooting-steps)).
 
 ---
 
-### How to set up this lab
+## Two Ways to Build This
 
-**Import our workflow**
+| | **Import the Workflow** | **Build from Scratch** |
+|---|---|---|
+| **Best for** | Getting up and running fast | Understanding every block and setting |
+| **What you do** | Import a ready-made file and add your OpenAI credentials | Add and configure each block yourself |
 
-Import the pre-built workflow JSON:
+Both give you the same two workflows. 👉 **[Build from Scratch →](./build-from-scratch/Readme.md)**, then come back here to [Test Everything](#test-everything).
 
-1. Log into n8n and open a blank canvas (click **"Create Workflow"**).
+---
+
+## Import the Workflow
+
+**Step 1. Create a new workflow.** Log into n8n and click **"Create Workflow"** to open a blank canvas.
 
 ![image](./assets/img-4.png)
 
-2. Click the **three-dot menu (⋮)** in the top-right corner of the canvas.
-3. Select **"Import from file"**.
-
+**Step 2. Import the ready-made file.** Click the **three-dot menu (⋮)** in the top-right corner, select **"Import from file"**, and choose the JSON file from [Prerequisites](#prerequisites). Both workflows, ingestion and retrieval, load onto the canvas.
 
 ![image](./assets/img-5.png)
 
-4. Choose the JSON file you downloaded from the prerequisite section above.
-5. The two workflows (ingestion + retrieval) will load onto the canvas. Add your OpenAI credentials to the embedding and model nodes, then proceed to the **Test Everything** section.
-
-**Prefer to build it yourself?** Follow the [step-by-step build-from-scratch guide](./build-from-scratch/Readme.md) to create both workflows node by node, then come back to **Test Everything**.
+**Step 3. Add your OpenAI credentials** to the **embedding** and **model** blocks.
 
 ---
 
 ## Test Everything
 
-### Run the ingestion workflow first
+### Step 1: Fill the filing room
 
-Go to your ingestion workflow and click **"Execute Workflow"**. Upload the sample contract and submit. Confirm every node completes successfully.
-
-This step must happen before testing retrieval. You can't search a store that hasn't been filled yet.
+Open the ingestion workflow, click **"Execute Workflow"**, upload the sample contract and submit. Every block should complete successfully. Do this first: you can't search a filing room that's empty.
 
 ![flow](./assets/1.24.png)
 
----
+### Step 2: Ask it questions
 
-### Open the chat and ask a question
-
-Go to your retrieval workflow. Click **"Execute Workflow"** to activate it, then click **"Open Chat"**.
+Open the retrieval workflow, click **"Execute Workflow"**, then **"Open Chat"**.
 
 ![flow](./assets/1.25.png)
 
-Ask this:
-
-*"What is this contract about?"*
-
-Watch what happens in the background - the agent calls the vector store tool, retrieves the relevant chunks, and builds the answer from that context.
+Ask *"What is this contract about?"* and watch the execution in the background: the agent calls the vector store, retrieves the relevant chunks, and builds its answer from them.
 
 ![flow](./assets/1.26.png)
 
-Try a few more:
+Then try:
 
-*"What are the parties name in the contract?"*
+- *"What are the names of the parties in the contract?"*
+- *"Are there any auto-renewal clauses?"*
 
-*"Are there any auto-renewal clauses?"*
-
-Every answer comes from the stored document - not from the model's general training. The agent is reading from the filing room.
-
-> ✓ If answers seem generic or the agent says it doesn't have information, two things to check: (1) confirm the Memory Key in the retrieval tool matches the one from ingestion exactly, and (2) confirm the same OpenAI embedding credential is used in both workflows.
+Every answer comes from the stored document, not the model's general training. The agent is reading from the filing room. Answers look generic? See [Troubleshooting](#-troubleshooting-steps).
 
 ---
 
-## What You Built
+## What You Learned
 
 ![flow](./assets/banner0.png)
 
-You built a two-pipeline system. One processes documents. One answers questions about them. Here's what to take away:
-
-**RAG separates memory from reasoning.** The model doesn't remember your documents - the vector store does. The model's job is to reason over whatever context gets handed to it. Keeping these two concerns separate is what makes the system flexible and scalable. Swap the model, the store stays. Add more documents, the model doesn't change.
-
-**Embeddings convert meaning into coordinates.** When you embed a chunk of text, you're converting its meaning into a location in mathematical space. Chunks that mean similar things end up near each other. That proximity is what search exploits. This is why the system can find "payment obligations" when a user asks about "invoice terms" - the words differ, but the meaning is close.
-
-**The system message is a routing instruction.** Telling the agent to "always call the vector store first" is a product decision, not a technical one. Without it, the agent decides on its own - and it might not always make the right call. The system message is where you enforce behavior. This pattern applies to every agent you'll ever build.
-
-**Chunking is the bridge between large documents and searchable answers.** You can't hand a 200-page contract to an AI in one go. Chunking breaks it into pieces small enough to embed and index. The chunk size controls the granularity of what gets retrieved. Too big and the AI gets buried in irrelevant text. Too small and the answer has no context to stand on. Getting this right is one of the highest-leverage decisions in a RAG system.
-
-**Two workflows, one system.** Ingestion runs once per document. Retrieval runs once per question. Keeping them separate means you can update either side independently - change the chunking strategy without touching the chat interface, or upgrade the chat without reprocessing all your documents.
+- **RAG separates memory from reasoning.** The vector store remembers your documents; the model only reasons over what it's handed. That's what makes the system flexible: swap the model and the store stays; add documents and the model doesn't change.
+- **Embeddings turn meaning into coordinates.** Similar meanings sit near each other, which is how a question about "invoice terms" finds "payment obligations".
+- **The system message is a routing instruction.** "Always call the vector store first" is a product decision, not a technical one. Without it, the agent decides for itself and won't always get it right. The system message is where you enforce behavior, in every agent you build.
+- **Chunking connects large documents to searchable answers.** You can't hand an AI a 200-page contract in one go, so you cut it into pieces. Chunk size is one of the most important choices in RAG: too big and the AI is buried in irrelevant text; too small and the answer lacks context.
+- **Two workflows, one system.** Ingestion runs once per document; retrieval runs once per question. Because they're separate, you can change one without touching the other: adjust chunking without changing the chat, or upgrade the chat without reprocessing documents.
 
 ---
 
 ## The Problem with This RAG Setup
 
-The system you just built works. But try something. Open the chat and type:
+The system works. Now try to break it 🤔 Open the chat and type *"Hi"*.
 
-*"Hi"*
+The agent goes straight to the vector store. It turns "Hi" into a vector, searches every chunk of your contract, pulls the 5 closest matches into the prompt, and after all that, replies *"Hello! How can I help you with the contract?"* **It ran the full retrieval pipeline for a greeting.**
 
-Watch what happens in the background. The agent hits the vector store. It embeds the word "Hi", searches through every chunk of your contract, retrieves the 5 closest matches, stuffs them into the prompt, and then - after all that - responds with something like *"Hello! How can I help you with the contract?"*
+Scale that up. In a 10-message chat with 3 real questions and "thanks", "got it", "ok" in between, every message runs the full pipeline, even the one-word replies. That costs you in three ways:
 
-It ran the full retrieval pipeline for a greeting.
+| Problem | What happens |
+|---|---|
+| **Token cost** | 5 chunks of ~800 characters is roughly 1,000 extra tokens per message, on top of the question and answer. For "Hi", you paid for 5 clauses about termination and payment schedules that had nothing to do with anything. |
+| **Latency** | The embedding call, the search and the bigger prompt all add time. A greeting takes as long as a complex legal question, and users notice. |
+| **Noise in the context** | For a vague or casual message, the "closest" chunks are basically random. The model gets irrelevant contract text and has to work around it. |
 
-Now imagine a user has a 10-message conversation. They ask 3 real contract questions and say "thanks", "got it", "ok" in between. Every single message - including the one-word acknowledgements - triggers the same pipeline: embed the message, search the vector store, retrieve 5 chunks, send everything to the model.
+> **Why does this happen?** Your system message says *"always call the Simple Vector Store tool first."* The agent obeys every time, with no exceptions. It has no way to judge when retrieval is useful and when it isn't.
 
-That's a problem for three reasons:
+What you need is an agent that decides for itself: it retrieves when it should, skips it when it shouldn't, and routes each message to the right behavior. That's **Agentic RAG**, and you build it in the next lab.
 
-**Token cost.** Every retrieved chunk adds tokens to the prompt. 5 chunks at ~800 characters each is roughly 1,000 tokens per query - on top of the question and response. For a casual "Hi", you just spent tokens on 5 contract clauses about termination conditions and payment schedules that had nothing to do with anything.
+---
 
-**Latency.** The vector store search, the embedding call, and the larger prompt all add time. A simple greeting takes as long as a complex legal question. Users notice.
+## 🔧 Troubleshooting Steps
 
-**Noise in the context.** The retrieved chunks are semantically close to the query - but for a vague or conversational message, "semantically close" means random. The model gets irrelevant contract text in its context and has to work around it to give a sensible answer.
+Check here before asking for help.
 
-The system message you wrote is the cause: *"always call the Simple Vector Store tool first."* It works exactly as instructed - every time, no exceptions. The agent has no way to decide when retrieval is actually useful and when it isn't.
+**You see this error when running the workflow with the PDF**
 
-What you need is an agent that can make that decision itself. One that retrieves when it should, skips retrieval when it shouldn't, and routes each message to the right behavior without being told explicitly every time.
+![banner](./assets/9089.png)
 
-That's **Agentic RAG** - and it's what you build in the next lab.
+1. Open the **Default Data Loader** and change the data format from **PDF** to **Docx**.
+
+![banner](./assets/9000.png)
+
+2. Upload the `.docx` file, not the `.pdf`.
+
+If you're not seeing this error, carry on with the current workflow.
+
+---
+
+**Answers are generic, or the agent says it doesn't have the information**
+
+Check two things: the **Memory Key** in the retrieval tool matches the one from ingestion exactly, and the **same OpenAI embedding credential** is used in both workflows.
 
 ---
 
 ## What's Next
 
-You've built the core of a document-aware AI system. And you've seen its first real limitation: a system that retrieves blindly, on every message, regardless of whether retrieval helps. The next lab solves this by giving the agent the intelligence to decide when to search, when to skip, and how to handle conversations that mix document questions with casual chat - without wasting tokens or adding unnecessary latency.
+You've built the core of a document-aware AI system and seen its first limit: it retrieves blindly on every message. In the next lab, you'll give the agent the judgment to decide when to search, when to skip, and how to handle chats that mix contract questions with small talk, without wasting tokens or adding delay.
 
----
-
-> **Quick Note**
->
-> If you are facing the issue below while running the workflow, follow these steps:
->
-> 1. Make sure you change the default data loader from **PDF** to **DOCX** format.
-> 2. When uploading the document, ensure the file format is `.docx`, not `.pdf`.
->
-> If you are not facing this issue, you can continue with the current workflow.
-
-[Next Lab →](../2.3-n8n-agenticRAG/Readme.md)
+[Go to Lab 2.3: Agentic RAG →](../2.3-n8n-agenticRAG/Readme.md)
