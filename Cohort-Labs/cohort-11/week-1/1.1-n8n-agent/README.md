@@ -39,7 +39,7 @@ By the end of this lab, you'll have a working agent, know how to write the instr
 
 ✅ An **n8n account** — sign up free at n8n.io. The cloud version works fine. [Follow this setup guide](../../pre-reads/0.3-setup-n8n/README.md) to create your account.
 
-✅ The **ready-made workflow file** — [download n8n-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQD_VZhqEiP4Rp20H7krpPx3AZpwrbhCZcTiTkH_-9hYpEw?e=iozned)
+✅ The **ready-made workflow file** — [download n8n-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQDuaRJHGH6vQoYMl8VS7BYSAZNwKrRiLULokGgKgDGiddE?e=fazEUx)
 
 ✅ The **sample document** — [download the sample contract](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQC2WQJhhIuyRq5JrVY13FwNAdwS4M5gB5w-qzBAm9V4mRQ?e=XyvLU4) (a made-up vendor agreement prepared for this lab)
 
@@ -154,7 +154,7 @@ You can get the webhook in two ways. Pick one:
 | **How** | Import a ready-made workflow that already has the Webhook and Respond to Webhook blocks connected | Follow the steps below and add them by hand |
 | **Best for** | Getting to Lab 1.2 quickly | Learning how a webhook is wired |
 
-**Option A.** [Download n8n-webhook-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQD-C9GloOmmQ5hNbfrcs98oAdfgziy1kBkc34PdlVixayM?e=rBVvos). In n8n, click the **three-dot menu (⋮)** → **"Import from File"** and upload it. Double-click the **"OpenAI Chat Model"** block to confirm the model is **gpt-5-mini**, then jump to [Copy your webhook link](#step-6-copy-your-webhook-link) to copy your web address.
+**Option A.** [Download n8n Webhook Workflow](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQARg0O_Y5nRTJi9dK4Zpm1NAe4-T8GBchgvQ-kcvLvt_B0?e=WXkOXO). In n8n, click the **three-dot menu (⋮)** → **"Import from File"** and upload it. Double-click the **"OpenAI Chat Model"** block to confirm the model is **gpt-5-mini**, then jump to [Copy your webhook link](#step-6-copy-your-webhook-link) to copy your web address.
 
 **Option B.** Keep going with Step 1.
 
@@ -211,6 +211,34 @@ Drag a line from **AI Agent** to **Respond to Webhook**. Your workflow now reads
 **Webhook → Extract From File → AI Agent → Respond to Webhook**
 
 ![final-workflow](./assets/25.png)
+
+Now click the **Respond to Webhook** block and set it up so your app gets the agent's JSON back cleanly. Make these three changes:
+
+![image](./assets/30.png)
+
+**1. Respond With:** choose **Text**.
+
+**2. Response Body:** switch the field to **Expression** and paste:
+
+```
+{{ $json.output }}
+```
+
+The AI Agent puts its answer in a field called `output`. This sends just the answer, not the wrapper around it.
+
+**3. Add Option → Response Headers → Add Header.** Paste each value into its own box:
+
+Name:
+
+```
+Content-Type
+```
+
+Value:
+
+```
+application/json
+```
 
 Check every line before you move on. One missing connection and nothing comes back.
 

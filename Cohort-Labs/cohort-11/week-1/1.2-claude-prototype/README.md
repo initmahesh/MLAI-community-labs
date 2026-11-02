@@ -374,8 +374,7 @@ Replace whatever is in that field with this:
 
 ```
 
-user_query:{{ $('Webhook').item.json.body.
-message }}
+user_query:{{ $('Webhook').item.json.body.message }}
 file_context:{{ $json.text }}
 ```
 
