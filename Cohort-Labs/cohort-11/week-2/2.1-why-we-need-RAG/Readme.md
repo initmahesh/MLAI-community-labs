@@ -12,7 +12,7 @@ Not because something is wrong with what you built — but because the thing tha
 
 Go back to the agent you built in [Lab 1.1 — Build Your First AI Agent in n8n](../../week-1/1.1-n8n-agent/build-from-scratch.md), or you can download the workflow from here:
 
-✅ **Starter workflow file** — [Download n8n-workflow.json](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQCxwBn3DSxjTrx2_WxRoFTeAQ1ni4W0bV2cKybboqYJYC8?e=JQfaYk)
+✅ **Starter workflow file** — [Download n8n-workflow.json](https://pragyaallc-my.sharepoint.com/personal/anushka_srivastava_legalgraph_ai/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fanushka%5Fsrivastava%5Flegalgraph%5Fai%2FDocuments%2Fn8n%2Dagentworkflow%20%284%29%2Ejson&parent=%2Fpersonal%2Fanushka%5Fsrivastava%5Flegalgraph%5Fai%2FDocuments&ga=1)
 
 Open the workflow. Before you run it, click the **OpenAI Chat Model** node and make sure the model is set to **`gpt-4o-mini`**. Then run it — but this time, instead of the small sample contract, upload a larger one.
 
