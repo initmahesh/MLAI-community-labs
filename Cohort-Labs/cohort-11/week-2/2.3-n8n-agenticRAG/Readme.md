@@ -352,7 +352,7 @@ Right now, both the **Direct Response Agent** path and the contract path still e
 
 Activate the workflow, then open both Webhook nodes and copy their URLs somewhere safe — one is for sending a contract to be read, the other is for asking a question about it.
 
-This is exactly the conversion **Lab 2.3.1 — Give Your Agentic RAG a Web Layer** builds on top of. Once you've made these changes here, that's the lab where you connect a real web app to this workflow. [Go to Lab 2.3.1 →](../2.3.1-web-layer/Readme.md)
+This is exactly the conversion **Lab 2.3.1 — Give Your Agentic RAG a Web Layer** builds on top of. Once you've made these changes here, that's the lab where you connect a real web app to this workflow. [Go to Lab 2.3.1 →](../2.5-agenticRAG-web-app/Readme.md)
 
 ---
 
@@ -469,4 +469,4 @@ In the next lab you bring the same `contract-review-app` up to speed with this b
 
 No new coding concepts — just Claude Code, the app you already have, and about 35 minutes.
 
-[Go to web layer →](./web-layer/Readme.md)
+[Go to KG-RAG →](../2.4-kg-RAG/Readme.md)

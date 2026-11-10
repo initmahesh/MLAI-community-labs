@@ -1,4 +1,4 @@
-# Lab 2.3.1: Give Your Agentic RAG a Web Layer
+# Lab 2.5: Give Your Agentic RAG a Web Layer
 
 Your n8n agent just got a lot smarter. Back in Lab 2.3, you taught it to stop and think before it goes digging through the contract — "Hi" gets an instant reply, "What's the interest rate?" sends it off to actually search the document.
 
@@ -188,49 +188,6 @@ A skill is just a Markdown file with instructions in it. The filename becomes th
 2. Click **Upload skill**
 3. Select the `.md` (or `.zip`) file for the skill
 4. Confirm — it now shows up as a slash command you can invoke any time
-
-### How to Create Your Own Skills
-
-Once you've used a starter skill or two, you can build your own the same way.
-
-**To create a skill from scratch:**
-
-1. Open a text editor (or ask Claude to help you write it)
-2. Write the instructions you want Claude to follow — be explicit about the output format you want
-3. Save the file as `your-skill-name.md`
-4. Follow the install steps above to upload it
-
-**Tips for writing effective skills:**
-
-| Tip | Why It Matters |
-|---|---|
-| Be explicit about output format | Claude will follow structure instructions precisely |
-| Use `$ARGUMENTS` as a placeholder | Anything you type after the command replaces `$ARGUMENTS` — makes skills dynamic |
-| Keep each skill focused on one job | Narrow skills are more reliable than multi-purpose ones |
-| Add a constraints or out-of-scope section | Prevents Claude from over-generating or going off-track |
-
-**Example — a simple skill file:**
-
-```
-Write a user story for the following feature: $ARGUMENTS
-
-Format:
-**User Story**
-As a [user], I want [goal] so that [benefit].
-
-**Acceptance Criteria**
-- [ ] Criterion 1
-- [ ] Criterion 2
-
-**Out of Scope**
-- What this story does not cover
-```
-
-Save this as `write-user-story.md`, upload it, and invoke it with:
-
-```
-/write-user-story Export project data as a CSV
-```
 
 ### Now, Back to Your App's Design
 
