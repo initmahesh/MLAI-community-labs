@@ -1,472 +1,219 @@
-# Agentic RAG — Contract Intelligence Lab Guide
+# Lab 2.3: Agentic RAG — Contract Intelligence
 
-> **Who this is for:** Anyone curious about AI — no coding background needed. This guide gets you running the lab first, then explains every piece of it in plain English.
+In [Lab 2.2](../2.2-understanding-RAG/Readme.md), you built a RAG pipeline that answers questions from a contract. But type **"Hi"** into it, and it still searches the whole contract before it replies. That's wasted time and money.
+
+The fix: let the system decide **before** it searches. A contract question gets a search; anything else gets a direct reply. That one decision is what makes RAG **agentic**.
+
+Here's the flow for this lab:
+
+- **Run the workflow.** See "Hi" skip the search while contract questions go through it.
+- **Break it on purpose.** Try a loan agreement and see where RAG still struggles.
 
 ---
 
 ## Table of Contents
 
-1. [The Problem We Are Solving](#1-the-previous-lab-was-traditional-rag--heres-what-we-fixed)
-2. [The Solution — What This Workflow Does](#2-the-solution--what-this-workflow-does)
-   - [Pre-Session Downloads](#pre-session-downloads)
-3. [Core Concept: What Is Agentic RAG?](#3-core-concept-what-is-agentic-rag)
-4. [Step-by-Step Lab Setup in n8n](#5-step-by-step-lab-setup-in-n8n)
-5. [The Big Picture — How the Workflow Flows](#6-the-big-picture--how-the-workflow-flows)
-6. [Example Queries to Try](#9-example-queries-to-try)
-7. [Before You Move On — Test It Yourself](#10-before-you-move-on--test-it-yourself)
-8. [Why This Matters — Key Takeaways](#11-why-this-matters--key-takeaways)
+- [Prerequisites](#prerequisites)
+- [How Agentic RAG Decides When to Search](#how-agentic-rag-decides-when-to-search)
+- [Part 1: Import the Workflow](#part-1-import-the-workflow)
+- [Part 2: Add Your OpenAI Key](#part-2-add-your-openai-key)
+- [Part 3: Upload Your Contract](#part-3-upload-your-contract)
+- [Part 4: Ask Questions and Watch the Routing](#part-4-ask-questions-and-watch-the-routing)
+- [Part 5: Stress-Test It with a Loan Agreement](#part-5-stress-test-it-with-a-loan-agreement)
+- [Quick Reference](#quick-reference)
+- [What's Next](#whats-next)
 
 ---
 
-## 1. The Previous Lab Was Traditional RAG — Here's What We Fixed
- 
-Before you dive into the current workflow, it's worth understanding what changed — because the fix *is* the main lesson of this lab.
+## Prerequisites
+
+✅ **Lab 2.2 done.** You know how chunking, embeddings and vector search work.
+
+✅ **n8n account** and an **OpenAI API key** with credit (from Week 1).
+
+✅ **Download these files:**
+
+- [n8n Workflow JSON](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQDSdQ5UsRtPSprLfe1iiytRAc6ypCxCv_ZCIBKU5KBCKwM?e=CjaXb4)
+- [Test Contract](https://pragyaallc-my.sharepoint.com/:w:/g/personal/sachin_parmar_legalgraph_ai/IQAbCBMxqrFrT6hzD6t9oCdpAR8pdsHtVaZf2O5HiyGq5jY?e=4s3M8D) (keep it in `.docx` format)
+- [Loan Agreement](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQD6lbbrDHV5ToSGrWurVlejAZ9kRJYW40iwWLtE5fzC54M?e=VtD4Mp) (for Part 5)
 
 ---
 
-### The previous lab: Traditional RAG
- 
-The previous lab was a **Traditional RAG workflow** — a standard Retrieval-Augmented Generation pipeline. Its whole design was: retrieve first, always, then generate an answer from whatever was retrieved. There was no decision-making step at the front of the pipeline. Every single message typed into the chat — no matter what it was — was forced through the **entire** retrieval pipeline:
- 
-That means a simple greeting like **"Hi"** or **"How are you?"** triggered exactly the same expensive machinery as a real contract question:
- 
-- The Query Rewriter tried to turn *"Hi"* into a "keyword-rich, contract-specific" search query — which makes no sense for a greeting
-- The RAG Agent still called the Vector Search Tool and searched the contract for a match to that nonsense query
-- All of this cost extra OpenAI calls, added several seconds of latency, and produced an awkward, sometimes confused-looking reply to something as simple as "Hi"
+## How Agentic RAG Decides When to Search
 
----
-### Why this is a problem, conceptually
- 
-This is exactly what makes a workflow **Traditional RAG** rather than **Agentic RAG**. A fixed pipeline that always retrieves — regardless of whether retrieval is needed — isn't making any decisions at all. It's just a longer, more expensive version of a single lookup. Real agency means the system first asks itself: *"Does this question even require the document?"*
+Before you open n8n, you need to know what's different, because that difference is what you'll be watching for in this lab.
 
----
+The Lab 2.2 pipeline had one path: every message went straight to the contract search. This lab's workflow adds one step at the front that decides whether to search at all.
 
-## 2. The Solution — What This Workflow Does
-
-This n8n workflow builds an **intelligent contract Q&A system** that:
- 
-✅ Reads and understands your uploaded contract
-✅ Decides, message by message, whether the contract is even relevant
-✅ Answers general chat instantly, without touching the document
-✅ Answers contract questions in plain English, always citing the exact section it used
- 
-Think of it as a **contract research assistant with good judgment** — one that knows the difference between "Hi" and "What's the interest rate?", and only opens the filing cabinet when it actually needs to.
-
-
----
-
-## Pre-Session Downloads
-
-Download the following files before starting the lab:
-
-- ✅ **n8n Workflow file** — [Download the pre-built workflow JSON here](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQDSdQ5UsRtPSprLfe1iiytRAc6ypCxCv_ZCIBKU5KBCKwM?e=CjaXb4) if you'd like to import it instead of building from scratch.
-
-- [Reference Document](https://pragyaallc-my.sharepoint.com/:w:/g/personal/sachin_parmar_legalgraph_ai/IQAbCBMxqrFrT6hzD6t9oCdpAR8pdsHtVaZf2O5HiyGq5jY?e=4s3M8D) — Download the test Contract make sure you upload the contract is docx format
----
-
-## 3. Core Concept: What Is Agentic RAG?
-
-This is the most important concept in this lab. Let's break it down word by word.
-
-### RAG — Retrieval-Augmented Generation
-
-**"Retrieval-Augmented Generation"** is a technique for making AI smarter and more accurate by giving it a reference library to look things up in, rather than relying purely on what it memorised during training.
-
-Think of the difference between:
-
-- **A student taking an open-book exam** (RAG) — they look up answers in the textbook before writing
-- **A student taking a closed-book exam** (standard AI) — they rely entirely on memory, which may be imperfect or outdated
-
-In RAG, the "retrieval" step finds the most relevant pages/passages from your document, and the "generation" step uses an AI to write a clear answer *based only on those passages*.
-
-```
-User Question  →  Find relevant document sections  →  AI writes answer from those sections
-```
-
-### Agentic — What Makes It "Agentic"?
- 
-A standard RAG system does a single lookup and gives you one answer — for *every* message, whether or not that lookup makes sense. It is passive and indiscriminate.
- 
-An **Agentic** RAG system has *agency* — it can **reason about what the question actually needs, decide whether to retrieve at all, and choose the right path**:
- 
-| Standard / Naive RAG | Agentic RAG (this workflow) |
+| Traditional RAG (Lab 2.2) | Agentic RAG (this lab) |
 |---|---|
-| Retrieves for every message, even "Hi" | Classifies intent first — retrieves only when needed |
-| One fixed pipeline for every input | Two distinct paths: direct answer vs. full retrieval |
-| Wastes embedding + vector search calls on small talk | Small talk never touches the vector store |
-| No routing logic | An explicit routing agent decides the path |
-| Same latency and cost for every message | Faster and cheaper for anything that isn't a contract question |
- 
-In this workflow, the system:
-1. **Classifies your message** — does it need the contract, or not?
-2. If **not** — a lightweight agent replies immediately, conversationally
-3. If **yes** — the RAG path kicks in:
-   - **Rewrites your question** to make it easier to search
-   - **Searches the document** for relevant sections using a vector-store tool
-   - **Composes an answer** with citations back to the specific chunks used
-That routing decision — made before any retrieval happens — is what makes this **agentic**, not just "RAG with more nodes."
+| Searches for every message, even "Hi" | Checks the message first and searches only when needed |
+| One fixed path | Two paths: reply directly, or search the contract |
+
+That new step is called the **Intent Router**. Here's how a message moves through the workflow:
+
+1. The **Intent Router** decides whether the message needs the contract.
+2. If **no**, the **Direct Response Agent** replies straight away.
+3. If **yes**, the **Query Rewriter** sharpens the question, and the **RAG Agent** searches the contract and answers with citations.
+
+So now you know what to look for. Next, let's get this workflow into your n8n.
 
 ---
 
-## 5. Step-by-Step Lab Setup in n8n
- 
-Follow these five steps exactly to get the workflow running. No coding required.
- 
----
- 
-### ▶ Step 1 — Create a New Workflow
- 
-1. Open n8n in your browser
-2. Click the **"+ New Workflow"** button (or **"Create Workflow"**) in the top right corner
-3. You will see a blank canvas — this is your workspace
-> 💡 You should see an empty canvas with a hint that says "Add first step" or similar. This is normal — you will fill it in the next step by importing the file.
+## Part 1: Import the Workflow
 
- 
----
- 
-### ▶ Step 2 — Download and Import the n8n JSON File
- 
-1. Download the **n8n JSON workflow file** from the pre-session materials section
-2. Back in your n8n blank canvas, click the **three-dot menu** (⋮) in the top right corner
-3. Select **"Import from file"** (keyboard shortcut: `Ctrl+Shift+I` on Windows / `Cmd+Shift+I` on Mac)
-4. Browse to the downloaded JSON file and select it
-5. Click **Open / Import**
-6. The full workflow will appear on the canvas with all the nodes already connected
+**What it is**: The workflow JSON you downloaded in Prerequisites. It's the full Agentic RAG system described above, with the upload pipeline, the Intent Router and both answer paths already built.
+
+**Why import it**: The ingestion part is the same as Lab 2.2, and you've already built that once. Importing it lets you skip rebuilding and spend your time on what's new: the routing.
+
+**Action items**:
+
+1. In n8n, click **+ New Workflow**.
+2. Click the **three-dot menu (⋮)** in the top right → **Import from file** (`Cmd+Shift+I` on Mac / `Ctrl+Shift+I` on Windows).
+3. Select the workflow JSON you downloaded.
 
 ![assets](assets/11.png)
- 
-> ✅ You should now see three clusters of nodes: **Document Ingestion** (top), the **Intent Router fork** (where the chat path splits in two), and the **Query & Answer pipeline**. Everything is pre-wired — you just need to add your API key in the next step.
- 
+
+**Output**: You'll see three groups of nodes on the canvas: **Document Ingestion** at the top, the **Intent Router** fork, and the **Query & Answer** pipeline. Everything is already connected.
+
+The workflow is in place, but it can't run yet. Every agent needs OpenAI, and n8n doesn't have your key.
+
 ---
- 
-### ▶ Step 3 — Open the OpenAI Nodes and Add Your API Key
- 
-This step connects the workflow to OpenAI's AI services. You need to do this for **three nodes**.
- 
-**For the OpenAI Chat Model node:**
-1. Find and **click** the node labelled **"OpenAI Chat Model"** on the canvas
-2. A settings panel opens on the right side of the screen
-3. Under **"Credential"**, click **"Create New"** or select an existing OpenAI credential
-4. Paste your OpenAI API key into the field and click **Save**
-> 💡 This single node powers *all four* AI agents in the workflow — the Intent Router, the Query Rewriter, the RAG Agent, and the Direct Response Agent. Set the credential once here and every agent uses it.
+
+## Part 2: Add Your OpenAI Key
+
+Three nodes need the key. Create the credential once, then select it on each node.
+
+**Action items**:
+
+1. Click **OpenAI Chat Model** → under **Credential**, click **Create New** → paste your API key → **Save**.
+
+   > **Note**: This one node powers all four agents: Intent Router, Query Rewriter, RAG Agent and Direct Response Agent.
 
 ![assets](assets/8.png)
- 
-**For the two OpenAI Embedding nodes:**
-1. Find the node **"Embeddings OpenAI"** (connected to the Vector Store in the top/ingestion section) → click it → assign the same API key credential
-2. Find the second node **"Embeddings OpenAI1"** (in the lower query pipeline section) → click it → assign the same API key credential
-> 💡 You only need to create the OpenAI credential once — then select it for each of the three nodes. They all share the same key.
- 
-> ⚠️ Don't have an OpenAI API key yet? Get one at [platform.openai.com](https://platform.openai.com). You will need to add a small amount of credit to your account before the key will work.
- 
+
+2. Click **Embeddings OpenAI** (in the ingestion section) → select the same credential.
+3. Click **Embeddings OpenAI1** (in the query section) → select the same credential.
+
+   > **Note**: No API key yet? Get one at [platform.openai.com](https://platform.openai.com) and add a small amount of credit. If your n8n account came with free OpenAI credits, you can use those instead.
+
+**Output**: All three OpenAI nodes use the same credential.
+
+Now the workflow can run, but there's no contract to search yet. Let's give it one.
+
 ---
- 
-### ▶ Step 4 — Execute the Workflow and Upload Your Contract
- 
-1. Click the **"Execute Workflow"** button (the ▶ Play button at the bottom of the canvas)
-2. The workflow activates and starts listening
+
+## Part 3: Upload Your Contract
+
+This is the same ingestion you did in Lab 2.2: read, chunk, embed, store.
+
+**Action items**:
+
+1. Click **Execute Workflow** (▶ at the bottom of the canvas).
 
 ![assets](assets/9.png)
 
-3. Click on the **"On Form Submission"** node — a **"Test URL"** link will appear in its settings panel
-4. Click that URL — it opens a simple web form in a new browser tab
-5. In the form, click the file upload field and **select your contract document** (the sample contract from the pre-session materials, in `.pdf` format)
-6. Click **Submit**
-7. Go back to the n8n canvas — watch as **green checkmarks appear** on each ingestion node one by one as your document is processed
+2. Open the **On Form Submission** node and click the **Test URL**.
+3. In the form that opens, upload the test contract and click **Submit**.
+4. Go back to the canvas and wait for every ingestion node to turn green. This takes about 5–15 seconds.
 
- 
-> ✅ When all ingestion nodes show green, your contract is fully loaded and ready to be queried. This usually takes 5–15 seconds depending on the size of the document.
- 
-> 💡 What's happening during those seconds: the document is being read, cut into chunks, converted into numerical vectors, and stored in the AI's searchable memory. More on each of these steps in Section 7.
- 
+**Output**: Your contract is stored and ready to be searched.
+
+Now for the real test: is the "Hi" problem actually fixed?
+
 ---
- 
-### ▶ Step 5 — Ask a Query and Watch the Workflow Route
- 
-1. Find the **"When chat message received"** node on the canvas and click it
-2. In the settings panel that opens, click **"Open Chat"** or **"Test Chat"**
-3. A chat window will appear
+
+## Part 4: Ask Questions and Watch the Routing
+
+**Action items**:
+
+1. Open the **When chat message received** node → click **Open Chat**.
 
 ![assets](assets/10.png)
- 
-4. First, try typing just **"Hi"** and press **Enter**. Watch the canvas: only the **Intent Router** and **Direct Response Agent** light up — the Vector Store never activates, and you get an instant, friendly reply.
+
+2. Type **"Hi"**. Only the **Intent Router** and **Direct Response Agent** light up. No search, instant reply. That's the fix working.
 
 ![assets](assets/12.png)
 
-5. Now try a real question about your contract — for example: *"What is the contract about?"*
-6. Press **Enter** and watch the canvas light up differently this time — the Intent Router now routes left into the **Query Rewriter → RAG Agent → Vector Search Tool** path.
-You will see each node glow green as it completes its work in sequence:
-- The **Intent Router** classifies your message
-- **If general:** the Direct Response Agent replies immediately
-- **If contract-related:** the Query Rewriter rewrites your question, the RAG Agent searches the contract and cites its sources, and the answer is sent straight to you
-> ✅ For a contract question, the answer comes back with citations to the specific chunk(s) it used. For a general message, you get a quick, friendly reply with no citations — because none were needed.
- 
+3. Now ask **"What is the contract about?"**. This time it takes the other path: **Query Rewriter → RAG Agent → Vector Search Tool**, and answers with citations.
+
 ![assets](assets/13.png)
- 
-See **Section 9** for a full list of example queries to try, covering both paths.
- 
----
- 
-## 6. The Big Picture — How the Workflow Flows
- 
-Now that you've run the lab, here is a full picture of what you just executed. The workflow has **two separate pipelines** that work together.
- 
-### Pipeline A — Document Ingestion (runs once, when you upload the contract)
- 
+
+4. Try a few messages from each column and watch which path lights up:
+
+| General (no search) | Contract (full search) |
+|---|---|
+| "Hello" | "Who are the parties involved?" |
+| "How are you?" | "What are the key terms and obligations?" |
+| "What can you do?" | "What is the interest rate?" |
+| | "When is the maturity date?" |
+
+**Output**: General messages get instant replies, and contract questions get answers with citations.
+
+Here's the full picture of what you just ran:
+
+**Pipeline A: Document Ingestion** (runs once for each upload)
+
 ![assets](assets/14.png)
- 
-### Pipeline B — Query & Answer (runs every time you send a chat message)
- 
+
+**Pipeline B: Query & Answer** (runs on every message)
+
 ![assets](assets/15.png)
- 
-Notice there is no retry loop and no separate judging stage anymore — the RAG Agent's answer goes straight to the user. The main "agentic" decision in this version of the lab is the **fork at the Intent Router**, not a self-correction loop. That keeps the lesson focused on one clear idea: *decide before you retrieve.*
+
+The system now decides before it searches. But does it always find the right answer? Let's try a harder document.
 
 ---
 
- ## 9. Example Queries to Try
-  
- Use these after uploading the sample contract. Try a few from each list back to back and watch how differently the canvas lights up.
-  
- ### General questions (should route to Direct Response Agent — no retrieval)
-  
- > *"Hi"*
- > *"Hello"*
- > *"How are you?"*
- > *"What can you do?"*
-  
- ### Contract questions (should route to the RAG pipeline — full retrieval)
-  
- > *"What is this contract about?"*
- > *"Who are the parties involved in this contract?"*
- > *"What are the key terms and obligations in this contract?"*
- > *"What is the interest rate?"*
- > *"When is the maturity date?"*
-  
- ---
+## Part 5: Stress-Test It with a Loan Agreement
 
-## 10. Before You Move On — Test It Yourself
+In the test contract, every fact sat in one clause, so one chunk was enough. Real contracts aren't always that simple.
 
-> ⏱️ **This section takes about 3 minutes to read. Do not skip it — it contains the most important hands-on insight of the lab.**
+**Action items**:
 
----
+1. Click **Execute Workflow**, open the upload form and upload the **Loan Agreement**.
+2. Once ingestion finishes, ask these questions:
 
-You just ran the workflow on a lease agreement where everything was spelled out plainly. Now let's stress-test it with a different kind of document.
+```
+What is the interest rate on this loan?
+```
+```
+Can the borrower repay the loan early, and is there a penalty?
+```
+```
+What happens if the borrower misses a payment?
+```
 
-### The Challenge
+![assets](assets/16.png)
 
-[**Download this Loan Agreement →**]([Click here](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQD6lbbrDHV5ToSGrWurVlejAZ9kRJYW40iwWLtE5fzC54M))
+You'll get answers with citations, but they're vague. They say *"as set forth in Schedule 1.1(a)"* without telling you what Schedule 1.1(a) says.
 
-Run it through the exact same process you just completed:
-
-1. Click **Execute Workflow** and open the upload form
-2. Upload the loan agreement PDF
-3. Once ingestion is complete, open the chat and ask these questions:
-
-> *"What is the interest rate on this loan?"*
-> *"Can the borrower repay the loan early, and is there a penalty?"*
-> *"What happens if the borrower misses a payment?"*
-
----
-
-### What You Will Notice
-
-You **will** get answers. They will look confident. They will even cite chunk references.
-
-**But something will feel off.**
-
-The answers will be vague or incomplete — hedging with phrases like *"as set forth in the applicable schedule"* or *"subject to the terms described in Section 4.3"* — without actually telling you what those schedules or sections say.
-
-This is not a bug. It is the system working exactly as designed — and it is revealing a genuine limitation of RAG.
-
----
-
-### Why This Happens — The Hidden Information Problem
-
-In the lease agreement, key facts were stated directly in a single clause:
-
-> *"The monthly rent shall be $2,400, due on the first day of each calendar month."*
-
-One chunk. One fact. RAG retrieves it, cites it, done.
-
-In a loan agreement, the same kind of information is scattered and cross-referenced:
+**Why?** In a loan agreement, one fact is spread across several places:
 
 > *"The applicable interest rate shall be the Base Rate plus the Applicable Margin, as defined in Schedule 1.1(a), subject to periodic adjustment in accordance with Section 2.7(d)."*
 
-To correctly answer *"What is the interest rate?"*, the system would need to:
+Vector search brings back only the closest chunk, and here that chunk just **points to** the answer.
 
-1. Find this clause
-2. Locate **Schedule 1.1(a)** — possibly a table buried on a separate page
-3. Find **Section 2.7(d)** and read the adjustment conditions
-4. Synthesise all three into a single coherent number
-
-Instead, RAG retrieves the most relevant chunk — which only contains a *pointer* to the real answer, not the answer itself. The system cites what it found, the faithfulness check passes (because the citation technically exists), and you receive an answer that is grounded but practically incomplete.
-
----
-
-### One More Thing — Get This Workflow Ready to Talk to a Real Web App
-
-Everything you just did worked inside n8n's own chat window — you clicked **Execute Workflow**, opened n8n's built-in form, opened n8n's built-in chat, and stayed inside n8n the whole time.
-
-A real product doesn't work like that. A real product is a web page someone opens in their browser, with its own upload button and its own chat box — and that web page has no way to open n8n's internal form or chat trigger. It can only do one thing: send a request to a URL and wait for a reply. So before this workflow can sit behind a real app, two of its starting points need to change — the way ingestion starts, and the way chat starts. Let's do ingestion first, then chat.
-
----
-
-#### Step 1 — Swap the ingestion trigger for a Webhook
-
-1. Click the **"On Form Submission"** node and delete it.
-2. Add a new node, search for **"Webhook"**, and drop it where the form trigger used to sit.
-3. Open it and set it up:
-   - **HTTP Method:** POST
-   - **Respond:** "Using 'Respond to Webhook' Node"
-   - Under **Options**, turn on binary data and set the **Binary Property Name** to `data` — that's the field name the uploaded file will arrive under
-   - Uder **Options** add one more option Allowed Origins (CORS)
-4. Reconnect its output into the same node the form trigger was using (**Simple Vector Store**).
-5. Add a **Respond to Webhook** node at the very end of this pipeline, right after **Simple Vector Store**, so whoever sent the file gets a reply once the contract is fully indexed.
-
-![Swapping the ingestion trigger for a Webhook node — screenshot placeholder](assets/17.png)
-
----
-
-#### Step 2 — Swap the chat trigger for a Webhook
-
-1. Click the **"When chat message received"** node and delete it.
-2. Add a new **Webhook** node in its place.
-3. Set it up the same way as before:
-   - **HTTP Method:** POST
-   - **Respond:** "Using 'Respond to Webhook' Node"
-   - Uder **Options** add one more option Allowed Origins (CORS)
-4. Connect its output into **Intent Router** — the same place the chat trigger used to feed into.
-
-![Swapping the ingestion trigger for a Webhook node — screenshot placeholder](assets/19.png)
-
----
-
-#### Step 3 — Give both answer paths a way to actually reply
-
-Right now, both the **Direct Response Agent** path and the contract path still end at a **Chat - Direct** / **Chat - Contract** node — those were built to hand the answer to n8n's own chat window, which doesn't exist in this version anymore.
-
-1. Remove **Chat - Direct**, and add a **Respond to Webhook** node and connect Direct Response Agent node to this respond to webhook node.
-2. Remove **Chat - Contract**, add another **Respond to Webhook** node and connect AI Agent1 node to this respond to webhook node.
-
-![screenshot](assets/18.png)
-
-Activate the workflow, then open both Webhook nodes and copy their URLs somewhere safe — one is for sending a contract to be read, the other is for asking a question about it.
-
-This is exactly the conversion **Lab 2.3.1 — Give Your Agentic RAG a Web Layer** builds on top of. Once you've made these changes here, that's the lab where you connect a real web app to this workflow. [Go to Lab 2.3.1 →](../2.5-agenticRAG-web-app/Readme.md)
-
----
-
-### The Takeaway Before the Next Lesson
-
-| Contract type | How answers are stored | RAG accuracy |
+| Contract type | How facts are written | RAG accuracy |
 |---|---|---|
-| Lease agreement | Direct, self-contained clauses | High |
-| Loan agreement | Cross-referenced sections, defined terms, exhibits | Lower — without extra architecture |
+| Test contract | Each fact in one clause | High |
+| Loan agreement | Facts spread across sections and schedules | Lower |
 
-This is the exact problem the **next lab** is built to solve. When facts are scattered across a document — or across multiple documents — you need more than vector search. You need a system that can follow references, resolve defined terms, and reason across chunks.
-
-**That is where Knowledge Graphs come in.**
-
----
-  
- ## 11. Why This Matters — Key Takeaways
-  
- ### What You Have Built
-  
- You've just run an Agentic RAG pipeline that makes a real decision before it acts. Here's what makes it special:
-  
- | Feature | What It Does | Why It Matters |
- |---|---|---|
- | **Semantic Search** | Finds meaning, not just keywords | Catches relevant clauses even when phrased differently |
- | **Query Rewriting** | Improves questions before searching | Better queries → better results |
- | **Intent Routing** | Classifies every message before acting | Skips retrieval entirely for non-contract messages — faster, cheaper, and genuinely agentic |
- | **Agentic Retrieval** | Agent can search multiple times when it does retrieve | Handles complex, multi-part contract questions |
- | **Citation Enforcement** | Every contract answer must cite a source chunk | Reduces hallucination risk |
-  
- ### Real-World Applications
-  
- This same architecture can be applied to:
-  
- - **Legal teams** — querying NDAs, contracts, IP agreements
- - **HR departments** — querying employee handbooks, offer letters, policies
- - **Finance teams** — querying loan agreements, vendor contracts, SLAs
- - **Real estate** — querying lease agreements, property management contracts
- - **Healthcare** — querying supplier agreements, compliance documents
-
----
-10. Before You Move On — Test It Yourself
-
-  ▎ ⏱️  This section takes about 3 minutes to read. Do not skip it — it contains the most important hands-on insight of the lab.
+This isn't a bug, it's a limit of RAG. To follow references across a document, you need a different structure.
 
 ---
 
-You just ran the workflow on a lease agreement where everything was spelled out plainly. Now let's stress-test it with a different kind of document.
+## Quick Reference
 
-The Challenge
+| Problem | Cause | Fix |
+|---|---|---|
+| "Hi" triggers a contract search | Traditional RAG searches on every message | Put an Intent Router before the search |
+| OpenAI nodes show errors | One of the three nodes is missing the credential | Select the same credential on the Chat Model and both Embeddings nodes |
+| Loan agreement answers are vague | Facts are spread across sections that refer to each other | Expected RAG limit, solved with Knowledge Graphs in Lab 2.4 |
 
-Download this Loan Agreement → [Click here](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQD6lbbrDHV5ToSGrWurVlejAZ9kRJYW40iwWLtE5fzC54M?e=VtD4Mp)
-
-  Run it through the exact same process you just completed:
-
-  1. Click Execute Workflow and open the upload form
-  2. Upload the loan agreement PDF
-  3. Once ingestion is complete, open the chat and ask these questions:
-
-  ▎ "What is the interest rate on this loan?"
-  ▎ "Can the borrower repay the loan early, and is there a penalty?"
-  ▎ "What happens if the borrower misses a payment?"
-
-  ![assets](assets/16.png)
-
-  ---
-
-  What You Will Notice
-
-  You will get answers. They will look confident. They will even cite chunk references.
-
-  But something will feel off.
-
-  The answers will be vague or incomplete — hedging with phrases like "as set forth in the applicable schedule" or "subject to the terms
-  described in Section 4.3" — without actually telling you what those schedules or sections say.
-
-  This is not a bug. It is the system working exactly as designed — and it is revealing a genuine limitation of RAG.
-
-  ---
-
-  Why This Happens — The Hidden Information Problem
-
-  In the lease agreement, key facts were stated directly in a single clause:
-
-  ▎ "The monthly rent shall be $2,400, due on the first day of each calendar month."
-
-  One chunk. One fact. RAG retrieves it, cites it, done.
-
-  In a loan agreement, the same kind of information is scattered and cross-referenced:
-
-  ▎ "The applicable interest rate shall be the Base Rate plus the Applicable Margin, as defined in Schedule 1.1(a), subject to periodic
-  ▎ adjustment in accordance with Section 2.7(d)."
-
-  To correctly answer "What is the interest rate?", the system would need to:
-
-  1. Find this clause
-  2. Locate Schedule 1.1(a) — possibly a table buried on a separate page
-  3. Find Section 2.7(d) and read the adjustment conditions
-  4. Synthesise all three into a single coherent number
-
-  Instead, RAG retrieves the most relevant chunk — which only contains a pointer to the real answer, not the answer itself. The system
-  cites what it found, the faithfulness check passes (because the citation technically exists), and you receive an answer that is grounded
-  but practically incomplete.
 ---
 
-### Next: Give Your Agentic RAG a Web Layer
+## What's Next
 
-Your n8n agent is now smarter — it decides whether a question needs a search or a quick reply. But the web app from Lab 1.2 doesn't know that. It still sends the file and the message together, to one webhook, on every send.
+Your workflow now decides before it searches. But as the loan agreement showed, it still struggles when a fact is spread across clauses, schedules and sections that point to each other.
 
-In the next lab you bring the same `contract-review-app` up to speed with this backend:
-
-- **The wiring** — split the app's single webhook call into two: upload the PDF once to the ingestion webhook, then send only the question to the chat webhook.
-- **The look** — teach Claude Code a real design system as a skill, instead of a quick `/design` sketch.
-
-No new coding concepts — just Claude Code, the app you already have, and about 35 minutes.
-
-[Go to KG-RAG →](../2.4-kg-RAG/Readme.md)
+In [Lab 2.4 — Creating a Context Brain on Graph](../2.4-kg-RAG/Readme.md), you'll turn a contract into a **Knowledge Graph** that connects those pieces, so the answer comes from the whole picture instead of a single chunk.

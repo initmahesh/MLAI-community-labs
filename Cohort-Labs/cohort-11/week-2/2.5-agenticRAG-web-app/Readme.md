@@ -14,7 +14,7 @@ No new coding concepts here. Just Claude Code, the app you already have, and abo
 
 - [What Are We Building?](#what-are-we-building)
 - [Prerequisites](#prerequisites)
-- [Part 1: Open Workflow — and Copy webhook-url from Both Branches](#part-1-open-workflow--and-copy-webhook-url-from-both-branches)
+- [Part 1: Swap the Triggers for Webhooks](#part-1-swap-the-triggers-for-webhooks)
 - [Part 2: Your App Still Thinks There's Only One Job](#part-2-your-app-still-thinks-theres-only-one-job)
 - [Part 3: Test It Inside n8n First](#part-3-test-it-inside-n8n-first)
 - [Part 4: Teach Claude Your Design System — as a Skill](#part-4-teach-claude-your-design-system--as-a-skill)
@@ -37,17 +37,56 @@ By the end of this lab, your app will send the file once, ask questions cheaply 
 
 ✅ **Lab 1.2 done** — you've got a working `contract-review-app` folder with `index.html`, `styles.css`, and `app.js`, and it already sends messages to a webhook.
 
-✅ **Lab 2.3 done** — your n8n workflow has an Intent Router, a Direct Response Agent, a Query Rewriter, and a RAG Agent, and it's split across two webhook triggers instead of one.
+✅ **Lab 2.3 done** — your n8n workflow has an Intent Router, a Direct Response Agent, a Query Rewriter, and a RAG Agent.
 
 ✅ **Claude Code**, pointed at your existing `contract-review-app` folder. Same session you used before or a brand new one — either works, Claude can just read the files.
 
 ---
 
-## Part 1: Open Workflow — and Copy webhook-url from Both Branches
+## Part 1: Swap the Triggers for Webhooks
 
-Open the n8n workflow from Lab 2.3. Click **Execute Workflow** so it's actually listening.
+In Lab 2.3, everything ran inside n8n's own form and chat window. Your web app can't open those. It can only send a request to a URL and wait for a reply.
 
-Open both webhook nodes and grab their URLs — you'll need both in a minute:
+The fix: replace both triggers with **webhooks**, URLs any app can call. Open the n8n workflow from Lab 2.3 and start with upload, then chat.
+
+### Step 1: Swap the ingestion trigger
+
+1. Delete the **On Form Submission** node.
+2. Add a **Webhook** node in its place and set:
+   - **HTTP Method:** `POST`
+   - **Respond:** `Using 'Respond to Webhook' Node`
+   - **Options → Binary Property Name:** `data` (the uploaded file will arrive under this field name)
+   - **Options → Allowed Origins (CORS):** add this option
+3. Connect it to **Simple Vector Store**.
+4. Add a **Respond to Webhook** node after **Simple Vector Store**, so the app gets a reply once the contract has finished indexing.
+
+![webhook-ingestion](./images/webhook-ingestion.png)
+
+Uploads now work from outside n8n. Next, questions.
+
+### Step 2: Swap the chat trigger
+
+1. Delete the **When chat message received** node.
+2. Add a **Webhook** node with:
+   - **HTTP Method:** `POST`
+   - **Respond:** `Using 'Respond to Webhook' Node`
+   - **Options → Allowed Origins (CORS):** add this option
+3. Connect it to **Intent Router**.
+
+![webhook-chat](./images/webhook-chat.png)
+
+Questions can come in now, but where do the answers go? Both paths still reply to n8n's chat window, which you just removed.
+
+### Step 3: Replace the chat outputs
+
+1. Delete **Chat - Direct** → add a **Respond to Webhook** node → connect **Direct Response Agent** to it.
+2. Delete **Chat - Contract** → add a **Respond to Webhook** node → connect **AI Agent1** to it.
+
+![webhook-respond](./images/webhook-respond.png)
+
+### Step 4: Copy both webhook URLs
+
+Click **Execute Workflow** so it's actually listening. Then open both webhook nodes and grab their URLs. You'll need both in Part 2:
 
 - The one starting at **Binary Input Loader → Simple Vector Store (insert)** — that's your **ingestion webhook**. It reads the PDF once.
 - The one starting at **Intent Router** — that's your **chat webhook**. It handles every question.
