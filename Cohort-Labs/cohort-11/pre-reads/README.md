@@ -2,7 +2,7 @@
 
 Welcome to the AI PM Certification.
 
-Before you build your first agent, you need a working toolkit. This foundation module gets Claude installed and teaches you how to turn repeated prompts into reusable skills.
+Before you build your first agent, you need a working toolkit. This foundation module gets Claude installed, sets up your GitHub account, and gets n8n ready.
 
 Every lab in the weeks ahead assumes this setup is done. Work through the lessons in order. No prior coding experience needed — just a computer and a paid Claude account.
 
@@ -18,11 +18,11 @@ Install the Claude Desktop app on macOS or Windows, enable Claude Code, sign in,
 
 ---
 
-### [Lesson 2 — Skills: Stop Rewriting Prompts, Start Running Skills](./0.2-setup-skill-in-claude/README.md)
+### [Lesson 2 — Set Up Your GitHub Account](./0.2-setup-github-account/README.md)
 
-Instead of retyping the same long prompt every time, you'll define it once as a skill and run it with a single command. You'll build three skills used throughout the course: `/market-research`, `/user-research`, and `/prd`.
+Learn what GitHub is and why PMs use it, then create a free GitHub account using your Google account. You'll then fork your first repository and create a repository of your own.
 
-You'll learn what skills are, where to store them, and what happens behind the scenes when you run one.
+**You'll need:** a Gmail (Google) account.
 
 ---
 
@@ -38,5 +38,5 @@ Create a free n8n Cloud account, verify your email, set up your instance, and op
 
 - Claude Code running on your machine, on the desktop app
 - A working project folder Claude can read and write in
-- Three reusable skills for market research, user research, and PRDs
+- A GitHub account with a forked repo and your own first repo
 - A working n8n instance with a blank workflow, ready for Week 1
