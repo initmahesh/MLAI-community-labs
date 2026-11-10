@@ -1,35 +1,14 @@
 # Lab 2.2: Build Your First RAG Pipeline
 
-![banner](./assets/b.png)
+In [Lab 2.1](../2.1-why-we-need-RAG/Readme.md), your Week 1 agent broke on a large contract with `Bad Request - input exceeds the context`, or gave slow, incomplete answers. The cause: **Extract From File** pastes the *whole* document into the AI's prompt, and every model has a limit on how much text it can read at once.
 
-## The Problem
-
-In Lab 2.1, you handed your Week 1 contract agent a real, multi-page document, and it broke. Either it threw this error:
-
-```
-Bad Request - input exceeds the context
-```
-
-or it answered slowly, missed clauses that were clearly in the document, or replied with something unrelated to your question.
-
-The cause was one block: **Extract From File** pastes the *entire* document into the AI's prompt (the text the AI reads before answering). That's fine for a small sample file. For a 40-page vendor agreement, an 80-page SaaS contract, or a 200-page M&A document, it breaks. The AI is smart enough. The problem is that every model has a hard limit on how much text it can read at once, so pushing a full contract through it is the wrong design.
-
-Lab 2.1 showed you the failure. **This lab fixes it.**
-
----
-
-## Build a Pipeline That Reads Only What It Needs
-
-You'll build a **RAG pipeline**. It breaks large contracts into small searchable pieces, stores them, and pulls out exactly the right section when someone asks a question, so it never hits the limit.
+The fix: don't send the whole contract. Send only the parts that answer the question. That's what a **RAG pipeline** does:
 
 **Upload contract → cut it into chunks → store them by meaning → find the right chunks for each question → AI answers**
 
-Once you've built RAG, you'll start spotting it in every serious AI product. By the end of this lab, you will:
+![RAG pipeline flow](./assets/rag-flow.png)
 
-- Understand what RAG is and why it exists
-- Build a two-workflow system: one that ingests large documents, and one that retrieves from them
-- Know what vector embeddings are, and why they're more than a buzzword
-- Have a live contract Q&A agent that handles large files and remembers what it's been given
+By the end of this lab, you'll have a live contract Q&A agent that handles large files, built as two workflows: one that ingests the document and one that retrieves from it.
 
 ---
 
@@ -248,33 +227,29 @@ Every answer comes from the stored document, not the model's general training. T
 
 ## What You Learned
 
-![flow](./assets/banner0.png)
+You started with an agent that broke on a large contract. Here's what made the new one work:
 
-- **RAG separates memory from reasoning.** The vector store remembers your documents; the model only reasons over what it's handed. That's what makes the system flexible: swap the model and the store stays; add documents and the model doesn't change.
-- **Embeddings turn meaning into coordinates.** Similar meanings sit near each other, which is how a question about "invoice terms" finds "payment obligations".
-- **The system message is a routing instruction.** "Always call the vector store first" is a product decision, not a technical one. Without it, the agent decides for itself and won't always get it right. The system message is where you enforce behavior, in every agent you build.
-- **Chunking connects large documents to searchable answers.** You can't hand an AI a 200-page contract in one go, so you cut it into pieces. Chunk size is one of the most important choices in RAG: too big and the AI is buried in irrelevant text; too small and the answer lacks context.
-- **Two workflows, one system.** Ingestion runs once per document; retrieval runs once per question. Because they're separate, you can change one without touching the other: adjust chunking without changing the chat, or upgrade the chat without reprocessing documents.
+| Concept | What it means | Why it matters |
+|---|---|---|
+| **RAG** | The vector store holds your documents; the AI only reads what it's handed | Swap the model and the documents stay; add documents and the model doesn't change |
+| **Chunking** | The contract is cut into small pieces before it's stored | Too big and the AI gets buried in irrelevant text; too small and the answer loses context |
+| **Embeddings** | Each chunk becomes a set of numbers that captures its meaning | A question about "invoice terms" finds "payment obligations", even with different words |
+| **Two workflows** | Ingestion runs once per document; retrieval runs once per question | Change chunking without touching the chat, or upgrade the chat without re-uploading |
+| **System message** | "Always call the vector store first" tells the agent how to behave | It's a product decision: this one line controls when the agent searches |
 
 ---
 
 ## The Problem with This RAG Setup
 
-The system works. Now try to break it 🤔 Open the chat and type *"Hi"*.
+The system works. Now open the chat and type *"Hi"*.
 
-The agent goes straight to the vector store. It turns "Hi" into a vector, searches every chunk of your contract, pulls the 5 closest matches into the prompt, and after all that, replies *"Hello! How can I help you with the contract?"* **It ran the full retrieval pipeline for a greeting.**
+The agent still searches the contract, pulls 5 chunks into the prompt, and only then replies *"Hello! How can I help you with the contract?"* **It ran the full search for a greeting.**
 
-Scale that up. In a 10-message chat with 3 real questions and "thanks", "got it", "ok" in between, every message runs the full pipeline, even the one-word replies. That costs you in three ways:
+Every "thanks", "ok" and "got it" does the same. Each one adds about 1,000 tokens for chunks nobody needed, takes as long as a real legal question, and fills the prompt with random contract text the model has to ignore.
 
-| Problem | What happens |
-|---|---|
-| **Token cost** | 5 chunks of ~800 characters is roughly 1,000 extra tokens per message, on top of the question and answer. For "Hi", you paid for 5 clauses about termination and payment schedules that had nothing to do with anything. |
-| **Latency** | The embedding call, the search and the bigger prompt all add time. A greeting takes as long as a complex legal question, and users notice. |
-| **Noise in the context** | For a vague or casual message, the "closest" chunks are basically random. The model gets irrelevant contract text and has to work around it. |
+**Why?** Your system message says *"always call the Simple Vector Store tool first,"* so the agent searches every time.
 
-> **Why does this happen?** Your system message says *"always call the Simple Vector Store tool first."* The agent obeys every time, with no exceptions. It has no way to judge when retrieval is useful and when it isn't.
-
-What you need is an agent that decides for itself: it retrieves when it should, skips it when it shouldn't, and routes each message to the right behavior. That's **Agentic RAG**, and you build it in the next lab.
+What you need is an agent that decides when to search and when to just reply. That's **Agentic RAG**, and you build it in the next lab.
 
 ---
 

@@ -9,6 +9,10 @@ Here's the flow for this lab:
 - **Run the workflow.** See "Hi" skip the search while contract questions go through it.
 - **Break it on purpose.** Try a loan agreement and see where RAG still struggles.
 
+Here's the workflow you'll be running. **Reading the contract** happens once, when you upload it. **Answering a message** happens every time you send one: the Intent Router checks the message first, then either replies directly or searches the contract.
+
+![Agentic RAG workflow](assets/agentic-rag-flow.png)
+
 ---
 
 ## Table of Contents
@@ -150,16 +154,6 @@ Now for the real test: is the "Hi" problem actually fixed?
 
 **Output**: General messages get instant replies, and contract questions get answers with citations.
 
-Here's the full picture of what you just ran:
-
-**Pipeline A: Document Ingestion** (runs once for each upload)
-
-![assets](assets/14.png)
-
-**Pipeline B: Query & Answer** (runs on every message)
-
-![assets](assets/15.png)
-
 The system now decides before it searches. But does it always find the right answer? Let's try a harder document.
 
 ---
@@ -214,6 +208,8 @@ This isn't a bug, it's a limit of RAG. To follow references across a document, y
 
 ## What's Next
 
-Your workflow now decides before it searches. But as the loan agreement showed, it still struggles when a fact is spread across clauses, schedules and sections that point to each other.
+Your agent now decides whether a message needs the contract before it searches.
+But when a fact is spread across linked sections, like in the loan agreement, vector search finds only one piece of it.
+In the next lab, you'll build a **Knowledge Graph** that connects those pieces, so the agent answers from the whole picture.
 
-In [Lab 2.4 — Creating a Context Brain on Graph](../2.4-kg-RAG/Readme.md), you'll turn a contract into a **Knowledge Graph** that connects those pieces, so the answer comes from the whole picture instead of a single chunk.
+[Go to Lab 2.4: Creating a Context Brain on Graph →](../2.4-kg-RAG/Readme.md)
