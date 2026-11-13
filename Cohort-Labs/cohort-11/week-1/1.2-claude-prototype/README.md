@@ -20,6 +20,7 @@ And you need to build that app without writing code.
 - [Part 2: The Thing That's Missing](#part-2-the-thing-thats-missing)
 - [Part 3: One More Iteration](#part-3-one-more-iteration)
 - [Part 4: Connect to Your Real Agent](#part-4-connect-to-your-real-agent)
+- [Part 5: Publish Your Workflow (No More "Execute Workflow")](#part-5-publish-your-workflow-no-more-execute-workflow)
 - [What You Learned](#what-you-learned)
 
 ---
@@ -414,6 +415,59 @@ Every answer comes from the actual document. Every response travels through your
 
 ---
 
+## Part 5: Publish Your Workflow (No More "Execute Workflow")
+
+Did you notice the catch in Part 4? Every time you wanted to ask a question, you had to go back to n8n and click **Execute Workflow** first. That's because the address you used is the **Test URL** (`/webhook-test/...`), which only listens while you're watching the editor.
+
+If you don't want to execute the workflow every time you run a query, **publish it**. A published workflow stays on all the time and answers at a separate address, the **Production URL**.
+
+### Step 1: Publish the workflow
+
+Open your workflow in n8n and click **Publish** in the top-right corner.
+
+![flow](./assets/30.png)
+
+### Step 2: Name this version
+
+A **Publish workflow** dialog opens. Give the version a name (for example `n8n-agent`), optionally describe your changes, then click **Publish**.
+
+![flow](./assets/31.png)
+
+### Step 3: Confirm it's live
+
+n8n shows **Workflow published**. You can now make calls to your production webhook URL. The button in the top-right now reads **Published**. Click **Got it**.
+
+![flow](./assets/32.png)
+
+> Runs from a published workflow don't show up live in the editor. Check them under the **Executions** tab instead.
+
+### Step 4: Copy the Production URL
+
+Double-click the **Webhook** node. At the top of the node you'll see two tabs: **Test URL** and **Production URL**. By default, the Test URL is selected. This is the address you've been using, and it has `webhook-test` in it.
+
+![flow](./assets/33.png)
+
+Click **Production URL**. The address now has `webhook` instead of `webhook-test`. Copy this one.
+
+![flow](./assets/34.png)
+
+### Step 5: Ask Claude to update the URL in your app
+
+Go back to your Claude Code session. Replace `<Your Production Webhook URL>` with the address you just copied, then run:
+
+```
+Update the webhook URL in my app. Replace the current test webhook URL with this production URL:
+<Your Production Webhook URL>
+
+Only change the URL. Don't touch anything else in the app.
+```
+
+Refresh your browser, upload the sample contract, ask a question and click Send. You'll get an answer **without** clicking Execute Workflow in n8n first.
+
+> ✓ **Tip:** Keep the Test URL for building and debugging. If you change the workflow later, click **Publish** again so the production version picks up your edits.
+
+---
+
 ## What You Learned
 
 You started this lab by just building — no setup, no theory, straight into a working prototype. Along the way you learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, what your session is costing you as it grows, and how to preview a design before committing to it. By the end, you connected that prototype to a real agent (over a webhook — the one non-Claude piece of this lab) and had a working product talking back to you.
@@ -429,5 +483,6 @@ You started this lab by just building — no setup, no theory, straight into a w
 | **`/compact` and `/clear`** | `/compact` summarizes the conversation to free up space; `/clear` starts a fresh context window without touching your project files | Two different ways to manage a filling context window, depending on whether you want to keep history or drop it |
 | **`/design`** | Opens a visual canvas to sketch layout and style changes without touching your app's actual code | Lets you preview and approve a direction before spending a build turn on it |
 | **Iteration-first prototyping** | Structure first, polish second, AI integration third | Trying to do all three at once is how prototypes stall |
+| **Test URL vs Production URL** | The Test URL (`/webhook-test/`) only works while you're running the workflow in the editor; the Production URL (`/webhook/`) works any time once the workflow is published | Publishing means you don't have to click Execute Workflow before every query |
 | **Two-sided product shape** | A user-facing side (what you build in Claude Code) and an intelligence side (your agent) that don't know about each other until you connect them | Most AI products fail because these two sides never get wired together |
 
