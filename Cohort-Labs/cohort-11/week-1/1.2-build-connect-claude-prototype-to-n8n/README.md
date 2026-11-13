@@ -1,4 +1,4 @@
-# Lab 1.2: Build and Connect Your Prototype with Claude Code
+# Lab 1.2: Build and Connect Your Prototype to Your n8n Agent
 
 ![banner](./assets/op.png)
 
