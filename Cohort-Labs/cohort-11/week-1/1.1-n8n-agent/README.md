@@ -292,4 +292,4 @@ You built an agent on a visual canvas. In Lab 1.2, you'll build a real app with 
 
 Save this workflow — you'll come back to it.
 
-[Go to Lab 1.2: Build and Connect Your Prototype with Claude Code →](../1.2-claude-prototype/README.md)
+[Go to Lab 1.2: Build and Connect Your Prototype to Your n8n Agent →](../1.2-build-connect-claude-prototype-to-n8n/README.md)

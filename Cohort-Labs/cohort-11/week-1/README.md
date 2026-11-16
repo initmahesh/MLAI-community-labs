@@ -20,7 +20,7 @@ You can import a ready-made workflow, or [build it from scratch](./1.1-n8n-agent
 
 ---
 
-### [Lab 1.2: Build and Connect Your Prototype with Claude Code](./1.2-claude-prototype/README.md)
+### [Lab 1.2: Build and Connect Your Prototype to Your n8n Agent](./1.2-build-connect-claude-prototype-to-n8n/README.md)
 
 Your agent works, but only inside n8n. This lab gives it a face: a Contract Review web app where a user uploads a PDF, asks a question in a chat panel, and gets an answer. You'll build it with Claude Code without writing code yourself.
 
