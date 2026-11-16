@@ -114,7 +114,7 @@ A repository (or "repo") is a project folder on GitHub that stores your files an
    ![img](./images/6.png)
 2. Fill in the form:
    - **Owner:** your GitHub username [selected by deault]
-   - **Repository name:** for example, `my-first-repo`
+   - **Repository name:** for example, `contract-review-app`
    - **Description:** optional, for example, `My first GitHub repo`
    - **Visibility:** choose **Public** (anyone can see it) or **Private** (only you can see it)
 
@@ -127,7 +127,7 @@ A repository (or "repo") is a project folder on GitHub that stores your files an
 4. GitHub opens your new repo at:
 
    ```
-   https://github.com/<your-username>/my-first-repo
+   https://github.com/<your-username>/contract-review-app
    ```
 
    You'll see an empty repository.
