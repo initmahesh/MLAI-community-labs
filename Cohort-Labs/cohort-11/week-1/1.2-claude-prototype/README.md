@@ -431,3 +431,18 @@ You started this lab by just building — no setup, no theory, straight into a w
 | **Iteration-first prototyping** | Structure first, polish second, AI integration third | Trying to do all three at once is how prototypes stall |
 | **Two-sided product shape** | A user-facing side (what you build in Claude Code) and an intelligence side (your agent) that don't know about each other until you connect them | Most AI products fail because these two sides never get wired together |
 
+
+---
+
+## Next: Push Your Code to GitHub
+
+Right now your app lives in one folder on your Desktop. Next, in [Lab 1.3](../1.3-push-to-github/README.md), you push the `contract-review-app` folder to GitHub.
+
+**Why push it?**
+
+- **Backup:** if your laptop breaks or the folder is deleted, your work is still safe.
+- **History:** every saved version is kept, so you can go back to one that worked if a later change breaks the app.
+- **Sharing:** teammates can see your code and review it without you zipping and sending files.
+- **Next steps:** later labs build on code that lives on GitHub.
+
+**[Next: Lab 1.3: Push Your Prototype to GitHub →](../1.3-push-to-github/README.md)**
