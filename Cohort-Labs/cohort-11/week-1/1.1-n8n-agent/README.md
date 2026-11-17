@@ -2,15 +2,19 @@
 
 ![banner](./assets/banner.png)
 
-## The Problem
+## Table of Contents
 
-A teammate sends you a 40-page document and asks, *"When does this renew?"* The answer is in there — but finding it means scrolling, searching, and skimming for twenty minutes. Every document, every time.
+- [Prerequisites](#prerequisites)
+- [Two Ways to Build This](#two-ways-to-build-this)
+- [Import the Workflow](#import-the-workflow)
+- [Test Your Agent](#test-your-agent)
+- [Troubleshooting Steps](#-troubleshooting-steps)
 
 ---
 
-## Build an Agent That Finds the Answer for You
+## Overview
 
-Build a **Document Q&A Agent**: upload a document, ask a question, and get a short answer that points to the exact part of the document it came from. If the answer isn't there, the agent says so instead of guessing.
+In this lab, you'll build a **Document Q&A Agent**: upload a document, ask a question, and get a short answer that points to the exact part of the document it came from. If the answer isn't there, the agent says so instead of guessing.
 
 You'll build it in **n8n**, where you connect blocks on a screen instead of writing code:
 
@@ -20,18 +24,7 @@ Here's what your finished agent will look like — just four blocks:
 
 ![finished-agent](./assets/17.png)
 
-By the end of this lab, you'll have a working agent, know how to write the instructions that control it, and give it a web address other apps can use.
-
----
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Two Ways to Build This](#two-ways-to-build-this)
-- [Import the Workflow](#import-the-workflow)
-- [Test Your Agent](#test-your-agent)
-- [Turn Your Agent Into a Tool Real Apps Can Use](#turn-your-agent-into-a-tool-real-apps-can-use)
-- [Troubleshooting Steps](#-troubleshooting-steps)
+By the end of this lab, you'll have a working agent and know how to write the instructions that control it.
 
 ---
 
@@ -125,142 +118,10 @@ The agent should reply with `response` set to *"This information is not mentione
 
 > **Why doesn't it make things up?** Because you gave it two things: the full document, and a rule to answer only from it. Keeping an AI tied to a specific source like this is called **grounding**. It's one of the most important ways to make AI answers trustworthy.
 
-### Change the instructions, see what changes
-
-Open the **AI Agent** block, swap your System Message for the **Weak** version, ask the same questions again, then switch back to the **Strong** version. Go one step further and add examples to try **zero-shot, one-shot, and multi-shot**. Both are in [Build from Scratch, Part 4](./build-from-scratch.md#part-4-tell-the-agent-how-to-behave).
-
-Same model, same document, same questions — very different answers. That's how much the instructions and examples matter.
-
----
-
-## Turn Your Agent Into a Tool Real Apps Can Use
-
-Right now, the only way to reach your agent is through n8n's built-in chat window. That's fine for testing — but in Lab 1.2 you'll build your own app, and it needs a way to send a document and a question to this agent.
-
-The fix is a **Webhook**.
-
-Think of a webhook like a doorbell. Your app rings it, the agent opens the door, takes the document and question, works out an answer, and hands it back.
-
-![webhook](./assets/19.jpg)
-
-> Your workflow is saved in n8n's cloud, not on your computer. Close the browser, come back days later — everything is exactly where you left it.
-
-### Choose your path
-
-You can get the webhook in two ways. Pick one:
-
-| | **Option A: Import it** | **Option B: Build it yourself** |
-|---|---|---|
-| **How** | Import a ready-made workflow that already has the Webhook and Respond to Webhook blocks connected | Follow the steps below and add them by hand |
-| **Best for** | Getting to Lab 1.2 quickly | Learning how a webhook is wired |
-
-**Option A.** [Download n8n Webhook Workflow](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQARg0O_Y5nRTJi9dK4Zpm1NAe4-T8GBchgvQ-kcvLvt_B0?e=WXkOXO). In n8n, click the **three-dot menu (⋮)** → **"Import from File"** and upload it. Double-click the **"OpenAI Chat Model"** block to confirm the model is **gpt-5-mini**, then jump to [Copy your webhook link](#step-6-copy-your-webhook-link) to copy your web address.
-
-**Option B.** Keep going with Step 1.
-
-### Step 1: Remove the chat window trigger
-
-Click the **"When Chat Message Received"** block and press **Delete**. It only listens to n8n's own chat window — your app can't reach it.
-
-![delete-chat-trigger](./assets/18.png)
-
-> Don't worry — you're only removing the starting point. You'll replace it next.
-
-### Step 2: Add the Webhook pair
-
-Webhooks come as a pair:
-
-| Block | What it does |
-|---|---|
-| **Webhook** | Receives the document and question from your app |
-| **Respond to Webhook** | Sends the agent's answer back to your app |
-
-Click **(+)**, search for **"Webhook"**, and add it.
-
-![webhook-node](./assets/20.png)
-
-![respond-node](./assets/21.png)
-
-### Step 3: Connect the Webhook to Extract From File
-
-Drag a line from the **Webhook** to **Extract From File** — the same spot where the chat trigger used to be.
-
-![connect-webhook](./assets/22.png)
-
-### Step 4: Set up the Webhook
-
-Click the **Webhook** block and make these four changes:
-
-1. **HTTP Method → POST.** This means "I'm sending you something" rather than "I'm asking you for something." Like dropping a letter in a mailbox instead of checking it.
-2. **Respond → "Using 'Respond to Webhook' node".** This tells n8n to wait for the agent to finish before replying. Otherwise your app gets an empty reply instantly.
-3. **Add Option → Field Name for Binary Data.** This labels the uploaded document so the next block knows where to find it.
-4. **Add Option → Allowed Origins (CORS) → `*`.** By default, browsers block a web page from sending data to a different website. This setting says "it's okay, let my app reach this address."
-
-![webhook-settings](./assets/23.png)
-
-> If your app ever stops getting answers and n8n shows no activity, setting 4 is almost always the reason.
-
-### Step 5: Connect the AI Agent to Respond to Webhook
-
-Again Click **(+)**, search for **"Respond to Webhook"**, and add it.
-
-**Respond to Webhook** is the reply — if the Webhook is the doorbell, this is you handing the answer back to whoever rang it.
-
-Drag a line from **AI Agent** to **Respond to Webhook**. Your workflow now reads:
-
-**Webhook → Extract From File → AI Agent → Respond to Webhook**
-
-![final-workflow](./assets/25.png)
-
-Now click the **Respond to Webhook** block and set it up so your app gets the agent's JSON back cleanly. Make these three changes:
-
-![image](./assets/30.png)
-
-**1. Respond With:** choose **Text**.
-
-**2. Response Body:** switch the field to **Expression** and paste:
-
-```
-{{ $json.output }}
-```
-
-The AI Agent puts its answer in a field called `output`. This sends just the answer, not the wrapper around it.
-
-**3. Add Option → Response Headers → Add Header.** Paste each value into its own box:
-
-Name:
-
-```
-Content-Type
-```
-
-Value:
-
-```
-application/json
-```
-
-Check every line before you move on. One missing connection and nothing comes back.
-
-### Step 6: Copy your webhook link
-
-Click the **Webhook** block again. Your agent's web address is shown at the top. It looks like this:
-
-```
-https://your-instance.app.n8n.cloud/webhook-test/your-unique-id
-```
-
-Copy it and keep it handy — you'll need it in Lab 1.2.
-
-![webhook-url](./assets/24.png)
-
-🎉 **Your agent now has its own web address. Any app can send it a document and a question, and get an answer back.**
-
 ---
 
 ## What You Learned
 
-- **Every agent starts with a trigger.** It decides *when* the agent wakes up. You started with a chat window, then swapped it for a webhook so any app can reach it.
 - **AI needs things in a form it can read.** A file isn't text until something opens it up. Preparing the input is a step you'll see in almost every agent.
 - **The AI Agent is the coordinator, the model is the brain.** Keeping them separate means you can swap the model anytime.
 - **The System Message is where your product decisions live.** Role, rules, tone, format — all in plain text. Same model, different instructions, completely different product.
@@ -288,8 +149,8 @@ Check that every block is connected with a line. One broken connection stops the
 
 ## What's Next
 
-You built an agent on a visual canvas. In Lab 1.2, you'll build a real app with **Claude Code** and connect it to this agent using the web address you just copied.
+You built an agent on a visual canvas. In Lab 1.2, you'll build a real app with **Claude Code**. In Lab 1.3, you'll give this agent a web address and connect the app to it.
 
 Save this workflow — you'll come back to it.
 
-[Go to Lab 1.2: Build and Connect Your Prototype with Claude Code →](../1.2-claude-prototype/README.md)
+[Go to Lab 1.2: Build Your Prototype with Claude Code →](../1.2-claude-prototype/README.md)
