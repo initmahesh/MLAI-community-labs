@@ -30,10 +30,19 @@ You'll start with simulated responses so you can check the interface first. Then
 
 ---
 
+### [Lab 1.3: Push Your Prototype to GitHub](./1.3-push-to-github/README.md)
+
+Your app only exists on your laptop. This lab puts it on GitHub, so it is backed up, shareable, and has a history you can go back to. Claude Code runs the Git commands for you, and you check the result in your repo. You'll also learn why to keep the repo private when your code holds a webhook address.
+
+**You'll need:** the app from Lab 1.2 and the GitHub account and `contract-review-app` repo from the [GitHub setup lesson](../pre-reads/0.2-setup-github-account/README.md).
+
+---
+
 ## What You'll Have at the End
 
 - A working document Q&A agent in n8n
 - A web app that talks to your agent
+- That web app saved on GitHub, with its change history
 - A clear sense of which Claude mode and model to use for which task
 
 ---
