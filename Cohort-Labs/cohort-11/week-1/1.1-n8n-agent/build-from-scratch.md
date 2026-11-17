@@ -4,6 +4,8 @@ In this path, you add each block yourself, connect it, and see what it does befo
 
 Open n8n, click **"Create Workflow"**, and let's go.
 
+![create-workflow](./assets/create-workflow.png)
+
 ---
 
 ## Table of Contents
@@ -94,8 +96,6 @@ The AI Agent is like a project coordinator. It doesn't do the thinking itself �
 
 2. Inside the Agent settings, set **"Source for Prompt (User Message)"** to **"Define Below"**.
 
-3. Click **"Add Option"** and add a **System Message** field.
-
 ![agent-settings](./assets/15.png)
 
 You now have two boxes to fill in. Before you do, here's the difference between them — it's the most important idea in this lab:
@@ -124,19 +124,11 @@ File Context: {{ $('Extract From File').item.json.text }}
 
 ## Part 4: Tell the Agent How to Behave
 
-Imagine starting a new job and nobody tells you your role, your responsibilities, or the rules. You'd guess. Sometimes you'd guess right. Sometimes you'd confidently get it wrong.
+Without clear instructions, an AI will answer even when the answer isn't in the document, and it will sound confident while doing it.
 
-An AI without clear instructions does the same thing. It will happily answer a question even when the answer isn't in the document — and it will sound sure about it.
+For a document assistant, a made-up renewal date or an invented clause is worse than no answer at all.
 
-For a document assistant, that's the worst outcome. A made-up renewal date or an invented clause is worse than no answer at all. The **System Message** is how you prevent that. It's plain text, no code — and it's the single biggest lever you have over how your agent behaves.
-
-### See the difference good instructions make
-
-| | **Weak** | **Better** | **Strong** |
-|---|---|---|---|
-| **Instructions** | `You are a document assistant. Answer questions about the document.` | `You are a document assistant. Only answer using the document provided. If the answer isn't there, say so.` | The full Role / Instructions / Guardrails / Response Format below |
-| **What happens** | Answers confidently even when the answer isn't in the document. No consistent format. | Stops guessing — but answers vary in length and style, and it may wander into opinions when the wording is unclear. | Every answer follows the same format, every tricky case has a planned response, and the agent stays inside the document. |
-| **What's missing** | Role, rules, format, what to do when stuck | Format, tone, what to do when wording is unclear | Nothing — this is what you'll paste |
+The **System Message** is how you prevent this. It's plain text, no code, and it's the biggest lever you have over how your agent behaves.
 
 ### Write the System Message
 
@@ -195,34 +187,7 @@ When the answer isn't in the document, there is nothing to cite or explain. The 
 
 > **Use this shape for every agent you build.** The document is just today's example. Whether you're building a support assistant, a meeting-notes summarizer, or an HR policy helper, strong instructions always have the same four parts: **who the agent is**, **what it should do**, **what it must never do**, and **what its answers should look like.**
 
-### Zero-shot, one-shot, multi-shot
-
-The System Message you just pasted has rules but **no examples**. That's called **zero-shot**: you told the agent what to do, but never showed it. It works here because the job is simple.
-
-When the answers need to look a certain way, add examples to the System Message:
-
-| | **Examples you add** | **What it teaches** |
-|---|---|---|
-| **Zero-shot** | None | The rules only. What you pasted above. |
-| **One-shot** | 1 | The exact shape of an answer |
-| **Multi-shot** | 3 or more | The shape, plus the tricky cases, like "not in the document" |
-
-For example, add this to the end of your System Message to make it one-shot:
-
-```
-Example
-Question: When does this agreement renew?
-Answer:
-{
-    "response": "It renews automatically for one year.",
-    "citation": [
-       "Section 4.2: This Agreement renews for successive one-year terms."
-    ],
-    "reasoning": "Section 4.2 states the agreement renews for successive one-year terms, so it renews automatically each year."
-}
-```
-
-Ask the same question again and compare. Rules tell the agent what to do; examples show it what good looks like.
+You'll test these instructions in the main lab once the agent is built. First, connect the AI model in Part 5.
 
 ---
 
@@ -249,6 +214,8 @@ The AI Agent knows how to organize the work. Now it needs an AI model to actuall
 > Picking a model is always a trade-off between how smart it is, how fast it is, and how much it costs. This agent has a narrow job — find the right part and answer — so a smaller, cheaper model does it well.
 
 3. **Double-click** the **"OpenAI Chat Model"** block. n8n gives you **$2 of free OpenAI credit**, so you can start without your own key. Leave the model as **gpt-5-mini**.
+
+![image](./assets/27.png)
 
 Your agent is built. Your canvas should look like this:
 

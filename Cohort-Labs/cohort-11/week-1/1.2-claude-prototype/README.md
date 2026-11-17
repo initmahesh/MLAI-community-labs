@@ -1,4 +1,4 @@
-# Lab 1.2: Build and Connect Your Prototype with Claude Code
+# Lab 1.2: Build Your Prototype with Claude Code
 
 ![banner](./assets/op.png)
 
@@ -19,16 +19,15 @@ And you need to build that app without writing code.
 - [Part 1: Build First, Ask Questions Later](#part-1-build-first-ask-questions-later)
 - [Part 2: The Thing That's Missing](#part-2-the-thing-thats-missing)
 - [Part 3: One More Iteration](#part-3-one-more-iteration)
-- [Part 4: Connect to Your Real Agent](#part-4-connect-to-your-real-agent)
 - [What You Learned](#what-you-learned)
 
 ---
 
 ## What Are We Building?
 
-A **Contract Review Web App** — the same use case from Lab 1.1, now as a real interface, wired directly into the agent you already built.
+A **Contract Review Web App** — the same use case from Lab 1.1, now as a real interface, ready to be wired into the agent you already built.
 
-A user opens the app, uploads a contract PDF, types a question in the chat panel, and gets a response. We start with the responses simulated so you can validate the shell first — then connect the real AI agent later in this same lab. The goal is to build something that works, looks like a real product, and ends up actually talking to your agent.
+A user opens the app, uploads a contract PDF, types a question in the chat panel, and gets a response. We start with the responses simulated so you can validate the shell first — then connect the real AI agent in Lab 1.3. The goal is to build something that works and looks like a real product.
 
 ---
 
@@ -82,7 +81,7 @@ Choosing the right model helps balance capability, speed, and usage.
 
 ## Prerequisites
 
-✅ **Lab 1.1 complete** — your n8n contract review workflow is built, the AI agent responded correctly inside n8n's own chat interface, and you've swapped the Chat Trigger for a Webhook (the "Prepare the Agent to Receive Outside Messages" section at the end of that lab). You'll come back to this same workflow partway through this lab.
+✅ **Lab 1.1 complete** — your n8n contract review workflow is built, the AI agent responded correctly inside n8n's own chat interface.
 
 ✅ The **Claude desktop app** — [download here](https://claude.ai/download). New to Claude Code? [Follow this setup guide](../../pre-reads/0.1-setup-claude/README.md) to get it running in under 5 minutes.
 
@@ -257,7 +256,12 @@ By now this session has carried you through Part 1 and this iteration — two se
 
 ![usage](./assets/usage.png)
 
- **`/context` vs. `/usage` — they show two different things.** `/context` shows how much of your current conversation's available space is being used, while `/usage` shows how much Claude you've used while working. Think of `/context` as checking how full your backpack is, and `/usage` as checking how far you've travelled.
+ **`/context` vs. `/usage` — they show two different things.**
+
+| Command | What it shows | Think of it as |
+|---|---|---|
+| `/context` | How much of your current conversation's available space is being used | Checking how full your backpack is |
+| `/usage` | How much Claude you've used while working | Checking how far you've travelled |
 
 > ★ A prototype with dummy responses is still a prototype. You can show this to a stakeholder right now, get feedback on the layout, and validate the concept — before connecting a single line of real AI logic. Shell first. Intelligence second.
 
@@ -265,158 +269,9 @@ If the contract doesn't show up in the left panel after uploading, just describe
 
 ---
 
-## Part 4: Connect to Your Real Agent
-
-Right now you have two things that don't know the other exists. An AI agent in n8n that reads contracts and answers questions — built in Lab 1.1. And a polished web app that collects a file and a question, but only ever replies with a dummy string — the thing you just finished.
-
-Every AI product has this same two-sided shape. A **user-facing side** — the buttons, the layout, the chat panel — that lives in the browser and doesn't do any real thinking. And an **intelligence side** — your n8n agent — that never appears on screen, but does the actual reading and reasoning. Right now those two sides are isolated. This part builds the bridge, using the webhook.
-
----
-
-### Get Your Webhook Address from n8n
-
-**Webhook → Extract from File → AI Agent → Respond to Webhook**
-
-### Open the workflow from Lab 1.1
-
-Go back to your n8n workspace and open the contract review workflow you built in Lab 1.1. This is the same workflow — your agent, your Extract from File node, all of it — now starting from the Webhook node instead of the Chat Trigger.
-
-![flow](./assets/10.1.png)
-
-> If your workflow still starts with the Chat Trigger, you haven't finished the "Prepare the Agent to Receive Outside Messages" section of Lab 1.1 yet. Go back and complete that before continuing — this lab picks up exactly where that one left off.
-
----
-
-### Copy your webhook address
-
-Click the **Webhook** node to open its settings. Your webhook address is already sitting there from when you configured it in Lab 1.1 — it looks something like:
-
-```
-https://your-instance.app.n8n.cloud/webhook-test/your-unique-id
-```
-
-Copy it.
-
-![flow](./assets/12.1.png)
-
-### Run the integration prompt
-
-Stay in the same Claude Code conversation you've been using all lab — it already knows your app's structure. Copy the prompt below. Before running it, replace `<Your Webhook URL>` with the address you just copied.
-
-```
-Now add this feature to the existing prototype:
-
-A user uploads a contract file in the UI.
-The user enters a message in the chat input.
-When the user clicks the Send button:
-
-1. Collect both:
-   - The uploaded contract file
-   - The user's chat message
-
-2. Send both to this webhook URL:
-   <Your Webhook URL>
-
-3. After the webhook processes the request:
-   - Capture the JSON response returned by the webhook. It is a valid JSON object
-     with no markdown, no code fences and no text before or after it, in exactly this shape:
-     {
-       "response": "string - final answer based only on the retrieved contract",
-       "citation": ["string - exact clause/section/page text that supports the answer"],
-       "reasoning": "string - 1-2 sentences on how the citations support the response"
-     }
-   - Display "response" inside the chat UI as the assistant reply, with the
-     "citation" items and "reasoning" shown beneath it
-
-4. Rules:
-   - "citation" is always an array of strings. It is [] if nothing relevant was retrieved.
-   - Each citation is the relevant clause only, with its section number or page.
-   - If the contract doesn't contain the answer, "response" is "This information is not mentioned in the contract.", "citation" is [] and "reasoning" is "".
-
-Replace the dummy hardcoded responses with this webhook integration.
-```
-
-Paste it into Claude Code and run it.
-
-Claude will update only the part of the app that needs changing. It won't touch the layout, the design, or anything else that's already working.
-
-![flow](./assets/11.1.png)
-
----
-
-### Activate the workflow in n8n, then send your first real message
-
-Before testing in the browser, go back to n8n and click **"Execute Workflow"** first.
-
-This is important. Your webhook address only works when the workflow is actively running. If you skip this step and go straight to testing, n8n won't receive anything and the app will appear to hang.
-
-![flow](./assets/22.png)
-
-With the workflow running, go to your browser, open `index.html`, upload the sample contract, type a question, and click Send.
-
-You'll likely see an error. That's completely normal — and it's actually a good sign.
-
-It means your web app successfully reached the agent. The error is coming from inside the workflow, not from a broken connection. The bridge is working. There's just one small configuration left.
-
-![flow](./assets/23.png)
-
-> An error at this stage means your two sides are talking to each other. The connection is live. Now we just need to make sure the agent is reading the right message.
-
----
-
-### Point the agent to the right input
-
-Go back to n8n and open the **AI Agent** node.
-
-Find the **user message** field. It's currently set to read from the old n8n chat — which no longer exists in this workflow. You need to update it to read from the webhook instead.
-
-Replace whatever is in that field with this:
-
-```
-
-user_query:{{ $('Webhook').item.json.body.message }}
-file_context:{{ $json.text }}
-```
-
-This tells the agent: "don't look for a hardcoded question — read whatever message the user just sent from the web app." The curly braces are n8n's way of saying "pull this value in live from what just arrived."
-
-If that doesn't work, click on the Webhook node after a test run — you'll see exactly what arrived and can match the field name from there.
-
-![flow](./assets/13.gif)
-
-The contract file doesn't need updating — that part of the workflow is already reading it correctly. Only the user message field needs this change. Save the node.
-
-> Not sure what field name to use? Go back to your Claude Code session and ask: "What field name are you sending the user message under?" You'll get the exact answer in one message.
-
----
-
-### The final test
-
-Go to n8n and click **"Execute Workflow"** again to put the agent back into listening mode.
-
-Go to your browser. Upload the sample contract. Type this and click Send:
-
-*"What is this contract about?"*
-
-This time you'll get a real answer — pulled from the actual contract, reasoned over by your agent, and displayed right in your web app.
-
-Try a few more:
-
-*"What are the payment terms?"*
-
-*"What happens if either party wants to terminate early?"*
-
-*"Are there any auto-renewal clauses?"*
-
-Every answer comes from the actual document. Every response travels through your agent. The two sides of your product are now one.
-
-![flow](./assets/26.gif)
-
----
-
 ## What You Learned
 
-You started this lab by just building — no setup, no theory, straight into a working prototype. Along the way you learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, what your session is costing you as it grows, and how to preview a design before committing to it. By the end, you connected that prototype to a real agent (over a webhook — the one non-Claude piece of this lab) and had a working product talking back to you.
+You started this lab by just building — no setup, no theory, straight into a working prototype. Along the way you learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, what your session is costing you as it grows, and how to preview a design before committing to it. By the end, you had a polished prototype that's ready to be connected to a real agent.
 
 | What | What it means | Why it matters |
 |---|---|---|
@@ -429,20 +284,12 @@ You started this lab by just building — no setup, no theory, straight into a w
 | **`/compact` and `/clear`** | `/compact` summarizes the conversation to free up space; `/clear` starts a fresh context window without touching your project files | Two different ways to manage a filling context window, depending on whether you want to keep history or drop it |
 | **`/design`** | Opens a visual canvas to sketch layout and style changes without touching your app's actual code | Lets you preview and approve a direction before spending a build turn on it |
 | **Iteration-first prototyping** | Structure first, polish second, AI integration third | Trying to do all three at once is how prototypes stall |
-| **Two-sided product shape** | A user-facing side (what you build in Claude Code) and an intelligence side (your agent) that don't know about each other until you connect them | Most AI products fail because these two sides never get wired together |
 
 
 ---
 
-## Next: Push Your Code to GitHub
+## Next: Connect Your Prototype to Your Agent
 
-Right now your app lives in one folder on your Desktop. Next, in [Lab 1.3](../1.3-push-to-github/README.md), you push the `contract-review-app` folder to GitHub.
+Right now your app only replies with simulated responses. Next, in [Lab 1.3](../1.3-connect-webhook/README.md), you give your n8n agent a webhook address and connect this app to it, so every question gets a real answer from your contract.
 
-**Why push it?**
-
-- **Backup:** if your laptop breaks or the folder is deleted, your work is still safe.
-- **History:** every saved version is kept, so you can go back to one that worked if a later change breaks the app.
-- **Sharing:** teammates can see your code and review it without you zipping and sending files.
-- **Next steps:** later labs build on code that lives on GitHub.
-
-**[Next: Lab 1.3: Push Your Prototype to GitHub →](../1.3-push-to-github/README.md)**
+**[Next: Lab 1.3: Build the Webhook and Connect It to Your Prototype →](../1.3-connect-webhook/README.md)**

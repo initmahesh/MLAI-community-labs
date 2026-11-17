@@ -14,27 +14,37 @@ The labs build on each other. Work through them in order. No coding experience n
 
 A teammate sends you a 40-page document and asks, "When does this renew?" You'll build a Document Q&A Agent in n8n that takes a file and a question, and returns a short answer pointing to where it came from. If the answer isn't in the document, it says so instead of guessing.
 
-You can import a ready-made workflow, or [build it from scratch](./1.1-n8n-agent/build-from-scratch.md) block by block to see why it works. You'll also learn how to write the instructions that control the agent, and how to give it a web address other apps can call.
+You can import a ready-made workflow, or [build it from scratch](./1.1-n8n-agent/build-from-scratch.md) block by block to see why it works. You'll also learn how to write the instructions that control the agent.
 
 **You'll need:** an n8n account and an OpenAI API key.
 
 ---
 
-### [Lab 1.2: Build and Connect Your Prototype with Claude Code](./1.2-claude-prototype/README.md)
+### [Lab 1.2: Build Your Prototype with Claude Code](./1.2-claude-prototype/README.md)
 
 Your agent works, but only inside n8n. This lab gives it a face: a Contract Review web app where a user uploads a PDF, asks a question in a chat panel, and gets an answer. You'll build it with Claude Code without writing code yourself.
 
-You'll start with simulated responses so you can check the interface first. Then you'll connect the app to the real agent from Lab 1.1. Along the way you'll learn when to use Claude Chat, Cowork or Code, and how to pick the right model for the job.
+You'll start with simulated responses so you can check the interface first. Along the way you'll learn when to use Claude Chat, Cowork or Code, and how to pick the right model for the job.
 
 **You'll need:** the agent from Lab 1.1 and Claude Code set up.
 
 ---
 
-### [Lab 1.3: Push Your Prototype to GitHub](./1.3-push-to-github/README.md)
+### [Lab 1.3: Build the Webhook and Connect It to Your Prototype](./1.3-connect-webhook/README.md)
+
+Your agent and your app don't know about each other yet. This lab gives your n8n agent a web address (a webhook) so other apps can send it a document and a question. Then you connect your prototype to that address, replacing the simulated responses with real answers from your agent.
+
+You can import a ready-made webhook workflow, or build it yourself block by block to see how it's wired.
+
+**You'll need:** the agent from Lab 1.1 and the prototype from Lab 1.2.
+
+---
+
+### [Lab 1.4: Push Your Prototype to GitHub](./1.4-push-code-to-github/README.md)
 
 Your app only exists on your laptop. This lab puts it on GitHub, so it is backed up, shareable, and has a history you can go back to. Claude Code runs the Git commands for you, and you check the result in your repo. You'll also learn why to keep the repo private when your code holds a webhook address.
 
-**You'll need:** the app from Lab 1.2 and the GitHub account and `contract-review-app` repo from the [GitHub setup lesson](../pre-reads/0.2-setup-github-account/README.md).
+**You'll need:** the app from Lab 1.3 and the GitHub account and `contract-review-app` repo from the [GitHub setup lesson](../pre-reads/0.2-setup-github-account/README.md).
 
 ---
 
