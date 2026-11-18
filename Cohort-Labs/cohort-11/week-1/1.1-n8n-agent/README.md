@@ -8,6 +8,7 @@
 - [Two Ways to Build This](#two-ways-to-build-this)
 - [Import the Workflow](#import-the-workflow)
 - [Test Your Agent](#test-your-agent)
+- [Same Model, Three Prompts: Weak, Better, Strong](#same-model-three-prompts-weak-better-strong)
 - [Troubleshooting Steps](#-troubleshooting-steps)
 
 ---
@@ -120,12 +121,183 @@ The agent should reply with `response` set to *"This information is not mentione
 
 ---
 
+## Same Model, Three Prompts: Weak, Better, Strong
+
+Your agent works, but *why* does it work so well? Because of its **System Message**. In this section you'll swap in three different System Messages, **weak**, **better**, and **strong**, and ask the agent questions from the same document. The model never changes. Only the instructions do.
+
+> ✓ Tip. The **strong** prompt is the one you built, so keep a copy. You'll paste it back at the end so your agent is ready for the next labs.
+
+---
+
+### Round 1: Weak Prompt
+
+**Step 1. Swap in the weak prompt.**
+
+Double-click the **AI Agent** block.
+
+![open-ai-agent](./assets/30.png)
+
+Find the **System Message** box. This is where your current instructions live.
+
+![system-message](./assets/31.png)
+
+Replace its contents with:
+
+```
+You are an AI assistant. Answer the user's questions about the contract.
+```
+
+![weak-prompt](./assets/32.png)
+
+Close the block using the **X** in the top right. Your change is saved automatically.
+
+**Step 2. Ask something that isn't in the document.**
+
+Open **Chat**, upload the sample document, and ask:
+
+*"What's the CEO's phone number?"*
+
+![weak-prompt-q1](./assets/33.png)
+
+**Result:** ❌ Fails. Nothing in this prompt tells the agent to stay inside the document or how to answer when something is missing. It does say there's no phone number, but then it asks which CEO you mean and offers to draft emails and suggests places to look online. You wanted one short, document-only answer.
+
+---
+
+### Round 2: Better Prompt
+
+**Step 1. Swap in the better prompt.**
+
+Replace the System Message with:
+
+```
+You are an AI Document Assistant.
+
+Instructions
+1. Read the document before answering.
+2. Answer using only information from the document.
+3. Keep your answer short and direct.
+4. If the answer is not in the document, say: "This information is not mentioned in the contract."
+
+Guardrails
+1. Never make assumptions or add information that is not in the document.
+2. Never give legal, financial, or professional advice.
+```
+
+![better-prompt](./assets/24.png)
+
+**Step 2. Ask the same question again.**
+
+*"What's the CEO's phone number?"*
+
+![better-prompt-q1](./assets/34.png)
+
+**Result:** ✅ Passes. The rules you added (answer only from the document, and say so when it isn't there) are exactly what this question tests.
+
+**Step 3. Now ask a question that is in the document.**
+
+*"How long do the confidentiality obligations last?"*
+
+![better-prompt-q2](./assets/35.png)
+
+**Result:** ❌ Fails. The answer is right, but it's just a plain sentence, not the JSON shape. There's no `citation` with the exact clause and no `reasoning`. You can't check the answer without re-reading the contract, and the app you build in Lab 1.2 can't read it either.
+
+---
+
+### Round 3: Strong Prompt
+
+**Step 1. Swap in the strong prompt.**
+
+This is the System Message you built for this agent. Replace the System Message with:
+
+```
+Role
+You are an AI Document Assistant.
+
+Instructions
+1. Always use the document content provided before answering.
+2. Search for the relevant sections based on the user's question.
+3. Use only the most relevant content from the document.
+4. If more than one section matches, use the most relevant one.
+5. Answer directly and briefly. Do not explain how you found the answer.
+6. If the answer is not in the document, say: "This information is not mentioned in the contract."
+
+Guardrails
+1. Never make assumptions.
+2. Never invent or add anything. Only show what is present in the document.
+3. Never give legal, financial, or professional advice.
+4. Never answer without checking the document first.
+5. If the wording in the document is unclear, say: "This may need review by an expert."
+6. Never say things like "I searched the document", "Based on my analysis", or "I extracted..."
+
+Response Format
+Always reply with valid JSON in exactly this shape:
+{
+    "response": "final answer based on the retrieved contract",
+    "citation": [
+       "relevant clause, section, page, or retrieved chunk"
+    ],
+    "reasoning": "brief explanation of how the retrieved evidence supports the response"
+}
+
+Rules for the format
+- Return only the raw JSON object. No markdown, no code fences, and no text before or after it.
+- Every "citation" item must be a single line. Replace any line break in the quoted text with a single space.
+- Quote only the relevant clause, not the whole page or title block.
+- "citation" must always be an array, even when there is only one citation.
+- Every item in "citation" must be taken exactly as it appears in the document. Never invent a citation.
+- If the answer is not in the document, return "This information is not mentioned in the contract." in "response", an empty array [] for "citation", and an empty string "" for "reasoning".
+```
+
+![strong-prompt](./assets/36.png)
+
+**Step 2. Ask the question that the better prompt failed.**
+
+*"How long do the confidentiality obligations last?"*
+
+![strong-prompt-q2](./assets/37.png)
+
+**Result:** ✅ Passes. The answer comes back in the JSON shape, with the exact clause quoted in `citation` and a short `reasoning` that ties it to the answer.
+
+---
+
+### What made the difference
+
+| Prompt | Q1: CEO's phone number | Q2: Confidentiality duration | What was missing |
+|---|---|---|---|
+| 🔴 **Weak** | ❌ Fails | Not asked | Rules, citations, and format |
+| 🟡 **Better** | ✅ Passes | ❌ Fails | Citations and a fixed answer format |
+| 🟢 **Strong** | ✅ Passes | ✅ Passes | Nothing. **Role, Instructions, Guardrails, and Response Format** tell the agent who it is, what to do, what never to do, and what its answers look like |
+
+Each step adds **specificity**, **structure**, and **clear expectations**. That's what changes the quality of the answer, not the model.
+
+---
+
+### How to Write a System Prompt
+
+A strong System Message has four parts. Write them in this order:
+
+| Part | Question it answers | Example from this agent |
+|---|---|---|
+| **Role** | Who is the agent? | "You are an AI Document Assistant." |
+| **Instructions** | What should it do, step by step? | "Use only the most relevant content from the document." |
+| **Guardrails** | What must it never do? | "Never invent or add anything." |
+| **Response Format** | What should every answer look like? | "Always reply with valid JSON in exactly this shape…" |
+
+**Quick tips**
+
+- **Be specific.** Instead of "Be helpful," write "Answer in one or two sentences."
+- **Say what to do when the answer is missing.** Give the exact reply, like: "If the answer is not in the document, say: 'This information is not mentioned in the contract.'"
+- **Test after every change.** Ask a question the document can't answer, like "What's the CEO's phone number?", to check the agent still stays inside the document.
+
+---
+
 ## What You Learned
 
 - **AI needs things in a form it can read.** A file isn't text until something opens it up. Preparing the input is a step you'll see in almost every agent.
 - **The AI Agent is the coordinator, the model is the brain.** Keeping them separate means you can swap the model anytime.
 - **The System Message is where your product decisions live.** Role, rules, tone, format — all in plain text. Same model, different instructions, completely different product.
 - **Grounding makes answers trustworthy.** Give the AI the source and tell it to stay inside it.
+- **Better prompts get better answers.** A weak prompt, a better one, and a strong one gave three different agents from the same model. Role, rules, guardrails, and format are what make the difference.
 
 ---
 
