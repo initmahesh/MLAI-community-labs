@@ -69,6 +69,8 @@ Choosing the right model helps balance capability, speed, and usage.
 > [!TIP]
 > For this module, choose Sonnet. It gives you the right balance of quality and speed for building the contract chat website.
 
+📖 **Read more:** [Claude models overview](https://platform.claude.com/docs/en/models/overview)
+
 ---
 
 ## Prerequisites
