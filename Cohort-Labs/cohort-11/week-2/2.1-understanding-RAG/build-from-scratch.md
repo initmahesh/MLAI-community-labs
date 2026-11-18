@@ -1,8 +1,8 @@
-# Lab 2.2: Build the RAG Pipeline from Scratch
+# Lab 2.1: Build the RAG Pipeline from Scratch
 
-[← Back to the main lab](../Readme.md)
+[← Back to the main lab](./Readme.md)
 
-Build both RAG workflows node by node, and learn why each setting matters. Complete the prerequisites in the [main lab](../Readme.md) first. When you finish, go back to the main lab's **Test Everything** section.
+Build both RAG workflows node by node, and learn why each setting matters. Complete the prerequisites in the [main lab](./Readme.md) first. When you finish, go back to the main lab's **Test Everything** section.
 
 ---
 
@@ -23,7 +23,7 @@ Build both RAG workflows node by node, and learn why each setting matters. Compl
 
 Log into n8n and click **Create Workflow** (top right). Start from a blank canvas, not the Lab 1.1 workflow.
 
-![flow](../assets/1.0.png)
+![flow](./assets/1.0.png)
 
 ---
 
@@ -34,7 +34,7 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 | Add Node → search | **n8n Form** |
 | Trigger | **On new n8n Form event** |
 
-![flow](../assets/1.1.png)
+![flow](./assets/1.1.png)
 
 > **Why a Form and not a Chat trigger?** Ingestion is "submit a file and process it", not a conversation. A form gives users a simple upload page.
 
@@ -48,9 +48,9 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 | Add Form Element → Label | `file0` |
 | Add Form Element → Element Type | **File** |
 
-![flow](../assets/1.2.png)
+![flow](./assets/1.2.png)
 
-![flow](../assets/1.3.png)
+![flow](./assets/1.3.png)
 
 > **Why `file0`?** n8n names uploaded files in order: `file0`, `file1`, and so on. Later nodes look for the file by this name.
 
@@ -62,9 +62,9 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 2. Click **Choose File**, pick your contract PDF, and click **Submit**.
 3. Return to n8n. The node should show a green checkmark.
 
-![flow](../assets/1.4.png)
+![flow](./assets/1.4.png)
 
-![flow](../assets/1.5.png)
+![flow](./assets/1.5.png)
 
 > No result? The form only captures data while the workflow is listening. Click **Execute Step** again, then resubmit.
 
@@ -79,11 +79,11 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 | Connect to | Form trigger |
 | Memory Key | Click **(+)** to generate one (e.g. `vector_store_key`). Keep the default name. |
 
-![flow](../assets/1.6.png)
+![flow](./assets/1.6.png)
 
-![flow](../assets/1.7.png)
+![flow](./assets/1.7.png)
 
-![flow](../assets/1.8.png)
+![flow](./assets/1.8.png)
 
 | Concept | In one line |
 |---|---|
@@ -100,9 +100,9 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 | Credential | Your OpenAI credential (or **Create New Credential** and paste your API key) |
 | Model | `text-embedding-3-small` |
 
-![flow](../assets/1.9.png)
+![flow](./assets/1.9.png)
 
-![flow](../assets/1.10.png)
+![flow](./assets/1.10.png)
 
 > **What is an embedding?** The embedding model converts each chunk into a vector, which places it as a point on a "meaning map". When a user asks a question, the question is placed on the same map, and the closest chunks are returned, even if they use different words.
 
@@ -143,21 +143,21 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 | Text Splitter | **Recursive Character Text Splitter** | Keeps paragraphs and clauses intact |
 | Chunk Overlap | `100` | Stops clauses from being cut at chunk boundaries |
 
-![flow](../assets/1.11.png)
+![flow](./assets/1.11.png)
 
-![flow](../assets/1.12.png)
+![flow](./assets/1.12.png)
 
-![flow](../assets/13.png)
+![flow](./assets/13.png)
 
-![flow](../assets/14.png)
+![flow](./assets/14.png)
 
-![flow](../assets/15.png)
+![flow](./assets/15.png)
 
-![flow](../assets/16.png)
+![flow](./assets/16.png)
 
 #### What is chunking?
 
-![flow](../assets/chunking%20.png)
+![flow](./assets/chunking%20.png)
 
 Picture tearing a 200-page contract into index cards, one clause per card. You store the cards, not the book. When someone asks a question, only the relevant cards go to the AI. The **text splitter** does the tearing.
 
@@ -223,9 +223,9 @@ Contract clauses are usually one paragraph, so this splitter tends to keep each 
 2. Upload your contract in the form and submit.
 3. Watch the nodes run in order: **Form → Vector Store**. All of them should show green checkmarks.
 
-![flow](../assets/900.png)
+![flow](./assets/900.png)
 
-![flow](../assets/9001.png)
+![flow](./assets/9001.png)
 
 > ✓ Error on the Vector Store node? Most likely your OpenAI credential is missing or expired. Check the Embeddings node.
 
@@ -242,7 +242,7 @@ Build this on the **same canvas**, but don't connect it to the ingestion pipelin
 | Add Node → search | **Chat Trigger** |
 | Event | **On a new chat message** |
 
-![flow](../assets/1.28.png)
+![flow](./assets/1.28.png)
 
 > **Why a Chat Trigger?** Retrieval is a conversation: a user asks a question and gets an answer. Every question enters the pipeline here.
 
@@ -252,11 +252,11 @@ Build this on the **same canvas**, but don't connect it to the ingestion pipelin
 
 In the Chat Trigger, click **Add Field** and turn on **Allow File Upload**.
 
-![flow](../assets/12.png)
+![flow](./assets/12.png)
 
-![flow](../assets/3.png)
+![flow](./assets/3.png)
 
-![flow](../assets/1.15.png)
+![flow](./assets/1.15.png)
 
 > You don't need this yet. Turning it on now means the workflow can accept documents mid-chat later without a rebuild.
 
@@ -266,7 +266,7 @@ In the Chat Trigger, click **Add Field** and turn on **Allow File Upload**.
 
 Click **Add Node**, search for **Agent**, and connect it to the Chat Trigger.
 
-![flow](../assets/1.16.png)
+![flow](./assets/1.16.png)
 
 > The Agent is the **coordinator**, not the thinker. It takes the question, calls tools (like the vector store), combines the retrieved context with the question, sends both to the model, and returns the answer.
 
@@ -280,9 +280,9 @@ In the Agent, click **Add Option** → **System Message**, then paste this exact
 For every incoming user query, always call the Simple Vector Store tool first to retrieve relevant context, previous conversations, and related knowledge. Use the retrieved information to generate accurate, context-aware, and personalized responses. Never skip this tool call unless the query explicitly does not require external context.
 ```
 
-![flow](../assets/1.17.png)
+![flow](./assets/1.17.png)
 
-![flow](../assets/1.27.png)
+![flow](./assets/1.27.png)
 
 > **Why?** Without this instruction, the agent may answer from its training data and skip your documents. This message tells it to check the vector store first, every time.
 
@@ -296,9 +296,9 @@ For every incoming user query, always call the Simple Vector Store tool first to
 | Model | `gpt-5-mini` (recommended) |
 | Credential | Your OpenAI credential |
 
-![flow](../assets/1.18.png)
+![flow](./assets/1.18.png)
 
-![flow](../assets/1.19.png)
+![flow](./assets/1.19.png)
 
 > The model can be swapped. You can change it later without touching anything else in the workflow.
 
@@ -308,9 +308,9 @@ For every incoming user query, always call the Simple Vector Store tool first to
 
 In the Agent, click **Tools**, search for **Simple Vector Store**, and open it.
 
-![flow](../assets/1.20.png)
+![flow](./assets/1.20.png)
 
-![flow](../assets/1.21.png)
+![flow](./assets/1.21.png)
 
 | Field | Value | Why |
 |---|---|---|
@@ -325,7 +325,7 @@ In the Agent, click **Tools**, search for **Simple Vector Store**, and open it.
 Use this tool to store, retrieve, and search vector embeddings from previously processed data. It helps the AI system find relevant context, documents, or past information based on semantic similarity to the user's query, enabling more accurate and context-aware responses.
 ```
 
-![flow](../assets/1.22.png)
+![flow](./assets/1.22.png)
 
 | Limit | Effect |
 |---|---|
@@ -344,7 +344,7 @@ Use this tool to store, retrieve, and search vector embeddings from previously p
 | Model | `text-embedding-3-small` (**same as Step 1.6**) |
 | Credential | Your OpenAI credential |
 
-![flow](../assets/1.23.png)
+![flow](./assets/1.23.png)
 
 > The stored vectors were created by one specific model. Only that same model can search them correctly.
 
@@ -374,4 +374,4 @@ Use this tool to store, retrieve, and search vector embeddings from previously p
 
 ---
 
-[← Back to the main lab: Test Everything](../Readme.md#test-everything)
+[← Back to the main lab: Test Everything](./Readme.md#test-everything)

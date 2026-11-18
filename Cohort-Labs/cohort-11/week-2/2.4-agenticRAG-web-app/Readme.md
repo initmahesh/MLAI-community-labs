@@ -1,6 +1,6 @@
-# Lab 2.5: Give Your Agentic RAG a Web Layer
+# Lab 2.4: Give Your Agentic RAG a Web Layer
 
-Your n8n agent just got a lot smarter. Back in Lab 2.3, you taught it to stop and think before it goes digging through the contract — "Hi" gets an instant reply, "What's the interest rate?" sends it off to actually search the document.
+Your n8n agent just got a lot smarter. Back in Lab 2.2, you taught it to stop and think before it goes digging through the contract — "Hi" gets an instant reply, "What's the interest rate?" sends it off to actually search the document.
 
 Your web app has no idea any of that happened. It's still talking to your backend the old way, from Lab 1.2 — one file, one message, one webhook, every single time someone hits send.
 
@@ -25,7 +25,7 @@ No new coding concepts here. Just Claude Code, the app you already have, and abo
 
 ## What Are We Building?
 
-**The wiring.** Your app currently bundles the uploaded PDF and the typed question into one request and fires it at one webhook — every time someone sends a message. That made sense when your backend was one webhook and one agent. It doesn't make sense anymore. Your Lab 2.3 workflow now has two separate jobs: reading the contract once (ingestion), and answering questions many times after that (chat). Two jobs, two webhooks. Your app hasn't caught up.
+**The wiring.** Your app currently bundles the uploaded PDF and the typed question into one request and fires it at one webhook — every time someone sends a message. That made sense when your backend was one webhook and one agent. It doesn't make sense anymore. Your Lab 2.2 workflow now has two separate jobs: reading the contract once (ingestion), and answering questions many times after that (chat). Two jobs, two webhooks. Your app hasn't caught up.
 
 **The look.** In Lab 1.2 you sketched a palette with `/design` in a few sentences — "navy and orange, clean and professional" — and that was good enough for a first pass. Now you've got an actual design system sitting in this folder, `SKILL.md`. Real tokens, a real type scale, a real spacing grid. No reason to keep guessing.
 
@@ -37,7 +37,7 @@ By the end of this lab, your app will send the file once, ask questions cheaply 
 
 ✅ **Lab 1.2 done** — you've got a working `contract-review-app` folder with `index.html`, `styles.css`, and `app.js`, and it already sends messages to a webhook.
 
-✅ **Lab 2.3 done** — your n8n workflow has an Intent Router, a Direct Response Agent, a Query Rewriter, and a RAG Agent.
+✅ **Lab 2.2 done** — your n8n workflow has an Intent Router, a Direct Response Agent, a Query Rewriter, and a RAG Agent.
 
 ✅ **Claude Code**, pointed at your existing `contract-review-app` folder. Same session you used before or a brand new one — either works, Claude can just read the files.
 
@@ -45,9 +45,9 @@ By the end of this lab, your app will send the file once, ask questions cheaply 
 
 ## Part 1: Swap the Triggers for Webhooks
 
-In Lab 2.3, everything ran inside n8n's own form and chat window. Your web app can't open those. It can only send a request to a URL and wait for a reply.
+In Lab 2.2, everything ran inside n8n's own form and chat window. Your web app can't open those. It can only send a request to a URL and wait for a reply.
 
-The fix: replace both triggers with **webhooks**, URLs any app can call. Open the n8n workflow from Lab 2.3 and start with upload, then chat.
+The fix: replace both triggers with **webhooks**, URLs any app can call. Open the n8n workflow from Lab 2.2 and start with upload, then chat.
 
 ### Step 1: Swap the ingestion trigger
 

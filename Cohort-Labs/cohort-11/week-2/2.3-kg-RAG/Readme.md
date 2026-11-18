@@ -1,4 +1,4 @@
-# Lab 2.4 — Creating a Context Brain on Graph
+# Lab 2.3 — Creating a Context Brain on Graph
 
 > **Who this is for:** No coding background needed. This guide walks you through every step, then explains what is happening under the hood.
 
@@ -298,7 +298,7 @@ When you asked *"What is the interest rate?"* in the previous lab, RAG found the
 
 ## 12. Step 5 — Ask Questions Using the Context Brain
 
-Now you will ask the exact same questions you asked in Lab 2.3 — but this time Claude answers using the Context Brain, not the raw contract.
+Now you will ask the exact same questions you asked in Lab 2.2 — but this time Claude answers using the Context Brain, not the raw contract.
 
 ### ▶ Start a new session with the graph folder attached
 
@@ -368,7 +368,7 @@ Total cost per question: ~3,050 tokens  (vs. ~20,050 with the raw contract)
 
 ### Full comparison
 
-| | **Raw Upload (Lab 2.3)** | **Context Brain — this lab** |
+| | **Raw Upload (Lab 2.2)** | **Context Brain — this lab** |
 |---|---|---|
 | **How it stores the document** | As chunks in a vector store or raw file | As a graph of connected Markdown files |
 | **Tokens per question** | ~20,050 (full doc every time) | ~3,050 (compact brain only) |
