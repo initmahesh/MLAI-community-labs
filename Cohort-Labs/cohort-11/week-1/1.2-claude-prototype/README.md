@@ -2,17 +2,9 @@
 
 ![banner](./assets/op.png)
 
-## The Problem
-
-Your agent from Lab 1.1 can read a document and answer questions — but only inside n8n. Nobody on your team is going to open a workflow tool to ask a question. They need a simple app: upload a file, type a question, get an answer.
-
-And you need to build that app without writing code.
-
----
-
 ## Table of Contents
 
-- [What Are We Building?](#what-are-we-building)
+- [Overview](#overview)
 - [Before You Build: Pick the Right Claude](#before-you-build-pick-the-right-claude)
 - [Before You Build: Pick the Right Model](#before-you-build-pick-the-right-model)
 - [Prerequisites](#prerequisites)
@@ -23,11 +15,11 @@ And you need to build that app without writing code.
 
 ---
 
-## What Are We Building?
+## Overview
 
-A **Contract Review Web App** — the same use case from Lab 1.1, now as a real interface, ready to be wired into the agent you already built.
+Your agent from Lab 1.1 only works inside n8n, and nobody on your team will open a workflow tool just to ask a question. They need a simple app.
 
-A user opens the app, uploads a contract PDF, types a question in the chat panel, and gets a response. We start with the responses simulated so you can validate the shell first — then connect the real AI agent in Lab 1.3. The goal is to build something that works and looks like a real product.
+In this lab, you'll build a **Contract Review Web App** with Claude Code, without writing code. Users upload a contract PDF, type a question in the chat panel, and get a response. The responses are simulated for now. You'll connect your real agent in Lab 1.3.
 
 ---
 
@@ -76,6 +68,8 @@ Choosing the right model helps balance capability, speed, and usage.
 
 > [!TIP]
 > For this module, choose Sonnet. It gives you the right balance of quality and speed for building the contract chat website.
+
+📖 **Read more:** [Claude models overview](https://platform.claude.com/docs/en/models/overview)
 
 ---
 
@@ -215,7 +209,7 @@ Before changing the code, let's first sketch how we want the improved app to loo
 In the design canvas, enter:
 
 ```text
-/design Create a visual design for my contract review app with a two-column layout.
+/design Create a visual design only don't change in code for my contract review app with a two-column layout.
 
 - Left side: contract PDF preview
 - Right side: chat panel
