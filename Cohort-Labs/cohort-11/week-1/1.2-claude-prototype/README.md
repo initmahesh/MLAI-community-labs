@@ -215,7 +215,7 @@ Before changing the code, let's first sketch how we want the improved app to loo
 In the design canvas, enter:
 
 ```text
-/design Create a visual design for my contract review app with a two-column layout.
+/design Create a visual design only don't change in code for my contract review app with a two-column layout.
 
 - Left side: contract PDF preview
 - Right side: chat panel
