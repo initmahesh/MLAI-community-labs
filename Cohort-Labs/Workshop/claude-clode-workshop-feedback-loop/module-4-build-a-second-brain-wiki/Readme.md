@@ -169,7 +169,7 @@ You have two options, just like in Module 2. Pick one.
 
 We have already built and tested a second brain skill for you. It is called `karpathy-wiki-builder`. It writes the wiki in plain, first-principles prose, keeps your raw sources next to it, and publishes a **Second Brain** page you can browse.
 
-1. Download the skill from here: **[⬇ Download karpathy-wiki-builder.skill](assets/karpathy-wiki-builder.skill?raw=true)**
+1. Download the skill from here: **[⬇ Download karpathy-wiki-builder.skill](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQDUrvWnpE5oQrMGFFpWIbrdAZKgMKid8ElqsQA7ClnlHeE?e=66Tgp2)**
 2. In Claude, open **Customize** from the left sidebar.
 3. Click **Add** at the top right of the Skills page.
 4. Choose **Upload skill** and select the `karpathy-wiki-builder.skill` file you just downloaded. (These are the same steps you used in [Module 1](../module-1-what-are-skills/Readme.md).)
