@@ -1,5 +1,29 @@
 # Module 2: Get Your Follow-Up Loop Skill and Put It on a Schedule
 
+## Table of Contents
+
+- [What You Will Learn](#what-you-will-learn)
+- [The Problem: The Daily "Who Do I Owe a Reply?" Scan](#the-problem-the-daily-who-do-i-owe-a-reply-scan)
+- [Meet the Skill: follow-up-loop](#meet-the-skill-follow-up-loop)
+  - [What It Reads](#what-it-reads)
+  - [What It Finds](#what-it-finds)
+  - [How It Stays Careful](#how-it-stays-careful)
+  - [What You Get](#what-you-get)
+- [Two Ways to Get the Skill](#two-ways-to-get-the-skill)
+  - [Option A: Use Our Skill (Fastest)](#option-a-use-our-skill-fastest)
+  - [Option B: Build It from Scratch with the Skill Creator](#option-b-build-it-from-scratch-with-the-skill-creator)
+- [Test It by Hand First](#test-it-by-hand-first)
+- [Now the Big Idea: What Is a Scheduler?](#now-the-big-idea-what-is-a-scheduler)
+  - [A Scheduler in Simple Words](#a-scheduler-in-simple-words)
+  - [How Time Is Written: Cron](#how-time-is-written-cron)
+- [Ways to Schedule in Claude](#ways-to-schedule-in-claude)
+  - [Step-by-Step: Schedule Follow-Up Loop](#step-by-step-schedule-follow-up-loop)
+  - [Managing Your Schedule](#managing-your-schedule)
+- [Keep It Safe](#keep-it-safe)
+- [Common Mistakes](#common-mistakes)
+- [Quick Check](#quick-check)
+- [Key Takeaways](#key-takeaways)
+
 ## What You Will Learn
 
 In this lesson you will be learning how to get a real, useful skill running for you, and how to make it run on its own every day without you doing anything.
@@ -111,16 +135,6 @@ We have already built and tested this skill for you. You can add it in either of
 6. To confirm it worked, search for `follow-ups` under **Customize → Skills**. It should be listed under **Yours**.
 
    ![follow-up-loop listed under Yours in Customize → Skills](assets/3.png)
-
-**Way 2: Copy it from this module**
-
-The finished skill is also in the `follow-up-loop` folder of this module:
-
-```bash
-cp -r follow-up-loop ~/.claude/skills/
-```
-
-**Then, for both ways:**
 
 1. Start a new Claude session. Skills are loaded when a session starts.
 2. Type `/follow-up-loop` or say "check my follow-ups".

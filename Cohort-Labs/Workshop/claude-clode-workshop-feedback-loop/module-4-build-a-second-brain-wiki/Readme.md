@@ -1,5 +1,32 @@
 # Module 4: Build a Second Brain from Your Meeting Transcripts
 
+## Table of Contents
+
+- [What You Will Learn](#what-you-will-learn)
+- [The Problem: Knowledge Buried in Transcripts](#the-problem-knowledge-buried-in-transcripts)
+- [What Is a Second Brain?](#what-is-a-second-brain)
+- [Why a Wiki, and Why Obsidian?](#why-a-wiki-and-why-obsidian)
+- [The Tool We Use: Graphify](#the-tool-we-use-graphify)
+- [How It Works: The Big Picture](#how-it-works-the-big-picture)
+  - [Idea 1: Write ideas, not meeting notes](#idea-1-write-ideas-not-meeting-notes)
+  - [Idea 2: Keep the raw sources, and link back to them](#idea-2-keep-the-raw-sources-and-link-back-to-them)
+  - [Idea 3: Be honest about what is not known](#idea-3-be-honest-about-what-is-not-known)
+- [Build It: Step by Step](#build-it-step-by-step)
+  - [Before You Start](#before-you-start)
+  - [Step 1: Create the folder for your vault](#step-1-create-the-folder-for-your-vault)
+  - [Step 2: Get the Skill](#step-2-get-the-skill)
+  - [Step 3: Review the plan](#step-3-review-the-plan)
+  - [Step 4: Open it in Obsidian](#step-4-open-it-in-obsidian)
+  - [What the Finished Second Brain Page Looks Like](#what-the-finished-second-brain-page-looks-like)
+- [Before and After: Asking a Question](#before-and-after-asking-a-question)
+  - [Before: Asking Without the Wiki](#before-asking-without-the-wiki)
+  - [After: Asking With the Wiki](#after-asking-with-the-wiki)
+  - [Try It Yourself](#try-it-yourself)
+- [Keeping the Wiki Fresh](#keeping-the-wiki-fresh)
+- [Common Mistakes](#common-mistakes)
+- [Quick Check](#quick-check)
+- [Key Takeaways](#key-takeaways)
+
 ## What You Will Learn
 
 In this lesson you will be learning how to turn a pile of meeting transcripts into a wiki that you can browse in Obsidian and that Claude can answer questions from.
@@ -8,6 +35,7 @@ By the end of this lesson, you will be able to:
 
 - Explain what a second brain is and why transcripts alone are not one
 - Pull transcripts from SharePoint and turn them into a linked wiki
+- Understand what Graphify is and why we use it to connect your transcripts
 - Open that wiki in Obsidian and move around it
 - Ask Claude a question and see the difference between "before" and "after"
 - Keep the wiki fresh as new meetings happen
@@ -60,14 +88,31 @@ There is no database and no special server. If you stop using Obsidian tomorrow,
 
 ---
 
+## The Tool We Use: Graphify
+
+This module's skill works alongside **Graphify**, a tool that builds and queries knowledge graphs.
+
+The skill builds its own **entity graph** from your pages: a map of the people, topics and decisions in your meetings and how they link. That graph is what powers the **Graph** tab of your Second Brain page, so the page works from the graph file alone.
+
+Graphify is used on top of that, when it is connected in Claude:
+
+- **To cross-check structure.** If your wiki lives in a repository Graphify has indexed, the skill can use it to check how the pages connect.
+- **To remember key facts.** The skill can store short, lasting facts, such as a settled decision or a named owner, so Claude can recall them later.
+
+Graphify is **optional**. If it is not connected, the skill says so in one line and carries on. You do not need to set it up to finish this module.
+
+> **Note:** Graphify is an open-source tool and its install steps change between versions. If you want to try it, check its [GitHub README](https://github.com/safishamsi/graphify) for the latest instructions.
+
+---
+
 ## How It Works: The Big Picture
 
 ```
 SharePoint transcripts
         ↓  fetch
 Raw transcripts saved in a "sources" folder (kept as they are)
-        ↓  read and understand
-Claude finds the people, topics, decisions and open questions
+        ↓  read and understand (Graphify)
+Graphify builds a knowledge graph of people, topics, decisions and open questions
         ↓  write
 A wiki: one short page per idea, linked together
         ↓  open
@@ -122,34 +167,22 @@ You have two options, just like in Module 2. Pick one.
 
 #### Option A: Use Our Skill (Fastest)
 
-We have already built and tested a second brain skill for you. You can add it in either of two ways.
+We have already built and tested a second brain skill for you. It is called `karpathy-wiki-builder`. It writes the wiki in plain, first-principles prose, keeps your raw sources next to it, and publishes a **Second Brain** page you can browse.
 
-**Way 1: Download it from our link**
+1. Download the skill from here: **[⬇ Download karpathy-wiki-builder.skill](assets/karpathy-wiki-builder.skill?raw=true)**
+2. In Claude, open **Customize** from the left sidebar.
+3. Click **Add** at the top right of the Skills page.
+4. Choose **Upload skill** and select the `karpathy-wiki-builder.skill` file you just downloaded. (These are the same steps you used in [Module 1](../module-1-what-are-skills/Readme.md).)
+5. Check the preview, then click **Upload**.
+6. Start a new Claude session and type `/karpathy-wiki-builder`. Claude checks which connectors you have. Microsoft 365 or Google Drive needs to be connected so it can read your transcripts.
 
-1. Download the skill from here: **[ADD YOUR SKILL LINK HERE]**
-2. Unzip it if needed, so you have a folder called `second-brain` with a `SKILL.md` inside.
-3. Move that folder into your skills folder:
+![Starting /karpathy-wiki-builder and the connectors check](assets/1.png)
 
-```bash
-mv second-brain ~/.claude/skills/
-```
+7. Claude asks you a few questions before it builds anything: where the transcripts are, where to create the wiki, how much to rewrite, and when the daily update should run. For each one, **select the recommended option** (or the place your files really live).
 
-**Way 2: Copy it from this module**
+![The questions Claude asks, with recommended options](assets/2.png)
 
-The finished skill is also in the `second-brain` folder of this module:
-
-```bash
-cp -r second-brain ~/.claude/skills/
-```
-
-**Then, for both ways:**
-
-1. Start a new Claude session in your empty vault folder. Skills are loaded when a session starts.
-2. Type `/second-brain`, or say:
-
-> "Build my second brain from my meeting transcripts in SharePoint. The folder is <SITE NAME> > <FOLDER PATH>."
-
-3. The skill will check your SharePoint connector, fetch the transcripts, show you a plan, and wait for your OK before it writes anything. Go to Step 3.
+8. The skill reads your transcripts, shows you a plan, and waits for your OK before it writes anything. Go to Step 3.
 
 #### Option B: Build It with a Prompt
 
@@ -211,6 +244,22 @@ Now try three things:
 - **Open graph view.** You see your whole knowledge as connected dots. Big clusters are the things your meetings talk about most.
 
 > **Your wiki will not look exactly like anyone else's.** That is fine, because everyone's meetings are different. Read a few pages and ask Claude to fix anything that is unclear, wrong, or missing a source.
+
+### What the Finished Second Brain Page Looks Like
+
+Option A also publishes a **Second Brain** page, so you can browse the wiki without opening Obsidian. The screenshots below come from a real team's 21 call transcripts. Yours will show your own meetings.
+
+The **Overview** tab shows how many pages, people and sources there are, plus a health check: does every page cite a source, and are there broken links.
+
+![Overview tab of the Second Brain page](assets/3.png)
+
+The **Graph** tab draws the whole wiki as a map. Each dot is a page, coloured by type (person, customer, process, decision and so on). Bigger dots have more links pointing to them. Drag, search or click a dot for details.
+
+![Graph tab of the Second Brain page](assets/4.png)
+
+The **People** tab has one card per person. Each card says whether the person was speaker-tagged on a call or only mentioned, and links to their page. This is the "honest about what is not known" idea in practice.
+
+![People tab of the Second Brain page](assets/5.png)
 
 ---
 
