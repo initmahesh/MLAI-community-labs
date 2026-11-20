@@ -221,39 +221,35 @@ If there is a mistake Claude keeps making, write it down.
 
 Writing a skill from scratch is easy once you know the rules. But there is an even faster way.
 
-We have given you a skill that **helps you create skills**. It's called `skill-builder`. It asks you questions about your task, then writes a clean `SKILL.md` for you following all the rules above.
+We have given you a skill that **helps you create skills**. It's called `allneurons-skill-creator`. It asks you questions about your task, then writes a clean `SKILL.md` for you following all the rules above.
 
 ### Step 1: Install the skill builder
 
-Copy the `skill-builder` folder from this module into your skills folder:
+1. **[⬇ Download allneurons-skill-creator.skill](assets/allneurons-skill-creator.skill?raw=true)** to your computer.
+2. In Claude, open **Customize** from the left sidebar.
+3. Click **Add** at the top right of the Skills page.
+4. Choose **Upload skill** and select the `allneurons-skill-creator.skill` file you just downloaded.
 
-```bash
-cp -r skill-builder ~/.claude/skills/
-```
+![Customize → Add → Upload skill](assets/1.png)
 
-### Step 2: Start a new Claude Code session
+5. Check the preview shows `allneurons-skill-creator`, then click **Upload**.
 
-Skills are loaded when a session starts, so open a fresh one.
+![Upload a skill dialog with allneurons-skill-creator.skill](assets/2.png)
 
-### Step 3: Ask Claude to build a skill
+### Step 2: Check that it is installed and read how it is written
 
-Pick a task you repeat often. Then say something like:
+1. Go to **Customize → Skills** and type `allneurons-skill-creator` in the search box.
+2. You should see it listed under **Yours**.
 
-> "I want to create a skill that turns my raw meeting notes into a short summary with action items."
+![Search for allneurons-skill-creator under Customize → Skills](assets/3.png)
 
-Claude will pick up `skill-builder`, ask you a few questions, and create the skill folder for you.
+3. Click the skill to open it, then go to the **Contents** tab to read.
 
-### Step 4: Test it
+![Contents tab of allneurons-skill-creator showing SKILL.md and its folders](assets/4.png)
 
-Open a new session and try your skill with 3 to 5 real requests. Ask yourself:
+### What happens next
 
-- Did Claude pick the skill when it should have?
-- Was the output what I wanted?
-- Did it do anything I did not ask for?
-
-### Step 5: Note what went wrong
-
-Write down every miss. In the next module, we use these notes to improve the skill. That is the feedback loop.
+In the **next lab**, we will use `allneurons-skill-creator` to build your first skill. It will ask you a few questions about your task and write the skill folder for you. After that, you will test it and improve it using the feedback loop.
 
 ---
 
@@ -274,7 +270,10 @@ Try answering these before moving on:
 - Claude reads only the name and description at first, and loads the rest when your request matches.
 - A good description says **what** the skill does and **when** to use it.
 - Good skills are small, written in clear steps, explain the why, and include an example.
-- The `skill-builder` skill helps you create new skills quickly.
+- The `allneurons-skill-creator` skill helps you create new skills quickly.
 - A skill is never finished on the first try. You test it, see what breaks, and improve it.
 
-At this point, you should have your first skill ready. In the next module, we will look at how to test a skill properly and use feedback to make it better over time.
+At this point, you should have the skill creator installed. In the next lab, we will use it to build your first skill, then test it and use feedback to make it better over time.
+
+
+**Next:** [Module 2: Get Your Follow-Up Loop Skill and Put It on a Schedule →](../module-2-build-and-schedule-follow-up-loop/Readme.md)
