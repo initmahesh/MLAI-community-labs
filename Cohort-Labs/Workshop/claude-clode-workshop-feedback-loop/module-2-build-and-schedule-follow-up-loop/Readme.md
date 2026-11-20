@@ -121,7 +121,7 @@ We have already built and tested this skill for you. You can add it in either of
 
 **Way 1: Download it from our link**
 
-1. Download the skill from here: **[⬇ Download AllNeurons-follow-ups.zip](assets/AllNeurons-follow-ups.zip?raw=true)**
+1. Download the skill from here: **[⬇ Download AllNeurons-follow-ups.zip](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQCx3MnIn-wkSoF2yMzAhmTxAcMZX4STYw1jD1RUBjQZ95U?e=Hd8ZVY)**
 2. In Claude, open **Customize** from the left sidebar.
 3. Click **Add** at the top right of the Skills page.
 4. Choose **Upload skill** and select the `AllNeurons-follow-ups.zip` file you just downloaded. Do not unzip it.

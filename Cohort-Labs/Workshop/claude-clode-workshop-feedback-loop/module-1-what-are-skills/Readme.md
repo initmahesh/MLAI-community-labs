@@ -251,7 +251,7 @@ We have given you a skill that **helps you create skills**. It's called `allneur
 
 ### Step 1: Install the skill builder
 
-1. **[⬇ Download allneurons-skill-creator.skill](assets/allneurons-skill-creator.skill?raw=true)** to your computer.
+1. **[⬇ Download allneurons-skill-creator.skill](https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQDH-Vhbb6o8TZ9uBm_g0RxCAS2M7q1nn5KjWV9mMgHr-Ak?e=u0cAKt)** to your computer.
 2. In Claude, open **Customize** from the left sidebar.
 3. Click **Add** at the top right of the Skills page.
 4. Choose **Upload skill** and select the `allneurons-skill-creator.skill` file you just downloaded.
