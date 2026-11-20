@@ -208,6 +208,16 @@ D. Schedule a task named "Follow-Ups — Feedback Collector" at 7:27 AM and 5:27
 Then test it: send me a test summary, I will reply with a change, then run COLLECT and show me the new event and proposed rule on the dashboard.
 ```
 
+**What you will see:** Claude works through the parts one at a time. It builds and publishes the **Follow-Ups Learning Store** dashboard, adds COLLECT mode and the auto-apply step to the skill, and creates the **Follow-Ups — Feedback Collector** scheduled task.
+
+![Claude building the dashboard, updating the skill and scheduling the collector](images/1.png)
+
+**Install the updated skill once.** When Claude finishes, it shows a summary, a link to the dashboard, and a card for the updated `follow-up-loop` skill. Click **Update follow-up-loop** on that card. Scheduled runs use the version you have installed, so until you click it, the collector will not have COLLECT mode and will do nothing useful.
+
+![The finished summary, the Learning Store dashboard, and the Update follow-up-loop button](images/2.png)
+
+On the right you can see the new dashboard. It starts empty: 0 rules, 0 feedback events and nothing recorded yet. It fills in as you reply to your summary emails.
+
 ### Why This Prompt Works
 
 It uses the same habits you learned in the earlier modules.

@@ -8,6 +8,7 @@ By the end of this lesson, you will be able to:
 
 - Explain what a second brain is and why transcripts alone are not one
 - Pull transcripts from SharePoint and turn them into a linked wiki
+- Understand what Graphify is and why we use it to connect your transcripts
 - Open that wiki in Obsidian and move around it
 - Ask Claude a question and see the difference between "before" and "after"
 - Keep the wiki fresh as new meetings happen
@@ -60,14 +61,34 @@ There is no database and no special server. If you stop using Obsidian tomorrow,
 
 ---
 
+## The Tool We Use: Graphify
+
+In this module we use **Graphify** to turn your transcripts into a connected knowledge graph.
+
+**Graphify** is a skill for Claude Code. You point it at a folder of files, and it builds a **knowledge graph**: a map of the ideas in those files and how they connect. It finds the people, topics and decisions, shows which ones are central, and groups related files into clusters.
+
+Why this helps:
+
+- **It finds the connections for you.** A decision made in one meeting and revisited in another ends up linked, instead of buried in two separate files.
+- **Claude can follow the map.** Instead of re-reading every transcript for each question, Claude can look at the graph and go straight to the right place. This also uses far fewer tokens.
+- **It works with Obsidian.** Graphify can export its graph as an Obsidian vault: one note per idea, linked together, which you open as a vault and explore in graph view.
+
+How it fits the steps below: Claude fetches your transcripts from SharePoint into a `sources/` folder, then Graphify reads that folder and builds the graph and the wiki pages from it. You open the result in Obsidian.
+
+In Claude Code you run it with `/graphify` followed by the folder, for example `/graphify ./sources`. Add `--obsidian` if you want the Obsidian vault as an output.
+
+> **Note:** Graphify is an open-source tool and its install name and options change between versions. Check its [GitHub README](https://github.com/safishamsi/graphify) for the latest install steps before the workshop. At the time of writing, the Python package is named `graphifyy` (with two y's) while the command is still `graphify`.
+
+---
+
 ## How It Works: The Big Picture
 
 ```
 SharePoint transcripts
         ↓  fetch
 Raw transcripts saved in a "sources" folder (kept as they are)
-        ↓  read and understand
-Claude finds the people, topics, decisions and open questions
+        ↓  read and understand (Graphify)
+Graphify builds a knowledge graph of people, topics, decisions and open questions
         ↓  write
 A wiki: one short page per idea, linked together
         ↓  open
