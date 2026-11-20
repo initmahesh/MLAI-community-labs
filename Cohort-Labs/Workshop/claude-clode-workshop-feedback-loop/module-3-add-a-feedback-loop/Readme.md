@@ -193,7 +193,7 @@ You have two options. Pick one.
 
 We have already built the feedback loop into the `follow-up-loop` skill and tested it for you. This version already includes the Learning Store dashboard, COLLECT mode and the safe auto-apply step.
 
-1. Download the skill from here: **[⬇ Download follow-up-loop 1 (1).skill](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQBRtxHGt-lmSYVOMXr-ErAxATwbtnkP8s_PFCFoodPO0Uo?e=Wgkcdm)**
+1. Download the skill from here: **[⬇ Download follow-up-loop 1 (1).skill](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQALFy-KihKTTIHSvWwvieetAZVGpvy5W-6EuVoSeK27Y1Q?e=HuEBFB)**
 2. In Claude, open **Customize** from the left sidebar.
 3. Click **Add** at the top right of the Skills page.
 4. Choose **Upload skill** and select the `follow-up-loop 1 (1).skill` file you just downloaded. (Your browser may name it slightly differently, for example `follow-up-loop.skill`. That is fine.)
@@ -216,7 +216,7 @@ Use this option if you want to learn by doing, or if you want to shape the loop 
 Make sure `follow-up-loop` is installed and working from Module 2. Then start a new Claude session and paste this prompt.
 
 ```text
-Add a feedback loop to my follow-up-loop skill, in four parts.
+Add a feedback loop to my follow-up-loop skill, in five parts (A to E), then package the finished skill as a downloadable .skill file (part F).
 
 A. Learning Store dashboard. Publish an interactive page titled exactly "Follow-Ups Learning Store" with a shared database, and a profile identity so it can show who made each change. Tabs: Overview, Rules, Feedback, Skill updates, Activity, Drafts, Setup. Collections: learning_rules, feedback_events, audit_log, skill_updates, drafts, checkpoints. Rules can be confirmed, declined with a reason, reversed or reopened. Every change writes an audit_log row (who, when, before and after; ids not names; append only). Skill updates show before and after side by side with "Approve and apply" and Reject. When I click Approve and apply, the change must reach the skill automatically: I must never be asked to copy a command or paste anything into chat. If applying fails, the card shows the reason and a fallback.
 
@@ -229,13 +229,15 @@ C. The summary email applies my active rules, and shows one line "Skill instruct
 D. Schedule a task named "Follow-Ups — Feedback Collector" at 7:27 AM and 5:27 PM, Monday to Friday, in my time zone, with the prompt: "Run the follow-up-loop skill in COLLECT mode. Unattended. Ask nothing." Check for an existing task first. No duplicates.
 
 Then test it: send me a test summary, I will reply with a change, then run COLLECT and show me the new event and proposed rule on the dashboard.
+
+F. GENERATE THE SKILL (the last thing you do). When A to E work and the test passes, generate the complete updated skill as one file I can download and install: follow-up-loop.skill, a zip with a single top-level folder named follow-up-loop. It must contain: SKILL.md (under 500 lines, with a "Version: x.y.z" and "Updated: YYYY-MM-DD" line), config.md (every number named), CHANGELOG.md, HANDOFF.md, memory/ (memory.md, feedback-log.md, one memory file per agent), references/ (the three agents, reading rules, drafting and style, summary email, COLLECT mode, learning store, data dictionary, QA checklist, troubleshooting), scripts/apply_update.py with its test, tests/ (test prompts and results), logs/run-log.md, and assets/learning-store.html (the dashboard page). Bump the version, add a CHANGELOG entry, and run the skill creator's lint and fix anything it flags. Then verify the file: list its contents, check every file above is present, and check that the dashboard page does not hold a hard-coded collector task id from my session. Save it where I can download it and give me the link. Finish with a short install note: upload it from Customize, then Add, then Upload skill, and replace the old follow-up-loop. Remind me that the skill cannot replace itself, so I have to install it once.
 ```
 
-**What you will see:** Claude works through the parts one at a time. It builds and publishes the **Follow-Ups Learning Store** dashboard, adds COLLECT mode and the auto-apply step to the skill, and creates the **Follow-Ups — Feedback Collector** scheduled task.
+**What you will see:** Claude works through the parts one at a time. It builds and publishes the **Follow-Ups Learning Store** dashboard, adds COLLECT mode and the auto-apply step to the skill, and creates the **Follow-Ups — Feedback Collector** scheduled task. At the very end (part F) it generates the finished skill as a single `follow-up-loop.skill` file and gives you a link to download it.
 
 ![Claude building the dashboard, updating the skill and scheduling the collector](images/1.png)
 
-**Install the updated skill once.** When Claude finishes, it shows a summary, a link to the dashboard, and a card for the updated `follow-up-loop` skill. Click **Update follow-up-loop** on that card. Scheduled runs use the version you have installed, so until you click it, the collector will not have COLLECT mode and will do nothing useful.
+**Install the updated skill once.** When Claude finishes, it shows a summary, a link to the dashboard, the generated `follow-up-loop.skill` file, and a card for the updated skill. Click **Update follow-up-loop** on that card. If you get the file instead of a card, download it, then go to **Customize → Add → Upload skill** and replace the old `follow-up-loop`. Scheduled runs use the version you have installed, so until you do this, the collector will not have COLLECT mode and will do nothing useful.
 
 ![The finished summary, the Learning Store dashboard, and the Update follow-up-loop button](images/2.png)
 
@@ -251,6 +253,7 @@ It uses the same habits you learned in the earlier modules.
 - **Puts the safety rules in writing.** Refuse unsafe changes, keep a backup, change nothing if a check fails.
 - **Asks for a script for the risky part.** A script does the same thing every time. A language model might not.
 - **Ends with a test.** It does not stop at "build it." It asks Claude to prove it works.
+- **Ends by generating the skill (part F).** Everything Claude built lives in your session. Part F turns it into one `follow-up-loop.skill` file, lists the exact files it must contain, and asks Claude to check the file before handing it over. You walk away with something you can install, share or keep.
 
 > **A note, like in Module 2:** Claude builds this fresh each time, so what you get may look a little different from what we show here. Read the dashboard and the skill changes it makes, and ask Claude to fix anything that does not match the prompt.
 
