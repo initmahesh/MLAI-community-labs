@@ -162,7 +162,33 @@ The rule to remember: **the skill may propose anything, but only a person can ap
 
 ---
 
-## Build It: The Prompt
+## Two Ways to Add the Loop
+
+You have two options. Pick one.
+
+### Option A: Use Our Skill (Fastest)
+
+We have already built the feedback loop into the `follow-up-loop` skill and tested it for you. This version already includes the Learning Store dashboard, COLLECT mode and the safe auto-apply step.
+
+1. Download the skill from here: **[⬇ Download follow-up-loop 1 (1).skill](images/follow-up-loop%201%20%281%29.skill?raw=true)**
+2. In Claude, open **Customize** from the left sidebar.
+3. Click **Add** at the top right of the Skills page.
+4. Choose **Upload skill** and select the `follow-up-loop 1 (1).skill` file you just downloaded. (Your browser may name it slightly differently, for example `follow-up-loop.skill`. That is fine.)
+5. Check the preview shows `follow-up-loop`, then click **Upload**.
+6. To confirm it worked, search for `follow-up-loop` under **Customize → Skills**. It should be listed under **Yours**.
+
+> **If you already have `follow-up-loop` from Module 2:** this version replaces it. Remove the old one first (or accept the replacement if Claude asks), so you do not end up with two skills of the same name.
+
+7. Start a new Claude session and say **"run follow-up-loop"**. Make sure your mail and calendar connectors are connected first.
+8. When Claude asks whether to set up the Learning Store and the scheduled tasks, say **yes**. It creates the **Follow-Ups Learning Store** dashboard and the collector task for you. Open the Learning Store link in its answer and check that it loads (it is empty at first).
+
+Then go to **Step 4: Prove the Loop Works** below. You do not need to paste the Option B prompt.
+
+> **Note:** setting up the dashboard and the schedule needs a session that has a scheduled-task tool and an artifact tool (Cowork or Claude Code). In a plain chat the skill still runs, but it shows a "Set-up still needed" card instead. Follow the card, then say "follow-up-loop status" to confirm.
+
+### Option B: Build It with the Prompt
+
+Use this option if you want to learn by doing, or if you want to shape the loop yourself.
 
 Make sure `follow-up-loop` is installed and working from Module 2. Then start a new Claude session and paste this prompt.
 
