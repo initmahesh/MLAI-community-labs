@@ -193,7 +193,7 @@ You have two options. Pick one.
 
 We have already built the feedback loop into the `follow-up-loop` skill and tested it for you. This version already includes the Learning Store dashboard, COLLECT mode and the safe auto-apply step.
 
-1. Download the skill from here: **[⬇ Download follow-up-loop 1 (1).skill](images/follow-up-loop%201%20%281%29.skill?raw=true)**
+1. Download the skill from here: **[⬇ Download follow-up-loop 1 (1).skill](https://www.google.com/url?q=https://pragyaallc-my.sharepoint.com/:u:/g/personal/sachin_parmar_legalgraph_ai/IQBbzBj343qST6yw65T7JY0LAbFNFXTyr4pbYNpxxpYQ-jI?e%3DJ2ZGPG&sa=D&source=editors&ust=1795185108674631&usg=AOvVaw2JCvWvZBKP5uLPfbN5uXYP)**
 2. In Claude, open **Customize** from the left sidebar.
 3. Click **Add** at the top right of the Skills page.
 4. Choose **Upload skill** and select the `follow-up-loop 1 (1).skill` file you just downloaded. (Your browser may name it slightly differently, for example `follow-up-loop.skill`. That is fine.)
