@@ -197,6 +197,20 @@ Vector search brings back only the closest chunk, and here that chunk just **poi
 
 This isn't a bug, it's a limit of RAG. To follow references across a document, you need a different structure.
 
+**Can't I just send the whole agreement to the model?** You could, and the model would see Schedule 1.1(a) and Section 2.7(d) together. But it costs a lot:
+
+- The **entire document** goes into the context window with **every question**, so you pay for those tokens each time you ask.
+- Longer context means **slower answers**, and the model can still miss details buried in the middle of a long document.
+- The cost grows with every extra question and every extra contract.
+
+A **Knowledge Graph** works the other way around. You read the agreement **once** and build the graph, with its sections, schedules and references already linked. After that, each question looks up only the connected pieces it needs, so you can ask as many questions as you like without re-sending the whole document.
+
+| Approach | Cost | Cross-references |
+|---|---|---|
+| Vector search (this lab) | Low, but returns only the closest chunk | Missed |
+| Whole document in context | High, paid on **every** question | Found |
+| Knowledge Graph (Lab 2.3) | One-time build, then small per question | Followed |
+
 ---
 
 ## Quick Reference
@@ -215,4 +229,4 @@ Your agent now decides whether a message needs the contract before it searches.
 But when a fact is spread across linked sections, like in the loan agreement, vector search finds only one piece of it.
 In the next lab, you'll build a **Knowledge Graph** that connects those pieces, so the agent answers from the whole picture.
 
-[Go to Lab 2.3: Creating a Context Brain on Graph →](../2.3-kg-RAG/Readme.md)
+[Go to Lab 2.3: Knowledge Graph RAG →](../2.3-knowledge-graph-RAG/Readme.md)

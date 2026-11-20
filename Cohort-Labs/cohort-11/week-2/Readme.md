@@ -34,6 +34,16 @@ Think of it as turning your contract Q&A system into a cautious legal research a
 
 ---
 
+### [Lab 2.3 — Knowledge Graph RAG](./2.3-knowledge-graph-RAG/Readme.md)
+
+Agentic RAG still struggles when one answer is spread across several clauses. Search finds the passages that *look similar* to your question and misses the clauses that link to them. This lab adds a **knowledge graph**: Graphify reads a loan agreement and turns it into dots and lines, and you chat with it in an app and watch which parts of the graph each answer comes from.
+
+You open one Colab notebook, run it, and use the app in your browser. There is nothing to set up on your own computer.
+
+**Time:** ~30 minutes
+
+---
+
 ### [Lab 2.4 — Give Your Agentic RAG a Web Layer](./2.4-agenticRAG-web-app/Readme.md)
 
 Your backend just got smarter — it now decides whether a question even needs the contract before it retrieves anything. Your web app from Week 1 doesn't know that happened yet. This lab reconnects the two: rewiring the app to match the new ingestion/chat split, and restyling it from a real design system instead of an improvised palette.
