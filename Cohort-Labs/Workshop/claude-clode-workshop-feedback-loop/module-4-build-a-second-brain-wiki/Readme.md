@@ -63,21 +63,18 @@ There is no database and no special server. If you stop using Obsidian tomorrow,
 
 ## The Tool We Use: Graphify
 
-In this module we use **Graphify** to turn your transcripts into a connected knowledge graph.
+This module's skill works alongside **Graphify**, a tool that builds and queries knowledge graphs.
 
-**Graphify** is a skill for Claude Code. You point it at a folder of files, and it builds a **knowledge graph**: a map of the ideas in those files and how they connect. It finds the people, topics and decisions, shows which ones are central, and groups related files into clusters.
+The skill builds its own **entity graph** from your pages: a map of the people, topics and decisions in your meetings and how they link. That graph is what powers the **Graph** tab of your Second Brain page, so the page works from the graph file alone.
 
-Why this helps:
+Graphify is used on top of that, when it is connected in Claude:
 
-- **It finds the connections for you.** A decision made in one meeting and revisited in another ends up linked, instead of buried in two separate files.
-- **Claude can follow the map.** Instead of re-reading every transcript for each question, Claude can look at the graph and go straight to the right place. This also uses far fewer tokens.
-- **It works with Obsidian.** Graphify can export its graph as an Obsidian vault: one note per idea, linked together, which you open as a vault and explore in graph view.
+- **To cross-check structure.** If your wiki lives in a repository Graphify has indexed, the skill can use it to check how the pages connect.
+- **To remember key facts.** The skill can store short, lasting facts, such as a settled decision or a named owner, so Claude can recall them later.
 
-How it fits the steps below: Claude fetches your transcripts from SharePoint into a `sources/` folder, then Graphify reads that folder and builds the graph and the wiki pages from it. You open the result in Obsidian.
+Graphify is **optional**. If it is not connected, the skill says so in one line and carries on. You do not need to set it up to finish this module.
 
-In Claude Code you run it with `/graphify` followed by the folder, for example `/graphify ./sources`. Add `--obsidian` if you want the Obsidian vault as an output.
-
-> **Note:** Graphify is an open-source tool and its install name and options change between versions. Check its [GitHub README](https://github.com/safishamsi/graphify) for the latest install steps before the workshop. At the time of writing, the Python package is named `graphifyy` (with two y's) while the command is still `graphify`.
+> **Note:** Graphify is an open-source tool and its install steps change between versions. If you want to try it, check its [GitHub README](https://github.com/safishamsi/graphify) for the latest instructions.
 
 ---
 
@@ -143,34 +140,22 @@ You have two options, just like in Module 2. Pick one.
 
 #### Option A: Use Our Skill (Fastest)
 
-We have already built and tested a second brain skill for you. You can add it in either of two ways.
+We have already built and tested a second brain skill for you. It is called `karpathy-wiki-builder`. It writes the wiki in plain, first-principles prose, keeps your raw sources next to it, and publishes a **Second Brain** page you can browse.
 
-**Way 1: Download it from our link**
+1. Download the skill from here: **[⬇ Download karpathy-wiki-builder.skill](assets/karpathy-wiki-builder.skill?raw=true)**
+2. In Claude, open **Customize** from the left sidebar.
+3. Click **Add** at the top right of the Skills page.
+4. Choose **Upload skill** and select the `karpathy-wiki-builder.skill` file you just downloaded. (These are the same steps you used in [Module 1](../module-1-what-are-skills/Readme.md).)
+5. Check the preview, then click **Upload**.
+6. Start a new Claude session and type `/karpathy-wiki-builder`. Claude checks which connectors you have. Microsoft 365 or Google Drive needs to be connected so it can read your transcripts.
 
-1. Download the skill from here: **[ADD YOUR SKILL LINK HERE]**
-2. Unzip it if needed, so you have a folder called `second-brain` with a `SKILL.md` inside.
-3. Move that folder into your skills folder:
+![Starting /karpathy-wiki-builder and the connectors check](assets/1.png)
 
-```bash
-mv second-brain ~/.claude/skills/
-```
+7. Claude asks you a few questions before it builds anything: where the transcripts are, where to create the wiki, how much to rewrite, and when the daily update should run. For each one, **select the recommended option** (or the place your files really live).
 
-**Way 2: Copy it from this module**
+![The questions Claude asks, with recommended options](assets/2.png)
 
-The finished skill is also in the `second-brain` folder of this module:
-
-```bash
-cp -r second-brain ~/.claude/skills/
-```
-
-**Then, for both ways:**
-
-1. Start a new Claude session in your empty vault folder. Skills are loaded when a session starts.
-2. Type `/second-brain`, or say:
-
-> "Build my second brain from my meeting transcripts in SharePoint. The folder is <SITE NAME> > <FOLDER PATH>."
-
-3. The skill will check your SharePoint connector, fetch the transcripts, show you a plan, and wait for your OK before it writes anything. Go to Step 3.
+8. The skill reads your transcripts, shows you a plan, and waits for your OK before it writes anything. Go to Step 3.
 
 #### Option B: Build It with a Prompt
 
@@ -232,6 +217,22 @@ Now try three things:
 - **Open graph view.** You see your whole knowledge as connected dots. Big clusters are the things your meetings talk about most.
 
 > **Your wiki will not look exactly like anyone else's.** That is fine, because everyone's meetings are different. Read a few pages and ask Claude to fix anything that is unclear, wrong, or missing a source.
+
+### What the Finished Second Brain Page Looks Like
+
+Option A also publishes a **Second Brain** page, so you can browse the wiki without opening Obsidian. The screenshots below come from a real team's 21 call transcripts. Yours will show your own meetings.
+
+The **Overview** tab shows how many pages, people and sources there are, plus a health check: does every page cite a source, and are there broken links.
+
+![Overview tab of the Second Brain page](assets/3.png)
+
+The **Graph** tab draws the whole wiki as a map. Each dot is a page, coloured by type (person, customer, process, decision and so on). Bigger dots have more links pointing to them. Drag, search or click a dot for details.
+
+![Graph tab of the Second Brain page](assets/4.png)
+
+The **People** tab has one card per person. Each card says whether the person was speaker-tagged on a call or only mentioned, and links to their page. This is the "honest about what is not known" idea in practice.
+
+![People tab of the Second Brain page](assets/5.png)
 
 ---
 
