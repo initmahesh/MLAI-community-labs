@@ -1,4 +1,4 @@
-# Lab 1.2: Build Your Prototype with Claude Code
+# Lab 1.2: Build Your Project with Claude Code
 
 ![banner](./assets/op.png)
 
@@ -33,7 +33,7 @@ Claude isn't one thing. There are three modes, and using the wrong one caps what
 
 - **Chat** — You're not sure yet whether reviewers should ask questions in a free-text chat or pick from a dropdown of common clauses. You open Claude Chat and talk through the trade-offs. Nothing gets built. You leave with a decision.
 
-- **Cowork** — Your team lead wants a one-page status brief on the prototype before your next standup — what's built, what's simulated, what's next. You describe it to Claude Cowork and it generates the doc. No files in your project folder are touched.
+- **Cowork** — Your team lead wants a one-page status brief on the project before your next standup — what's built, what's simulated, what's next. You describe it to Claude Cowork and it generates the doc. No files in your project folder are touched.
 
 - **Code** — You have a spec: upload panel on the left, chat panel on the right, dummy responses for now. You open Claude Code, point it at your project folder, and it writes `index.html`, `style.css`, and `script.js` directly to disk. This is what you're about to do in Part 1.
 
@@ -229,7 +229,7 @@ This is the canvas: a two-column mockup you can look over and approve before ask
 Once you're happy with the direction, bring that design back into your app:
 
 ```
-Improve the prototype with two changes, matching the layout and polish
+Improve the project with two changes, matching the layout and polish
 I just sketched in above design:
 
 1. UI polish — refine the interface to feel more like a production-ready product.
@@ -257,7 +257,7 @@ By now this session has carried you through Part 1 and this iteration — two se
 | `/context` | How much of your current conversation's available space is being used | Checking how full your backpack is |
 | `/usage` | How much Claude you've used while working | Checking how far you've travelled |
 
-> ★ A prototype with dummy responses is still a prototype. You can show this to a stakeholder right now, get feedback on the layout, and validate the concept — before connecting a single line of real AI logic. Shell first. Intelligence second.
+> ★ A project with dummy responses is still worth showing. You can show this to a stakeholder right now, get feedback on the layout, and validate the concept — before connecting a single line of real AI logic. Shell first. Intelligence second.
 
 If the contract doesn't show up in the left panel after uploading, just describe it to Claude: *"The PDF isn't rendering in the left panel — the chat still works but the preview is blank."* One message is usually enough to fix it.
 
@@ -265,7 +265,7 @@ If the contract doesn't show up in the left panel after uploading, just describe
 
 ## What You Learned
 
-You started this lab by just building — no setup, no theory, straight into a working prototype. Along the way you learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, what your session is costing you as it grows, and how to preview a design before committing to it. By the end, you had a polished prototype that's ready to be connected to a real agent.
+You started this lab by just building — no setup, no theory, straight into a working project. Along the way you learned to read the tools around the build itself: which mode to reach for, which model tier fits the task, what your session is costing you as it grows, and how to preview a design before committing to it. By the end, you had a polished project that's ready to be connected to a real agent.
 
 | What | What it means | Why it matters |
 |---|---|---|
@@ -277,13 +277,13 @@ You started this lab by just building — no setup, no theory, straight into a w
 | **`/usage`** | Shows how much Claude you've used across the session | Tells you how far you've traveled, not just how full your backpack is |
 | **`/compact` and `/clear`** | `/compact` summarizes the conversation to free up space; `/clear` starts a fresh context window without touching your project files | Two different ways to manage a filling context window, depending on whether you want to keep history or drop it |
 | **`/design`** | Opens a visual canvas to sketch layout and style changes without touching your app's actual code | Lets you preview and approve a direction before spending a build turn on it |
-| **Iteration-first prototyping** | Structure first, polish second, AI integration third | Trying to do all three at once is how prototypes stall |
+| **Iteration-first building** | Structure first, polish second, AI integration third | Trying to do all three at once is how projects stall |
 
 
 ---
 
-## Next: Connect Your Prototype to Your Agent
+## Next: Connect Your Project to Your Agent
 
 Right now your app only replies with simulated responses. Next, in [Lab 1.3](../1.3-connect-webhook/README.md), you give your n8n agent a webhook address and connect this app to it, so every question gets a real answer from your contract.
 
-**[Next: Lab 1.3: Build the Webhook and Connect It to Your Prototype →](../1.3-connect-webhook/README.md)**
+**[Next: Lab 1.3: Build the Webhook and Connect It to Your Project →](../1.3-connect-webhook/README.md)**

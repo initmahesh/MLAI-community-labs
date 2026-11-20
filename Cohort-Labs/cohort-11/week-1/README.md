@@ -20,7 +20,7 @@ You can import a ready-made workflow, or [build it from scratch](./1.1-n8n-agent
 
 ---
 
-### [Lab 1.2: Build Your Prototype with Claude Code](./1.2-claude-prototype/README.md)
+### [Lab 1.2: Build Your Project with Claude Code](./1.2-claude-prototype/README.md)
 
 Your agent works, but only inside n8n. This lab gives it a face: a Contract Review web app where a user uploads a PDF, asks a question in a chat panel, and gets an answer. You'll build it with Claude Code without writing code yourself.
 
@@ -30,17 +30,17 @@ You'll start with simulated responses so you can check the interface first. Alon
 
 ---
 
-### [Lab 1.3: Build the Webhook and Connect It to Your Prototype](./1.3-connect-webhook/README.md)
+### [Lab 1.3: Build the Webhook and Connect It to Your Project](./1.3-connect-webhook/README.md)
 
-Your agent and your app don't know about each other yet. This lab gives your n8n agent a web address (a webhook) so other apps can send it a document and a question. Then you connect your prototype to that address, replacing the simulated responses with real answers from your agent.
+Your agent and your app don't know about each other yet. This lab gives your n8n agent a web address (a webhook) so other apps can send it a document and a question. Then you connect your project to that address, replacing the simulated responses with real answers from your agent.
 
 You can import a ready-made webhook workflow, or build it yourself block by block to see how it's wired.
 
-**You'll need:** the agent from Lab 1.1 and the prototype from Lab 1.2.
+**You'll need:** the agent from Lab 1.1 and the project from Lab 1.2.
 
 ---
 
-### [Lab 1.4: Push Your Prototype to GitHub](./1.4-push-code-to-github/README.md)
+### [Lab 1.4: Push Your Project to GitHub](./1.4-push-code-to-github/README.md)
 
 Your app only exists on your laptop. This lab puts it on GitHub, so it is backed up, shareable, and has a history you can go back to. Claude Code runs the Git commands for you, and you check the result in your repo. You'll also learn why to keep the repo private when your code holds a webhook address.
 

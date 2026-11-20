@@ -12,27 +12,19 @@ Each lab builds directly on the last. Work through them in order. No prior ML ex
 
 ## The Labs
 
-### [Lab 2.1 — Why Your Agent Breaks on Real Contracts](./2.1-why-we-need-RAG/Readme.md)
+### [Lab 2.1 — Fix Your Agent on Large Contracts with RAG in n8n](./2.1-understanding-RAG/Readme.md)
 
-Before you fix anything, you need to see what's actually broken. You'll take the agent from Week 1 and run it on a large contract — one that's closer to what real documents look like. It either fails outright or gives you a degraded answer. Either way, you'll understand exactly why.
+This lab has two parts. First, you take the agent from Week 1 and run it on a large contract, one that's closer to what real documents look like. It either fails outright or gives you a degraded answer, and you'll understand exactly why.
 
-This lab is short. It's a diagnostic, not a build. But it sets up everything that follows — once you see the failure mode, the solution in Lab 2.2 will make complete sense.
-
-**Time:** ~15 minutes
-
----
-
-### [Lab 2.2 — Build Your First RAG Pipeline](./2.2-understanding-RAG/Readme.md)
-
-This is where you build the fix. You'll create a two-workflow system: one that ingests a large contract and breaks it into searchable chunks, and one that retrieves exactly the right chunk when a user asks a question — without hitting context limits.
+Then you build the fix: a two-workflow system, one that ingests a large contract and breaks it into searchable chunks, and one that retrieves exactly the right chunk when a user asks a question, without hitting context limits.
 
 Along the way, you'll learn what embeddings actually are, why chunk size and overlap matter, what the Recursive Text Splitter does differently, and how to configure a vector store that actually works on PDF documents. By the end, you'll have a live contract Q&A system that handles large files correctly.
 
-**Time:** ~40 minutes
+**Time:** ~55 minutes
 
 ---
 
-### [Lab 2.3 — Agentic RAG: Contract Intelligence](./2.3-n8n-agenticRAG/Readme.md)
+### [Lab 2.2 — Agentic RAG: Contract Intelligence](./2.2-n8n-agenticRAG/Readme.md)
 
 Basic RAG works, but it takes an answer at face value. This lab makes the system agentic: it cites the exact clause it used for every answer, self-checks its own accuracy with a Faithfulness Judge, and automatically retries when its first answer isn't reliable enough.
 
@@ -42,7 +34,17 @@ Think of it as turning your contract Q&A system into a cautious legal research a
 
 ---
 
-### [Lab 2.5 — Give Your Agentic RAG a Web Layer](./2.5-agenticRAG-web-app/Readme.md)
+### [Lab 2.3 — Knowledge Graph RAG](./2.3-knowledge-graph-RAG/Readme.md)
+
+Agentic RAG still struggles when one answer is spread across several clauses. Search finds the passages that *look similar* to your question and misses the clauses that link to them. This lab adds a **knowledge graph**: Graphify reads a loan agreement and turns it into dots and lines, and you chat with it in an app and watch which parts of the graph each answer comes from.
+
+You open one Colab notebook, run it, and use the app in your browser. There is nothing to set up on your own computer.
+
+**Time:** ~30 minutes
+
+---
+
+### [Lab 2.4 — Give Your Agentic RAG a Web Layer](./2.4-agenticRAG-web-app/Readme.md)
 
 Your backend just got smarter — it now decides whether a question even needs the contract before it retrieves anything. Your web app from Week 1 doesn't know that happened yet. This lab reconnects the two: rewiring the app to match the new ingestion/chat split, and restyling it from a real design system instead of an improvised palette.
 

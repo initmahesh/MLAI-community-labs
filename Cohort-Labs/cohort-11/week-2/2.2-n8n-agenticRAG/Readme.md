@@ -1,22 +1,10 @@
-# Lab 2.3: Agentic RAG — Contract Intelligence
+# Lab 2.2: Agentic RAG — Contract Intelligence
 
-In [Lab 2.2](../2.2-understanding-RAG/Readme.md), you built a RAG pipeline that answers questions from a contract. But type **"Hi"** into it, and it still searches the whole contract before it replies. That's wasted time and money.
-
-The fix: let the system decide **before** it searches. A contract question gets a search; anything else gets a direct reply. That one decision is what makes RAG **agentic**.
-
-Here's the flow for this lab:
-
-- **Run the workflow.** See "Hi" skip the search while contract questions go through it.
-- **Break it on purpose.** Try a loan agreement and see where RAG still struggles.
-
-Here's the workflow you'll be running. **Reading the contract** happens once, when you upload it. **Answering a message** happens every time you send one: the Intent Router checks the message first, then either replies directly or searches the contract.
-
-![Agentic RAG workflow](assets/agentic-rag-flow.png)
-
----
+![banner](./assets/agentic-rag-flow.png)
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [How Agentic RAG Decides When to Search](#how-agentic-rag-decides-when-to-search)
 - [Part 1: Import the Workflow](#part-1-import-the-workflow)
@@ -29,9 +17,24 @@ Here's the workflow you'll be running. **Reading the contract** happens once, wh
 
 ---
 
+## Overview
+
+In [Lab 2.1](../2.1-understanding-RAG/Readme.md), you built a RAG pipeline that answers questions from a contract. But type **"Hi"** into it, and it still searches the whole contract before it replies. That's wasted time and money.
+
+The fix: let the system decide **before** it searches. A contract question gets a search; anything else gets a direct reply. That one decision is what makes RAG **agentic**.
+
+Here's the flow for this lab:
+
+- **Run the workflow.** See "Hi" skip the search while contract questions go through it.
+- **Break it on purpose.** Try a loan agreement and see where RAG still struggles.
+
+The diagram above shows the workflow you'll be running. **Reading the contract** happens once, when you upload it. **Answering a message** happens every time you send one: the Intent Router checks the message first, then either replies directly or searches the contract.
+
+---
+
 ## Prerequisites
 
-✅ **Lab 2.2 done.** You know how chunking, embeddings and vector search work.
+✅ **Lab 2.1 done.** You know how chunking, embeddings and vector search work.
 
 ✅ **n8n account** and an **OpenAI API key** with credit (from Week 1).
 
@@ -47,9 +50,9 @@ Here's the workflow you'll be running. **Reading the contract** happens once, wh
 
 Before you open n8n, you need to know what's different, because that difference is what you'll be watching for in this lab.
 
-The Lab 2.2 pipeline had one path: every message went straight to the contract search. This lab's workflow adds one step at the front that decides whether to search at all.
+The Lab 2.1 pipeline had one path: every message went straight to the contract search. This lab's workflow adds one step at the front that decides whether to search at all.
 
-| Traditional RAG (Lab 2.2) | Agentic RAG (this lab) |
+| Traditional RAG (Lab 2.1) | Agentic RAG (this lab) |
 |---|---|
 | Searches for every message, even "Hi" | Checks the message first and searches only when needed |
 | One fixed path | Two paths: reply directly, or search the contract |
@@ -68,7 +71,7 @@ So now you know what to look for. Next, let's get this workflow into your n8n.
 
 **What it is**: The workflow JSON you downloaded in Prerequisites. It's the full Agentic RAG system described above, with the upload pipeline, the Intent Router and both answer paths already built.
 
-**Why import it**: The ingestion part is the same as Lab 2.2, and you've already built that once. Importing it lets you skip rebuilding and spend your time on what's new: the routing.
+**Why import it**: The ingestion part is the same as Lab 2.1, and you've already built that once. Importing it lets you skip rebuilding and spend your time on what's new: the routing.
 
 **Action items**:
 
@@ -109,7 +112,7 @@ Now the workflow can run, but there's no contract to search yet. Let's give it o
 
 ## Part 3: Upload Your Contract
 
-This is the same ingestion you did in Lab 2.2: read, chunk, embed, store.
+This is the same ingestion you did in Lab 2.1: read, chunk, embed, store.
 
 **Action items**:
 
@@ -194,6 +197,20 @@ Vector search brings back only the closest chunk, and here that chunk just **poi
 
 This isn't a bug, it's a limit of RAG. To follow references across a document, you need a different structure.
 
+**Can't I just send the whole agreement to the model?** You could, and the model would see Schedule 1.1(a) and Section 2.7(d) together. But it costs a lot:
+
+- The **entire document** goes into the context window with **every question**, so you pay for those tokens each time you ask.
+- Longer context means **slower answers**, and the model can still miss details buried in the middle of a long document.
+- The cost grows with every extra question and every extra contract.
+
+A **Knowledge Graph** works the other way around. You read the agreement **once** and build the graph, with its sections, schedules and references already linked. After that, each question looks up only the connected pieces it needs, so you can ask as many questions as you like without re-sending the whole document.
+
+| Approach | Cost | Cross-references |
+|---|---|---|
+| Vector search (this lab) | Low, but returns only the closest chunk | Missed |
+| Whole document in context | High, paid on **every** question | Found |
+| Knowledge Graph (Lab 2.3) | One-time build, then small per question | Followed |
+
 ---
 
 ## Quick Reference
@@ -202,7 +219,7 @@ This isn't a bug, it's a limit of RAG. To follow references across a document, y
 |---|---|---|
 | "Hi" triggers a contract search | Traditional RAG searches on every message | Put an Intent Router before the search |
 | OpenAI nodes show errors | One of the three nodes is missing the credential | Select the same credential on the Chat Model and both Embeddings nodes |
-| Loan agreement answers are vague | Facts are spread across sections that refer to each other | Expected RAG limit, solved with Knowledge Graphs in Lab 2.4 |
+| Loan agreement answers are vague | Facts are spread across sections that refer to each other | Expected RAG limit, solved with Knowledge Graphs in Lab 2.3 |
 
 ---
 
@@ -212,4 +229,4 @@ Your agent now decides whether a message needs the contract before it searches.
 But when a fact is spread across linked sections, like in the loan agreement, vector search finds only one piece of it.
 In the next lab, you'll build a **Knowledge Graph** that connects those pieces, so the agent answers from the whole picture.
 
-[Go to Lab 2.4: Creating a Context Brain on Graph →](../2.4-kg-RAG/Readme.md)
+[Go to Lab 2.3: Knowledge Graph RAG →](../2.3-knowledge-graph-RAG/Readme.md)

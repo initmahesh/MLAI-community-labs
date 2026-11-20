@@ -1,4 +1,4 @@
-# Lab 1.3: Build the Webhook and Connect It to Your Prototype
+# Lab 1.3: Build the Webhook and Connect It to Your Project
 
 ## Table of Contents
 
@@ -24,7 +24,7 @@ By the end of this lab, your app and your agent will work together as one produc
 
 ✅ **Lab 1.1 complete** — your n8n contract review workflow is built and the AI agent responded correctly inside n8n's own chat interface.
 
-✅ **Lab 1.2 complete** — your `contract-review-app` prototype is built and replies with simulated responses. Keep the same Claude Code conversation open if you can, since it already knows your app's structure.
+✅ **Lab 1.2 complete** — your `contract-review-app` project is built and replies with simulated responses. Keep the same Claude Code conversation open if you can, since it already knows your app's structure.
 
 ✅ The **sample contract PDF** from Lab 1.1 — same file, use it again here. [Download it here](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQC2WQJhhIuyRq5JrVY13FwNAdwS4M5gB5w-qzBAm9V4mRQ?e=XyvLU4) if you don't have it.
 
@@ -166,7 +166,7 @@ Now that you've attached the webhook to your agent, it's ready to receive reques
 Stay in the same Claude Code conversation you used in Lab 1.2 — it already knows your app's structure. Copy the prompt below. Before running it, replace `<Your Webhook URL>` with the webhook link you copied in Part 1.
 
 ```
-Now add this feature to the existing prototype:
+Now add this feature to the existing project:
 
 A user uploads a contract file in the UI.
 The user enters a message in the chat input.
@@ -299,4 +299,4 @@ Make sure you are using the **Test URL** if your workflow is not published. The 
 
 Right now your app, now connected to your agent, lives in one folder on your Desktop. Next, in [Lab 1.4](../1.4-push-code-to-github/README.md), you push the `contract-review-app` folder to GitHub, so it is backed up, shareable, and has a history you can go back to.
 
-**[Next: Lab 1.4: Push Your Prototype to GitHub →](../1.4-push-code-to-github/README.md)**
+**[Next: Lab 1.4: Push Your Project to GitHub →](../1.4-push-code-to-github/README.md)**
