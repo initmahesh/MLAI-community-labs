@@ -97,13 +97,20 @@ We have already built and tested this skill for you. You can add it in either of
 
 **Way 1: Download it from our link**
 
-1. Download the skill from here: **[ADD YOUR SKILL LINK HERE]**
-2. Unzip it if needed, so you have a folder called `follow-up-loop` with a `SKILL.md` inside.
-3. Move that folder into your skills folder:
+1. Download the skill from here: **[⬇ Download follow-up-loop.skill](assets/follow-up-loop.skill?raw=true)**
+2. In Claude, open **Customize** from the left sidebar.
+3. Click **Add** at the top right of the Skills page.
+4. Choose **Upload skill** and select the `follow-up-loop.skill` file you just downloaded.
 
-```bash
-mv follow-up-loop ~/.claude/skills/
-```
+![Customize → Add → Upload skill](assets/1.png)
+
+5. Check the preview shows `follow-up-loop`, then click **Upload**.
+
+![Upload a skill dialog](assets/2.png)
+
+6. To confirm it worked, search for `follow-up-loop` under **Customize → Skills**. It should be listed under **Yours**.
+
+   ![follow-up-loop listed under Yours in Customize → Skills](assets/3.png)
 
 **Way 2: Copy it from this module**
 
@@ -180,8 +187,13 @@ THEN
 Run it once for real and show me the summary email. Also show me the eval table and the lint result.
 ```
 
-3. Let it work. It will build the skill, test it against the 12 scenarios, fix what fails, and then run it once for real.
-4. Review what it produced, using the rules from Module 1: clear description, numbered steps, reasons for rules, examples, an "Avoid" section.
+3. Claude will ask you a few questions before it builds anything. This is the skill creator checking the details. For each question, **select the recommended option**. If none is marked, pick the safest default that fits your setup. You can always change things later.
+
+   ![The skill creator's questions, each with a Recommended option](assets/4.png)
+4. Let it work. It will build the skill, test it against the 12 scenarios, fix what fails, and then run it once for real.
+5. Review what it produced, using the rules from Module 1: clear description, numbered steps, reasons for rules, examples, an "Avoid" section. When it finishes, you should see the eval table with every test marked PASS, like this:
+
+   ![Eval table with 12 tests all passing](assets/5.png)
 
 #### Why This Prompt Works
 
@@ -216,6 +228,14 @@ Run it manually once and check:
 - Did it **send** anything? (It must not. If it did, stop and fix the skill.)
 - Is the summary email easy to read in under two minutes?
 - Does the coverage note tell the truth about what it checked?
+
+To run it by hand, open a new session, type `/follow-up-loop` and send it. Claude reads your mail, calendar and chat, then tells you what it did.
+
+![Running /follow-up-loop by hand and the result Claude reports](assets/6.png)
+
+Then open your inbox. One summary email should be waiting for you, with deadlines first, then what needs you.
+
+![The summary email in the inbox](assets/7.png)
 
 Write down what is wrong. Fix the skill. Run it again. Once two or three manual runs look good, you are ready to schedule.
 
@@ -339,9 +359,37 @@ Look at what Claude shows you after it creates the task. Check these carefully:
 - That the routine has access to the **mail, calendar and chat connectors** it needs
 - That the skill is available to the routine (if your skill lives only on your computer, make sure it is also available in the place the routine runs, for example by committing it to your project's `.claude/skills/` folder)
 
+Here is what a good answer looks like. It shows the name, the schedule (`0 16 * * 1-5`), the time zone, the next run and the prompt:
+
+![Claude confirming the scheduled task with name, schedule, time zone and next run](assets/8.png)
+
 **Step 4: Run it once right now.**
 
 Most scheduling setups let you trigger a routine immediately. Do that, and confirm the email arrives and looks right. Do not wait until the next scheduled run to find out something is broken.
+
+In Claude:
+
+1. Click **Scheduled** in the left sidebar, then click your task to open it.
+
+   ![The Scheduled tasks page, with the follow-up task highlighted](assets/9.png)
+
+2. Click the **Run now** button (the play icon) at the top right.
+
+   ![The task page with the Run now button highlighted](assets/10.png)
+
+3. A new entry appears under **History**. Click it to open that run.
+
+   ![The task's History list, with the latest run highlighted](assets/11.png)
+
+4. Read what Claude reports. It should say what it checked, what it created, and that nothing was sent to anyone else.
+
+   ![The result of a scheduled run](assets/12.png)
+
+   **Why it may say it sent nothing:** if the skill already ran recently, this run can skip sending. The skill has a cooldown setting, `SUMMARY_COOLDOWN_HOURS`, set to **3 hours**. If a summary went out less than 3 hours ago, it will not send another one, and it will not create new drafts. In the screenshot above, another summary had gone out about 6 minutes earlier, so the run created nothing and sent nothing. That is the skill doing its job, not an error.
+
+   To see a full run, wait until the cooldown has passed (3 hours after your last summary) and click **Run now** again. If you are testing and want to run it straight away, ask Claude to ignore the cooldown for this one run (for example: "Run follow-up-loop now and treat the cooldown as off for this run"), as long as you are happy to get a second summary email.
+
+   > **Tip:** If you are not sure what cooldown your skill uses, ask Claude: "What is the cooldown on follow-up-loop?"
 
 **Step 5: Check after the next scheduled run.**
 
