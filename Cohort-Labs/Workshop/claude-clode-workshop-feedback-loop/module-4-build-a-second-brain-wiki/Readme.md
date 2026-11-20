@@ -1,5 +1,32 @@
 # Module 4: Build a Second Brain from Your Meeting Transcripts
 
+## Table of Contents
+
+- [What You Will Learn](#what-you-will-learn)
+- [The Problem: Knowledge Buried in Transcripts](#the-problem-knowledge-buried-in-transcripts)
+- [What Is a Second Brain?](#what-is-a-second-brain)
+- [Why a Wiki, and Why Obsidian?](#why-a-wiki-and-why-obsidian)
+- [The Tool We Use: Graphify](#the-tool-we-use-graphify)
+- [How It Works: The Big Picture](#how-it-works-the-big-picture)
+  - [Idea 1: Write ideas, not meeting notes](#idea-1-write-ideas-not-meeting-notes)
+  - [Idea 2: Keep the raw sources, and link back to them](#idea-2-keep-the-raw-sources-and-link-back-to-them)
+  - [Idea 3: Be honest about what is not known](#idea-3-be-honest-about-what-is-not-known)
+- [Build It: Step by Step](#build-it-step-by-step)
+  - [Before You Start](#before-you-start)
+  - [Step 1: Create the folder for your vault](#step-1-create-the-folder-for-your-vault)
+  - [Step 2: Get the Skill](#step-2-get-the-skill)
+  - [Step 3: Review the plan](#step-3-review-the-plan)
+  - [Step 4: Open it in Obsidian](#step-4-open-it-in-obsidian)
+  - [What the Finished Second Brain Page Looks Like](#what-the-finished-second-brain-page-looks-like)
+- [Before and After: Asking a Question](#before-and-after-asking-a-question)
+  - [Before: Asking Without the Wiki](#before-asking-without-the-wiki)
+  - [After: Asking With the Wiki](#after-asking-with-the-wiki)
+  - [Try It Yourself](#try-it-yourself)
+- [Keeping the Wiki Fresh](#keeping-the-wiki-fresh)
+- [Common Mistakes](#common-mistakes)
+- [Quick Check](#quick-check)
+- [Key Takeaways](#key-takeaways)
+
 ## What You Will Learn
 
 In this lesson you will be learning how to turn a pile of meeting transcripts into a wiki that you can browse in Obsidian and that Claude can answer questions from.

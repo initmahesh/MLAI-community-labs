@@ -1,5 +1,31 @@
 # Module 1: What Are Skills and How Do You Write a Good One?
 
+## Table of Contents
+
+- [What You Will Learn](#what-you-will-learn)
+- [The Problem: Repeating Yourself](#the-problem-repeating-yourself)
+- [So, What Is a Skill?](#so-what-is-a-skill)
+- [Why Do We Need Skills?](#why-do-we-need-skills)
+  - [The Four Big Wins](#the-four-big-wins)
+- [How Skills Work Behind the Scenes](#how-skills-work-behind-the-scenes)
+- [What Is Inside a Skill Folder?](#what-is-inside-a-skill-folder)
+  - [Where Does the Skill Live?](#where-does-the-skill-live)
+- [How to Write a Good Skill](#how-to-write-a-good-skill)
+  - [Rule 1: Write the description like you are writing a trigger](#rule-1-write-the-description-like-you-are-writing-a-trigger)
+  - [Rule 2: One skill, one job](#rule-2-one-skill-one-job)
+  - [Rule 3: Write steps, not essays](#rule-3-write-steps-not-essays)
+  - [Rule 4: Explain the why, not just the what](#rule-4-explain-the-why-not-just-the-what)
+  - [Rule 5: Show an example](#rule-5-show-an-example)
+  - [Rule 6: Keep SKILL.md short](#rule-6-keep-skillmd-short)
+  - [Rule 7: Say what NOT to do](#rule-7-say-what-not-to-do)
+- [Common Mistakes](#common-mistakes)
+- [Hands-On: Build Your First Skill with the Skill Builder](#hands-on-build-your-first-skill-with-the-skill-builder)
+  - [Step 1: Install the skill builder](#step-1-install-the-skill-builder)
+  - [Step 2: Check that it is installed and read how it is written](#step-2-check-that-it-is-installed-and-read-how-it-is-written)
+  - [What happens next](#what-happens-next)
+- [Quick Check](#quick-check)
+- [Key Takeaways](#key-takeaways)
+
 ## What You Will Learn
 
 In this lesson you will be learning about skills in Claude, why they matter, and how to write a good one.

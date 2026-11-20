@@ -1,5 +1,28 @@
 # Module 3: Add a Feedback Loop So Your Skill Learns on Its Own
 
+## Table of Contents
+
+- [What You Will Learn](#what-you-will-learn)
+- [The Problem: A Skill That Never Learns](#the-problem-a-skill-that-never-learns)
+- [What Is a Feedback Loop?](#what-is-a-feedback-loop)
+- [The Four Parts of the Loop](#the-four-parts-of-the-loop)
+  - [Part A: The Learning Store (the dashboard)](#part-a-the-learning-store-the-dashboard)
+  - [Part B: COLLECT Mode (reading your replies)](#part-b-collect-mode-reading-your-replies)
+  - [Part E: AUTO-APPLY (writing the change into the skill)](#part-e-auto-apply-writing-the-change-into-the-skill)
+  - [Part C: The Summary Email Uses Your Rules](#part-c-the-summary-email-uses-your-rules)
+  - [Part D: Schedule the Collector](#part-d-schedule-the-collector)
+- [Why This Is Safe](#why-this-is-safe)
+- [Two Ways to Add the Loop](#two-ways-to-add-the-loop)
+  - [Option A: Use Our Skill (Fastest)](#option-a-use-our-skill-fastest)
+  - [Option B: Build It with the Prompt](#option-b-build-it-with-the-prompt)
+  - [Why This Prompt Works](#why-this-prompt-works)
+- [Step 4: Prove the Loop Works (10 Minutes)](#step-4-prove-the-loop-works-10-minutes)
+  - [How to Know You Passed](#how-to-know-you-passed)
+- [Things to Know](#things-to-know)
+- [Common Mistakes](#common-mistakes)
+- [Quick Check](#quick-check)
+- [Key Takeaways](#key-takeaways)
+
 ## What You Will Learn
 
 In this lesson you will be learning how to make your skill get better over time, using nothing more than your replies to its daily email.
