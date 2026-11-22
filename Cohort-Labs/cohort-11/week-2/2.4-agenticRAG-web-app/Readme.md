@@ -77,12 +77,60 @@ Uploads now work from outside n8n. Next, questions.
 
 Questions can come in now, but where do the answers go? Both paths still reply to n8n's chat window, which you just removed.
 
-### Step 3: Replace the chat outputs
+### Step 3: Replace the chat outputs nodes
+
+Both workflows still end in n8n's chat window, which no longer exists. Each one needs a **Respond to Webhook** node so the answer goes back to your app instead.
+
+#### Ingestion workflow
+
+You already added the **Respond to Webhook** node in Step 1, so there is nothing to replace here. Check that your ingestion workflow reads:
+
+**Webhook → Simple Vector Store → Respond to Webhook**
+
+The **Respond to Webhook** node tells your app the contract has finished indexing. Your app only needs to know the upload worked, so leave its settings at the defaults.
+
+![ingestion-workflow](./images/16.png)
+
+#### Chat workflow
+
+The chat workflow has two outputs, so you replace both.
 
 1. Delete **Chat - Direct** → add a **Respond to Webhook** node → connect **Direct Response Agent** to it.
 2. Delete **Chat - Contract** → add a **Respond to Webhook** node → connect **AI Agent1** to it.
 
 ![webhook-respond](./images/webhook-respond.png)
+
+Now set up **both** new **Respond to Webhook** nodes the same way, so your app gets the agent's answer back cleanly. Open each one and make these three changes:
+
+**1. Respond With:** choose **Text**.
+
+**2. Response Body:** switch the field to **Expression** and paste:
+
+```
+{{ $json.output }}
+```
+
+The AI agents put their answer in a field called `output`. This sends just the answer, not the wrapper around it.
+
+**3. Add Option → Response Headers → Add Header.** Paste each value into its own box:
+
+Name:
+
+```
+Content-Type
+```
+
+Value:
+
+```
+application/json
+```
+
+![respond-to-webhook-settings](./images/15.png)
+
+Do this on both nodes. If one is missed, that path (general or contract) will send back a reply your app can't read.
+
+> **Note:** You don't need to update the ingestion workflow's **Respond to Webhook** node. Your app never displays anything from the ingestion reply. It only checks that the request succeeded, then swaps "Indexing contract…" for "Contract loaded" and enables the chat input. The chat replies are different: your app shows them to the user as the assistant's answer, so they need the `Text` body and `Content-Type` header.
 
 ### Step 4: Copy both webhook URLs
 
@@ -97,15 +145,17 @@ Click **Execute Workflow** so it's actually listening. Then open both webhook no
 
 ## Part 2: Your App Still Thinks There's Only One Job
 
-Go back to the Claude Code session you used to build the app — or open a fresh one and point it at the `contract-review-app` folder, either is fine. Give it this single prompt, with the two URLs you copied in Part 1 swapped in:
+Go back to the Claude Code session you used to build the app — or open a fresh one and point it at the `contract-review-app` folder, either is fine. Give it this single prompt, with the two URLs you copied in Part 1 swapped in at the very top:
 
 ```
+Ingestion Webhook URL: <Your Ingestion Webhook URL>
+Chat Webhook URL: <Your Chat Webhook URL>
+
 My contract-review-app currently sends the uploaded file and the chat
 message together, to one webhook, on every single send. My backend has
 changed — it now has two separate webhooks, and app.js needs to match:
 
-1. An ingestion webhook — takes the PDF once, right after upload:
-   <Your Ingestion Webhook URL>
+1. An ingestion webhook — takes the PDF once, right after upload.
 
    When a PDF is uploaded (loadFile), immediately POST it as binary
    form-data (field name "data") to this webhook. Show a brief
@@ -113,8 +163,7 @@ changed — it now has two separate webhooks, and app.js needs to match:
    input disabled until ingestion succeeds. If it fails, show an error
    and let the user re-upload.
 
-2. A chat webhook — takes just the typed message, per turn:
-   <Your Chat Webhook URL>
+2. A chat webhook — takes just the typed message, per turn.
 
    Change the chat form submit handler to POST only the message to
    this webhook — remove the file from the FormData sent on every chat
@@ -145,7 +194,7 @@ You'll need a sample contract for this — [download it here](https://pragyaallc
 
 ![webhookurl](./images/4.png)
 
-now click on execute workflow and go to your app's contract page and upload the sample contract. The chat panel should show **"Contract loaded: `<your file name>`.pdf."** Back in n8n, you should see green checkmarks travel across the whole ingestion path — Webhook → Simple Vector Store → Embeddings → Respond to Webhook :
+now click on execute workflow and go to your app's contract page and upload the sample contract. The chat panel should show **"Contract loaded: `<your file name>`."** Back in n8n, you should see green checkmarks travel across the whole ingestion path — Webhook → Simple Vector Store → Embeddings → Respond to Webhook :
 
 ![webhookurl](./images/5.png)
 
@@ -160,7 +209,7 @@ Now go back to your app and send any message in the chat. You'll get an error ba
 Open the **Intent Router** node — that's the first node Webhook1 hands off to, so it's the first place execution can fail. Fix text to classify, previously it was using from chat trigger now you need to update it for webhook1 trigger
 
 ```
-{{ $('Webhook1').item.json.body.message }}
+{{ $json.body.message }}
 ```
 
 ![webhookurl](./images/7.png)
@@ -194,7 +243,7 @@ You'll hit an error a third time, and this one's on **AI Node — Query Rewriter
 Open it and apply the identical fix:
 
 ```
-{{ $('Webhook1').item.json.body.message }}
+{{ $json.body.message }}
 ```
 
 ![webhookurl](./images/10.png)
@@ -217,39 +266,50 @@ Back in Lab 1.2, you described a look in a sentence and let Claude fill in the b
 
 There's a better way to hand Claude something it should follow every single time, without you re-explaining it: turn it into a **skill**. Before we restyle anything, let's build one.
 
-### What's a Skill, Quickly
+### What's a Skill?
 
-A skill is just a Markdown file with instructions in it. The filename becomes the slash command. Once it's installed, typing `/skill-name` hands Claude the whole file as a ready-made prompt — no retyping, no forgetting a rule you set last week.
+Think of a skill as a **saved instruction sheet** for Claude — like handing a new designer your company's brand guidelines on day one, instead of explaining your colors and fonts out loud every time.
 
-**To install any skill you get your hands on (including the one we're about to use):**
+It's just a text file (Markdown) with the rules written down. Once you upload it to Claude, you can call it by name — `/design-system` — or simply mention it in your message, and Claude reads the whole sheet and follows it. You don't have to retype anything, and Claude won't "forget" a rule you gave it last week.
 
-1. Open Claude's settings and go to **Capabilities → Skills**
-2. Click **Upload skill**
-3. Select the `.md` (or `.zip`) file for the skill
-4. Confirm — it now shows up as a slash command you can invoke any time
+**Why it matters here:** a design system is exactly the kind of thing that's tedious to re-explain: exact colors, font sizes, spacing, corner roundness. Write it down once as a skill and every future project can reuse it.
 
-### Now, Back to Your App's Design
+### Step 1: Download the Skill
 
-`SKILL.md` is the fix for the "described a look in a sentence" problem — a real design system written down once: a color palette, a type scale, a 4px spacing grid, and patterns for things like status badges. Nothing in it is a guess. And instead of pasting its contents into a prompt every time you want Claude to follow it, we're going to turn it into a skill you invoke by name.
+The design system for this lab is already written for you in `SKILL.md` — a real color palette, type scale, 4px spacing grid, and patterns for things like status badges. Nothing in it is a guess.
 
-**Download the skill:**
+[Download SKILL.md from GitHub](./SKILL.md)
 
-[Download the SKILL.md skill from GitHub](./SKILL.md)
+### Step 2: Upload It into Claude
 
-**Upload it into Claude**, Click on your profile in the bottom left corner → Settings → Skills → Click on Add at top right corner → Select Upload skill → now upload your skill here that you just downloaded → save:
+You only do this once, and the same steps work for any skill you get later.
 
-**Now use it on your app.** Notice we're not using the `/design` canvas command here — that opens a sketch-first canvas. This is a skill, invoked directly, that already knows the full design system and applies it straight to your code:
+1. In Claude's left sidebar, click **Customize** (marked **1** below)
+2. Make sure you're on the **Skills** tab, then click **Add** at the top right (**2**)
+3. Choose **Upload skill** from the dropdown (**3**)
+
+![Customize, then Add, then Upload skill](./images/skill-add-menu.png)
+
+4. Select the `SKILL.md` file you just downloaded. Claude shows a preview with the skill's name (`design-system`) and what it does
+5. Click **Upload**
+
+![Upload a skill dialog showing SKILL.md and the design-system preview](./images/skill-upload-dialog.png)
+
+That's it — `design-system` is now installed and ready to use.
+
+### Step 3: Use It on Your App
+
+This is different from the `/design` command you used in Lab 1.2, which opens a sketch-first canvas. Here, Claude already knows your full design system and applies it straight to your code. Paste this into Claude Code:
 
 ```
-use design-system skill and  Restyle styles.css for the contract-review-app to follow our
+Use the /design-system skill and restyle styles.css for the contract-review-app to follow our
 design system exactly — palette, type scale, 4px spacing grid, and
-border-radius rules. Don't change index.html's structure or app.js's
-logic, this is a styles.css pass only.
+border-radius rules.
 ```
 
-![skill](./images/13.png)
+![Contract Review app restyled with the design-system skill](./images/part5-empty-state.png)
 
-Refresh and take a look. Same layout, same behavior underneath — just a visual language you can now point back to a real source instead of a memory of what looked nice. If something still looks off, tell Claude which rule in `design.md` it missed, rather than describing the fix yourself. The skill knows better than either of you at this point.
+Refresh and take a look. Same layout, same behavior underneath — just a visual language you can now point back to a real source instead of a memory of what looked nice. If something still looks off, tell Claude which rule in `SKILL.md` it missed, rather than describing the fix yourself. The skill knows better than either of you at this point.
 
 ---
 
@@ -260,12 +320,14 @@ You already proved the wiring works back in Part 3 — upload, ingest, ask, answ
 Open the app fresh and walk through it slowly, checking it against the design system as you go:
 
 1. **The empty state, before you upload anything.** Text should be Inter Display, primary text in Grey 900, secondary/hint text in Grey 500 — not the old navy or orange showing up anywhere.
+
+   ![Restyled empty state](./images/part5-empty-state.png)
+
 2. **Upload the sample contract.** Watch the "Indexing contract…" status — its spacing and type should match the same 4px grid and type scale as everything else, not feel like a leftover from the old style.
 3. **The loaded contract + chat layout.** Check spacing between sections — does it look like multiples of 4px, or are there odd gaps that were never redone? Cards and panels should carry the rounded corners `design.md` specifies (8px for cards, 6px for buttons and inputs).
 4. **Send a real question** — *"What are the payment terms?"* — and look at the response bubble itself: body text should read as Paragraph Large Medium, not a random size Claude picked on its own.
 
-
-![skill](./images/14.png)
+   ![Restyled app with a contract loaded and the assistant answering](./images/part5-loaded-chat.png)
 
 ---
 
