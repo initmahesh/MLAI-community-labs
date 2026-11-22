@@ -182,34 +182,21 @@ What happens if the borrower misses a payment?
 
 ![assets](assets/16.png)
 
-You'll get answers with citations, but they're vague. They say *"as set forth in Schedule 1.1(a)"* without telling you what Schedule 1.1(a) says.
+You'll get correct answers with citations, but they take longer than before.
 
 **Why?** In a loan agreement, one fact is spread across several places:
 
 > *"The applicable interest rate shall be the Base Rate plus the Applicable Margin, as defined in Schedule 1.1(a), subject to periodic adjustment in accordance with Section 2.7(d)."*
 
-Vector search brings back only the closest chunk, and here that chunk just **points to** the answer.
+The first chunk only **points to** the answer, so the agent has to search again for Schedule 1.1(a), then again for Section 2.7(d). That means:
 
-| Contract type | How facts are written | RAG accuracy |
-|---|---|---|
-| Test contract | Each fact in one clause | High |
-| Loan agreement | Facts spread across sections and schedules | Lower |
+- **Slower answers**, because every extra search is another round trip.
+- **More tokens**, because every search pulls more text into the model.
+- **The same work on every question**, because the agent doesn't remember how the sections connect.
 
-This isn't a bug, it's a limit of RAG. To follow references across a document, you need a different structure.
+**The fix: a Knowledge Graph.** We read the agreement **once** and store its sections, schedules and references as a graph. Every question then **reuses the same graph** and follows the saved links instead of searching again, so answers are faster and use fewer tokens.
 
-**Can't I just send the whole agreement to the model?** You could, and the model would see Schedule 1.1(a) and Section 2.7(d) together. But it costs a lot:
-
-- The **entire document** goes into the context window with **every question**, so you pay for those tokens each time you ask.
-- Longer context means **slower answers**, and the model can still miss details buried in the middle of a long document.
-- The cost grows with every extra question and every extra contract.
-
-A **Knowledge Graph** works the other way around. You read the agreement **once** and build the graph, with its sections, schedules and references already linked. After that, each question looks up only the connected pieces it needs, so you can ask as many questions as you like without re-sending the whole document.
-
-| Approach | Cost | Cross-references |
-|---|---|---|
-| Vector search (this lab) | Low, but returns only the closest chunk | Missed |
-| Whole document in context | High, paid on **every** question | Found |
-| Knowledge Graph (Lab 2.3) | One-time build, then small per question | Followed |
+We'll build this in **Lab 2.3**.
 
 ---
 
@@ -219,14 +206,14 @@ A **Knowledge Graph** works the other way around. You read the agreement **once*
 |---|---|---|
 | "Hi" triggers a contract search | Traditional RAG searches on every message | Put an Intent Router before the search |
 | OpenAI nodes show errors | One of the three nodes is missing the credential | Select the same credential on the Chat Model and both Embeddings nodes |
-| Loan agreement answers are vague | Facts are spread across sections that refer to each other | Expected RAG limit, solved with Knowledge Graphs in Lab 2.3 |
+| Loan agreement answers are slow and use more tokens | Facts are spread across sections, so the agent searches several times on every question | Expected RAG limit, solved with Knowledge Graphs in Lab 2.3 |
 
 ---
 
 ## What's Next
 
 Your agent now decides whether a message needs the contract before it searches.
-But when a fact is spread across linked sections, like in the loan agreement, vector search finds only one piece of it.
-In the next lab, you'll build a **Knowledge Graph** that connects those pieces, so the agent answers from the whole picture.
+But when a fact is spread across linked sections, like in the loan agreement, the agent has to search again and again, which is slow and uses more tokens.
+In the next lab, you'll build a **Knowledge Graph** that connects those pieces once, so every question can reuse it.
 
 [Go to Lab 2.3: Knowledge Graph RAG →](../2.3-knowledge-graph-RAG/Readme.md)
