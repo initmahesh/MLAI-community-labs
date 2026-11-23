@@ -196,7 +196,7 @@ The first chunk only **points to** the answer, so the agent has to search again 
 
 **The fix: a Knowledge Graph.** We read the agreement **once** and store its sections, schedules and references as a graph. Every question then **reuses the same graph** and follows the saved links instead of searching again, so answers are faster and use fewer tokens.
 
-We'll build this in **Lab 2.3**.
+We'll build this in [**Lab 2.3**](../2.3-knowledge-graph-RAG/Readme.md).
 
 ---
 
@@ -213,7 +213,7 @@ We'll build this in **Lab 2.3**.
 ## What's Next
 
 Your agent now decides whether a message needs the contract before it searches.
-But when a fact is spread across linked sections, like in the loan agreement, the agent has to search again and again, which is slow and uses more tokens.
-In the next lab, you'll build a **Knowledge Graph** that connects those pieces once, so every question can reuse it.
+But your web app doesn't know about that yet. It still talks to your backend the old way, one message and one webhook at a time.
+In the next lab, you'll give your agent a **web layer**, so you can chat with it from your own app.
 
-[Go to Lab 2.3: Knowledge Graph RAG →](../2.3-knowledge-graph-RAG/Readme.md)
+[Go to Lab 2.4: Agentic RAG Web App →](../2.4-agenticRAG-web-app/Readme.md)
