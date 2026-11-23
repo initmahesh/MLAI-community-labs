@@ -19,6 +19,7 @@ No new coding concepts here. Just Claude Code, the app you already have, and abo
 - [Part 3: Test It Inside n8n First](#part-3-test-it-inside-n8n-first)
 - [Part 4: Teach Claude Your Design System — as a Skill](#part-4-teach-claude-your-design-system--as-a-skill)
 - [Part 5: Try the Whole Thing](#part-5-try-the-whole-thing)
+- [Part 6: Push Your Code to GitHub](#part-6-push-your-code-to-github)
 - [What You Learned](#what-you-learned)
 
 ---
@@ -328,6 +329,20 @@ Open the app fresh and walk through it slowly, checking it against the design sy
 4. **Send a real question** — *"What are the payment terms?"* — and look at the response bubble itself: body text should read as Paragraph Large Medium, not a random size Claude picked on its own.
 
    ![Restyled app with a contract loaded and the assistant answering](./images/part5-loaded-chat.png)
+
+---
+
+## Part 6: Push Your Code to GitHub
+
+Your app now has a web layer and a design system, so it's worth saving. Pushing it to GitHub gives you a backup and a version history you can come back to.
+
+Paste this into Claude Code:
+
+```
+Push the contract-review-app to GitHub so the repo is up to date. Check git status first, stage all changes, write a short commit message describing what changed, and push to the current branch.
+```
+
+Open your repo on GitHub and refresh. Your latest commit should show up at the top of the file list.
 
 ---
 
