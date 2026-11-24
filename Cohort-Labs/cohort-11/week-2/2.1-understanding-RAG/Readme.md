@@ -260,7 +260,21 @@ Both give you the same two workflows. 👉 **[Build from Scratch →](./build-fr
 
 ### Step 1: Upload the contract
 
-Open the ingestion workflow, click **"Execute Workflow"**, upload the sample contract and submit. Every block should complete successfully. Do this first: you can't search a vector store that's empty.
+Open the ingestion workflow and click **"Execute Workflow"**. The **On form submission** block now waits for you to submit the form.
+
+![Ingestion workflow waiting for the form submission](./assets/ingestion-1-waiting.png)
+
+A test form opens in a new tab. Click **Choose files**, select the sample contract, and click **Submit**.
+
+![Upload Contract form with the sample contract selected](./assets/ingestion-2-upload-form.png)
+
+You'll see **"Form Submitted: Your response has been recorded"**.
+
+![Form Submitted confirmation](./assets/ingestion-3-form-submitted.png)
+
+Go back to n8n. Every block should show a green check. The **Token Splitter** cut the contract into chunks (7 in this example), and the **Simple Vector Store** output shows each chunk's text under `pageContent`. Do this first: you can't search a vector store that's empty.
+
+![Ingestion workflow completed successfully, with the chunks stored in the Simple Vector Store](./assets/ingestion-4-success.png)
 
 ![flow](./assets/1.24.png)
 

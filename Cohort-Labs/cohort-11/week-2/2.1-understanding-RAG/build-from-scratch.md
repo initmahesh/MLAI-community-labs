@@ -147,11 +147,19 @@ Log into n8n and click **Create Workflow** (top right). Start from a blank canva
 
 ![flow](./assets/1.12.png)
 
+**Set the loader.** Choose **Binary**, **PDF** and **Custom** so the loader reads the uploaded file as a real PDF and lets you pick your own splitter. The default settings give garbled text or an error on PDFs.
+
 ![flow](./assets/13.png)
+
+**Attach a splitter.** The loader shows a warning until it has a text splitter, because a whole contract is too big to embed as one piece. Click the **+** under **Text Splitter** to add one.
 
 ![flow](./assets/14.png)
 
+**Pick the Recursive Character Text Splitter.** n8n recommends it for most uses. It cuts at paragraph breaks first, so each contract clause usually stays in one chunk.
+
 ![flow](./assets/15.png)
+
+**Set the chunk overlap to `100`.** Each chunk repeats the last 100 characters of the one before it, so a clause that falls on a boundary is still readable in full.
 
 ![flow](./assets/16.png)
 
@@ -327,12 +335,7 @@ Use this tool to store, retrieve, and search vector embeddings from previously p
 
 ![flow](./assets/1.22.png)
 
-| Limit | Effect |
-|---|---|
-| Too low (1-2) | May miss the relevant chunk |
-| **5** ✅ | Good starting point |
-| 8-10 | Try this if answers feel incomplete |
-| Too high | Floods the prompt with context the model can't use well |
+We use **5** because it's enough to cover the clauses a question usually touches, without adding much text to the prompt. If you increase it, the agent retrieves more chunks per question, which can fill in gaps in an answer but costs more tokens and adds more text the model has to sift through.
 
 ---
 

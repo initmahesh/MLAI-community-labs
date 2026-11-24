@@ -146,6 +146,14 @@ Now for the real test: is the "Hi" problem actually fixed?
 
 ![assets](assets/13.png)
 
+   **What the Query Rewriter does.** The **AI Node — Query Rewriter** is a query enhancer. People ask short, casual questions, but the contract uses formal wording, and vector search can miss the right chunk if the words don't line up. So before the search, this AI node rewrites the question into a better search query, adding the terms the contract is likely to use.
+
+   In the screenshot above, *"what is this contract about?"* is turned into:
+
+   > *purpose and scope of the agreement, Purpose of Agreement, Scope of Agreement, 'Purpose', 'Scope', 'Objective', 'Whereas', 'Recitals'*
+
+   Those are the headings where a contract states what it's about. The search then finds the right chunks, and the **RAG Agent** answers from them. Click the node's **Embeddings OpenAI1** step in the logs to see the rewritten query that was actually searched.
+
 4. Try a few messages from each column and watch which path lights up:
 
 | General (no search) | Contract (full search) |
