@@ -325,4 +325,4 @@ You built an agent on a visual canvas. In Lab 1.2, you'll build a real app with 
 
 Save this workflow — you'll come back to it.
 
-[Go to Lab 1.2: Build Your Prototype with Claude Code →](../1.2-claude-prototype/README.md)
+[Go to Lab 1.2: Build Your Project with Claude Code →](../1.2-claude-prototype/README.md)

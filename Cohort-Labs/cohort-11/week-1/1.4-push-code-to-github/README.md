@@ -1,4 +1,4 @@
-# Lab 1.4: Push Your Prototype to GitHub
+# Lab 1.4: Push Your Project to GitHub
 
 ## Table of Contents
 

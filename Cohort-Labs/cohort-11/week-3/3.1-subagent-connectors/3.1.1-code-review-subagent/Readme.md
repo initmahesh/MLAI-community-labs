@@ -24,7 +24,7 @@ Here's the flow for this lab:
 
 ## Prerequisites
 
-✅ **Lab 2.3.1 done** — you have a working `contract-review-app` folder.
+✅ **Lab 2.4 done** — you have a working `contract-review-app` folder.
 
 ✅ **Claude Code Desktop** installed and signed in.
 

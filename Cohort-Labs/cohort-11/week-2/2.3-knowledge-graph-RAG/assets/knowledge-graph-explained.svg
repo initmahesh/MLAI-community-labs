@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <!-- title -->
+  <text x="600" y="62" text-anchor="middle" font-size="38" font-weight="700" fill="#1f2937">What is a knowledge graph?</text>
+  <text x="600" y="98" text-anchor="middle" font-size="21" fill="#4b5563">It stores the things in a document, and how they connect.</text>
+
+  <!-- left panel -->
+  <rect x="40" y="130" width="430" height="400" rx="18" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+  <text x="60" y="165" font-size="20" font-weight="700" fill="#1f2937">1. The contract</text>
+  <text x="60" y="188" font-size="15" fill="#6b7280">One fact is spread over several clauses</text>
+  <g>
+    <rect x="60" y="205" width="390" height="92" rx="12" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+    <text x="78" y="231" font-size="15" font-weight="700" fill="#854d0e">Section 2.2</text>
+    <text x="78" y="256" font-size="18" fill="#1f2937">The Interest Rate is the Spread</text>
+    <text x="78" y="279" font-size="18" fill="#1f2937">plus the Benchmark.</text>
+
+    <rect x="60" y="309" width="390" height="92" rx="12" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+    <text x="78" y="335" font-size="15" font-weight="700" fill="#854d0e">Section 1.1 (definitions)</text>
+    <text x="78" y="360" font-size="18" fill="#1f2937">Term SOFR can never be less</text>
+    <text x="78" y="383" font-size="18" fill="#1f2937">than the Index Floor.</text>
+
+    <rect x="60" y="413" width="390" height="92" rx="12" fill="#fef9c3" stroke="#eab308" stroke-width="1.5"/>
+    <text x="78" y="439" font-size="15" font-weight="700" fill="#854d0e">Section 2.2.4</text>
+    <text x="78" y="464" font-size="18" fill="#1f2937">The Default Rate is 5% above</text>
+    <text x="78" y="487" font-size="18" fill="#1f2937">the Interest Rate.</text>
+  </g>
+
+  <!-- arrow -->
+  <text x="530" y="300" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2937">Graphify</text>
+  <text x="530" y="322" text-anchor="middle" font-size="15" fill="#4b5563">turns the text</text>
+  <text x="530" y="342" text-anchor="middle" font-size="15" fill="#4b5563">into a graph</text>
+  <line x1="488" y1="362" x2="560" y2="362" stroke="#374151" stroke-width="4"/>
+  <polygon points="574,362 556,352 556,372" fill="#374151"/>
+
+  <!-- right panel -->
+  <rect x="590" y="130" width="570" height="400" rx="18" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+  <text x="610" y="165" font-size="20" font-weight="700" fill="#1f2937">2. The knowledge graph</text>
+  <text x="610" y="188" font-size="15" fill="#6b7280">The same facts, as things and connections</text>
+
+  <!-- edges -->
+  <g stroke="#6b7280" stroke-width="3">
+    <line x1="790" y1="335" x2="960" y2="255"/>
+    <line x1="790" y1="335" x2="985" y2="360"/>
+    <line x1="985" y1="360" x2="1035" y2="460"/>
+    <line x1="705" y1="450" x2="790" y2="335"/>
+  </g>
+  <!-- edge labels -->
+  <g font-size="15" font-weight="600" fill="#374151" text-anchor="middle" stroke="#f8fafc" stroke-width="6" paint-order="stroke">
+    <text x="880" y="285">uses</text>
+    <text x="890" y="356">uses</text>
+    <text x="1076" y="404">limited by</text>
+    <text x="728" y="392">adds 5%</text>
+  </g>
+  <!-- nodes -->
+  <g text-anchor="middle" font-weight="700" fill="#ffffff">
+    <circle cx="790" cy="335" r="56" fill="#7b2cbf"/>
+    <text x="790" y="331" font-size="17">Interest</text><text x="790" y="352" font-size="17">Rate</text>
+
+    <circle cx="965" cy="250" r="44" fill="#2a9d8f"/>
+    <text x="965" y="256" font-size="17">Spread</text>
+
+    <circle cx="990" cy="362" r="44" fill="#2a9d8f"/>
+    <text x="990" y="358" font-size="16">Term</text><text x="990" y="378" font-size="16">SOFR</text>
+
+    <circle cx="1040" cy="462" r="40" fill="#2e86ab"/>
+    <text x="1040" y="458" font-size="16">Index</text><text x="1040" y="478" font-size="16">Floor</text>
+
+    <circle cx="700" cy="455" r="44" fill="#e76f51"/>
+    <text x="700" y="451" font-size="16">Default</text><text x="700" y="471" font-size="16">Rate</text>
+  </g>
+
+  <!-- bottom: how to read it -->
+  <rect x="40" y="560" width="1120" height="170" rx="18" fill="#eef2ff" stroke="#c7d2fe" stroke-width="2"/>
+  <text x="600" y="598" text-anchor="middle" font-size="22" font-weight="700" fill="#1f2937">How to read it</text>
+  <g>
+    <circle cx="110" cy="660" r="22" fill="#2a9d8f"/>
+    <text x="150" y="655" font-size="22" font-weight="700" fill="#1f2937">A dot is a thing</text>
+    <text x="150" y="682" font-size="17" fill="#4b5563">a term, a clause, a party</text>
+
+    <line x1="470" y1="660" x2="530" y2="660" stroke="#6b7280" stroke-width="4"/>
+    <text x="548" y="655" font-size="22" font-weight="700" fill="#1f2937">A line is a connection</text>
+    <text x="548" y="682" font-size="17" fill="#4b5563">how two things relate</text>
+
+    <text x="840" y="672" font-size="30" font-weight="700" fill="#374151">&#8594;</text>
+    <text x="885" y="655" font-size="22" font-weight="700" fill="#1f2937">Follow the lines</text>
+    <text x="885" y="682" font-size="17" fill="#4b5563">to find what is connected</text>
+  </g>
+</svg>
