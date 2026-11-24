@@ -342,7 +342,11 @@ Paste this into Claude Code:
 Push the contract-review-app to GitHub so the repo is up to date. Check git status first, stage all changes, write a short commit message describing what changed, and push to the current branch.
 ```
 
+![Claude Code checking git status, committing, and pushing the contract-review-app](./images/17.png)
+
 Open your repo on GitHub and refresh. Your latest commit should show up at the top of the file list.
+
+![GitHub repo showing the latest commit with app.js, config.js, index.html and styles.css](./images/18.png)
 
 ---
 
