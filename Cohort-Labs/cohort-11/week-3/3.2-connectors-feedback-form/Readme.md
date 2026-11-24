@@ -1,6 +1,6 @@
-# Lab 3.1.2: Connect Your App to Supabase Using Claude's Connectors
+# Lab 3.2: Connect Your App to Supabase Using Claude's Connectors
 
-![image](./assets/diagram.png)
+![image](./images/diagram.png)
 
 In [Lab 3.1.1](../3.1.1-code-review-subagent/Readme.md), you reviewed `contract-review-app`'s code with a dedicated `code-reviewer` agent and fixed what needed fixing. The code's in good shape now — but "the code is sound" and "you know it satisfies the people using it" aren't the same thing. You haven't actually asked anyone.
 

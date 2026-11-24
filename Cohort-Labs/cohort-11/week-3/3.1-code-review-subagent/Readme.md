@@ -1,4 +1,4 @@
-# Lab 3.1.1: Review Your App Using Claude's Sub Agent
+# Lab 3.1: Review Your App Using Claude's Sub Agent
 
 ## From Working to Well-Built — Give Your App a Standing Code Reviewer
 
@@ -53,41 +53,46 @@ Why install one instead of teaching Claude everything yourself? Two reasons:
 
 Let's install the plugin
 
-1. In Claude Code Desktop, click your **profile icon** in the bottom-left corner.
-2. Click **Settings**.
+1. In Claude Code Desktop, click **Customize** in the left sidebar.
+2. Open the **Plugins** tab.
+3. Click **Add**.
+4. Choose **Add marketplace**
 ![image](./images/1.png)
-3. Open the **Plugins** tab.
-4. Click **Add**.
-5. Choose **Add Marketplace**
-![image](./images/2.png)
 
+5. Click on the **Select a repository** box.
 
-Now paste this GitHub URL:
+Now paste this GitHub URL in the search box:
 
    ```
    https://github.com/obra/superpowers-marketplace
    ```
 
+![image](./images/2.png)
+
 and click on -> Use "https://github.com/obra/superpowers-marketplace"
 
 ![image](./images/3.png)
 
-6. Click **Sync**. A marketplace called **superpowers-marketplace** will show up uunder discover section.
+6. Click **Sync**.
 
 ![image](./images/4.png)
 
-7. Open **superpowers-marketplace**. You'll see a plugin card:
+7. A marketplace called **superpowers-marketplace** will show up under the **Discover** section. You'll see a plugin card:
 
    > **Superpowers**
    > v6.3.0 · Core skills library: TDD, debugging, collaboration patterns, and proven techniques
 
-   Click **Add** on it.
+   Click **Add to this computer** on it.
 
 ![image](./images/5.png)
 
-8. Now switch to the **Your Plugins** tab. Under **From marketplaces you added**, you should see **Superpowers** listed — installed and ready to use.
+8. A pop-up will ask you to confirm. Click **Continue**.
 
 ![image](./images/6.png)
+
+9. Now switch to the **Yours** tab. Under **From marketplaces you added**, you should see **Superpowers** listed — installed and ready to use.
+
+![image](./images/7.png)
 
 ---
 
@@ -109,24 +114,31 @@ You're about to build one called `code-reviewer`. Its entire personality — lit
 **Quit Claude Code Desktop and open a new session pointing your web-app** (or just start a fresh session — either works, as long as the plugin has had a chance to load). Then paste this exact prompt:
 
 ```
-Create a project-level subagent at .claude/agents/code-reviewer.md with:
-- Model: Sonnet 5
-- Background color: blue
-- Description: Reviews code changes using the superpowers plugin whenever invoked
-- Tools: Read, Grep, Glob, Edit, Skill, AskUserQuestion
+Create a project-level subagent at `.claude/agents/code-reviewer.md`.
 
-Behavior:
-1. When called, silently invoke the superpowers plugin/skills in the background to review the current code changes (do not narrate that you're using superpowers — just do the review).
-2. Stream the review findings/logs to the chat as you go, so the user can see what's being checked in real time.
-3. When the review is done, call AskUserQuestion asking "Do you want to fix the issues found?" with options Yes/No.
-4. If Yes: fix only the fixable issues in HTML, CSS, and JS files by editing existing files in place.
-   - Do NOT create new files.
-   - Do NOT create or modify .gitignore.
-5. If No: stop and summarize what was found without making changes.
-6. Scope restriction: only look for and report issues within HTML, CSS, and JS files. Do not log, mention, or flag anything out of this scope — including any .gitignore or other git-related issues. Every issue surfaced in the findings must be one that is concretely fixable by selecting "Yes" in the AskUserQuestion prompt; if something isn't fixable within that scope, leave it out entirely rather than listing it as unresolved.
+Configure it with:
+- **Name:** code-reviewer
+- **Model:** Sonnet
+- **Color:** Blue
+- **Description:** Reviews code changes using the Superpowers `requesting-code-review` code review skill.
+- **Tools:** Read, Grep, Glob, Edit, Skill, AskUserQuestion.
+
+**Behavior:**
+- Automatically use the relevant Superpowers review skill when invoked.
+- Review only HTML, CSS, and JavaScript changes.
+- Provide concise, real-time progress updates.
+- Report only concrete issues that can be fixed within the allowed scope.
+- Ask: "Do you want to fix the issues found?" with Yes/No options.
+- If Yes, fix issues directly in existing files. If No, summarize findings without changes.
+
+**Restrictions:** 
+- Never create new files, modify `.gitignore`, or touch unrelated code.
+- Never report issues outside HTML, CSS, and JS.
 ```
 
 Claude will create the `code-reviewer` subagent from this exact spec.
+
+![image](./images/18.png)
 
 **Want to confirm it actually got created?** Click the **three dots (⋮)** in the top-right corner and select **Files**. You'll see a `.claude` folder — open it, then open **agents**, and you'll find your `code-reviewer` agent sitting right there as a file.
 
@@ -162,7 +174,11 @@ It won't have changed a single file yet.
 
 ![fix-choice](./images/21.png)
 
+![image](./images/24.png)
+
 You now have a way to check your project's code quality. Next time, you can run it again and choose to decline the fix altogether and just keep the review as a read-only reference.
+
+![image](./images/25.png)
 
 ---
 

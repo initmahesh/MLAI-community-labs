@@ -275,6 +275,8 @@ It's just a text file (Markdown) with the rules written down. Once you upload it
 
 **Why it matters here:** a design system is exactly the kind of thing that's tedious to re-explain: exact colors, font sizes, spacing, corner roundness. Write it down once as a skill and every future project can reuse it.
 
+> **Want to know more about skills?** Skills aren't only for design. Product managers use them too, to run market research, user research, a PRD and a PRD review. To see skills used that way, try [Run the Full PM Loop with Claude Skills](./claude-skills/Readme.md).
+
 ### Step 1: Download the Skill
 
 The design system for this lab is already written for you in `SKILL.md` — a real color palette, type scale, 4px spacing grid, and patterns for things like status badges. Nothing in it is a guess.
@@ -342,7 +344,11 @@ Paste this into Claude Code:
 Push the contract-review-app to GitHub so the repo is up to date. Check git status first, stage all changes, write a short commit message describing what changed, and push to the current branch.
 ```
 
+![Claude Code checking git status, committing, and pushing the contract-review-app](./images/17.png)
+
 Open your repo on GitHub and refresh. Your latest commit should show up at the top of the file list.
+
+![GitHub repo showing the latest commit with app.js, config.js, index.html and styles.css](./images/18.png)
 
 ---
 
