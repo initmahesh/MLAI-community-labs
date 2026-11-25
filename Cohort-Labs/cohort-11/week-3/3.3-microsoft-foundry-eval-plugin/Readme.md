@@ -1,4 +1,4 @@
-# Lab 3.2: Evaluating Your n8n AI Agent with Azure AI Foundry
+# Lab 3.3: Evaluating Your n8n AI Agent with Azure AI Foundry
 
 ![image](./assets/diagram.png)
 
@@ -25,7 +25,7 @@ Before you begin, confirm all of the following are in place:
 
 ### Step 1: Add the "Download Responses" Feature to Your App
 
-**What you're doing**: Adding a way to export the chats your app already saved in Supabase (from [Lab 3.1.2](../3.1-subagent-connectors/3.1.2-connectors-feedback-form/Readme.md)), letting you choose how many recent responses to include. This exported file becomes your evaluation dataset.
+**What you're doing**: Adding a way to export the chats your app already saved in Supabase (from [Lab 3.1](../3.1-connectors-feedback-form/Readme.md)), letting you choose how many recent responses to include. This exported file becomes your evaluation dataset.
 
 **Why this matters**: Azure AI Foundry needs a dataset of real question-and-answer pairs to evaluate. The cleanest source for that dataset is your own app, with real answers from your own agent. Rather than hand-crafting examples, you'll generate them naturally by chatting with the app — every exchange is already saved in your Supabase `chat_messages` table, and the Download button exports the number you choose.
 

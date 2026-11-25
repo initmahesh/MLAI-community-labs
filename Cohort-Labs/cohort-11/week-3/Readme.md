@@ -2,7 +2,7 @@
 
 Welcome to Week 3 of the AI PM Certification.
 
-Your agent has been ingesting contracts and answering questions since Week 2 — but "it runs" and "it's good" are two different claims. This week you build the tooling to back up the second claim with evidence: a code reviewer that checks how the app was built, a feedback form that captures what real users think, and a scoring system that proves — with real numbers, not guesswork — which AI model actually gives better answers.
+Your agent has been ingesting contracts and answering questions since Week 2 — but "it runs" and "it's good" are two different claims. This week you build the tooling to back up the second claim with evidence: a feedback form that captures what real users think, a code reviewer that checks how the app was built, and a scoring system that proves — with real numbers, not guesswork — which AI model actually gives better answers.
 
 Each lab builds directly on the last. Work through them in order.
 
@@ -10,15 +10,15 @@ Each lab builds directly on the last. Work through them in order.
 
 ## The Labs
 
-### [Lab 3.1 — Review Your App Using Claude's Sub Agent](./3.1-code-review-subagent/Readme.md)
+### [Lab 3.1 — Connect Your App to Supabase Using Claude's Connectors](./3.1-connectors-feedback-form/Readme.md)
 
-A working demo and well-built code are two different things — nobody's actually looked at the code underneath and asked whether it's handling errors properly, whether anything's a security risk, or whether it's more complicated than it needs to be. You'll install the **Superpowers** plugin and, along the way, learn what a **subagent** is by turning its code-review skill into a standing `code-reviewer` agent you can point at your own project any time.
+Your app works, but you have no way to know if users are satisfied — and the moment you refresh, your chat is gone with nowhere to keep feedback. You'll build a feedback form and, along the way, learn what a **connector** is by using one to wire your app to a real **Supabase** database, so chats and feedback are saved instead of disappearing.
 
 ---
 
-### [Lab 3.2 — Connect Your App to Supabase Using Claude's Connectors](./3.2-connectors-feedback-form/Readme.md)
+### [Lab 3.2 — Review Your App Using Claude's Sub Agent](./3.2-code-review-subagent/Readme.md)
 
-Your app's code is in good shape now, but you still have no way to know if it's actually satisfying anyone. You'll build a feedback form and, along the way, learn what a **connector** is by using one to wire that form to a real **Supabase** database, so submissions land somewhere real instead of disappearing.
+Your app now collects real feedback, but a working demo and well-built code are two different things — nobody's actually looked at the code underneath and asked whether it's handling errors properly, whether anything's a security risk, or whether it's more complicated than it needs to be. You'll install the **Superpowers** plugin and, along the way, learn what a **subagent** is by turning its code-review skill into a standing `code-reviewer` agent you can point at your own project any time.
 
 ---
 
