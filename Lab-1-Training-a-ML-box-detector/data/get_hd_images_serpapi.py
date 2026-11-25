@@ -1,5 +1,9 @@
 import json
 import re
+#make sure you install serpapi and dotenv modules by running  below code 
+pip install google-search-results
+pip install python-dotenv
+pip install serpapi
 import time
 import requests
 import os
