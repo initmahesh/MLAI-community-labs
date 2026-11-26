@@ -1,8 +1,8 @@
-# Lab 3.1: Review Your App Using Claude's Sub Agent
+# Lab 3.2: Review Your App Using Claude's Sub Agent
 
 ## From Working to Well-Built — Give Your App a Standing Code Reviewer
 
-You built `contract-review-app` in week 1, then updated its backend in week 2. It works — you've tested it end to end — upload, ingest, ask, answer, all of it. But "it works" and "it's built well" aren't the same thing. Nobody's actually looked at the code itself and asked: is this handling errors properly? Is anything here a security risk? Is any of this more complicated than it needs to be?
+You built `contract-review-app` in week 1, updated its backend in week 2, and wired it to a feedback form and Supabase in Lab 3.1. It works — you've tested it end to end — upload, ingest, ask, answer, all of it. But "it works" and "it's built well" aren't the same thing. Nobody's actually looked at the code itself and asked: is this handling errors properly? Is anything here a security risk? Is any of this more complicated than it needs to be?
 
 That's what this lab fixes. You're going to install a plugin called **Superpowers**, use one of its skills to build yourself a dedicated **code review agent**, and point that agent at your own project.
 
@@ -24,7 +24,7 @@ Here's the flow for this lab:
 
 ## Prerequisites
 
-✅ **Lab 2.4 done** — you have a working `contract-review-app` folder.
+✅ **Lab 3.1 done** — you have a working `contract-review-app` with a feedback form connected to Supabase.
 
 ✅ **Claude Code Desktop** installed and signed in.
 
@@ -182,6 +182,18 @@ You now have a way to check your project's code quality. Next time, you can run 
 
 ---
 
+### Plugins vs. Connectors — When to Use Which
+
+Between [Lab 3.1](../3.1-connectors-feedback-form/Readme.md) and this lab, you've now used both a connector and a plugin — and they solve two different problems. Here's how to tell them apart:
+
+| | Plugin | Connector |
+|---|---|---|
+| **What it gives Claude** | A new skill or way of working — like knowing how to run a proper code review | Access to an external account or tool you already have — like your real Supabase database |
+| **Where it lives** | Attached to Claude Code itself, so it's available in every project you open, not just this one | Attached to your Claude account, so Claude can reach outside into that specific service |
+| **When to reach for it** | You want Claude to know *how* to do something it doesn't do by default | You want Claude to actually read or write real data somewhere else, not just know that tool exists |
+
+---
+
 ## What You Learned
 
 - **Plugins give Claude new capabilities.** Out of the box, Claude doesn't know how to run a structured code review — installing Superpowers is what handed it that capability, packaged as a skill you can actually call on.
@@ -192,6 +204,6 @@ You now have a way to check your project's code quality. Next time, you can run 
 
 ---
 
-Your code is in good shape now. But you still don't know if the app is actually satisfying anyone using it — that's what the next lab finds out.
+Your code is in good shape now, and your app is collecting real chats and feedback. But feedback tells you how people feel about an answer — not whether it was actually correct. That's the gap the next lab closes.
 
-[Go to Lab 3.1.2: Give Your Contract Review App a Feedback Form →](../3.1.2-connectors-feedback-form/Readme.md)
+[Go to Lab 3.3: Find Out If Your Agent's Answers Are Actually Good →](../3.3-microsoft-foundry-eval-plugin/Readme.md)

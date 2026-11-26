@@ -171,12 +171,16 @@ The system now decides before it searches. But does it always find the right ans
 
 ## Part 5: Stress-Test It with a Loan Agreement
 
-In the test contract, every fact sat in one clause, so one chunk was enough. Real contracts aren't always that simple.
+In the test contract, every fact sat in one clause, so FEW chunk was enough. Real contracts aren't always that simple.
 
 **Action items**:
 
-1. Click **Execute Workflow**, open the upload form and upload the **Loan Agreement**.
-2. Once ingestion finishes, ask these questions:
+1. Switch the model first. Open the **OpenAI Chat Model** node and change **Model** to **gpt-4o-mini**.
+
+![assets](assets/20.png)
+
+2. Click **Execute Workflow**, open the upload form and upload the **Loan Agreement**.
+3. Once ingestion finishes, open the chat and ask these questions:
 
 ```
 What is the interest rate on this loan?
@@ -188,21 +192,24 @@ Can the borrower repay the loan early, and is there a penalty?
 What happens if the borrower misses a payment?
 ```
 
-![assets](assets/16.png)
+![assets](assets/21.png)
 
-You'll get correct answers with citations, but they take longer than before.
+You **will** get answers, and they will look confident and even cite chunks. But they will be **incomplete**. Look at the interest rate answer above: it says the rate is the *"Spread plus the Benchmark"* and mentions a Spread of 4.20%, but it never tells you the Benchmark, the floor, or the final rate.
 
 **Why?** In a loan agreement, one fact is spread across several places:
 
 > *"The applicable interest rate shall be the Base Rate plus the Applicable Margin, as defined in Schedule 1.1(a), subject to periodic adjustment in accordance with Section 2.7(d)."*
 
-The first chunk only **points to** the answer, so the agent has to search again for Schedule 1.1(a), then again for Section 2.7(d). That means:
+To answer correctly, the system would need to:
 
-- **Slower answers**, because every extra search is another round trip.
-- **More tokens**, because every search pulls more text into the model.
-- **The same work on every question**, because the agent doesn't remember how the sections connect.
+1. Find this clause
+2. Locate **Schedule 1.1(a)**, possibly a table on a separate page
+3. Find **Section 2.7(d)** and read the adjustment conditions
+4. Combine all three into one answer
 
-**The fix: a Knowledge Graph.** We read the agreement **once** and store its sections, schedules and references as a graph. Every question then **reuses the same graph** and follows the saved links instead of searching again, so answers are faster and use fewer tokens.
+Instead, RAG retrieves the most relevant chunk, which only **points to** the real answer. The agent cites what it found, so the answer is grounded but incomplete, and it doesn't know how the sections connect.
+
+**That's why we use a Knowledge Graph.** We read the agreement **once** and store its sections, schedules and references as a graph. Every question then follows the saved links to the full answer instead of stopping at the pointer.
 
 We'll build this in [**Lab 2.3**](../2.3-knowledge-graph-RAG/Readme.md).
 
