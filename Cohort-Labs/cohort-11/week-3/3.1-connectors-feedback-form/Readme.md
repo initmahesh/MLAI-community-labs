@@ -12,6 +12,7 @@
 - [Part 4: Connect Supabase to Claude (the Connector)](#part-4-connect-supabase-to-claude-the-connector)
 - [Part 5: Connect the Application to Supabase](#part-5-connect-the-application-to-supabase)
 - [Part 6: Test the Feedback Feature](#part-6-test-the-feedback-feature)
+- [Part 7: Push Your Code to GitHub](#part-7-push-your-code-to-github)
 
 ---
 
@@ -182,21 +183,24 @@ Go back to your Claude Code session, still pointed at `contract-review-app`, and
 SUPABASE PROJECT (use only this one): <YOUR SUPABASE PROJECT URL>
 
 TASK
-Integrate the existing Feedback form and the Contract Review chat with Supabase.
+Integrate the existing Feedback form and the Contract Review chat with Supabase
+for the first time, and make saved chats visible again: the user must be able to
+see past chat history per contract after reloading or returning to the app.
 Do not create or use any other Supabase project.
 
 STEP 0: INSPECT FIRST
-Review the existing Supabase config, client setup, env vars, and app architecture
-before changing anything. Reuse what exists.
+Review the existing Supabase config, client setup, env vars, and app
+architecture before changing anything. Reuse what exists.
 
-DATABASE (no auth, no user_id; the app has no login/signup)
+DATABASE (create both tables; no auth, no user_id; the app has no login/signup)
 1. `feedback`: id, rating, feedback, name, email, created_at
-2. `chat_messages`: id, question, response, citation (text[], nullable),
-   reasoning (text, nullable), created_at
+2. `chat_messages`: id, contract_name (text, not null), question, response,
+   citation (text[], nullable), reasoning (text, nullable), created_at
+   - Add an index on (contract_name, created_at) for history lookups.
 
 RLS POLICIES (enable RLS on both tables)
 - feedback: public INSERT only. No public SELECT, UPDATE or DELETE.
-- chat_messages: public INSERT and SELECT only (the app reads chats back later).
+- chat_messages: public INSERT and SELECT only (the app reads chats back).
   No public UPDATE or DELETE.
 
 SECURITY
@@ -212,12 +216,36 @@ FEEDBACK FORM
 - Prevent duplicate submissions (disable while in flight, guard against
   double-clicks and repeat submits).
 
-CONTRACT REVIEW CHAT
+CONTRACT REVIEW CHAT: SAVING
+- Determine the contract name from what the app already knows (the uploaded or
+  selected contract's file name or title). Strip the file extension for display
+  and trim it. If none is available, use 'Untitled contract'.
 - After each question gets its response displayed, insert a new row into
-  `chat_messages` with the question, response, citation and reasoning.
+  `chat_messages` with contract_name, question, response, citation and reasoning.
 - If the reply has no citation or reasoning, leave those columns null/empty.
 - If saving fails, the chat must keep working normally. The user must see no
   error, so log it silently. Never block or delay the response display.
+
+CONTRACT REVIEW CHAT: HISTORY
+- Add a "Chat history" entry point in the existing UI (for example, a sidebar
+  section or a history button/panel). Reuse existing components and tokens.
+- Chat history list: query `chat_messages` and group by `contract_name`. For
+  each contract show its name, the number of questions, and the time of the
+  last message. Sort by most recent activity first.
+- Selecting a contract opens its conversation. Load that contract's rows ordered
+  by created_at ascending and render each as a question and response pair.
+  Reuse the existing chat message components so it looks identical to a live
+  chat, including citations and reasoning when present.
+- If the user is currently reviewing a contract with the same name, load its
+  prior messages when the chat opens, so history survives a reload.
+- Handle loading (skeleton or spinner), empty state ("No chat history yet"),
+  and fetch-error states (a friendly message with a retry; this view may show
+  errors, unlike the silent save path).
+- Reads use the anon key and the existing SELECT policy only. Fetch only the
+  needed columns, and limit results (for example, the latest 200 rows per
+  contract) so the list stays fast.
+- Newly saved messages must appear in history without a manual refresh (refetch
+  when the panel opens, or update local state after a successful save).
 
 CONSTRAINTS
 - Preserve the existing frontend design and the `design-system` implementation.
@@ -229,13 +257,19 @@ VERIFY (report pass/fail for each)
 3. Invalid input is rejected.
 4. Success and error states work.
 5. Duplicate submissions are prevented.
-6. Each chat question, response, citation and reasoning is saved to `chat_messages`.
+6. Each chat question, response, citation, reasoning and contract_name is saved
+   to `chat_messages`.
 7. Existing Contract Review functionality still works.
+8. Chat history lists contracts by name with correct counts and ordering.
+9. Opening a contract shows its full Q&A (with citations and reasoning), in order.
+10. After a full page reload, the history is still visible and loads from Supabase.
+11. A simulated save failure leaves the chat working with no visible error.
+12. Loading, empty and error states of the history view render correctly.
 Also confirm the RLS policies behave as specified (anon can't read feedback,
-can't update or delete either table).
+can't update or delete either table; anon can read and insert chat_messages).
 ```
 
-Claude will inspect your Supabase setup and create two tables: `feedback`, to store the feedback submitted by users, and `chat_messages`, to store every question asked in the chat along with the response, citation and reasoning it received. You'll use these saved chats in Lab 3.3 to build your evaluation dataset.
+Claude will inspect your Supabase setup and create two tables: `feedback`, to store the feedback submitted by users, and `chat_messages`, to store every question asked in the chat along with the contract name, response, citation and reasoning it received. It will also add a **Chat history** button to the app so you can see those saved chats again. You'll use these saved chats in Lab 3.3 to build your evaluation dataset.
 
 ---
 
@@ -279,7 +313,55 @@ Then open **Supabase project → Table Editor → `chat_messages`**. You should 
 
 ![image](./images/17.png)
 
+### 5. Can I still see my chats after a refresh? 🔄
+
+Look at the top of the chat panel. You'll see a **Chat history** button.
+
+![Chat history button](./images/18.png)
+
+Click it, and you'll see every contract you've chatted about, with the number of questions and the time of the last message. Even if you refresh the page, your chats are saved here. Select a contract to reopen its full conversation.
+
+![Chat history panel](./images/19.png)
+
 🎉 **If you can see your feedback and your chat questions and responses in Supabase, the complete flow is working.**
+
+---
+
+## Part 7: Protect Your Secrets and Push Your Code to GitHub
+
+Everything works, so let's save it. First, a quick concept:
+
+- **`.env`** is a local file that holds secrets and config, like your Supabase project URL and keys. It never goes to GitHub.
+- **`config.js`** is the same idea, but for apps like ours. Our app is plain `index.html`, `style.css` and `app.js` opened straight in the browser, and a browser can't read a `.env` file. So we keep the real values in `config.js`, load it with a `<script>` tag, and read them from there in `app.js`.
+- **`.gitignore`** lists files Git should skip. Adding `.env` and `config.js` to it stops you from committing secrets by accident.
+
+### 1. Create `.env`, `config.js` and `.gitignore`
+
+Go back to your Claude Code session, still pointed at `contract-review-app`, and give it this prompt:
+
+```
+My app is only index.html, style.css and app.js, opened as a local file preview, so it cannot read a .env file.
+
+1. Create a .env file in the project root with my Supabase project URL and anon key. This is just a reference copy for me.
+2. Create a config.js file in the project root that defines window.APP_CONFIG with my Supabase project URL, anon key, and any other important URLs or keys currently hardcoded in the code.
+3. Update index.html to load config.js with a <script> tag BEFORE app.js, and update app.js to read every URL and key from window.APP_CONFIG instead of hardcoding them.
+4. Create a config.example.js with the same structure but placeholder values (like "YOUR_SUPABASE_URL"), so others know what to fill in. This one is safe to commit.
+5. Create a .gitignore that includes .env, .env.*, config.js, and .DS_Store.
+
+Run `git status` and confirm .env and config.js are NOT listed as files to be committed, while config.example.js is.
+```
+
+Check that neither `.env` nor `config.js` shows up in `git status` before moving on.
+
+### 2. Commit and push
+
+Now give Claude Code this prompt:
+
+```
+Commit and push all my changes to the main branch on GitHub with a clear commit message. Don't commit secrets (.env files, config.js, or service-role keys), and never force-push. Confirm the push succeeded.
+```
+
+Once it finishes, your code is updated on GitHub. 🎉
 
 ---
 

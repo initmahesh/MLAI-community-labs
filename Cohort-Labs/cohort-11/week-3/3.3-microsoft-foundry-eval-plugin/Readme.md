@@ -68,7 +68,7 @@ Export `config.json` in this format:
 
 **Output**: Your app now has a "Download Responses" button that exports saved chats from Supabase, in the number you choose.
 
-![image](./assets/2.png)
+![image](./assets/33.png)
 
 ---
 
@@ -100,7 +100,7 @@ Export `config.json` in this format:
 
 **Output**: Five question-and-answer pairs are now saved in your Supabase `chat_messages` table. Check **Table Editor → `chat_messages`** if you want to confirm.
 
-![image](./assets/3.png)
+![image](./assets/35.png)
 
 ---
 
@@ -202,23 +202,23 @@ Your `config.json` has the query, response, and citation your agent generated. I
 
 **Action items**:
 
-1. Download the ground truth reference file — **[Download From Here](https://docs.google.com/spreadsheets/d/146uj0YOBdGlScHxgcZwbxhp2rP28NphtuluEdRihcyQ/export?format=csv&gid=1493472500)** — and save it as `sample.csv`.
+1. Download the ground truth reference file — **[Download From Here](https://docs.google.com/spreadsheets/d/146uj0YOBdGlScHxgcZwbxhp2rP28NphtuluEdRihcyQ/export?format=csv&gid=1493472500)** — and save it as `.csv`.
 2. Open Claude Code.
-3. Attach three files: your `config.json`, the `sample.csv` you just downloaded, and the sample dataset you downloaded from Foundry in Step 5.
+3. Attach three files: your `config.json`, the `HHH Framework Evaluation - Sample.csv` you just downloaded, and the sample dataset you downloaded from Foundry in Step 5.
 4. Run the following prompt:
 
 ```
 Task: Create Evaluation Dataset
 
-The config.json file contains the queries, responses, and citations generated from sample.csv.
-Your task is to create the final evaluation dataset by combining the information from both files.
+The config.json file contains the queries, responses, and citations generated from agent.
+Your task is to create the final evaluation dataset by combining the information from both files - config.json and `HHH Framework Evaluation - Sample.csv`.
 
 Instructions
-  1.Read the query, response, and citation pairs from config.json.
-  2.For each query, find the corresponding record in sample.csv.
-  3.From sample.csv, fetch the corresponding:
+  1.Read the query, response, and citation from config.json.
+  2.For each query, find the corresponding record in `HHH Framework Evaluation - Sample.csv`.
+  3.From `HHH Framework Evaluation - Sample.csv`, fetch the corresponding:
     -Ground truth
-  4.Map the query, response, and citation from config.json with the matching ground truth from sample.csv.
+  4.Map the query, response, and citation from config.json with the matching ground truth from `HHH Framework Evaluation - Sample.csv`.
   5.Create the final evaluation dataset using this combined information.
   6.Use the attached data-sample.jsonl file as the reference for the required dataset structure and format.
   7.Ensure the output follows the same:
@@ -226,12 +226,12 @@ Instructions
     -Field names
     -Data types
     -Formatting conventions as shown in data-sample.jsonl.
-  8.Do not invent, modify, or infer any ground-truth values. Use only the values available in sample.csv.
+  8.Do not invent, modify, or infer any ground-truth values. Use only the values available in `HHH Framework Evaluation - Sample.csv`.
 Expected Output
-Generate a complete JSONL evaluation dataset where each record contains the appropriate query, response, citation, and ground truth information based on the data in config.json and sample.csv.
+Generate a complete JSONL evaluation dataset where each record contains the appropriate query, response, citation, and ground truth information based on the data in config.json and `HHH Framework Evaluation - Sample.csv`.
 ```
 
-![image](./assets/14.png)
+![image](./assets/34.png)
 
 5. Claude will produce a new file formatted to Foundry's specification. Save it.
 
@@ -365,3 +365,15 @@ Look at the overall score in both reports side by side. In this run, the GPT-4o 
 ## Useful Links
 
 - [Azure AI Foundry — Built-in Evaluators](https://learn.microsoft.com/en-us/azure/foundry/concepts/built-in-evaluators)
+
+---
+
+## Troubleshooting
+
+### The Judge model dropdown is greyed out
+
+When you configure the evaluation, the **Judge model** dropdown may be locked and unclickable, even though your billing and account are fine. This happens because the dropdown only lists models that are already **deployed** in your Foundry project. If nothing is deployed yet, it has nothing to show and stays locked. The same applies to GPT-5 for the second run: it won't appear until you deploy it.
+
+The fix takes about five minutes and you only do it once per project: deploy the model first, then come back to the evaluation.
+
+[Go to the fix: Deploy the Judge Models in Azure AI Foundry →](./foundry-judge-model-fix/Readme.md)
