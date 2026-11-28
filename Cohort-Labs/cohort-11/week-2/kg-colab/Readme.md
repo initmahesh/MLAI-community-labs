@@ -2,7 +2,7 @@
 
 ## Run all, then open the app
 
-1. Open the notebook in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-11/week-2/2.3-knowledge-graph-RAG/notebook.ipynb)
+1. Open the notebook in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/initmahesh/MLAI-community-labs/blob/main/Cohort-Labs/cohort-11/week-2/kg-colab/notebook.ipynb)
 2. Click **Runtime → Run all**.
 3. When the last cell finishes, open the link ending in **`.gradio.live`**.
 4. On the **1. Setup** tab, paste your OpenAI API key, upload the [loan agreement PDF](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQD6lbbrDHV5ToSGrWurVlejAZ9kRJYW40iwWLtE5fzC54M?e=VtD4Mp) (any contract works), and press **Build**. **Fast demo** is ticked by default (Graphify reads only Article 2). Untick it to build the graph of the whole contract (several minutes).
