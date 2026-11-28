@@ -36,7 +36,7 @@ By the end, you'll have an n8n workflow that answers "What is the interest rate?
 
 ✅ **Sample file:** [Loan Agreement (PDF)](https://pragyaallc-my.sharepoint.com/:b:/g/personal/anushka_srivastava_legalgraph_ai/IQD7-tDNZkS3TbNqhwLdU1e-AahWyPT4ozHCQZ_igvhqNJM?e=hMyrkk)
 
-✅ **Workflow:** [n8n Workflow JSON](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQCQx6LyxdnbQq65DzlNsgNIAYPSxSqCCliALuKzEAXGgvw?e=fmpRo6) (for Part 5)
+✅ **Workflow:** [n8n Workflow JSON](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQAlEqCLXBwnRbYinDbmO4h1AV7ARp3MxY24lrY7bH4aXpo?e=BzOfPj) (for Part 5)
 
 ✅ **Graph table:** [ci_graphs.csv](https://pragyaallc-my.sharepoint.com/:x:/g/personal/anushka_srivastava_legalgraph_ai/IQAco6jA1r2BQo1KRO4cUzg5ATCW6XhjYibqkJ7gy1tCBAY?e=2zbwJH) (for Part 7)
 
