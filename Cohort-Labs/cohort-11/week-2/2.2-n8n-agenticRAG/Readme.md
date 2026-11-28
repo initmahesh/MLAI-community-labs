@@ -11,7 +11,6 @@
 - [Part 2: Add Your OpenAI Key](#part-2-add-your-openai-key)
 - [Part 3: Upload Your Contract](#part-3-upload-your-contract)
 - [Part 4: Ask Questions and Watch the Routing](#part-4-ask-questions-and-watch-the-routing)
-- [Part 5: Stress-Test It with a Loan Agreement](#part-5-stress-test-it-with-a-loan-agreement)
 - [Quick Reference](#quick-reference)
 - [What's Next](#whats-next)
 
@@ -26,7 +25,6 @@ The fix: let the system decide **before** it searches. A contract question gets 
 Here's the flow for this lab:
 
 - **Run the workflow.** See "Hi" skip the search while contract questions go through it.
-- **Break it on purpose.** Try a loan agreement and see where RAG still struggles.
 
 The diagram above shows the workflow you'll be running. **Reading the contract** happens once, when you upload it. **Answering a message** happens every time you send one: the Intent Router checks the message first, then either replies directly or searches the contract.
 
@@ -42,7 +40,6 @@ The diagram above shows the workflow you'll be running. **Reading the contract**
 
 - [n8n Workflow JSON](https://pragyaallc-my.sharepoint.com/:u:/g/personal/anushka_srivastava_legalgraph_ai/IQCa6buQ_4CLSb6iZU4ZK0FbAXUB4ryLH9Q0NKz68mXT_fk?e=nduyOL)
 - [Test Contract](https://pragyaallc-my.sharepoint.com/:w:/g/personal/sachin_parmar_legalgraph_ai/IQAbCBMxqrFrT6hzD6t9oCdpAR8pdsHtVaZf2O5HiyGq5jY?e=4s3M8D) (keep it in `.docx` format)
-- [Loan Agreement](https://pragyaallc-my.sharepoint.com/:b:/g/personal/sachin_parmar_legalgraph_ai/IQD6lbbrDHV5ToSGrWurVlejAZ9kRJYW40iwWLtE5fzC54M?e=VtD4Mp) (for Part 5)
 
 ---
 
@@ -164,55 +161,6 @@ Now for the real test: is the "Hi" problem actually fixed?
 | | "When is the maturity date?" |
 
 **Output**: General messages get instant replies, and contract questions get answers with citations.
-
-The system now decides before it searches. But does it always find the right answer? Let's try a harder document.
-
----
-
-## Part 5: Stress-Test It with a Loan Agreement
-
-In the test contract, every fact sat in one clause, so FEW chunk was enough. Real contracts aren't always that simple.
-
-**Action items**:
-
-1. Switch the model first. Open the **OpenAI Chat Model** node and change **Model** to **gpt-4o-mini**.
-
-![assets](assets/20.png)
-
-2. Click **Execute Workflow**, open the upload form and upload the **Loan Agreement**.
-3. Once ingestion finishes, open the chat and ask these questions:
-
-```
-What is the interest rate on this loan?
-```
-```
-Can the borrower repay the loan early, and is there a penalty?
-```
-```
-What happens if the borrower misses a payment?
-```
-
-![assets](assets/21.png)
-
-You **will** get answers, and they will look confident and even cite chunks. But they will be **incomplete**. Look at the interest rate answer above: it says the rate is the *"Spread plus the Benchmark"* and mentions a Spread of 4.20%, but it never tells you the Benchmark, the floor, or the final rate.
-
-**Why?** In a loan agreement, one fact is spread across several places:
-
-> *"The applicable interest rate shall be the Base Rate plus the Applicable Margin, as defined in Schedule 1.1(a), subject to periodic adjustment in accordance with Section 2.7(d)."*
-
-To answer correctly, the system would need to:
-
-1. Find this clause
-2. Locate **Schedule 1.1(a)**, possibly a table on a separate page
-3. Find **Section 2.7(d)** and read the adjustment conditions
-4. Combine all three into one answer
-
-Instead, RAG retrieves the most relevant chunk, which only **points to** the real answer. The agent cites what it found, so the answer is grounded but incomplete, and it doesn't know how the sections connect.
-
-**That's why we use a Knowledge Graph.** We read the agreement **once** and store its sections, schedules and references as a graph. Every question then follows the saved links to the full answer instead of stopping at the pointer.
-
-We'll build this in [**Lab 2.3**](../2.3-knowledge-graph-RAG/Readme.md).
-
 ---
 
 ## Quick Reference
@@ -221,7 +169,6 @@ We'll build this in [**Lab 2.3**](../2.3-knowledge-graph-RAG/Readme.md).
 |---|---|---|
 | "Hi" triggers a contract search | Traditional RAG searches on every message | Put an Intent Router before the search |
 | OpenAI nodes show errors | One of the three nodes is missing the credential | Select the same credential on the Chat Model and both Embeddings nodes |
-| Loan agreement answers are slow and use more tokens | Facts are spread across sections, so the agent searches several times on every question | Expected RAG limit, solved with Knowledge Graphs in Lab 2.3 |
 
 ---
 
