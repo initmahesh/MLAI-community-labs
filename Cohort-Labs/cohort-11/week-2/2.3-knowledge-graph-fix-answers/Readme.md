@@ -122,12 +122,13 @@ The workflow has two flows. **Flow 1** runs once per contract and builds everyth
 | Node | What it does |
 |---|---|
 | **Chat** | Receives your question from the chat window. |
+| **Mode (Graph ON/OFF)** | The switch. It holds a `use_knowledge_graph` setting (`true` or `false`) that decides whether the agent uses the knowledge graph or plain RAG. Use it to compare answers. |
 | **Get Graph** | Reads the saved graphs from the `ci graphs` data table. |
-| **Pick Contract** | Picks the most recently saved contract and passes along your question, its graph and its search index. |
-| **Orchestration Agent** | The brain. It asks the graph what your question connects to, writes an enhanced query, gets the chunks and writes the final answer. |
+| **Pick Contract** | Picks the most recently saved contract and passes along your question, its graph, its search index and the ON/OFF setting. |
+| **Orchestration Agent** | The brain. If the graph is ON, it asks the graph what your question connects to and writes an enhanced query. If OFF, it uses your question as it is. Then it gets the chunks and writes a short, one-line answer. |
 | **Chat Model** | The OpenAI model (gpt-4.1-mini) that powers the Orchestration Agent and the Retrieval Agent. |
-| **knowledge_graph** | A tool that finds the graph nodes your question mentions and follows their connections two steps out. It returns the related nodes and relationships. |
-| **retrieval_agent** | Takes the enhanced query, searches the contract and returns the best chunks with their page, section and why they matched. |
+| **knowledge_graph** | A tool that finds the graph nodes your question mentions and follows their connections two steps out. It returns the related nodes and relationships. When the mode is OFF, it returns nothing useful and the agent skips it. |
+| **retrieval_agent** | Takes the enhanced query (or your original question, when the graph is OFF), searches the contract and returns the best chunks with their page, section and why they matched. |
 | **contract_chunks** | The search tool the Retrieval Agent uses. It looks up the 6 closest chunks in the vector store. |
 | **Embeddings (Query)** | Turns the enhanced query into an embedding, so it can be matched against the stored chunks. |
 
@@ -317,7 +318,21 @@ What is the interest rate on this loan?
 
 ![assets](images/35.png)
 
-**Output**: This time you get the answer. The graph connected the spread, the benchmark and the index floor, so nothing was missed.
+**Output**: This time you get the actual rate, not just the formula. The graph connected the spread, the benchmark and the index floor, so nothing was missed.
+
+### Test with the knowledge graph ON and OFF
+
+You can run the same question with and without the knowledge graph and compare the answers. The switch is the **Mode (Graph ON/OFF)** node, between **Chat** and **Get Graph**.
+
+1. Double-click the **Mode (Graph ON/OFF)** node.
+2. Under **Fields to Set**, find `use_knowledge_graph` and choose a value:
+   - **true**: RAG + knowledge graph. The agent builds an enhanced query from the graph.
+   - **false**: RAG only. The agent sends your plain question to the vector store.
+3. Close the node, open the chat and ask the same question again.
+
+![assets](images/mode-switch.png)
+
+Try `false` first to see the incomplete answer from plain RAG, then switch to `true` to see the difference. You don't need to upload the contract again, because the graph and the chunks are already saved.
 
 ### What happens behind the scenes
 
@@ -327,11 +342,11 @@ Your question goes through these steps. You can open the execution and watch eac
 
 | Step | Node | What it does |
 |---|---|---|
-| 1 | **Chat** → **Get Graph** → **Pick Contract** | Takes your question, loads the saved graphs from the `ci graphs` table and picks the latest contract. |
-| 2 | **Orchestration Agent** → `knowledge_graph` tool | Sends your original question to the graph. The tool finds the nodes your question mentions (like `Interest Rate`), follows their connections two steps out, and returns up to 50 relationships (source, relation, target, page). |
-| 3 | **Orchestration Agent** | Writes an **enhanced query** using only what the graph returned. It does not add numbers or facts of its own. For example: *what makes up the interest rate, what it is calculated from, how often it resets and which conditions affect it.* |
-| 4 | `retrieval_agent` → `contract_chunks` | Searches the contract's vector store with the enhanced query and sends back the 6 best chunks, each with its page, section and the reason it matched. |
-| 5 | **Orchestration Agent** | Answers using only those chunks, gives the actual values, and cites each fact as (Page N, Section). If the chunks don't contain the answer, it says so. |
+| 1 | **Chat** → **Mode (Graph ON/OFF)** → **Get Graph** → **Pick Contract** | Takes your question, adds the ON/OFF setting, loads the saved graphs from the `ci graphs` table and picks the latest contract. |
+| 2 | **Orchestration Agent** → `knowledge_graph` tool | *(Only when the mode is ON.)* Sends your original question to the graph. The tool finds the nodes your question mentions (like `Interest Rate`), follows their connections two steps out, and returns up to 50 relationships (source, relation, target, page). |
+| 3 | **Orchestration Agent** | *(Only when the mode is ON.)* Writes an **enhanced query** using only what the graph returned. It does not add numbers or facts of its own. For example: *what makes up the interest rate, what it is calculated from, how often it resets and which conditions affect it.* |
+| 4 | `retrieval_agent` → `contract_chunks` | Searches the contract's vector store with the enhanced query (or your original question, when the mode is OFF) and sends back the 6 best chunks, each with its page, section and the reason it matched. |
+| 5 | **Orchestration Agent** | Answers in one short line, using only those chunks and the graph's values. If neither contains the answer, it says *Not found in the contract*. |
 
 So instead of searching with just "What is the interest rate?", RAG now searches with a query that already names the spread, the benchmark and the floor.
 
@@ -346,5 +361,6 @@ So instead of searching with just "What is the interest rate?", RAG now searches
 | InfraNodus step fails | The API key is missing or wrong in the **InfraNodus Build Graph** node | Paste your key after `Bearer ` in the Authorization header |
 | **Save Graph** or **Get Graph** shows an error | The node isn't pointing to your data table | Select **ci graphs** with **From list** in both nodes |
 | OpenAI nodes show errors | A node is missing the credential | Select the same credential on Ontology Model, Chat Model, Embeddings and Embeddings (Query) |
+| Want to compare answers with and without the graph | The graph is used only when the mode is ON | Set `use_knowledge_graph` to `true` or `false` in the **Mode (Graph ON/OFF)** node |
 | Chat says no contract found | No contract has been uploaded yet | Run the upload form first, then ask your question |
 
